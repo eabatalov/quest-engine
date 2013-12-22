@@ -1,0 +1,69 @@
+Game "English Idioms"
+
+LEARNING aspect:
+	The game has integrated idioms quizz. All the questions are asked according
+	to an algorithm which checks that particular idiom is remembered in player's
+	persistent memory.
+
+	Collaborative idioms learning. Exchange knowledge between players, help each
+	other using p2p messages, do quizes together and create quizes for friends.
+
+FUNNY aspect:
+	Players choose a hero to play in the game. Each hero has its own cool look,
+	animations and story.
+
+	Player needs to perform some funny actions to answer quizz question.
+
+	For now we think that it would be funny to throw item with quizz answer
+	chosen by player to a placeholder located inside question text.
+	Depending on "power" of the throw player can hit the placeholder or not.
+	On each throw we show "power indicator" in the UI. Player chooses the "power"
+	in the "power indicator".
+	If player:
+		- hits the placeholder with valid answer item then he gets points.
+		- hits the placeholder with invalid answer item then he gets no points
+		  for the question and proceeds to the next question.
+		- Doesn't hit the placeholder then he has 2 additional attempts. If he doesn't
+		  hit the placeholder 3 times then he proceeds to the next question and gets no
+		  points.
+	Each hero has its own style of throwing the items.
+	See their descriptions in "Heroes" section.
+
+	Player can skip the current question if he doesn't want to answer it for some reason.
+	Each hero has its own style of skipping. See them in "Heroes" section.
+
+	Competative idioms learning. Compete with friends for quickiest level completion/
+	more points on the level to make process even more engaging.
+
+HEROES:
+	Vaider.
+		You probably know about him.
+		Throwing:
+			Doesn't really throw items. Controls items using Force.
+		Skipping:
+			Calls "Death star" on the radio to destroy the question.
+
+	Zomb.
+		Has dumb face, but generous soul. Will easily share with a piece of his cake.
+		Throwing:
+			Uses his hands. When "power" is high can loose his hand and then will need to
+			pick it up.
+		Skipping:
+			Throws his head into the question to destroy it. Head falls down behind the
+			question. Picks head up once reaches it.
+			
+	Cat.
+		Crafty guy. Likes energy drinks.
+		Throwing:
+			Simple kicking the item by his foot.
+		Skipping:
+			Drinks energy drink and becomes gigantic then just goes through the question
+			and destroys it.
+
+	Foxy.
+		Pretty young lady from England. Warm and pleasing person.
+		Throwing:
+			As a real English lady, uses golf or cricket club.
+		Skipping:
+			(Mary Poppins analogy). Opens an umbrella. Wind blows and Foxy flies over the
+			question and the question disappears.
