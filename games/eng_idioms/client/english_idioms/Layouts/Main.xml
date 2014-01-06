@@ -269,14 +269,8 @@
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="AnsweredQuestionsArray" uid="11">
-            <properties>
-                <width>10</width>
-                <height>1</height>
-                <depth>1</depth>
-            </properties>
-        </instance>
         <instance type="CurrentQuestion" uid="8" />
+        <instance type="EnglishIdioms" uid="0" />
     </nonworld-instances>
     <effects />
 </c2layout>

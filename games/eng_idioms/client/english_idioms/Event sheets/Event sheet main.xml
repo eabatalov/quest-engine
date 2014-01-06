@@ -8,36 +8,35 @@
                 <condition id="0" name="On clicked" sid="2001732125957642" type="AnswerBtn" />
             </conditions>
             <actions>
-                <action id="3" name="Answer current question" sid="54868584199773" type="EnglishIdioms">
+                <action id="3" name="Answer current question" sid="9920936478359689" type="EnglishIdioms">
                     <param id="0" name="AnswerNumber">AnswerNumberDropDown.SelectedText</param>
                 </action>
-                <action id="1" name="Prepare next question" sid="532348023414775" type="EnglishIdioms" />
+                <action id="1" name="Prepare next question" sid="5342358653251712" type="EnglishIdioms" />
             </actions>
         </event-block>
         <event-block sid="2287936255455851">
             <conditions>
-                <condition id="2" name="No more questions" sid="9857501756780314" type="EnglishIdioms" />
+                <condition id="2" name="No more questions" sid="1595418227471086" type="EnglishIdioms" />
             </conditions>
             <actions>
+                <action id="5" name="Show answered questions results" sid="9453081622948742" type="EnglishIdioms" />
+                <action id="4" name="Store game results" sid="3049338356804112" type="EnglishIdioms" />
                 <action id="-26" name="Restart layout" sid="1066422564865712" type="System" />
             </actions>
         </event-block>
         <event-block sid="9329698251944478">
             <conditions>
-                <condition id="-25" name="On loader layout complete" sid="9921158394150842" type="System" />
+                <condition id="-2" name="On start of layout" sid="7109000156460592" type="System" />
             </conditions>
             <actions>
-                <action id="1" name="Prepare next question" sid="6514126075627652" type="EnglishIdioms" />
+                <action id="1" name="Prepare next question" sid="7659266630738521" type="EnglishIdioms" />
             </actions>
         </event-block>
         <event-block sid="1949830884707702">
             <conditions>
-                <condition id="1" name="Next question ready" sid="4569181023469338" type="EnglishIdioms" />
+                <condition id="1" name="Next question ready" sid="9341155134565673" type="EnglishIdioms" />
             </conditions>
             <actions>
-                <action id="2" name="Fill with current question" sid="7005087015880094" type="EnglishIdioms">
-                    <param id="0" name="Question">CurrentQuestion</param>
-                </action>
                 <action id="0" name="Set text" sid="1132402462769111" type="QuestionText">
                     <param id="0" name="Text">CurrentQuestion.Text</param>
                 </action>

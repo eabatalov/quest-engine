@@ -134,7 +134,7 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	Acts.prototype.fillCurrentQuestion = EIPFillWithCurrentQuestion;
 	Acts.prototype.answerCurrentQuestion = EIPAnswerCurrentQuestion;
 	Acts.prototype.storeGameResults = EIPStoreGameResults;
-	Acts.prototype.fillAnsweredQuestions = EIPFillAnsweredQuestions;
+	Acts.prototype.showAnsweredQuestions = EIPShowAnsweredQuestions;
 
 	pluginProto.acts = new Acts();
 	
@@ -175,8 +175,14 @@ function EIPAnswerCurrentQuestion(answerNumberStr) {
 	this._getCurrentQuestion().answeredAnswer = answerNumberInt;
 }
 
-function EIPFillAnsweredQuestions(constructArray) {
-
+function EIPShowAnsweredQuestions() {
+	var answers = "ANSWERED AUESTIONS RESULTS:\n";
+	for (var i = 0; i < this.currentQuestionIx; ++i) {
+		var question = this.questionList[i];
+		answers += "Question " + question.id.toString() + " : " +
+			(question.rightAnswer === question.answeredAnswer ? "right" : "wrong") + "\n";
+	}
+	alert(answers);
 }
 
 function EIPFillWithCurrentQuestion(EIPQuestionType) {
@@ -194,6 +200,7 @@ function EIPFillWithCurrentQuestion(EIPQuestionType) {
 
 function EIPStoreGameResults() {
 	//TODO
+	alert("TODO StoreGameResults to user's profile");
 }
 
 //Private

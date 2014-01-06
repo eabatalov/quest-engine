@@ -11,7 +11,7 @@
 		"type":			"object",				// either "world" (appears in layout and is drawn), else ""
 		"rotatable":	false,					// only used when "type" is "world".  Enables an angle property on the object.
 		"flags":		0						// uncomment lines to enable flags...
-						| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
+					//	| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
 					//	| pf_texture			// object has a single texture (e.g. tiled background)
 					//	| pf_position_aces		// compare/set/get x, y...
 					//	| pf_size_aces			// compare/set/get width, height...
@@ -96,11 +96,10 @@ AddAction(4, af_none, "Store game results", "General",
 	"Store game results in user's profile", "Store game results in user's profile",
 	"storeGameResults");
 
-AddObjectParam("Array", "Construct2 array to fill with answered questions");
-AddAction(5, af_none, "Fill with answered questions",
-	"General", "Fill Construct2 array object {0} with answered English Idioms Question objects",
-	"Fill supplied Construct2 array object with answered English idioms Question objects",
-	"fillAnsweredQuestions");
+AddAction(5, af_none, "Show answered questions results",
+	"General", "Show answered questions results",
+	"Display an HTML table with current game results on the top of the screen",
+	"showAnsweredQuestions");
 ////////////////////////////////////////
 // Expressions
 
