@@ -37,6 +37,9 @@
                 <condition id="1" name="Next question ready" sid="9341155134565673" type="EnglishIdioms" />
             </conditions>
             <actions>
+                <action id="2" name="Fill with current question" sid="6394157405000345" type="EnglishIdioms">
+                    <param id="0" name="Question">CurrentQuestion</param>
+                </action>
                 <action id="0" name="Set text" sid="1132402462769111" type="QuestionText">
                     <param id="0" name="Text">CurrentQuestion.Text</param>
                 </action>
