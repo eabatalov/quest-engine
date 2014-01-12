@@ -19,6 +19,10 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	{
 		this.plugin = plugin;
 		this.runtime = plugin.runtime;
+
+		LEARZ.init({
+            clientId : "fbf4aRfDx88dnvIdwwavX3C5EVH06c"
+        });
 	};
 
 	var typeProto = pluginProto.Type.prototype;
@@ -199,8 +203,43 @@ function EIPFillWithCurrentQuestion(EIPQuestionType) {
 }
 
 function EIPStoreGameResults() {
-	//TODO
-	alert("TODO StoreGameResults to user's profile");
+	var eipInstance = this;
+	var correctAnswersCount = 0;
+	for (var i = 0; i < this.currentQuestionIx; ++i) {
+		var question = this.questionList[i];
+		if (question.rightAnswer === question.answeredAnswer)
+			++correctAnswersCount;
+	}
+	//Save results to the platform
+	LEARZ.services.user.get(function(apiResponse) {
+		if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
+
+			var currentUser =  apiResponse.data;
+			LEARZ.services.skills.getUserSkill(currentUser.id, LEARZ_SKILL_ID_ENGLISH_IDIOMS,
+
+			function(apiResponse) {
+				if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
+
+					var currentEnglishIdiomsSkill = apiResponse.data[0];
+					currentEnglishIdiomsSkill.value += correctAnswersCount;
+
+					LEARZ.services.skills.put(currentEnglishIdiomsSkill.skill_id, currentEnglishIdiomsSkill.value,
+						function(apiResponse) {
+							if (apiResponse.status !== LEARZING_STATUS_SUCCESS) {
+								alert("Error occured:\n" + apiResponse.texts.toString());
+							} else {
+								alert("User skills changes were saved to the platform successfully");
+							}
+					});
+
+				} else {
+		            alert("Error occured:\n" + apiResponse.texts.toString());
+		        }
+			});
+        } else {
+            alert("Error occured:\n" + apiResponse.texts.toString());
+        }
+	});
 }
 
 //Private
