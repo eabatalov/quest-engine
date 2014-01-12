@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2layout>
+    <name>TitleMenu</name>
+    <sid>5494877454469424</sid>
+    <event-sheet>TitleMenu</event-sheet>
+    <size>
+        <width>1000</width>
+        <height>560</height>
+    </size>
+    <margins>
+        <horizontal>1000</horizontal>
+        <vertical>560</vertical>
+    </margins>
+    <unbounded-scrolling>0</unbounded-scrolling>
+    <layers>
+        <layer name="Layer 0" sid="4225869417976149">
+            <initially-visible>1</initially-visible>
+            <background-color>42,174,111</background-color>
+            <transparent>0</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances>
+                <instance type="NewGame" uid="0">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>481</x>
+                        <y>270</y>
+                        <z>0</z>
+                        <width>237</width>
+                        <height>75</height>
+                        <depth>0</depth>
+                        <hotspotX>0.468354434</hotspotX>
+                        <hotspotY>1.080000043</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Сontinuation" uid="1">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>482</x>
+                        <y>347</y>
+                        <z>0</z>
+                        <width>328</width>
+                        <height>70</height>
+                        <depth>0</depth>
+                        <hotspotX>0.469827592</hotspotX>
+                        <hotspotY>0.769230783</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="About" uid="14">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>494</x>
+                        <y>423</y>
+                        <z>0</z>
+                        <width>132</width>
+                        <height>61</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="h3" uid="13">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="ScrollTo">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Platform">
+                            <properties>
+                                <max-speed>330</max-speed>
+                                <acceleration>1500</acceleration>
+                                <deceleration>1500</deceleration>
+                                <jump-strength>650</jump-strength>
+                                <gravity>800</gravity>
+                                <max-fall-speed>1000</max-fall-speed>
+                                <default-controls>Yes</default-controls>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>87</x>
+                        <y>-158</y>
+                        <z>0</z>
+                        <width>88.249649048</width>
+                        <height>117.66619873</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Sprite14" uid="16">
+                    <properties>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>525</x>
+                        <y>520</y>
+                        <z>0</z>
+                        <width>22</width>
+                        <height>1194</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>1.570796371</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+            <effects />
+        </layer>
+        <layer name="muar" sid="7550243156909502">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances>
+                <instance type="Muar" uid="15">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Fade">
+                            <properties>
+                                <active-at-start>Yes</active-at-start>
+                                <fade-in-time>0</fade-in-time>
+                                <wait-time>0</wait-time>
+                                <fade-out-time>3</fade-out-time>
+                                <destroy>After fade out</destroy>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-1</x>
+                        <y>0</y>
+                        <z>0</z>
+                        <width>1000</width>
+                        <height>560</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+            <effects />
+        </layer>
+    </layers>
+    <nonworld-instances />
+    <effects />
+</c2layout>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>GameLine</name>
+    <events>
+        <include>SlangariumEvent</include>
+        <event-block sid="7120591838345925">
+            <conditions>
+                <condition id="2" name="No more questions" sid="3918434200096924" type="EnglishIdioms" />
+            </conditions>
+            <actions>
+                <action id="5" name="Show answered questions results" sid="7114066494326683" type="EnglishIdioms" />
+                <action id="4" name="Store game results" sid="7530855554969997" type="EnglishIdioms" />
+                <action id="-26" name="Restart layout" sid="7207918624571102" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="2425049232501231">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3711111124647482" type="System" />
+            </conditions>
+            <actions>
+                <action id="1" name="Prepare next question" sid="9521204577848507" type="EnglishIdioms" />
+            </actions>
+        </event-block>
+        <event-block sid="8066315318184519">
+            <conditions>
+                <condition id="1" name="Next question ready" sid="4810809190370581" type="EnglishIdioms" />
+            </conditions>
+            <actions>
+                <action id="2" name="Fill with current question" sid="9428209457931492" type="EnglishIdioms">
+                    <param id="0" name="Question">CurrentQuestion</param>
+                </action>
+                <action id="0" name="Set text" sid="7003099535204255" type="QuestionText">
+                    <param id="0" name="Text">CurrentQuestion.Text</param>
+                </action>
+                <action id="0" name="Set text" sid="7036877389025013" type="AnswerText1">
+                    <param id="0" name="Text">CurrentQuestion.Answer1</param>
+                </action>
+                <action id="0" name="Set text" sid="1240738102520194" type="AnswerText2">
+                    <param id="0" name="Text">CurrentQuestion.Answer2</param>
+                </action>
+                <action id="0" name="Set text" sid="6533531313596007" type="AnswerText3">
+                    <param id="0" name="Text">CurrentQuestion.Answer3</param>
+                </action>
+                <action id="0" name="Set text" sid="8765659652477637" type="AnswerText4">
+                    <param id="0" name="Text">CurrentQuestion.Answer4</param>
+                </action>
+                <action id="0" name="Set text" sid="3872851034533009" type="TextRightAnswer">
+                    <param id="0" name="Text">CurrentQuestion.RightAnswer</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6237665287386673">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="1279210261735272" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">AnswerText1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Answer current question" sid="6452086484505258" type="EnglishIdioms">
+                    <param id="0" name="AnswerNumber">&quot;1&quot;</param>
+                </action>
+                <action id="1" name="Prepare next question" sid="7210695978342" type="EnglishIdioms" />
+            </actions>
+        </event-block>
+        <event-block sid="4282757311198716">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="6183521080841586" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">AnswerText2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Answer current question" sid="5519552565173252" type="EnglishIdioms">
+                    <param id="0" name="AnswerNumber">&quot;2&quot;</param>
+                </action>
+                <action id="1" name="Prepare next question" sid="8024826097054243" type="EnglishIdioms" />
+            </actions>
+        </event-block>
+        <event-block sid="1976756463615405">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="9244413094232025" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">AnswerText3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Answer current question" sid="2136922023125257" type="EnglishIdioms">
+                    <param id="0" name="AnswerNumber">&quot;3&quot;</param>
+                </action>
+                <action id="1" name="Prepare next question" sid="356763996722587" type="EnglishIdioms" />
+            </actions>
+        </event-block>
+        <event-block sid="3668475866071012">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="9185226482239634" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">AnswerText4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Answer current question" sid="6784429344967522" type="EnglishIdioms">
+                    <param id="0" name="AnswerNumber">&quot;4&quot;</param>
+                </action>
+                <action id="1" name="Prepare next question" sid="32473631540589" type="EnglishIdioms" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
