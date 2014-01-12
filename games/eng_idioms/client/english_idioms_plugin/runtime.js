@@ -203,6 +203,8 @@ function EIPFillWithCurrentQuestion(EIPQuestionType) {
 }
 
 function EIPStoreGameResults() {
+	alert("Storing game results is temporarely disabled (until global server is ready).");
+	return;
 	var eipInstance = this;
 	var correctAnswersCount = 0;
 	for (var i = 0; i < this.currentQuestionIx; ++i) {

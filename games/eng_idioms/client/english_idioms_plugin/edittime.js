@@ -25,12 +25,12 @@
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
 		, "dependency":
-			"questions.js;" +
-			"http://learzing.com/scripts/jquery.cookie.js;" +
-			"http://learzing.com/scripts/angular.js;" +
-			"http://learzing.com/scripts/sdk/skills.js;" +
-			"http://learzing.com/scripts/sdk/learzing.js;" +
-			"http://learzing.com:8081/socket.io/socket.io.js;"
+			"questions.js;"
+			/*+ "http://learzing.com/scripts/jquery.cookie.js;" +
+			+ "http://learzing.com/scripts/angular.js;" +
+			+ "http://learzing.com/scripts/sdk/skills.js;" +
+			+ "http://learzing.com/scripts/sdk/learzing.js;" +
+			+ "http://learzing.com:8081/socket.io/socket.io.js;"*/
 	};
 };
 
