@@ -20,9 +20,9 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 		this.plugin = plugin;
 		this.runtime = plugin.runtime;
 
-		LEARZ.init({
+		/*LEARZ.init({
             clientId : "fbf4aRfDx88dnvIdwwavX3C5EVH06c"
-        });
+        });*/
 	};
 
 	var typeProto = pluginProto.Type.prototype;
