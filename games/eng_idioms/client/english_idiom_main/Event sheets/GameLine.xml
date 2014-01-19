@@ -129,10 +129,6 @@
                     <param id="0" name="Variable">score</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="-10" name="Add to" sid="6154375838900983" type="System">
-                    <param id="0" name="Variable">TimeLine</param>
-                    <param id="1" name="Value">-12</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="7001256633993578">
@@ -273,70 +269,90 @@
                 <action disabled="1" id="-9" name="Destroy" sid="4468597640499317" type="flag" />
                 <action id="0" name="Spawn another object" sid="222215708227167" type="flag">
                     <param id="0" name="Object">dialog</param>
-                    <param id="1" name="Layer">5</param>
+                    <param id="1" name="Layer">4</param>
                     <param id="2" name="Image point">0</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="9336353800217393">
+        <event-block sid="9934574095862255">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="4317135213120045" type="h3">
-                    <param id="0" name="Object">respaw</param>
-                </condition>
-                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="5749853722706136" type="respaw">
-                    <param id="0" name="Instance variable">check</param>
+                <condition id="6" name="On object clicked" sid="39550400538288" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">Ans_Button1</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-13" name="Set boolean" sid="3619168094944763" type="respaw">
-                    <param id="0" name="Instance variable">check</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-                <action id="-9" name="Set value" sid="1583180164974594" type="System">
-                    <param id="0" name="Variable">resp</param>
-                    <param id="1" name="Value">respaw.number</param>
-                </action>
-                <action id="-16" name="Set opacity" sid="9756311318983207" type="respaw">
-                    <param id="0" name="Opacity">0</param>
+                <action id="-9" name="Destroy" sid="7422990827659908" type="dialog" />
+                <action id="0" name="Spawn another object" sid="6908467621415103" type="Ans_Button1">
+                    <param id="0" name="Object">KillerFlag</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
                 </action>
             </actions>
         </event-block>
-        <event-group description="" sid="2136696915403948" title="Respawn">
-            <sub-events>
-                <event-block sid="1030308313104372">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="3269776944154919" type="respaw">
-                            <param id="0" name="Instance variable">number</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">resp</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="4360406109585246" type="h3" />
-                        <action id="-3" name="Create object" sid="5354008209569556" type="System">
-                            <param id="0" name="Object to create">h3</param>
-                            <param id="1" name="Layer">6</param>
-                            <param id="2" name="X">respaw.X</param>
-                            <param id="3" name="Y">respaw.Y</param>
-                        </action>
-                        <action id="-12" name="Set group active" sid="5117684082003179" type="System">
-                            <param id="0" name="Group name">&quot;Respawn&quot;</param>
-                            <param id="1" name="State">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-block sid="9716240738275873">
+        <event-block sid="43029917360601">
             <conditions>
-                <condition disabled="1" id="0" name="On key pressed" sid="4887549129613455" type="Keyboard">
-                    <param id="0" name="Key">82 (R)</param>
+                <condition id="6" name="On object clicked" sid="5781900088961873" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">Ans_Button2</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-12" name="Set group active" sid="7788043874793165" type="System">
-                    <param id="0" name="Group name">&quot;Respawn&quot;</param>
-                    <param id="1" name="State">1</param>
+                <action id="-9" name="Destroy" sid="3596419876948401" type="dialog" />
+                <action id="0" name="Spawn another object" sid="7925218947532569" type="Ans_Button2">
+                    <param id="0" name="Object">KillerFlag</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="111511335308197">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="6229894810716664" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">Ans_Button3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1232402146579698" type="dialog" />
+                <action id="0" name="Spawn another object" sid="818131988741889" type="Ans_Button3">
+                    <param id="0" name="Object">KillerFlag</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1048031008905072">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="6410607846343808" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">Ans_Button4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="9800089294798378" type="dialog" />
+                <action id="0" name="Spawn another object" sid="3952463948927739" type="Ans_Button4">
+                    <param id="0" name="Object">KillerFlag</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="925567400471998">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6564474118196925" type="flag">
+                    <param id="0" name="Object">KillerFlag</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="4479396966347164" type="flag" />
+                <action id="-10" name="Add to" sid="6154375838900983" type="System">
+                    <param id="0" name="Variable">TimeLine</param>
+                    <param id="1" name="Value">-12</param>
                 </action>
             </actions>
         </event-block>

@@ -10,22 +10,21 @@
     <unique-id>2p205gc0iquiz</unique-id>
     <saved-with-version>15802</saved-with-version>
     <used-plugins>
-        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Eugene/Learzing" id="EnglishIdiomsQuestionPlugin" version="0.100000001">English Idioms Question</plugin>
         <plugin author="Eugene/Learzing" id="EnglishIdiomsPlugin" version="0.100000001">English Idioms</plugin>
-        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
-        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
         <behavior author="Scirra" id="jumpthru" version="1">Jump-thru</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+        <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
     </used-behaviors>
     <used-effects>
         <effect author="Scirra" id="blurvertical">Blur Vertical</effect>
@@ -53,9 +52,6 @@
     <object-folder expanded="1">
         <object-type name="Keyboard" sid="8623358190137151">
             <plugin id="Keyboard" />
-        </object-type>
-        <object-type name="Audio" sid="2031564164727093">
-            <plugin id="Audio" />
         </object-type>
         <object-type name="TiledBackground2" sid="5166455795811791">
             <plugin id="TiledBg" />
@@ -350,7 +346,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Sprite3" sid="393214339090599">
+        <object-type name="QuickBackround" sid="393214339090599">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8122354320930802" speed="5">
@@ -410,9 +406,20 @@
         </object-type>
         <object-type name="Сontinuation" sid="5725727505560157">
             <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Sine" sid="55625460500776">
+                    <behavior id="Sin" />
+                </behavior-type>
+                <behavior-type name="Sine2" sid="8166202646294476">
+                    <behavior id="Sin" />
+                </behavior-type>
+                <behavior-type name="Sine3" sid="8409152576036748">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1961398526299797" speed="5">
-                    <frame duration="1" hotspotX="0.469828" hotspotY="0.769231" />
+                    <frame duration="1" hotspotX="0.47" hotspotY="0.768061" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -513,6 +520,10 @@
         </object-type>
         <object-type name="flag" sid="9261219317689778">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="step" sid="3844838320676823" type="boolean" />
+                <instance-variable name="numb" sid="8940662443064024" type="number" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Solid" sid="4729477393754627">
                     <behavior id="solid" />
@@ -639,18 +650,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="respaw" sid="5316654304439755">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="check" sid="1274022149052322" type="boolean" />
-                <instance-variable name="number" sid="1966639975625346" type="number" />
-            </instance-variables>
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7668741719413316" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="dialog" sid="5788439265966994">
             <plugin id="Sprite" />
             <animation-folder expanded="1">
@@ -669,6 +668,22 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="KillerFlag" sid="5477000859966356">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8415405819692619" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite" sid="5013079812962553">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5023873407428489" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
@@ -683,21 +698,6 @@
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="2" />
-        <global-instance type="Audio" uid="3">
-            <properties>
-                <timescale-audio>Off</timescale-audio>
-                <saveload>All</saveload>
-                <positioned-audio></positioned-audio>
-                <panning-model>HRTF</panning-model>
-                <distance-model>Inverse</distance-model>
-                <listener-z-height>600</listener-z-height>
-                <reference-distance>600</reference-distance>
-                <maximum-distance>10000</maximum-distance>
-                <roll-off-factor>1</roll-off-factor>
-                <speed-of-sound>5000</speed-of-sound>
-                <doppler-factor>1</doppler-factor>
-            </properties>
-        </global-instance>
         <global-instance type="Mouse" uid="17" />
     </global-instances>
     <sounds-folder expanded="1">
