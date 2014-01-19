@@ -21,7 +21,9 @@ EnglishIdiomsGame.prototype.checkNoMoreQuestions = function() {
 };
 
 EnglishIdiomsGame.prototype.prepareNextQuestion = function(obj, callback) {
-	++this.currentQuestionIx;
+	if (!this.checkNoMoreQuestions()) {
+		++this.currentQuestionIx;
+	}
 	callback.call(obj);
 };
 
@@ -56,9 +58,10 @@ EnglishIdiomsGame.prototype.fillWithCurrentQuestion = function(obj) {
 };
 
 EnglishIdiomsGame.prototype._sdkSuccessCallChain = function(func) {
+	funcThis = this;
 	return function(apiResponse) {
 			if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
-				this.func(apiResponse);
+				func.call(funcThis, apiResponse);
 			} else {
 				alert("Error occured:\n" + apiResponse.texts.toString());
 			}
@@ -89,7 +92,7 @@ EnglishIdiomsGame.prototype._computeGamePoints = function() {
 	var correctAnswersCount = 0;
 	for (var i = 0; i < this.currentQuestionIx; ++i) {
 		var question = this.questionList[i];
-		if (question.rightAnswer === question.answeredAnswer)
+		if (question.rightAnswerIx === question.answeredAnswerIx)
 			++correctAnswersCount;
 	}
 	return correctAnswersCount;
