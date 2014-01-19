@@ -1,6 +1,6 @@
 $(function() {
   LEARZ.init({
-	            clientId : "fbf4aRfDx88dnvIdwwavX3C5EVH06c"
+		clientId : "fbf4aRfDx88dnvIdwwavX3C5EVH06c"
 	});
 });
 
@@ -55,30 +55,30 @@ EnglishIdiomsGame.prototype.fillWithCurrentQuestion = function(obj) {
 	obj.answeredAnswer = curQuest.answeredAnswer;
 };
 
+EnglishIdiomsGame.prototype._sdkSuccessCallChain = function(func) {
+	return function(apiResponse) {
+			if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
+				this.func(apiResponse);
+			} else {
+				alert("Error occured:\n" + apiResponse.texts.toString());
+			}
+	};
+};
+
 EnglishIdiomsGame.prototype.storeGameResults = function() {
-	
 	//Save results to the platform
 	LEARZ.services.skills.getUserSkill(LEARZ_SKILL_ID_ENGLISH_IDIOMS,
-			function(apiResponse) {
-				if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
+		this._sdkSuccessCallChain(function(apiResponse) {
+			var currentEnglishIdiomsSkill = apiResponse.data[0];
+			currentEnglishIdiomsSkill.value += this._computeGamePoints();
 
-					var currentEnglishIdiomsSkill = apiResponse.data[0];
-					currentEnglishIdiomsSkill.value += this._computeGamePoints();
-
-					LEARZ.services.skills.put(currentEnglishIdiomsSkill.skill_id, currentEnglishIdiomsSkill.value,
-						function(apiResponse) {
-							if (apiResponse.status !== LEARZING_STATUS_SUCCESS) {
-								alert("Error occured:\n" + apiResponse.texts.toString());
-							} else {
-								alert("User skills changes were saved to the platform successfully");
-							}
-						});
-
-				} else {
-					alert("Error occured:\n" + apiResponse.texts.toString());
-				}
-			});
-	});
+			LEARZ.services.skills.put(currentEnglishIdiomsSkill.skill_id, currentEnglishIdiomsSkill.value,
+				this._sdkSuccessCallChain(
+					function(apiResponse) {
+							alert("User skill changes were saved to the platform successfully");
+					}
+				));
+		}));
 };
 
 EnglishIdiomsGame.prototype._getCurrentQuestion = function() {
