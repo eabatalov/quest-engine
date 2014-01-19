@@ -58,12 +58,7 @@ EnglishIdiomsGame.prototype.fillWithCurrentQuestion = function(obj) {
 EnglishIdiomsGame.prototype.storeGameResults = function() {
 	
 	//Save results to the platform
-	LEARZ.services.user.get(function(apiResponse) {
-		if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
-
-			var currentUser =  apiResponse.data;
-			LEARZ.services.skills.getUserSkill(currentUser.id, LEARZ_SKILL_ID_ENGLISH_IDIOMS,
-
+	LEARZ.services.skills.getUserSkill(LEARZ_SKILL_ID_ENGLISH_IDIOMS,
 			function(apiResponse) {
 				if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
 
@@ -77,15 +72,12 @@ EnglishIdiomsGame.prototype.storeGameResults = function() {
 							} else {
 								alert("User skills changes were saved to the platform successfully");
 							}
-					});
+						});
 
 				} else {
-		            alert("Error occured:\n" + apiResponse.texts.toString());
-		        }
+					alert("Error occured:\n" + apiResponse.texts.toString());
+				}
 			});
-        } else {
-            alert("Error occured:\n" + apiResponse.texts.toString());
-        }
 	});
 };
 
