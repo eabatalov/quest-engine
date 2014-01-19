@@ -26,7 +26,7 @@ cr.plugins_.EnglishIdiomsQuestionPlugin = function(runtime)
 		this.answer2 = "";
 		this.answer3 = "";
 		this.answer4 = "";
-		this.rightAnswer = 1;
+		this.rightAnswerNumber = 1;
 		this.answerExplanation = "";
 		this.answeredAnswer = 1;
 	};
@@ -180,7 +180,7 @@ cr.plugins_.EnglishIdiomsQuestionPlugin = function(runtime)
 	};
 
 	Exps.prototype.RightAnswer = function(ret) {
-		ret.set_int(this.type.rightAnswer);
+		ret.set_int(this.type.rightAnswerNumber);
 	};
 
 	Exps.prototype.AnswerExplanation = function(ret) {

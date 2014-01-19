@@ -19,10 +19,6 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	{
 		this.plugin = plugin;
 		this.runtime = plugin.runtime;
-
-		/*LEARZ.init({
-            clientId : "fbf4aRfDx88dnvIdwwavX3C5EVH06c"
-        });*/
 	};
 
 	var typeProto = pluginProto.Type.prototype;
@@ -39,8 +35,7 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 		this.type = type;
 		this.runtime = type.runtime;
 
-		this.currentQuestionIx = -1;
-		this.questionList = QUESTIONS_LIST;
+		this.game = new EnglishIdiomsGame();
 	};
 	
 	var instanceProto = pluginProto.Instance.prototype;
@@ -117,9 +112,6 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	};
 	/**END-PREVIEWONLY**/
 
-	//Instance private methods
-	instanceProto._getCurrentQuestion = _getCurrentQuestion;
-
 	//////////////////////////////////////
 	// Conditions
 	function Cnds() {};
@@ -152,99 +144,38 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 
 //Events
 function EIPnextQuestionReady() {
-	return this.questionList.length > this.currentQuestionIx;
+	return this.game.checkNextQuestionIsReady();
 }
 
 function EIPHaveNoMoreQuestions() {
-	return this.questionList.length <= this.currentQuestionIx;
+	return this.game.checkNoMoreQuestions();
 }
 
 //Actions
 function EIPprepareNextQuestion() {
-	++this.currentQuestionIx;
-	var pluginProto = cr.plugins_.EnglishIdiomsPlugin.prototype;
-	this.runtime.trigger(pluginProto.cnds.nextQuestionReady, this);
-	this.runtime.trigger(pluginProto.cnds.haveNoMoreQuestions, this);
+	this.game.prepareNextQuestion(this, function() {
+		var pluginProto = cr.plugins_.EnglishIdiomsPlugin.prototype;
+		this.runtime.trigger(pluginProto.cnds.nextQuestionReady, this);
+		this.runtime.trigger(pluginProto.cnds.haveNoMoreQuestions, this);	
+	});	
 }
 
 function EIPAnswerCurrentQuestion(answerNumberStr) {
-	var answerNumberInt = parseInt(answerNumberStr);
-	if (answerNumberInt === NaN) {
+	var answerNumber = parseInt(answerNumberStr);
+	if (answerNumber === NaN) {
 		throw { text : "You should supply string value to action 'answerCurrentQuestion'" };
 	}
-	if (!(answerNumberInt >= 1 && answerNumberInt <= 4)) {
-		throw { text : "answerNumberStr value can be only between 1 and 4" };
-	}
-
-	this._getCurrentQuestion().answeredAnswer = answerNumberInt;
+	this.game.answerCurrentQuestion(answerNumber - 1);
 }
 
 function EIPShowAnsweredQuestions() {
-	var answers = "ANSWERED AUESTIONS RESULTS:\n";
-	for (var i = 0; i < this.currentQuestionIx; ++i) {
-		var question = this.questionList[i];
-		answers += "Question " + question.id.toString() + " : " +
-			(question.rightAnswer === question.answeredAnswer ? "right" : "wrong") + "\n";
-	}
-	alert(answers);
+	this.game.showAnsweredQuestions();
 }
 
 function EIPFillWithCurrentQuestion(EIPQuestionType) {
-	var currentQuestion = this._getCurrentQuestion();
-	EIPQuestionType.id = currentQuestion.id;
-	EIPQuestionType.text = currentQuestion.text;
-	EIPQuestionType.answer1 = currentQuestion.answers[0].text;
-	EIPQuestionType.answer2 = currentQuestion.answers[1].text;
-	EIPQuestionType.answer3 = currentQuestion.answers[2].text;
-	EIPQuestionType.answer4 = currentQuestion.answers[3].text;
-	EIPQuestionType.rightAnswer = currentQuestion.rightAnswer;
-	EIPQuestionType.answerExplanation = currentQuestion.answerExplanation;
-	EIPQuestionType.answeredAnswer = currentQuestion.answeredAnswer;
+	this.game.fillWithCurrentQuestion(EIPQuestionType);
 }
 
 function EIPStoreGameResults() {
-	alert("Storing game results is temporarely disabled (until global server is ready).");
-	return;
-	var eipInstance = this;
-	var correctAnswersCount = 0;
-	for (var i = 0; i < this.currentQuestionIx; ++i) {
-		var question = this.questionList[i];
-		if (question.rightAnswer === question.answeredAnswer)
-			++correctAnswersCount;
-	}
-	//Save results to the platform
-	LEARZ.services.user.get(function(apiResponse) {
-		if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
-
-			var currentUser =  apiResponse.data;
-			LEARZ.services.skills.getUserSkill(currentUser.id, LEARZ_SKILL_ID_ENGLISH_IDIOMS,
-
-			function(apiResponse) {
-				if (apiResponse.status === LEARZING_STATUS_SUCCESS) {
-
-					var currentEnglishIdiomsSkill = apiResponse.data[0];
-					currentEnglishIdiomsSkill.value += correctAnswersCount;
-
-					LEARZ.services.skills.put(currentEnglishIdiomsSkill.skill_id, currentEnglishIdiomsSkill.value,
-						function(apiResponse) {
-							if (apiResponse.status !== LEARZING_STATUS_SUCCESS) {
-								alert("Error occured:\n" + apiResponse.texts.toString());
-							} else {
-								alert("User skills changes were saved to the platform successfully");
-							}
-					});
-
-				} else {
-		            alert("Error occured:\n" + apiResponse.texts.toString());
-		        }
-			});
-        } else {
-            alert("Error occured:\n" + apiResponse.texts.toString());
-        }
-	});
-}
-
-//Private
-function _getCurrentQuestion() {
-	return this.questionList[this.currentQuestionIx];
+	this.game.storeGameResults();
 }

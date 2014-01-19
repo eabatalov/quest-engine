@@ -5,17 +5,17 @@ function Answer(text, imgName) {
 	this.imgName = imgPath + imgName;
 }
 
-function Question(id, text, answers, rightAnswer, answerExplanation, answeredAnswer) {
+function Question(id, text, answers, rightAnswerNumber, answerExplanation, answeredAnswerIx) {
 	this.id = id;
 	this.text = text;
 	this.answers = answers;
-	this.rightAnswer = rightAnswer;
+	this.rightAnswerIx = rightAnswerNumber - 1;
 	if (answerExplanation === undefined)
 		answerExplanation = "";
 	this.answerExplanation = answerExplanation;
-	if (answeredAnswer === undefined)
-		answeredAnswer = 1;
-	this.answeredAnswer = answeredAnswer;
+	if (answeredAnswerIx === undefined)
+		answeredAnswerIx = 0;
+	this.answeredAnswerIx = answeredAnswerIx;
 }
 
 QUESTIONS_LIST = [

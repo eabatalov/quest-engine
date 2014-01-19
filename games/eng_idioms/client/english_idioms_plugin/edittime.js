@@ -26,11 +26,13 @@
 												// a single non-tiling image the size of the object) - required for effects to work properly
 		, "dependency":
 			"questions.js;"
-			/*+ "http://learzing.com/scripts/jquery.cookie.js;" +
-			+ "http://learzing.com/scripts/angular.js;" +
-			+ "http://learzing.com/scripts/sdk/skills.js;" +
-			+ "http://learzing.com/scripts/sdk/learzing.js;" +
-			+ "http://learzing.com:8081/socket.io/socket.io.js;"*/
+			+ "http://learzing.com/scripts/jquery.cookie.js;"
+			+ "http://learzing.com/scripts/angular.js;"
+			+ "http://learzing.com/scripts/sdk/utils.js;"
+			+ "http://learzing.com/scripts/sdk/skills.js;"
+			+ "http://learzing.com/scripts/sdk/learzing.js;"
+			+ "english_idioms.js;"
+			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
 };
 
