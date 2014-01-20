@@ -24,6 +24,7 @@
                         <condition id="-2" name="On start of layout" sid="3711111124647482" type="System" />
                     </conditions>
                     <actions>
+                        <action id="6" name="Initialize" sid="3748232014474604" type="EnglishIdioms" />
                         <action id="1" name="Prepare next question" sid="9521204577848507" type="EnglishIdioms" />
                     </actions>
                 </event-block>

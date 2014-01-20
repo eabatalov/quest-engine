@@ -24,6 +24,7 @@ EnglishIdiomsGame.prototype.prepareNextQuestion = function(obj, callback) {
 	if (!this.checkNoMoreQuestions()) {
 		++this.currentQuestionIx;
 	}
+	this.questionEventPending = true;
 	callback.call(obj);
 };
 

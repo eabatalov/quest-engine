@@ -34,8 +34,6 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	{
 		this.type = type;
 		this.runtime = type.runtime;
-
-		this.game = new EnglishIdiomsGame();
 	};
 	
 	var instanceProto = pluginProto.Instance.prototype;
@@ -131,6 +129,7 @@ cr.plugins_.EnglishIdiomsPlugin = function(runtime)
 	Acts.prototype.answerCurrentQuestion = EIPAnswerCurrentQuestion;
 	Acts.prototype.storeGameResults = EIPStoreGameResults;
 	Acts.prototype.showAnsweredQuestions = EIPShowAnsweredQuestions;
+	Acts.prototype.initialize = EIPInitializeGame;
 
 	pluginProto.acts = new Acts();
 	
@@ -178,4 +177,8 @@ function EIPFillWithCurrentQuestion(EIPQuestionType) {
 
 function EIPStoreGameResults() {
 	this.game.storeGameResults();
+}
+
+function EIPInitializeGame() {
+	this.game = new EnglishIdiomsGame();
 }

@@ -108,6 +108,11 @@ AddAction(5, af_none, "Show answered questions results",
 	"General", "Show answered questions results",
 	"Display an HTML table with current game results on the top of the screen",
 	"showAnsweredQuestions");
+
+AddAction(6, af_none, "Initialize",
+	"General", "Initialize",
+	"Set english idioms game to its initial state",
+	"initialize");
 ////////////////////////////////////////
 // Expressions
 
