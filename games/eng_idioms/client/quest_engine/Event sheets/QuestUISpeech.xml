@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>QuestUISpeech</name>
+    <events>
+        <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">60</variable>
+        <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">40</variable>
+        <event-block sid="6974911674457671">
+            <conditions>
+                <condition id="0" name="On function" sid="7343618476345899" type="Function">
+                    <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="3795721353744262" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="2232269637729392" type="NPCPhraseTxt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8951861471942926" type="NPCPhraseBg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3672432380044368" type="NPCSpeechBg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9445378560020443" type="NPCAnsBg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4151941107727719" type="NPCAns1Bg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8158892272138155" type="NPCAns2Bg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1441057587393959" type="NPCAns3Bg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8038671011491533" type="NPCAns4Bg">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7494146649716919" type="NPCAns1Txt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4073697571337978" type="NPCAns2Txt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2987597795263536" type="NPCAns3Txt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7638784932733143" type="NPCAns4Txt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1516959210380085">
+            <conditions>
+                <condition id="0" name="On function" sid="2366759345547053" type="Function">
+                    <param id="0" name="Name">&quot;ShowNPCQuiz&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="5004279290647358" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="5372246493700732" type="NPCAnsBg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3605869848919652" type="NPCPhraseTxt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6466533523607686" type="NPCPhraseBg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7857157349617592" type="NPCSpeechBg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8153860934292144" type="NPCAns1Bg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1595502154171537" type="NPCAns2Bg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8765625964249237" type="NPCAns3Bg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5058368299066386" type="NPCAns4Bg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6688451014936104" type="NPCAns1Txt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="393426738478598" type="NPCAns2Txt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2967990044706023" type="NPCAns3Txt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1314268264849045" type="NPCAns4Txt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-7" name="Set size" sid="2295851884579149" type="NPCSpeechBg">
+                    <param id="0" name="Width">NPCSpeechWidth</param>
+                    <param id="1" name="Height">NPCSpeechHeight</param>
+                </action>
+                <action id="0" name="Set text" sid="9157650419519124" type="NPCPhraseTxt">
+                    <param id="0" name="Text">QuestAction.getText</param>
+                </action>
+                <action id="0" name="Set text" sid="5053179353010246" type="NPCAns1Txt">
+                    <param id="0" name="Text">QuestAction.getAnswer1Text</param>
+                </action>
+                <action id="0" name="Set text" sid="9559828100119033" type="NPCAns2Txt">
+                    <param id="0" name="Text">QuestAction.getAnswer2Text</param>
+                </action>
+                <action id="0" name="Set text" sid="5241515888621168" type="NPCAns3Txt">
+                    <param id="0" name="Text">QuestAction.getAnswer3Text</param>
+                </action>
+                <action id="0" name="Set text" sid="3877552049797034" type="NPCAns4Txt">
+                    <param id="0" name="Text">QuestAction.getAnswer4Text</param>
+                </action>
+                <action id="0" name="Call function" sid="3936773159441938" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToNPC&quot;</param>
+                    <param id="1" name="Parameter {n}">NPC.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2078795932936655">
+            <conditions>
+                <condition id="0" name="On function" sid="6830635473425752" type="Function">
+                    <param id="0" name="Name">&quot;ShowNPCPhrase&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="8098606903236478" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="2704609022137661" type="NPCPhraseBg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2103154336336942" type="NPCSpeechBg">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7249985101874163" type="NPCPhraseTxt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-7" name="Set size" sid="4235960556975417" type="NPCSpeechBg">
+                    <param id="0" name="Width">NPCPhraseWidth</param>
+                    <param id="1" name="Height">NPCPhraseHeight</param>
+                </action>
+                <action id="0" name="Set text" sid="7019999961212962" type="NPCPhraseTxt">
+                    <param id="0" name="Text">QuestAction.getText</param>
+                </action>
+                <action id="0" name="Call function" sid="869572823105941" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToNPC&quot;</param>
+                    <param id="1" name="Parameter {n}">NPC.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="558746169339892">
+            <conditions>
+                <condition id="0" name="On function" sid="4705864769507734" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToNPC&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="7391180528501852" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="1111362047115756" type="NPCSpeechBg">
+                    <param id="0" name="X">NPC.X  - NPCSpeechBg.Width - SPEECH_X_DIST_TO_NPC</param>
+                    <param id="1" name="Y">NPC.Y - NPCSpeechBg.Height - SPEECH_Y_DIST_TO_NPC</param>
+                </action>
+                <action id="-3" name="Set position" sid="7665705298717612" type="NPCPhraseBg">
+                    <param id="0" name="X">NPCSpeechBg.X + NPCPhraseBgMarginWidth</param>
+                    <param id="1" name="Y">NPCSpeechBg.Y + NPCPhraseBgMarginHeight</param>
+                </action>
+                <action id="-3" name="Set position" sid="7357951529276332" type="NPCPhraseTxt">
+                    <param id="0" name="X">NPCPhraseBg.X + NPCPhraseTxtMarginWidth</param>
+                    <param id="1" name="Y">NPCPhraseBg.Y + NPCPhraseTxtMarginHeight</param>
+                </action>
+                <action id="-3" name="Set position" sid="8590384781386792" type="NPCAnsBg">
+                    <param id="0" name="X">NPCPhraseBg.X</param>
+                    <param id="1" name="Y">NPCPhraseBg.Y + NPCPhraseBg.Height + NPCPhraseBgMarginHeight</param>
+                </action>
+                <action id="-3" name="Set position" sid="3883315287164654" type="NPCAns1Bg">
+                    <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
+                    <param id="1" name="Y">NPCAnsBg.Y + NPCAnsBgMarginHeight</param>
+                </action>
+                <action id="-3" name="Set position" sid="8664473756561593" type="NPCAns2Bg">
+                    <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
+                    <param id="1" name="Y">NPCAns1Bg.Y + NPCAns1Bg.Height + NPCAnsItemListDist</param>
+                </action>
+                <action id="-3" name="Set position" sid="8788749151669814" type="NPCAns3Bg">
+                    <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
+                    <param id="1" name="Y">NPCAns2Bg.Y + NPCAns2Bg.Height + NPCAnsItemListDist</param>
+                </action>
+                <action id="-3" name="Set position" sid="4321337670702714" type="NPCAns4Bg">
+                    <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
+                    <param id="1" name="Y">NPCAns3Bg.Y + NPCAns3Bg.Height + NPCAnsItemListDist</param>
+                </action>
+                <action id="-3" name="Set position" sid="4655788186498846" type="NPCAns1Txt">
+                    <param id="0" name="X">NPCAns1Bg.X</param>
+                    <param id="1" name="Y">NPCAns1Bg.Y</param>
+                </action>
+                <action id="-3" name="Set position" sid="3281694290391018" type="NPCAns2Txt">
+                    <param id="0" name="X">NPCAns2Bg.X</param>
+                    <param id="1" name="Y">NPCAns2Bg.Y</param>
+                </action>
+                <action id="-3" name="Set position" sid="7709864573991213" type="NPCAns3Txt">
+                    <param id="0" name="X">NPCAns3Bg.X</param>
+                    <param id="1" name="Y">NPCAns3Bg.Y</param>
+                </action>
+                <action id="-3" name="Set position" sid="6269606267388425" type="NPCAns4Txt">
+                    <param id="0" name="X">NPCAns4Bg.X</param>
+                    <param id="1" name="Y">NPCAns4Bg.Y</param>
+                </action>
+                <action id="-25" name="Move to bottom" sid="917119472268496" type="NPCPhraseTxt" />
+                <action id="-25" name="Move to bottom" sid="757786259916446" type="NPCPhraseBg" />
+                <action id="-25" name="Move to bottom" sid="8989738285235217" type="NPCAns1Txt" />
+                <action id="-25" name="Move to bottom" sid="7124550274296647" type="NPCAns2Txt" />
+                <action id="-25" name="Move to bottom" sid="5381979771979999" type="NPCAns3Txt" />
+                <action id="-25" name="Move to bottom" sid="9364862006034909" type="NPCAns4Txt" />
+                <action id="-25" name="Move to bottom" sid="2015528366258473" type="NPCAns1Bg" />
+                <action id="-25" name="Move to bottom" sid="1617336828499124" type="NPCAns2Bg" />
+                <action id="-25" name="Move to bottom" sid="984228930751965" type="NPCAns3Bg" />
+                <action id="-25" name="Move to bottom" sid="34235613772447" type="NPCAns4Bg" />
+                <action id="-25" name="Move to bottom" sid="3975980664707617" type="NPCAnsBg" />
+                <action id="-25" name="Move to bottom" sid="7625301824574577" type="NPCSpeechBg" />
+                <action id="-3" name="Set position" sid="227298240154395" type="NPCPinPoint">
+                    <param id="0" name="X">NPC.X</param>
+                    <param id="1" name="Y">NPC.Y</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2567241455821927" type="NPCPinPoint">
+                    <param id="0" name="Pin to">NPC</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="7118492184179186" type="NPCAns1Txt">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="4699488381745942" type="NPCSpeechBg">
+                    <param id="0" name="Pin to">NPCPinPoint</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="554072184569981" type="NPCPhraseTxt">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2196817326834301" type="NPCPhraseBg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1108172113900652" type="NPCAnsBg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3782574579623393" type="NPCAns1Bg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9941357513949641" type="NPCAns2Bg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="7104125181811327" type="NPCAns3Bg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1840817276129821" type="NPCAns4Bg">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="168525601103923" type="NPCAns2Txt">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="5682108277363041" type="NPCAns3Txt">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9089395513358438" type="NPCAns4Txt">
+                    <param id="0" name="Pin to">NPCSpeechBg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action disabled="1" id="0" name="Set text" sid="1438650199086371" type="NPCPhraseTxt">
+                    <param id="0" name="Text">NPCPhraseBgMarginHeight &amp; &quot; &quot; &amp; NPCPhraseBgMarginWidth</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="566202086767859">
+            <conditions>
+                <condition id="0" name="On function" sid="1757451801164955" type="Function">
+                    <param id="0" name="Name">&quot;ShowPlayerPhrase&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="6911479784215454" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="8448293784846375" type="PlayerPhraseTxt">
+                    <param id="0" name="Text">QuestAction.getText</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8723165850772302" type="PlayerPhraseTxt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Call function" sid="4448726244619884" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2311930963919224">
+            <conditions>
+                <condition id="0" name="On function" sid="1546117940917564" type="Function">
+                    <param id="0" name="Name">&quot;ShowPlayerQuiz&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="596242356038575" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="9564317867504674" type="PlayerPhraseTxt">
+                    <param id="0" name="Text">QuestAction.getText</param>
+                </action>
+                <action id="-15" name="Set visible" sid="703420988525169" type="PlayerPhraseTxt">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Call function" sid="6362510061802591" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4401104733867801">
+            <conditions>
+                <condition id="0" name="On function" sid="2281091698438416" type="Function">
+                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="7274281172612733" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="3549996884102819" type="PlayerPhraseTxt">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9382593160365121">
+            <conditions>
+                <condition id="0" name="On function" sid="9653418244637582" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="5148764608124502" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="7171270690362951" type="PlayerPhraseTxt">
+                    <param id="0" name="X">Player.X  + PlayerPhraseTxt.Width / 2</param>
+                    <param id="1" name="Y">Player.Y - PlayerPhraseTxt.Height</param>
+                </action>
+                <action id="-24" name="Move to top" sid="7038549438898087" type="PlayerPhraseTxt" />
+                <action id="-3" name="Set position" sid="4918599550728321" type="PlayerPinPoint">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3321481194702731" type="PlayerPinPoint">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1751581524251793" type="PlayerPhraseTxt">
+                    <param id="0" name="Pin to">PlayerPinPoint</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>p1: Stage</comment>
+        <event-block sid="8060985393539423">
+            <conditions>
+                <condition id="0" name="On function" sid="6870888253004275" type="Function">
+                    <param id="0" name="Name">&quot;HideStageSpeech&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="4391312858453261" type="Function">
+                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="8246451767071341">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="7976625310944111" type="System">
+                            <param id="0" name="Object">NPC</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="3704390823294383" type="NPC">
+                            <param id="0" name="Instance variable">Stage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="197877896226907" type="Function">
+                            <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                            <param id="1" name="Parameter {n}">NPC.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

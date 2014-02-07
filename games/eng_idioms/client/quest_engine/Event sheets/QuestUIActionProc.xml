@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>QuestUIActionProc</name>
+    <events>
+        <event-block sid="9685306970185458">
+            <conditions>
+                <condition id="0" name="On function" sid="4879756541203689" type="Function">
+                    <param id="0" name="Name">&quot;UIProcessCurrentStageAction&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>No operation. Stage speech is hidden already</comment>
+                <event-block sid="6858911041294413">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="6319882980845294" type="System">
+                            <param id="0" name="First value">QuestAction.getActionType</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;NOP&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+                <event-block sid="8036011244503883">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4009910061773385" type="System">
+                            <param id="0" name="First value">QuestAction.getActionType</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;DELAY&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="3062219250112227" type="System">
+                            <param id="0" name="Seconds">QuestAction.getDelay</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6632858068048924">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="3014435150508187" type="System">
+                            <param id="0" name="First value">QuestAction.getActorType</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;PLAYER&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="1837352538416998">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="1908943381194726" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;PHRASE&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2496788276965673" type="Function">
+                                    <param id="0" name="Name">&quot;ShowPlayerPhrase&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3164195920836245">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="779837667586652" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;QUIZ&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2556221739997039" type="Function">
+                                    <param id="0" name="Name">&quot;ShowPlayerQuiz&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9814225352267794">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="3673241764914448" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;ANIMATION&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="5664582232474535">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="6477690124574981" type="System">
+                            <param id="0" name="First value">QuestAction.getActorType</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;NPC&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="4735583275425031" type="NPC">
+                            <param id="0" name="Unique ID">QuestAction.getNPCActorUID</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8228858732459555">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7026073483296947" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;PHRASE&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="9558714275571348" type="Function">
+                                    <param id="0" name="Name">&quot;ShowNPCPhrase&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1983275503744164">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="683375988112708" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;QUIZ&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2512201185994246" type="Function">
+                                    <param id="0" name="Name">&quot;ShowNPCQuiz&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7745052759975096">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="1883138211580572" type="System">
+                                    <param id="0" name="First value">QuestAction.getActionType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;ANIMATION&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="8009508265179566" type="NPC">
+                                    <param id="0" name="Animation">QuestAction.getAnimationName</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="3" name="Start" sid="8387636846240776" type="NPC">
+                                    <param id="0" name="From">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
