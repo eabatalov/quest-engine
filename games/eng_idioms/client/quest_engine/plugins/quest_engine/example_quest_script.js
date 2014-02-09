@@ -5,6 +5,46 @@ _DEMO_QUEST_SITUATION1_NPC2_ID = "1blahblah";
 _DEMO_QUEST_SITUATION1_NPC3_ID = "2blahblah2";
 _DEMO_QUEST_SITUATION2 = "Stage2";
 _DEMO_QUEST_SITUATION2_NPC1_ID = "0";
+
+function getQuestScript() {
+	/*var stage1Roots = [
+		new QuestNodePlayerClicked(actionQuiz,
+			[
+				//next
+			]),
+		new QuestNodeNPCClicked(action, _DEMO_QUEST_SITUATION1_NPC1_ID,
+			[
+				//next
+			]),
+		new QuestNodeNPCClicked("NPC " + _DEMO_QUEST_SITUATION1_NPC2_ID + " was clicked and it decided to answer.",
+			_DEMO_QUEST_SITUATION1_NPC2_ID,
+			[
+				//next
+			]),
+		new QuestNodeNPCClicked(action, "NPC " + _DEMO_QUEST_SITUATION1_NPC3_ID + " was clicked and it decided to answer.",
+			_DEMO_QUEST_SITUATION1_NPC3_ID,
+			[
+				//next
+			]),
+	];
+
+	var stage2Roots = [
+		new QuestNodeDefault(new QuestUIActionPlayerPhrase("I don't wanna interact with this strange guy!"),
+			[
+				new QuestNodeDefault(new QuestUIActionStageRestart())
+			])
+	];
+
+	return QuestScript([
+		QuestStageNode(_DEMO_QUEST_SITUATION1, stage1Roots),
+		QuestStageNode(_DEMO_QUEST_SITUATION2, stage2Roots)
+	]);*/
+}
+
+
+
+
+
 //TODO Make cool script syntax
 stage1npc1Cnt = 0;
 stage1Continue = false;

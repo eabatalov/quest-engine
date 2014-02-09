@@ -48,8 +48,8 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="0" name="Quest">
-            <object-folder expanded="1" name="NPC">
+        <object-folder expanded="1" name="Quest">
+            <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -442,7 +442,7 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="1" name="Player">
+            <object-folder expanded="0" name="Player">
                 <object-type name="Player" sid="2600527508592514">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -455,10 +455,25 @@
                         <behavior-type name="ScrollTo" sid="4160346853917144">
                             <behavior id="scrollto" />
                         </behavior-type>
+                        <behavior-type name="Pin" sid="7210831025845939">
+                            <behavior id="Pin" />
+                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>PlayerPinPoint</type>
                         <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
@@ -473,6 +488,22 @@
                             <behavior id="Pin" />
                         </behavior-type>
                     </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
                 </object-type>
                 <object-type name="PlayerPinPoint" sid="7544638137289643">
                     <plugin id="Sprite" />
@@ -484,10 +515,321 @@
                     <container>
                         <type>PlayerPinPoint</type>
                         <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
                             <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAns1Bg" sid="1149573424460968">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="1697345842473624">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213293281862042" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAns1Txt" sid="585522396544899">
+                    <plugin id="Text" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="5500536382011995">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                </object-type>
+                <object-type name="PlayerAns2Bg" sid="981179967951609">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="2664322318682211">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4402831604063313" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAns3Txt" sid="7128241683588556">
+                    <plugin id="Text" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="7788493520539028">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                </object-type>
+                <object-type name="PlayerAns2Txt" sid="237564297327457">
+                    <plugin id="Text" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="5661870913496982">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                </object-type>
+                <object-type name="PlayerAns3Bg" sid="108568565687126">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="6260463639070103">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4914723057507207" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAns4Bg" sid="7900842584350147">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="3601924759369828">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9899613098915002" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAns4Txt" sid="8380298320961702">
+                    <plugin id="Text" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="8950728712923248">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                </object-type>
+                <object-type name="PlayerSpeechBg" sid="7274300587374179">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="4573905258946239">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerPhraseBg" sid="9740288058411121">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="5949814026384971">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4240597158861611" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerAnsBg" sid="3577120867528994">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="3815641274919004">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7926407920898488" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
                         </animation>
                     </animation-folder>
                 </object-type>

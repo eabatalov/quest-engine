@@ -14,25 +14,113 @@
         <variable constant="0" name="NPCPhraseBgMarginHeight" sid="1357298439335266" static="0" type="number">0</variable>
         <variable constant="0" name="NPCPhraseBgMarginWidth" sid="7064566409575972" static="0" type="number">0</variable>
         <variable constant="0" name="NPCPhraseTxtMarginWidth" sid="8507353006197562" static="0" type="number">0</variable>
-        <event-group description="" sid="2238888558023584" title="All events">
+        <variable constant="0" name="PlayerAnsItemListDist" sid="8795297785335874" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseWidth" sid="8437482414010045" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseHeight" sid="6086881007418602" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerSpeechWidth" sid="5162220043992299" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerSpeechHeight" sid="8675435182690312" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerAnsBgMarginHeight" sid="8789395308107855" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerAnsBgMarginWidth" sid="5398329223563126" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseTxtMarginHeight" sid="1917144652364365" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseBgMarginHeight" sid="2894461862179115" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseBgMarginWidth" sid="2434401564590621" static="0" type="number">0</variable>
+        <variable constant="0" name="PlayerPhraseTxtMarginWidth" sid="7893190997936435" static="0" type="number">0</variable>
+        <event-block sid="48741975854135">
+            <conditions>
+                <condition id="0" name="On function" sid="3065375302718294" type="Function">
+                    <param id="0" name="Name">&quot;InitUI&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="4618043074624524" type="Function">
+                    <param id="0" name="Name">&quot;ComputePhraseUILayout&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="7496538021365916" type="Function">
+                    <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4532375172585589">
+            <conditions>
+                <condition id="0" name="On function" sid="8604493366469481" type="Function">
+                    <param id="0" name="Name">&quot;ComputePhraseUILayout&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="7627864222809278" type="Function">
+                    <param id="0" name="Name">&quot;ComputeNPCPhraseUILayout&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="8051387559568225" type="Function">
+                    <param id="0" name="Name">&quot;ComputePlayerPhraseUILayout&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block collapsed="1" sid="9904846653411464">
+            <conditions>
+                <condition id="0" name="On function" sid="1782576799532024" type="Function">
+                    <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="8753407581555899" type="Function">
+                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID</param>
+                </action>
+                <action id="0" name="Call function" sid="3950226428390338" type="Function">
+                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID</param>
+                </action>
+            </actions>
             <sub-events>
-                <event-block sid="4532375172585589">
+                <event-block sid="7461917200921227">
                     <conditions>
-                        <condition id="0" name="On function" sid="8604493366469481" type="Function">
-                            <param id="0" name="Name">&quot;ComputePhraseUILayout&quot;</param>
+                        <condition id="-11" name="For Each" sid="5853637195383648" type="System">
+                            <param id="0" name="Object">NPC</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="7627864222809278" type="Function">
-                            <param id="0" name="Name">&quot;ComputeNPCPhraseUILayout&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
+                        <action id="0" name="Call function" sid="1853238564688813" type="Function">
+                            <param id="0" name="Name">&quot;AttachSpeechGUIToNPC&quot;</param>
+                            <param id="1" name="Parameter {n}">NPC.UID</param>
                         </action>
-                        <action id="0" name="Call function" sid="8051387559568225" type="Function">
-                            <param id="0" name="Name">&quot;ComputePlayerPhraseUILayout&quot;</param>
+                        <action id="0" name="Call function" sid="635623130480304" type="Function">
+                            <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                            <param id="1" name="Parameter {n}">NPC.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4143300716619164">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="5024278035628783" type="System">
+                            <param id="0" name="Object">StageChanger</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Set Y" sid="957475462372547" type="StageChanger">
+                            <param id="0" name="Y">0</param>
+                        </action>
+                        <action id="-6" name="Set height" sid="4611797907622094" type="StageChanger">
+                            <param id="0" name="Height">LayoutHeight</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="998019353929911">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Call function" sid="3970298221974455" type="Function">
+                            <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
                     </actions>
                 </event-block>
+            </sub-events>
+        </event-block>
+        <event-group collapsed="1" description="" sid="3289015291960657" title="NPCUInit">
+            <sub-events>
                 <event-block sid="6145434671201488">
                     <conditions>
                         <condition id="0" name="On function" sid="3749463476888807" type="Function">
@@ -90,39 +178,68 @@
                         </action>
                     </actions>
                 </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" sid="7222953450595312" title="PlayerUInit">
+            <sub-events>
                 <event-block sid="4928173719961111">
                     <conditions>
                         <condition id="0" name="On function" sid="1076786603378533" type="Function">
                             <param id="0" name="Name">&quot;ComputePlayerPhraseUILayout&quot;</param>
                         </condition>
-                        <condition id="-16" name="Pick random instance" sid="2345450098572912" type="System">
+                        <condition id="-13" name="Pick nth instance" sid="9857624481676893" type="System">
                             <param id="0" name="Object">Player</param>
+                            <param id="1" name="Instance">0</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="892612646522919" type="System">
+                            <param id="0" name="Variable">PlayerPhraseBgMarginHeight</param>
+                            <param id="1" name="Value">PlayerPhraseBg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8486479435819812" type="System">
+                            <param id="0" name="Variable">PlayerPhraseBgMarginWidth</param>
+                            <param id="1" name="Value">PlayerPhraseBg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4837250512336051" type="System">
+                            <param id="0" name="Variable">PlayerPhraseTxtMarginHeight</param>
+                            <param id="1" name="Value">PlayerPhraseTxt.Y - PlayerPhraseBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3758518454117673" type="System">
+                            <param id="0" name="Variable">PlayerPhraseTxtMarginWidth</param>
+                            <param id="1" name="Value">PlayerPhraseTxt.X - PlayerPhraseBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4344819909407563" type="System">
+                            <param id="0" name="Variable">PlayerAnsBgMarginHeight</param>
+                            <param id="1" name="Value">PlayerAns1Bg.Y - PlayerAnsBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3503235819031031" type="System">
+                            <param id="0" name="Variable">PlayerAnsBgMarginWidth</param>
+                            <param id="1" name="Value"> PlayerAns1Bg.X - PlayerAnsBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4675631732916346" type="System">
+                            <param id="0" name="Variable">PlayerSpeechHeight</param>
+                            <param id="1" name="Value">PlayerSpeechBg.Height</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7325424657698448" type="System">
+                            <param id="0" name="Variable">PlayerSpeechWidth</param>
+                            <param id="1" name="Value">PlayerSpeechBg.Width</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2302658347282926" type="System">
+                            <param id="0" name="Variable">PlayerPhraseHeight</param>
+                            <param id="1" name="Value">PlayerPhraseBgMarginHeight*2 + PlayerPhraseBg.Height</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6686381845806449" type="System">
+                            <param id="0" name="Variable">PlayerPhraseWidth</param>
+                            <param id="1" name="Value">PlayerPhraseBgMarginWidth*2 + PlayerPhraseBg.Width</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8254508831045154" type="System">
+                            <param id="0" name="Variable">PlayerAnsItemListDist</param>
+                            <param id="1" name="Value">PlayerAns2Bg.Y  - (PlayerAns1Bg.Y + PlayerAns1Bg.Height)</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="9904846653411464">
-            <conditions>
-                <condition id="0" name="On function" sid="1782576799532024" type="Function">
-                    <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="3970298221974455" type="Function">
-                    <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-                <action id="0" name="Call function" sid="8753407581555899" type="Function">
-                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
-                    <param id="1" name="Parameter {n}">Player.UID</param>
-                </action>
-                <action id="0" name="Call function" sid="3950226428390338" type="Function">
-                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
-                    <param id="1" name="Parameter {n}">Player.UID</param>
-                </action>
-            </actions>
-        </event-block>
     </events>
 </c2eventsheet>

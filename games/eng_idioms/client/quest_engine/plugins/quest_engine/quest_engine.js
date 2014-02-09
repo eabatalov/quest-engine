@@ -3,6 +3,7 @@
 */
 function QuestEngine() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
+	this.questScript = getQuestScript();
 }
 
 QuestEngine.prototype.npcUID = function(stageName, npcIDInStage) {
