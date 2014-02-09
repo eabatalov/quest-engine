@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>PlayerInput</name>
+    <events>
+        <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">0</variable>
+        <event-group description="" sid="545184742850449" title="Touch">
+            <sub-events>
+                <event-block collapsed="1" sid="2646781791677467">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7887430280866534" type="System">
+                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3455966220737066">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="4526777227602263" type="Touch">
+                                    <param id="0" name="Object">NPC</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="179424338218357" type="NPC" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2770755106419538" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;NPC_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3331927118393136">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="4179120028130057" type="Touch">
+                                    <param id="0" name="Object">NPCAns1Bg</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="6432050601701229" type="NPCAns1Bg" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="2675259609986753" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER_CLICKED&quot;{###}&quot;1&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5467358892886532">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="7685484704738249" type="Touch">
+                                    <param id="0" name="Object">NPCAns2Bg</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="9303126660021892" type="NPCAns2Bg" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="7050424250600247" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER_CLICKED&quot;{###}&quot;2&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="269882646330502">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="8200306572401091" type="Touch">
+                                    <param id="0" name="Object">NPCAns3Bg</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="6355819888936248" type="NPCAns3Bg" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="4838897346030362" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER_CLICKED&quot;{###}&quot;3&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4685611529644997">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="5218183294187376" type="Touch">
+                                    <param id="0" name="Object">NPCAns4Bg</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="3430890606024788" type="NPCAns4Bg" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="1568713964449812" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER_CLICKED&quot;{###}&quot;4&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9325264978992444">
+                            <conditions>
+                                <condition id="3" name="On touched object" sid="2299257498356999" type="Touch">
+                                    <param id="0" name="Object">Player</param>
+                                </condition>
+                                <condition id="-9" name="Is visible" sid="6229130815197624" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="7949244741719582" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;PLAYER_CLICKED&quot;{###}&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <comment>Change stage context and render current UI action on stage</comment>
+        <event-block sid="9949365663832994">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6721803164694401" type="Player">
+                    <param id="0" name="Object">StageChanger</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="9836145392664095" type="System">
+                    <param id="0" name="First value">BlockPlayerInput</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="9662986366060641" type="Function">
+                    <param id="0" name="Name">&quot;HideStageSpeech&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.CurrentStage</param>
+                </action>
+                <action id="-10" name="Set value" sid="968302635844418" type="Player">
+                    <param id="0" name="Instance variable">CurrentStage</param>
+                    <param id="1" name="Value">StageChanger.Stage</param>
+                </action>
+                <action id="0" name="Set current stage" sid="9866364592141594" type="QuestAction">
+                    <param id="0" name="Value">StageChanger.Stage</param>
+                </action>
+                <action id="0" name="Call function" sid="6816952854045386" type="Function">
+                    <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

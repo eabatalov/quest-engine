@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>QuestUInit</name>
+    <name>UInit</name>
     <events>
         <variable constant="0" name="NPCAnsItemListDist" sid="1627563927565386" static="0" type="number">0</variable>
         <variable constant="0" name="NPCPhraseWidth" sid="5783608401145551" static="0" type="number">0</variable>
@@ -110,8 +110,9 @@
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Solid" id="0" name="Set enabled" sid="4975441193075432" type="StageChanger">
-                    <param id="0" name="State">0</param>
+                <action id="0" name="Call function" sid="3970298221974455" type="Function">
+                    <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="0" name="Call function" sid="8753407581555899" type="Function">
                     <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>

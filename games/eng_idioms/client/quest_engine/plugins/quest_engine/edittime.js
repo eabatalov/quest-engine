@@ -30,7 +30,9 @@
 			+ "http://learzing.com/scripts/sdk/utils.js;"
 			+ "http://learzing.com/scripts/sdk/skills.js;"
 			+ "http://learzing.com/scripts/sdk/learzing.js;"
+			+ "quest_engine_consts.js;"
 			+ "quest_engine.js;"
+			+ "quest_engine_debug.js;"
 			+ "example_quest_script.js;"
 			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
@@ -87,10 +89,10 @@ AddCondition(0, cf_none, "Game finishing", "General", "Game finishing",
 /*AddStringParam("Message", "Enter a string to alert.");
 AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my action!", "MyAction");*/
 AddObjectParam("Action", "Action object type");
-AddAction(1, af_none, "Prepare next Action for current stage", "General",
-	"Prepare next Action {0} for current stage.",
-	"Prepare next Action for current stage.",
-	"prepareNextAction");
+AddAction(1, af_none, "Execute last player action on current stage", "General",
+	"Execute last player action {0} on current stage",
+	"Execute last player action on current stage",
+	"playerActionExec");
 
 AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
 AddObjectParam("Quest action type", "Quest action type we'll be initialized");

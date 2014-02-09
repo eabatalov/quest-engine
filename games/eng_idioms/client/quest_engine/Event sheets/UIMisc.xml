@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>UIMisc</name>
+    <events>
+        <event-block sid="1709174711563246">
+            <conditions>
+                <condition id="0" name="On function" sid="4938326053482808" type="Function">
+                    <param id="0" name="Name">&quot;makeStageChangersSolid&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Solid" id="0" name="Set enabled" sid="9652219986389166" type="StageChanger">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6817085328522557">
+            <conditions>
+                <condition id="0" name="On function" sid="5231657399086054" type="Function">
+                    <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Solid" id="0" name="Set enabled" sid="9983860479398649" type="StageChanger">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

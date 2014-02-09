@@ -78,7 +78,7 @@ AddAction(0, af_none, "Set current stage", "Setters", "Set current stage to {0}"
 
 AddStringParam("Last action",
 	"Last action performed by player: "
-	+ "\"PLAYER_AVATAR_CLICKED\" | \"NPC_CLICKED\" | \"ANSWER_CLICKED\"");	
+	+ "\"PLAYER_AVATAR_CLICKED\" | \"NPC_CLICKED\" | \"ANSWER_CLICKED\" | \"CONTINUE\"");	
 AddAction(1, af_none, "Set last player action", "Setters", "Set last player's action to {0}",
 	"Sets player's action", "setLastPlayerAction");
 
@@ -99,12 +99,14 @@ AddAction(2, af_none, "Set last action target id", "Setters", "Set last action t
 //				 description);	// description in expressions panel
 
 // example
-AddExpression(1, ef_return_string, "Current actor type", "Getters", "getActorType",
-	"Type of current actor. Possble values: \"PLAYER\" | \"NPC\"");
+AddExpression(13, ef_return_string, "Current stage", "Getters", "getCurrentStage",
+	"Current stage");
+AddExpression(1, ef_return_string, "Current actor type", "Getters", "getActor",
+	"Current actor. Possble values: \"PLAYER\" | \"NPC\"");
 AddExpression(2, ef_return_number, "Current NPC actor UID", "Getters", "getNPCActorUID",
 	"UID of current acting NPC.");
-AddExpression(3, ef_return_string, "Current action type", "Getters", "getActionType",
-	"Type of current action. Possible values: "
+AddExpression(3, ef_return_string, "Current action type", "Getters", "getAction",
+	"Current action. Possible values: "
 	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" | \"NOP\" "
 	+ "\"DELAY\""
 );

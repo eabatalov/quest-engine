@@ -17,8 +17,8 @@ function StageAction() {
 
 	this.clearOutFields = function() {
 		//OUTs
-		this.actorType = "";
-		this.actionType = "";
+		this.actor = "";
+		this.action = "";
 		this.npcActorUID = 0;
 
 		this.animationName = "";
@@ -181,17 +181,22 @@ function StageAction() {
 	// Expressions
 	function Exps() {};
 	//this is instance in expressions
-	Exps.prototype.getActorType = function(ret)
+	Exps.prototype.getCurrentStage = function(ret)
 	{
-		ret.set_string(this.curStageAction().actorType);
+		ret.set_string(this.curStageName);	
+	}
+
+	Exps.prototype.getActor = function(ret)
+	{
+		ret.set_string(this.curStageAction().actor);
 	};
 
 	Exps.prototype.getNPCActorUID = function(ret) {
 		ret.set_int(this.curStageAction().npcActorUID);
 	};
 
-	Exps.prototype.getActionType = function(ret) {
-		ret.set_string(this.curStageAction().actionType);
+	Exps.prototype.getAction = function(ret) {
+		ret.set_string(this.curStageAction().action);
 	};
 
 	Exps.prototype.getAnimationName = function(ret) {

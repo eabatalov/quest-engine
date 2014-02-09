@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>QuestInitialization</name>
+    <name>Initialization</name>
     <events>
-        <include>QuestUI</include>
         <event-block sid="4009566570811764">
             <conditions>
                 <condition id="-25" name="On loader layout complete" sid="2896692718437938" type="System" />

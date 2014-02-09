@@ -514,6 +514,9 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="QuestDebugTxt" sid="4129074611182805">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
         <object-type name="Keyboard" sid="5348769352958701">
             <plugin id="Keyboard" />
@@ -534,12 +537,12 @@
     <event-folder expanded="1">
         <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
-            <event-sheet>QuestInitialization.xml</event-sheet>
-            <event-sheet>QuestUI.xml</event-sheet>
-            <event-sheet>QuestUserInput.xml</event-sheet>
-            <event-sheet>QuestUInit.xml</event-sheet>
-            <event-sheet>QuestUIActionProc.xml</event-sheet>
-            <event-sheet>QuestUISpeech.xml</event-sheet>
+            <event-sheet>Initialization.xml</event-sheet>
+            <event-sheet>PlayerInput.xml</event-sheet>
+            <event-sheet>UInit.xml</event-sheet>
+            <event-sheet>ActionProc.xml</event-sheet>
+            <event-sheet>UISpeech.xml</event-sheet>
+            <event-sheet>UIMisc.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
     </event-folder>

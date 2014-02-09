@@ -124,7 +124,7 @@ cr.plugins_.QuestLogicPlugin = function(runtime)
 	function Acts() {};
 
 	// the example action
-	Acts.prototype.prepareNextAction = prepareNextAction;
+	Acts.prototype.playerActionExec = playerActionExec;
 	Acts.prototype.setupQuestObjects = setupQuestObjects;
 	Acts.prototype.setupQuestScript = setupQuestScript;
 	pluginProto.acts = new Acts();
@@ -138,8 +138,8 @@ cr.plugins_.QuestLogicPlugin = function(runtime)
 }());
 
 //Actions
-function prepareNextAction(actionType) {
-	this.quest.prepareNextAction(actionType.getFirstPicked());
+function playerActionExec(actionType) {
+	this.quest.playerActionExec(actionType.getFirstPicked());
 }
 
 function setupQuestObjects(NPCType, GameActionType) {

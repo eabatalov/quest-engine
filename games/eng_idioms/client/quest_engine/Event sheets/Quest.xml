@@ -3,8 +3,11 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Quest</name>
     <events>
-        <include>QuestInitialization</include>
-        <include>QuestUI</include>
-        <include>QuestUserInput</include>
+        <include>Initialization</include>
+        <include>UInit</include>
+        <include>UISpeech</include>
+        <include>UIMisc</include>
+        <include>ActionProc</include>
+        <include>PlayerInput</include>
     </events>
 </c2eventsheet>

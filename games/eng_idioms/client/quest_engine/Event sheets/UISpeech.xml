@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>QuestUISpeech</name>
+    <name>UISpeech</name>
     <events>
         <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">60</variable>
         <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">40</variable>

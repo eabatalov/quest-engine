@@ -581,7 +581,7 @@
                 </instance>
                 <instance type="StageChanger" uid="25">
                     <properties>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
@@ -599,10 +599,10 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>860</x>
-                        <y>-1</y>
+                        <x>926</x>
+                        <y>-8</y>
                         <z>0</z>
-                        <width>75</width>
+                        <width>14</width>
                         <height>822</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
@@ -613,7 +613,7 @@
                 </instance>
                 <instance type="StageChanger" uid="26">
                     <properties>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
@@ -631,11 +631,38 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1106</x>
-                        <y>-27</y>
+                        <x>1077</x>
+                        <y>-22</y>
                         <z>0</z>
-                        <width>70</width>
+                        <width>13</width>
                         <height>847</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="QuestDebugTxt" uid="27">
+                    <properties>
+                        <text>Debug text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>186</x>
+                        <y>15</y>
+                        <z>0</z>
+                        <width>310</width>
+                        <height>76</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
