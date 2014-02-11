@@ -3,7 +3,7 @@
 */
 function QuestEngine() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
-	this.questScript = getQuestScript();
+	this.questInterpr = new QuestInterpretator(getQuestScript());
 }
 
 QuestEngine.prototype.npcUID = function(stageName, npcIDInStage) {
@@ -50,7 +50,13 @@ QuestEngine.prototype.setupScript = function(scriptURL) {
 QuestEngine.prototype.playerActionExec = function(stageActCont) {
 	dumpCurrentPlayerAction(stageActCont);
 	stageActCont.curStageAction().clearOutFields();
-	//TODO execute quest script list
-	QuestStageActionExec(stageActCont, this);
+	//Converting scripting action to stage action
+	var playerAction = stageActCont.curStageAction(); //TODO: convert
+
+	this.questInterpr.step(stageActCont.curStageName, playerAction);
+	var uiAction = this.questInterpr.UIAction(stageActCont.curStageName);
+
+	//TODO: convert
+	//stageActCont.curStageAction().* = *;
 	dumpCurrentUIAction(stageActCont);
 }

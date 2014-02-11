@@ -7,112 +7,106 @@ _DEMO_QUEST_SITUATION2 = "Stage2";
 _DEMO_QUEST_SITUATION2_NPC1_ID = "0";
 
 function getQuestScript() {
-	/*var stage1Roots = [
-		new QuestNodePlayerClicked(actionQuiz,
-			[
-				//next
-			]),
-		new QuestNodeNPCClicked(action, _DEMO_QUEST_SITUATION1_NPC1_ID,
-			[
-				//next
-			]),
-		new QuestNodeNPCClicked("NPC " + _DEMO_QUEST_SITUATION1_NPC2_ID + " was clicked and it decided to answer.",
-			_DEMO_QUEST_SITUATION1_NPC2_ID,
-			[
-				//next
-			]),
-		new QuestNodeNPCClicked(action, "NPC " + _DEMO_QUEST_SITUATION1_NPC3_ID + " was clicked and it decided to answer.",
-			_DEMO_QUEST_SITUATION1_NPC3_ID,
-			[
-				//next
-			]),
-	];
+	var uiActionNone = new QuestUIAction(_QUEST_UI_ACTION_NONE);
 
-	var stage2Roots = [
-		new QuestNodeDefault(new QuestUIActionPlayerPhrase("I don't wanna interact with this strange guy!"),
-			[
-				new QuestNodeDefault(new QuestUIActionStageRestart())
-			])
-	];
+	var stage1Node = new QuestNode(_QUEST_NODE_STAGE, uiActionNone, [],
+		{ name : _DEMO_QUEST_SITUATION1 });
+	var stage1StoryLinePlayerNPC2 = new QuestNode(_QUEST_NODE_STORYLINE, uiActionNone, [],
+		{ objs : [_QUEST_PLAYER_ID, _DEMO_QUEST_SITUATION1_NPC2_ID] });
+	var stage1StoryLineNPC1NPC3 = new QuestNode(_QUEST_NODE_STORYLINE, uiActionNone, [],
+		{ objs : [_DEMO_QUEST_SITUATION1_NPC1_ID, _DEMO_QUEST_SITUATION1_NPC3_ID] });
+	$.merge(stage1Node.next, [stage1StoryLinePlayerNPC2, stage1StoryLineNPC1NPC3]);
 
-	return QuestScript([
-		QuestStageNode(_DEMO_QUEST_SITUATION1, stage1Roots),
-		QuestStageNode(_DEMO_QUEST_SITUATION2, stage2Roots)
-	]);*/
+	var stage1StoryLinePlayerNPC2TransferNode =
+		new QuestNode(_QUEST_NODE_TRANSFER, uiActionNone, [stage1StoryLinePlayerNPC2]);
+	$.merge(stage1StoryLinePlayerNPC2.next, [
+		new QuestNode(_QUEST_NODE_OBJECT_CLICKED,
+			new QuestUIAction(_QUEST_UI_ACTION_PHRASE, false, { id : _QUEST_PLAYER_ID, text : "Hi!" }),
+			[
+				stage1StoryLinePlayerNPC2
+			], { id : _QUEST_PLAYER_ID }),
+
+		new QuestNode(_QUEST_NODE_OBJECT_CLICKED,
+			new QuestUIAction(_QUEST_UI_ACTION_QUIZ, false,
+				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : "NPC " + _DEMO_QUEST_SITUATION1_NPC2_ID + " quiz!",
+					ans : ["Answer1", "Answer2", "Answer3", "Answer4"]
+				}),
+			[
+				new QuestNode(_QUEST_NODE_ANSWER_1_CLICKED,
+					new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+						{
+							id : _DEMO_QUEST_SITUATION1_NPC2_ID,
+							text : "Ok, you said 1",
+						}),
+					[stage1StoryLinePlayerNPC2TransferNode]),
+
+				new QuestNode(_QUEST_NODE_ANSWER_2_CLICKED,
+					new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+						{
+							id : _DEMO_QUEST_SITUATION1_NPC2_ID,
+							text : "Ok, you said 2",
+						}),
+					[stage1StoryLinePlayerNPC2TransferNode]),
+
+				new QuestNode(_QUEST_NODE_ANSWER_3_CLICKED,
+					new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+						{
+							id : _DEMO_QUEST_SITUATION1_NPC2_ID,
+							text : "Ok, you said 3",
+						}),
+					[stage1StoryLinePlayerNPC2TransferNode]),
+
+				new QuestNode(_QUEST_NODE_ANSWER_4_CLICKED,
+					new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+						{
+							id : _DEMO_QUEST_SITUATION1_NPC2_ID,
+							text : "Ok, you said 4",
+						}),
+					[stage1StoryLinePlayerNPC2TransferNode])
+
+			], { id : _DEMO_QUEST_SITUATION1_NPC1_ID })
+	]);
+
+	$.merge(stage1StoryLineNPC1NPC3.next, [
+		new QuestNode(_QUEST_NODE_OBJECT_CLICKED,
+			new QuestUIAction(_QUEST_UI_ACTION_ANIMATION, true,
+				{ id : _DEMO_QUEST_SITUATION1_NPC1_ID, name : "DemoAnimation" }),
+			[
+				new QuestNode(_QUEST_NODE_CONTINUE,
+					new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+						{ id : _DEMO_QUEST_SITUATION1_NPC3_ID, text : "What da fuck?!" }),
+					[
+						new QuestNode(_QUEST_NODE_CONTINUE,
+							new QuestUIAction(_QUEST_UI_ACTION_WAIT, true,
+								{ secs : 5 }),
+							[
+								new QuestNode(_QUEST_NODE_CONTINUE,
+									new QuestUIAction(_QUEST_UI_ACTION_STAGE_CLEAR, true),
+									[
+										new QuestNode(_QUEST_NODE_TRANSFER, uiActionNone,
+											[stage1StoryLineNPC1NPC3])
+									])
+							])
+					])
+			], { id : _DEMO_QUEST_SITUATION1_NPC1_ID })
+	]);
+
+	var stage2Node = new QuestNode(_QUEST_NODE_STAGE, uiActionNone, [],
+		{ name : _DEMO_QUEST_SITUATION2 });
+	var stage2StoryLinePlayerNPC1 = new QuestNode(_QUEST_NODE_STORYLINE, uiActionNone, [],
+		{ objs : [_QUEST_PLAYER_ID, _DEMO_QUEST_SITUATION2_NPC1_ID] });
+	$.merge(stage2Node.next, [stage2StoryLinePlayerNPC1]);
+
+	var stage2PlayerPhraseUIAction = new QuestUIAction(_QUEST_UI_ACTION_PHRASE, true,
+		{ id : _QUEST_PLAYER_ID, text: "I don't wanna interact with this strange guy!" });
+	var stage2StoryLinePlayerNPC1TransferNode = new QuestNode(_QUEST_NODE_TRANSFER,
+		uiActionNone, [stage2StoryLinePlayerNPC1]);
+	$.merge(stage2StoryLinePlayerNPC1.next, [
+		new QuestNode(_QUEST_NODE_OBJECT_CLICKED, stage2PlayerPhraseUIAction,
+			[stage2StoryLinePlayerNPC1TransferNode], { id : _QUEST_PLAYER_ID }),
+		new QuestNode(_QUEST_NODE_OBJECT_CLICKED, stage2PlayerPhraseUIAction,
+			[stage2StoryLinePlayerNPC1TransferNode], { id : _DEMO_QUEST_SITUATION2_NPC1_ID})
+	]);
+
+	return new QuestScript([stage1Node, stage2Node]);
 }
-
-
-
-
-
-//TODO Make cool script syntax
-stage1npc1Cnt = 0;
-stage1Continue = false;
-function QuestStageActionExec(stageActCont, questEngine) {
-	var curStageName = stageActCont.curStageName;
-	var action = stageActCont.curStageAction();
-
-	if (curStageName === _DEMO_QUEST_SITUATION1) {
-		if (action.lastPlayerAction === _PLAYER_ACTION_CONTINUE) {
-			if (stage1npc1Cnt === 0) {
-				action.actor = _UI_ACTOR_NPC;
-				action.action = _UI_ACTION_PHRASE;
-				action.npcActorUID = questEngine.npcUID(curStageName, _DEMO_QUEST_SITUATION1_NPC2_ID);
-				action.text = "What da FUCK?!!";
-				action.continue = 1;
-			} else if (stage1npc1Cnt === 1) {
-					action.action = _UI_ACTION_DELAY;
-					action.delay = 5;
-					action.continue = 1;
-			} else if (stage1npc1Cnt === 2) {
-				action.actor = _UI_ACTOR_NPC;
-				action.action = _UI_ACTION_ANIMATION;
-				action.npcActorUID = questEngine.npcUID(curStageName, _DEMO_QUEST_SITUATION1_NPC1_ID);
-				action.animationName = "NPCYellow";
-				action.continue = 1;
-			} else { //3
-				action.action = _UI_ACTION_STAGE_CLEAR;
-				stage1Continue = false;
-			}
-			stage1npc1Cnt = (stage1npc1Cnt + 1) % 4;
-		}
-
-		if (action.lastPlayerAction === _PLAYER_ACTION_PLAYER_CLICKED) {
-			action.actor = _UI_ACTOR_NPC;
-			action.npcActorUID = questEngine.npcUID(curStageName, _DEMO_QUEST_SITUATION1_NPC2_ID);
-			action.action = _UI_ACTION_QUIZ;
-			action.text = "Player was clicked and NPC with id " +
-				action.npcActorUID +" decided to ask a quiz.";
-			action.answer1Text = "Answer 1";
-			action.answer2Text = "Answer 2";
-			action.answer3Text = "Answer 3";
-			action.answer4Text = "Answer 4";
-			action.rightAnswerIx = 3;
-		} else if (action.lastPlayerAction === _PLAYER_ACTION_NPC_CLICKED) {
-			if (action.lastActionTargetId === _DEMO_QUEST_SITUATION1_NPC1_ID) {
-				action.actor = _UI_ACTOR_NPC;
-				action.action = _UI_ACTION_ANIMATION;
-				action.npcActorUID = questEngine.npcUID(curStageName, _DEMO_QUEST_SITUATION1_NPC1_ID);
-				action.animationName = "DemoAnimation";
-				action.continue = 1;
-				stage1Continue = true;
-			} else {
-				action.actor = _UI_ACTOR_NPC;
-				action.npcActorUID = questEngine.npcUID(curStageName, action.lastActionTargetId);
-				action.action = _UI_ACTION_PHRASE;
-				action.text = "NPC " + action.npcActorUID + " was clicked and it decided to answer.";
-			}
-		} else if (action.lastPlayerAction === _PLAYER_ACTION_ANSWER_CLICKED) {
-			action.actor = _UI_ACTOR_NPC;
-			action.npcActorUID = questEngine.npcUID(curStageName, _DEMO_QUEST_SITUATION1_NPC2_ID);
-			action.action = _UI_ACTION_PHRASE;
-			action.text = "Ok, you said " + action.lastActionTargetId;
-		}
-	} else if (curStageName === _DEMO_QUEST_SITUATION2) {
-		action.actor = _UI_ACTOR_PLAYER;
-		action.action = _UI_ACTION_PHRASE;
-		action.text = "I don't wanna interact with this strange guy!";
-	} else {
-		alert("Invalid stage name!!!");
-	}
-};

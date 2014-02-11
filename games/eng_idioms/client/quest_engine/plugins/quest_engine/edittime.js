@@ -32,6 +32,7 @@
 			+ "http://learzing.com/scripts/sdk/learzing.js;"
 			+ "quest_engine_consts.js;"
 			+ "quest_scripting.js;"
+			+ "quest_interpretator.js;"
 			+ "quest_engine.js;"
 			+ "quest_engine_debug.js;"
 			+ "example_quest_script.js;"
