@@ -50,8 +50,8 @@ function validateCurrentUIAction(stageActCont) {
 function dumpCurrentUIAction(stageActCont) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
-	console.log("==UI ACTION==\n" +
-		"actor: " + stageActCont.curStageAction().actor.toString() + "\n"
+	console.log("==UI ACTION==\n"
+		+ "actor: " + stageActCont.curStageAction().actor.toString() + "\n"
 		+ "action: " + stageActCont.curStageAction().action.toString() + "\n"
 		+ "npcActorUID: " + stageActCont.curStageAction().npcActorUID.toString() + "\n"
 		+ "animationName: " + stageActCont.curStageAction().animationName.toString() + "\n"
@@ -64,5 +64,24 @@ function dumpCurrentUIAction(stageActCont) {
 		+ "rightAnswerIx: " + stageActCont.curStageAction().rightAnswerIx.toString() + "\n"
 		+ "delay: " + stageActCont.curStageAction().delay.toString() + "\n"
 		+ "continue: " + stageActCont.curStageAction().continue.toString() + "\n"
+	);
+}
+
+function dumpQuestEvent(questEvent) {
+	if (!_QUEST_ENGINE_DEBUG)
+		return;
+	console.log("==QUEST EVENT==\n"
+		+ JSON.stringify(questEvent)
+	);
+}
+
+function dumpQuestNode(questNode) {
+	if (!_QUEST_ENGINE_DEBUG)
+		return;
+	console.log("==QUEST EVENT==\n"
+		+ "type: " + questNode.type.toString() + "\n"
+		+ "conds" + questNode.conds.toString() + "\n"
+		+ "priv" + questNode.priv.toString() + "\n"
+		+ "continue" + questNode.continue.toString() + "\n"
 	);
 }

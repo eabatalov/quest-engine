@@ -50,13 +50,91 @@ QuestEngine.prototype.setupScript = function(scriptURL) {
 QuestEngine.prototype.playerActionExec = function(stageActCont) {
 	dumpCurrentPlayerAction(stageActCont);
 	stageActCont.curStageAction().clearOutFields();
-	//Converting scripting action to stage action
-	var playerAction = stageActCont.curStageAction(); //TODO: convert
 
-	this.questInterpr.step(stageActCont.curStageName, playerAction);
-	var uiAction = this.questInterpr.UIAction(stageActCont.curStageName);
+	var questEvent = this.toQuestEvent(stageActCont.curStageAction());
+	dumpQuestEvent(questEvent);
+	this.questInterpr.step(stageActCont.curStageName, questEvent);
+	var questNode = this.questInterpr.node(stageActCont.curStageName);
+	dumpQuestNode(questNode);
 
-	//TODO: convert
-	//stageActCont.curStageAction().* = *;
+	this.fillStageAction(stageActCont.curStageAction(), questNode);
 	dumpCurrentUIAction(stageActCont);
+}
+
+QuestEngine.prototype.toQuestEvent = function(stageAct) {
+	var questEvent = null;
+
+	switch(stageAct.lastPlayerAction) {
+		case _PLAYER_ACTION_PLAYER_CLICKED:
+			questEvent = new QuestEvent(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID });
+		break;
+		case _PLAYER_ACTION_NPC_CLICKED:
+			questEvent = new QuestEvent(_QUEST_COND_OBJECT_CLICKED, { id : stageAct.lastActionTargetId });
+		break;
+		case  _PLAYER_ACTION_ANSWER_CLICKED:
+			switch(stageAct.lastActionTargetId) {
+				case "1":
+					questEvent = new QuestEvent(_QUEST_COND_ANSWER_1_CLICKED);
+				break;
+				case "2":
+					questEvent = new QuestEvent(_QUEST_COND_ANSWER_2_CLICKED);
+				break;
+				case "3":
+					questEvent = new QuestEvent(_QUEST_COND_ANSWER_3_CLICKED);
+				break;
+				case "4":
+					questEvent = new QuestEvent(_QUEST_COND_ANSWER_4_CLICKED);
+				break;
+			}
+		break;
+		case  _PLAYER_ACTION_CONTINUE:
+			questEvent = new QuestEvent(_QUEST_COND_CONTINUE);
+		break;
+		default:
+			console.log("Error. Invalid player stage action type type: " + stageAct.lastPlayerAction);
+	}
+	return questEvent;
+}
+
+QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
+	var setActorInfo = false;
+	switch(questNode.type) {
+		case _QUEST_NODE_NONE:
+			stageAct.action = _UI_ACTION_NONE;
+		break;
+		case _QUEST_NODE_PHRASE:
+			stageAct.action = _UI_ACTION_PHRASE;
+			stageAct.text = questNode.priv.text;
+			setActorInfo = true;
+		break;
+		case _QUEST_NODE_QUIZ:
+			stageAct.action = _UI_ACTION_QUIZ;
+			stageAct.text = questNode.priv.text;
+			stageAct.answer1Text = questNode.priv.ans[0];
+			stageAct.answer2Text = questNode.priv.ans[1];
+			stageAct.answer3Text = questNode.priv.ans[2];
+			stageAct.answer4Text = questNode.priv.ans[3];
+			stageAct.rightAnswerIx = 0;
+			setActorInfo = true;
+		break;
+		case _QUEST_NODE_ANIM:
+			stageAct.action = _UI_ACTION_ANIMATION;	
+			stageAct.animationName = questNode.priv.name;
+			setActorInfo = true;
+		break;
+		case _QUEST_NODE_WAIT:
+			stageAct.action = _UI_ACTION_DELAY;
+			stageAct.delay = questNode.priv.secs;
+		break;
+		case _QUEST_NODE_STAGE_CLEAR:
+			stageAct.action = _UI_ACTION_STAGE_CLEAR;
+		break;
+		default:
+			console.log("Error. Invalid quest node type: " + questNode.type);
+	}
+	if (setActorInfo) {
+		stageAct.actor = questNode.priv.id === _QUEST_PLAYER_ID ? "PLAYER" : "NPC";
+		stageAct.npcActorUID = questNode.priv.id !== _QUEST_PLAYER_ID ?
+			this.npcUID(stageAct.stageName, questNode.priv.id) : null;
+	}
 }

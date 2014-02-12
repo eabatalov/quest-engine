@@ -78,7 +78,7 @@ AddAction(0, af_none, "Set current stage", "Setters", "Set current stage to {0}"
 
 AddStringParam("Last action",
 	"Last action performed by player: "
-	+ "\"PLAYER_AVATAR_CLICKED\" | \"NPC_CLICKED\" | \"ANSWER_CLICKED\" | \"CONTINUE\"");	
+	+ "\"PLAYER_CLICKED\" | \"NPC_CLICKED\" | \"ANSWER_CLICKED\" | \"CONTINUE\"");	
 AddAction(1, af_none, "Set last player action", "Setters", "Set last player's action to {0}",
 	"Sets player's action", "setLastPlayerAction");
 
@@ -107,8 +107,7 @@ AddExpression(2, ef_return_number, "Current NPC actor UID", "Getters", "getNPCAc
 	"UID of current acting NPC.");
 AddExpression(3, ef_return_string, "Current action type", "Getters", "getAction",
 	"Current action. Possible values: "
-	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" | \"NOP\" "
-	+ "\"DELAY\""
+	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" \"DELAY\" | \"STAGE_CLEAR\" | \"NONE\""
 );
 
 AddExpression(4, ef_return_string, "Current animation name", "Getters", "getAnimationName",

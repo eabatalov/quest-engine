@@ -10,8 +10,9 @@ cr.plugins_.QuestActionPlugin = function(runtime)
 };
 
 function StageAction() {
-	//INs
+	//Const
 	this.stageName = "";
+	//INs
 	this.lastPlayerAction = "";
 	this.lastActionTargetId = "";
 
