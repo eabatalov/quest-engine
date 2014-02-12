@@ -1,38 +1,37 @@
 //API for javascript based quest scripting
-_QUEST_UI_ACTION_NONE = -1;
-_QUEST_UI_ACTION_PHRASE = 1; // priv : { id : String, text : String }
-_QUEST_UI_ACTION_QUIZ = 3; // priv : { id : String, text : String, ans : [String] }
-_QUEST_UI_ACTION_ANIMATION = 5; // priv : { id : String, name : String }
-_QUEST_UI_ACTION_WAIT = 6; // priv : { secs : int }
-_QUEST_UI_ACTION_STAGE_CLEAR = 7;
+_QUEST_NODE_NONE = -1;
+_QUEST_NODE_PHRASE = 1; // priv : { id : String, text : String }
+_QUEST_NODE_QUIZ = 3; // priv : { id : String, text : String, ans : [String] }
+_QUEST_NODE_ANIM = 5; // priv : { id : String, name : String }
+_QUEST_NODE_WAIT = 6; // priv : { secs : int }
+_QUEST_NODE_STAGE_CLEAR = 7;
+_QUEST_NODE_STORYLINE = 8; // priv : { objs : [/*id*/String] }
+_QUEST_NODE_STAGE = 9; // priv : { name : String }
 
-function QuestUIAction(type, isContinue, priv) {
+function QuestNode(type, isContinue, priv, /* QuestCond */ conds) {
 	this.type = type;
-	this.priv = (priv !== null && priv !== undefined) ?
-		priv : null;
-	this.continue = (isContinue !== null && isContinue !== undefined) ?
-		isContinue : false;
+	this.conds = conds;
+	this.priv = priv;
+	this.continue = isContinue;
 }
 
-_QUEST_NODE_STAGE = -2; // priv : { name : String }
-_QUEST_NODE_STORYLINE = -1; // priv : { objs : [/*id*/String] }
-_QUEST_NODE_OBJECT_CLICKED = 2; // priv : { id : String }
-_QUEST_NODE_ANSWER_1_CLICKED = 3;
-_QUEST_NODE_ANSWER_2_CLICKED = 4;
-_QUEST_NODE_ANSWER_3_CLICKED = 5;
-_QUEST_NODE_ANSWER_4_CLICKED = 6;
-_QUEST_NODE_ANSWER_OTHER_CLICKED = 7;
-_QUEST_NODE_CONTINUE = 8;
-_QUEST_NODE_DEFAULT = 9;
-_QUEST_NODE_TRANSFER = 10;
+//Goes to condition node unconditionaly and doesn't consume current event
+_QUEST_COND_NONE = 1;
+//All the next consume current event
+_QUEST_COND_OBJECT_CLICKED = 2; // priv : { id : String }
+_QUEST_COND_ANSWER_1_CLICKED = 3;
+_QUEST_COND_ANSWER_2_CLICKED = 4;
+_QUEST_COND_ANSWER_3_CLICKED = 5;
+_QUEST_COND_ANSWER_4_CLICKED = 6;
+_QUEST_COND_ANSWER_OTHER_CLICKED = 7;
+_QUEST_COND_CONTINUE = 8;
+_QUEST_COND_DEFAULT = 9;
 
-function QuestNode(/* _QUEST_NODE_* */ type, /*QuestUIAction* */ action, /*[QuestNode*]*/ next, priv) {
+function QuestCond(/* _QUEST_COND_* */ type, priv, /*[QuestNode*]*/ node) {
 	this.type = type;
-	this.action = action;
+	this.node = node; //Node which will be picked if cond is met
 	this.priv = (priv !== null && priv !== undefined) ?
 		priv : null;
-	this.next = (next !== null && next !== undefined) ?
-		next : null;
 }
 
 function QuestScript(/*[ _QUEST_NODE_STAGE ]*/ questStageNodes) {
