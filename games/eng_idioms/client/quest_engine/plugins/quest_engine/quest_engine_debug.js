@@ -9,6 +9,17 @@ function showValidationError(errorText) {
 		+ errorText);
 }
 
+function showValidationErrorIf(cond, errorText) {
+	if (!_QUEST_ENGINE_VALIDATE || !cond)
+		return;
+	alert("Quest logic error has occured:\n"
+		+ errorText);
+}
+
+function _str(obj) {
+	return obj === null || obj === undefined ? "" : obj.toString();
+}
+
 function validateCurrentPlayerAction(stageActCont) {
 	if (!_QUEST_ENGINE_VALIDATE)
 		return;
@@ -24,9 +35,9 @@ function dumpCurrentPlayerAction(stageActCont) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
 	console.log("==PLAYER ACTION==\n" +
-		"Current stage: " + stageActCont.curStageName.toString() + "\n"
-		+ "Last player action: " + stageActCont.curStageAction().lastPlayerAction.toString() + "\n"
-		+ "Last action target id" + stageActCont.curStageAction().lastActionTargetId.toString() + "\n"
+		"Current stage: " + _str(stageActCont.curStageName) + "\n"
+		+ "Last player action: " + _str(stageActCont.curStageAction().lastPlayerAction) + "\n"
+		+ "Last action target id" + _str(stageActCont.curStageAction().lastActionTargetId) + "\n"
 	);
 }
 
@@ -51,19 +62,19 @@ function dumpCurrentUIAction(stageActCont) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
 	console.log("==UI ACTION==\n"
-		+ "actor: " + stageActCont.curStageAction().actor.toString() + "\n"
-		+ "action: " + stageActCont.curStageAction().action.toString() + "\n"
-		+ "npcActorUID: " + stageActCont.curStageAction().npcActorUID.toString() + "\n"
-		+ "animationName: " + stageActCont.curStageAction().animationName.toString() + "\n"
-		+ "text: " + stageActCont.curStageAction().text.toString() + "\n"
-		+ "answer1Text: " + stageActCont.curStageAction().answer1Text.toString() + "\n"
-		+ "answer2Text: " + stageActCont.curStageAction().answer2Text.toString() + "\n"
-		+ "answer3Text: " + stageActCont.curStageAction().answer3Text.toString() + "\n"
-		+ "answer3Text: " + stageActCont.curStageAction().answer3Text.toString() + "\n"
-		+ "answer4Text: " + stageActCont.curStageAction().answer4Text.toString() + "\n"
-		+ "rightAnswerIx: " + stageActCont.curStageAction().rightAnswerIx.toString() + "\n"
-		+ "delay: " + stageActCont.curStageAction().delay.toString() + "\n"
-		+ "continue: " + stageActCont.curStageAction().continue.toString() + "\n"
+		+ "actor: " + _str(stageActCont.curStageAction().actor) + "\n"
+		+ "action: " + _str(stageActCont.curStageAction().action) + "\n"
+		+ "npcActorUID: " + _str(stageActCont.curStageAction().npcActorUID) + "\n"
+		+ "animationName: " + _str(stageActCont.curStageAction().animationName) + "\n"
+		+ "text: " + _str(stageActCont.curStageAction().text) + "\n"
+		+ "answer1Text: " + _str(stageActCont.curStageAction().answer1Text) + "\n"
+		+ "answer2Text: " + _str(stageActCont.curStageAction().answer2Text) + "\n"
+		+ "answer3Text: " + _str(stageActCont.curStageAction().answer3Text) + "\n"
+		+ "answer3Text: " + _str(stageActCont.curStageAction().answer3Text) + "\n"
+		+ "answer4Text: " + _str(stageActCont.curStageAction().answer4Text) + "\n"
+		+ "rightAnswerIx: " + _str(stageActCont.curStageAction().rightAnswerIx) + "\n"
+		+ "delay: " + _str(stageActCont.curStageAction().delay) + "\n"
+		+ "continue: " + _str(stageActCont.curStageAction().continue) + "\n"
 	);
 }
 
@@ -78,10 +89,10 @@ function dumpQuestEvent(questEvent) {
 function dumpQuestNode(questNode) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
-	console.log("==QUEST EVENT==\n"
-		+ "type: " + questNode.type.toString() + "\n"
-		+ "conds" + questNode.conds.toString() + "\n"
-		+ "priv" + questNode.priv.toString() + "\n"
-		+ "continue" + questNode.continue.toString() + "\n"
+	console.log("==QUEST NODE==\n"
+		+ "type: " + _str(questNode.type) + "\n"
+		+ "conds" + _str(questNode.conds) + "\n"
+		+ "priv" + _str(questNode.priv) + "\n"
+		+ "continue" + _str(questNode.continue) + "\n"
 	);
 }

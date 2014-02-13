@@ -76,14 +76,20 @@ function getQuestScript() {
 						new QuestNode(_QUEST_NODE_PHRASE, true,
 							{ id : _DEMO_QUEST_SITUATION1_NPC3_ID, text : "What da fuck?!" },
 							[
-								new QuestCond(_QUEST_COND_CONTINUE,
+								new QuestCond(_QUEST_COND_CONTINUE, null,
 									new QuestNode(_QUEST_NODE_WAIT, true,
 										{ secs : 5 },
 										[
-											new QuestCond(_QUEST_COND_CONTINUE,
-												new QuestNode(_QUEST_NODE_STAGE_CLEAR, false,
+											new QuestCond(_QUEST_COND_CONTINUE, null,
+												new QuestNode(_QUEST_NODE_ANIM, true,
+													{ id : _DEMO_QUEST_SITUATION1_NPC1_ID, name : "NPCYellow" },
 													[
-														stage1StoryLineNPC1NPC3Cond
+														new QuestCond(_QUEST_COND_CONTINUE, null,
+															new QuestNode(_QUEST_NODE_STAGE_CLEAR, false,
+																[
+																	stage1StoryLineNPC1NPC3Cond
+																])
+															)
 													])
 												)
 										])
@@ -104,8 +110,8 @@ function getQuestScript() {
 		{ id : _QUEST_PLAYER_ID, text: "I don't wanna interact with this strange guy!" },
 		[stage2StoryLinePlayerNPC1Cond]);
 	$.merge(stage2StoryLinePlayerNPC1Cond.node.conds, [
-		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID }, [stage2PlayerPhraseNode]),
-		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _DEMO_QUEST_SITUATION2_NPC1_ID}, [stage2PlayerPhraseNode])
+		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID }, stage2PlayerPhraseNode),
+		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _DEMO_QUEST_SITUATION2_NPC1_ID}, stage2PlayerPhraseNode)
 	]);
 
 	return new QuestScript([stage1Node, stage2Node]);

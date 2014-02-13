@@ -78,15 +78,13 @@ AddAction(0, af_none, "Set current stage", "Setters", "Set current stage to {0}"
 
 AddStringParam("Last action",
 	"Last action performed by player: "
-	+ "\"PLAYER_CLICKED\" | \"NPC_CLICKED\" | \"ANSWER_CLICKED\" | \"CONTINUE\"");	
+	+ "\"PLAYER_CLICKED\" | \"NPC_CLICKED\" | \"ANSWERx_CLICKED\" | \"CONTINUE\"");	
 AddAction(1, af_none, "Set last player action", "Setters", "Set last player's action to {0}",
 	"Sets player's action", "setLastPlayerAction");
 
 AddStringParam("Value", "Action target id");
 AddAction(2, af_none, "Set last action target id", "Setters", "Set last action target id to {0}",
-	"If player's action is \"NPC CLICKED\" set parameter to NPC's id in stage. " +
-	"If player's action is \"ANSWER CLICKED\" set parameter to \"x\" " +
-	"where x is answer number starting from 1.", "setLastActionTargetId");
+	"Too complicated");
 
 ////////////////////////////////////////
 // Expressions

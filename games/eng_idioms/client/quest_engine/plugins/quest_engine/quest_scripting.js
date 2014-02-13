@@ -1,5 +1,5 @@
 //API for javascript based quest scripting
-_QUEST_NODE_NONE = -1;
+_QUEST_NODE_NONE = -1; //For sequnce of events. Do nothing in this node.
 _QUEST_NODE_PHRASE = 1; // priv : { id : String, text : String }
 _QUEST_NODE_QUIZ = 3; // priv : { id : String, text : String, ans : [String] }
 _QUEST_NODE_ANIM = 5; // priv : { id : String, name : String }
@@ -15,7 +15,10 @@ function QuestNode(type, isContinue, priv, /* QuestCond */ conds) {
 	this.continue = isContinue;
 }
 
-//Goes to condition node unconditionaly and doesn't consume current event
+_QUEST_NODE_NONE_INSTANCE = new QuestNode(_QUEST_NODE_NONE, false, null, []);
+
+//If there is no match for current event we go this edge doesn't consume
+//the event. Should be used for special nodes only.
 _QUEST_COND_NONE = 1;
 //All the next consume current event
 _QUEST_COND_OBJECT_CLICKED = 2; // priv : { id : String }
@@ -25,6 +28,7 @@ _QUEST_COND_ANSWER_3_CLICKED = 5;
 _QUEST_COND_ANSWER_4_CLICKED = 6;
 _QUEST_COND_ANSWER_OTHER_CLICKED = 7;
 _QUEST_COND_CONTINUE = 8;
+//Go by this edge if no match for current event. Current event is consumed.
 _QUEST_COND_DEFAULT = 9;
 
 function QuestCond(/* _QUEST_COND_* */ type, priv, /*[QuestNode*]*/ node) {
@@ -32,12 +36,15 @@ function QuestCond(/* _QUEST_COND_* */ type, priv, /*[QuestNode*]*/ node) {
 	this.node = node; //Node which will be picked if cond is met
 	this.priv = (priv !== null && priv !== undefined) ?
 		priv : null;
+	showValidationErrorIf(type === null || type === undefined, "Quest cond type should be defined");
+	showValidationErrorIf(node === null || node === undefined, "Quest cond node should be defined");
 }
 
 function QuestScript(/*[ _QUEST_NODE_STAGE ]*/ questStageNodes) {
 	var script = this;
+	script.stages = {};
 	$.each(questStageNodes, function(index, stage) {
-		script[stage.priv.name] = stage;
+		script.stages[stage.priv.name] = stage;
 	});
 }
 

@@ -53,8 +53,8 @@ QuestEngine.prototype.playerActionExec = function(stageActCont) {
 
 	var questEvent = this.toQuestEvent(stageActCont.curStageAction());
 	dumpQuestEvent(questEvent);
-	this.questInterpr.step(stageActCont.curStageName, questEvent);
-	var questNode = this.questInterpr.node(stageActCont.curStageName);
+	var questNode =
+		this.questInterpr.step(stageActCont.curStageName, questEvent);
 	dumpQuestNode(questNode);
 
 	this.fillStageAction(stageActCont.curStageAction(), questNode);
@@ -66,26 +66,26 @@ QuestEngine.prototype.toQuestEvent = function(stageAct) {
 
 	switch(stageAct.lastPlayerAction) {
 		case _PLAYER_ACTION_PLAYER_CLICKED:
-			questEvent = new QuestEvent(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID });
+			questEvent = new QuestEvent(_QUEST_EV_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID });
 		break;
 		case _PLAYER_ACTION_NPC_CLICKED:
-			questEvent = new QuestEvent(_QUEST_COND_OBJECT_CLICKED, { id : stageAct.lastActionTargetId });
+			questEvent = new QuestEvent(_QUEST_EV_OBJECT_CLICKED, { id : stageAct.lastActionTargetId });
 		break;
-		case  _PLAYER_ACTION_ANSWER_CLICKED:
-			switch(stageAct.lastActionTargetId) {
-				case "1":
-					questEvent = new QuestEvent(_QUEST_COND_ANSWER_1_CLICKED);
-				break;
-				case "2":
-					questEvent = new QuestEvent(_QUEST_COND_ANSWER_2_CLICKED);
-				break;
-				case "3":
-					questEvent = new QuestEvent(_QUEST_COND_ANSWER_3_CLICKED);
-				break;
-				case "4":
-					questEvent = new QuestEvent(_QUEST_COND_ANSWER_4_CLICKED);
-				break;
-			}
+		case  _PLAYER_ACTION_ANSWER1_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EV_ANSWER_1_CLICKED,
+				{ id : stageAct.lastActionTargetId });
+		break;
+		case _PLAYER_ACTION_ANSWER2_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EV_ANSWER_2_CLICKED,
+				{ id : stageAct.lastActionTargetId });
+		break;
+		case _PLAYER_ACTION_ANSWER3_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EV_ANSWER_3_CLICKED,
+				{ id : stageAct.lastActionTargetId });
+		break;
+		case _PLAYER_ACTION_ANSWER4_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EV_ANSWER_4_CLICKED,
+				{ id : stageAct.lastActionTargetId });
 		break;
 		case  _PLAYER_ACTION_CONTINUE:
 			questEvent = new QuestEvent(_QUEST_COND_CONTINUE);
@@ -137,4 +137,5 @@ QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 		stageAct.npcActorUID = questNode.priv.id !== _QUEST_PLAYER_ID ?
 			this.npcUID(stageAct.stageName, questNode.priv.id) : null;
 	}
+	stageAct.continue = questNode.continue === true ? 1 : 0;
 }
