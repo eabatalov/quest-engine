@@ -8,7 +8,7 @@ _QUEST_NODE_STAGE_CLEAR = 7;
 _QUEST_NODE_STORYLINE = 8; // priv : { objs : [/*id*/String] }
 _QUEST_NODE_STAGE = 9; // priv : { name : String }
 
-function QuestNode(type, isContinue, priv, /* QuestCond */ conds) {
+function QuestNode(/* _QUEST_NODE_* */ type, isContinue, priv, /* [QuestCond] */ conds) {
 	this.type = type;
 	this.conds = conds;
 	this.priv = priv;
@@ -31,11 +31,11 @@ _QUEST_COND_CONTINUE = 8;
 //Go by this edge if no match for current event. Current event is consumed.
 _QUEST_COND_DEFAULT = 9;
 
-function QuestCond(/* _QUEST_COND_* */ type, priv, /*[QuestNode*]*/ node) {
+function QuestCond(/* _QUEST_COND_* */ type, priv, /*QuestNode */ node) {
 	this.type = type;
 	this.node = node; //Node which will be picked if cond is met
 	this.priv = (priv !== null && priv !== undefined) ?
-		priv : null;
+            priv : null;
 	showValidationErrorIf(type === null || type === undefined, "Quest cond type should be defined");
 	showValidationErrorIf(node === null || node === undefined, "Quest cond node should be defined");
 }
