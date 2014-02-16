@@ -85,7 +85,7 @@ function getQuestScript() {
 													{ id : _DEMO_QUEST_SITUATION1_NPC1_ID, name : "NPCYellow" },
 													[
 														new QuestCond(_QUEST_COND_CONTINUE, null,
-															new QuestNode(_QUEST_NODE_STAGE_CLEAR, false,
+															new QuestNode(_QUEST_NODE_STAGE_CLEAR, false, null,
 																[
 																	stage1StoryLineNPC1NPC3Cond
 																])
