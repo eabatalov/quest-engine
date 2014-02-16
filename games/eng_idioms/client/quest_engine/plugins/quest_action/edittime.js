@@ -84,7 +84,7 @@ AddAction(1, af_none, "Set last player action", "Setters", "Set last player's ac
 
 AddStringParam("Value", "Action target id");
 AddAction(2, af_none, "Set last action target id", "Setters", "Set last action target id to {0}",
-	"Too complicated");
+	"Too complicated", "setLastActionTargetId");
 
 ////////////////////////////////////////
 // Expressions
