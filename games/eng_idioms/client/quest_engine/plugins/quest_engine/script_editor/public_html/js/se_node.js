@@ -1,5 +1,9 @@
 function SENode(/* _QUEST_NODE_* */ type, isContinue, props) {
     PIXI.Sprite.call(this, SENode.TEXTURES.nodes[type]);
+    //Workaround to make node icons smaller
+    //because they are too big now
+    this.width = 56;
+    this.height = 56;
 
     this.type = type;
     this.continue = (isContinue !== null && isContinue !== undefined) ?
@@ -85,13 +89,6 @@ function SENodeStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODE_WAIT]);
         SENode.TEXTURES.nodes[_QUEST_NODE_NONE] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODE_NONE]);
-
-        //Workaround to make node icons smaller
-        //because they are too big now
-        $.each(SENode.TEXTURES, function(key, texture) {
-            texture.width = 56;
-            texture.height = 56;
-        });
 
         SENode.prototype = new PIXI.Sprite(SENode.TEXTURES.nodes[_QUEST_NODE_NONE]);
         SENode.prototype.constructor = SENode;
