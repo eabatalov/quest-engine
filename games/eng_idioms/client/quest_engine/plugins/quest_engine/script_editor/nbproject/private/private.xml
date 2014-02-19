@@ -4,9 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/index.html</file>
-            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/objects.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se_node.js</file>
             <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/quest_engine/quest_scripting.js</file>
-            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/script_editor.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se_ng_app.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se_toolbar.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se_cond.js</file>
+            <file>file:/data/github/egp-web-app/games/eng_idioms/client/quest_engine/plugins/quest_engine/script_editor/public_html/js/se_tree.js</file>
         </group>
     </open-files>
 </project-private>
