@@ -53,6 +53,12 @@ function ScriptEditor() {
     this.panels.script.position.y = TOP_PADDING;
     this.panels.script.width = SCRIPT_WIDTH;
     this.panels.script.height = this.pad.height - BOT_PADDING - TOP_PADDING;
+    this.panels.script.glbPtToIntl = function(glblPt) {
+        return new PIXI.Point(
+            glblPt.x - this.x,
+            glblPt.y - this.y
+        );
+    };
 
     this.pad.addChild(this.panels.script);
     this.pad.addChild(this.panels.ltoolbar);

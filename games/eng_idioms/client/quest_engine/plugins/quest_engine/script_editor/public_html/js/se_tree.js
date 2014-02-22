@@ -69,14 +69,8 @@ function scriptTreeEditorMouseUp(intData) {
     if (this.mouse.x !== -1) {
         var newCond = new SECond(_QUEST_COND_NONE);
 
-        newCond.setSrc(new PIXI.Point(
-            this.mouse.x - this.parent.x,
-            this.mouse.y - this.parent.y
-        ));
-        newCond.setDst(new PIXI.Point(
-            intData.global.x - this.parent.x,
-            intData.global.y - this.parent.y
-        ));
+        newCond.setSrc(this.parent.glbPtToIntl(this.mouse));
+        newCond.setDst(this.parent.glbPtToIntl(intData.global));
 
         this.conds.push(newCond);
         this.addChild(newCond);
@@ -88,9 +82,9 @@ function scriptTreeEditorMouseUp(intData) {
 }
 
 function scriptTreeEditorMouseUpOutside(intData) {
-    if (this.hitArea.contains(
-            intData.global.x - this.parent.x,
-            intData.global.y - this.parent.y)) {
+    //Mouse up outside can be called when we "up" on some object
+    //located in script tree editor area. Check it.
+    if (this.hitArea.contains(this.parent.glbPtToIntl(intData.global))) {
         this.mouseup(intData);
     } else {
         this.mouse.x = -1;
