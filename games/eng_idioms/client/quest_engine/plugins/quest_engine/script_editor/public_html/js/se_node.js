@@ -1,4 +1,4 @@
-function SENode(seEvents, /* _QUEST_NODE_* */ type, isContinue, props) {
+function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage, props) {
     PIXI.Sprite.call(this, SENode.TEXTURES.nodes[type]);
     //Workaround to make node icons smaller
     //because they are too big now
@@ -7,18 +7,23 @@ function SENode(seEvents, /* _QUEST_NODE_* */ type, isContinue, props) {
 
     this.seEvents = seEvents;
     this.type = type;
+    this.storyLine = storyLine;
+    this._stage = stage;
     this.continue = (isContinue !== null && isContinue !== undefined) ?
         isContinue : false;
     if (props === null || props === undefined) {
+        //Which fields we have for each type of node
         props = {};
         switch(type) {
             case _QUEST_NODE_NONE:
             break;
             case _QUEST_NODE_PHRASE:
+                props.storyLine = null;
                 props.id = "";
                 props.text = "";
             break;
             case _QUEST_NODE_QUIZ:
+                props.storyLine = null;
                 props.id = "";
                 props.text = "";
                 props.ans1 = "";
@@ -27,6 +32,7 @@ function SENode(seEvents, /* _QUEST_NODE_* */ type, isContinue, props) {
                 props.ans4 = "";
             break;
             case _QUEST_NODE_ANIM:
+                props.storyLine = null;
                 props.id = "";
                 props.name = "";
             break;
@@ -43,6 +49,17 @@ function SENode(seEvents, /* _QUEST_NODE_* */ type, isContinue, props) {
             break;
         }
     }
+    switch(type) {
+        case _QUEST_NODE_STORYLINE:
+            this.methods = {};
+            this.methods.addObject = storyLineAddObject.bind(this);
+        break;
+        case _QUEST_NODE_STAGE:
+            this.methods = {};
+            this.methods.addObject = stageAddObject.bind(this);
+            this.methods.takeFromPool = stageTakeFromPool.bind(this);
+        break;
+    }
     this.props =  props;
     this.conds = [];
     this.setInteractive(true);
@@ -54,6 +71,20 @@ function nodeClicked(intData) {
         name : "NODE_PROP_EDIT",
         obj : intData.target
     });
+}
+
+function storyLineAddObject(objId) {
+    this.props.objs.push(objId);
+    this._stage.methods.takeFromPool(objId);
+}
+
+function stageAddObject(objId) {
+    this.props.objs.push(objId);
+    this.props.objPool.push(objId);
+}
+
+function stageTakeFromPool(objId) {
+    this.props.objPool.remove(objId);
 }
 
 function SENodeStaticConstructor(completionCB) {

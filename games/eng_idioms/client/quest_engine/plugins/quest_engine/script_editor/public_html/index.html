@@ -49,7 +49,7 @@ and open the template in the editor.
                     <label for="id">Object</label>
                     <div>
                         <select ng-model="cond.props.id"
-                            ng-options="obj for obj in scriptEditor.treeEditor.nodes.stages[0].props.objs"></select>
+                            ng-options="obj for obj in cond.storyLine.props.objs"></select>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ and open the template in the editor.
                     <label for="id">Object</label>
                     <div>
                         <select ng-model="node.props.id"
-                            ng-options="obj for obj in scriptEditor.treeEditor.nodes.stages[0].props.objs"></select>
+                            ng-options="obj for obj in node.storyLine.props.objs"></select>
                     </div>
                 </div>
 
@@ -115,8 +115,8 @@ and open the template in the editor.
                 <div ng-show="node.type === _QUEST_NODE_STORYLINE">
                     <label>Objects</label>
                     <div>
-                        <select ng-model="objToAdd"
-                            ng-options="obj for obj in scriptEditor.treeEditor.nodes.stages[0].props.objPool"></select>
+                        <select ng-model="objToAddId"
+                            ng-options="obj for obj in node._stage.props.objPool"></select>
                         <button ng-click="addObjectToStoryLine()">
                             Add to story line
                         </button>
@@ -131,13 +131,13 @@ and open the template in the editor.
                 <div ng-show="node.type === _QUEST_NODE_STAGE">
                     <label>Objects</label>
                     <div>
-                        <input type="text" ng-model="objToAdd" placeholder="Object to add"
+                        <input type="text" ng-model="objToAddId" placeholder="Object to add"
                             required ng-maxlength="50"/>
                         <button ng-click="addObjectToStage()">
                             Add to stage
                         </button>
                         <ul>
-                            <li ng-repeat="obj in scriptEditor.treeEditor.nodes.stages[0].props.objs">
+                            <li ng-repeat="obj in node.props.objs">
                                 {{ obj }}
                             </li>
                         </ul>

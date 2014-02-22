@@ -1,4 +1,4 @@
-function ScriptTreeEditor(/*DisplayObject */ parentPanel, seEvents) {
+function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
     PIXI.Sprite.call(this, ScriptTreeEditor.TEXTURES.bg);
     this.hitArea = new PIXI.Rectangle(0, 0, this.width, this.height);
     parentPanel.addChild(this);
@@ -19,20 +19,23 @@ function ScriptTreeEditor(/*DisplayObject */ parentPanel, seEvents) {
     this.conds = [];
     this.nodes = {};
     this.nodes.all = [];
-    this.nodes.storyLines = [
-        new SENode(this.seEvents, _QUEST_NODE_STORYLINE, false, { objs: [] })
-    ];
     this.nodes.stages = [
-        new SENode(this.seEvents, _QUEST_NODE_STAGE, false, { name : "TYPE STAGE NAME", objs : [],
-            objPool : []})
+        new SENode(_QUEST_NODE_STAGE, this.seEvents, false, null, null, { name : "", objs : [],
+            objPool : [] })
     ];
+    this.nodes.stages[0]._stage = this.nodes.stages[0];
     this.nodes.stages[0].x = this.width / 2;
     this.nodes.stages[0].y = this.nodes.stages[0].height;
-    this.nodes.stages[0].conds.push(
-        new SECond(this.seEvents, _QUEST_COND_NONE, null, this.nodes.storyLines[0])
-    );
+
+    this.nodes.storyLines = [
+        new SENode(_QUEST_NODE_STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [] })
+    ];
     this.nodes.storyLines[0].x = this.nodes.stages[0].x;
     this.nodes.storyLines[0].y = this.nodes.stages[0].y + this.nodes.stages[0].height * 2;
+
+    this.nodes.stages[0].conds.push(
+        new SECond(_QUEST_COND_NONE, this.nodes.storyLines[0], this.nodes.storyLines[0], this.seEvents)
+    );
 
     this.conds.push(this.nodes.stages[0].conds[0]);
     this.conds[0].setSrc(new PIXI.Point(
@@ -56,6 +59,36 @@ function ScriptTreeEditor(/*DisplayObject */ parentPanel, seEvents) {
     $.each(this.conds, function(ix, cond) {
         this.addChild(cond);
     }.bind(this));
+
+    this.scope = rootScope;
+    this.scope.$on('seEvent', scriptTreeEditorOnSeEvent.bind(this));
+}
+
+function scriptTreeEditorOnSeEvent() {
+    if (this.seEvents.args.name === "NODE_CREATE") {
+        var scriptAreaGlobalPt = this.parent.position;
+        var newNodePt = new PIXI.Point(
+            this.seEvents.args.targetPointGlobal.x - scriptAreaGlobalPt.x,
+            this.seEvents.args.targetPointGlobal.y - scriptAreaGlobalPt.y
+        );
+        var newNode = new SENode(this.seEvents.args.type, this.seEvents, false, this.nodes.storyLines[0],
+            this.nodes.stages[0]);
+        newNode.position = newNodePt;
+
+        if (newNodePt.x < 0 || newNodePt.y < 0 ||
+            newNodePt.x > this.width - newNode.width ||
+            newNodePt.y > this.height - newNode.height) {
+            return;
+        }
+
+        this.addChild(newNode);
+        this.nodes.all.push(newNode);
+        this.update();
+        this.seEvents.broadcast({
+            name : "NODE_PROP_EDIT",
+            obj : newNode
+        });
+    }
 }
 
 function scriptTreeEditorMouseDown(intData) {
@@ -67,7 +100,7 @@ function scriptTreeEditorMouseDown(intData) {
 
 function scriptTreeEditorMouseUp(intData) {
     if (this.mouse.x !== -1) {
-        var newCond = new SECond(this.seEvents, _QUEST_COND_NONE);
+        var newCond = new SECond(_QUEST_COND_NONE, null, this.nodes.storyLines[0], this.seEvents);
 
         newCond.setSrc(this.parent.glbPtToIntl(this.mouse));
         newCond.setDst(this.parent.glbPtToIntl(intData.global));
@@ -78,6 +111,11 @@ function scriptTreeEditorMouseUp(intData) {
 
         this.mouse.x = -1;
         this.mouse.y = -1;
+
+        this.seEvents.broadcast({
+            name : "COND_PROP_EDIT",
+            obj : newCond
+        });
     }
 }
 
@@ -109,6 +147,6 @@ function ScriptTreeEditorStaticConstructor(completionCB) {
     loader.load();
 }
 
-function TreeEditorFactory(treeEditorParentSprite, seEvents) {
-    return new ScriptTreeEditor(treeEditorParentSprite, seEvents);
+function TreeEditorFactory(rootScope, treeEditorParentSprite, seEvents) {
+    return new ScriptTreeEditor(rootScope, treeEditorParentSprite, seEvents);
 };

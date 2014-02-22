@@ -1,4 +1,4 @@
-function SECond(seEvents, /* _QUEST_COND_* */ type, /* SENode */ node, props) {
+function SECond(/* _QUEST_COND_* */ type, /* SENode */ node, storyLine, seEvents, props) {
     PIXI.Graphics.call(this);
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
@@ -6,6 +6,7 @@ function SECond(seEvents, /* _QUEST_COND_* */ type, /* SENode */ node, props) {
 
     this.seEvents = seEvents;
     this.type = type;
+    this.storyLine = storyLine;
     this.changeType = condChangeType;
     this.setSrc = condSetSrc;
     this.setDst = condSetDst;
@@ -24,6 +25,7 @@ function condChangeType(type) {
     this.props = {};
     switch(type) {
         case _QUEST_COND_OBJECT_CLICKED:
+            this.props.storyLine = null;
             this.props.id = "";
         break;
     }
