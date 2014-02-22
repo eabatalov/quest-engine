@@ -14,23 +14,23 @@ function SENode(/* _QUEST_NODE_* */ type, isContinue, props) {
             case _QUEST_NODE_NONE:
             break;
             case _QUEST_NODE_PHRASE:
-                props.id = "TYPE SPEAKER OBJECT ID";
-                props.text = "PHRASE TEXT";
+                props.id = "";
+                props.text = "";
             break;
             case _QUEST_NODE_QUIZ:
-                props.id = "TYPE SPEAKER OBJECT ID";
-                props.text = "QUIZ TEXT";
-                props.ans1 = "ANSWER OPTION 1";
-                props.ans2 = "ANSWER OPTION 2";
-                props.ans3 = "ANSWER OPTION 3";
-                props.ans4 = "ANSWER OPTION 4";
+                props.id = "";
+                props.text = "";
+                props.ans1 = "";
+                props.ans2 = "";
+                props.ans3 = "";
+                props.ans4 = "";
             break;
             case _QUEST_NODE_ANIM:
-                props.id = "TYPE OBJECT ID";
-                props.name = "ANIMATION NAME";
+                props.id = "";
+                props.name = "";
             break;
             case _QUEST_NODE_WAIT:
-                props.secs = "SECONDS TO WAIT FOR";
+                props.secs = "";
             break;
             case _QUEST_NODE_STAGE_CLEAR:
             break;
@@ -38,7 +38,7 @@ function SENode(/* _QUEST_NODE_* */ type, isContinue, props) {
                 props.objs = [];
             break;
             case _QUEST_NODE_STAGE:
-                props.name = "TYPE STAGE NAME";
+                props.name = "";
             break;
         }
     }

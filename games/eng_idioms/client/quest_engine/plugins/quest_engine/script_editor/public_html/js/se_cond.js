@@ -23,7 +23,7 @@ function condChangeType(type) {
     this.props = {};
     switch(type) {
         case _QUEST_COND_OBJECT_CLICKED:
-            this.props.id = "TYPE CLICKED OBJECT ID";
+            this.props.id = "";
         break;
     }
 }
