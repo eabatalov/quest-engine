@@ -19,9 +19,9 @@ scriptEditorApp.config(function() {
     };
 });
 
-scriptEditorApp.run(['$rootScope', 'ScriptEditorEvents',
-    function($rootScope, seEvents) {
-        $rootScope.scriptEditor = new ScriptEditor();
+scriptEditorApp.run(['$rootScope', 'ScriptEditorEvents', "ScriptEditor",
+    function($rootScope, seEvents, scriptEditor) {
+        this.scriptEditor = scriptEditor;
     }
 ]);
 
@@ -51,6 +51,21 @@ scriptEditorApp.factory('ScriptEditorEvents',
         return events;
     });
 
+scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "Toolbar", "TreeEditor",
+    "ToolbarParentSprite", "TreeEditorParentSprite",
+    ScriptEditorFactory]);
+
+scriptEditorApp.value("ToolbarParentSprite", new PIXI.DisplayObjectContainer());
+scriptEditorApp.factory("Toolbar", ["ToolbarParentSprite",
+    ToolbarFactory]);
+
+scriptEditorApp.value("TreeEditorParentSprite", new PIXI.DisplayObjectContainer());
+scriptEditorApp.factory("TreeEditor", ["TreeEditorParentSprite",
+    TreeEditorFactory]);
+
+scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', "ScriptEditor",
+    ScriptEditorPropertiesWindowController]);
+
 /* Execution time dependent bootstrap code */
 function ScriptEditorBootstrap() {
     this.staticConstructorsCnt = 6;
@@ -72,9 +87,6 @@ ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
     this.staticConstructorsCnt -= 1;
     if (this.staticConstructorsCnt > 0)
         return;
-
-    scriptEditorApp.controller(ScriptEditorPropertiesWindowControllerAppDecl[0],
-        ScriptEditorPropertiesWindowControllerAppDecl[1]);
 
     angular.bootstrap(document.body, [scriptEditorApp.name]);
 };

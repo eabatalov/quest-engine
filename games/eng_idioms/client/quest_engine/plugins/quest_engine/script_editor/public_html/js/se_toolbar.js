@@ -96,3 +96,7 @@ function ToolbarStaticConstructor(completionCB) {
     Toolbar.prototype.constructor = Toolbar;
     completionCB();
 }
+
+function ToolbarFactory(toolbarParentSprite) {
+    return new Toolbar(toolbarParentSprite);
+};

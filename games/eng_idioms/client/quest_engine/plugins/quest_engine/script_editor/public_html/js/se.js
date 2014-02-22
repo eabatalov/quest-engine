@@ -1,4 +1,8 @@
-function ScriptEditor() {
+function ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite) {
+    this.events = events;
+    this.leftToolbar = leftToolbar;
+    this.treeEditor = treeEditor;
+
     this.stage = new PIXI.Stage(0xFFFFFF);
 
     this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);
@@ -42,13 +46,13 @@ function ScriptEditor() {
     $("#propsDiv").get(0).style.zindex = 1;
 
     this.panels = {};
-    this.panels.ltoolbar = new PIXI.DisplayObjectContainer();
+    this.panels.ltoolbar = toolbarParentSprite;
     this.panels.ltoolbar.position.x = LEFT_PADDING_LTB;
     this.panels.ltoolbar.position.y = TOP_PADDING;
     this.panels.ltoolbar.width = 248;
     this.panels.ltoolbar.height = this.pad.height - BOT_PADDING - TOP_PADDING;
 
-    this.panels.script = new PIXI.DisplayObjectContainer();
+    this.panels.script = treeEditorParentSprite;
     this.panels.script.position.x = this.panels.ltoolbar.position.x + this.panels.ltoolbar.width + LEFT_PADDING_SC;
     this.panels.script.position.y = TOP_PADDING;
     this.panels.script.width = SCRIPT_WIDTH;
@@ -66,7 +70,8 @@ function ScriptEditor() {
     this.updateStage = this.update.bind(this);
     //Create object for each panel
     this.toolbar = new Toolbar(this.panels.ltoolbar);
-    this.treeEditor = new ScriptTreeEditor(this.panels.script, this.updateStage);
+    this.treeEditor = new ScriptTreeEditor(this.panels.script);
+    this.treeEditor.update = this.updateStage;
 
     this.renderer.render(this.stage);
     requestAnimFrame(this.updateStage);
@@ -90,3 +95,8 @@ function ScriptEditorStaticConstructor(completionCB) {
     };
     loader.load();
 }
+
+function ScriptEditorFactory($rootScope, events, leftToolbar, treeEditor,
+    toolbarParentSprite, treeEditorParentSprite) {
+    return new ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite);
+};

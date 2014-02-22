@@ -1,11 +1,12 @@
-function ScriptTreeEditor(/*DisplayObject */ parentPanel, /*function()*/updateCB) {
+function ScriptTreeEditor(/*DisplayObject */ parentPanel) {
     PIXI.Sprite.call(this, ScriptTreeEditor.TEXTURES.bg);
     this.height = parentPanel.height;
     this.width = parentPanel.width;
     this.hitArea = new PIXI.Rectangle(0, 0, this.width, this.height);
     parentPanel.addChild(this);
 
-    this.update = updateCB;
+    //XXX
+    //this.update is initialized externally
     this.mouse = {
         x: -1,
         y: -1
@@ -108,3 +109,7 @@ function ScriptTreeEditorStaticConstructor(completionCB) {
     };
     loader.load();
 }
+
+function TreeEditorFactory(treeEditorParentSprite) {
+    return new ScriptTreeEditor(treeEditorParentSprite);
+};
