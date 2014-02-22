@@ -1,7 +1,5 @@
-function ScriptTreeEditor(/*DisplayObject */ parentPanel) {
+function ScriptTreeEditor(/*DisplayObject */ parentPanel, seEvents) {
     PIXI.Sprite.call(this, ScriptTreeEditor.TEXTURES.bg);
-    this.height = parentPanel.height;
-    this.width = parentPanel.width;
     this.hitArea = new PIXI.Rectangle(0, 0, this.width, this.height);
     parentPanel.addChild(this);
 
@@ -11,6 +9,7 @@ function ScriptTreeEditor(/*DisplayObject */ parentPanel) {
         x: -1,
         y: -1
     };
+    this.seEvents = seEvents;
     this.setInteractive(true);
     this.mousedown = scriptTreeEditorMouseDown.bind(this);
     this.mouseup = scriptTreeEditorMouseUp.bind(this);
@@ -21,16 +20,16 @@ function ScriptTreeEditor(/*DisplayObject */ parentPanel) {
     this.nodes = {};
     this.nodes.all = [];
     this.nodes.storyLines = [
-        new SENode(_QUEST_NODE_STORYLINE, false, { objs: [] })
+        new SENode(this.seEvents, _QUEST_NODE_STORYLINE, false, { objs: [] })
     ];
     this.nodes.stages = [
-        new SENode(_QUEST_NODE_STAGE, false, { name : "TYPE STAGE NAME", objs : [],
+        new SENode(this.seEvents, _QUEST_NODE_STAGE, false, { name : "TYPE STAGE NAME", objs : [],
             objPool : []})
     ];
     this.nodes.stages[0].x = this.width / 2;
     this.nodes.stages[0].y = this.nodes.stages[0].height;
     this.nodes.stages[0].conds.push(
-        new SECond(_QUEST_COND_NONE, null, this.nodes.storyLines[0])
+        new SECond(this.seEvents, _QUEST_COND_NONE, null, this.nodes.storyLines[0])
     );
     this.nodes.storyLines[0].x = this.nodes.stages[0].x;
     this.nodes.storyLines[0].y = this.nodes.stages[0].y + this.nodes.stages[0].height * 2;
@@ -68,7 +67,7 @@ function scriptTreeEditorMouseDown(intData) {
 
 function scriptTreeEditorMouseUp(intData) {
     if (this.mouse.x !== -1) {
-        var newCond = new SECond(_QUEST_COND_NONE);
+        var newCond = new SECond(this.seEvents, _QUEST_COND_NONE);
 
         newCond.setSrc(this.parent.glbPtToIntl(this.mouse));
         newCond.setDst(this.parent.glbPtToIntl(intData.global));
@@ -110,6 +109,6 @@ function ScriptTreeEditorStaticConstructor(completionCB) {
     loader.load();
 }
 
-function TreeEditorFactory(treeEditorParentSprite) {
-    return new ScriptTreeEditor(treeEditorParentSprite);
+function TreeEditorFactory(treeEditorParentSprite, seEvents) {
+    return new ScriptTreeEditor(treeEditorParentSprite, seEvents);
 };

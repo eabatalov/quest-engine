@@ -56,11 +56,11 @@ scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "To
     ScriptEditorFactory]);
 
 scriptEditorApp.value("ToolbarParentSprite", new PIXI.DisplayObjectContainer());
-scriptEditorApp.factory("Toolbar", ["ToolbarParentSprite",
+scriptEditorApp.factory("Toolbar", ["ToolbarParentSprite", "ScriptEditorEvents",
     ToolbarFactory]);
 
 scriptEditorApp.value("TreeEditorParentSprite", new PIXI.DisplayObjectContainer());
-scriptEditorApp.factory("TreeEditor", ["TreeEditorParentSprite",
+scriptEditorApp.factory("TreeEditor", ["TreeEditorParentSprite", "ScriptEditorEvents",
     TreeEditorFactory]);
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', "ScriptEditor",

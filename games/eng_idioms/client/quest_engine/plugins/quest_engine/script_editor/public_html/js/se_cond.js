@@ -1,9 +1,10 @@
-function SECond(/* _QUEST_COND_* */ type, /* SENode */ node, props) {
+function SECond(seEvents, /* _QUEST_COND_* */ type, /* SENode */ node, props) {
     PIXI.Graphics.call(this);
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
     this.points.dst = new PIXI.Point(0, 0);
 
+    this.seEvents = seEvents;
     this.type = type;
     this.changeType = condChangeType;
     this.setSrc = condSetSrc;
@@ -16,7 +17,7 @@ function SECond(/* _QUEST_COND_* */ type, /* SENode */ node, props) {
         this.changeType(type);
     }
     this.setInteractive(true);
-    this.click = condClicked;
+    this.click = condClicked.bind(this);
 }
 
 function condChangeType(type) {
@@ -61,9 +62,7 @@ function condDrawEdge() {
 }
 
 function condClicked(interactionData) {
-    var uiEvents = angular.element($("#scriptEditorCanvas").get(0)).injector().
-            get('ScriptEditorEvents');
-    uiEvents.broadcast({
+    this.seEvents.broadcast({
         name : "COND_PROP_EDIT",
         obj : interactionData.target
     });

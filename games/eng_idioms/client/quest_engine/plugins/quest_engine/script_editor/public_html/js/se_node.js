@@ -1,10 +1,11 @@
-function SENode(/* _QUEST_NODE_* */ type, isContinue, props) {
+function SENode(seEvents, /* _QUEST_NODE_* */ type, isContinue, props) {
     PIXI.Sprite.call(this, SENode.TEXTURES.nodes[type]);
     //Workaround to make node icons smaller
     //because they are too big now
     this.width = 56;
     this.height = 56;
 
+    this.seEvents = seEvents;
     this.type = type;
     this.continue = (isContinue !== null && isContinue !== undefined) ?
         isContinue : false;
@@ -45,13 +46,11 @@ function SENode(/* _QUEST_NODE_* */ type, isContinue, props) {
     this.props =  props;
     this.conds = [];
     this.setInteractive(true);
-    this.click = nodeClicked;
+    this.click = nodeClicked.bind(this);
 }
 
 function nodeClicked(intData) {
-    var uiEvents = angular.element($("#scriptEditorCanvas").get(0)).injector().
-            get('ScriptEditorEvents');
-    uiEvents.broadcast({
+    this.seEvents.broadcast({
         name : "NODE_PROP_EDIT",
         obj : intData.target
     });

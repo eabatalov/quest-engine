@@ -1,22 +1,22 @@
-function ToolBarItem(type) {
+function ToolBarItem(type, seEvents) {
     PIXI.Sprite.call(this, ToolBarItem.TEXTURES.icons[type]);
     this.type = type;
     this.setInteractive(true);
     this.buttonMode = true;
+
+    this.seEvents = seEvents;
     //All this events should be handled in order to
     //mouseupoutside be fired
-    this.mousedown = toolBarItemMouseDown;
-    this.mouseup = toolBarItemMouseUp;
-    this.mouseupoutside = toolBarItemMouseUpOutside;
+    this.mousedown = toolBarItemMouseDown.bind(this);
+    this.mouseup = toolBarItemMouseUp.bind(this);
+    this.mouseupoutside = toolBarItemMouseUpOutside.bind(this);
 }
 
 function toolBarItemMouseUp() {}
 function toolBarItemMouseDown() {}
 
-function toolBarItemMouseUpOutside(interactionData) {;
-    var uiEvents = angular.element($("#scriptEditorCanvas").get(0)).injector().
-        get('ScriptEditorEvents');
-    uiEvents.broadcast({
+function toolBarItemMouseUpOutside(interactionData) {
+    this.seEvents.broadcast({
         name : "NODE_CREATE",
         type : interactionData.target.type,
         targetPointGlobal : interactionData.global
@@ -64,21 +64,23 @@ function ToolBarItemStaticConstructor(completionCB) {
 }
 $(document).ready(ToolBarItemStaticConstructor);
 
-function Toolbar(parentPanel) {
+function Toolbar(parentPanel, seEvents) {
     this.height = parentPanel.height;
     this.width = parentPanel.width;
     parentPanel.addChild(this);
 
+    this.seEvents = seEvents;
+
     var TOOL_ITEM_MARGIN = 8;
     this.icons = {};
-    this.icons.anim = new ToolBarItem(_QUEST_NODE_ANIM);
-    this.icons.phrase = new ToolBarItem(_QUEST_NODE_PHRASE);
-    this.icons.quiz = new ToolBarItem(_QUEST_NODE_QUIZ);
-    this.icons.stage = new ToolBarItem(_QUEST_NODE_STAGE);
-    this.icons.stageClear = new ToolBarItem(_QUEST_NODE_STAGE_CLEAR);
-    this.icons.storyLine = new ToolBarItem(_QUEST_NODE_STORYLINE);
-    this.icons.wait = new ToolBarItem(_QUEST_NODE_WAIT);
-    this.icons.none = new ToolBarItem(_QUEST_NODE_NONE);
+    this.icons.anim = new ToolBarItem(_QUEST_NODE_ANIM, this.seEvents);
+    this.icons.phrase = new ToolBarItem(_QUEST_NODE_PHRASE, this.seEvents);
+    this.icons.quiz = new ToolBarItem(_QUEST_NODE_QUIZ, this.seEvents);
+    this.icons.stage = new ToolBarItem(_QUEST_NODE_STAGE, this.seEvents);
+    this.icons.stageClear = new ToolBarItem(_QUEST_NODE_STAGE_CLEAR, this.seEvents);
+    this.icons.storyLine = new ToolBarItem(_QUEST_NODE_STORYLINE, this.seEvents);
+    this.icons.wait = new ToolBarItem(_QUEST_NODE_WAIT, this.seEvents);
+    this.icons.none = new ToolBarItem(_QUEST_NODE_NONE, this.seEvents);
 
     //Make toolbar items layout
     var ix = 0;
@@ -97,6 +99,6 @@ function ToolbarStaticConstructor(completionCB) {
     completionCB();
 }
 
-function ToolbarFactory(toolbarParentSprite) {
-    return new Toolbar(toolbarParentSprite);
+function ToolbarFactory(toolbarParentSprite, seEvents) {
+    return new Toolbar(toolbarParentSprite, seEvents);
 };

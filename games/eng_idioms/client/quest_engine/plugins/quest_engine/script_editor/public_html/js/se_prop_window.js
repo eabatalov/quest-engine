@@ -15,7 +15,6 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, scriptEditor
             { id: _QUEST_COND_DEFAULT, title: 'Default'}
         ];
         $scope.objToAdd = null;
-        $scope.seEvents = seEvents;
         $scope.node = null;
         $scope.cond = null;
 
@@ -38,7 +37,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, scriptEditor
                     if (newNodePoint. x < 0 || newNodePoint.y < 0) {
                         return;
                     }
-                    var newNode = new SENode(seEvents.args.type);
+                    var newNode = new SENode(seEvents, seEvents.args.type);
                     newNode.position = newNodePoint;
                     scriptEditor.treeEditor.addChild(newNode);
                     scriptEditor.treeEditor.nodes.all.push(newNode);

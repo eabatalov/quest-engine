@@ -1,11 +1,9 @@
-function ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite) {
-    this.events = events;
-    this.leftToolbar = leftToolbar;
-    this.treeEditor = treeEditor;
+function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite) {
+    this.seEvents = seEvents;
 
     this.stage = new PIXI.Stage(0xFFFFFF);
 
-    this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);
+    this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);leftToolbar
     this.pad.position.x = 0;
     this.pad.position.y = 0;
     //this.pad.width = 1340;//1366;
@@ -25,7 +23,7 @@ function ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, tree
     var BOT_PADDING = 92;
     var LEFT_PADDING_LTB = 120;
     var LEFT_PADDING_SC = 56;
-    var SCRIPT_WIDTH = 512;
+    var SCRIPT_WIDTH = 512 + 100;
     var RIGHT_PADDING_SC = LEFT_PADDING_SC;
     var PROP_WIDTH = 248;
     //XXX tut huinia.
@@ -67,11 +65,10 @@ function ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, tree
     this.pad.addChild(this.panels.script);
     this.pad.addChild(this.panels.ltoolbar);
 
-    this.updateStage = this.update.bind(this);
-    //Create object for each panel
-    this.toolbar = new Toolbar(this.panels.ltoolbar);
-    this.treeEditor = new ScriptTreeEditor(this.panels.script);
-    this.treeEditor.update = this.updateStage;
+    //Setup each panel object
+    this.toolbar = leftToolbar;
+    this.treeEditor = treeEditor;
+    this.treeEditor.update = this.updateStage = this.update.bind(this);
 
     this.renderer.render(this.stage);
     requestAnimFrame(this.updateStage);
