@@ -67,10 +67,14 @@ function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage
 }
 
 function nodeClicked(intData) {
-    this.seEvents.broadcast({
-        name : "NODE_PROP_EDIT",
-        obj : intData.target
-    });
+    if (intData.originalEvent.shiftKey) {
+        SENode.treeEditor.deleteNode(this);
+    } else {
+        this.seEvents.broadcast({
+            name : "NODE_PROP_EDIT",
+            obj : intData.target
+        });
+    }
 }
 
 function storyLineAddObject(objId) {

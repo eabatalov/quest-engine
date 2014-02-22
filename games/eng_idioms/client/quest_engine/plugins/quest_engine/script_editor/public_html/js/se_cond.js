@@ -63,11 +63,15 @@ function condDrawEdge() {
     ]);
 }
 
-function condClicked(interactionData) {
-    this.seEvents.broadcast({
-        name : "COND_PROP_EDIT",
-        obj : interactionData.target
-    });
+function condClicked(intData) {
+    if (intData.originalEvent.shiftKey) {
+        SECond.treeEditor.deleteCond(this);
+    } else {
+        this.seEvents.broadcast({
+            name : "COND_PROP_EDIT",
+            obj : intData.target
+        });
+    }
 }
 
 function SECondStaticConstructor(completionCB) {

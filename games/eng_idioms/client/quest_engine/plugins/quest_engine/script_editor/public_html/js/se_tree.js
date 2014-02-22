@@ -14,6 +14,8 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
     this.mousedown = scriptTreeEditorMouseDown.bind(this);
     this.mouseup = scriptTreeEditorMouseUp.bind(this);
     this.mouseupoutside = scriptTreeEditorMouseUpOutside.bind(this);
+    this.deleteNode = scriptTreeEditorDeleteNode;
+    this.deleteCond = scriptTreeEditorDeleteCond;
 
     //Initial script tree nodes
     this.conds = [];
@@ -62,6 +64,11 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
 
     this.scope = rootScope;
     this.scope.$on('seEvent', scriptTreeEditorOnSeEvent.bind(this));
+
+    //Looks like XXX but need to inject onve instance for all
+    //the nodes and conds some way
+    SENode.treeEditor = this;
+    SECond.treeEditor = this;
 }
 
 function scriptTreeEditorOnSeEvent() {
@@ -128,6 +135,18 @@ function scriptTreeEditorMouseUpOutside(intData) {
         this.mouse.x = -1;
         this.mouse.y = -1;
     }
+}
+
+function scriptTreeEditorDeleteNode(node) {
+    this.nodes.all.remove(node);
+    this.removeChild(node);
+    this.update();
+}
+
+function scriptTreeEditorDeleteCond(cond) {
+    this.conds.remove(cond);
+    this.removeChild(cond);
+    this.update();
 }
 
 function ScriptTreeEditorStaticConstructor(completionCB) {
