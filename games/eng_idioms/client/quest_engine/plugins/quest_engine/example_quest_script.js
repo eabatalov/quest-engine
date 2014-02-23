@@ -1,8 +1,8 @@
 //Quest specific consts
 _DEMO_QUEST_SITUATION1 = "Stage1";
-_DEMO_QUEST_SITUATION1_NPC1_ID = "odnako0";
-_DEMO_QUEST_SITUATION1_NPC2_ID = "1blahblah";
-_DEMO_QUEST_SITUATION1_NPC3_ID = "2blahblah2";
+_DEMO_QUEST_SITUATION1_NPC1_ID = "firstLantern";
+_DEMO_QUEST_SITUATION1_NPC2_ID = "lantern";
+_DEMO_QUEST_SITUATION1_NPC3_ID = "older";
 _DEMO_QUEST_SITUATION2 = "Stage2";
 _DEMO_QUEST_SITUATION2_NPC1_ID = "0";
 
@@ -22,14 +22,14 @@ function getQuestScript() {
 
 	$.merge(stage1StoryLinePlayerNPC2Cond.node.conds, [
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID },
-			new QuestNode(_QUEST_NODE_PHRASE, false, { id : _QUEST_PLAYER_ID, text : "Hi!" },
+			new QuestNode(_QUEST_NODE_PHRASE, false, { id : _QUEST_PLAYER_ID, text : "I know nothing, Jon Snow" },
 				[stage1StoryLinePlayerNPC2Cond])
-			),
+			),   
 
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _DEMO_QUEST_SITUATION1_NPC2_ID },
 			new QuestNode(_QUEST_NODE_QUIZ, false,
-				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : "NPC " + _DEMO_QUEST_SITUATION1_NPC2_ID + " quiz!",
-					ans : ["Answer1", "Answer2", "Answer3", "Answer4"]
+				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : _DEMO_QUEST_SITUATION1_NPC2_ID + ": What size are a your girl's boobs?",
+					ans : ["WOW", "Not Bad!", "OMG", "WTF"]
 				},
 				[
 					new QuestCond(_QUEST_COND_ANSWER_1_CLICKED, null,
@@ -74,7 +74,7 @@ function getQuestScript() {
 				[
 					new QuestCond(_QUEST_COND_CONTINUE, null,
 						new QuestNode(_QUEST_NODE_PHRASE, true,
-							{ id : _DEMO_QUEST_SITUATION1_NPC3_ID, text : "What da fuck?!" },
+							{ id : _DEMO_QUEST_SITUATION1_NPC3_ID, text : "My brake warning light is on.\nWhat does it mean?" },
 							[
 								new QuestCond(_QUEST_COND_CONTINUE, null,
 									new QuestNode(_QUEST_NODE_WAIT, true,
