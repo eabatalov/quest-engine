@@ -37,7 +37,7 @@ function QuestCond(/* _QUEST_COND_* */ type, priv, /*QuestNode */ node) {
 	this.priv = (priv !== null && priv !== undefined) ?
             priv : null;
 	showValidationErrorIf(type === null || type === undefined, "Quest cond type should be defined");
-	showValidationErrorIf(node === null || node === undefined, "Quest cond node should be defined");
+	//showValidationErrorIf(node === null || node === undefined, "Quest cond node should be defined");
 }
 
 function QuestScript(/*[ _QUEST_NODE_STAGE ]*/ questStageNodes) {

@@ -29,6 +29,8 @@ and open the template in the editor.
         <script src="js/se.js"></script>
         <script src="js/se_tree_compiler.js"></script>
         <script src="js/se_ng_app.js"></script>
+        <script src="js/quest_engine/quest_engine_debug.js"></script>
+        <script src="js/story.js"></script>
     </head>
     <body>
         <canvas id="scriptEditorCanvas" style="position: absolute; height: 100%;">
@@ -59,7 +61,7 @@ and open the template in the editor.
                 <div ng-show="node.props.name | hasFieldValue">
                     <label for="name">Name</label>
                     <div>
-                        <input type="text" name="name" ng-model="node.props.name" placeholder="TYPE STAGE NAME" autofocus/>
+                        <input type="text" name="name" ng-model="node.props.name" placeholder="TYPE NAME" autofocus/>
                     </div>
                 </div>
 
@@ -78,10 +80,10 @@ and open the template in the editor.
                     </div>
                 </div>
 
-                <div ng-show="node.props.secs  | hasFieldValue">
-                    <label for="secs">Seconds</label>
+                <div ng-show="node.props.text  | hasFieldValue">
+                    <label for="secs">Text</label>
                     <div>
-                        <input type="text" name="secs" ng-model="node.props.secs" placeholder="SECONDS TO WAIT" autofocus/>
+                        <input type="text" name="secs" ng-model="node.props.text" placeholder="TEXT" autofocus/>
                     </div>
                 </div>
 

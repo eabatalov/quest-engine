@@ -4,6 +4,7 @@ function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage
     //because they are too big now
     this.width = 56;
     this.height = 56;
+    this.hitArea = this.getBounds();
 
     this.seEvents = seEvents;
     this.type = type;
@@ -37,7 +38,7 @@ function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage
                 props.name = "";
             break;
             case _QUEST_NODE_WAIT:
-                props.secs = "";
+                props.secs = "0";
             break;
             case _QUEST_NODE_STAGE_CLEAR:
             break;

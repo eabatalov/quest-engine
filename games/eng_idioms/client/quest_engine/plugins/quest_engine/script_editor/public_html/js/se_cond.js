@@ -25,7 +25,6 @@ function condChangeType(type) {
     this.props = {};
     switch(type) {
         case _QUEST_COND_OBJECT_CLICKED:
-            this.props.storyLine = null;
             this.props.id = "";
         break;
     }
@@ -43,13 +42,14 @@ function condSetDst(point) {
 
 function condDrawEdge() {
     this.clear();
-    var CLICK_WIDTH = 15;
     var WIDTH = 5;
+    var CLICK_WIDTH = WIDTH + 10;
     this.lineStyle(WIDTH, 0x000000, 1);
     this.moveTo(this.points.src.x, this.points.src.y);
     this.lineTo(this.points.dst.x, this.points.dst.y);
 
     this.drawCircle(this.points.dst.x, this.points.dst.y, WIDTH);
+    //XXX error here
     this.hitArea = new PIXI.Polygon([
         new PIXI.Point(this.points.src.x, this.points.src.y + CLICK_WIDTH / 2),
         new PIXI.Point(this.points.src.x - CLICK_WIDTH / 2, this.points.src.y),
