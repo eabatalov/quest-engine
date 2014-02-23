@@ -8,7 +8,7 @@
     <author-website>http://learzing.com/quest_engine</author-website>
     <app-id>com.learzing.quest_engine</app-id>
     <unique-id>1qpq9otxp4r4o</unique-id>
-    <saved-with-version>15802</saved-with-version>
+    <saved-with-version>16300</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
@@ -16,39 +16,44 @@
         <plugin author="Eugene/learzing" id="QuestLogicPlugin" version="0.100000001">Quest Engine</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
+        <behavior author="Scirra" id="Physics" version="1">Physics</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
-    <used-effects />
+    <used-effects>
+        <effect author="Scirra" id="multiply">Multiply</effect>
+    </used-effects>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
         <width>1024</width>
-        <height>768</height>
+        <height>600</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
-        <prop name="Enable WebGL">On</prop>
+        <prop name="Enable WebGL">Off</prop>
         <prop name="Fullscreen in browser">Letterbox scale</prop>
         <prop name="Fullscreen scaling">Low quality</prop>
         <prop name="Loader style">Progress bar &amp; logo</prop>
         <prop name="Orientations">Any</prop>
         <prop name="Pause on unfocus">No</prop>
         <prop name="Physics engine">CocoonJS native</prop>
-        <prop name="Preview browser">Chrome</prop>
+        <prop name="Preview browser">(default)</prop>
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="1">
-        <object-folder expanded="1" name="Quest">
+    <object-folder expanded="0">
+        <object-folder expanded="0" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -74,18 +79,80 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="NPCYellow" pingpong="0" repeatcount="1" repeatto="0" sid="869471652042187" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.505" />
+                            <frame duration="1" hotspotX="0.308642" hotspotY="0.423729">
+                                <collision-poly>
+                                    <point x="0.317073" y="0.218487" />
+                                    <point x="0.5" y="0.0714286" />
+                                    <point x="0.737805" y="0.5" />
+                                    <point x="0.5" y="0.655462" />
+                                    <point x="0.5" y="0.953781" />
+                                    <point x="0.439024" y="0.697479" />
+                                    <point x="0.207317" y="0.5" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                         <animation framecount="1" loop="0" name="NPCRed" pingpong="0" repeatcount="1" repeatto="0" sid="9418400557438036" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0.588235" hotspotY="0.473214">
+                                <collision-poly>
+                                    <point x="0.141176" y="0.133929" />
+                                    <point x="0.588235" y="0.00892855" />
+                                    <point x="0.917647" y="0.223214" />
+                                    <point x="0.882353" y="0.464286" />
+                                    <point x="0.764706" y="0.598214" />
+                                    <point x="0.588235" y="0.991071" />
+                                    <point x="0.270588" y="0.705357" />
+                                    <point x="0.105882" y="0.464286" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                         <animation framecount="1" loop="0" name="NPCBlue" pingpong="0" repeatcount="1" repeatto="0" sid="2670400311105635" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0.567308" hotspotY="0.517241">
+                                <collision-poly>
+                                    <point x="0.288462" y="0.267241" />
+                                    <point x="0.567308" y="0.00862069" />
+                                    <point x="0.884615" y="0.232759" />
+                                    <point x="0.865385" y="0.508621" />
+                                    <point x="0.865385" y="0.775862" />
+                                    <point x="0.567308" y="0.853448" />
+                                    <point x="0.355769" y="0.698276" />
+                                    <point x="0.173077" y="0.508621" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                         <animation framecount="3" loop="1" name="DemoAnimation" pingpong="0" repeatcount="1" repeatto="0" sid="3940545415722682" speed="5">
-                            <frame duration="3" hotspotX="0.5" hotspotY="0.5" />
-                            <frame duration="3" hotspotX="0.5" hotspotY="0.5" />
-                            <frame duration="3" hotspotX="0.5" hotspotY="0.5" />
+                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                                <collision-poly>
+                                    <point x="0.317073" y="0.218487" />
+                                    <point x="0.5" y="0.0714286" />
+                                    <point x="0.737805" y="0.5" />
+                                    <point x="0.5" y="0.655462" />
+                                    <point x="0.5" y="0.953781" />
+                                    <point x="0.439024" y="0.697479" />
+                                    <point x="0.207317" y="0.5" />
+                                </collision-poly>
+                            </frame>
+                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                                <collision-poly>
+                                    <point x="0.317073" y="0.218487" />
+                                    <point x="0.5" y="0.0714286" />
+                                    <point x="0.737805" y="0.5" />
+                                    <point x="0.5" y="0.655462" />
+                                    <point x="0.5" y="0.953781" />
+                                    <point x="0.439024" y="0.697479" />
+                                    <point x="0.207317" y="0.5" />
+                                </collision-poly>
+                            </frame>
+                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                                <collision-poly>
+                                    <point x="0.317073" y="0.218487" />
+                                    <point x="0.5" y="0.0714286" />
+                                    <point x="0.737805" y="0.5" />
+                                    <point x="0.5" y="0.655462" />
+                                    <point x="0.5" y="0.953781" />
+                                    <point x="0.439024" y="0.697479" />
+                                    <point x="0.207317" y="0.5" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -143,7 +210,17 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7555485715947281" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                            <frame duration="1" hotspotX="0" hotspotY="0">
+                                <collision-poly>
+                                    <point x="0.072" y="0.0733198" />
+                                    <point x="0.5" y="0.0203666" />
+                                    <point x="0.92" y="0.0814664" />
+                                    <point x="0.968" y="0.498982" />
+                                    <point x="0.878" y="0.875764" />
+                                    <point x="0.096" y="0.90224" />
+                                    <point x="0.022" y="0.498982" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -449,14 +526,14 @@
                         <instance-variable name="CurrentStage" sid="6365041148167288" type="string" />
                     </instance-variables>
                     <behaviors>
-                        <behavior-type name="8Direction" sid="7580098324098427">
-                            <behavior id="EightDir" />
-                        </behavior-type>
                         <behavior-type name="ScrollTo" sid="4160346853917144">
                             <behavior id="scrollto" />
                         </behavior-type>
                         <behavior-type name="Pin" sid="7210831025845939">
                             <behavior id="Pin" />
+                        </behavior-type>
+                        <behavior-type name="Platform" sid="9963586999629436">
+                            <behavior id="Platform" />
                         </behavior-type>
                     </behaviors>
                     <container>
@@ -477,7 +554,18 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0">
+                                <collision-poly>
+                                    <point x="0.0686275" y="0.220183" />
+                                    <point x="0.352941" y="0.00917429" />
+                                    <point x="0.705882" y="0.155963" />
+                                    <point x="0.686275" y="0.477064" />
+                                    <point x="0.696078" y="0.798165" />
+                                    <point x="0.352941" y="0.889908" />
+                                    <point x="0.0490196" y="0.761468" />
+                                    <point x="0.107843" y="0.477064" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -771,7 +859,17 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                            <frame duration="1" hotspotX="0" hotspotY="0">
+                                <collision-poly>
+                                    <point x="0.978" y="0.498982" />
+                                    <point x="0.904" y="0.90224" />
+                                    <point x="0.122" y="0.875764" />
+                                    <point x="0.032" y="0.498982" />
+                                    <point x="0.08" y="0.0814664" />
+                                    <point x="0.5" y="0.0203666" />
+                                    <point x="0.928" y="0.0733198" />
+                                </collision-poly>
+                            </frame>
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -852,7 +950,16 @@
                 </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5168419933408451" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0" />
+                        <frame duration="1" hotspotX="0" hotspotY="0">
+                            <collision-poly>
+                                <point x="0.030303" y="0.00297619" />
+                                <point x="0.909091" y="0.00892857" />
+                                <point x="0.151515" y="0.5" />
+                                <point x="0.151515" y="0.916667" />
+                                <point x="0.484848" y="0.077381" />
+                                <point x="0.030303" y="0.997024" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -869,6 +976,109 @@
         <object-type name="Function" sid="2726969599406417">
             <plugin id="Function" />
         </object-type>
+        <object-type name="Sprite" sid="9109209147233701">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="8896202203832967">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3174251041941562" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TiledBackground" sid="7236015170534149">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="Sprite2" sid="1694405973180682">
+            <plugin id="Sprite" />
+            <effects>
+                <effect-type name="Multiply">
+                    <effect id="multiply" />
+                </effect-type>
+            </effects>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9821721051310036" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.314815" y="0.216102" />
+                            <point x="0.5" y="0.0677966" />
+                            <point x="0.740741" y="0.5" />
+                            <point x="0.944444" y="0.961864" />
+                            <point x="0.5" y="1" />
+                            <point x="0.0246914" y="0.983051" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TiledBackground2" sid="6586149281632876">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="TiledBackground3" sid="6148566049063492">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="Sine" sid="4353641746097914">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <texture />
+        </object-type>
+        <object-type name="Leaf" sid="6834314757359752">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="xResist" sid="8913716602892273" type="number" />
+                <instance-variable name="yResist" sid="5236745101363416" type="number" />
+                <instance-variable name="timer" sid="3340976833905682" type="number" />
+                <instance-variable name="inLayout" sid="3260664137202064" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Physics" sid="5765105148407037">
+                    <behavior id="Physics" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6527763444355277" speed="5">
+                    <frame duration="1" hotspotX="0.666667" hotspotY="0.458333" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Black" sid="6096413666121976">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Physics" sid="5468782253675549">
+                    <behavior id="Physics" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="898764751881809" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite3" sid="9501703104734504">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3785405970013151" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.320988" y="0.220339" />
+                            <point x="0.5" y="0.0677966" />
+                            <point x="0.469136" y="0.364407" />
+                            <point x="0.475309" y="0.5" />
+                            <point x="0.493827" y="0.652542" />
+                            <point x="0.5" y="0.957627" />
+                            <point x="0.438272" y="0.699153" />
+                            <point x="0.450617" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="0">
@@ -876,8 +1086,8 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="1">
-        <event-folder expanded="1" name="Quest">
+    <event-folder expanded="0">
+        <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Initialization.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -885,6 +1095,7 @@
             <event-sheet>ActionProc.xml</event-sheet>
             <event-sheet>UISpeech.xml</event-sheet>
             <event-sheet>UIMisc.xml</event-sheet>
+            <event-sheet>Snow.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
     </event-folder>

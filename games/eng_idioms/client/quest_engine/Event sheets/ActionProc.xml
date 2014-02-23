@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>ActionProc</name>
     <events>
-        <event-group description="" sid="3100647790949735" title="ActionProcess">
+        <event-group collapsed="1" description="" sid="3100647790949735" title="ActionProcess">
             <sub-events>
                 <comment>Common processing after delay and non-delay UI action</comment>
                 <event-block collapsed="1" sid="5462294256267517">
@@ -51,7 +51,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process action dedicated for UI state change.&#x0D;&#x0A;if QuestAction.getContinue == true ProcUIAction can be called only from ProcGameAction because together they form continuation loop. If you call this func from another place you create 2 continuation loops and this is invlaid.</comment>
-                <event-block sid="9685306970185458">
+                <event-block collapsed="1" sid="9685306970185458">
                     <conditions>
                         <condition id="0" name="On function" sid="4879756541203689" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>

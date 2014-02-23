@@ -3,10 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UISpeech</name>
     <events>
-        <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">60</variable>
-        <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">40</variable>
-        <variable constant="1" name="SPEECH_Y_DIST_TO_PLAYER" sid="3161422802330759" static="0" type="number">100</variable>
-        <variable constant="1" name="SPEECH_X_DIST_TO_PLAYER" sid="2512754384022923" static="0" type="number">80</variable>
+        <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">50</variable>
+        <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">-150</variable>
+        <variable constant="1" name="SPEECH_Y_DIST_TO_PLAYER" sid="3161422802330759" static="0" type="number">-10</variable>
+        <variable constant="1" name="SPEECH_X_DIST_TO_PLAYER" sid="2512754384022923" static="0" type="number">-180</variable>
         <comment>p1: Stage</comment>
         <event-block collapsed="1" sid="8060985393539423">
             <conditions>
@@ -324,7 +324,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6702021473764103" title="PlayerUISpeech">
+        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUISpeech">
             <sub-events>
                 <event-block sid="566202086767859">
                     <conditions>
