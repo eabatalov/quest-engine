@@ -65,6 +65,18 @@ function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, tr
     this.pad.addChild(this.panels.script);
     this.pad.addChild(this.panels.ltoolbar);
 
+    this.compileBtn = new PIXI.Sprite(ScriptEditor.TEXTURES.compileBtn);
+    this.compileBtn.position.x = this.panels.script.position.x + this.panels.script.width
+        - this.compileBtn.width - 110 /* XXX */;
+    this.compileBtn.position.y = 40;
+    this.compileBtn.setInteractive(true);
+    this.compileBtn.click = function() {
+        this.seEvents.broadcast({
+            name : "COMPILE"
+        });
+    }.bind(this);
+    this.pad.addChild(this.compileBtn);
+
     //Setup each panel object
     this.toolbar = leftToolbar;
     this.treeEditor = treeEditor;
@@ -82,12 +94,14 @@ ScriptEditor.prototype.update = function() {
 function ScriptEditorStaticConstructor(completionCB) {
     ScriptEditor.TEXTURE_PATHS = {};
     ScriptEditor.TEXTURE_PATHS.bg = "images/bg.png";
+    ScriptEditor.TEXTURE_PATHS.compileBtn = "images/compile.png";
 
     var assetsToLoad = $.map(ScriptEditor.TEXTURE_PATHS, function(value, index) { return [value]; });
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
         ScriptEditor.TEXTURES = {};
         ScriptEditor.TEXTURES.bg = PIXI.Texture.fromImage(ScriptEditor.TEXTURE_PATHS.bg);
+        ScriptEditor.TEXTURES.compileBtn = PIXI.Texture.fromImage(ScriptEditor.TEXTURE_PATHS.compileBtn);
         completionCB();
     };
     loader.load();

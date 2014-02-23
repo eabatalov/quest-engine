@@ -19,9 +19,11 @@ scriptEditorApp.config(function() {
     };
 });
 
-scriptEditorApp.run(['$rootScope', 'ScriptEditorEvents', "ScriptEditor",
-    function($rootScope, seEvents, scriptEditor) {
+scriptEditorApp.run(['$rootScope', 'ScriptEditorEvents', "ScriptEditor", "TreeCompiler",
+    function($rootScope, seEvents, scriptEditor, treeCompiler) {
+        this.seEvents = seEvents;
         this.scriptEditor = scriptEditor;
+        this.treeCompiler = treeCompiler;
     }
 ]);
 
@@ -65,6 +67,9 @@ scriptEditorApp.factory("TreeEditor", ["$rootScope", "TreeEditorParentSprite", "
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents',
     ScriptEditorPropertiesWindowController]);
+
+scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
+    TreeCompilerFactory]);
 
 /* Execution time dependent bootstrap code */
 function ScriptEditorBootstrap() {
