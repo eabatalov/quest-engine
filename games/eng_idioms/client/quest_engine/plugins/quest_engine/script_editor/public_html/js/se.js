@@ -3,7 +3,7 @@ function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, tr
 
     this.stage = new PIXI.Stage(0xFFFFFF);
 
-    this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);leftToolbar
+    this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);
     this.pad.position.x = 0;
     this.pad.position.y = 0;
     //this.pad.width = 1340;//1366;

@@ -77,10 +77,10 @@ and open the template in the editor.
                     </div>
                 </div>
 
-                <div ng-show="node.props.text  | hasFieldValue">
-                    <label for="text">Text</label>
+                <div ng-show="node.props.secs  | hasFieldValue">
+                    <label for="secs">Seconds</label>
                     <div>
-                        <input type="text" name="text" ng-model="node.props.text" placeholder="PHRASE/QUIZ TEXT" autofocus/>
+                        <input type="text" name="secs" ng-model="node.props.secs" placeholder="SECONDS TO WAIT" autofocus/>
                     </div>
                 </div>
 
@@ -141,6 +141,15 @@ and open the template in the editor.
                                 {{ obj }}
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <div ng-show="node.continue  | hasFieldValue">
+                    <label for="continue">Sequence?</label>
+                    <div>
+                        <select name="continue" ng-model="node.continue"
+                            ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];">
+                        </select>
                     </div>
                 </div>
 
