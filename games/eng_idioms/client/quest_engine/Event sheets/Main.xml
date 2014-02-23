@@ -10,7 +10,7 @@
             </conditions>
             <actions>
                 <action id="3" name="Setup quest script URL." sid="8826336374758966" type="QuestEngine">
-                    <param id="0" name="Quest script file URL">&quot;example_quest_script.js&quot;</param>
+                    <param id="0" name="Quest script file URL">&quot;story.js&quot;</param>
                 </action>
             </actions>
         </event-block>

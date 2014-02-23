@@ -68,7 +68,7 @@ function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, tr
     this.compileBtn = new PIXI.Sprite(ScriptEditor.TEXTURES.compileBtn);
     this.compileBtn.position.x = this.panels.script.position.x + this.panels.script.width
         - this.compileBtn.width - 110 /* XXX */;
-    this.compileBtn.position.y = 40;
+    this.compileBtn.position.y = 55;
     this.compileBtn.setInteractive(true);
     this.compileBtn.click = function() {
         this.seEvents.broadcast({

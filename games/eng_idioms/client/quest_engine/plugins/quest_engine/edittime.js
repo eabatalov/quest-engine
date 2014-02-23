@@ -35,7 +35,8 @@
 			+ "quest_interpretator.js;"
 			+ "quest_engine.js;"
 			+ "quest_engine_debug.js;"
-			+ "example_quest_script.js;"
+			+ "story.js"
+			//+ "example_quest_script.js;"
 			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
 };

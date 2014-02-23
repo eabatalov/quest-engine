@@ -138,7 +138,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Stage>Stage2</Stage>
+                        <Stage>Stage1</Stage>
                         <NpcIDInStage>0</NpcIDInStage>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
@@ -597,7 +597,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Stage>Stage2</Stage>
+                        <Stage>Stage1</Stage>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid">

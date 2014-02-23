@@ -1,9 +1,9 @@
 //Quest specific consts
 _DEMO_QUEST_SITUATION1 = "Stage1";
 _DEMO_QUEST_SITUATION1_NPC1_ID = "firstLantern";
-_DEMO_QUEST_SITUATION1_NPC2_ID = "lantern";
+_DEMO_QUEST_SITUATION1_NPC2_ID = "secondLantern";
 _DEMO_QUEST_SITUATION1_NPC3_ID = "older";
-_DEMO_QUEST_SITUATION2 = "Stage2";
+_DEMO_QUEST_SITUATION2 = "Stage1";
 _DEMO_QUEST_SITUATION2_NPC1_ID = "0";
 
 function getQuestScript() {
@@ -28,7 +28,7 @@ function getQuestScript() {
 
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _DEMO_QUEST_SITUATION1_NPC2_ID },
 			new QuestNode(_QUEST_NODE_QUIZ, false,
-				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : _DEMO_QUEST_SITUATION1_NPC2_ID + ": What size are a your girl's boobs?",
+				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : _DEMO_QUEST_SITUATION1_NPC2_ID + ": What size are a your girl's boobs?!",
 					ans : ["WOW", "Not Bad!", "OMG", "WTF"]
 				},
 				[

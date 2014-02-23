@@ -22,15 +22,15 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
     this.nodes = {};
     this.nodes.all = [];
     this.nodes.stages = [
-        new SENode(_QUEST_NODE_STAGE, this.seEvents, false, null, null, { name : "", objs : [],
-            objPool : [] })
+        new SENode(_QUEST_NODE_STAGE, this.seEvents, false, null, null,
+            { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
     this.nodes.stages[0].x = this.width / 2;
     this.nodes.stages[0].y = this.nodes.stages[0].height;
 
     this.nodes.storyLines = [
-        new SENode(_QUEST_NODE_STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [] })
+        new SENode(_QUEST_NODE_STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
     ];
     this.nodes.storyLines[0].x = this.nodes.stages[0].x;
     this.nodes.storyLines[0].y = this.nodes.stages[0].y + this.nodes.stages[0].height * 2;

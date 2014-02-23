@@ -95,7 +95,7 @@ TreeCompiler.prototype.outputCode = function(objDatas) {
             return false;
         }
     }.bind(this));
-    code += "return new QuestScript(" + stageObjectData.varName + ");\r\n";
+    code += "return new QuestScript([" + stageObjectData.varName + "]);\r\n";
     code += "}";
 
     return code;
@@ -155,7 +155,7 @@ function genNodeCreationCode(node) {
                 + "id : '" + node.props.id.toString() + "'"
                 + ", text : '" + node.props.text.toString() + "'"
                 + ", ans : ["
-                    + "'" + node.props.ans1.toString() + "', "
+                    + "'" + node.props.ans1.toString() + "'"
                     + ", '" + node.props.ans2.toString() + "'"
                     + ", '" + node.props.ans3.toString() + "'"
                     + ", '" + node.props.ans4.toString() + "'"
