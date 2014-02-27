@@ -5,8 +5,6 @@
     <events>
         <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">50</variable>
         <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">-150</variable>
-        <variable constant="1" name="SPEECH_Y_DIST_TO_PLAYER" sid="3161422802330759" static="0" type="number">-10</variable>
-        <variable constant="1" name="SPEECH_X_DIST_TO_PLAYER" sid="2512754384022923" static="0" type="number">-180</variable>
         <comment>p1: Stage</comment>
         <event-block collapsed="1" sid="8060985393539423">
             <conditions>
@@ -205,8 +203,8 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" sid="1111362047115756" type="NPCSpeechBg">
-                            <param id="0" name="X">NPC.X  - NPCSpeechBg.Width - SPEECH_X_DIST_TO_NPC</param>
-                            <param id="1" name="Y">NPC.Y - NPCSpeechBg.Height - SPEECH_Y_DIST_TO_NPC</param>
+                            <param id="0" name="X">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointX(&quot;SpeechOrigin&quot;) : NPC.X)  - (NPCSpeechBg.ImagePointX(&quot;Cock&quot;) - NPCSpeechBg.X)</param>
+                            <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 10 ))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
                         </action>
                         <action id="-3" name="Set position" sid="7665705298717612" type="NPCPhraseBg">
                             <param id="0" name="X">NPCSpeechBg.X + NPCPhraseBgMarginWidth</param>
@@ -488,8 +486,8 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" sid="2978384373826769" type="PlayerSpeechBg">
-                            <param id="0" name="X">Player.X  - PlayerSpeechBg.Width - SPEECH_X_DIST_TO_PLAYER</param>
-                            <param id="1" name="Y">Player.Y - PlayerSpeechBg.Height - SPEECH_Y_DIST_TO_PLAYER</param>
+                            <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
+                            <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
                         </action>
                         <action id="-3" name="Set position" sid="2640617007281428" type="PlayerPhraseBg">
                             <param id="0" name="X">PlayerSpeechBg.X + PlayerPhraseBgMarginWidth</param>

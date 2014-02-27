@@ -4,7 +4,7 @@
     <name>PlayerInput</name>
     <events>
         <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">0</variable>
-        <event-group collapsed="1" description="" sid="545184742850449" title="Touch">
+        <event-group description="" sid="545184742850449" title="Touch">
             <sub-events>
                 <event-block collapsed="1" sid="2646781791677467">
                     <conditions>

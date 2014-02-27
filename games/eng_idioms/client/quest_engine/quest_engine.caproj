@@ -79,7 +79,7 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="NPCYellow" pingpong="0" repeatcount="1" repeatto="0" sid="869471652042187" speed="5">
-                            <frame duration="1" hotspotX="0.308642" hotspotY="0.423729">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
                                     <point x="0.317073" y="0.218487" />
                                     <point x="0.5" y="0.0714286" />
@@ -92,7 +92,8 @@
                             </frame>
                         </animation>
                         <animation framecount="1" loop="0" name="NPCRed" pingpong="0" repeatcount="1" repeatto="0" sid="9418400557438036" speed="5">
-                            <frame duration="1" hotspotX="0.588235" hotspotY="0.473214">
+                            <frame duration="1" hotspotX="0.505882" hotspotY="0.5">
+                                <image-point name="SpeechOrigin" x="-0.0117647" y="0.0357143" />
                                 <collision-poly>
                                     <point x="0.141176" y="0.133929" />
                                     <point x="0.588235" y="0.00892855" />
@@ -106,7 +107,8 @@
                             </frame>
                         </animation>
                         <animation framecount="1" loop="0" name="NPCBlue" pingpong="0" repeatcount="1" repeatto="0" sid="2670400311105635" speed="5">
-                            <frame duration="1" hotspotX="0.567308" hotspotY="0.517241">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                <image-point name="SpeechOrigin" x="0.221154" y="0.0517241" />
                                 <collision-poly>
                                     <point x="0.288462" y="0.267241" />
                                     <point x="0.567308" y="0.00862069" />
@@ -120,7 +122,7 @@
                             </frame>
                         </animation>
                         <animation framecount="3" loop="1" name="DemoAnimation" pingpong="0" repeatcount="1" repeatto="0" sid="3940545415722682" speed="5">
-                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                            <frame duration="3" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
                                     <point x="0.317073" y="0.218487" />
                                     <point x="0.5" y="0.0714286" />
@@ -131,7 +133,7 @@
                                     <point x="0.207317" y="0.5" />
                                 </collision-poly>
                             </frame>
-                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                            <frame duration="3" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
                                     <point x="0.317073" y="0.218487" />
                                     <point x="0.5" y="0.0714286" />
@@ -142,7 +144,7 @@
                                     <point x="0.207317" y="0.5" />
                                 </collision-poly>
                             </frame>
-                            <frame duration="3" hotspotX="0.304878" hotspotY="0.420168">
+                            <frame duration="3" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
                                     <point x="0.317073" y="0.218487" />
                                     <point x="0.5" y="0.0714286" />
@@ -211,6 +213,7 @@
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7555485715947281" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0">
+                                <image-point name="Cock" x="0.132" y="0.967413" />
                                 <collision-poly>
                                     <point x="0.072" y="0.0733198" />
                                     <point x="0.5" y="0.0203666" />
@@ -554,7 +557,8 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.504587">
+                                <image-point name="SpeechOrigin" x="0.764706" y="0.0550459" />
                                 <collision-poly>
                                     <point x="0.0686275" y="0.220183" />
                                     <point x="0.352941" y="0.00917429" />
@@ -860,6 +864,7 @@
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0">
+                                <image-point name="Cock" x="0.872" y="0.95112" />
                                 <collision-poly>
                                     <point x="0.978" y="0.498982" />
                                     <point x="0.904" y="0.90224" />
@@ -1086,8 +1091,8 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
-        <event-folder expanded="0" name="Quest">
+    <event-folder expanded="1">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Initialization.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -1095,7 +1100,6 @@
             <event-sheet>ActionProc.xml</event-sheet>
             <event-sheet>UISpeech.xml</event-sheet>
             <event-sheet>UIMisc.xml</event-sheet>
-            <event-sheet>Snow.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
     </event-folder>
