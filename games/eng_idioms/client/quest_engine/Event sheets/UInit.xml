@@ -3,28 +3,58 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UInit</name>
     <events>
-        <variable constant="0" name="NPCAnsItemListDist" sid="1627563927565386" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseWidth" sid="5783608401145551" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseHeight" sid="8871663110136476" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCSpeechWidth" sid="6882565328792805" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCSpeechHeight" sid="4799489287317882" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCAnsBgMarginHeight" sid="6188296669672688" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCAnsBgMarginWidth" sid="9890805979163813" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseTxtMarginHeight" sid="2015454071822283" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseBgMarginHeight" sid="1357298439335266" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseBgMarginWidth" sid="7064566409575972" static="0" type="number">0</variable>
-        <variable constant="0" name="NPCPhraseTxtMarginWidth" sid="8507353006197562" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerAnsItemListDist" sid="8795297785335874" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseWidth" sid="8437482414010045" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseHeight" sid="6086881007418602" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerSpeechWidth" sid="5162220043992299" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerSpeechHeight" sid="8675435182690312" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerAnsBgMarginHeight" sid="8789395308107855" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerAnsBgMarginWidth" sid="5398329223563126" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseTxtMarginHeight" sid="1917144652364365" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseBgMarginHeight" sid="2894461862179115" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseBgMarginWidth" sid="2434401564590621" static="0" type="number">0</variable>
-        <variable constant="0" name="PlayerPhraseTxtMarginWidth" sid="7893190997936435" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_WIDTH" sid="5783608401145551" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_HEIGHT" sid="8871663110136476" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_SPEECH_WIDTH" sid="6882565328792805" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_SPEECH_HEIGHT" sid="4799489287317882" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_BG_X" sid="6564899085197682" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_BG_Y" sid="2216911963534502" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_TXT_X" sid="4634634595952011" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_TXT_Y" sid="2122776408106863" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_BG_X" sid="9621659936378242" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_BG_Y" sid="9572873907707315" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS1_BG_X" sid="6317819424271122" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS1_BG_Y" sid="1274172507200443" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS2_BG_X" sid="8385166275101791" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS2_BG_Y" sid="5218177478282249" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS3_BG_X" sid="2436658569085833" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS3_BG_Y" sid="3824087018934595" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS4_BG_X" sid="5448191037000706" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS4_BG_Y" sid="2842585148591403" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS1_TXT_X" sid="8506021114766969" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS1_TXT_Y" sid="619220813755383" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS2_TXT_X" sid="4609313024796078" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS2_TXT_Y" sid="6001939002000098" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS3_TXT_X" sid="7536224374278598" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS3_TXT_Y" sid="2403414526620565" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS4_TXT_X" sid="9162493777431235" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS4_TXT_Y" sid="8256036154410157" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_WIDTH" sid="842507120689195" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_SPEECH_WIDTH" sid="4394573957227899" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_SPEECH_HEIGHT" sid="4538826344581136" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_BG_X" sid="7145849639664372" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_BG_Y" sid="8697885988512202" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_TXT_X" sid="3847839595773115" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_TXT_Y" sid="8148074933414549" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_BG_X" sid="3909350575285005" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_BG_Y" sid="2609439213770653" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS1_BG_X" sid="3695631180500388" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS1_BG_Y" sid="1520508369458528" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS2_BG_X" sid="8207606161804895" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS2_BG_Y" sid="6241311482652405" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS3_BG_X" sid="7280918650822995" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS3_BG_Y" sid="260846906806031" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS4_BG_X" sid="345077461159899" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS4_BG_Y" sid="941033267185229" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS1_TXT_X" sid="9775623085903429" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS1_TXT_Y" sid="8901507702942718" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS2_TXT_X" sid="6618904785654753" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS2_TXT_Y" sid="1223217621287621" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS3_TXT_X" sid="1423521685466615" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS3_TXT_Y" sid="3245548052321805" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS4_TXT_X" sid="9446276174701177" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS4_TXT_Y" sid="4173032249014451" static="0" type="number">0</variable>
         <event-block sid="48741975854135">
             <conditions>
                 <condition id="0" name="On function" sid="3065375302718294" type="Function">
@@ -119,7 +149,7 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group description="" sid="3289015291960657" title="NPCUInit">
+        <event-group collapsed="1" description="" sid="3289015291960657" title="NPCUInit">
             <sub-events>
                 <event-block sid="6145434671201488">
                     <conditions>
@@ -132,49 +162,109 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="9151210316719939" type="System">
-                            <param id="0" name="Variable">NPCPhraseBgMarginHeight</param>
-                            <param id="1" name="Value">NPCPhraseBg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8088885827505066" type="System">
-                            <param id="0" name="Variable">NPCPhraseBgMarginWidth</param>
-                            <param id="1" name="Value">NPCPhraseBg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3492357256915593" type="System">
-                            <param id="0" name="Variable">NPCPhraseTxtMarginHeight</param>
-                            <param id="1" name="Value">NPCPhraseTxt.Y - NPCPhraseBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="5184544480812562" type="System">
-                            <param id="0" name="Variable">NPCPhraseTxtMarginWidth</param>
-                            <param id="1" name="Value">NPCPhraseTxt.X - NPCPhraseBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="571108216380162" type="System">
-                            <param id="0" name="Variable">NPCAnsBgMarginHeight</param>
-                            <param id="1" name="Value">NPCAns1Bg.Y - NPCAnsBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="5630296463995046" type="System">
-                            <param id="0" name="Variable">NPCAnsBgMarginWidth</param>
-                            <param id="1" name="Value"> NPCAns1Bg.X - NPCAnsBg.X</param>
-                        </action>
                         <action id="-9" name="Set value" sid="1610203505546935" type="System">
-                            <param id="0" name="Variable">NPCSpeechHeight</param>
+                            <param id="0" name="Variable">NPC_SPEECH_HEIGHT</param>
                             <param id="1" name="Value">NPCSpeechBg.Height</param>
                         </action>
                         <action id="-9" name="Set value" sid="5417257355482355" type="System">
-                            <param id="0" name="Variable">NPCSpeechWidth</param>
+                            <param id="0" name="Variable">NPC_SPEECH_WIDTH</param>
                             <param id="1" name="Value">NPCSpeechBg.Width</param>
                         </action>
                         <action id="-9" name="Set value" sid="1273477685488411" type="System">
-                            <param id="0" name="Variable">NPCPhraseHeight</param>
-                            <param id="1" name="Value">NPCPhraseBgMarginHeight*2 + NPCPhraseBg.Height</param>
+                            <param id="0" name="Variable">NPC_PHRASE_HEIGHT</param>
+                            <param id="1" name="Value">NPCAnsBg.Y - NPCPhraseBg.Y</param>
                         </action>
                         <action id="-9" name="Set value" sid="6403977629741666" type="System">
-                            <param id="0" name="Variable">NPCPhraseWidth</param>
-                            <param id="1" name="Value">NPCPhraseBgMarginWidth*2 + NPCPhraseBg.Width</param>
+                            <param id="0" name="Variable">NPC_PHRASE_WIDTH</param>
+                            <param id="1" name="Value">NPCPhraseBg.Width</param>
                         </action>
-                        <action id="-9" name="Set value" sid="5061968217047256" type="System">
-                            <param id="0" name="Variable">NPCAnsItemListDist</param>
-                            <param id="1" name="Value">NPCAns2Bg.Y  - (NPCAns1Bg.Y + NPCAns1Bg.Height)</param>
+                        <action id="-9" name="Set value" sid="8150173980080257" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_BG_X</param>
+                            <param id="1" name="Value">NPCPhraseBg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3902321809886208" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_BG_Y</param>
+                            <param id="1" name="Value">NPCPhraseBg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4206113821640762" type="System">
+                            <param id="0" name="Variable">NPC_ANS_BG_X</param>
+                            <param id="1" name="Value">NPCAnsBg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8888424728986283" type="System">
+                            <param id="0" name="Variable">NPC_ANS_BG_Y</param>
+                            <param id="1" name="Value">NPCAnsBg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9385594573035139" type="System">
+                            <param id="0" name="Variable">NPC_ANS1_BG_X</param>
+                            <param id="1" name="Value">NPCAns1Bg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2178167994275632" type="System">
+                            <param id="0" name="Variable">NPC_ANS1_BG_Y</param>
+                            <param id="1" name="Value">NPCAns1Bg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1685713203548885" type="System">
+                            <param id="0" name="Variable">NPC_ANS2_BG_X</param>
+                            <param id="1" name="Value">NPCAns2Bg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9788265649433301" type="System">
+                            <param id="0" name="Variable">NPC_ANS2_BG_Y</param>
+                            <param id="1" name="Value">NPCAns2Bg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7713572848392211" type="System">
+                            <param id="0" name="Variable">NPC_ANS3_BG_X</param>
+                            <param id="1" name="Value">NPCAns3Bg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3725859956193682" type="System">
+                            <param id="0" name="Variable">NPC_ANS3_BG_Y</param>
+                            <param id="1" name="Value">NPCAns3Bg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3318330928047862" type="System">
+                            <param id="0" name="Variable">NPC_ANS4_BG_X</param>
+                            <param id="1" name="Value">NPCAns4Bg.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4819493952200418" type="System">
+                            <param id="0" name="Variable">NPC_ANS4_BG_Y</param>
+                            <param id="1" name="Value">NPCAns4Bg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6630697101136672" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_TXT_X</param>
+                            <param id="1" name="Value">NPCPhraseTxt.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4839186294715118" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_TXT_Y</param>
+                            <param id="1" name="Value">NPCPhraseTxt.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3541839149711532" type="System">
+                            <param id="0" name="Variable">NPC_ANS1_TXT_X</param>
+                            <param id="1" name="Value">NPCAns1Txt.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7794174094450822" type="System">
+                            <param id="0" name="Variable">NPC_ANS1_TXT_Y</param>
+                            <param id="1" name="Value">NPCAns1Txt.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9412405253373564" type="System">
+                            <param id="0" name="Variable">NPC_ANS2_TXT_X</param>
+                            <param id="1" name="Value">NPCAns2Txt.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5036158972596713" type="System">
+                            <param id="0" name="Variable">NPC_ANS2_TXT_Y</param>
+                            <param id="1" name="Value">NPCAns2Txt.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3230578634109764" type="System">
+                            <param id="0" name="Variable">NPC_ANS3_TXT_X</param>
+                            <param id="1" name="Value">NPCAns3Txt.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="133019916505021" type="System">
+                            <param id="0" name="Variable">NPC_ANS3_TXT_Y</param>
+                            <param id="1" name="Value">NPCAns3Txt.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6710316993735075" type="System">
+                            <param id="0" name="Variable">NPC_ANS4_TXT_X</param>
+                            <param id="1" name="Value">NPCAns4Txt.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2023871274807818" type="System">
+                            <param id="0" name="Variable">NPC_ANS4_TXT_Y</param>
+                            <param id="1" name="Value">NPCAns4Txt.Y - NPCSpeechBg.Y</param>
                         </action>
                     </actions>
                 </event-block>
@@ -193,49 +283,109 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="892612646522919" type="System">
-                            <param id="0" name="Variable">PlayerPhraseBgMarginHeight</param>
-                            <param id="1" name="Value">PlayerPhraseBg.Y - PlayerSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8486479435819812" type="System">
-                            <param id="0" name="Variable">PlayerPhraseBgMarginWidth</param>
-                            <param id="1" name="Value">PlayerPhraseBg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4837250512336051" type="System">
-                            <param id="0" name="Variable">PlayerPhraseTxtMarginHeight</param>
-                            <param id="1" name="Value">PlayerPhraseTxt.Y - PlayerPhraseBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3758518454117673" type="System">
-                            <param id="0" name="Variable">PlayerPhraseTxtMarginWidth</param>
-                            <param id="1" name="Value">PlayerPhraseTxt.X - PlayerPhraseBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4344819909407563" type="System">
-                            <param id="0" name="Variable">PlayerAnsBgMarginHeight</param>
-                            <param id="1" name="Value">PlayerAns1Bg.Y - PlayerAnsBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3503235819031031" type="System">
-                            <param id="0" name="Variable">PlayerAnsBgMarginWidth</param>
-                            <param id="1" name="Value"> PlayerAns1Bg.X - PlayerAnsBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4675631732916346" type="System">
-                            <param id="0" name="Variable">PlayerSpeechHeight</param>
+                        <action id="-9" name="Set value" sid="7645705915734749" type="System">
+                            <param id="0" name="Variable">PLAYER_SPEECH_HEIGHT</param>
                             <param id="1" name="Value">PlayerSpeechBg.Height</param>
                         </action>
-                        <action id="-9" name="Set value" sid="7325424657698448" type="System">
-                            <param id="0" name="Variable">PlayerSpeechWidth</param>
+                        <action id="-9" name="Set value" sid="9482680237799871" type="System">
+                            <param id="0" name="Variable">PLAYER_SPEECH_WIDTH</param>
                             <param id="1" name="Value">PlayerSpeechBg.Width</param>
                         </action>
-                        <action id="-9" name="Set value" sid="2302658347282926" type="System">
-                            <param id="0" name="Variable">PlayerPhraseHeight</param>
-                            <param id="1" name="Value">PlayerPhraseBgMarginHeight*2 + PlayerPhraseBg.Height</param>
+                        <action id="-9" name="Set value" sid="4651886017295081" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_HEIGHT</param>
+                            <param id="1" name="Value">PlayerAnsBg.Y - PlayerPhraseBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="6686381845806449" type="System">
-                            <param id="0" name="Variable">PlayerPhraseWidth</param>
-                            <param id="1" name="Value">PlayerPhraseBgMarginWidth*2 + PlayerPhraseBg.Width</param>
+                        <action id="-9" name="Set value" sid="3123902739534327" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_WIDTH</param>
+                            <param id="1" name="Value">PlayerPhraseBg.Width</param>
                         </action>
-                        <action id="-9" name="Set value" sid="8254508831045154" type="System">
-                            <param id="0" name="Variable">PlayerAnsItemListDist</param>
-                            <param id="1" name="Value">PlayerAns2Bg.Y  - (PlayerAns1Bg.Y + PlayerAns1Bg.Height)</param>
+                        <action id="-9" name="Set value" sid="2367658805224515" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_BG_X</param>
+                            <param id="1" name="Value">PlayerPhraseBg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1100476348880111" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_BG_Y</param>
+                            <param id="1" name="Value">PlayerPhraseBg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3592050529396578" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_BG_X</param>
+                            <param id="1" name="Value">PlayerAnsBg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6766794882132976" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_BG_Y</param>
+                            <param id="1" name="Value">PlayerAnsBg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4076078531904303" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS1_BG_X</param>
+                            <param id="1" name="Value">PlayerAns1Bg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8910253164485732" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS1_BG_Y</param>
+                            <param id="1" name="Value">PlayerAns1Bg.Y - NPCSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8802392243818429" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS2_BG_X</param>
+                            <param id="1" name="Value">PlayerAns2Bg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5040261077302272" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS2_BG_Y</param>
+                            <param id="1" name="Value">PlayerAns2Bg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2416900970020022" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS3_BG_X</param>
+                            <param id="1" name="Value">PlayerAns3Bg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4317821083467986" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS3_BG_Y</param>
+                            <param id="1" name="Value">PlayerAns3Bg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8484767741625008" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS4_BG_X</param>
+                            <param id="1" name="Value">PlayerAns4Bg.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8260723446262637" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS4_BG_Y</param>
+                            <param id="1" name="Value">PlayerAns4Bg.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3672866360307616" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_TXT_X</param>
+                            <param id="1" name="Value">PlayerPhraseTxt.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4092575084341254" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_TXT_Y</param>
+                            <param id="1" name="Value">PlayerPhraseTxt.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4811981474657568" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS1_TXT_X</param>
+                            <param id="1" name="Value">PlayerAns1Txt.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2664176870773957" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS1_TXT_Y</param>
+                            <param id="1" name="Value">PlayerAns1Txt.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4851877633663448" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS2_TXT_X</param>
+                            <param id="1" name="Value">PlayerAns2Txt.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="369523866730141" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS2_TXT_Y</param>
+                            <param id="1" name="Value">PlayerAns2Txt.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2309074992892536" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS3_TXT_X</param>
+                            <param id="1" name="Value">PlayerAns3Txt.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4731245957059819" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS3_TXT_Y</param>
+                            <param id="1" name="Value">PlayerAns3Txt.Y - PlayerSpeechBg.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6117410073617317" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS4_TXT_X</param>
+                            <param id="1" name="Value">PlayerAns4Txt.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2181942459557328" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS4_TXT_Y</param>
+                            <param id="1" name="Value">PlayerAns4Txt.Y - PlayerSpeechBg.Y</param>
                         </action>
                     </actions>
                 </event-block>

@@ -3,8 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UISpeech</name>
     <events>
-        <variable constant="1" name="SPEECH_Y_DIST_TO_NPC" sid="6210225256380278" static="0" type="number">50</variable>
-        <variable constant="1" name="SPEECH_X_DIST_TO_NPC" sid="7466445822839214" static="0" type="number">-150</variable>
         <comment>p1: Stage</comment>
         <event-block collapsed="1" sid="8060985393539423">
             <conditions>
@@ -100,8 +98,8 @@
                     </conditions>
                     <actions>
                         <action id="-7" name="Set size" sid="2295851884579149" type="NPCSpeechBg">
-                            <param id="0" name="Width">NPCSpeechWidth</param>
-                            <param id="1" name="Height">NPCSpeechHeight</param>
+                            <param id="0" name="Width">NPC_SPEECH_WIDTH</param>
+                            <param id="1" name="Height">NPC_SPEECH_HEIGHT</param>
                         </action>
                         <action id="0" name="Set text" sid="9157650419519124" type="NPCPhraseTxt">
                             <param id="0" name="Text">QuestAction.getText</param>
@@ -171,8 +169,8 @@
                     </conditions>
                     <actions>
                         <action id="-7" name="Set size" sid="4235960556975417" type="NPCSpeechBg">
-                            <param id="0" name="Width">NPCPhraseWidth</param>
-                            <param id="1" name="Height">NPCPhraseHeight</param>
+                            <param id="0" name="Width">NPC_PHRASE_WIDTH</param>
+                            <param id="1" name="Height">NPC_PHRASE_HEIGHT</param>
                         </action>
                         <action id="0" name="Set text" sid="7019999961212962" type="NPCPhraseTxt">
                             <param id="0" name="Text">QuestAction.getText</param>
@@ -207,48 +205,48 @@
                             <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 10 ))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
                         </action>
                         <action id="-3" name="Set position" sid="7665705298717612" type="NPCPhraseBg">
-                            <param id="0" name="X">NPCSpeechBg.X + NPCPhraseBgMarginWidth</param>
-                            <param id="1" name="Y">NPCSpeechBg.Y + NPCPhraseBgMarginHeight</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="7357951529276332" type="NPCPhraseTxt">
-                            <param id="0" name="X">NPCPhraseBg.X + NPCPhraseTxtMarginWidth</param>
-                            <param id="1" name="Y">NPCPhraseBg.Y + NPCPhraseTxtMarginHeight</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_TXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_TXT_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="8590384781386792" type="NPCAnsBg">
-                            <param id="0" name="X">NPCPhraseBg.X</param>
-                            <param id="1" name="Y">NPCPhraseBg.Y + NPCPhraseBg.Height + NPCPhraseBgMarginHeight</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="3883315287164654" type="NPCAns1Bg">
-                            <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
-                            <param id="1" name="Y">NPCAnsBg.Y + NPCAnsBgMarginHeight</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS1_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS1_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="8664473756561593" type="NPCAns2Bg">
-                            <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
-                            <param id="1" name="Y">NPCAns1Bg.Y + NPCAns1Bg.Height + NPCAnsItemListDist</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS2_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS2_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="8788749151669814" type="NPCAns3Bg">
-                            <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
-                            <param id="1" name="Y">NPCAns2Bg.Y + NPCAns2Bg.Height + NPCAnsItemListDist</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS3_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS3_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="4321337670702714" type="NPCAns4Bg">
-                            <param id="0" name="X">NPCAnsBg.X + NPCAnsBgMarginWidth</param>
-                            <param id="1" name="Y">NPCAns3Bg.Y + NPCAns3Bg.Height + NPCAnsItemListDist</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS4_BG_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS4_BG_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="4655788186498846" type="NPCAns1Txt">
-                            <param id="0" name="X">NPCAns1Bg.X</param>
-                            <param id="1" name="Y">NPCAns1Bg.Y</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS1_TXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS1_TXT_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="3281694290391018" type="NPCAns2Txt">
-                            <param id="0" name="X">NPCAns2Bg.X</param>
-                            <param id="1" name="Y">NPCAns2Bg.Y</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS2_TXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y+ NPC_ANS2_TXT_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="7709864573991213" type="NPCAns3Txt">
-                            <param id="0" name="X">NPCAns3Bg.X</param>
-                            <param id="1" name="Y">NPCAns3Bg.Y</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS3_TXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS3_TXT_Y</param>
                         </action>
                         <action id="-3" name="Set position" sid="6269606267388425" type="NPCAns4Txt">
-                            <param id="0" name="X">NPCAns4Bg.X</param>
-                            <param id="1" name="Y">NPCAns4Bg.Y</param>
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_ANS4_TXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_ANS4_TXT_Y</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="917119472268496" type="NPCPhraseTxt" />
                         <action id="-25" name="Move to bottom" sid="757786259916446" type="NPCPhraseBg" />
@@ -322,7 +320,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUISpeech">
+        <event-group description="" sid="6702021473764103" title="PlayerUISpeech">
             <sub-events>
                 <event-block sid="566202086767859">
                     <conditions>
@@ -334,9 +332,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-7" name="Set size" sid="4933531909527616" type="PlayerSpeechBg">
-                            <param id="0" name="Width">PlayerPhraseWidth</param>
-                            <param id="1" name="Height">PlayerPhraseHeight</param>
+                        <action id="-7" name="Set size" sid="6733215322550876" type="PlayerSpeechBg">
+                            <param id="0" name="Width">PLAYER_PHRASE_WIDTH</param>
+                            <param id="1" name="Height">PLAYER_PHRASE_HEIGHT</param>
                         </action>
                         <action id="0" name="Set text" sid="8448293784846375" type="PlayerPhraseTxt">
                             <param id="0" name="Text">QuestAction.getText</param>
@@ -366,9 +364,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-7" name="Set size" sid="9330775969699695" type="PlayerSpeechBg">
-                            <param id="0" name="Width">PlayerSpeechWidth</param>
-                            <param id="1" name="Height">PlayerSpeechHeight</param>
+                        <action id="-7" name="Set size" sid="1410351293706064" type="PlayerSpeechBg">
+                            <param id="0" name="Width">PLAYER_SPEECH_WIDTH</param>
+                            <param id="1" name="Height">PLAYER_SPEECH_HEIGHT</param>
                         </action>
                         <action id="0" name="Set text" sid="9564317867504674" type="PlayerPhraseTxt">
                             <param id="0" name="Text">QuestAction.getText</param>
@@ -489,49 +487,49 @@
                             <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
                             <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
                         </action>
-                        <action id="-3" name="Set position" sid="2640617007281428" type="PlayerPhraseBg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PlayerPhraseBgMarginWidth</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PlayerPhraseBgMarginHeight</param>
+                        <action id="-3" name="Set position" sid="7758974727402091" type="PlayerPhraseBg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="3708592849608481" type="PlayerPhraseTxt">
-                            <param id="0" name="X">PlayerPhraseBg.X + PlayerPhraseTxtMarginWidth</param>
-                            <param id="1" name="Y">PlayerPhraseBg.Y + PlayerPhraseTxtMarginHeight</param>
+                        <action id="-3" name="Set position" sid="7234947592017687" type="PlayerPhraseTxt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="1740444787340717" type="PlayerAnsBg">
-                            <param id="0" name="X">PlayerPhraseBg.X</param>
-                            <param id="1" name="Y">PlayerPhraseBg.Y + PlayerPhraseBg.Height + PlayerPhraseBgMarginHeight</param>
+                        <action id="-3" name="Set position" sid="1899874563362036" type="PlayerAnsBg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="106830690585869" type="PlayerAns1Bg">
-                            <param id="0" name="X">PlayerAnsBg.X + PlayerAnsBgMarginWidth</param>
-                            <param id="1" name="Y">PlayerAnsBg.Y + PlayerAnsBgMarginHeight</param>
+                        <action id="-3" name="Set position" sid="4816769660068411" type="PlayerAns1Bg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS1_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS1_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="6309191454793795" type="PlayerAns2Bg">
-                            <param id="0" name="X">PlayerAnsBg.X + PlayerAnsBgMarginWidth</param>
-                            <param id="1" name="Y">PlayerAns1Bg.Y + PlayerAns1Bg.Height + PlayerAnsItemListDist</param>
+                        <action id="-3" name="Set position" sid="2082561910313029" type="PlayerAns2Bg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS2_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS2_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="5619767696045452" type="PlayerAns3Bg">
-                            <param id="0" name="X">PlayerAnsBg.X + PlayerAnsBgMarginWidth</param>
-                            <param id="1" name="Y">PlayerAns2Bg.Y + PlayerAns2Bg.Height + PlayerAnsItemListDist</param>
+                        <action id="-3" name="Set position" sid="8438760177530363" type="PlayerAns3Bg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS3_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS3_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="4501641858672932" type="PlayerAns4Bg">
-                            <param id="0" name="X">PlayerAnsBg.X + PlayerAnsBgMarginWidth</param>
-                            <param id="1" name="Y">PlayerAns3Bg.Y + PlayerAns3Bg.Height + PlayerAnsItemListDist</param>
+                        <action id="-3" name="Set position" sid="4755987131076544" type="PlayerAns4Bg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS4_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS4_BG_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="8243383453108218" type="PlayerAns1Txt">
-                            <param id="0" name="X">PlayerAns1Bg.X</param>
-                            <param id="1" name="Y">PlayerAns1Bg.Y</param>
+                        <action id="-3" name="Set position" sid="3507780200996296" type="PlayerAns1Txt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS1_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS1_TXT_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="1468517970238683" type="PlayerAns2Txt">
-                            <param id="0" name="X">PlayerAns2Bg.X</param>
-                            <param id="1" name="Y">PlayerAns2Bg.Y</param>
+                        <action id="-3" name="Set position" sid="5556915623412506" type="PlayerAns2Txt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS2_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS2_TXT_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="2224746499512455" type="PlayerAns3Txt">
-                            <param id="0" name="X">PlayerAns3Bg.X</param>
-                            <param id="1" name="Y">PlayerAns3Bg.Y</param>
+                        <action id="-3" name="Set position" sid="2040982250539744" type="PlayerAns3Txt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS3_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS3_TXT_Y</param>
                         </action>
-                        <action id="-3" name="Set position" sid="5462532918603658" type="PlayerAns4Txt">
-                            <param id="0" name="X">PlayerAns4Bg.X</param>
-                            <param id="1" name="Y">PlayerAns4Bg.Y</param>
+                        <action id="-3" name="Set position" sid="2711717356564759" type="PlayerAns4Txt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS4_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS4_TXT_Y</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
                         <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />

@@ -213,7 +213,7 @@
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7555485715947281" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0">
-                                <image-point name="Cock" x="0.132" y="0.967413" />
+                                <image-point name="Cock" x="0.134" y="0.96945" />
                                 <collision-poly>
                                     <point x="0.072" y="0.0733198" />
                                     <point x="0.5" y="0.0203666" />
