@@ -234,7 +234,7 @@
                 </instance>
                 <instance type="NPCPhraseTxt" uid="2">
                     <properties>
-                        <text>NPC phrase</text>
+                        <text>NPC phrase phrase phrase phrase phrase  phrase phrase phrase phrase phrase</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>0,0,0</color>

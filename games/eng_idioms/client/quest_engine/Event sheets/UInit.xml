@@ -176,7 +176,7 @@
                         </action>
                         <action id="-9" name="Set value" sid="6403977629741666" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_WIDTH</param>
-                            <param id="1" name="Value">NPCPhraseBg.Width</param>
+                            <param id="1" name="Value">NPCSpeechBg.Width</param>
                         </action>
                         <action id="-9" name="Set value" sid="8150173980080257" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_BG_X</param>
@@ -270,7 +270,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="7222953450595312" title="PlayerUInit">
+        <event-group collapsed="1" description="" sid="7222953450595312" title="PlayerUInit">
             <sub-events>
                 <event-block sid="4928173719961111">
                     <conditions>
@@ -297,7 +297,7 @@
                         </action>
                         <action id="-9" name="Set value" sid="3123902739534327" type="System">
                             <param id="0" name="Variable">PLAYER_PHRASE_WIDTH</param>
-                            <param id="1" name="Value">PlayerPhraseBg.Width</param>
+                            <param id="1" name="Value">PlayerSpeechBg.Width</param>
                         </action>
                         <action id="-9" name="Set value" sid="2367658805224515" type="System">
                             <param id="0" name="Variable">PLAYER_PHRASE_BG_X</param>
