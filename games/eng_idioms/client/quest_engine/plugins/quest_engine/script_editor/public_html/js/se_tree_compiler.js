@@ -146,44 +146,44 @@ function genNodeCreationCode(node) {
         break;
         case _QUEST_NODE_PHRASE:
             code += "{ "
-                + "id : '" + node.props.id.toString() + "'"
-                + ", text : '" + node.props.text.toString() + "'"
+                + "id : " + toJSString(node.props.id)
+                + ", text : " + toJSString(node.props.text)
                 + " }";
         break;
         case _QUEST_NODE_QUIZ:
             code += "{ "
-                + "id : '" + node.props.id.toString() + "'"
-                + ", text : '" + node.props.text.toString() + "'"
+                + "id : " + toJSString(node.props.id)
+                + ", text : " + toJSString(node.props.text)
                 + ", ans : ["
-                    + "'" + node.props.ans1.toString() + "'"
-                    + ", '" + node.props.ans2.toString() + "'"
-                    + ", '" + node.props.ans3.toString() + "'"
-                    + ", '" + node.props.ans4.toString() + "'"
+                    + toJSString(node.props.ans1)
+                    + ", " + toJSString(node.props.ans2)
+                    + ", " + toJSString(node.props.ans3)
+                    + ", " + toJSString(node.props.ans4)
                 + "]"
                 + " }";
         break;
         case _QUEST_NODE_ANIM:
             code += "{ "
-                + "id : '" + node.props.id.toString() + "'"
-                + ", name : '" + node.props.name.toString() + "'"
+                + "id : " + toJSString(node.props.id)
+                + ", name : " + toJSString(node.props.name)
                 + " }";
         break;
         case _QUEST_NODE_WAIT:
             code += "{ "
-                + "secs : " + node.props.secs.toString()
+                + "secs : " + toJSInt(node.props.secs)
                 + " }";
         break;
         case _QUEST_NODE_STAGE_CLEAR:
-            code += "null";
+            code += toJSString(null);
         break;
         case _QUEST_NODE_STORYLINE:
             code += "{ "
-                + "objs : " + JSON.stringify(node.props.objs)
+                + "objs : " + toJSString(node.props.objs)
                 + " }";
         break;
         case _QUEST_NODE_STAGE:
             code += "{ "
-                + "name : '" + node.props.name.toString() + "'"
+                + "name : " + toJSString(node.props.name)
                 + " }";
         break;
     }
@@ -193,10 +193,10 @@ function genNodeCreationCode(node) {
 
 function genCondCreationCode(cond) {
     var code = "new QuestCond("
-        + cond.type.toString() + ", ";
+        + toJSString(cond.type) + ", ";
     switch(cond.type) {
         case _QUEST_COND_OBJECT_CLICKED:
-            code += "{ id : '" + cond.props.id + "' }";
+            code += "{ id : " + toJSString(cond.props.id) + " }";
         break;
         case _QUEST_COND_NONE:
         case _QUEST_COND_ANSWER_1_CLICKED:
@@ -206,7 +206,7 @@ function genCondCreationCode(cond) {
         case _QUEST_COND_ANSWER_OTHER_CLICKED:
         case _QUEST_COND_CONTINUE:
         case _QUEST_COND_DEFAULT:
-            code += "null";
+            code += toJSString(null);
         break;
     }
     code += ", null)";
@@ -225,16 +225,34 @@ TreeCompiler.prototype.generateChildInit = function(objData) {
     objData.childInit = "";
     $.each(objData.children, function(ix, objDataChild) {
         objData.childInit +=
-            "//'" + objData.id.toString() + " -> " + objDataChild.id.toString() + "';\r\n";
+            "//" + toJSString(objData.id) + " -> " + toJSString(objDataChild.id) + ";\r\n";
         if (objData.type === _TYPE_NODE) {
-            objData.childInit += objData.varName + ".conds.push(" + objDataChild.varName.toString() + ")"
+            objData.childInit += objData.varName + ".conds.push(" + objDataChild.varName + ")"
                 + ";\r\n";
         } else if (objData.type === _TYPE_COND) {
-            objData.childInit += objData.varName + ".node = " + objDataChild.varName.toString()
+            objData.childInit += objData.varName + ".node = " + objDataChild.varName
                 + ";\r\n";
         }
     });
 };
+
+function CompilationError(descr)
+{
+    this.descr = descr;
+}
+
+function toJSString(val) {
+    return JSON.stringify(val);
+}
+
+function toJSInt(val) {
+    var intRegex = /^\d+$/;
+    if(intRegex.test(val)) {
+       return val;
+    } else {
+        throw new CompilationError(val.toString() + " should have integer value");
+    }
+}
 
 function TreeCompilerFactory(scope, treeEditor, seEvents) {
     return new TreeCompiler(scope, treeEditor, seEvents);
