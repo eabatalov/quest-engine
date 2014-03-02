@@ -74,7 +74,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block collapsed="1" sid="9904846653411464">
+        <event-block sid="9904846653411464">
             <conditions>
                 <condition id="0" name="On function" sid="1782576799532024" type="Function">
                     <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
@@ -129,6 +129,14 @@
                         <action id="0" name="Call function" sid="3970298221974455" type="Function">
                             <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7381168843074747" type="NPCAnsBg">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="1322610151535234" type="PlayerAnsBg">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
                         </action>
                     </actions>
                 </event-block>
