@@ -65,6 +65,10 @@ function condDrawEdge() {
 
 function condClicked(intData) {
     if (intData.originalEvent.shiftKey) {
+        /*Looks like a PIXI bug
+        Interation manager throws exception after
+        interactive object was deleted*/
+        this.setInteractive(false);
         SECond.treeEditor.deleteCond(this);
     } else {
         this.seEvents.broadcast({

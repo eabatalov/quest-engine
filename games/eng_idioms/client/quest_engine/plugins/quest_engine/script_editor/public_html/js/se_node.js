@@ -69,6 +69,10 @@ function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage
 
 function nodeClicked(intData) {
     if (intData.originalEvent.shiftKey) {
+        /*Looks like a PIXI bug
+        Interation manager throws exception after
+        interactive object was deleted*/
+        this.setInteractive(false);
         SENode.treeEditor.deleteNode(this);
     } else {
         this.seEvents.broadcast({
