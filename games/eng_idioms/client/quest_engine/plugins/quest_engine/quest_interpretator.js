@@ -61,8 +61,9 @@ StoryLineState.prototype.step = function(questEvent) {
 		return true;
 	}
 
-	//This event is ignored by script
-	return false;
+	//No suitable condition for event
+	//Stay in current node and return its action
+	return true;
 }
 
 function StageState(questStageNode) {
