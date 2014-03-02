@@ -1,0 +1,13 @@
+0. make final descission about usage of other libraries.
+2. make all the edges clickable
+3. make live drugging of edges and nodes
+4. make tests for corner cases
+5. make save/restore of work in editor
+6. support multyple stages
+7. Implement thinking clouds
+8. Fix bug with script download only for Chrome
+9. Convert stage, storyline and other nodes which can't be processed by UI
+   to none nodes.
+10. Implement condition other clicked
+11. Quest script errors reporting to construct game
+12. Quest script error reporting for quest script editor
