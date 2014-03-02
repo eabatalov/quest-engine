@@ -234,6 +234,9 @@
                         <behavior-type name="Pin" sid="9402127484170792">
                             <behavior id="Pin" />
                         </behavior-type>
+                        <behavior-type name="TextAutoResize" sid="5388177633950917">
+                            <behavior id="TextAutoResize" />
+                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -286,6 +289,9 @@
                     <behaviors>
                         <behavior-type name="Pin" sid="6636315209548967">
                             <behavior id="Pin" />
+                        </behavior-type>
+                        <behavior-type name="TextAutoResize" sid="8089922372682447">
+                            <behavior id="TextAutoResize" />
                         </behavior-type>
                     </behaviors>
                     <container>
@@ -340,6 +346,9 @@
                         <behavior-type name="Pin" sid="5129278153068563">
                             <behavior id="Pin" />
                         </behavior-type>
+                        <behavior-type name="TextAutoResize" sid="8199534329704946">
+                            <behavior id="TextAutoResize" />
+                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -393,6 +402,9 @@
                         <behavior-type name="Pin" sid="8507284842999611">
                             <behavior id="Pin" />
                         </behavior-type>
+                        <behavior-type name="TextAutoResize" sid="2913264033600516">
+                            <behavior id="TextAutoResize" />
+                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -445,6 +457,9 @@
                     <behaviors>
                         <behavior-type name="Pin" sid="9142202874314624">
                             <behavior id="Pin" />
+                        </behavior-type>
+                        <behavior-type name="TextAutoResize" sid="4174184288676545">
+                            <behavior id="TextAutoResize" />
                         </behavior-type>
                     </behaviors>
                     <container>

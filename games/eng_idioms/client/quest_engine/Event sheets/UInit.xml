@@ -3,32 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UInit</name>
     <events>
-        <variable constant="0" name="NPC_PHRASE_WIDTH" sid="5783608401145551" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_PHRASE_HEIGHT" sid="8871663110136476" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_SPEECH_WIDTH" sid="6882565328792805" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_SPEECH_HEIGHT" sid="4799489287317882" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_PHRASE_BG_X" sid="6564899085197682" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_PHRASE_BG_Y" sid="2216911963534502" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_PHRASE_TXT_X" sid="4634634595952011" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_PHRASE_TXT_Y" sid="2122776408106863" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS_BG_X" sid="9621659936378242" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS_BG_Y" sid="9572873907707315" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS1_BG_X" sid="6317819424271122" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS1_BG_Y" sid="1274172507200443" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS2_BG_X" sid="8385166275101791" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS2_BG_Y" sid="5218177478282249" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS3_BG_X" sid="2436658569085833" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS3_BG_Y" sid="3824087018934595" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS4_BG_X" sid="5448191037000706" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS4_BG_Y" sid="2842585148591403" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS1_TXT_X" sid="8506021114766969" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS1_TXT_Y" sid="619220813755383" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS2_TXT_X" sid="4609313024796078" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS2_TXT_Y" sid="6001939002000098" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS3_TXT_X" sid="7536224374278598" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS3_TXT_Y" sid="2403414526620565" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS4_TXT_X" sid="9162493777431235" static="0" type="number">0</variable>
-        <variable constant="0" name="NPC_ANS4_TXT_Y" sid="8256036154410157" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_COCK_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_SPEECH_HEIGHT" sid="4538826344581136" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_BG_X" sid="7145849639664372" static="0" type="number">0</variable>
@@ -40,6 +14,17 @@
         <variable constant="0" name="PLAYER_ANS_TXT_LEFT_MARGIN" sid="8207606161804895" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_ANS_TXT_TOP_MARGIN" sid="6241311482652405" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_ANS_BG_Y_DIST" sid="260846906806031" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_COCK_HEIGHT" sid="5324482767783175" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_SPEECH_HEIGHT" sid="4654473159576823" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_BG_X" sid="5674741926118384" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_BG_Y" sid="2278496595138549" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_TXT_X" sid="2404478089321439" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_TXT_Y" sid="8548549228445129" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_BG_LEFT_MARGIN" sid="6541324415464498" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_BG_TOP_MARGIN" sid="9976369174176448" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_TXT_LEFT_MARGIN" sid="4773364738096738" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_TXT_TOP_MARGIN" sid="1181270072875331" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_ANS_BG_Y_DIST" sid="8339838058130333" static="0" type="number">0</variable>
         <event-block sid="48741975854135">
             <conditions>
                 <condition id="0" name="On function" sid="3065375302718294" type="Function">
@@ -48,7 +33,7 @@
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="4618043074624524" type="Function">
-                    <param id="0" name="Name">&quot;ComputePhraseUILayout&quot;</param>
+                    <param id="0" name="Name">&quot;ComputeUILayout&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="0" name="Call function" sid="7496538021365916" type="Function">
@@ -60,16 +45,16 @@
         <event-block sid="4532375172585589">
             <conditions>
                 <condition id="0" name="On function" sid="8604493366469481" type="Function">
-                    <param id="0" name="Name">&quot;ComputePhraseUILayout&quot;</param>
+                    <param id="0" name="Name">&quot;ComputeUILayout&quot;</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="7627864222809278" type="Function">
-                    <param id="0" name="Name">&quot;ComputeNPCPhraseUILayout&quot;</param>
+                    <param id="0" name="Name">&quot;ComputeNPCUILayout&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="0" name="Call function" sid="8051387559568225" type="Function">
-                    <param id="0" name="Name">&quot;ComputePlayerPhraseUILayout&quot;</param>
+                    <param id="0" name="Name">&quot;ComputePlayerUILayout&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
@@ -80,17 +65,52 @@
                     <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="8753407581555899" type="Function">
-                    <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
-                    <param id="1" name="Parameter {n}">Player.UID</param>
-                </action>
-                <action id="0" name="Call function" sid="3950226428390338" type="Function">
-                    <param id="0" name="Name">&quot;HidePlayerUI&quot;</param>
-                    <param id="1" name="Parameter {n}">Player.UID</param>
-                </action>
-            </actions>
+            <actions />
             <sub-events>
+                <event-block sid="5509107574002952">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="2623241217821777" type="System">
+                            <param id="0" name="Object">Player</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="3950226428390338" type="Function">
+                            <param id="0" name="Name">&quot;HidePlayerUI&quot;</param>
+                            <param id="1" name="Parameter {n}">Player.UID</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="5325777799186487" type="PlayerAnsBg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="7243496326958284" type="PlayerAns1Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="2266379533900041" type="PlayerAns1Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="4829966420922959" type="PlayerAns2Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="9630545753041764" type="PlayerAns2Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="6470658044853582" type="PlayerAns3Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="8241299947414544" type="PlayerAns3Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="1585862342714658" type="PlayerAns4Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="1153760136696107" type="PlayerAns4Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="1322610151535234" type="PlayerAnsBg">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="7461917200921227">
                     <conditions>
                         <condition id="-11" name="For Each" sid="5853637195383648" type="System">
@@ -98,13 +118,40 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="1853238564688813" type="Function">
-                            <param id="0" name="Name">&quot;AttachSpeechGUIToNPC&quot;</param>
-                            <param id="1" name="Parameter {n}">NPC.UID</param>
-                        </action>
                         <action id="0" name="Call function" sid="635623130480304" type="Function">
                             <param id="0" name="Name">&quot;HideNPCUI&quot;</param>
                             <param id="1" name="Parameter {n}">NPC.UID</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="1839669321015266" type="NPCAnsBg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="7654407419641279" type="NPCAns1Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="8696035374971044" type="NPCAns1Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="165357775785298" type="NPCAns2Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="6746052742209447" type="NPCAns2Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="4600270006757996" type="NPCAns3Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="2629819877485209" type="NPCAns3Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="810311245750587" type="NPCAns4Bg">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="3532346031112765" type="NPCAns4Txt">
+                            <param id="0" name="Layer">&quot;Quizz&quot;</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7381168843074747" type="NPCAnsBg">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -130,14 +177,6 @@
                             <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
-                        <action id="-3" name="Set position" sid="7381168843074747" type="NPCAnsBg">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="1322610151535234" type="PlayerAnsBg">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -147,7 +186,7 @@
                 <event-block sid="6145434671201488">
                     <conditions>
                         <condition id="0" name="On function" sid="3749463476888807" type="Function">
-                            <param id="0" name="Name">&quot;ComputeNPCPhraseUILayout&quot;</param>
+                            <param id="0" name="Name">&quot;ComputeNPCUILayout&quot;</param>
                         </condition>
                         <condition id="-13" name="Pick nth instance" sid="6079019888653732" type="System">
                             <param id="0" name="Object">NPC</param>
@@ -155,109 +194,49 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="1610203505546935" type="System">
+                        <action id="-9" name="Set value" sid="9363538448328531" type="System">
                             <param id="0" name="Variable">NPC_SPEECH_HEIGHT</param>
                             <param id="1" name="Value">NPCSpeechBg.Height</param>
                         </action>
-                        <action id="-9" name="Set value" sid="5417257355482355" type="System">
-                            <param id="0" name="Variable">NPC_SPEECH_WIDTH</param>
-                            <param id="1" name="Value">NPCSpeechBg.Width</param>
+                        <action id="-9" name="Set value" sid="5842026871964237" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_COCK_HEIGHT</param>
+                            <param id="1" name="Value">10</param>
                         </action>
-                        <action id="-9" name="Set value" sid="1273477685488411" type="System">
-                            <param id="0" name="Variable">NPC_PHRASE_HEIGHT</param>
-                            <param id="1" name="Value">NPCAnsBg.Y - NPCPhraseBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6403977629741666" type="System">
-                            <param id="0" name="Variable">NPC_PHRASE_WIDTH</param>
-                            <param id="1" name="Value">NPCSpeechBg.Width</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8150173980080257" type="System">
+                        <action id="-9" name="Set value" sid="4067849368102462" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_BG_X</param>
                             <param id="1" name="Value">NPCPhraseBg.X - NPCSpeechBg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="3902321809886208" type="System">
+                        <action id="-9" name="Set value" sid="6419434701950532" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_BG_Y</param>
                             <param id="1" name="Value">NPCPhraseBg.Y - NPCSpeechBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="4206113821640762" type="System">
-                            <param id="0" name="Variable">NPC_ANS_BG_X</param>
-                            <param id="1" name="Value">NPCAnsBg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8888424728986283" type="System">
-                            <param id="0" name="Variable">NPC_ANS_BG_Y</param>
-                            <param id="1" name="Value">NPCAnsBg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="9385594573035139" type="System">
-                            <param id="0" name="Variable">NPC_ANS1_BG_X</param>
-                            <param id="1" name="Value">NPCAns1Bg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="2178167994275632" type="System">
-                            <param id="0" name="Variable">NPC_ANS1_BG_Y</param>
-                            <param id="1" name="Value">NPCAns1Bg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="1685713203548885" type="System">
-                            <param id="0" name="Variable">NPC_ANS2_BG_X</param>
-                            <param id="1" name="Value">NPCAns2Bg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="9788265649433301" type="System">
-                            <param id="0" name="Variable">NPC_ANS2_BG_Y</param>
-                            <param id="1" name="Value">NPCAns2Bg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="7713572848392211" type="System">
-                            <param id="0" name="Variable">NPC_ANS3_BG_X</param>
-                            <param id="1" name="Value">NPCAns3Bg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3725859956193682" type="System">
-                            <param id="0" name="Variable">NPC_ANS3_BG_Y</param>
-                            <param id="1" name="Value">NPCAns3Bg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3318330928047862" type="System">
-                            <param id="0" name="Variable">NPC_ANS4_BG_X</param>
-                            <param id="1" name="Value">NPCAns4Bg.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4819493952200418" type="System">
-                            <param id="0" name="Variable">NPC_ANS4_BG_Y</param>
-                            <param id="1" name="Value">NPCAns4Bg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6630697101136672" type="System">
+                        <action id="-9" name="Set value" sid="213685614356894" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_TXT_X</param>
                             <param id="1" name="Value">NPCPhraseTxt.X - NPCSpeechBg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="4839186294715118" type="System">
+                        <action id="-9" name="Set value" sid="4985878872656067" type="System">
                             <param id="0" name="Variable">NPC_PHRASE_TXT_Y</param>
                             <param id="1" name="Value">NPCPhraseTxt.Y - NPCSpeechBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="3541839149711532" type="System">
-                            <param id="0" name="Variable">NPC_ANS1_TXT_X</param>
-                            <param id="1" name="Value">NPCAns1Txt.X - NPCSpeechBg.X</param>
+                        <action id="-9" name="Set value" sid="698209876512723" type="System">
+                            <param id="0" name="Variable">NPC_ANS_BG_LEFT_MARGIN</param>
+                            <param id="1" name="Value">NPCAns1Bg.X - NPCAnsBg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="7794174094450822" type="System">
-                            <param id="0" name="Variable">NPC_ANS1_TXT_Y</param>
-                            <param id="1" name="Value">NPCAns1Txt.Y - NPCSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="2616516289501725" type="System">
+                            <param id="0" name="Variable">NPC_ANS_BG_TOP_MARGIN</param>
+                            <param id="1" name="Value">NPCAns1Bg.Y - NPCAnsBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="9412405253373564" type="System">
-                            <param id="0" name="Variable">NPC_ANS2_TXT_X</param>
-                            <param id="1" name="Value">NPCAns2Txt.X - NPCSpeechBg.X</param>
+                        <action id="-9" name="Set value" sid="8959538129234703" type="System">
+                            <param id="0" name="Variable">NPC_ANS_TXT_LEFT_MARGIN</param>
+                            <param id="1" name="Value">NPCAns1Txt.X - NPCAns1Bg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="5036158972596713" type="System">
-                            <param id="0" name="Variable">NPC_ANS2_TXT_Y</param>
-                            <param id="1" name="Value">NPCAns2Txt.Y - NPCSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="5936237335571303" type="System">
+                            <param id="0" name="Variable">NPC_ANS_TXT_TOP_MARGIN</param>
+                            <param id="1" name="Value">NPCAns1Txt.Y - NPCAns1Bg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="3230578634109764" type="System">
-                            <param id="0" name="Variable">NPC_ANS3_TXT_X</param>
-                            <param id="1" name="Value">NPCAns3Txt.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="133019916505021" type="System">
-                            <param id="0" name="Variable">NPC_ANS3_TXT_Y</param>
-                            <param id="1" name="Value">NPCAns3Txt.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6710316993735075" type="System">
-                            <param id="0" name="Variable">NPC_ANS4_TXT_X</param>
-                            <param id="1" name="Value">NPCAns4Txt.X - NPCSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="2023871274807818" type="System">
-                            <param id="0" name="Variable">NPC_ANS4_TXT_Y</param>
-                            <param id="1" name="Value">NPCAns4Txt.Y - NPCSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="9054142649169507" type="System">
+                            <param id="0" name="Variable">NPC_ANS_BG_Y_DIST</param>
+                            <param id="1" name="Value">NPCAns2Bg.Y - (NPCAns1Bg.Y + NPCAns1Bg.Height)</param>
                         </action>
                     </actions>
                 </event-block>
@@ -268,7 +247,7 @@
                 <event-block sid="4928173719961111">
                     <conditions>
                         <condition id="0" name="On function" sid="1076786603378533" type="Function">
-                            <param id="0" name="Name">&quot;ComputePlayerPhraseUILayout&quot;</param>
+                            <param id="0" name="Name">&quot;ComputePlayerUILayout&quot;</param>
                         </condition>
                         <condition id="-13" name="Pick nth instance" sid="9857624481676893" type="System">
                             <param id="0" name="Object">Player</param>
