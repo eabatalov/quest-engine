@@ -29,32 +29,17 @@
         <variable constant="0" name="NPC_ANS3_TXT_Y" sid="2403414526620565" static="0" type="number">0</variable>
         <variable constant="0" name="NPC_ANS4_TXT_X" sid="9162493777431235" static="0" type="number">0</variable>
         <variable constant="0" name="NPC_ANS4_TXT_Y" sid="8256036154410157" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_PHRASE_WIDTH" sid="842507120689195" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_PHRASE_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_SPEECH_WIDTH" sid="4394573957227899" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_COCK_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_SPEECH_HEIGHT" sid="4538826344581136" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_BG_X" sid="7145849639664372" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_BG_Y" sid="8697885988512202" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_TXT_X" sid="3847839595773115" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_TXT_Y" sid="8148074933414549" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS_BG_X" sid="3909350575285005" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS_BG_Y" sid="2609439213770653" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS1_BG_X" sid="3695631180500388" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS1_BG_Y" sid="1520508369458528" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS2_BG_X" sid="8207606161804895" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS2_BG_Y" sid="6241311482652405" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS3_BG_X" sid="7280918650822995" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS3_BG_Y" sid="260846906806031" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS4_BG_X" sid="345077461159899" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS4_BG_Y" sid="941033267185229" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS1_TXT_X" sid="9775623085903429" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS1_TXT_Y" sid="8901507702942718" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS2_TXT_X" sid="6618904785654753" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS2_TXT_Y" sid="1223217621287621" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS3_TXT_X" sid="1423521685466615" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS3_TXT_Y" sid="3245548052321805" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS4_TXT_X" sid="9446276174701177" static="0" type="number">0</variable>
-        <variable constant="0" name="PLAYER_ANS4_TXT_Y" sid="4173032249014451" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_BG_LEFT_MARGIN" sid="1520508369458528" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_BG_TOP_MARGIN" sid="3695631180500388" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_TXT_LEFT_MARGIN" sid="8207606161804895" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_TXT_TOP_MARGIN" sid="6241311482652405" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_ANS_BG_Y_DIST" sid="260846906806031" static="0" type="number">0</variable>
         <event-block sid="48741975854135">
             <conditions>
                 <condition id="0" name="On function" sid="3065375302718294" type="Function">
@@ -101,7 +86,7 @@
                     <param id="1" name="Parameter {n}">Player.UID</param>
                 </action>
                 <action id="0" name="Call function" sid="3950226428390338" type="Function">
-                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                    <param id="0" name="Name">&quot;HidePlayerUI&quot;</param>
                     <param id="1" name="Parameter {n}">Player.UID</param>
                 </action>
             </actions>
@@ -118,7 +103,7 @@
                             <param id="1" name="Parameter {n}">NPC.UID</param>
                         </action>
                         <action id="0" name="Call function" sid="635623130480304" type="Function">
-                            <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                            <param id="0" name="Name">&quot;HideNPCUI&quot;</param>
                             <param id="1" name="Parameter {n}">NPC.UID</param>
                         </action>
                     </actions>
@@ -287,17 +272,9 @@
                             <param id="0" name="Variable">PLAYER_SPEECH_HEIGHT</param>
                             <param id="1" name="Value">PlayerSpeechBg.Height</param>
                         </action>
-                        <action id="-9" name="Set value" sid="9482680237799871" type="System">
-                            <param id="0" name="Variable">PLAYER_SPEECH_WIDTH</param>
-                            <param id="1" name="Value">PlayerSpeechBg.Width</param>
-                        </action>
                         <action id="-9" name="Set value" sid="4651886017295081" type="System">
-                            <param id="0" name="Variable">PLAYER_PHRASE_HEIGHT</param>
-                            <param id="1" name="Value">PlayerAnsBg.Y - PlayerPhraseBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="3123902739534327" type="System">
-                            <param id="0" name="Variable">PLAYER_PHRASE_WIDTH</param>
-                            <param id="1" name="Value">PlayerSpeechBg.Width</param>
+                            <param id="0" name="Variable">PLAYER_PHRASE_COCK_HEIGHT</param>
+                            <param id="1" name="Value">10</param>
                         </action>
                         <action id="-9" name="Set value" sid="2367658805224515" type="System">
                             <param id="0" name="Variable">PLAYER_PHRASE_BG_X</param>
@@ -307,46 +284,6 @@
                             <param id="0" name="Variable">PLAYER_PHRASE_BG_Y</param>
                             <param id="1" name="Value">PlayerPhraseBg.Y - PlayerSpeechBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="3592050529396578" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS_BG_X</param>
-                            <param id="1" name="Value">PlayerAnsBg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6766794882132976" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS_BG_Y</param>
-                            <param id="1" name="Value">PlayerAnsBg.Y - PlayerSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4076078531904303" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS1_BG_X</param>
-                            <param id="1" name="Value">PlayerAns1Bg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8910253164485732" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS1_BG_Y</param>
-                            <param id="1" name="Value">PlayerAns1Bg.Y - NPCSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8802392243818429" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS2_BG_X</param>
-                            <param id="1" name="Value">PlayerAns2Bg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="5040261077302272" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS2_BG_Y</param>
-                            <param id="1" name="Value">PlayerAns2Bg.Y - PlayerSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="2416900970020022" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS3_BG_X</param>
-                            <param id="1" name="Value">PlayerAns3Bg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4317821083467986" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS3_BG_Y</param>
-                            <param id="1" name="Value">PlayerAns3Bg.Y - PlayerSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8484767741625008" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS4_BG_X</param>
-                            <param id="1" name="Value">PlayerAns4Bg.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="8260723446262637" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS4_BG_Y</param>
-                            <param id="1" name="Value">PlayerAns4Bg.Y - PlayerSpeechBg.Y</param>
-                        </action>
                         <action id="-9" name="Set value" sid="3672866360307616" type="System">
                             <param id="0" name="Variable">PLAYER_PHRASE_TXT_X</param>
                             <param id="1" name="Value">PlayerPhraseTxt.X - PlayerSpeechBg.X</param>
@@ -355,37 +292,25 @@
                             <param id="0" name="Variable">PLAYER_PHRASE_TXT_Y</param>
                             <param id="1" name="Value">PlayerPhraseTxt.Y - PlayerSpeechBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="4811981474657568" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS1_TXT_X</param>
-                            <param id="1" name="Value">PlayerAns1Txt.X - PlayerSpeechBg.X</param>
+                        <action id="-9" name="Set value" sid="8910253164485732" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_BG_LEFT_MARGIN</param>
+                            <param id="1" name="Value">PlayerAns1Bg.X - PlayerAnsBg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="2664176870773957" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS1_TXT_Y</param>
-                            <param id="1" name="Value">PlayerAns1Txt.Y - PlayerSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="4076078531904303" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_BG_TOP_MARGIN</param>
+                            <param id="1" name="Value">PlayerAns1Bg.Y - PlayerAnsBg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="4851877633663448" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS2_TXT_X</param>
-                            <param id="1" name="Value">PlayerAns2Txt.X - PlayerSpeechBg.X</param>
+                        <action id="-9" name="Set value" sid="8802392243818429" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_TXT_LEFT_MARGIN</param>
+                            <param id="1" name="Value">PlayerAns1Txt.X - PlayerAns1Bg.X</param>
                         </action>
-                        <action id="-9" name="Set value" sid="369523866730141" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS2_TXT_Y</param>
-                            <param id="1" name="Value">PlayerAns2Txt.Y - PlayerSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="5040261077302272" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_TXT_TOP_MARGIN</param>
+                            <param id="1" name="Value">PlayerAns1Txt.Y - PlayerAns1Bg.Y</param>
                         </action>
-                        <action id="-9" name="Set value" sid="2309074992892536" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS3_TXT_X</param>
-                            <param id="1" name="Value">PlayerAns3Txt.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="4731245957059819" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS3_TXT_Y</param>
-                            <param id="1" name="Value">PlayerAns3Txt.Y - PlayerSpeechBg.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="6117410073617317" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS4_TXT_X</param>
-                            <param id="1" name="Value">PlayerAns4Txt.X - PlayerSpeechBg.X</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="2181942459557328" type="System">
-                            <param id="0" name="Variable">PLAYER_ANS4_TXT_Y</param>
-                            <param id="1" name="Value">PlayerAns4Txt.Y - PlayerSpeechBg.Y</param>
+                        <action id="-9" name="Set value" sid="4317821083467986" type="System">
+                            <param id="0" name="Variable">PLAYER_ANS_BG_Y_DIST</param>
+                            <param id="1" name="Value">PlayerAns2Bg.Y - (PlayerAns1Bg.Y + PlayerAns1Bg.Height)</param>
                         </action>
                     </actions>
                 </event-block>

@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>UISpeech</name>
+    <name>UIStage</name>
     <events>
         <comment>p1: Stage</comment>
         <event-block collapsed="1" sid="8060985393539423">
             <conditions>
                 <condition id="0" name="On function" sid="6870888253004275" type="Function">
-                    <param id="0" name="Name">&quot;HideStageSpeech&quot;</param>
+                    <param id="0" name="Name">&quot;HideStageUI&quot;</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="4391312858453261" type="Function">
-                    <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                    <param id="0" name="Name">&quot;HidePlayerUI&quot;</param>
                     <param id="1" name="Parameter {n}">Player.UID</param>
                 </action>
             </actions>
@@ -30,19 +30,19 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Call function" sid="197877896226907" type="Function">
-                            <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                            <param id="0" name="Name">&quot;HideNPCUI&quot;</param>
                             <param id="1" name="Parameter {n}">NPC.UID</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUISpeech">
+        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUI">
             <sub-events>
                 <event-block sid="6974911674457671">
                     <conditions>
                         <condition id="0" name="On function" sid="7343618476345899" type="Function">
-                            <param id="0" name="Name">&quot;HideNPCSpeech&quot;</param>
+                            <param id="0" name="Name">&quot;HideNPCUI&quot;</param>
                         </condition>
                         <condition id="-14" name="Pick by unique ID" sid="3795721353744262" type="NPC">
                             <param id="0" name="Unique ID">Function.Param(0)</param>
@@ -320,7 +320,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6702021473764103" title="PlayerUISpeech">
+        <event-group description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <event-block sid="566202086767859">
                     <conditions>
@@ -332,12 +332,48 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-7" name="Set size" sid="6733215322550876" type="PlayerSpeechBg">
-                            <param id="0" name="Width">PLAYER_PHRASE_WIDTH</param>
-                            <param id="1" name="Height">PLAYER_PHRASE_HEIGHT</param>
-                        </action>
-                        <action id="0" name="Set text" sid="8448293784846375" type="PlayerPhraseTxt">
+                        <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="8448293784846375" type="PlayerPhraseTxt">
                             <param id="0" name="Text">QuestAction.getText</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2153683620744093">
+                    <conditions>
+                        <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="5342987844029183" type="PlayerPhraseTxt" />
+                    </conditions>
+                    <actions>
+                        <action id="-6" name="Set height" sid="8776963115181669" type="PlayerPhraseBg">
+                            <param id="0" name="Height">PlayerPhraseTxt.Height</param>
+                        </action>
+                        <action id="-6" name="Set height" sid="6224875489856904" type="PlayerSpeechBg">
+                            <param id="0" name="Height">PLAYER_PHRASE_TXT_Y + PlayerPhraseTxt.Height + PLAYER_PHRASE_TXT_Y  + PLAYER_PHRASE_COCK_HEIGHT</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="2978384373826769" type="PlayerSpeechBg">
+                            <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
+                            <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7758974727402091" type="PlayerPhraseBg">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_BG_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_BG_Y</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7234947592017687" type="PlayerPhraseTxt">
+                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
+                        </action>
+                        <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
+                        <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />
+                        <action id="-25" name="Move to bottom" sid="2858302157683358" type="PlayerSpeechBg" />
+                        <action behavior="Pin" id="0" name="Pin to object" sid="6862991081393966" type="PlayerSpeechBg">
+                            <param id="0" name="Pin to">PlayerPinPoint</param>
+                            <param id="1" name="Mode">1</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="9639814433129711" type="PlayerPhraseTxt">
+                            <param id="0" name="Pin to">PlayerPinPoint</param>
+                            <param id="1" name="Mode">1</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="4201556137728618" type="PlayerPhraseBg">
+                            <param id="0" name="Pin to">PlayerPinPoint</param>
+                            <param id="1" name="Mode">1</param>
                         </action>
                         <action id="-15" name="Set visible" sid="8723165850772302" type="PlayerPhraseTxt">
                             <param id="0" name="Visibility">1</param>
@@ -347,10 +383,6 @@
                         </action>
                         <action id="-15" name="Set visible" sid="1056599444429625" type="PlayerSpeechBg">
                             <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="0" name="Call function" sid="4448726244619884" type="Function">
-                            <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
-                            <param id="1" name="Parameter {n}">Player.UID</param>
                         </action>
                     </actions>
                 </event-block>
@@ -364,27 +396,26 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-7" name="Set size" sid="1410351293706064" type="PlayerSpeechBg">
-                            <param id="0" name="Width">PLAYER_SPEECH_WIDTH</param>
-                            <param id="1" name="Height">PLAYER_SPEECH_HEIGHT</param>
+                        <action id="0" name="Call function" sid="6954710528723984" type="Function">
+                            <param id="0" name="Name">&quot;ShowPlayerPhrase&quot;</param>
+                            <param id="1" name="Parameter {n}">Player.UID</param>
                         </action>
-                        <action id="0" name="Set text" sid="9564317867504674" type="PlayerPhraseTxt">
-                            <param id="0" name="Text">QuestAction.getText</param>
-                        </action>
-                        <action id="0" name="Set text" sid="4331935626829113" type="PlayerAns1Txt">
+                        <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="4331935626829113" type="PlayerAns1Txt">
                             <param id="0" name="Text">QuestAction.getAnswer1Text</param>
                         </action>
-                        <action id="0" name="Set text" sid="5431462874773578" type="PlayerAns2Txt">
+                        <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="5431462874773578" type="PlayerAns2Txt">
                             <param id="0" name="Text">QuestAction.getAnswer2Text</param>
                         </action>
-                        <action id="0" name="Set text" sid="7009269611684178" type="PlayerAns3Txt">
+                        <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="7009269611684178" type="PlayerAns3Txt">
                             <param id="0" name="Text">QuestAction.getAnswer3Text</param>
                         </action>
-                        <action id="0" name="Set text" sid="647585997233084" type="PlayerAns4Txt">
+                        <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="647585997233084" type="PlayerAns4Txt">
                             <param id="0" name="Text">QuestAction.getAnswer4Text</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="703420988525169" type="PlayerPhraseTxt">
-                            <param id="0" name="Visibility">1</param>
+                        <action behavior="TextAutoResize" id="1" name="CompleteAll" sid="3067913921391241" type="PlayerAns1Txt" />
+                        <action id="0" name="Call function" sid="1390912680364879" type="Function">
+                            <param id="0" name="Name">&quot;PositionPlayerQuizGUI&quot;</param>
+                            <param id="1" name="Parameter {n}">Player.UID</param>
                         </action>
                         <action id="-15" name="Set visible" sid="9311086813718043" type="PlayerAns1Txt">
                             <param id="0" name="Visibility">1</param>
@@ -413,22 +444,12 @@
                         <action id="-15" name="Set visible" sid="8997221757649511" type="PlayerAnsBg">
                             <param id="0" name="Visibility">1</param>
                         </action>
-                        <action id="-15" name="Set visible" sid="5326077044892802" type="PlayerPhraseBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="6098269225768365" type="PlayerSpeechBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="0" name="Call function" sid="6362510061802591" type="Function">
-                            <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
-                            <param id="1" name="Parameter {n}">Player.UID</param>
-                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="4401104733867801">
                     <conditions>
                         <condition id="0" name="On function" sid="2281091698438416" type="Function">
-                            <param id="0" name="Name">&quot;HidePlayerSpeech&quot;</param>
+                            <param id="0" name="Name">&quot;HidePlayerUI&quot;</param>
                         </condition>
                         <condition id="-14" name="Pick by unique ID" sid="7274281172612733" type="Player">
                             <param id="0" name="Unique ID">Function.Param(0)</param>
@@ -473,133 +494,185 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="9382593160365121">
+                <event-block sid="1790664730454496">
                     <conditions>
-                        <condition id="0" name="On function" sid="9653418244637582" type="Function">
-                            <param id="0" name="Name">&quot;AttachSpeechGUIToPlayer&quot;</param>
+                        <condition id="0" name="On function" sid="3442607008895169" type="Function">
+                            <param id="0" name="Name">&quot;PositionPlayerQuizGUI&quot;</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="5148764608124502" type="Player">
+                        <condition id="-14" name="Pick by unique ID" sid="1075753689903673" type="Player">
                             <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-3" name="Set position" sid="2978384373826769" type="PlayerSpeechBg">
-                            <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
-                            <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="7758974727402091" type="PlayerPhraseBg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="7234947592017687" type="PlayerPhraseTxt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="1899874563362036" type="PlayerAnsBg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="4816769660068411" type="PlayerAns1Bg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS1_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS1_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="2082561910313029" type="PlayerAns2Bg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS2_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS2_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="8438760177530363" type="PlayerAns3Bg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS3_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS3_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="4755987131076544" type="PlayerAns4Bg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS4_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS4_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="3507780200996296" type="PlayerAns1Txt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS1_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS1_TXT_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="5556915623412506" type="PlayerAns2Txt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS2_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS2_TXT_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="2040982250539744" type="PlayerAns3Txt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS3_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS3_TXT_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="2711717356564759" type="PlayerAns4Txt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_ANS4_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_ANS4_TXT_Y</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
-                        <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />
-                        <action id="-25" name="Move to bottom" sid="317888650092269" type="PlayerAns1Txt" />
-                        <action id="-25" name="Move to bottom" sid="640501203271392" type="PlayerAns2Txt" />
-                        <action id="-25" name="Move to bottom" sid="9306947638433423" type="PlayerAns3Txt" />
-                        <action id="-25" name="Move to bottom" sid="6715886329159815" type="PlayerAns4Txt" />
-                        <action id="-25" name="Move to bottom" sid="3452473852991678" type="PlayerAns1Bg" />
-                        <action id="-25" name="Move to bottom" sid="5269976767124076" type="PlayerAns2Bg" />
-                        <action id="-25" name="Move to bottom" sid="627319983652435" type="PlayerAns3Bg" />
-                        <action id="-25" name="Move to bottom" sid="8079844405872941" type="PlayerAns4Bg" />
-                        <action id="-25" name="Move to bottom" sid="9229185574428171" type="PlayerAnsBg" />
-                        <action id="-25" name="Move to bottom" sid="2858302157683358" type="PlayerSpeechBg" />
-                        <action id="-3" name="Set position" sid="5851610899561734" type="PlayerPinPoint">
-                            <param id="0" name="X">Player.X</param>
-                            <param id="1" name="Y">Player.Y</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="762689463406441" type="PlayerPinPoint">
-                            <param id="0" name="Pin to">Player</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="6862991081393966" type="PlayerSpeechBg">
-                            <param id="0" name="Pin to">PlayerPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="4809121594219221" type="PlayerAns1Txt">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="8697938749146206" type="PlayerAns2Txt">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="7351560810878171" type="PlayerAns3Txt">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="9671011624989601" type="PlayerAns4Txt">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="9639814433129711" type="PlayerPhraseTxt">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="4201556137728618" type="PlayerPhraseBg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="4581279649301832" type="PlayerAnsBg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="5280697629490365" type="PlayerAns1Bg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="6373159324330486" type="PlayerAns2Bg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="9091678398485764" type="PlayerAns3Bg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="2197199844206777" type="PlayerAns4Bg">
-                            <param id="0" name="Pin to">PlayerSpeechBg</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6831849289174047">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="484238232586131" type="System">
+                                    <param id="0" name="First value">PlayerAns1Txt.Height</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="3367011381450719" type="PlayerAns1Bg">
+                                    <param id="0" name="Height">PlayerAns1Txt.Height + PLAYER_ANS_TXT_TOP_MARGIN*2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="8154023466681807" type="PlayerAns1Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAnsBg.Y + PLAYER_ANS_BG_TOP_MARGIN</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2295744947018604">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="4917762979996623" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="1478427077474661" type="PlayerAns1Bg">
+                                    <param id="0" name="Height">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="6916159493836778" type="PlayerAns1Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAnsBg.Y + PLAYER_ANS_BG_TOP_MARGIN</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="69717981260904">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2309747325411348" type="System">
+                                    <param id="0" name="First value">PlayerAns2Txt.Height</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="8342347727981312" type="PlayerAns2Bg">
+                                    <param id="0" name="Height">PlayerAns2Txt.Height + PLAYER_ANS_TXT_TOP_MARGIN*2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="76293388525904" type="PlayerAns2Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns1Bg.Y + PlayerAns1Bg.Height + PLAYER_ANS_BG_Y_DIST</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3333513996977903">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="5642333086175663" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="3909571634781177" type="PlayerAns2Bg">
+                                    <param id="0" name="Height">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3654068130509252" type="PlayerAns2Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns1Bg.Y + PlayerAns1Bg.Height</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6646949796704526">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="923105179653783" type="System">
+                                    <param id="0" name="First value">PlayerAns3Txt.Height</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="1296792445337202" type="PlayerAns3Bg">
+                                    <param id="0" name="Height">PlayerAns3Txt.Height + PLAYER_ANS_TXT_TOP_MARGIN*2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="9653494786675671" type="PlayerAns3Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns2Bg.Y + PlayerAns2Bg.Height + PLAYER_ANS_BG_Y_DIST</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4124198209286696">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7677623629624812" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="9496344784428233" type="PlayerAns3Bg">
+                                    <param id="0" name="Height">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="5059962030781865" type="PlayerAns3Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns2Bg.Y + PlayerAns2Bg.Height</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2208100340816579">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2228007191694664" type="System">
+                                    <param id="0" name="First value">PlayerAns4Txt.Height</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="6250581031262538" type="PlayerAns4Bg">
+                                    <param id="0" name="Height">PlayerAns4Txt.Height + PLAYER_ANS_TXT_TOP_MARGIN*2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="1178944289900552" type="PlayerAns4Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns3Bg.Y + PlayerAns3Bg.Height + PLAYER_ANS_BG_Y_DIST</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5293465441251764">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3660630623006651" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="7269472480285541" type="PlayerAns4Bg">
+                                    <param id="0" name="Height">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="282306790884886" type="PlayerAns4Bg">
+                                    <param id="0" name="X">PlayerAnsBg.X + PLAYER_ANS_BG_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns3Bg.Y + PlayerAns3Bg.Height</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9438731788077116">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4321343503183403" type="System">
+                                    <param id="0" name="First value">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="6764178789273941" type="PlayerAns1Txt">
+                                    <param id="0" name="X">PlayerAns1Bg.X + PLAYER_ANS_TXT_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns1Bg.Y + PLAYER_ANS_TXT_TOP_MARGIN</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="2139552392737145" type="PlayerAns2Txt">
+                                    <param id="0" name="X">PlayerAns2Bg.X + PLAYER_ANS_TXT_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns2Bg.Y + PLAYER_ANS_TXT_TOP_MARGIN</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="1321162381734923" type="PlayerAns3Txt">
+                                    <param id="0" name="X">PlayerAns3Bg.X + PLAYER_ANS_TXT_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns3Bg.Y + PLAYER_ANS_TXT_TOP_MARGIN</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="1646388438056675" type="PlayerAns4Txt">
+                                    <param id="0" name="X">PlayerAns4Bg.X + PLAYER_ANS_TXT_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">PlayerAns4Bg.Y + PLAYER_ANS_TXT_TOP_MARGIN</param>
+                                </action>
+                                <action id="-6" name="Set height" sid="5292893641608594" type="PlayerAnsBg">
+                                    <param id="0" name="Height">PlayerAns4Bg.Y - PlayerAnsBg.Y + PlayerAns4Bg.Height + PLAYER_ANS_BG_TOP_MARGIN</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="7442356210584287" type="PlayerAns1Txt" />
+                                <action id="-25" name="Move to bottom" sid="577992743770648" type="PlayerAns2Txt" />
+                                <action id="-25" name="Move to bottom" sid="4948835120493704" type="PlayerAns3Txt" />
+                                <action id="-25" name="Move to bottom" sid="5768246217138629" type="PlayerAns4Txt" />
+                                <action id="-25" name="Move to bottom" sid="8374548490367388" type="PlayerAns1Bg" />
+                                <action id="-25" name="Move to bottom" sid="5243444303535778" type="PlayerAns2Bg" />
+                                <action id="-25" name="Move to bottom" sid="4338960413156754" type="PlayerAns3Bg" />
+                                <action id="-25" name="Move to bottom" sid="3837830004429825" type="PlayerAns4Bg" />
+                                <action id="-25" name="Move to bottom" sid="3902846190293049" type="PlayerAnsBg" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

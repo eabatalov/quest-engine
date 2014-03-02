@@ -182,7 +182,7 @@
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="9662986366060641" type="Function">
-                    <param id="0" name="Name">&quot;HideStageSpeech&quot;</param>
+                    <param id="0" name="Name">&quot;HideStageUI&quot;</param>
                     <param id="1" name="Parameter {n}">Player.CurrentStage</param>
                 </action>
                 <action id="-10" name="Set value" sid="968302635844418" type="Player">

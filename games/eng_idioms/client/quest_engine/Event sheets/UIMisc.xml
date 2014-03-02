@@ -27,5 +27,24 @@
                 </action>
             </actions>
         </event-block>
+        <comment>We can also scroll manually&#x0D;&#x0A;PinPoint with 1x1 size should be use omit rotation of pinned objects when Player rotates and origin position changes (when it is not centered).&#x0D;&#x0A;Pin point can&apos;t be pinned to player because other objects are pinned to pinpoint and chains of pinned objects are lagging</comment>
+        <event-block sid="6845905415075738">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="3816791539368629" type="System" />
+                <condition id="-13" name="Pick nth instance" sid="3075236638674569" type="System">
+                    <param id="0" name="Object">Player</param>
+                    <param id="1" name="Instance">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action disabled="1" id="-8" name="Scroll to object" sid="45680805812439" type="System">
+                    <param id="0" name="Object">Player</param>
+                </action>
+                <action id="-3" name="Set position" sid="4997264422297362" type="PlayerPinPoint">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
