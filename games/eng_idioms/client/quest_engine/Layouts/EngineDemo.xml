@@ -378,7 +378,7 @@
                     </properties>
                     <instance-variables>
                         <Stage>Stage1</Stage>
-                        <NpcIDInStage>lantern</NpcIDInStage>
+                        <NpcIDInStage>secondLantern</NpcIDInStage>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
