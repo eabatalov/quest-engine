@@ -118,8 +118,8 @@ TreeCompiler.prototype.gatherChildren = function(objData, objDatas) {
 
 function genNodeCreationCode(node) {
     var code = "new QuestNode("
-        + node.type.toString() + ", "
-        + node.continue.toString() + ", ";
+        + toJSInt(node.type) + ", "
+        + toJSBool(node.continue) + ", ";
     switch(node.type) {
         case _QUEST_NODE_NONE:
             code += "null";
@@ -154,11 +154,11 @@ function genNodeCreationCode(node) {
                 + " }";
         break;
         case _QUEST_NODE_STAGE_CLEAR:
-            code += toJSString(null);
+            code += "null";
         break;
         case _QUEST_NODE_STORYLINE:
             code += "{ "
-                + "objs : " + toJSString(node.props.objs)
+                + "objs : " + toJSArray(node.props.objs, "string")
                 + " }";
         break;
         case _QUEST_NODE_STAGE:
@@ -173,7 +173,7 @@ function genNodeCreationCode(node) {
 
 function genCondCreationCode(cond) {
     var code = "new QuestCond("
-        + toJSString(cond.type) + ", ";
+        + toJSInt(cond.type) + ", ";
     switch(cond.type) {
         case _QUEST_COND_OBJECT_CLICKED:
             code += "{ id : " + toJSString(cond.props.id) + " }";
@@ -186,7 +186,7 @@ function genCondCreationCode(cond) {
         case _QUEST_COND_ANSWER_OTHER_CLICKED:
         case _QUEST_COND_CONTINUE:
         case _QUEST_COND_DEFAULT:
-            code += toJSString(null);
+            code += "null";
         break;
     }
     code += ", null)";
@@ -205,7 +205,7 @@ TreeCompiler.prototype.generateChildInit = function(objData) {
     objData.childInit = "";
     $.each(objData.children, function(ix, objDataChild) {
         objData.childInit +=
-            "//" + toJSString(objData.id) + " -> " + toJSString(objDataChild.id) + ";\r\n";
+            "//" + toJSInt(objData.id) + " -> " + toJSInt(objDataChild.id) + ";\r\n";
         if (objData.type === _TYPE_NODE) {
             objData.childInit += objData.varName + ".conds.push(" + objDataChild.varName + ")"
                 + ";\r\n";
@@ -216,22 +216,58 @@ TreeCompiler.prototype.generateChildInit = function(objData) {
     });
 };
 
-function CompilationError(descr)
-{
+/* Because of user's invalid program */
+function CompilationError(descr) {
     this.descr = descr;
 }
 
+/* Because of our coding mistake */
+function CompilationInternalError(descr) {
+    this.descr = descr;
+}
+
+/* Convertors of JS var values to JS source constants */
 function toJSString(val) {
-    return JSON.stringify(val);
+	if (typeof val === 'string' || val instanceof String)
+    	return JSON.stringify(val);
+
+	throw new CompilationInternalError((typeof val) + " was passed as string constant");
 }
 
 function toJSInt(val) {
-    var intRegex = /^\d+$/;
-    if(intRegex.test(val)) {
-       return val;
-    } else {
-        throw new CompilationError(val.toString() + " should have integer value");
-    }
+	if (typeof val === 'number')
+		val = val.toString();
+
+	if (typeof val === 'string' || val instanceof String) {
+		var intRegex = /^-?\d+$/;
+		if(intRegex.test(val))
+			return val;
+		else throw new CompilationError(val.toString() + " should have integer value");
+	} else {
+		throw new CompilationInternalError((typeof val) + " was passed as int constant");
+	}
+}
+
+function toJSBool(val) {
+	if (val === true)
+		return "true";
+	else if (val === false)
+		return false;
+	else
+		throw new CompilationInternalError(val.toString() + " was passed as boolean constant");
+}
+/* toJSArray should be avoided because it doesn't control which elements of array are dumped */
+function toJSArray(vals, elemType) {
+	if ($.isArray(vals)) {
+		if (elemType !== undefined) {
+			$.each(vals, function(ix, val) {
+				if (typeof val !== elemType)
+					throw new CompilationInternalError("Element of array " + val.toString() + " should have type " + elemType
+						+ "but has type " + typeof val);
+			});
+		}
+		return JSON.stringify(vals);
+	} else throw new CompilationInternalError((typeof val) + " was passed as array constant");
 }
 
 function TreeCompilerFactory(scope, treeEditor, seEvents) {
