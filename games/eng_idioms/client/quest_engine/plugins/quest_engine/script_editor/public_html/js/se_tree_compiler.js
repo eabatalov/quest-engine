@@ -13,27 +13,7 @@ TreeCompiler.prototype.onSeEvent = function() {
 
 TreeCompiler.prototype.uploadCompiledScript = function(scriptText) {
     var scriptAsBlob = new Blob([scriptText], { type : 'text/javascript' });
-
-    var downloadLink = document.createElement("a");
-    downloadLink.download = "story.js";
-    downloadLink.innerHTML = "Download Story";
-    if (window.webkitURL !== null)
-    {
-            // Chrome allows the link to be clicked
-            // without actually adding it to the DOM.
-            downloadLink.href = window.webkitURL.createObjectURL(scriptAsBlob);
-    }
-    else
-    {
-            // Firefox requires the link to be added to the DOM
-            // before it can be clicked.
-            downloadLink.href = window.URL.createObjectURL(scriptAsBlob);
-            downloadLink.onclick = this.destroyClickedScriptLink;
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-    }
-
-    downloadLink.click();
+	saveAs(scriptAsBlob, "story.js");
 };
 
 TreeCompiler.prototype.destroyClickedScriptLink = function(event) {
