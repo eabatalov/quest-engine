@@ -36,12 +36,11 @@ StoryLineState.prototype.setCurrentNode = function(questNode) {
 	this.currentNode = questNode;
 }
 
-//returns true if storyline has moved forward on event
 StoryLineState.prototype.step = function(questEvent) {
 	var nextNode = this.nodeForCondType(questEvent.type, questEvent.priv, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
-		return true;
+		return;
 	}
 
 	if ($.inArray(questEvent.type,
@@ -52,25 +51,24 @@ StoryLineState.prototype.step = function(questEvent) {
 		nextNode = this.nodeForCondType(_QUEST_COND_ANSWER_OTHER_CLICKED, null, this.currentNode.conds);
 		if (nextNode !== null) {
 			this.setCurrentNode(nextNode);
-			return true;
+			return;
 		}
 	}
 
 	nextNode = this.nodeForCondType(_QUEST_COND_NONE, null, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
-		return this.step(questEvent);
+		this.step(questEvent);
+		return;
 	}
 
 	nextNode = this.nodeForCondType(_QUEST_COND_DEFAULT, null, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
-		return true;
+		return;
 	}
 
-	//No suitable condition for event
-	//Stay in current node and return its action
-	return true;
+	//No suitable condition for event - stay in current node
 }
 
 function StageState(questStageNode) {
@@ -111,9 +109,8 @@ StageState.prototype.eventStoryLine = function(questEvent) {
 
 StageState.prototype.step = function(questEvent) {
 	var eventStoryLine = this.eventStoryLine(questEvent);
-	if (eventStoryLine.step(questEvent))
-		return eventStoryLine.currentNode;
-	else return _QUEST_NODE_NONE_INSTANCE;
+	eventStoryLine.step(questEvent);
+	return eventStoryLine.currentNode;
 }
 
 function QuestInterpretator(questScript) {
