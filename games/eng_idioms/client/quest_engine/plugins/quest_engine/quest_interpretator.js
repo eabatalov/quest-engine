@@ -15,7 +15,6 @@ function QuestEvent(/* _QUEST_EV_* */ type, priv) {
 function StoryLineState(storyLineNode) {
 	this.storyLineNode = storyLineNode;
 	this.currentNode = storyLineNode;
-	this.waitingContinue = false;
 }
 
 StoryLineState.prototype.nodeForCondType = function(type, priv, /* [ QuestCond ] */ conds) {
@@ -35,10 +34,6 @@ StoryLineState.prototype.nodeForCondType = function(type, priv, /* [ QuestCond ]
 
 StoryLineState.prototype.setCurrentNode = function(questNode) {
 	this.currentNode = questNode;
-	if (this.currentNode.continue)
-		this.waitingContinue = true;
-	else
-		this.waitingContinue = false;
 }
 
 //returns true if storyline has moved forward on event
@@ -86,7 +81,7 @@ StageState.prototype.eventStoryLine = function(questEvent) {
 	var foundStoryLineState = null;
 	$.each(stageState.storyLines, function(ix, storyLineState) {
 		if (questEvent.type == _QUEST_EV_CONTINUE) {
-			if (storyLineState.waitingContinue) {
+			if (storyLineState.currentNode.continue) {
 				foundStoryLineState = storyLineState;
 				return false;
 			} else {
@@ -103,8 +98,6 @@ StageState.prototype.eventStoryLine = function(questEvent) {
 }
 
 StageState.prototype.step = function(questEvent) {
-	//XXX Better to move it to quest engine.
-	//This file should only allow step() and node()
 	var eventStoryLine = this.eventStoryLine(questEvent);
 	if (eventStoryLine.step(questEvent))
 		return eventStoryLine.currentNode;
