@@ -73,14 +73,8 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Set text" sid="7096911151586823" type="QuestDebugTxt">
-                                    <param id="0" name="Text">&quot;Before wait&quot;</param>
-                                </action>
                                 <action id="-16" name="Wait" sid="3062219250112227" type="System">
                                     <param id="0" name="Seconds">QuestAction.getDelay</param>
-                                </action>
-                                <action id="0" name="Set text" sid="693723371261024" type="QuestDebugTxt">
-                                    <param id="0" name="Text">&quot;After wait&quot;</param>
                                 </action>
                                 <action id="0" name="Call function" sid="5068168314085308" type="Function">
                                     <param id="0" name="Name">&quot;ProcAfterUIAction&quot;</param>
@@ -103,6 +97,20 @@
                                         <condition id="-8" name="Compare two values" sid="2582641881361668" type="System">
                                             <param id="0" name="First value">QuestAction.getAction</param>
                                             <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;INVALID&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Alert" sid="2964086366352837" type="Browser">
+                                            <param id="0" name="Message">&quot;Invalid UI action was recieved. Please contact quest engine developers: eugene@learzing.com&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9108784357802529">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="8730346613646453" type="System">
+                                            <param id="0" name="First value">QuestAction.getAction</param>
+                                            <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;NONE&quot;</param>
                                         </condition>
                                     </conditions>
@@ -123,7 +131,7 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="6632858068048924">
+                                <event-block collapsed="1" sid="6632858068048924">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="3014435150508187" type="System">
                                             <param id="0" name="First value">QuestAction.getActor</param>
@@ -183,7 +191,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block sid="5664582232474535">
+                                <event-block collapsed="1" sid="5664582232474535">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="6477690124574981" type="System">
                                             <param id="0" name="First value">QuestAction.getActor</param>

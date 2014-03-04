@@ -100,6 +100,7 @@ QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 	var setActorInfo = false;
 	switch(questNode.type) {
 		case _QUEST_NODE_NONE:
+		case _QUEST_NODE_STORYLINE:
 			stageAct.action = _UI_ACTION_NONE;
 		break;
 		case _QUEST_NODE_PHRASE:
@@ -131,6 +132,7 @@ QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 		break;
 		default:
 			console.log("Error. Invalid quest node type: " + questNode.type);
+			stageAct.action = _PLAYER_ACTION_INVALID;
 	}
 	if (setActorInfo) {
 		stageAct.actor = questNode.priv.id === _QUEST_PLAYER_ID ? "PLAYER" : "NPC";
