@@ -20,57 +20,59 @@ TreeCompiler.prototype.destroyClickedScriptLink = function(event) {
 	document.body.removeChild(event.target);
 };
 
-_TYPE_NODE = 1;
-_TYPE_COND = 2;
+TreeCompiler.prototype.OBJ_TYPE = {
+	NODE : 1,
+	COND : 2
+};
 
 TreeCompiler.prototype.compile = function() {
     var idSeq = 0;
-    var objDatas = {};
+    this.objDatas = {};
 
     $.each(this.treeEditor.nodes.all, function(ix, node) {
         idSeq += 1;
-        objDatas[idSeq] = {
+        this.objDatas[idSeq] = {
             obj: node,
-            type : _TYPE_NODE,
+            type : this.OBJ_TYPE.NODE,
             id : idSeq
         };
     }.bind(this));
     $.each(this.treeEditor.conds, function(ix, cond) {
         idSeq += 1;
-        objDatas[idSeq] = {
+        this.objDatas[idSeq] = {
             obj: cond,
-            type : _TYPE_COND,
+            type : this.OBJ_TYPE.COND,
             id : idSeq
         };
     }.bind(this));
-    return this.generateCode(objDatas);
+    return this.generateCode();
 };
 
-TreeCompiler.prototype.generateCode = function(objDatas) {
-    $.each(objDatas, function(id, objData) {
+TreeCompiler.prototype.generateCode = function() {
+    $.each(this.objDatas, function(id, objData) {
         this.generateDeclaration(objData);
     }.bind(this));
-    $.each(objDatas, function(id, objData) {
-        this.gatherChildren(objData, objDatas);
+    $.each(this.objDatas, function(id, objData) {
+        this.gatherChildren(objData, this.objDatas);
         this.generateChildInit(objData);
     }.bind(this));
-    return this.outputCode(objDatas);
+    return this.outputCode(this.objDatas);
 };
 
-TreeCompiler.prototype.outputCode = function(objDatas) {
+TreeCompiler.prototype.outputCode = function() {
     var code = "function getQuestScript() {\r\n";
-    $.each(objDatas, function(id, objData) {
+    $.each(this.objDatas, function(id, objData) {
         code += objData.decl
             + "\r\n";
     }.bind(this));
-    $.each(objDatas, function(id, objData) {
+    $.each(this.objDatas, function(id, objData) {
         code += objData.childInit
             + "\r\n";
     }.bind(this));
 
     var stageObjectData = null;
-    $.each(objDatas, function(id, objData) {
-        if (objData.type === _TYPE_NODE && objData.obj.type === _QUEST_NODE_STAGE) {
+    $.each(this.objDatas, function(id, objData) {
+        if (objData.type === this.OBJ_TYPE.NODE && objData.obj.type === _QUEST_NODE_STAGE) {
             stageObjectData = objData;
             return false;
         }
@@ -81,32 +83,33 @@ TreeCompiler.prototype.outputCode = function(objDatas) {
     return code;
 };
 
-TreeCompiler.prototype.gatherChildren = function(objData, objDatas) {
+TreeCompiler.prototype.gatherChildren = function(objData) {
     objData.children = [];
+	var OBJ_EXTRA_HIT_SIZE_PX = 5;
 
-    $.each(objDatas, function(id, objDataChild) {
+    $.each(this.objDatas, function(id, objDataChild) {
         if (objDataChild.id === objData.id)
             return;
-        if (objData.type === _TYPE_NODE) {
-            if (objDataChild.type !== _TYPE_COND)
+        if (objData.type === this.OBJ_TYPE.NODE) {
+            if (objDataChild.type !== this.OBJ_TYPE.COND)
                 return;
             var objHitArea = new PIXI.Rectangle(
-                objData.obj.x - 5,
-                objData.obj.y - 5,
-                objData.obj.width + 5,
-                objData.obj.height + 5);
+                objData.obj.x - OBJ_EXTRA_HIT_SIZE_PX,
+                objData.obj.y - OBJ_EXTRA_HIT_SIZE_PX,
+                objData.obj.width + OBJ_EXTRA_HIT_SIZE_PX,
+                objData.obj.height + OBJ_EXTRA_HIT_SIZE_PX);
             if (!objHitArea.contains(
                     objDataChild.obj.points.src.x,
                     objDataChild.obj.points.src.y))
                 return;
-        } else if (objData.type === _TYPE_COND) {
-            if (objDataChild.type !== _TYPE_NODE)
+        } else if (objData.type === this.OBJ_TYPE.COND) {
+            if (objDataChild.type !== this.OBJ_TYPE.NODE)
                 return;
             var objHitArea = new PIXI.Rectangle(
-                objDataChild.obj.x - 5,
-                objDataChild.obj.y - 5,
-                objDataChild.obj.width + 5,
-                objDataChild.obj.height + 5);
+                objDataChild.obj.x - OBJ_EXTRA_HIT_SIZE_PX,
+                objDataChild.obj.y - OBJ_EXTRA_HIT_SIZE_PX,
+                objDataChild.obj.width + OBJ_EXTRA_HIT_SIZE_PX,
+                objDataChild.obj.height + OBJ_EXTRA_HIT_SIZE_PX);
             if (!objHitArea.contains(
                     objData.obj.points.dst.x,
                     objData.obj.points.dst.y))
@@ -116,41 +119,41 @@ TreeCompiler.prototype.gatherChildren = function(objData, objDatas) {
     }.bind(this));
 };
 
-function genNodeCreationCode(node) {
+TreeCompiler.prototype.genNodeCreationCode = function(node) {
     var code = "new QuestNode("
-        + toJSInt(node.type) + ", "
-        + toJSBool(node.continue) + ", ";
+        + this.jsIntConst(node.type) + ", "
+        + this.jsBoolConst(node.continue) + ", ";
     switch(node.type) {
         case _QUEST_NODE_NONE:
             code += "null";
         break;
         case _QUEST_NODE_PHRASE:
             code += "{ "
-                + "id : " + toJSString(node.props.id)
-                + ", text : " + toJSString(node.props.text)
+                + "id : " + this.jsStringConst(node.props.id)
+                + ", text : " + this.jsStringConst(node.props.text)
                 + " }";
         break;
         case _QUEST_NODE_QUIZ:
             code += "{ "
-                + "id : " + toJSString(node.props.id)
-                + ", text : " + toJSString(node.props.text)
+                + "id : " + this.jsStringConst(node.props.id)
+                + ", text : " + this.jsStringConst(node.props.text)
                 + ", ans : ["
-                    + toJSString(node.props.ans1)
-                    + ", " + toJSString(node.props.ans2)
-                    + ", " + toJSString(node.props.ans3)
-                    + ", " + toJSString(node.props.ans4)
+                    + this.jsStringConst(node.props.ans1)
+                    + ", " + this.jsStringConst(node.props.ans2)
+                    + ", " + this.jsStringConst(node.props.ans3)
+                    + ", " + this.jsStringConst(node.props.ans4)
                 + "]"
                 + " }";
         break;
         case _QUEST_NODE_ANIM:
             code += "{ "
-                + "id : " + toJSString(node.props.id)
-                + ", name : " + toJSString(node.props.name)
+                + "id : " + this.jsStringConst(node.props.id)
+                + ", name : " + this.jsStringConst(node.props.name)
                 + " }";
         break;
         case _QUEST_NODE_WAIT:
             code += "{ "
-                + "secs : " + toJSInt(node.props.secs)
+                + "secs : " + this.jsIntConst(node.props.secs)
                 + " }";
         break;
         case _QUEST_NODE_STAGE_CLEAR:
@@ -158,25 +161,25 @@ function genNodeCreationCode(node) {
         break;
         case _QUEST_NODE_STORYLINE:
             code += "{ "
-                + "objs : " + toJSArray(node.props.objs, "string")
+                + "objs : " + this.jsArrayConst(node.props.objs, "string")
                 + " }";
         break;
         case _QUEST_NODE_STAGE:
             code += "{ "
-                + "name : " + toJSString(node.props.name)
+                + "name : " + this.jsStringConst(node.props.name)
                 + " }";
         break;
     }
     code += ", [])";
     return code;
-}
+};
 
-function genCondCreationCode(cond) {
+TreeCompiler.prototype.genCondCreationCode = function(cond) {
     var code = "new QuestCond("
-        + toJSInt(cond.type) + ", ";
+        + this.jsIntConst(cond.type) + ", ";
     switch(cond.type) {
         case _QUEST_COND_OBJECT_CLICKED:
-            code += "{ id : " + toJSString(cond.props.id) + " }";
+            code += "{ id : " + this.jsStringConst(cond.props.id) + " }";
         break;
         case _QUEST_COND_NONE:
         case _QUEST_COND_ANSWER_1_CLICKED:
@@ -191,13 +194,15 @@ function genCondCreationCode(cond) {
     }
     code += ", null)";
     return code;
-}
+};
 
 TreeCompiler.prototype.generateDeclaration = function(objData) {
-    objData.varName = (objData.type === _TYPE_NODE ? "node" : "cond")
+    objData.varName = (objData.type === this.OBJ_TYPE.NODE ? "node" : "cond")
         + objData.id.toString();
     objData.decl = objData.varName + " = "
-        + (objData.type === _TYPE_NODE ? genNodeCreationCode(objData.obj) : genCondCreationCode(objData.obj))
+        + (objData.type === this.OBJ_TYPE.NODE ?
+            this.genNodeCreationCode(objData.obj) :
+            this.genCondCreationCode(objData.obj))
         + ";\n";
 };
 
@@ -205,15 +210,15 @@ TreeCompiler.prototype.generateChildInit = function(objData) {
     objData.childInit = "";
     $.each(objData.children, function(ix, objDataChild) {
         objData.childInit +=
-            "//" + toJSInt(objData.id) + " -> " + toJSInt(objDataChild.id) + ";\r\n";
-        if (objData.type === _TYPE_NODE) {
+            "//" + this.jsIntConst(objData.id) + " -> " + this.jsIntConst(objDataChild.id) + ";\r\n";
+        if (objData.type === this.OBJ_TYPE.NODE) {
             objData.childInit += objData.varName + ".conds.push(" + objDataChild.varName + ")"
                 + ";\r\n";
-        } else if (objData.type === _TYPE_COND) {
+        } else if (objData.type === this.OBJ_TYPE.COND) {
             objData.childInit += objData.varName + ".node = " + objDataChild.varName
                 + ";\r\n";
         }
-    });
+    }.bind(this));
 };
 
 /* Because of user's invalid program */
@@ -227,14 +232,14 @@ function CompilationInternalError(descr) {
 }
 
 /* Convertors of JS var values to JS source constants */
-function toJSString(val) {
+TreeCompiler.prototype.jsStringConst = function(val) {
 	if (typeof val === 'string' || val instanceof String)
     	return JSON.stringify(val);
 
 	throw new CompilationInternalError((typeof val) + " was passed as string constant");
-}
+};
 
-function toJSInt(val) {
+TreeCompiler.prototype.jsIntConst = function(val) {
 	if (typeof val === 'number')
 		val = val.toString();
 
@@ -246,18 +251,19 @@ function toJSInt(val) {
 	} else {
 		throw new CompilationInternalError((typeof val) + " was passed as int constant");
 	}
-}
+};
 
-function toJSBool(val) {
+TreeCompiler.prototype.jsBoolConst = function(val) {
 	if (val === true)
 		return "true";
 	else if (val === false)
 		return false;
 	else
 		throw new CompilationInternalError(val.toString() + " was passed as boolean constant");
-}
-/* toJSArray should be avoided because it doesn't control which elements of array are dumped */
-function toJSArray(vals, elemType) {
+};
+
+/* jsArrayConst should be avoided because it doesn't control which elements of array are dumped */
+TreeCompiler.prototype.jsArrayConst = function(vals, elemType) {
 	if ($.isArray(vals)) {
 		if (elemType !== undefined) {
 			$.each(vals, function(ix, val) {
@@ -268,7 +274,7 @@ function toJSArray(vals, elemType) {
 		}
 		return JSON.stringify(vals);
 	} else throw new CompilationInternalError((typeof val) + " was passed as array constant");
-}
+};
 
 function TreeCompilerFactory(scope, treeEditor, seEvents) {
     return new TreeCompiler(scope, treeEditor, seEvents);
