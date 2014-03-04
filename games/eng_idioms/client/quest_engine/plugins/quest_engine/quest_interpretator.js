@@ -44,6 +44,18 @@ StoryLineState.prototype.step = function(questEvent) {
 		return true;
 	}
 
+	if ($.inArray(questEvent.type,
+		[_QUEST_EV_ANSWER_1_CLICKED,
+		_QUEST_EV_ANSWER_2_CLICKED,
+		_QUEST_EV_ANSWER_3_CLICKED,
+		_QUEST_EV_ANSWER_4_CLICKED]) !== -1) {
+		nextNode = this.nodeForCondType(_QUEST_COND_ANSWER_OTHER_CLICKED, null, this.currentNode.conds);
+		if (nextNode !== null) {
+			this.setCurrentNode(nextNode);
+			return true;
+		}
+	}
+
 	nextNode = this.nodeForCondType(_QUEST_COND_NONE, null, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
