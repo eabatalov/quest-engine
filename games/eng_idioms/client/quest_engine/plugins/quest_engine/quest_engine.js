@@ -48,7 +48,8 @@ QuestEngine.prototype.setupScript = function(scriptURL) {
  * Works accorind to current stage quest script
  */
 QuestEngine.prototype.playerActionExec = function(stageActCont) {
-	dumpCurrentPlayerAction(stageActCont);
+	validatePlayerAction(stageActCont);
+	dumpPlayerAction(stageActCont);
 	stageActCont.curStageAction().clearOutFields();
 
 	var questEvent = this.toQuestEvent(stageActCont.curStageAction());
@@ -58,7 +59,8 @@ QuestEngine.prototype.playerActionExec = function(stageActCont) {
 	dumpQuestNode(questNode);
 
 	this.fillStageAction(stageActCont.curStageAction(), questNode);
-	dumpCurrentUIAction(stageActCont);
+	validateUIAction(stageActCont);
+	dumpUIAction(stageActCont);
 }
 
 QuestEngine.prototype.toQuestEvent = function(stageAct) {

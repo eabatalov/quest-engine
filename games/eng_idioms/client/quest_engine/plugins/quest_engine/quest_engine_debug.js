@@ -20,7 +20,7 @@ function _str(obj) {
 	return obj === null || obj === undefined ? "" : obj.toString();
 }
 
-function validateCurrentPlayerAction(stageActCont) {
+function validatePlayerAction(stageActCont) {
 	if (!_QUEST_ENGINE_VALIDATE)
 		return;
 	var playerAction = stageActCont.curStageAction().lastPlayerAction;
@@ -31,7 +31,7 @@ function validateCurrentPlayerAction(stageActCont) {
 	}
 }
 
-function dumpCurrentPlayerAction(stageActCont) {
+function dumpPlayerAction(stageActCont) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
 	console.log("==PLAYER ACTION==\n" +
@@ -41,7 +41,7 @@ function dumpCurrentPlayerAction(stageActCont) {
 	);
 }
 
-function validateCurrentUIAction(stageActCont) {
+function validateUIAction(stageActCont) {
 	if (!_QUEST_ENGINE_VALIDATE)
 		return;
 	var uiAction = stageActCont.curStageAction().action;
@@ -51,14 +51,14 @@ function validateCurrentUIAction(stageActCont) {
 			+ "UI actions valid: \n"
 			+ _UI_ACTION_DEFINES.toString());
 	}
-	if (!(uiActor in _UI_ACTOR_DEFINES.contains)) {
+	if (!(uiActor in _UI_ACTOR_DEFINES)) {
 		showValidationError("UI actor " + uiActor.toString() + "is not a valid UI actor\n"
 			+ "UI actors valid: \n"
 			+ _UI_ACTOR_DEFINES.toString());
 	}
 }
 
-function dumpCurrentUIAction(stageActCont) {
+function dumpUIAction(stageActCont) {
 	if (!_QUEST_ENGINE_DEBUG)
 		return;
 	console.log("==UI ACTION==\n"
