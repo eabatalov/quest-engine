@@ -4,10 +4,23 @@
 4. make tests for corner cases
 5. make save/restore of work in editor
 6. support multyple stages
+7. support deletion of objects from storyline, stage
+
 7. Implement thinking clouds
-8. Fix bug with script download only for Chrome
-9. Convert stage, storyline and other nodes which can't be processed by UI
-   to none nodes.
-10. Implement condition other clicked
+9. Make complex complete scenario and TEST. Then push local commits.
+
 11. Quest script errors reporting to construct game
 12. Quest script error reporting for quest script editor
+
+13. For editor restore we'll need file upload and read javascript APIs.
+	I haven't found filnal solution. But here are useful links:
+	http://stackoverflow.com/questions/6029656/is-there-a-javascript-support-library-for-html5-file-api-and-upload
+	https://github.com/blueimp/jQuery-File-Upload/wiki
+	http://www.plupload.com/
+	http://www.html5rocks.com/ru/tutorials/file/dndfiles/
+	http://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api
+	http://www.w3.org/TR/FileAPI/#dfn-Blob
+
+14. Possible condition type should depend on its source node.
+15. Implement animation support in quest engine.
+16. Implement sound playback support in quest engine.
