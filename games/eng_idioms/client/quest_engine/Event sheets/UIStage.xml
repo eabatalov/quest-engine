@@ -67,7 +67,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1" sid="6689006835659497">
+                <event-block sid="6689006835659497">
                     <conditions>
                         <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="3187111328691282" type="NPCPhraseTxt" />
                     </conditions>
@@ -114,7 +114,7 @@
                                 </action>
                                 <action id="-3" name="Set position" sid="349926966167115" type="NPCSpeechBg">
                                     <param id="0" name="X">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointX(&quot;SpeechOrigin&quot;) : NPC.X)  - (NPCSpeechBg.ImagePointX(&quot;Cock&quot;) - NPCSpeechBg.X)</param>
-                                    <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 8))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
+                                    <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 10))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
                                 </action>
                                 <action id="-3" name="Set position" sid="2967799778605404" type="NPCPhraseBg">
                                     <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_BG_X</param>
