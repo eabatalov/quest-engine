@@ -18,6 +18,7 @@
 		<script src="js/libs/blob/Blob.js"></script>
         <script src="js/libs/filesaver/FileSaver.js"></script>
 
+        <script src="js/quest_engine/quest_engine_consts.js"></script>
         <script src="js/quest_engine/quest_scripting.js"></script>
         <script src="js/se_node.js"></script>
         <script src="js/se_cond.js"></script>
@@ -80,6 +81,16 @@
                     <label for="secs">Text</label>
                     <div>
                         <input type="text" name="secs" ng-model="node.props.text" placeholder="TEXT" autofocus/>
+                    </div>
+                </div>
+
+                <div ng-show="node.props.phraseType  | hasFieldValue">
+                    <label for="phraseType">Appearance</label>
+                    <div>
+                        <select name="phraseType" ng-model="node.props.phraseType"
+                            ng-options="option.value as option.name for option in
+                                [{ name: 'Speak', value: _UI_PHRASE_TYPE_SPEAK }, { name: 'Think', value: _UI_PHRASE_TYPE_THINK }];">
+                        </select>
                     </div>
                 </div>
 

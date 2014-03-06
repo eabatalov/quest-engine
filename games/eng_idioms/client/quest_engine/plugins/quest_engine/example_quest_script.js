@@ -22,14 +22,15 @@ function getQuestScript() {
 
 	$.merge(stage1StoryLinePlayerNPC2Cond.node.conds, [
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID },
-			new QuestNode(_QUEST_NODE_PHRASE, false, { id : _QUEST_PLAYER_ID, text : "I know nothing, Jon Snow" },
+			new QuestNode(_QUEST_NODE_PHRASE, false, { id : _QUEST_PLAYER_ID, text : "I know nothing, Jon Snow", phraseType : _UI_PHRASE_TYPE_SPEAK },
 				[stage1StoryLinePlayerNPC2Cond])
 			),   
 
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _DEMO_QUEST_SITUATION1_NPC2_ID },
 			new QuestNode(_QUEST_NODE_QUIZ, false,
 				{ id : _DEMO_QUEST_SITUATION1_NPC2_ID, text : _DEMO_QUEST_SITUATION1_NPC2_ID + ": What size are a your girl's boobs?!",
-					ans : ["WOW", "Not Bad!", "OMG", "WTF"]
+					ans : ["WOW", "Not Bad!", "OMG", "WTF"],
+					phraseType : _UI_PHRASE_TYPE_SPEAK
 				},
 				[
 					new QuestCond(_QUEST_COND_ANSWER_1_CLICKED, null,
@@ -37,6 +38,7 @@ function getQuestScript() {
 							{
 								id : _DEMO_QUEST_SITUATION1_NPC2_ID,
 								text : "Ok, you said 1",
+								phraseType : _UI_PHRASE_TYPE_SPEAK
 							}, [stage1StoryLinePlayerNPC2Cond])
 						),
 
@@ -45,6 +47,7 @@ function getQuestScript() {
 							{
 								id : _DEMO_QUEST_SITUATION1_NPC2_ID,
 								text : "Ok, you said 2",
+								phraseType : _UI_PHRASE_TYPE_SPEAK
 							}, [stage1StoryLinePlayerNPC2Cond])
 						),
 
@@ -53,6 +56,7 @@ function getQuestScript() {
 							{
 								id : _DEMO_QUEST_SITUATION1_NPC2_ID,
 								text : "Ok, you said 3",
+								phraseType : _UI_PHRASE_TYPE_SPEAK
 							}, [stage1StoryLinePlayerNPC2Cond])
 						),
 
@@ -61,6 +65,7 @@ function getQuestScript() {
 							{
 								id : _DEMO_QUEST_SITUATION1_NPC2_ID,
 								text : "Ok, you said 4",
+								phraseType : _UI_PHRASE_TYPE_SPEAK
 							}, [stage1StoryLinePlayerNPC2Cond])
 						)
 				])
@@ -74,7 +79,10 @@ function getQuestScript() {
 				[
 					new QuestCond(_QUEST_COND_CONTINUE, null,
 						new QuestNode(_QUEST_NODE_PHRASE, true,
-							{ id : _DEMO_QUEST_SITUATION1_NPC3_ID, text : "My brake warning light is on.\nWhat does it mean?" },
+							{ id : _DEMO_QUEST_SITUATION1_NPC3_ID,
+								text : "My brake warning light is on.\nWhat does it mean?",
+								phraseType : _UI_PHRASE_TYPE_SPEAK
+							},
 							[
 								new QuestCond(_QUEST_COND_CONTINUE, null,
 									new QuestNode(_QUEST_NODE_WAIT, true,
@@ -107,7 +115,7 @@ function getQuestScript() {
 	$.merge(stage2Node.conds, [stage2StoryLinePlayerNPC1Cond]);
 
 	var stage2PlayerPhraseNode = new QuestNode(_QUEST_NODE_PHRASE, false,
-		{ id : _QUEST_PLAYER_ID, text: "I don't wanna interact with this strange guy!" },
+		{ id : _QUEST_PLAYER_ID, text: "I don't wanna interact with this strange guy!", phraseType : _UI_PHRASE_TYPE_SPEAK },
 		[stage2StoryLinePlayerNPC1Cond]);
 	$.merge(stage2StoryLinePlayerNPC1Cond.node.conds, [
 		new QuestCond(_QUEST_COND_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID }, stage2PlayerPhraseNode),

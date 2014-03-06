@@ -22,11 +22,13 @@ function SENode(/* _QUEST_NODE_* */ type, seEvents, isContinue, storyLine, stage
                 props.storyLine = null;
                 props.id = "";
                 props.text = "";
+                props.phraseType = _UI_PHRASE_TYPE_SPEAK;
             break;
             case _QUEST_NODE_QUIZ:
                 props.storyLine = null;
                 props.id = "";
                 props.text = "";
+                props.phraseType = _UI_PHRASE_TYPE_SPEAK;
                 props.ans1 = "";
                 props.ans2 = "";
                 props.ans3 = "";

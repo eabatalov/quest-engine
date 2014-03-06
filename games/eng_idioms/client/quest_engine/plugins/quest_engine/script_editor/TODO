@@ -5,9 +5,7 @@
 5. make save/restore of work in editor
 6. support multyple stages
 7. support deletion of objects from storyline, stage
-
-7. Implement thinking clouds
-9. Make complex complete scenario and TEST. Then push local commits.
+8. don't show properties of deleted node/cond in props toolbar
 
 11. Quest script errors reporting to construct game
 12. Quest script error reporting for quest script editor

@@ -108,16 +108,17 @@ QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 		case _QUEST_NODE_PHRASE:
 			stageAct.action = _UI_ACTION_PHRASE;
 			stageAct.text = questNode.priv.text;
+			stageAct.phraseType = questNode.priv.phraseType;
 			setActorInfo = true;
 		break;
 		case _QUEST_NODE_QUIZ:
 			stageAct.action = _UI_ACTION_QUIZ;
 			stageAct.text = questNode.priv.text;
+			stageAct.phraseType = questNode.priv.phraseType;
 			stageAct.answer1Text = questNode.priv.ans[0];
 			stageAct.answer2Text = questNode.priv.ans[1];
 			stageAct.answer3Text = questNode.priv.ans[2];
 			stageAct.answer4Text = questNode.priv.ans[3];
-			stageAct.rightAnswerIx = 0;
 			setActorInfo = true;
 		break;
 		case _QUEST_NODE_ANIM:

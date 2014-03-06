@@ -3,6 +3,9 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents) {
         $scope._QUEST_NODE_STAGE = _QUEST_NODE_STAGE;
         $scope._QUEST_NODE_STORYLINE = _QUEST_NODE_STORYLINE;
 
+        $scope._UI_PHRASE_TYPE_SPEAK = _UI_PHRASE_TYPE_SPEAK;
+        $scope._UI_PHRASE_TYPE_THINK = _UI_PHRASE_TYPE_THINK;
+
         $scope.condTypes = [
             { id: _QUEST_COND_NONE, title: 'None'},
             { id: _QUEST_COND_OBJECT_CLICKED, title: 'Object clicked'},

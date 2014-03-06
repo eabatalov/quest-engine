@@ -96,7 +96,6 @@ AddAction(2, af_none, "Set last action target id", "Setters", "Set last action t
 //				 exp_name,		// the expression name after the dot, e.g. "foo" for "myobject.foo" - also the runtime function name
 //				 description);	// description in expressions panel
 
-// example
 AddExpression(13, ef_return_string, "Current stage", "Getters", "getCurrentStage",
 	"Current stage");
 AddExpression(1, ef_return_string, "Current actor type", "Getters", "getActor",
@@ -121,8 +120,8 @@ AddExpression(8, ef_return_string, "answer 3 text", "Getters", "getAnswer3Text",
 	"Text of 3rd answer to the question");
 AddExpression(9, ef_return_string, "answer 4 text", "Getters", "getAnswer4Text",
 	"Text of 4th answer to the question");
-AddExpression(10, ef_return_number, "right answer index", "Getters", "getRightAnswerIx",
-	"index of the right answer");
+AddExpression(10, ef_return_string, "Phrase type", "Getters", "getPhraseType",
+	"Phrase type");
 
 AddExpression(11, ef_return_number, "Delay in seconds", "Getters", "getDelay",
 	"Delay in seconds.");
@@ -130,6 +129,7 @@ AddExpression(12, ef_return_number,
 	"1 to continue to the next action not hiding current stage objects and behaviors",
 	"Getters", "getContinue",
 	"1 to continue to the next action not hiding current stage objects and behaviors");
+
 ////////////////////////////////////////
 ACESDone();
 

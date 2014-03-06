@@ -131,12 +131,14 @@ TreeCompiler.prototype.genNodeCreationCode = function(node) {
             code += "{ "
                 + "id : " + this.jsStringConst(node.props.id)
                 + ", text : " + this.jsStringConst(node.props.text)
+                + ", phraseType : " + this.jsStringConst(node.props.phraseType)
                 + " }";
         break;
         case _QUEST_NODE_QUIZ:
             code += "{ "
                 + "id : " + this.jsStringConst(node.props.id)
                 + ", text : " + this.jsStringConst(node.props.text)
+                + ", phraseType : " + this.jsStringConst(node.props.phraseType)
                 + ", ans : ["
                     + this.jsStringConst(node.props.ans1)
                     + ", " + this.jsStringConst(node.props.ans2)

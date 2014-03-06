@@ -67,54 +67,90 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="6689006835659497">
+                <event-block collapsed="1" sid="6689006835659497">
                     <conditions>
                         <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="3187111328691282" type="NPCPhraseTxt" />
                     </conditions>
-                    <actions>
-                        <action id="-6" name="Set height" sid="670036728854573" type="NPCPhraseBg">
-                            <param id="0" name="Height">NPCPhraseTxt.Height</param>
-                        </action>
-                        <action id="-6" name="Set height" sid="6979975419864407" type="NPCSpeechBg">
-                            <param id="0" name="Height">NPC_PHRASE_TXT_Y + NPCPhraseTxt.Height + NPC_PHRASE_TXT_Y  + NPC_PHRASE_COCK_HEIGHT</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="349926966167115" type="NPCSpeechBg">
-                            <param id="0" name="X">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointX(&quot;SpeechOrigin&quot;) : NPC.X)  - (NPCSpeechBg.ImagePointX(&quot;Cock&quot;) - NPCSpeechBg.X)</param>
-                            <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 8))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="2967799778605404" type="NPCPhraseBg">
-                            <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_BG_X</param>
-                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="3721250529910131" type="NPCPhraseTxt">
-                            <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_TXT_X</param>
-                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_TXT_Y</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" sid="4059159985887111" type="NPCPhraseTxt" />
-                        <action id="-25" name="Move to bottom" sid="8359475050570166" type="NPCPhraseBg" />
-                        <action id="-25" name="Move to bottom" sid="1453223970807876" type="NPCSpeechBg" />
-                        <action behavior="Pin" id="0" name="Pin to object" sid="7434869015889325" type="NPCSpeechBg">
-                            <param id="0" name="Pin to">NPCPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="7699992971921248" type="NPCPhraseTxt">
-                            <param id="0" name="Pin to">NPCPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="8282989199388827" type="NPCPhraseBg">
-                            <param id="0" name="Pin to">NPCPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="1081352400685799" type="NPCPhraseBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="8139020019298476" type="NPCSpeechBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="9521233943014458" type="NPCPhraseTxt">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="9255208735694716">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="9125257067185511" type="System">
+                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;SPEAK&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="4584569239759603" type="NPCSpeechBg">
+                                    <param id="0" name="Animation">&quot;Speak&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6315473732246069">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7943965306799148" type="System">
+                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;THINK&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7118728048350618" type="NPCSpeechBg">
+                                    <param id="0" name="Animation">&quot;Think&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7807202322977173">
+                            <conditions />
+                            <actions>
+                                <action id="-6" name="Set height" sid="670036728854573" type="NPCPhraseBg">
+                                    <param id="0" name="Height">NPCPhraseTxt.Height</param>
+                                </action>
+                                <action id="-6" name="Set height" sid="6979975419864407" type="NPCSpeechBg">
+                                    <param id="0" name="Height">NPC_PHRASE_TXT_Y + NPCPhraseTxt.Height + NPC_PHRASE_TXT_Y  + NPC_PHRASE_COCK_HEIGHT</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="349926966167115" type="NPCSpeechBg">
+                                    <param id="0" name="X">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointX(&quot;SpeechOrigin&quot;) : NPC.X)  - (NPCSpeechBg.ImagePointX(&quot;Cock&quot;) - NPCSpeechBg.X)</param>
+                                    <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 8))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="2967799778605404" type="NPCPhraseBg">
+                                    <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_BG_X</param>
+                                    <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_BG_Y</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3721250529910131" type="NPCPhraseTxt">
+                                    <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_TXT_X</param>
+                                    <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_TXT_Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="4059159985887111" type="NPCPhraseTxt" />
+                                <action id="-25" name="Move to bottom" sid="8359475050570166" type="NPCPhraseBg" />
+                                <action id="-25" name="Move to bottom" sid="1453223970807876" type="NPCSpeechBg" />
+                                <action behavior="Pin" id="0" name="Pin to object" sid="7434869015889325" type="NPCSpeechBg">
+                                    <param id="0" name="Pin to">NPCPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="7699992971921248" type="NPCPhraseTxt">
+                                    <param id="0" name="Pin to">NPCPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="8282989199388827" type="NPCPhraseBg">
+                                    <param id="0" name="Pin to">NPCPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="1081352400685799" type="NPCPhraseBg">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="8139020019298476" type="NPCSpeechBg">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="9521233943014458" type="NPCPhraseTxt">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="1516959210380085">
                     <conditions>
@@ -421,50 +457,86 @@
                     <conditions>
                         <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="5342987844029183" type="PlayerPhraseTxt" />
                     </conditions>
-                    <actions>
-                        <action id="-6" name="Set height" sid="8776963115181669" type="PlayerPhraseBg">
-                            <param id="0" name="Height">PlayerPhraseTxt.Height</param>
-                        </action>
-                        <action id="-6" name="Set height" sid="6224875489856904" type="PlayerSpeechBg">
-                            <param id="0" name="Height">PLAYER_PHRASE_TXT_Y + PlayerPhraseTxt.Height + PLAYER_PHRASE_TXT_Y  + PLAYER_PHRASE_COCK_HEIGHT</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="2978384373826769" type="PlayerSpeechBg">
-                            <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
-                            <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="7758974727402091" type="PlayerPhraseBg">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_BG_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_BG_Y</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="7234947592017687" type="PlayerPhraseTxt">
-                            <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
-                            <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
-                        <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />
-                        <action id="-25" name="Move to bottom" sid="2858302157683358" type="PlayerSpeechBg" />
-                        <action behavior="Pin" id="0" name="Pin to object" sid="6862991081393966" type="PlayerSpeechBg">
-                            <param id="0" name="Pin to">PlayerPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="9639814433129711" type="PlayerPhraseTxt">
-                            <param id="0" name="Pin to">PlayerPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" sid="4201556137728618" type="PlayerPhraseBg">
-                            <param id="0" name="Pin to">PlayerPinPoint</param>
-                            <param id="1" name="Mode">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="8723165850772302" type="PlayerPhraseTxt">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="2707988200121936" type="PlayerPhraseBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" sid="1056599444429625" type="PlayerSpeechBg">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3336207269604883">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="6746007235374595" type="System">
+                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;SPEAK&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="6707885725244835" type="PlayerSpeechBg">
+                                    <param id="0" name="Animation">&quot;Speak&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5047793466862367">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4239130951151388" type="System">
+                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;THINK&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="3434206596030371" type="PlayerSpeechBg">
+                                    <param id="0" name="Animation">&quot;Think&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1485529321202152">
+                            <conditions />
+                            <actions>
+                                <action id="-6" name="Set height" sid="8776963115181669" type="PlayerPhraseBg">
+                                    <param id="0" name="Height">PlayerPhraseTxt.Height</param>
+                                </action>
+                                <action id="-6" name="Set height" sid="6224875489856904" type="PlayerSpeechBg">
+                                    <param id="0" name="Height">PLAYER_PHRASE_TXT_Y + PlayerPhraseTxt.Height + PLAYER_PHRASE_TXT_Y  + PLAYER_PHRASE_COCK_HEIGHT</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="2978384373826769" type="PlayerSpeechBg">
+                                    <param id="0" name="X">(Player.ImagePointCount &gt; 0 ? Player.ImagePointX(&quot;SpeechOrigin&quot;) : Player.X)  - (PlayerSpeechBg.ImagePointX(&quot;Cock&quot;) - PlayerSpeechBg.X)</param>
+                                    <param id="1" name="Y">(Player.ImagePointCount &gt; 0 ? Player.ImagePointY(&quot;SpeechOrigin&quot;) : (Player.Y - Player.Height * 6 / 10))  - (PlayerSpeechBg.ImagePointY(&quot;Cock&quot;) - PlayerSpeechBg.Y)</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="7758974727402091" type="PlayerPhraseBg">
+                                    <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_BG_X</param>
+                                    <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_BG_Y</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="7234947592017687" type="PlayerPhraseTxt">
+                                    <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
+                                    <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
+                                <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />
+                                <action id="-25" name="Move to bottom" sid="2858302157683358" type="PlayerSpeechBg" />
+                                <action behavior="Pin" id="0" name="Pin to object" sid="6862991081393966" type="PlayerSpeechBg">
+                                    <param id="0" name="Pin to">PlayerPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="9639814433129711" type="PlayerPhraseTxt">
+                                    <param id="0" name="Pin to">PlayerPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="4201556137728618" type="PlayerPhraseBg">
+                                    <param id="0" name="Pin to">PlayerPinPoint</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="8723165850772302" type="PlayerPhraseTxt">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="2707988200121936" type="PlayerPhraseBg">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="1056599444429625" type="PlayerSpeechBg">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="2311930963919224">
                     <conditions>

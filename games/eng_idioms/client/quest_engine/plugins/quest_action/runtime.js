@@ -29,7 +29,7 @@ function StageAction() {
 		this.answer2Text = "";
 		this.answer3Text = "";
 		this.answer4Text = "";
-		this.rightAnswerIx = 0;
+		this.phraseType = "";
 
 		this.delay = 0;
 		this.continue = 0;
@@ -224,8 +224,8 @@ function StageAction() {
 		ret.set_string(this.curStageAction().answer4Text);
 	};
 
-	Exps.prototype.getRightAnswerIx = function(ret) {
-		ret.set_int(this.curStageAction().rightAnswerIx);
+	Exps.prototype.getPhraseType = function(ret) {
+		ret.set_string(this.curStageAction().phraseType);
 	};
 
 	Exps.prototype.getDelay = function(ret) {

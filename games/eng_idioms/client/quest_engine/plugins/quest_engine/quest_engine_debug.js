@@ -46,15 +46,21 @@ function validateUIAction(stageActCont) {
 		return;
 	var uiAction = stageActCont.curStageAction().action;
 	var uiActor = stageActCont.curStageAction().actor;
+	var uiPhraseType = stageActCont.curStageAction().phraseType;
 	if (!(uiAction in _UI_ACTION_DEFINES)) {
 		showValidationError("UI action " + uiAction.toString() + "is not a valid UI action\n"
 			+ "UI actions valid: \n"
-			+ _UI_ACTION_DEFINES.toString());
+			+ JSON.stringify(_UI_ACTION_DEFINES));
 	}
 	if (!(uiActor in _UI_ACTOR_DEFINES)) {
 		showValidationError("UI actor " + uiActor.toString() + "is not a valid UI actor\n"
 			+ "UI actors valid: \n"
-			+ _UI_ACTOR_DEFINES.toString());
+			+ JSON.stringify(_UI_ACTOR_DEFINES));
+	}
+	if (!(uiPhraseType in _UI_PHRASE_TYPE_DEFINES)) {
+		showValidationError("UI phrase type " + uiPhraseType.toString() + "is not alid\n"
+			+ "UI phrase types valid: \n"
+			+ JSON.stringify(_UI_PHRASE_TYPE_DEFINES));
 	}
 }
 
@@ -72,7 +78,7 @@ function dumpUIAction(stageActCont) {
 		+ "answer3Text: " + _str(stageActCont.curStageAction().answer3Text) + "\n"
 		+ "answer3Text: " + _str(stageActCont.curStageAction().answer3Text) + "\n"
 		+ "answer4Text: " + _str(stageActCont.curStageAction().answer4Text) + "\n"
-		+ "rightAnswerIx: " + _str(stageActCont.curStageAction().rightAnswerIx) + "\n"
+		+ "phraseType: " + _str(stageActCont.curStageAction().phraseType) + "\n"
 		+ "delay: " + _str(stageActCont.curStageAction().delay) + "\n"
 		+ "continue: " + _str(stageActCont.curStageAction().continue) + "\n"
 	);
