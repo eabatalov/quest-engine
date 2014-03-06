@@ -50,7 +50,7 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUI">
+        <event-group description="" sid="6888331275258145" title="NPCUI">
             <sub-events>
                 <event-block sid="2078795932936655">
                     <conditions>
@@ -80,7 +80,7 @@
                         </action>
                         <action id="-3" name="Set position" sid="349926966167115" type="NPCSpeechBg">
                             <param id="0" name="X">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointX(&quot;SpeechOrigin&quot;) : NPC.X)  - (NPCSpeechBg.ImagePointX(&quot;Cock&quot;) - NPCSpeechBg.X)</param>
-                            <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 10))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
+                            <param id="1" name="Y">(NPC.ImagePointCount &gt; 0 ? NPC.ImagePointY(&quot;SpeechOrigin&quot;) : (NPC.Y - NPC.Height * 6 / 8))  - (NPCSpeechBg.ImagePointY(&quot;Cock&quot;) - NPCSpeechBg.Y)</param>
                         </action>
                         <action id="-3" name="Set position" sid="2967799778605404" type="NPCPhraseBg">
                             <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_BG_X</param>
@@ -176,7 +176,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1" sid="4475203334158127">
+                <event-block sid="4475203334158127">
                     <conditions>
                         <condition id="0" name="On function" sid="9390743698732721" type="Function">
                             <param id="0" name="Name">&quot;PositionNPCQuizGUI&quot;</param>
@@ -400,7 +400,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
+        <event-group description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <event-block sid="566202086767859">
                     <conditions>

@@ -125,7 +125,7 @@ cr.behaviors.TextAutoResize = function(runtime)
 					textHeight = val;
 				}
 			});
-			thiz.inst.height = textHeight == 0 ? 0 : textHeight + 1;
+			thiz.inst.height = textHeight == 0 ? 0 : textHeight + 10;
 			//Set real values back
 			thiz.inst.x = origX;
 			thiz.inst.y = origY;

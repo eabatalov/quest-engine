@@ -73,7 +73,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>-38</x>
-                        <y>93</y>
+                        <y>103</y>
                         <z>0</z>
                         <width>2047</width>
                         <height>506</height>
@@ -102,7 +102,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1021</x>
-                        <y>504</y>
+                        <y>516</y>
                         <z>0</z>
                         <width>2179</width>
                         <height>18</height>
@@ -229,7 +229,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>788</x>
-                        <y>434</y>
+                        <y>448</y>
                         <z>0</z>
                         <width>86</width>
                         <height>114</height>
@@ -457,15 +457,15 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>-0.844451904</x>
-                        <y>-172.452041626</y>
+                        <y>-182.707992554</y>
                         <z>0</z>
                         <width>240</width>
-                        <height>170</height>
+                        <height>180</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.800000012</opacity>
                     </world>
                 </instance>
                 <instance type="PlayerAns2Bg" uid="32">
@@ -572,10 +572,10 @@
                     <properties>
                         <text>Player 1st answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>22,22,38</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
@@ -602,10 +602,10 @@
                     <properties>
                         <text>Player 2nd answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>22,22,38</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
@@ -632,10 +632,10 @@
                     <properties>
                         <text>Player 3rd answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>22,22,38</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
@@ -662,10 +662,10 @@
                     <properties>
                         <text>Player 4th answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>22,22,38</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
@@ -702,15 +702,15 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>268.970794678</x>
-                        <y>-171.310211182</y>
+                        <y>-181.566162109</y>
                         <z>0</z>
                         <width>240</width>
-                        <height>170</height>
+                        <height>180</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.800000012</opacity>
                     </world>
                 </instance>
                 <instance type="NPCAns1Bg" uid="5">
@@ -817,12 +817,12 @@
                     <properties>
                         <text>NPC 1st answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>0,102,153</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
-                        <wrapping>Character</wrapping>
+                        <wrapping>Word</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
@@ -848,12 +848,12 @@
                     <properties>
                         <text>NPC  2nd answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>0,102,153</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
-                        <wrapping>Character</wrapping>
+                        <wrapping>Word</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
@@ -879,12 +879,12 @@
                     <properties>
                         <text>NPC  3rd answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>0,102,153</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
-                        <wrapping>Character</wrapping>
+                        <wrapping>Word</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
@@ -910,12 +910,12 @@
                     <properties>
                         <text>NPC  4th answer text</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <font>Arial,-16,700,0</font>
+                        <color>0,102,153</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
-                        <wrapping>Character</wrapping>
+                        <wrapping>Word</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
