@@ -58,7 +58,7 @@ function validateUIAction(stageActCont) {
 			+ JSON.stringify(_UI_ACTOR_DEFINES));
 	}
 	if (!(uiPhraseType in _UI_PHRASE_TYPE_DEFINES)) {
-		showValidationError("UI phrase type " + uiPhraseType.toString() + "is not alid\n"
+		showValidationError("UI phrase type " + uiPhraseType.toString() + "is not a valid phrase type\n"
 			+ "UI phrase types valid: \n"
 			+ JSON.stringify(_UI_PHRASE_TYPE_DEFINES));
 	}
