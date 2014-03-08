@@ -1,37 +1,49 @@
 //API for javascript based quest scripting
-_QUEST_NODE_NONE = -1; //For sequnce of events. Do nothing in this node.
-_QUEST_NODE_PHRASE = 1; // priv : { id : String, text : String }
-_QUEST_NODE_QUIZ = 3; // priv : { id : String, text : String, ans : [String] }
-_QUEST_NODE_ANIM = 5; // priv : { id : String, name : String }
-_QUEST_NODE_WAIT = 6; // priv : { secs : int }
-_QUEST_NODE_STAGE_CLEAR = 7;
-_QUEST_NODE_STORYLINE = 8; // priv : { objs : [/*id*/String] }
-_QUEST_NODE_STAGE = 9; // priv : { name : String }
+_QUEST_NODES = {
+	NONE : -1, //For sequnce of events. Do nothing in this node.
+	PHRASE : 1, // priv : { id : String, text : String }
+	QUIZ : 3, // priv : { id : String, text : String, ans : [String] }
+	ANIM : 5, // priv : { id : String, name : String }
+	WAIT : 6, // priv : { secs : int }
+	STAGE_CLEAR : 7,
+	STORYLINE : 8, // priv : { objs : [/*id*/String] }
+	STAGE : 9 // priv : { name : String }
+};
+_QUEST_NODES_SET = {};
+$.each(_QUEST_NODES, function(name, value) {
+	_QUEST_NODES_SET[value] = true;
+});
 
-function QuestNode(/* _QUEST_NODE_* */ type, isContinue, priv, /* [QuestCond] */ conds) {
+function QuestNode(/* _QUEST_NODES.* */ type, isContinue, priv, /* [QuestCond] */ conds) {
 	this.type = type;
 	this.conds = conds;
 	this.priv = priv;
 	this.continue = isContinue;
 }
 
-_QUEST_NODE_NONE_INSTANCE = new QuestNode(_QUEST_NODE_NONE, false, null, []);
+_QUEST_NODE_NONE_INSTANCE = new QuestNode(_QUEST_NODES.NONE, false, null, []);
 
 //If there is no match for current event we go this edge doesn't consume
 //the event. Should be used for special nodes only.
-_QUEST_COND_NONE = 1;
-//All the next consume current event
-_QUEST_COND_OBJECT_CLICKED = 2; // priv : { id : String }
-_QUEST_COND_ANSWER_1_CLICKED = 3;
-_QUEST_COND_ANSWER_2_CLICKED = 4;
-_QUEST_COND_ANSWER_3_CLICKED = 5;
-_QUEST_COND_ANSWER_4_CLICKED = 6;
-_QUEST_COND_ANSWER_OTHER_CLICKED = 7;
-_QUEST_COND_CONTINUE = 8;
+_QUEST_CONDS = {
+	NONE : 1,
+	//All the next consume current event
+	OBJECT_CLICKED : 2, // priv : { id : String }
+	ANSWER_1_CLICKED : 3,
+	ANSWER_2_CLICKED : 4,
+	ANSWER_3_CLICKED : 5,
+	ANSWER_4_CLICKED : 6,
+	ANSWER_OTHER_CLICKED : 7,
+	CONTINUE : 8,
 //Go by this edge if no match for current event. Current event is consumed.
-_QUEST_COND_DEFAULT = 9;
+	DEFAULT : 9
+};
+_QUEST_CONDS_SET = {};
+$.each(_QUEST_CONDS, function(name, value) {
+	_QUEST_CONDS_SET[value] = true;
+});
 
-function QuestCond(/* _QUEST_COND_* */ type, priv, /*QuestNode */ node) {
+function QuestCond(/* _QUEST_CONDS.* */ type, priv, /*QuestNode */ node) {
 	this.type = type;
 	this.node = node; //Node which will be picked if cond is met
 	this.priv = (priv !== null && priv !== undefined) ?
@@ -42,7 +54,7 @@ function QuestCond(/* _QUEST_COND_* */ type, priv, /*QuestNode */ node) {
 	 */
 }
 
-function QuestScript(/*[ _QUEST_NODE_STAGE ]*/ questStageNodes) {
+function QuestScript(/*[ _QUEST_NODES.STAGE ]*/ questStageNodes) {
 	var script = this;
 	script.stages = {};
 	$.each(questStageNodes, function(index, stage) {

@@ -22,7 +22,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
     this.nodes = {};
     this.nodes.all = [];
     this.nodes.stages = [
-        new SENode(_QUEST_NODE_STAGE, this.seEvents, false, null, null,
+        new SENode(_QUEST_NODES.STAGE, this.seEvents, false, null, null,
             { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
@@ -30,13 +30,13 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
     this.nodes.stages[0].y = this.nodes.stages[0].height;
 
     this.nodes.storyLines = [
-        new SENode(_QUEST_NODE_STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
+        new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
     ];
     this.nodes.storyLines[0].x = this.nodes.stages[0].x;
     this.nodes.storyLines[0].y = this.nodes.stages[0].y + this.nodes.stages[0].height * 2;
 
     this.nodes.stages[0].conds.push(
-        new SECond(_QUEST_COND_NONE, this.nodes.storyLines[0], this.nodes.storyLines[0], this.seEvents)
+        new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.nodes.storyLines[0], this.seEvents)
     );
 
     this.conds.push(this.nodes.stages[0].conds[0]);
@@ -107,7 +107,7 @@ function scriptTreeEditorMouseDown(intData) {
 
 function scriptTreeEditorMouseUp(intData) {
     if (this.mouse.x !== -1) {
-        var newCond = new SECond(_QUEST_COND_NONE, null, this.nodes.storyLines[0], this.seEvents);
+        var newCond = new SECond(_QUEST_CONDS.NONE, null, this.nodes.storyLines[0], this.seEvents);
 
         newCond.setSrc(this.parent.glbPtToIntl(this.mouse));
         newCond.setDst(this.parent.glbPtToIntl(intData.global));

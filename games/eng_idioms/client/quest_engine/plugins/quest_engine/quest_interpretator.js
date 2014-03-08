@@ -1,13 +1,19 @@
-/* Similar to QuestCond*/
-//Values are equal for interpretation simplification
-_QUEST_EV_OBJECT_CLICKED = _QUEST_COND_OBJECT_CLICKED; // priv : { id : String }
-_QUEST_EV_ANSWER_1_CLICKED = _QUEST_COND_ANSWER_1_CLICKED; // priv : { id : String }
-_QUEST_EV_ANSWER_2_CLICKED = _QUEST_COND_ANSWER_2_CLICKED; // priv : { id : String }
-_QUEST_EV_ANSWER_3_CLICKED = _QUEST_COND_ANSWER_3_CLICKED; // priv : { id : String }
-_QUEST_EV_ANSWER_4_CLICKED = _QUEST_COND_ANSWER_4_CLICKED; // priv : { id : String }
-_QUEST_EV_CONTINUE = _QUEST_COND_CONTINUE;
+_QUEST_EVENTS = {
+	/* Similar to QuestCond*/
+	//Values are equal for interpretation simplification
+	OBJECT_CLICKED :_QUEST_CONDS.OBJECT_CLICKED, // priv : { id : String }
+	ANSWER_1_CLICKED : _QUEST_CONDS.ANSWER_1_CLICKED, // priv : { id : String }
+	ANSWER_2_CLICKED : _QUEST_CONDS.ANSWER_2_CLICKED, // priv : { id : String }
+	ANSWER_3_CLICKED : _QUEST_CONDS.ANSWER_3_CLICKED, // priv : { id : String }
+	ANSWER_4_CLICKED : _QUEST_CONDS.ANSWER_4_CLICKED, // priv : { id : String }
+	CONTINUE : _QUEST_CONDS.CONTINUE
+};
+_QUEST_EVENTS_SET = {};
+$.each(_QUEST_EVENTS, function(name, value) {
+	_QUEST_EVENTS_SET[value] = true;
+});
 
-function QuestEvent(/* _QUEST_EV_* */ type, priv) {
+function QuestEvent(/* _QUEST_EVENTS.* */ type, priv) {
 	this.type = type;
 	this.priv = (priv !== null && priv !== undefined) ? priv : null;
 }
@@ -22,7 +28,7 @@ StoryLineState.prototype.nodeForCondType = function(type, priv, /* [ QuestCond ]
 	$.each(conds, function(ix, cond) {
 		if (type !== cond.type)
 			return true;
-		if (type === _QUEST_COND_OBJECT_CLICKED &&
+		if (type === _QUEST_CONDS.OBJECT_CLICKED &&
 			priv.id !== cond.priv.id)
 			return true;
 
@@ -44,25 +50,25 @@ StoryLineState.prototype.step = function(questEvent) {
 	}
 
 	if ($.inArray(questEvent.type,
-		[_QUEST_EV_ANSWER_1_CLICKED,
-		_QUEST_EV_ANSWER_2_CLICKED,
-		_QUEST_EV_ANSWER_3_CLICKED,
-		_QUEST_EV_ANSWER_4_CLICKED]) !== -1) {
-		nextNode = this.nodeForCondType(_QUEST_COND_ANSWER_OTHER_CLICKED, null, this.currentNode.conds);
+		[_QUEST_EVENTS.ANSWER_1_CLICKED,
+		_QUEST_EVENTS.ANSWER_2_CLICKED,
+		_QUEST_EVENTS.ANSWER_3_CLICKED,
+		_QUEST_EVENTS.ANSWER_4_CLICKED]) !== -1) {
+		nextNode = this.nodeForCondType(_QUEST_CONDS.ANSWER_OTHER_CLICKED, null, this.currentNode.conds);
 		if (nextNode !== null) {
 			this.setCurrentNode(nextNode);
 			return;
 		}
 	}
 
-	nextNode = this.nodeForCondType(_QUEST_COND_NONE, null, this.currentNode.conds);
+	nextNode = this.nodeForCondType(_QUEST_CONDS.NONE, null, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
 		this.step(questEvent);
 		return;
 	}
 
-	nextNode = this.nodeForCondType(_QUEST_COND_DEFAULT, null, this.currentNode.conds);
+	nextNode = this.nodeForCondType(_QUEST_CONDS.DEFAULT, null, this.currentNode.conds);
 	if (nextNode !== null) {
 		this.setCurrentNode(nextNode);
 		return;
@@ -75,8 +81,8 @@ function StageState(questStageNode) {
 	var stageState = this;
 	stageState.storyLines = [];
 	$.each(questStageNode.conds, function(ix, questCond) {
-		if (questCond.type !== _QUEST_COND_NONE &&
-			questCond.node.type !== _QUEST_NODE_STORYLINE) {
+		if (questCond.type !== _QUEST_CONDS.NONE &&
+			questCond.node.type !== _QUEST_NODES.STORYLINE) {
 			showValidationError("Invalid outer edge from quest stage node: "
 				+ questCond.type.toString() + " " + questCond.node.type.toString());
 			return true;
@@ -90,7 +96,7 @@ StageState.prototype.eventStoryLine = function(questEvent) {
 	var stageState = this;
 	var foundStoryLineState = null;
 	$.each(stageState.storyLines, function(ix, storyLineState) {
-		if (questEvent.type == _QUEST_EV_CONTINUE) {
+		if (questEvent.type == _QUEST_EVENTS.CONTINUE) {
 			if (storyLineState.currentNode.continue) {
 				foundStoryLineState = storyLineState;
 				return false;

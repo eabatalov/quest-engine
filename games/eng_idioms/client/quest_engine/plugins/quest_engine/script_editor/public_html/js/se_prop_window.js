@@ -1,21 +1,22 @@
 ScriptEditorPropertiesWindowController = function($scope, seEvents) {
-        //Make constants accessible from ng attributes
-        $scope._QUEST_NODE_STAGE = _QUEST_NODE_STAGE;
-        $scope._QUEST_NODE_STORYLINE = _QUEST_NODE_STORYLINE;
-
-        $scope._UI_PHRASE_TYPE_SPEAK = _UI_PHRASE_TYPE_SPEAK;
-        $scope._UI_PHRASE_TYPE_THINK = _UI_PHRASE_TYPE_THINK;
+        //Make global constants accessible from $scope
+        $scope.PLAYER_ACTIONS = _PLAYER_ACTIONS;
+		$scope.UI_ACTIONS = _UI_ACTIONS;
+		$scope.UI_ACTORS = _UI_ACTORS;
+		$scope.UI_PHRASE_TYPES = _UI_PHRASE_TYPES;
+		$scope.QUEST_NODES = _QUEST_NODES;
+		$scope.QUEST_CONDS = _QUEST_CONDS;
 
         $scope.condTypes = [
-            { id: _QUEST_COND_NONE, title: 'None'},
-            { id: _QUEST_COND_OBJECT_CLICKED, title: 'Object clicked'},
-            { id: _QUEST_COND_ANSWER_1_CLICKED, title: 'Answer 1 clicked'},
-            { id: _QUEST_COND_ANSWER_2_CLICKED, title: 'Answer 2 clicked'},
-            { id: _QUEST_COND_ANSWER_3_CLICKED, title: 'Answer 3 clicked'},
-            { id: _QUEST_COND_ANSWER_4_CLICKED, title: 'Answer 4 clicked'},
-            { id: _QUEST_COND_ANSWER_OTHER_CLICKED, title: 'Answer other clicked'},
-            { id: _QUEST_COND_CONTINUE, title: 'Continue'},
-            { id: _QUEST_COND_DEFAULT, title: 'Default'}
+            { id: _QUEST_CONDS.NONE, title: 'None'},
+            { id: _QUEST_CONDS.OBJECT_CLICKED, title: 'Object clicked'},
+            { id: _QUEST_CONDS.ANSWER_1_CLICKED, title: 'Answer 1 clicked'},
+            { id: _QUEST_CONDS.ANSWER_2_CLICKED, title: 'Answer 2 clicked'},
+            { id: _QUEST_CONDS.ANSWER_3_CLICKED, title: 'Answer 3 clicked'},
+            { id: _QUEST_CONDS.ANSWER_4_CLICKED, title: 'Answer 4 clicked'},
+            { id: _QUEST_CONDS.ANSWER_OTHER_CLICKED, title: 'Answer other clicked'},
+            { id: _QUEST_CONDS.CONTINUE, title: 'Continue'},
+            { id: _QUEST_CONDS.DEFAULT, title: 'Default'}
         ];
         $scope.objToAddId = null;
         $scope.node = null;

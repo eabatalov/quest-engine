@@ -24,10 +24,10 @@ function validatePlayerAction(stageActCont) {
 	if (!_QUEST_ENGINE_VALIDATE)
 		return;
 	var playerAction = stageActCont.curStageAction().lastPlayerAction;
-	if (!(playerAction in _PLAYER_ACTION_DEFINES)) {
+	if (!(playerAction in _PLAYER_ACTIONS_SET)) {
 		showValidationError("Player action " + playerAction.toString() + "is not a valid action\n"
 			+ "Actions valid: \n"
-			+ _PLAYER_ACTION_DEFINES.toString());
+			+ JSON.stringify(_PLAYER_ACTIONS_SET));
 	}
 }
 
@@ -47,20 +47,20 @@ function validateUIAction(stageActCont) {
 	var uiAction = stageActCont.curStageAction().action;
 	var uiActor = stageActCont.curStageAction().actor;
 	var uiPhraseType = stageActCont.curStageAction().phraseType;
-	if (!(uiAction in _UI_ACTION_DEFINES)) {
+	if (!(uiAction in _UI_ACTIONS_SET)) {
 		showValidationError("UI action " + uiAction.toString() + "is not a valid UI action\n"
 			+ "UI actions valid: \n"
-			+ JSON.stringify(_UI_ACTION_DEFINES));
+			+ JSON.stringify(_UI_ACTIONS_SET));
 	}
-	if (!(uiActor in _UI_ACTOR_DEFINES)) {
+	if ((uiAction === _UI_ACTIONS.PHRASE || uiAction === _UI_ACTIONS.QUIZ) && !(uiActor in _UI_ACTORS_SET)) {
 		showValidationError("UI actor " + uiActor.toString() + "is not a valid UI actor\n"
 			+ "UI actors valid: \n"
-			+ JSON.stringify(_UI_ACTOR_DEFINES));
+			+ JSON.stringify(_UI_ACTORS_SET));
 	}
-	if (!(uiPhraseType in _UI_PHRASE_TYPE_DEFINES)) {
+	if ((uiAction === _UI_ACTIONS.PHRASE || uiAction === _UI_ACTIONS.QUIZ) && !(uiPhraseType in _UI_PHRASE_TYPES_SET)) {
 		showValidationError("UI phrase type " + uiPhraseType.toString() + "is not a valid phrase type\n"
 			+ "UI phrase types valid: \n"
-			+ JSON.stringify(_UI_PHRASE_TYPE_DEFINES));
+			+ JSON.stringify(_UI_PHRASE_TYPES_SET));
 	}
 }
 
@@ -90,6 +90,19 @@ function dumpQuestEvent(questEvent) {
 	console.log("==QUEST EVENT==\n"
 		+ JSON.stringify(questEvent)
 	);
+}
+
+function validateQuestEvent(questEvent) {
+	if (!_QUEST_ENGINE_VALIDATE)
+		return;
+	if (!(questEvent.type in _QUEST_EVENTS_SET)) {
+		showValidationError("Quest event " + JSON.stringify(questEvent) + " is not a valid quest event\n"
+			+ "Events valid: \n"
+			+ JSON.stringify(_QUEST_EVENTS_SET));
+	}
+	if (questEvent.type === _QUEST_EVENTS.OBJECT_CLICKED && (typeof questEvent.priv.id === "undefined")) {
+		showValidationError("Quest event " + JSON.stringify(questEvent) + "should have priv.id values set");
+	}
 }
 
 function dumpQuestNode(questNode) {

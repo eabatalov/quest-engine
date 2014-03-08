@@ -68,7 +68,7 @@ TreeCompiler.prototype.outputCode = function() {
 
     var stageObjectData = null;
     $.each(this.objDatas, function(id, objData) {
-        if (objData.type === this.OBJ_TYPE.NODE && objData.obj.type === _QUEST_NODE_STAGE) {
+        if (objData.type === this.OBJ_TYPE.NODE && objData.obj.type === _QUEST_NODES.STAGE) {
             stageObjectData = objData;
             return false;
         }
@@ -120,17 +120,17 @@ TreeCompiler.prototype.genNodeCreationCode = function(node) {
         + this.jsIntConst(node.type) + ", "
         + this.jsBoolConst(node.continue) + ", ";
     switch(node.type) {
-        case _QUEST_NODE_NONE:
+        case _QUEST_NODES.NONE:
             code += "null";
         break;
-        case _QUEST_NODE_PHRASE:
+        case _QUEST_NODES.PHRASE:
             code += "{ "
                 + "id : " + this.jsStringConst(node.props.id)
                 + ", text : " + this.jsStringConst(node.props.text)
                 + ", phraseType : " + this.jsStringConst(node.props.phraseType)
                 + " }";
         break;
-        case _QUEST_NODE_QUIZ:
+        case _QUEST_NODES.QUIZ:
             code += "{ "
                 + "id : " + this.jsStringConst(node.props.id)
                 + ", text : " + this.jsStringConst(node.props.text)
@@ -143,26 +143,26 @@ TreeCompiler.prototype.genNodeCreationCode = function(node) {
                 + "]"
                 + " }";
         break;
-        case _QUEST_NODE_ANIM:
+        case _QUEST_NODES.ANIM:
             code += "{ "
                 + "id : " + this.jsStringConst(node.props.id)
                 + ", name : " + this.jsStringConst(node.props.name)
                 + " }";
         break;
-        case _QUEST_NODE_WAIT:
+        case _QUEST_NODES.WAIT:
             code += "{ "
                 + "secs : " + this.jsIntConst(node.props.secs)
                 + " }";
         break;
-        case _QUEST_NODE_STAGE_CLEAR:
+        case _QUEST_NODES.STAGE_CLEAR:
             code += "null";
         break;
-        case _QUEST_NODE_STORYLINE:
+        case _QUEST_NODES.STORYLINE:
             code += "{ "
                 + "objs : " + this.jsArrayConst(node.props.objs, "string")
                 + " }";
         break;
-        case _QUEST_NODE_STAGE:
+        case _QUEST_NODES.STAGE:
             code += "{ "
                 + "name : " + this.jsStringConst(node.props.name)
                 + " }";
@@ -176,17 +176,17 @@ TreeCompiler.prototype.genCondCreationCode = function(cond) {
     var code = "new QuestCond("
         + this.jsIntConst(cond.type) + ", ";
     switch(cond.type) {
-        case _QUEST_COND_OBJECT_CLICKED:
+        case _QUEST_CONDS.OBJECT_CLICKED:
             code += "{ id : " + this.jsStringConst(cond.props.id) + " }";
         break;
-        case _QUEST_COND_NONE:
-        case _QUEST_COND_ANSWER_1_CLICKED:
-        case _QUEST_COND_ANSWER_2_CLICKED:
-        case _QUEST_COND_ANSWER_3_CLICKED:
-        case _QUEST_COND_ANSWER_4_CLICKED:
-        case _QUEST_COND_ANSWER_OTHER_CLICKED:
-        case _QUEST_COND_CONTINUE:
-        case _QUEST_COND_DEFAULT:
+        case _QUEST_CONDS.NONE:
+        case _QUEST_CONDS.ANSWER_1_CLICKED:
+        case _QUEST_CONDS.ANSWER_2_CLICKED:
+        case _QUEST_CONDS.ANSWER_3_CLICKED:
+        case _QUEST_CONDS.ANSWER_4_CLICKED:
+        case _QUEST_CONDS.ANSWER_OTHER_CLICKED:
+        case _QUEST_CONDS.CONTINUE:
+        case _QUEST_CONDS.DEFAULT:
             code += "null";
         break;
     }

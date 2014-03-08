@@ -53,6 +53,7 @@ QuestEngine.prototype.playerActionExec = function(stageActCont) {
 	stageActCont.curStageAction().clearOutFields();
 
 	var questEvent = this.toQuestEvent(stageActCont.curStageAction());
+	validateQuestEvent(questEvent);
 	dumpQuestEvent(questEvent);
 	var questNode =
 		this.questInterpr.step(stageActCont.curStageName, questEvent);
@@ -67,30 +68,30 @@ QuestEngine.prototype.toQuestEvent = function(stageAct) {
 	var questEvent = null;
 
 	switch(stageAct.lastPlayerAction) {
-		case _PLAYER_ACTION_PLAYER_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_OBJECT_CLICKED, { id : _QUEST_PLAYER_ID });
+		case _PLAYER_ACTIONS.PLAYER_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.OBJECT_CLICKED, { id : _QUEST_PLAYER_ID });
 		break;
-		case _PLAYER_ACTION_NPC_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_OBJECT_CLICKED, { id : stageAct.lastActionTargetId });
+		case _PLAYER_ACTIONS.NPC_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.OBJECT_CLICKED, { id : stageAct.lastActionTargetId });
 		break;
-		case  _PLAYER_ACTION_ANSWER1_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_ANSWER_1_CLICKED,
+		case  _PLAYER_ACTIONS.ANSWER1_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.ANSWER_1_CLICKED,
 				{ id : stageAct.lastActionTargetId });
 		break;
-		case _PLAYER_ACTION_ANSWER2_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_ANSWER_2_CLICKED,
+		case _PLAYER_ACTIONS.ANSWER2_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.ANSWER_2_CLICKED,
 				{ id : stageAct.lastActionTargetId });
 		break;
-		case _PLAYER_ACTION_ANSWER3_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_ANSWER_3_CLICKED,
+		case _PLAYER_ACTIONS.ANSWER3_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.ANSWER_3_CLICKED,
 				{ id : stageAct.lastActionTargetId });
 		break;
-		case _PLAYER_ACTION_ANSWER4_CLICKED:
-			questEvent = new QuestEvent(_QUEST_EV_ANSWER_4_CLICKED,
+		case _PLAYER_ACTIONS.ANSWER4_CLICKED:
+			questEvent = new QuestEvent(_QUEST_EVENTS.ANSWER_4_CLICKED,
 				{ id : stageAct.lastActionTargetId });
 		break;
-		case  _PLAYER_ACTION_CONTINUE:
-			questEvent = new QuestEvent(_QUEST_COND_CONTINUE);
+		case  _PLAYER_ACTIONS.CONTINUE:
+			questEvent = new QuestEvent(_QUEST_EVENTS.CONTINUE);
 		break;
 		default:
 			console.log("Error. Invalid player stage action type type: " + stageAct.lastPlayerAction);
@@ -101,18 +102,18 @@ QuestEngine.prototype.toQuestEvent = function(stageAct) {
 QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 	var setActorInfo = false;
 	switch(questNode.type) {
-		case _QUEST_NODE_NONE:
-		case _QUEST_NODE_STORYLINE:
-			stageAct.action = _UI_ACTION_NONE;
+		case _QUEST_NODES.NONE:
+		case _QUEST_NODES.STORYLINE:
+			stageAct.action = _UI_ACTIONS.NONE;
 		break;
-		case _QUEST_NODE_PHRASE:
-			stageAct.action = _UI_ACTION_PHRASE;
+		case _QUEST_NODES.PHRASE:
+			stageAct.action = _UI_ACTIONS.PHRASE;
 			stageAct.text = questNode.priv.text;
 			stageAct.phraseType = questNode.priv.phraseType;
 			setActorInfo = true;
 		break;
-		case _QUEST_NODE_QUIZ:
-			stageAct.action = _UI_ACTION_QUIZ;
+		case _QUEST_NODES.QUIZ:
+			stageAct.action = _UI_ACTIONS.QUIZ;
 			stageAct.text = questNode.priv.text;
 			stageAct.phraseType = questNode.priv.phraseType;
 			stageAct.answer1Text = questNode.priv.ans[0];
@@ -121,21 +122,21 @@ QuestEngine.prototype.fillStageAction = function(stageAct, questNode) {
 			stageAct.answer4Text = questNode.priv.ans[3];
 			setActorInfo = true;
 		break;
-		case _QUEST_NODE_ANIM:
-			stageAct.action = _UI_ACTION_ANIMATION;	
+		case _QUEST_NODES.ANIM:
+			stageAct.action = _UI_ACTIONS.ANIMATION;	
 			stageAct.animationName = questNode.priv.name;
 			setActorInfo = true;
 		break;
-		case _QUEST_NODE_WAIT:
-			stageAct.action = _UI_ACTION_DELAY;
+		case _QUEST_NODES.WAIT:
+			stageAct.action = _UI_ACTIONS.DELAY;
 			stageAct.delay = questNode.priv.secs;
 		break;
-		case _QUEST_NODE_STAGE_CLEAR:
-			stageAct.action = _UI_ACTION_STAGE_CLEAR;
+		case _QUEST_NODES.STAGE_CLEAR:
+			stageAct.action = _UI_ACTIONS.STAGE_CLEAR;
 		break;
 		default:
 			console.log("Error. Invalid quest node type: " + questNode.type);
-			stageAct.action = _PLAYER_ACTION_INVALID;
+			stageAct.action = _UI_ACTIONS.NONE;
 	}
 	if (setActorInfo) {
 		stageAct.actor = questNode.priv.id === _QUEST_PLAYER_ID ? "PLAYER" : "NPC";
