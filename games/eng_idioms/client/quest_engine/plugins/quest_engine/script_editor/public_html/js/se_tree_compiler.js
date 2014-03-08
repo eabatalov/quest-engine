@@ -16,10 +16,6 @@ TreeCompiler.prototype.uploadCompiledScript = function(scriptText) {
 	saveAs(scriptAsBlob, "story.js");
 };
 
-TreeCompiler.prototype.destroyClickedScriptLink = function(event) {
-	document.body.removeChild(event.target);
-};
-
 TreeCompiler.prototype.OBJ_TYPE = {
 	NODE : 1,
 	COND : 2
@@ -259,7 +255,7 @@ TreeCompiler.prototype.jsBoolConst = function(val) {
 	if (val === true)
 		return "true";
 	else if (val === false)
-		return false;
+		return "false";
 	else
 		throw new CompilationInternalError(val.toString() + " was passed as boolean constant");
 };
