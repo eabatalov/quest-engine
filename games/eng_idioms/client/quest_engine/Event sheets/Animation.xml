@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Animation</name>
+    <events>
+        <event-group description="" sid="5020068825746262" title="Initialization">
+            <sub-events>
+                <event-block sid="9016563247743718">
+                    <conditions>
+                        <condition id="666" name="On initialised" sid="2482119295865044" type="PlayerSCML" />
+                    </conditions>
+                    <actions>
+                        <action id="666" name="Associate object type" sid="1848717832653719" type="PlayerSCML">
+                            <param id="0" name="Object">player_eye1_right</param>
+                            <param id="1" name="Name">&quot;eye1_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="5129372548402303" type="PlayerSCML">
+                            <param id="0" name="Object">player_palm_right</param>
+                            <param id="1" name="Name">&quot;palm_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="9958633300677465" type="PlayerSCML">
+                            <param id="0" name="Object">player_hand2_right</param>
+                            <param id="1" name="Name">&quot;hand2_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="1032118890119269" type="PlayerSCML">
+                            <param id="0" name="Object">player_hand1_right</param>
+                            <param id="1" name="Name">&quot;hand1_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="7923842915934885" type="PlayerSCML">
+                            <param id="0" name="Object">player_leg1</param>
+                            <param id="1" name="Name">&quot;leg1&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="1284410239523655" type="PlayerSCML">
+                            <param id="0" name="Object">player_boots_back</param>
+                            <param id="1" name="Name">&quot;boots_back&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="6964286098696733" type="PlayerSCML">
+                            <param id="0" name="Object">player_leg2_right</param>
+                            <param id="1" name="Name">&quot;leg2_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="6972603961200714" type="PlayerSCML">
+                            <param id="0" name="Object">player_leg1_right</param>
+                            <param id="1" name="Name">&quot;leg1_right&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="9039928783024793" type="PlayerSCML">
+                            <param id="0" name="Object">player_boots</param>
+                            <param id="1" name="Name">&quot;boots&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="7602137991964949" type="PlayerSCML">
+                            <param id="0" name="Object">player_leg2</param>
+                            <param id="1" name="Name">&quot;leg2&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="3698010038328032" type="PlayerSCML">
+                            <param id="0" name="Object">player_hand1</param>
+                            <param id="1" name="Name">&quot;hand1&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="2625332063382172" type="PlayerSCML">
+                            <param id="0" name="Object">player_hand2</param>
+                            <param id="1" name="Name">&quot;hand2&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="9459501486911141" type="PlayerSCML">
+                            <param id="0" name="Object">player_palm</param>
+                            <param id="1" name="Name">&quot;palm&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="7478408976039798" type="PlayerSCML">
+                            <param id="0" name="Object">player_body</param>
+                            <param id="1" name="Name">&quot;body&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="3274168964390179" type="PlayerSCML">
+                            <param id="0" name="Object">player_belt</param>
+                            <param id="1" name="Name">&quot;belt&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="1803592165266198" type="PlayerSCML">
+                            <param id="0" name="Object">player_trunk</param>
+                            <param id="1" name="Name">&quot;trunk&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="4147114521979613" type="PlayerSCML">
+                            <param id="0" name="Object">player_head</param>
+                            <param id="1" name="Name">&quot;head&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="8677945402718181" type="PlayerSCML">
+                            <param id="0" name="Object">player_hair</param>
+                            <param id="1" name="Name">&quot;hair&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="4608238945214845" type="PlayerSCML">
+                            <param id="0" name="Object">player_eye1</param>
+                            <param id="1" name="Name">&quot;eye1&quot;</param>
+                        </action>
+                        <action id="666" name="Associate object type" sid="7200562034052872" type="PlayerSCML">
+                            <param id="0" name="Object">player_smile</param>
+                            <param id="1" name="Name">&quot;smile&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="7766762237757505" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9703341054105332">
+                    <conditions>
+                        <condition id="0" name="On function" sid="7626720183368553" type="Function">
+                            <param id="0" name="Name">&quot;InitAnim&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="Animation logic which is not changing during the game." sid="5129574936545948" title="Static">
+            <sub-events>
+                <event-block sid="5777539587902563">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3207398225884813" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="7080954568823302" type="PlayerSCML">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action id="-29" name="Move to object" sid="1588657356356786" type="PlayerSCML">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">Player</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5172423322165244">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="8312298886107587" type="System">
+                            <param id="0" name="First value">PlayerSCML.ScaleRatio</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">0.6</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set object scale ratio" sid="7159947501606788" type="PlayerSCML">
+                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="1" name="Flip X Axis">0</param>
+                            <param id="2" name="Flip Y Axis">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>flip spriter object based on direction moving</comment>
+                <event-block collapsed="1" sid="8898786671541075">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="800902968617666" type="System">
+                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set object scale ratio" sid="3395701983381331" type="PlayerSCML">
+                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="1" name="Flip X Axis">0</param>
+                            <param id="2" name="Flip Y Axis">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="1605841914584995">
+                            <conditions>
+                                <condition behavior="Platform" id="2" name="Is on floor" sid="5390806627491978" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set animation" sid="4907478550510028" type="PlayerSCML">
+                                    <param id="0" name="Animation">&quot;walk&quot;</param>
+                                    <param id="1" name="Where to start playing this animation">2</param>
+                                </action>
+                                <action id="1" name="Set playback speed ratio" sid="8431945124582623" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1" sid="2291314916084055">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="1045551031559809" type="System">
+                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Set object scale ratio" sid="6185499826058249" type="PlayerSCML">
+                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="1" name="Flip X Axis">1</param>
+                            <param id="2" name="Flip Y Axis">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="5059636285114747">
+                            <conditions>
+                                <condition behavior="Platform" id="2" name="Is on floor" sid="2648230578665906" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set animation" sid="8239498128059072" type="PlayerSCML">
+                                    <param id="0" name="Animation">&quot;walk&quot;</param>
+                                    <param id="1" name="Where to start playing this animation">2</param>
+                                </action>
+                                <action id="1" name="Set playback speed ratio" sid="2812597271578952" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="1971142016055491">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4531673329251166" type="System">
+                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="987754817533815" type="System">
+                            <param id="0" name="First value">PlayerSCML.animationName</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">&quot;idle&quot;</param>
+                        </condition>
+                        <condition behavior="Platform" id="2" name="Is on floor" sid="5849519029663861" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="6272843837328356" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;idle&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                        <action id="1" name="Set playback speed ratio" sid="1789953073672612" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>play jump start upon jump</comment>
+                <event-block sid="3055745828960736">
+                    <conditions>
+                        <condition behavior="Platform" id="5" name="On jump" sid="7511951727925546" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="8529935453945632" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                        <action id="1" name="Set playback speed ratio" sid="8732248778895321" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7054271606753436">
+                    <conditions>
+                        <condition behavior="Platform" id="6" name="On fall" sid="6941733873655419" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="4325762113441137" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                        <action id="1" name="Set playback speed ratio" sid="1867121184297969" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3510738649690126">
+                    <conditions>
+                        <condition id="0" name="On animation finished" sid="127435246747999" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="5431028080345847" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                        <action id="1" name="Set playback speed ratio" sid="2806146397783194" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5686001685424811">
+                    <conditions>
+                        <condition id="0" name="On animation finished" sid="3213461588712822" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;fall_start&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="2380793451699528" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;fall_loop&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                        <action id="1" name="Set playback speed ratio" sid="1770338876610675" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic" />
+    </events>
+</c2eventsheet>

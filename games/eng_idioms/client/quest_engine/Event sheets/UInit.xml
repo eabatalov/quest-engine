@@ -59,7 +59,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="9904846653411464">
+        <event-block collapsed="1" sid="9904846653411464">
             <conditions>
                 <condition id="0" name="On function" sid="1782576799532024" type="Function">
                     <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
@@ -242,7 +242,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="7222953450595312" title="PlayerUInit">
+        <event-group description="" sid="7222953450595312" title="PlayerUInit">
             <sub-events>
                 <event-block sid="4928173719961111">
                     <conditions>

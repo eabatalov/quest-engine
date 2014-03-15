@@ -16,6 +16,7 @@
         <plugin author="Eugene/Learzing" id="QuestActionPlugin" version="0.100000001">Quest Game Action</plugin>
         <plugin author="Eugene/learzing" id="QuestLogicPlugin" version="0.100000001">Quest Engine</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="BrashMonkey" id="Spriter" version="1">Scml</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
@@ -54,9 +55,9 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="1">
-        <object-folder expanded="1" name="Quest">
-            <object-folder expanded="1" name="NPC">
+    <object-folder expanded="0">
+        <object-folder expanded="0" name="Quest">
+            <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -598,7 +599,1396 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="1" name="Player">
+            <object-folder expanded="0" name="Player">
+                <object-folder expanded="0" name="Animation">
+                    <object-type name="player_belt" sid="610851170955573">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7820011283227196" speed="0">
+                                <frame duration="1" hotspotX="0.552083" hotspotY="0.447917">
+                                    <collision-poly>
+                                        <point x="0.385417" y="0.385417" />
+                                        <point x="0.630208" y="0.369792" />
+                                        <point x="0.942708" y="0.5" />
+                                        <point x="0.682292" y="0.682292" />
+                                        <point x="0.5" y="0.6875" />
+                                        <point x="0.333333" y="0.666667" />
+                                        <point x="0.0520833" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerSCML" sid="1927627028127503">
+                        <plugin id="Spriter" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="player_body" sid="5574174909342025">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="787445259199876" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.8">
+                                    <collision-poly>
+                                        <point x="0.196875" y="0.196875" />
+                                        <point x="0.5" y="0.171875" />
+                                        <point x="0.80625" y="0.19375" />
+                                        <point x="0.84375" y="0.5" />
+                                        <point x="0.796875" y="0.796875" />
+                                        <point x="0.5" y="0.815625" />
+                                        <point x="0.203125" y="0.796875" />
+                                        <point x="0.1625" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_boots" sid="2350442996392885">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7414836583774513" speed="0">
+                                <frame duration="1" hotspotX="0.351563" hotspotY="0.453125">
+                                    <collision-poly>
+                                        <point x="0.390625" y="0.390625" />
+                                        <point x="0.5" y="0.421875" />
+                                        <point x="0.6875" y="0.5" />
+                                        <point x="0.671875" y="0.671875" />
+                                        <point x="0.5" y="0.6875" />
+                                        <point x="0.328125" y="0.671875" />
+                                        <point x="0.195313" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_boots_back" sid="1355843441100267">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5410887832499994" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.390625" y="0.390625" />
+                                        <point x="0.5" y="0.421875" />
+                                        <point x="0.6875" y="0.5" />
+                                        <point x="0.671875" y="0.671875" />
+                                        <point x="0.5" y="0.6875" />
+                                        <point x="0.328125" y="0.671875" />
+                                        <point x="0.195313" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_eye1" sid="8557447841854906">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8200228199643693" speed="0">
+                                <frame duration="1" hotspotX="0.453125" hotspotY="0.421875">
+                                    <collision-poly>
+                                        <point x="0.375" y="0.375" />
+                                        <point x="0.5" y="0.390625" />
+                                        <point x="0.484375" y="0.484375" />
+                                        <point x="0.5" y="0.453125" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.390625" y="0.390625" />
+                                        <point x="0.5" y="0.34375" />
+                                        <point x="0.65625" y="0.34375" />
+                                        <point x="0.359375" y="0.5" />
+                                        <point x="0.453125" y="0.453125" />
+                                        <point x="0.5" y="0.4375" />
+                                        <point x="0.578125" y="0.421875" />
+                                        <point x="0.234375" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_hair" sid="7201663600006841">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6013730616994192" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.348958">
+                                    <collision-poly>
+                                        <point x="0.317708" y="0.317708" />
+                                        <point x="0.5" y="0.276042" />
+                                        <point x="0.6875" y="0.3125" />
+                                        <point x="0.869792" y="0.5" />
+                                        <point x="0.578125" y="0.578125" />
+                                        <point x="0.5" y="0.651042" />
+                                        <point x="0.307292" y="0.692708" />
+                                        <point x="0.151042" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_eye1_right" sid="1998340451459658">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9522758501531871" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.375" y="0.375" />
+                                        <point x="0.5" y="0.390625" />
+                                        <point x="0.484375" y="0.484375" />
+                                        <point x="0.5" y="0.453125" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.390625" y="0.390625" />
+                                        <point x="0.5" y="0.34375" />
+                                        <point x="0.65625" y="0.34375" />
+                                        <point x="0.359375" y="0.5" />
+                                        <point x="0.453125" y="0.453125" />
+                                        <point x="0.5" y="0.4375" />
+                                        <point x="0.578125" y="0.421875" />
+                                        <point x="0.234375" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_hand1" sid="1622587521229237">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4795341424120077" speed="0">
+                                <frame duration="1" hotspotX="0.78125" hotspotY="0.1875">
+                                    <collision-poly>
+                                        <point x="0.359375" y="0.359375" />
+                                        <point x="0.5" y="0.234375" />
+                                        <point x="0.859375" y="0.140625" />
+                                        <point x="0.40625" y="0.5" />
+                                        <point x="0.46875" y="0.46875" />
+                                        <point x="0.5" y="0.421875" />
+                                        <point x="0.109375" y="0.890625" />
+                                        <point x="0.21875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_hand1_right" sid="5162646502028412">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5946201929190393" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.359375" y="0.359375" />
+                                        <point x="0.5" y="0.234375" />
+                                        <point x="0.859375" y="0.140625" />
+                                        <point x="0.40625" y="0.5" />
+                                        <point x="0.46875" y="0.46875" />
+                                        <point x="0.5" y="0.421875" />
+                                        <point x="0.109375" y="0.890625" />
+                                        <point x="0.21875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_hand2_right" sid="2442217208486754">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="107534168327818" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.234375" y="0.234375" />
+                                        <point x="0.5" y="0.4375" />
+                                        <point x="0.53125" y="0.46875" />
+                                        <point x="0.59375" y="0.5" />
+                                        <point x="0.6875" y="0.6875" />
+                                        <point x="0.5" y="0.625" />
+                                        <point x="0.421875" y="0.578125" />
+                                        <point x="0.359375" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_hand2" sid="2814526599955185">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1063539212190807" speed="0">
+                                <frame duration="1" hotspotX="0.328125" hotspotY="0.25">
+                                    <collision-poly>
+                                        <point x="0.234375" y="0.234375" />
+                                        <point x="0.5" y="0.4375" />
+                                        <point x="0.53125" y="0.46875" />
+                                        <point x="0.59375" y="0.5" />
+                                        <point x="0.6875" y="0.6875" />
+                                        <point x="0.5" y="0.625" />
+                                        <point x="0.421875" y="0.578125" />
+                                        <point x="0.359375" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_head" sid="5763148337921733">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9554884659517846" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.8">
+                                    <collision-poly>
+                                        <point x="0.278125" y="0.278125" />
+                                        <point x="0.5" y="0.21875" />
+                                        <point x="0.715625" y="0.284375" />
+                                        <point x="0.821875" y="0.5" />
+                                        <point x="0.778125" y="0.778125" />
+                                        <point x="0.5" y="0.859375" />
+                                        <point x="0.259375" y="0.740625" />
+                                        <point x="0.171875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.8">
+                                    <collision-poly>
+                                        <point x="0.296875" y="0.296875" />
+                                        <point x="0.5" y="0.253125" />
+                                        <point x="0.7" y="0.3" />
+                                        <point x="0.85" y="0.5" />
+                                        <point x="0.7625" y="0.7625" />
+                                        <point x="0.5" y="0.85" />
+                                        <point x="0.2625" y="0.7375" />
+                                        <point x="0.16875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_leg1" sid="7444294507427865">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5560913480728518" speed="0">
+                                <frame duration="1" hotspotX="0.296875" hotspotY="0.296875">
+                                    <collision-poly>
+                                        <point x="0.25" y="0.25" />
+                                        <point x="0.5" y="0.125" />
+                                        <point x="0.625" y="0.375" />
+                                        <point x="0.703125" y="0.5" />
+                                        <point x="0.796875" y="0.796875" />
+                                        <point x="0.5" y="0.8125" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.21875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_leg2" sid="3198787616765484">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4348204988500623" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.203125">
+                                    <collision-poly>
+                                        <point x="0.34375" y="0.34375" />
+                                        <point x="0.5" y="0.09375" />
+                                        <point x="0.6875" y="0.3125" />
+                                        <point x="0.71875" y="0.5" />
+                                        <point x="0.71875" y="0.71875" />
+                                        <point x="0.5" y="0.6875" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.296875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_leg1_right" sid="5104612480150336">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1158014418647551" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.25" y="0.25" />
+                                        <point x="0.5" y="0.125" />
+                                        <point x="0.625" y="0.375" />
+                                        <point x="0.703125" y="0.5" />
+                                        <point x="0.796875" y="0.796875" />
+                                        <point x="0.5" y="0.8125" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.21875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_leg2_right" sid="6723685273631788">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6137970475765391" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.34375" y="0.34375" />
+                                        <point x="0.5" y="0.09375" />
+                                        <point x="0.6875" y="0.3125" />
+                                        <point x="0.71875" y="0.5" />
+                                        <point x="0.71875" y="0.71875" />
+                                        <point x="0.5" y="0.6875" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.296875" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_palm" sid="7883962148444121">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3381794335972552" speed="0">
+                                <frame duration="1" hotspotX="0.398438" hotspotY="0.398438">
+                                    <collision-poly>
+                                        <point x="0.359375" y="0.359375" />
+                                        <point x="0.5" y="0.265625" />
+                                        <point x="0.578125" y="0.421875" />
+                                        <point x="0.6875" y="0.5" />
+                                        <point x="0.671875" y="0.671875" />
+                                        <point x="0.5" y="0.75" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.3125" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.398438" hotspotY="0.398438">
+                                    <collision-poly>
+                                        <point x="0.367188" y="0.367188" />
+                                        <point x="0.5" y="0.3125" />
+                                        <point x="0.6875" y="0.3125" />
+                                        <point x="0.71875" y="0.5" />
+                                        <point x="0.5" y="0.640625" />
+                                        <point x="0.296875" y="0.703125" />
+                                        <point x="0.273438" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.34375" y="0.34375" />
+                                        <point x="0.5" y="0.148438" />
+                                        <point x="0.59375" y="0.40625" />
+                                        <point x="0.742188" y="0.5" />
+                                        <point x="0.65625" y="0.65625" />
+                                        <point x="0.5" y="0.75" />
+                                        <point x="0.328125" y="0.671875" />
+                                        <point x="0.257813" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_palm_right" sid="9730737088126037">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6669644297449329" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.359375" y="0.359375" />
+                                        <point x="0.5" y="0.265625" />
+                                        <point x="0.578125" y="0.421875" />
+                                        <point x="0.6875" y="0.5" />
+                                        <point x="0.671875" y="0.671875" />
+                                        <point x="0.5" y="0.75" />
+                                        <point x="0.34375" y="0.65625" />
+                                        <point x="0.3125" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.367188" y="0.367188" />
+                                        <point x="0.5" y="0.3125" />
+                                        <point x="0.6875" y="0.3125" />
+                                        <point x="0.71875" y="0.5" />
+                                        <point x="0.5" y="0.640625" />
+                                        <point x="0.296875" y="0.703125" />
+                                        <point x="0.273438" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.34375" y="0.34375" />
+                                        <point x="0.5" y="0.148438" />
+                                        <point x="0.59375" y="0.40625" />
+                                        <point x="0.742188" y="0.5" />
+                                        <point x="0.65625" y="0.65625" />
+                                        <point x="0.5" y="0.75" />
+                                        <point x="0.328125" y="0.671875" />
+                                        <point x="0.257813" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_smile" sid="192038689601394">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3852049015097208" speed="0">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.398438" y="0.398438" />
+                                        <point x="0.5" y="0.414063" />
+                                        <point x="0.601563" y="0.398438" />
+                                        <point x="0.6875" y="0.5" />
+                                        <point x="0.570313" y="0.570313" />
+                                        <point x="0.5" y="0.585938" />
+                                        <point x="0.414063" y="0.585938" />
+                                        <point x="0.203125" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.507813" y="0.507813" />
+                                        <point x="0.492188" y="0.507813" />
+                                        <point x="0.617188" y="0.5" />
+                                        <point x="0.539063" y="0.539063" />
+                                        <point x="0.5" y="0.546875" />
+                                        <point x="0.460938" y="0.539063" />
+                                        <point x="0.351563" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                    <collision-poly>
+                                        <point x="0.335938" y="0.335938" />
+                                        <point x="0.5" y="0.320313" />
+                                        <point x="0.75" y="0.25" />
+                                        <point x="0.65625" y="0.5" />
+                                        <point x="0.648438" y="0.648438" />
+                                        <point x="0.5" y="0.726563" />
+                                        <point x="0.3125" y="0.6875" />
+                                        <point x="0.257813" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="player_trunk" sid="6253496238899927">
+                        <plugin id="Sprite" />
+                        <container>
+                            <type>PlayerSCML</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_hair</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2_right</type>
+                            <type>player_hand2</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg2</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>player_belt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6740604799563142" speed="0">
+                                <frame duration="1" hotspotX="0.479167" hotspotY="0.317708">
+                                    <collision-poly>
+                                        <point x="0.260417" y="0.260417" />
+                                        <point x="0.5" y="0.28125" />
+                                        <point x="0.723958" y="0.276042" />
+                                        <point x="0.864583" y="0.5" />
+                                        <point x="0.635417" y="0.635417" />
+                                        <point x="0.5" y="0.65625" />
+                                        <point x="0.302083" y="0.697917" />
+                                        <point x="0.114583" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                </object-folder>
+                <object-folder expanded="0" name="Speech">
+                    <object-type name="PlayerAns1Bg" sid="1149573424460968">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="1697345842473624">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213293281862042" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerAns1Txt" sid="585522396544899">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="TextAutoResize" sid="1337543218418621">
+                                <behavior id="TextAutoResize" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                    </object-type>
+                    <object-type name="PlayerAns2Bg" sid="981179967951609">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="2664322318682211">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4402831604063313" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerAns2Txt" sid="237564297327457">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="TextAutoResize" sid="5467638624379248">
+                                <behavior id="TextAutoResize" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                    </object-type>
+                    <object-type name="PlayerAns3Txt" sid="7128241683588556">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="TextAutoResize" sid="5340848765991812">
+                                <behavior id="TextAutoResize" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                    </object-type>
+                    <object-type name="PlayerAns3Bg" sid="108568565687126">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="6260463639070103">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4914723057507207" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerAns4Bg" sid="7900842584350147">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="3601924759369828">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9899613098915002" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerAns4Txt" sid="8380298320961702">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="TextAutoResize" sid="4298243846706305">
+                                <behavior id="TextAutoResize" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                    </object-type>
+                    <object-type name="PlayerAnsBg" sid="3577120867528994">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="3815641274919004">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7926407920898488" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.0333333" y="0.0444444" />
+                                        <point x="0.966667" y="0.0444444" />
+                                        <point x="0.995833" y="0.5" />
+                                        <point x="0.991667" y="0.988889" />
+                                        <point x="0.00416667" y="0.994444" />
+                                        <point x="0" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerPhraseBg" sid="9740288058411121">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="5949814026384971">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4240597158861611" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0" />
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerPhraseTxt" sid="6622106021650344">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="2907425597512426">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                            <behavior-type name="TextAutoResize" sid="8290204590050255">
+                                <behavior id="TextAutoResize" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                    </object-type>
+                    <object-type name="PlayerPinPoint" sid="7544638137289643">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="9713178568695779">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
+                                <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="PlayerSpeechBg" sid="7274300587374179">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="4573905258946239">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <image-point name="Cock" x="0.872" y="0.95112" />
+                                    <collision-poly>
+                                        <point x="0.978" y="0.498982" />
+                                        <point x="0.904" y="0.90224" />
+                                        <point x="0.122" y="0.875764" />
+                                        <point x="0.032" y="0.498982" />
+                                        <point x="0.08" y="0.0814664" />
+                                        <point x="0.5" y="0.0203666" />
+                                        <point x="0.928" y="0.0733198" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                            <animation framecount="1" loop="0" name="Think" pingpong="0" repeatcount="1" repeatto="0" sid="2435783841952749" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <image-point name="Cock" x="0.872" y="0.95112" />
+                                    <collision-poly>
+                                        <point x="0.978" y="0.498982" />
+                                        <point x="0.904" y="0.90224" />
+                                        <point x="0.122" y="0.875764" />
+                                        <point x="0.032" y="0.498982" />
+                                        <point x="0.08" y="0.0814664" />
+                                        <point x="0.5" y="0.0203666" />
+                                        <point x="0.928" y="0.0733198" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                </object-folder>
                 <object-type name="Player" sid="2600527508592514">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -633,8 +2023,8 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.504587">
-                                <image-point name="SpeechOrigin" x="0.764706" y="0.0550459" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.863281">
+                                <image-point name="SpeechOrigin" x="0.765625" y="0.0546875" />
                                 <collision-poly>
                                     <point x="0.0686275" y="0.220183" />
                                     <point x="0.352941" y="0.00917429" />
@@ -644,431 +2034,6 @@
                                     <point x="0.352941" y="0.889908" />
                                     <point x="0.0490196" y="0.761468" />
                                     <point x="0.107843" y="0.477064" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerPhraseTxt" sid="6622106021650344">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="2907425597512426">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="8290204590050255">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                </object-type>
-                <object-type name="PlayerPinPoint" sid="7544638137289643">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="9713178568695779">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAns1Bg" sid="1149573424460968">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="1697345842473624">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213293281862042" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAns1Txt" sid="585522396544899">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="TextAutoResize" sid="1337543218418621">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                </object-type>
-                <object-type name="PlayerAns2Bg" sid="981179967951609">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="2664322318682211">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4402831604063313" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAns3Txt" sid="7128241683588556">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="TextAutoResize" sid="5340848765991812">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                </object-type>
-                <object-type name="PlayerAns2Txt" sid="237564297327457">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="TextAutoResize" sid="5467638624379248">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                </object-type>
-                <object-type name="PlayerAns3Bg" sid="108568565687126">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="6260463639070103">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4914723057507207" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAns4Bg" sid="7900842584350147">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="3601924759369828">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9899613098915002" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAns4Txt" sid="8380298320961702">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="TextAutoResize" sid="4298243846706305">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                </object-type>
-                <object-type name="PlayerSpeechBg" sid="7274300587374179">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="4573905258946239">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <image-point name="Cock" x="0.872" y="0.95112" />
-                                <collision-poly>
-                                    <point x="0.978" y="0.498982" />
-                                    <point x="0.904" y="0.90224" />
-                                    <point x="0.122" y="0.875764" />
-                                    <point x="0.032" y="0.498982" />
-                                    <point x="0.08" y="0.0814664" />
-                                    <point x="0.5" y="0.0203666" />
-                                    <point x="0.928" y="0.0733198" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                        <animation framecount="1" loop="0" name="Think" pingpong="0" repeatcount="1" repeatto="0" sid="2435783841952749" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <image-point name="Cock" x="0.872" y="0.95112" />
-                                <collision-poly>
-                                    <point x="0.978" y="0.498982" />
-                                    <point x="0.904" y="0.90224" />
-                                    <point x="0.122" y="0.875764" />
-                                    <point x="0.032" y="0.498982" />
-                                    <point x="0.08" y="0.0814664" />
-                                    <point x="0.5" y="0.0203666" />
-                                    <point x="0.928" y="0.0733198" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerPhraseBg" sid="9740288058411121">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="5949814026384971">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4240597158861611" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0" />
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="PlayerAnsBg" sid="3577120867528994">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="3815641274919004">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>PlayerPinPoint</type>
-                        <type>Player</type>
-                        <type>PlayerAns1Bg</type>
-                        <type>PlayerAns1Txt</type>
-                        <type>PlayerAns2Bg</type>
-                        <type>PlayerAns2Txt</type>
-                        <type>PlayerAns3Bg</type>
-                        <type>PlayerAns3Txt</type>
-                        <type>PlayerAns4Bg</type>
-                        <type>PlayerAns4Txt</type>
-                        <type>PlayerAnsBg</type>
-                        <type>PlayerPhraseBg</type>
-                        <type>PlayerPhraseTxt</type>
-                        <type>PlayerSpeechBg</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7926407920898488" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.0333333" y="0.0444444" />
-                                    <point x="0.966667" y="0.0444444" />
-                                    <point x="0.995833" y="0.5" />
-                                    <point x="0.991667" y="0.988889" />
-                                    <point x="0.00416667" y="0.994444" />
-                                    <point x="0" y="0.5" />
                                 </collision-poly>
                             </frame>
                         </animation>
@@ -1229,8 +2194,8 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
-        <event-folder expanded="0" name="Quest">
+    <event-folder expanded="1">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Initialization.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -1238,6 +2203,7 @@
             <event-sheet>ActionProc.xml</event-sheet>
             <event-sheet>UIStage.xml</event-sheet>
             <event-sheet>UIMisc.xml</event-sheet>
+            <event-sheet>Animation.xml</event-sheet>
         </event-folder>
         <event-sheet>Main.xml</event-sheet>
     </event-folder>
@@ -1254,14 +2220,19 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="0">
-        <file-folder expanded="1" name="Icons">
+    <files-folder expanded="1">
+        <file-folder expanded="0" name="Icons">
             <file name="icon-16.png" />
             <file name="icon-32.png" />
             <file name="icon-114.png" />
             <file name="icon-128.png" />
             <file name="icon-256.png" />
             <file name="loading-logo.png" />
+        </file-folder>
+        <file-folder expanded="1" name="SpriterAnimations">
+            <file name="player.scml" />
+            <file name="player.scon" />
+            <file name="player_minified.scon" />
         </file-folder>
     </files-folder>
 </c2project>
