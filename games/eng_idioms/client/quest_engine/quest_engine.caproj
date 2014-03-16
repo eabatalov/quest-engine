@@ -604,27 +604,41 @@
                     <object-type name="player_belt" sid="610851170955573">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7820011283227196" speed="0">
@@ -645,53 +659,81 @@
                     <object-type name="PlayerSCML" sid="1927627028127503">
                         <plugin id="Spriter" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="player_body" sid="5574174909342025">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="787445259199876" speed="0">
@@ -713,27 +755,41 @@
                     <object-type name="player_boots" sid="2350442996392885">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7414836583774513" speed="0">
@@ -754,27 +810,41 @@
                     <object-type name="player_boots_back" sid="1355843441100267">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5410887832499994" speed="0">
@@ -795,27 +865,41 @@
                     <object-type name="player_eye1" sid="8557447841854906">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8200228199643693" speed="0">
@@ -845,27 +929,41 @@
                     <object-type name="player_hair" sid="7201663600006841">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6013730616994192" speed="0">
@@ -887,27 +985,41 @@
                     <object-type name="player_eye1_right" sid="1998340451459658">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9522758501531871" speed="0">
@@ -937,27 +1049,41 @@
                     <object-type name="player_hand1" sid="1622587521229237">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4795341424120077" speed="0">
@@ -979,27 +1105,41 @@
                     <object-type name="player_hand1_right" sid="5162646502028412">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5946201929190393" speed="0">
@@ -1021,27 +1161,41 @@
                     <object-type name="player_hand2_right" sid="2442217208486754">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="107534168327818" speed="0">
@@ -1063,27 +1217,41 @@
                     <object-type name="player_hand2" sid="2814526599955185">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1063539212190807" speed="0">
@@ -1105,27 +1273,41 @@
                     <object-type name="player_head" sid="5763148337921733">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9554884659517846" speed="0">
@@ -1159,27 +1341,41 @@
                     <object-type name="player_leg1" sid="7444294507427865">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5560913480728518" speed="0">
@@ -1201,27 +1397,41 @@
                     <object-type name="player_leg2" sid="3198787616765484">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4348204988500623" speed="0">
@@ -1243,27 +1453,41 @@
                     <object-type name="player_leg1_right" sid="5104612480150336">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1158014418647551" speed="0">
@@ -1285,27 +1509,41 @@
                     <object-type name="player_leg2_right" sid="6723685273631788">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6137970475765391" speed="0">
@@ -1327,27 +1565,41 @@
                     <object-type name="player_palm" sid="7883962148444121">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3381794335972552" speed="0">
@@ -1392,27 +1644,41 @@
                     <object-type name="player_palm_right" sid="9730737088126037">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6669644297449329" speed="0">
@@ -1457,27 +1723,41 @@
                     <object-type name="player_smile" sid="192038689601394">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3852049015097208" speed="0">
@@ -1522,27 +1802,41 @@
                     <object-type name="player_trunk" sid="6253496238899927">
                         <plugin id="Sprite" />
                         <container>
-                            <type>PlayerSCML</type>
+                            <type>PlayerPinPoint</type>
+                            <type>Player</type>
+                            <type>PlayerAns1Bg</type>
+                            <type>PlayerAns1Txt</type>
+                            <type>PlayerAns2Bg</type>
+                            <type>PlayerAns2Txt</type>
+                            <type>PlayerAns3Bg</type>
+                            <type>PlayerAns3Txt</type>
+                            <type>PlayerAns4Bg</type>
+                            <type>PlayerAns4Txt</type>
+                            <type>PlayerAnsBg</type>
+                            <type>PlayerPhraseBg</type>
+                            <type>PlayerPhraseTxt</type>
+                            <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
                             <type>player_body</type>
                             <type>player_boots</type>
                             <type>player_boots_back</type>
                             <type>player_eye1</type>
-                            <type>player_hair</type>
                             <type>player_eye1_right</type>
+                            <type>player_hair</type>
                             <type>player_hand1</type>
                             <type>player_hand1_right</type>
-                            <type>player_hand2_right</type>
                             <type>player_hand2</type>
+                            <type>player_hand2_right</type>
                             <type>player_head</type>
                             <type>player_leg1</type>
-                            <type>player_leg2</type>
                             <type>player_leg1_right</type>
+                            <type>player_leg2</type>
                             <type>player_leg2_right</type>
                             <type>player_palm</type>
                             <type>player_palm_right</type>
                             <type>player_smile</type>
                             <type>player_trunk</type>
-                            <type>player_belt</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6740604799563142" speed="0">
@@ -1585,6 +1879,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213293281862042" speed="5">
@@ -1623,6 +1938,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns2Bg" sid="981179967951609">
@@ -1647,6 +1983,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4402831604063313" speed="5">
@@ -1685,6 +2042,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns3Txt" sid="7128241683588556">
@@ -1709,6 +2087,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns3Bg" sid="108568565687126">
@@ -1733,6 +2132,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4914723057507207" speed="5">
@@ -1771,6 +2191,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9899613098915002" speed="5">
@@ -1809,6 +2250,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAnsBg" sid="3577120867528994">
@@ -1833,6 +2295,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7926407920898488" speed="5">
@@ -1871,6 +2354,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4240597158861611" speed="5">
@@ -1903,6 +2407,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerPinPoint" sid="7544638137289643">
@@ -1927,6 +2452,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
@@ -1956,6 +2502,27 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
+                            <type>player_belt</type>
+                            <type>player_body</type>
+                            <type>player_boots</type>
+                            <type>player_boots_back</type>
+                            <type>player_eye1</type>
+                            <type>player_eye1_right</type>
+                            <type>player_hair</type>
+                            <type>player_hand1</type>
+                            <type>player_hand1_right</type>
+                            <type>player_hand2</type>
+                            <type>player_hand2_right</type>
+                            <type>player_head</type>
+                            <type>player_leg1</type>
+                            <type>player_leg1_right</type>
+                            <type>player_leg2</type>
+                            <type>player_leg2_right</type>
+                            <type>player_palm</type>
+                            <type>player_palm_right</type>
+                            <type>player_smile</type>
+                            <type>player_trunk</type>
+                            <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
@@ -2020,6 +2587,27 @@
                         <type>PlayerPhraseBg</type>
                         <type>PlayerPhraseTxt</type>
                         <type>PlayerSpeechBg</type>
+                        <type>player_belt</type>
+                        <type>player_body</type>
+                        <type>player_boots</type>
+                        <type>player_boots_back</type>
+                        <type>player_eye1</type>
+                        <type>player_eye1_right</type>
+                        <type>player_hair</type>
+                        <type>player_hand1</type>
+                        <type>player_hand1_right</type>
+                        <type>player_hand2</type>
+                        <type>player_hand2_right</type>
+                        <type>player_head</type>
+                        <type>player_leg1</type>
+                        <type>player_leg1_right</type>
+                        <type>player_leg2</type>
+                        <type>player_leg2_right</type>
+                        <type>player_palm</type>
+                        <type>player_palm_right</type>
+                        <type>player_smile</type>
+                        <type>player_trunk</type>
+                        <type>PlayerSCML</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
@@ -2036,6 +2624,9 @@
                                     <point x="0.107843" y="0.477064" />
                                 </collision-poly>
                             </frame>
+                        </animation>
+                        <animation framecount="1" loop="0" name="Empty" pingpong="0" repeatcount="1" repeatto="0" sid="4588072058149719" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -2232,7 +2823,6 @@
         <file-folder expanded="1" name="SpriterAnimations">
             <file name="player.scml" />
             <file name="player.scon" />
-            <file name="player_minified.scon" />
         </file-folder>
     </files-folder>
 </c2project>

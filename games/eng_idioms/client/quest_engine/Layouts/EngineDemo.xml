@@ -428,7 +428,7 @@
                 </instance>
                 <instance type="PlayerSCML" uid="48">
                     <properties>
-                        <scml-file>player_minified.scon</scml-file>
+                        <scml-file>player.scon</scml-file>
                         <starting-entity>player</starting-entity>
                         <starting-animation>idle</starting-animation>
                     </properties>
@@ -894,8 +894,8 @@
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
             <parallax>
-                <x>0</x>
-                <y>0</y>
+                <x>1</x>
+                <y>1</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>

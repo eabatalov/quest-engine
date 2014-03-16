@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Animation</name>
     <events>
+        <variable constant="0" name="PLAYER_ANIM_SCALING_DEFAULT" sid="4744348570009192" static="0" type="number">0</variable>
+        <variable comment="Leave it zero. != condition will force recomputation of this var." constant="0" name="PLAYER_ANIM_SCALING_CURRENT" sid="7409917232449734" static="0" type="number">0</variable>
         <event-group description="" sid="5020068825746262" title="Initialization">
             <sub-events>
                 <event-block sid="9016563247743718">
@@ -93,6 +95,19 @@
                         <action behavior="Platform" id="11" name="Set enabled" sid="7766762237757505" type="Player">
                             <param id="0" name="State">1</param>
                         </action>
+                        <action id="-9" name="Set value" sid="5088079343122227" type="System">
+                            <param id="0" name="Variable">PLAYER_ANIM_SCALING_DEFAULT</param>
+                            <param id="1" name="Value">Player.Height/(player_boots.Y - player_hair.Y + player_boots.Height)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7957489834149249" type="System">
+                            <param id="0" name="Variable">PLAYER_ANIM_SCALING_CURRENT</param>
+                            <param id="1" name="Value">PLAYER_ANIM_SCALING_DEFAULT</param>
+                        </action>
+                        <action id="2" name="Set object scale ratio" sid="1409244886592685" type="PlayerSCML">
+                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
+                            <param id="1" name="Flip X Axis">0</param>
+                            <param id="2" name="Flip Y Axis">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="9703341054105332">
@@ -116,8 +131,8 @@
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Image point (optional)">0</param>
                         </action>
-                        <action id="-29" name="Move to object" sid="1588657356356786" type="PlayerSCML">
-                            <param id="0" name="Where">0</param>
+                        <action disabled="1" id="-29" name="Move to object" sid="1588657356356786" type="PlayerSCML">
+                            <param id="0" name="Where">1</param>
                             <param id="1" name="Object">Player</param>
                         </action>
                     </actions>
@@ -127,12 +142,12 @@
                         <condition id="-8" name="Compare two values" sid="8312298886107587" type="System">
                             <param id="0" name="First value">PlayerSCML.ScaleRatio</param>
                             <param id="1" name="Comparison">1</param>
-                            <param id="2" name="Second value">0.6</param>
+                            <param id="2" name="Second value">PLAYER_ANIM_SCALING_CURRENT</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="2" name="Set object scale ratio" sid="7159947501606788" type="PlayerSCML">
-                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
                             <param id="1" name="Flip X Axis">0</param>
                             <param id="2" name="Flip Y Axis">0</param>
                         </action>
@@ -149,7 +164,7 @@
                     </conditions>
                     <actions>
                         <action id="2" name="Set object scale ratio" sid="3395701983381331" type="PlayerSCML">
-                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
                             <param id="1" name="Flip X Axis">0</param>
                             <param id="2" name="Flip Y Axis">0</param>
                         </action>
@@ -181,7 +196,7 @@
                     </conditions>
                     <actions>
                         <action id="2" name="Set object scale ratio" sid="6185499826058249" type="PlayerSCML">
-                            <param id="0" name="Scale Ratio">0.5</param>
+                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
                             <param id="1" name="Flip X Axis">1</param>
                             <param id="2" name="Flip Y Axis">0</param>
                         </action>
