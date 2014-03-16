@@ -97,7 +97,7 @@
                                         <condition id="3" name="On touched object" sid="2299257498356999" type="Touch">
                                             <param id="0" name="Object">Player</param>
                                         </condition>
-                                        <condition id="-9" name="Is visible" sid="6229130815197624" type="Player" />
+                                        <condition disabled="1" id="-9" name="Is visible" sid="6229130815197624" type="Player" />
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Call function" sid="7949244741719582" type="Function">

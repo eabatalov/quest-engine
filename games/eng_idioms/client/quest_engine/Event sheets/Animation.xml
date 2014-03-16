@@ -97,7 +97,7 @@
                         </action>
                         <action id="-9" name="Set value" sid="5088079343122227" type="System">
                             <param id="0" name="Variable">PLAYER_ANIM_SCALING_DEFAULT</param>
-                            <param id="1" name="Value">Player.Height/(player_boots.Y - player_hair.Y + player_boots.Height)</param>
+                            <param id="1" name="Value">min(Player.Height/(player_hair.Height/2+ player_trunk.Height + player_leg1.Height + player_leg2.Height/2), Player.Width/(player_hair.Width))</param>
                         </action>
                         <action id="-9" name="Set value" sid="7957489834149249" type="System">
                             <param id="0" name="Variable">PLAYER_ANIM_SCALING_CURRENT</param>
@@ -129,11 +129,7 @@
                     <actions>
                         <action id="-4" name="Set position to another object" sid="7080954568823302" type="PlayerSCML">
                             <param id="0" name="Object">Player</param>
-                            <param id="1" name="Image point (optional)">0</param>
-                        </action>
-                        <action disabled="1" id="-29" name="Move to object" sid="1588657356356786" type="PlayerSCML">
-                            <param id="0" name="Where">1</param>
-                            <param id="1" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">&quot;AnimationPoint&quot;</param>
                         </action>
                     </actions>
                 </event-block>

@@ -2611,8 +2611,9 @@
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.863281">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                                 <image-point name="SpeechOrigin" x="0.765625" y="0.0546875" />
+                                <image-point name="AnimationPoint" x="0.5" y="0.960938" />
                                 <collision-poly>
                                     <point x="0.0686275" y="0.220183" />
                                     <point x="0.352941" y="0.00917429" />
@@ -2624,9 +2625,6 @@
                                     <point x="0.107843" y="0.477064" />
                                 </collision-poly>
                             </frame>
-                        </animation>
-                        <animation framecount="1" loop="0" name="Empty" pingpong="0" repeatcount="1" repeatto="0" sid="4588072058149719" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                         </animation>
                     </animation-folder>
                 </object-type>
