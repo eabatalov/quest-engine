@@ -55,8 +55,8 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="0">
-        <object-folder expanded="0" name="Quest">
+    <object-folder expanded="1">
+        <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -84,13 +84,13 @@
                         <animation framecount="1" loop="0" name="NPCYellow" pingpong="0" repeatcount="1" repeatto="0" sid="869471652042187" speed="5">
                             <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
-                                    <point x="0.317073" y="0.218487" />
-                                    <point x="0.5" y="0.0714286" />
-                                    <point x="0.737805" y="0.5" />
-                                    <point x="0.5" y="0.655462" />
-                                    <point x="0.5" y="0.953781" />
-                                    <point x="0.439024" y="0.697479" />
-                                    <point x="0.207317" y="0.5" />
+                                    <point x="0.360283" y="0.0828938" />
+                                    <point x="0.438272" y="0" />
+                                    <point x="0.546447" y="0.0974575" />
+                                    <point x="0.555556" y="0.719021" />
+                                    <point x="0.592593" y="0.949544" />
+                                    <point x="0.377296" y="0.939005" />
+                                    <point x="0.380156" y="0.584746" />
                                 </collision-poly>
                             </frame>
                         </animation>
@@ -98,14 +98,13 @@
                             <frame duration="1" hotspotX="0.505882" hotspotY="0.5">
                                 <image-point name="SpeechOrigin" x="-0.0117647" y="0.0357143" />
                                 <collision-poly>
-                                    <point x="0.141176" y="0.133929" />
+                                    <point x="0.141176" y="0.0357147" />
                                     <point x="0.588235" y="0.00892855" />
-                                    <point x="0.917647" y="0.223214" />
-                                    <point x="0.882353" y="0.464286" />
-                                    <point x="0.764706" y="0.598214" />
-                                    <point x="0.588235" y="0.991071" />
-                                    <point x="0.270588" y="0.705357" />
-                                    <point x="0.105882" y="0.464286" />
+                                    <point x="0.952941" y="0.098214" />
+                                    <point x="1" y="0.446428" />
+                                    <point x="0.764706" y="0.991071" />
+                                    <point x="0.270588" y="1" />
+                                    <point x="0.0235294" y="0.348215" />
                                 </collision-poly>
                             </frame>
                         </animation>
@@ -113,27 +112,24 @@
                             <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                                 <image-point name="SpeechOrigin" x="0.221154" y="0.0517241" />
                                 <collision-poly>
-                                    <point x="0.288462" y="0.267241" />
-                                    <point x="0.567308" y="0.00862069" />
-                                    <point x="0.884615" y="0.232759" />
-                                    <point x="0.865385" y="0.508621" />
-                                    <point x="0.865385" y="0.775862" />
-                                    <point x="0.567308" y="0.853448" />
-                                    <point x="0.355769" y="0.698276" />
-                                    <point x="0.173077" y="0.508621" />
+                                    <point x="0.346154" y="0.00862033" />
+                                    <point x="0.923077" y="0.00862106" />
+                                    <point x="1" y="0.49138" />
+                                    <point x="0.875" y="0.982758" />
+                                    <point x="0.365384" y="1" />
+                                    <point x="0.00961538" y="0.62069" />
                                 </collision-poly>
                             </frame>
                         </animation>
                         <animation framecount="3" loop="1" name="DemoAnimation" pingpong="0" repeatcount="1" repeatto="0" sid="3940545415722682" speed="5">
                             <frame duration="3" hotspotX="0.5" hotspotY="0.5">
                                 <collision-poly>
-                                    <point x="0.317073" y="0.218487" />
-                                    <point x="0.5" y="0.0714286" />
-                                    <point x="0.737805" y="0.5" />
-                                    <point x="0.5" y="0.655462" />
-                                    <point x="0.5" y="0.953781" />
-                                    <point x="0.439024" y="0.697479" />
-                                    <point x="0.207317" y="0.5" />
+                                    <point x="0.378049" y="0" />
+                                    <point x="0.487805" y="0" />
+                                    <point x="0.560976" y="0.512605" />
+                                    <point x="0.591463" y="0.936975" />
+                                    <point x="0.378048" y="0.945379" />
+                                    <point x="0.335366" y="0.5" />
                                 </collision-poly>
                             </frame>
                             <frame duration="3" hotspotX="0.5" hotspotY="0.5">
@@ -599,8 +595,8 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="Player">
-                <object-folder expanded="0" name="Animation">
+            <object-folder expanded="1" name="Player">
+                <object-folder expanded="1" name="Animation">
                     <object-type name="player_belt" sid="610851170955573">
                         <plugin id="Sprite" />
                         <container>
@@ -2430,56 +2426,6 @@
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
-                    <object-type name="PlayerPinPoint" sid="7544638137289643">
-                        <plugin id="Sprite" />
-                        <behaviors>
-                            <behavior-type name="Pin" sid="9713178568695779">
-                                <behavior id="Pin" />
-                            </behavior-type>
-                        </behaviors>
-                        <container>
-                            <type>PlayerPinPoint</type>
-                            <type>Player</type>
-                            <type>PlayerAns1Bg</type>
-                            <type>PlayerAns1Txt</type>
-                            <type>PlayerAns2Bg</type>
-                            <type>PlayerAns2Txt</type>
-                            <type>PlayerAns3Bg</type>
-                            <type>PlayerAns3Txt</type>
-                            <type>PlayerAns4Bg</type>
-                            <type>PlayerAns4Txt</type>
-                            <type>PlayerAnsBg</type>
-                            <type>PlayerPhraseBg</type>
-                            <type>PlayerPhraseTxt</type>
-                            <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
-                            <type>PlayerSCML</type>
-                        </container>
-                        <animation-folder expanded="1">
-                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
-                                <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                            </animation>
-                        </animation-folder>
-                    </object-type>
                     <object-type name="PlayerSpeechBg" sid="7274300587374179">
                         <plugin id="Sprite" />
                         <behaviors>
@@ -2614,17 +2560,57 @@
                             <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                                 <image-point name="SpeechOrigin" x="0.765625" y="0.0546875" />
                                 <image-point name="AnimationPoint" x="0.5" y="0.960938" />
-                                <collision-poly>
-                                    <point x="0.0686275" y="0.220183" />
-                                    <point x="0.352941" y="0.00917429" />
-                                    <point x="0.705882" y="0.155963" />
-                                    <point x="0.686275" y="0.477064" />
-                                    <point x="0.696078" y="0.798165" />
-                                    <point x="0.352941" y="0.889908" />
-                                    <point x="0.0490196" y="0.761468" />
-                                    <point x="0.107843" y="0.477064" />
-                                </collision-poly>
                             </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerPinPoint" sid="7544638137289643">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin" sid="9713178568695779">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                        <type>player_belt</type>
+                        <type>player_body</type>
+                        <type>player_boots</type>
+                        <type>player_boots_back</type>
+                        <type>player_eye1</type>
+                        <type>player_eye1_right</type>
+                        <type>player_hair</type>
+                        <type>player_hand1</type>
+                        <type>player_hand1_right</type>
+                        <type>player_hand2</type>
+                        <type>player_hand2_right</type>
+                        <type>player_head</type>
+                        <type>player_leg1</type>
+                        <type>player_leg1_right</type>
+                        <type>player_leg2</type>
+                        <type>player_leg2_right</type>
+                        <type>player_palm</type>
+                        <type>player_palm_right</type>
+                        <type>player_smile</type>
+                        <type>player_trunk</type>
+                        <type>PlayerSCML</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                         </animation>
                     </animation-folder>
                 </object-type>

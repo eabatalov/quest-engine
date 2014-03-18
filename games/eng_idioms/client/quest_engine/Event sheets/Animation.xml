@@ -92,9 +92,6 @@
                             <param id="0" name="Object">player_smile</param>
                             <param id="1" name="Name">&quot;smile&quot;</param>
                         </action>
-                        <action behavior="Platform" id="11" name="Set enabled" sid="7766762237757505" type="Player">
-                            <param id="0" name="State">1</param>
-                        </action>
                         <action id="-9" name="Set value" sid="5088079343122227" type="System">
                             <param id="0" name="Variable">PLAYER_ANIM_SCALING_DEFAULT</param>
                             <param id="1" name="Value">min(Player.Height/(player_hair.Height/2+ player_trunk.Height + player_leg1.Height + player_leg2.Height/2), Player.Width/(player_hair.Width))</param>
@@ -108,26 +105,25 @@
                             <param id="1" name="Flip X Axis">0</param>
                             <param id="2" name="Flip Y Axis">0</param>
                         </action>
+                        <action id="-4" name="Set position to another object" sid="5890246426763598" type="PlayerSCML">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">&quot;AnimationPoint&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="7766762237757505" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
                     </actions>
-                </event-block>
-                <event-block sid="9703341054105332">
-                    <conditions>
-                        <condition id="0" name="On function" sid="7626720183368553" type="Function">
-                            <param id="0" name="Name">&quot;InitAnim&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions />
                 </event-block>
             </sub-events>
         </event-group>
         <event-group description="Animation logic which is not changing during the game." sid="5129574936545948" title="Static">
             <sub-events>
-                <event-block sid="5777539587902563">
+                <event-block sid="8984455808387501">
                     <conditions>
-                        <condition id="-1" name="Every tick" sid="3207398225884813" type="System" />
+                        <condition id="-1" name="Every tick" sid="8669994467646534" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-4" name="Set position to another object" sid="7080954568823302" type="PlayerSCML">
+                        <action id="-4" name="Set position to another object" sid="5558144430407876" type="PlayerSCML">
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Image point (optional)">&quot;AnimationPoint&quot;</param>
                         </action>
