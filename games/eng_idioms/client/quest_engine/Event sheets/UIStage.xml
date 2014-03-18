@@ -534,6 +534,10 @@
                                 <action id="-15" name="Set visible" sid="1056599444429625" type="PlayerSpeechBg">
                                     <param id="0" name="Visibility">1</param>
                                 </action>
+                                <action id="0" name="Call function" sid="7067417842225699" type="Function">
+                                    <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>

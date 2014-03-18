@@ -263,6 +263,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>Animation sequences</comment>
                 <event-block sid="3510738649690126">
                     <conditions>
                         <condition id="0" name="On animation finished" sid="127435246747999" type="PlayerSCML">
@@ -295,8 +296,37 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="9378639887130036">
+                    <conditions>
+                        <condition id="0" name="On animation finished" sid="3298921913599463" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;say&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set animation" sid="4315042223979397" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;idle&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic" />
+        <event-block sid="527756903709145">
+            <conditions>
+                <condition id="0" name="On function" sid="1480948700961629" type="Function">
+                    <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="4286949134509476" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set animation" sid="2583387249732618" type="PlayerSCML">
+                    <param id="0" name="Animation">&quot;say&quot;</param>
+                    <param id="1" name="Where to start playing this animation">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
