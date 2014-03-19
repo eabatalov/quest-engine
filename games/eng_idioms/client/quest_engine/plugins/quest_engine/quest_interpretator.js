@@ -8,9 +8,12 @@ _QUEST_EVENTS = {
 	ANSWER_4_CLICKED : _QUEST_CONDS.ANSWER_4_CLICKED, // priv : { id : String }
 	CONTINUE : _QUEST_CONDS.CONTINUE
 };
-_QUEST_EVENTS_SET = {};
-$.each(_QUEST_EVENTS, function(name, value) {
-	_QUEST_EVENTS_SET[value] = true;
+_QUEST_EVENTS_SET = {};
+
+$.each(_QUEST_EVENTS, function(name, value) {
+
+	_QUEST_EVENTS_SET[value] = true;
+
 });
 
 function QuestEvent(/* _QUEST_EVENTS.* */ type, priv) {

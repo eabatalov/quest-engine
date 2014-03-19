@@ -56,7 +56,7 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Quest">
+        <object-folder expanded="0" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -595,8 +595,8 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="1" name="Player">
-                <object-folder expanded="1" name="Animation">
+            <object-folder expanded="0" name="Player">
+                <object-folder expanded="0" name="Animation">
                     <object-type name="player_belt" sid="610851170955573">
                         <plugin id="Sprite" />
                         <container>
@@ -2506,6 +2506,7 @@
                     <plugin id="Sprite" />
                     <instance-variables>
                         <instance-variable name="CurrentStage" sid="6365041148167288" type="string" />
+                        <instance-variable comment="TRUE when player haven&apos;t recieved any commands to play some specific animation" name="IsCurrentAnimationModeAutomatic" sid="8396278435992456" type="boolean" />
                     </instance-variables>
                     <behaviors>
                         <behavior-type name="Pin" sid="7210831025845939">

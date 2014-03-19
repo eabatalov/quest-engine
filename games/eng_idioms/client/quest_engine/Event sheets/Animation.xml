@@ -5,7 +5,7 @@
     <events>
         <variable constant="0" name="PLAYER_ANIM_SCALING_DEFAULT" sid="4744348570009192" static="0" type="number">0</variable>
         <variable comment="Leave it zero. != condition will force recomputation of this var." constant="0" name="PLAYER_ANIM_SCALING_CURRENT" sid="7409917232449734" static="0" type="number">0</variable>
-        <event-group description="" sid="5020068825746262" title="Initialization">
+        <event-group collapsed="1" description="" sid="5020068825746262" title="Initialization">
             <sub-events>
                 <event-block sid="9016563247743718">
                     <conditions>
@@ -145,188 +145,219 @@
                         </action>
                     </actions>
                 </event-block>
-                <comment>flip spriter object based on direction moving</comment>
-                <event-block collapsed="1" sid="8898786671541075">
-                    <conditions>
-                        <condition id="-8" name="Compare two values" sid="800902968617666" type="System">
-                            <param id="0" name="First value">Player.Platform.VectorX</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="2" name="Set object scale ratio" sid="3395701983381331" type="PlayerSCML">
-                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
-                            <param id="1" name="Flip X Axis">0</param>
-                            <param id="2" name="Flip Y Axis">0</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block sid="1605841914584995">
-                            <conditions>
-                                <condition behavior="Platform" id="2" name="Is on floor" sid="5390806627491978" type="Player" />
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Set animation" sid="4907478550510028" type="PlayerSCML">
-                                    <param id="0" name="Animation">&quot;walk&quot;</param>
-                                    <param id="1" name="Where to start playing this animation">2</param>
-                                </action>
-                                <action id="1" name="Set playback speed ratio" sid="8431945124582623" type="PlayerSCML">
-                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block collapsed="1" sid="2291314916084055">
-                    <conditions>
-                        <condition id="-8" name="Compare two values" sid="1045551031559809" type="System">
-                            <param id="0" name="First value">Player.Platform.VectorX</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="2" name="Set object scale ratio" sid="6185499826058249" type="PlayerSCML">
-                            <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
-                            <param id="1" name="Flip X Axis">1</param>
-                            <param id="2" name="Flip Y Axis">0</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block sid="5059636285114747">
-                            <conditions>
-                                <condition behavior="Platform" id="2" name="Is on floor" sid="2648230578665906" type="Player" />
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Set animation" sid="8239498128059072" type="PlayerSCML">
-                                    <param id="0" name="Animation">&quot;walk&quot;</param>
-                                    <param id="1" name="Where to start playing this animation">2</param>
-                                </action>
-                                <action id="1" name="Set playback speed ratio" sid="2812597271578952" type="PlayerSCML">
-                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block sid="1971142016055491">
-                    <conditions>
-                        <condition id="-8" name="Compare two values" sid="4531673329251166" type="System">
-                            <param id="0" name="First value">Player.Platform.VectorX</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
-                        <condition id="-8" name="Compare two values" sid="987754817533815" type="System">
-                            <param id="0" name="First value">PlayerSCML.animationName</param>
-                            <param id="1" name="Comparison">1</param>
-                            <param id="2" name="Second value">&quot;idle&quot;</param>
-                        </condition>
-                        <condition behavior="Platform" id="2" name="Is on floor" sid="5849519029663861" type="Player" />
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set animation" sid="6272843837328356" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;idle&quot;</param>
-                            <param id="1" name="Where to start playing this animation">0</param>
-                        </action>
-                        <action id="1" name="Set playback speed ratio" sid="1789953073672612" type="PlayerSCML">
-                            <param id="0" name="Speed Ratio">1.0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>play jump start upon jump</comment>
-                <event-block sid="3055745828960736">
-                    <conditions>
-                        <condition behavior="Platform" id="5" name="On jump" sid="7511951727925546" type="Player" />
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set animation" sid="8529935453945632" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
-                            <param id="1" name="Where to start playing this animation">0</param>
-                        </action>
-                        <action id="1" name="Set playback speed ratio" sid="8732248778895321" type="PlayerSCML">
-                            <param id="0" name="Speed Ratio">1.0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="7054271606753436">
-                    <conditions>
-                        <condition behavior="Platform" id="6" name="On fall" sid="6941733873655419" type="Player" />
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set animation" sid="4325762113441137" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
-                            <param id="1" name="Where to start playing this animation">0</param>
-                        </action>
-                        <action id="1" name="Set playback speed ratio" sid="1867121184297969" type="PlayerSCML">
-                            <param id="0" name="Speed Ratio">1.0</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <comment>Animation sequences</comment>
-                <event-block sid="3510738649690126">
+                <event-block sid="9751026908280847">
                     <conditions>
-                        <condition id="0" name="On animation finished" sid="127435246747999" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                        <condition id="-8" name="Is boolean instance variable set" sid="4039202312754226" type="Player">
+                            <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>flip spriter object based on direction moving</comment>
+                        <event-block collapsed="1" sid="3008209258546219">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7908367217684909" type="System">
+                                    <param id="0" name="First value">Player.Platform.VectorX</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="2" name="Set object scale ratio" sid="3750219170647001" type="PlayerSCML">
+                                    <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
+                                    <param id="1" name="Flip X Axis">0</param>
+                                    <param id="2" name="Flip Y Axis">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="3985185361995408">
+                                    <conditions>
+                                        <condition behavior="Platform" id="2" name="Is on floor" sid="4378791190020036" type="Player" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set animation" sid="1351177413420692" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;walk&quot;</param>
+                                            <param id="1" name="Where to start playing this animation">2</param>
+                                        </action>
+                                        <action id="1" name="Set playback speed ratio" sid="8099747811586332" type="PlayerSCML">
+                                            <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1" sid="5406357282426264">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="5846899248192532" type="System">
+                                    <param id="0" name="First value">Player.Platform.VectorX</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="2" name="Set object scale ratio" sid="2900134620491703" type="PlayerSCML">
+                                    <param id="0" name="Scale Ratio">PLAYER_ANIM_SCALING_CURRENT</param>
+                                    <param id="1" name="Flip X Axis">1</param>
+                                    <param id="2" name="Flip Y Axis">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="500645977210218">
+                                    <conditions>
+                                        <condition behavior="Platform" id="2" name="Is on floor" sid="8001881969512536" type="Player" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set animation" sid="204193904746895" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;walk&quot;</param>
+                                            <param id="1" name="Where to start playing this animation">2</param>
+                                        </action>
+                                        <action id="1" name="Set playback speed ratio" sid="9458531368943897" type="PlayerSCML">
+                                            <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="2231857615780068">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="3012465634705975" type="System">
+                                    <param id="0" name="First value">Player.Platform.VectorX</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="4613759348161193" type="System">
+                                    <param id="0" name="First value">PlayerSCML.animationName</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Second value">&quot;idle&quot;</param>
+                                </condition>
+                                <condition behavior="Platform" id="2" name="Is on floor" sid="6766173060938577" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set playback speed ratio" sid="2292650369148249" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">1.0</param>
+                                </action>
+                                <action id="0" name="Set animation" sid="8836428975748409" type="PlayerSCML">
+                                    <param id="0" name="Animation">&quot;idle&quot;</param>
+                                    <param id="1" name="Where to start playing this animation">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>play jump start upon jump</comment>
+                        <event-block sid="9573781634401534">
+                            <conditions>
+                                <condition behavior="Platform" id="5" name="On jump" sid="6025160277107431" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set playback speed ratio" sid="1859870101974852" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">1.0</param>
+                                </action>
+                                <action id="0" name="Set animation" sid="2055527444399265" type="PlayerSCML">
+                                    <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                                    <param id="1" name="Where to start playing this animation">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3492703042119087">
+                            <conditions>
+                                <condition behavior="Platform" id="6" name="On fall" sid="356042676366316" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set playback speed ratio" sid="61213022274987" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">1.0</param>
+                                </action>
+                                <action id="0" name="Set animation" sid="3254273849936148" type="PlayerSCML">
+                                    <param id="0" name="Animation">&quot;jump_loop&quot;</param>
+                                    <param id="1" name="Where to start playing this animation">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="2582486241953485">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="6081880348061864" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2457611269634257">
+                            <conditions>
+                                <condition id="1" name="On any finished" sid="2249154323573507" type="PlayerSCML" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set playback speed ratio" sid="4711562451428271" type="PlayerSCML">
+                                    <param id="0" name="Speed Ratio">1.0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4226642576102869" type="Player">
+                                    <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="9378415952272741">
+                    <conditions>
+                        <condition id="0" name="On function" sid="4210626592979584" type="Function">
+                            <param id="0" name="Name">&quot;ProcAnimAuto&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="4196388134752346" type="Player">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic">
+            <sub-events>
+                <event-block sid="8945119670845163">
+                    <conditions>
+                        <condition id="0" name="On function" sid="668738160881023" type="Function">
+                            <param id="0" name="Name">&quot;AnimPlayerRun&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="8681894721691322" type="Player">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Set animation" sid="5431028080345847" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
-                            <param id="1" name="Where to start playing this animation">0</param>
+                        <action id="-13" name="Set boolean" sid="5614522424529324" type="Player">
+                            <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                            <param id="1" name="Value">0</param>
                         </action>
-                        <action id="1" name="Set playback speed ratio" sid="2806146397783194" type="PlayerSCML">
+                        <action id="1" name="Set playback speed ratio" sid="6874471233467473" type="PlayerSCML">
                             <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                        <action id="0" name="Set animation" sid="8710489600858434" type="PlayerSCML">
+                            <param id="0" name="Animation">Function.Param(1)</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="5686001685424811">
+                <event-block sid="527756903709145">
                     <conditions>
-                        <condition id="0" name="On animation finished" sid="3213461588712822" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;fall_start&quot;</param>
+                        <condition id="0" name="On function" sid="1480948700961629" type="Function">
+                            <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="4286949134509476" type="Player">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Set animation" sid="2380793451699528" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;fall_loop&quot;</param>
-                            <param id="1" name="Where to start playing this animation">0</param>
+                        <action id="-13" name="Set boolean" sid="7954753775275856" type="Player">
+                            <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                            <param id="1" name="Value">0</param>
                         </action>
-                        <action id="1" name="Set playback speed ratio" sid="1770338876610675" type="PlayerSCML">
+                        <action id="1" name="Set playback speed ratio" sid="3572047541768908" type="PlayerSCML">
                             <param id="0" name="Speed Ratio">1.0</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="9378639887130036">
-                    <conditions>
-                        <condition id="0" name="On animation finished" sid="3298921913599463" type="PlayerSCML">
+                        <action id="0" name="Set animation" sid="2583387249732618" type="PlayerSCML">
                             <param id="0" name="Animation">&quot;say&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Set animation" sid="4315042223979397" type="PlayerSCML">
-                            <param id="0" name="Animation">&quot;idle&quot;</param>
                             <param id="1" name="Where to start playing this animation">0</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic" />
-        <event-block sid="527756903709145">
-            <conditions>
-                <condition id="0" name="On function" sid="1480948700961629" type="Function">
-                    <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
-                </condition>
-                <condition id="-14" name="Pick by unique ID" sid="4286949134509476" type="Player">
-                    <param id="0" name="Unique ID">Function.Param(0)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Set animation" sid="2583387249732618" type="PlayerSCML">
-                    <param id="0" name="Animation">&quot;say&quot;</param>
-                    <param id="1" name="Where to start playing this animation">0</param>
-                </action>
-            </actions>
-        </event-block>
     </events>
 </c2eventsheet>

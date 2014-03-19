@@ -338,6 +338,7 @@
                     </properties>
                     <instance-variables>
                         <CurrentStage>Stage1</CurrentStage>
+                        <IsCurrentAnimationModeAutomatic>true</IsCurrentAnimationModeAutomatic>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
