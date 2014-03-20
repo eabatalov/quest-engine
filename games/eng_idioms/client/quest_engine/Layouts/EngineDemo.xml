@@ -447,7 +447,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_eye1_right" uid="49">
+                <instance type="PlayerEye1Right" uid="49">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -469,7 +469,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_palm_right" uid="50">
+                <instance type="PlayerPalmRight" uid="50">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -491,7 +491,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_hand2_right" uid="51">
+                <instance type="PlayerHand2Right" uid="51">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -513,7 +513,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_hand1_right" uid="52">
+                <instance type="PlayerHand1Right" uid="52">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -535,7 +535,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_leg1" uid="53">
+                <instance type="PlayerLeg1" uid="53">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -557,7 +557,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_boots_back" uid="54">
+                <instance type="PlayerBootsBack" uid="54">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -579,7 +579,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_leg2_right" uid="55">
+                <instance type="PlayerLeg2Right" uid="55">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -601,7 +601,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_leg1_right" uid="56">
+                <instance type="PlayerLegRright" uid="56">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -623,7 +623,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_boots" uid="57">
+                <instance type="PlayerBoots" uid="57">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -645,7 +645,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_leg2" uid="58">
+                <instance type="PlayerLeg2" uid="58">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -667,7 +667,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_hand1" uid="59">
+                <instance type="PlayerHand1" uid="59">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -689,7 +689,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_hand2" uid="60">
+                <instance type="PlayerHand2" uid="60">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -711,7 +711,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_palm" uid="61">
+                <instance type="PlayerPalm" uid="61">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -733,7 +733,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_body" uid="62">
+                <instance type="PlayerBody" uid="62">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -755,7 +755,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_belt" uid="63">
+                <instance type="PlayerBelt" uid="63">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -777,7 +777,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_trunk" uid="64">
+                <instance type="PlayerTrunk" uid="64">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -799,7 +799,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_head" uid="65">
+                <instance type="PlayerHead" uid="65">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -821,7 +821,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_hair" uid="66">
+                <instance type="PlayerHair" uid="66">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -843,7 +843,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_eye1" uid="67">
+                <instance type="PlayerEye1" uid="67">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -865,7 +865,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="player_smile" uid="68">
+                <instance type="PlayerSmile" uid="68">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
                         <initial-animation>Default</initial-animation>

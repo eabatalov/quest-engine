@@ -56,7 +56,7 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="0" name="Quest">
+        <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -597,7 +597,7 @@
             </object-folder>
             <object-folder expanded="0" name="Player">
                 <object-folder expanded="0" name="Animation">
-                    <object-type name="player_belt" sid="610851170955573">
+                    <object-type name="PlayerBelt" sid="610851170955573">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -614,26 +614,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -669,30 +669,30 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
-                    <object-type name="player_body" sid="5574174909342025">
+                    <object-type name="PlayerBody" sid="5574174909342025">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -709,26 +709,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -748,7 +748,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_boots" sid="2350442996392885">
+                    <object-type name="PlayerBoots" sid="2350442996392885">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -765,26 +765,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -803,7 +803,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_boots_back" sid="1355843441100267">
+                    <object-type name="PlayerBootsBack" sid="1355843441100267">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -820,26 +820,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -858,7 +858,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_eye1" sid="8557447841854906">
+                    <object-type name="PlayerEye1" sid="8557447841854906">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -875,26 +875,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -922,7 +922,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_hair" sid="7201663600006841">
+                    <object-type name="PlayerHair" sid="7201663600006841">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -939,26 +939,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -978,7 +978,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_eye1_right" sid="1998340451459658">
+                    <object-type name="PlayerEye1Right" sid="1998340451459658">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -995,26 +995,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1042,7 +1042,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_hand1" sid="1622587521229237">
+                    <object-type name="PlayerHand1" sid="1622587521229237">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1059,26 +1059,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1098,7 +1098,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_hand1_right" sid="5162646502028412">
+                    <object-type name="PlayerHand1Right" sid="5162646502028412">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1115,26 +1115,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1154,7 +1154,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_hand2_right" sid="2442217208486754">
+                    <object-type name="PlayerHand2Right" sid="2442217208486754">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1171,26 +1171,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1210,7 +1210,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_hand2" sid="2814526599955185">
+                    <object-type name="PlayerHand2" sid="2814526599955185">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1227,26 +1227,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1266,7 +1266,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_head" sid="5763148337921733">
+                    <object-type name="PlayerHead" sid="5763148337921733">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1283,26 +1283,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1334,7 +1334,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_leg1" sid="7444294507427865">
+                    <object-type name="PlayerLeg1" sid="7444294507427865">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1351,26 +1351,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1390,7 +1390,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_leg2" sid="3198787616765484">
+                    <object-type name="PlayerLeg2" sid="3198787616765484">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1407,26 +1407,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1446,7 +1446,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_leg1_right" sid="5104612480150336">
+                    <object-type name="PlayerLegRright" sid="5104612480150336">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1463,26 +1463,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1502,7 +1502,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_leg2_right" sid="6723685273631788">
+                    <object-type name="PlayerLeg2Right" sid="6723685273631788">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1519,26 +1519,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1558,7 +1558,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_palm" sid="7883962148444121">
+                    <object-type name="PlayerPalm" sid="7883962148444121">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1575,26 +1575,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1637,7 +1637,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_palm_right" sid="9730737088126037">
+                    <object-type name="PlayerPalmRight" sid="9730737088126037">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1654,26 +1654,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1716,7 +1716,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_smile" sid="192038689601394">
+                    <object-type name="PlayerSmile" sid="192038689601394">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1733,26 +1733,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1795,7 +1795,7 @@
                             </animation>
                         </animation-folder>
                     </object-type>
-                    <object-type name="player_trunk" sid="6253496238899927">
+                    <object-type name="PlayerTrunk" sid="6253496238899927">
                         <plugin id="Sprite" />
                         <container>
                             <type>PlayerPinPoint</type>
@@ -1812,26 +1812,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1875,26 +1875,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -1934,26 +1934,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
@@ -1979,26 +1979,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2038,26 +2038,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
@@ -2083,26 +2083,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
@@ -2128,26 +2128,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2187,26 +2187,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2246,26 +2246,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
@@ -2291,26 +2291,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2350,26 +2350,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2403,26 +2403,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                     </object-type>
@@ -2448,26 +2448,26 @@
                             <type>PlayerPhraseBg</type>
                             <type>PlayerPhraseTxt</type>
                             <type>PlayerSpeechBg</type>
-                            <type>player_belt</type>
-                            <type>player_body</type>
-                            <type>player_boots</type>
-                            <type>player_boots_back</type>
-                            <type>player_eye1</type>
-                            <type>player_eye1_right</type>
-                            <type>player_hair</type>
-                            <type>player_hand1</type>
-                            <type>player_hand1_right</type>
-                            <type>player_hand2</type>
-                            <type>player_hand2_right</type>
-                            <type>player_head</type>
-                            <type>player_leg1</type>
-                            <type>player_leg1_right</type>
-                            <type>player_leg2</type>
-                            <type>player_leg2_right</type>
-                            <type>player_palm</type>
-                            <type>player_palm_right</type>
-                            <type>player_smile</type>
-                            <type>player_trunk</type>
+                            <type>PlayerBelt</type>
+                            <type>PlayerBody</type>
+                            <type>PlayerBoots</type>
+                            <type>PlayerBootsBack</type>
+                            <type>PlayerEye1</type>
+                            <type>PlayerEye1Right</type>
+                            <type>PlayerHair</type>
+                            <type>PlayerHand1</type>
+                            <type>PlayerHand1Right</type>
+                            <type>PlayerHand2</type>
+                            <type>PlayerHand2Right</type>
+                            <type>PlayerHead</type>
+                            <type>PlayerLeg1</type>
+                            <type>PlayerLegRright</type>
+                            <type>PlayerLeg2</type>
+                            <type>PlayerLeg2Right</type>
+                            <type>PlayerPalm</type>
+                            <type>PlayerPalmRight</type>
+                            <type>PlayerSmile</type>
+                            <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                         </container>
                         <animation-folder expanded="1">
@@ -2534,26 +2534,26 @@
                         <type>PlayerPhraseBg</type>
                         <type>PlayerPhraseTxt</type>
                         <type>PlayerSpeechBg</type>
-                        <type>player_belt</type>
-                        <type>player_body</type>
-                        <type>player_boots</type>
-                        <type>player_boots_back</type>
-                        <type>player_eye1</type>
-                        <type>player_eye1_right</type>
-                        <type>player_hair</type>
-                        <type>player_hand1</type>
-                        <type>player_hand1_right</type>
-                        <type>player_hand2</type>
-                        <type>player_hand2_right</type>
-                        <type>player_head</type>
-                        <type>player_leg1</type>
-                        <type>player_leg1_right</type>
-                        <type>player_leg2</type>
-                        <type>player_leg2_right</type>
-                        <type>player_palm</type>
-                        <type>player_palm_right</type>
-                        <type>player_smile</type>
-                        <type>player_trunk</type>
+                        <type>PlayerBelt</type>
+                        <type>PlayerBody</type>
+                        <type>PlayerBoots</type>
+                        <type>PlayerBootsBack</type>
+                        <type>PlayerEye1</type>
+                        <type>PlayerEye1Right</type>
+                        <type>PlayerHair</type>
+                        <type>PlayerHand1</type>
+                        <type>PlayerHand1Right</type>
+                        <type>PlayerHand2</type>
+                        <type>PlayerHand2Right</type>
+                        <type>PlayerHead</type>
+                        <type>PlayerLeg1</type>
+                        <type>PlayerLegRright</type>
+                        <type>PlayerLeg2</type>
+                        <type>PlayerLeg2Right</type>
+                        <type>PlayerPalm</type>
+                        <type>PlayerPalmRight</type>
+                        <type>PlayerSmile</type>
+                        <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                     </container>
                     <animation-folder expanded="1">
@@ -2587,26 +2587,26 @@
                         <type>PlayerPhraseBg</type>
                         <type>PlayerPhraseTxt</type>
                         <type>PlayerSpeechBg</type>
-                        <type>player_belt</type>
-                        <type>player_body</type>
-                        <type>player_boots</type>
-                        <type>player_boots_back</type>
-                        <type>player_eye1</type>
-                        <type>player_eye1_right</type>
-                        <type>player_hair</type>
-                        <type>player_hand1</type>
-                        <type>player_hand1_right</type>
-                        <type>player_hand2</type>
-                        <type>player_hand2_right</type>
-                        <type>player_head</type>
-                        <type>player_leg1</type>
-                        <type>player_leg1_right</type>
-                        <type>player_leg2</type>
-                        <type>player_leg2_right</type>
-                        <type>player_palm</type>
-                        <type>player_palm_right</type>
-                        <type>player_smile</type>
-                        <type>player_trunk</type>
+                        <type>PlayerBelt</type>
+                        <type>PlayerBody</type>
+                        <type>PlayerBoots</type>
+                        <type>PlayerBootsBack</type>
+                        <type>PlayerEye1</type>
+                        <type>PlayerEye1Right</type>
+                        <type>PlayerHair</type>
+                        <type>PlayerHand1</type>
+                        <type>PlayerHand1Right</type>
+                        <type>PlayerHand2</type>
+                        <type>PlayerHand2Right</type>
+                        <type>PlayerHead</type>
+                        <type>PlayerLeg1</type>
+                        <type>PlayerLegRright</type>
+                        <type>PlayerLeg2</type>
+                        <type>PlayerLeg2Right</type>
+                        <type>PlayerPalm</type>
+                        <type>PlayerPalmRight</type>
+                        <type>PlayerSmile</type>
+                        <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                     </container>
                     <animation-folder expanded="1">
