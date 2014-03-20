@@ -146,7 +146,7 @@
                     </actions>
                 </event-block>
                 <comment>Animation sequences</comment>
-                <event-block sid="9751026908280847">
+                <event-block collapsed="1" sid="9751026908280847">
                     <conditions>
                         <condition id="-8" name="Is boolean instance variable set" sid="4039202312754226" type="Player">
                             <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
@@ -232,6 +232,7 @@
                                     <param id="2" name="Second value">&quot;idle&quot;</param>
                                 </condition>
                                 <condition behavior="Platform" id="2" name="Is on floor" sid="6766173060938577" type="Player" />
+                                <condition id="-4" name="Trigger once while true" sid="7213511100289579" type="System" />
                             </conditions>
                             <actions>
                                 <action id="1" name="Set playback speed ratio" sid="2292650369148249" type="PlayerSCML">
@@ -243,51 +244,94 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <comment>play jump start upon jump</comment>
-                        <event-block sid="9573781634401534">
-                            <conditions>
-                                <condition behavior="Platform" id="5" name="On jump" sid="6025160277107431" type="Player" />
-                            </conditions>
-                            <actions>
-                                <action id="1" name="Set playback speed ratio" sid="1859870101974852" type="PlayerSCML">
-                                    <param id="0" name="Speed Ratio">1.0</param>
-                                </action>
-                                <action id="0" name="Set animation" sid="2055527444399265" type="PlayerSCML">
-                                    <param id="0" name="Animation">&quot;jump_start&quot;</param>
-                                    <param id="1" name="Where to start playing this animation">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="3492703042119087">
-                            <conditions>
-                                <condition behavior="Platform" id="6" name="On fall" sid="356042676366316" type="Player" />
-                            </conditions>
-                            <actions>
-                                <action id="1" name="Set playback speed ratio" sid="61213022274987" type="PlayerSCML">
-                                    <param id="0" name="Speed Ratio">1.0</param>
-                                </action>
-                                <action id="0" name="Set animation" sid="3254273849936148" type="PlayerSCML">
-                                    <param id="0" name="Animation">&quot;jump_loop&quot;</param>
-                                    <param id="1" name="Where to start playing this animation">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="2582486241953485">
+                <comment>Play jump start upon jump. This events are &quot;trigger&quot; type. So we can&apos;t filter them using higher level comparasion of IsCurrentAnimModeAutomatic</comment>
+                <event-block sid="9573781634401534">
                     <conditions>
-                        <condition id="-22" name="Else" sid="6081880348061864" type="System" />
+                        <condition behavior="Platform" id="5" name="On jump" sid="6025160277107431" type="Player" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="1549861636287261" type="Player">
+                            <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set playback speed ratio" sid="1859870101974852" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                        <action id="0" name="Set animation" sid="2055527444399265" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3492703042119087">
+                    <conditions>
+                        <condition behavior="Platform" id="6" name="On fall" sid="356042676366316" type="Player" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="3806269646542443" type="Player">
+                            <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set playback speed ratio" sid="61213022274987" type="PlayerSCML">
+                            <param id="0" name="Speed Ratio">1.0</param>
+                        </action>
+                        <action id="0" name="Set animation" sid="3254273849936148" type="PlayerSCML">
+                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
+                            <param id="1" name="Where to start playing this animation">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block collapsed="1" sid="2457611269634257">
+                    <conditions>
+                        <condition id="1" name="On any finished" sid="2249154323573507" type="PlayerSCML" />
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="2457611269634257">
+                        <event-block collapsed="1" sid="8904165612258694">
                             <conditions>
-                                <condition id="1" name="On any finished" sid="2249154323573507" type="PlayerSCML" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="960461809927165" type="Player">
+                                    <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="1" name="Set playback speed ratio" sid="4711562451428271" type="PlayerSCML">
                                     <param id="0" name="Speed Ratio">1.0</param>
                                 </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5222641571058778">
+                                    <conditions>
+                                        <condition id="4" name="Compare Current Animation" sid="5415797505409752" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;jump_start&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set animation" sid="3787437544699612" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;jump_loop&quot;</param>
+                                            <param id="1" name="Where to start playing this animation">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="313983110722342">
+                                    <conditions>
+                                        <condition id="4" name="Compare Current Animation" sid="2871052175975248" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;fall_start&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set animation" sid="51866034225039" type="PlayerSCML">
+                                            <param id="0" name="Animation">&quot;fall_loop&quot;</param>
+                                            <param id="1" name="Where to start playing this animation">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="8369242373531501">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="7804417479673843" type="System" />
+                            </conditions>
+                            <actions>
                                 <action id="-13" name="Set boolean" sid="4226642576102869" type="Player">
                                     <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
                                     <param id="1" name="Value">1</param>
@@ -296,20 +340,9 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="9378415952272741">
-                    <conditions>
-                        <condition id="0" name="On function" sid="4210626592979584" type="Function">
-                            <param id="0" name="Name">&quot;ProcAnimAuto&quot;</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="4196388134752346" type="Player">
-                            <param id="0" name="Unique ID">Function.Param(0)</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic">
+        <event-group description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic">
             <sub-events>
                 <event-block sid="8945119670845163">
                     <conditions>
