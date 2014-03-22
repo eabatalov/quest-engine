@@ -1,7 +1,7 @@
 function ScriptEditor(rootScope, seEvents) {
     this.seEvents = seEvents;
 
-    this.stage = new PIXI.Stage(0xFFFFFF);
+    this.stage = new PIXI.Stage(0xFFFFFF, true);
 
     this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);
     this.pad.position.x = 0;
@@ -77,19 +77,18 @@ function ScriptEditor(rootScope, seEvents) {
     }.bind(this);
     this.pad.addChild(this.compileBtn);
 
+	this.sceneUpdater = { se : this };
+	this.sceneUpdater.up = function() {
+		this.se.renderer.render(this.se.stage);
+	};
+
     //Setup each panel object
-    this.toolbar = new Toolbar(this.panels.ltoolbar, this.seEvents);
-    this.treeEditor = new ScriptTreeEditor(rootScope, this.panels.script, this.seEvents);
-    this.treeEditor.update = this.updateStage = this.update.bind(this);
+    this.toolbar = new Toolbar(this.panels.ltoolbar, this.seEvents, this.sceneUpdater);
+    this.treeEditor = new ScriptTreeEditor(rootScope, this.panels.script, this.seEvents, this.sceneUpdater);
 
-    this.renderer.render(this.stage);
-    requestAnimFrame(this.updateStage);
+    this.sceneUpdater.up();
+	requestAnimFrame(this.sceneUpdater.up.bind(this.sceneUpdater));
 }
-
-ScriptEditor.prototype.update = function() {
-    this.renderer.render(this.stage);
-    //requestAnimFrame(this.updateStage);
-};
 
 function ScriptEditorStaticConstructor(completionCB) {
     ScriptEditor.TEXTURE_PATHS = {};

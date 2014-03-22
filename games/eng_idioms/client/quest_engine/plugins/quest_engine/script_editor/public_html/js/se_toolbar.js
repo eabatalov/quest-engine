@@ -1,4 +1,4 @@
-function ToolBarItem(type, seEvents) {
+function ToolBarItem(type, seEvents, sceneUpdater) {
     PIXI.Sprite.call(this, ToolBarItem.TEXTURES.icons[type]);
 	this.width = 56;
     this.height = 56;
@@ -7,22 +7,51 @@ function ToolBarItem(type, seEvents) {
     this.buttonMode = true;
 
     this.seEvents = seEvents;
-    //All this events should be handled in order to
-    //mouseupoutside be fired
-    this.mousedown = toolBarItemMouseDown.bind(this);
-    this.mouseup = toolBarItemMouseUp.bind(this);
-    this.mouseupoutside = toolBarItemMouseUpOutside.bind(this);
+	this.sceneUpdater = sceneUpdater;
+
+	this.dragging = {};
+	this.mousedown = this.touchstart = toolBarItemMouseDown;
+	this.mouseup = this.mouseupoutside = this.touchend =
+		this.touchendoutside = toolBarItemMouseUp;
+	this.mousemove = this.touchmove = toolBarItemMouseMove;
 }
 
-function toolBarItemMouseUp() {}
-function toolBarItemMouseDown() {}
+function toolBarItemMouseDown(intData) {
+	//store a refference to the interaction data
+	//The reason for this is because of multitouch
+	//we want to track the movement of this particular touch
+	this.alpha = 0.5;
+	this.dragging.intData = intData;
+	this.dragging.pending = true;
+	this.dragging.srcPos = this.position.clone();
+}
 
-function toolBarItemMouseUpOutside(interactionData) {
-    this.seEvents.broadcast({
-        name : "NODE_CREATE",
-        type : interactionData.target.type,
-        targetPointGlobal : interactionData.global
-    });
+function toolBarItemMouseMove(intData) {
+	if (this.dragging.pending)
+	{
+		var newPosition = this.dragging.intData.getLocalPosition(this.parent);
+		this.position.x = newPosition.x;
+		this.position.y = newPosition.y;
+		this.sceneUpdater.up();
+	}
+}
+
+function toolBarItemMouseUp(intData) {
+	if (this.dragging.pending) {
+		this.position = this.dragging.srcPos;
+
+		this.seEvents.broadcast({
+			name : "NODE_CREATE",
+			type : this.type,
+			intData : intData
+		});
+	}
+
+	this.alpha = 1;
+	this.dragging.pending = false;
+	this.dragging.intData = null;
+	this.srcPos = null;
+	this.sceneUpdater.up();
 }
 
 function ToolBarItemStaticConstructor(completionCB) {
@@ -64,25 +93,25 @@ function ToolBarItemStaticConstructor(completionCB) {
     };
     loader.load();
 }
-$(document).ready(ToolBarItemStaticConstructor);
 
-function Toolbar(parentPanel, seEvents) {
+function Toolbar(parentPanel, seEvents, sceneUpdater) {
     this.height = parentPanel.height;
     this.width = parentPanel.width;
     parentPanel.addChild(this);
 
     this.seEvents = seEvents;
+	this.sceneUpdater = sceneUpdater;
 
     var TOOL_ITEM_MARGIN = 8;
     this.icons = {};
-    this.icons.anim = new ToolBarItem(_QUEST_NODES.ANIM, this.seEvents);
-    this.icons.phrase = new ToolBarItem(_QUEST_NODES.PHRASE, this.seEvents);
-    this.icons.quiz = new ToolBarItem(_QUEST_NODES.QUIZ, this.seEvents);
-    this.icons.stage = new ToolBarItem(_QUEST_NODES.STAGE, this.seEvents);
-    this.icons.stageClear = new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, this.seEvents);
-    this.icons.storyLine = new ToolBarItem(_QUEST_NODES.STORYLINE, this.seEvents);
-    this.icons.wait = new ToolBarItem(_QUEST_NODES.WAIT, this.seEvents);
-    this.icons.none = new ToolBarItem(_QUEST_NODES.NONE, this.seEvents);
+    this.icons.anim = new ToolBarItem(_QUEST_NODES.ANIM, this.seEvents, this.sceneUpdater);
+    this.icons.phrase = new ToolBarItem(_QUEST_NODES.PHRASE, this.seEvents, this.sceneUpdater);
+    this.icons.quiz = new ToolBarItem(_QUEST_NODES.QUIZ, this.seEvents, this.sceneUpdater);
+    this.icons.stage = new ToolBarItem(_QUEST_NODES.STAGE, this.seEvents, this.sceneUpdater);
+    this.icons.stageClear = new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, this.seEvents, this.sceneUpdater);
+    this.icons.storyLine = new ToolBarItem(_QUEST_NODES.STORYLINE, this.seEvents, this.sceneUpdater);
+    this.icons.wait = new ToolBarItem(_QUEST_NODES.WAIT, this.seEvents, this.sceneUpdater);
+    this.icons.none = new ToolBarItem(_QUEST_NODES.NONE, this.seEvents, this.sceneUpdater);
 
     //Make toolbar items layout
     var ix = 0;

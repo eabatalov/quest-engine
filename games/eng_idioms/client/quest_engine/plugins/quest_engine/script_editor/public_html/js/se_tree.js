@@ -1,4 +1,4 @@
-function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
+function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, sceneUpdater) {
     PIXI.Sprite.call(this, ScriptTreeEditor.TEXTURES.bg);
     this.hitArea = new PIXI.Rectangle(0, 0, this.width, this.height);
     parentPanel.addChild(this);
@@ -10,6 +10,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
         y: -1
     };
     this.seEvents = seEvents;
+	this.sceneUpdater = sceneUpdater;
     this.setInteractive(true);
     this.mousedown = scriptTreeEditorMouseDown.bind(this);
     this.mouseup = scriptTreeEditorMouseUp.bind(this);
@@ -73,16 +74,18 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents) {
 
 function scriptTreeEditorOnSeEvent() {
     if (this.seEvents.args.name === "NODE_CREATE") {
-        var scriptAreaGlobalPt = this.parent.position;
-        var newNodePt = new PIXI.Point(
-            this.seEvents.args.targetPointGlobal.x - scriptAreaGlobalPt.x,
-            this.seEvents.args.targetPointGlobal.y - scriptAreaGlobalPt.y
-        );
-        var newNode = new SENode(this.seEvents.args.type, this.seEvents, false, this.nodes.storyLines[0],
-            this.nodes.stages[0]);
+        var newNodePt = this.seEvents.args.intData.getLocalPosition(this);
+
+		if (!this.hitArea.contains(newNodePt.x, newNodePt.y)) {
+			return;
+		}
+
+        var newNode = new SENode(this.seEvents.args.type, this.seEvents, false,
+			this.nodes.storyLines[0],
+			this.nodes.stages[0]);
         newNode.position = newNodePt;
 
-        if (newNodePt.x < 0 || newNodePt.y < 0 ||
+		if (newNodePt.x < 0 || newNodePt.y < 0 ||
             newNodePt.x > this.width - newNode.width ||
             newNodePt.y > this.height - newNode.height) {
             return;
@@ -90,7 +93,7 @@ function scriptTreeEditorOnSeEvent() {
 
         this.addChild(newNode);
         this.nodes.all.push(newNode);
-        this.update();
+        this.sceneUpdater.up();
         this.seEvents.broadcast({
             name : "NODE_PROP_EDIT",
             obj : newNode
@@ -114,7 +117,7 @@ function scriptTreeEditorMouseUp(intData) {
 
         this.conds.push(newCond);
         this.addChild(newCond);
-        this.update();
+        this.sceneUpdater.up();
 
         this.mouse.x = -1;
         this.mouse.y = -1;
@@ -140,13 +143,13 @@ function scriptTreeEditorMouseUpOutside(intData) {
 function scriptTreeEditorDeleteNode(node) {
     this.nodes.all.remove(node);
     this.removeChild(node);
-    this.update();
+    this.sceneUpdater.up();
 }
 
 function scriptTreeEditorDeleteCond(cond) {
     this.conds.remove(cond);
     this.removeChild(cond);
-    this.update();
+    this.sceneUpdater.up();
 }
 
 function ScriptTreeEditorStaticConstructor(completionCB) {
