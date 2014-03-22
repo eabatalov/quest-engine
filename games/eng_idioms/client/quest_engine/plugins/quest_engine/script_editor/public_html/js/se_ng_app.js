@@ -19,8 +19,8 @@ scriptEditorApp.config(function() {
     };
 });
 
-scriptEditorApp.run(['$rootScope', 'ScriptEditorEvents', "ScriptEditor", "TreeCompiler",
-    function($rootScope, seEvents, scriptEditor, treeCompiler) {
+scriptEditorApp.run(['ScriptEditorEvents', "ScriptEditor", "TreeCompiler",
+    function(seEvents, scriptEditor, treeCompiler) {
         this.seEvents = seEvents;
         this.scriptEditor = scriptEditor;
         this.treeCompiler = treeCompiler;
@@ -36,7 +36,7 @@ scriptEditorApp.filter('hasFieldValue', function() {
     };
 });
 
-scriptEditorApp.factory('ScriptEditorEvents',
+scriptEditorApp.factory('ScriptEditorEvents', ['$rootScope',
     function($rootScope) {
         var events = {};
 
@@ -51,19 +51,13 @@ scriptEditorApp.factory('ScriptEditorEvents',
         };
 
         return events;
-    });
+    }]);
 
-scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "Toolbar", "TreeEditor",
-    "ToolbarParentSprite", "TreeEditorParentSprite",
-    ScriptEditorFactory]);
+scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", ScriptEditorFactory]);
 
-scriptEditorApp.value("ToolbarParentSprite", new PIXI.DisplayObjectContainer());
-scriptEditorApp.factory("Toolbar", ["ToolbarParentSprite", "ScriptEditorEvents",
-    ToolbarFactory]);
+scriptEditorApp.factory("Toolbar", ["ScriptEditor", ToolbarFactory]);
 
-scriptEditorApp.value("TreeEditorParentSprite", new PIXI.DisplayObjectContainer());
-scriptEditorApp.factory("TreeEditor", ["$rootScope", "TreeEditorParentSprite", "ScriptEditorEvents",
-    TreeEditorFactory]);
+scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents',
     ScriptEditorPropertiesWindowController]);

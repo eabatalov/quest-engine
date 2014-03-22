@@ -1,4 +1,4 @@
-function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite) {
+function ScriptEditor(rootScope, seEvents) {
     this.seEvents = seEvents;
 
     this.stage = new PIXI.Stage(0xFFFFFF);
@@ -44,13 +44,13 @@ function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, tr
     $("#propsDiv").get(0).style.zindex = 1;
 
     this.panels = {};
-    this.panels.ltoolbar = toolbarParentSprite;
+    this.panels.ltoolbar = new PIXI.DisplayObjectContainer();
     this.panels.ltoolbar.position.x = LEFT_PADDING_LTB;
     this.panels.ltoolbar.position.y = TOP_PADDING;
     this.panels.ltoolbar.width = 248;
     this.panels.ltoolbar.height = this.pad.height - BOT_PADDING - TOP_PADDING;
 
-    this.panels.script = treeEditorParentSprite;
+    this.panels.script = new PIXI.DisplayObjectContainer();
     this.panels.script.position.x = this.panels.ltoolbar.position.x + this.panels.ltoolbar.width + LEFT_PADDING_SC;
     this.panels.script.position.y = TOP_PADDING;
     this.panels.script.width = SCRIPT_WIDTH;
@@ -78,8 +78,8 @@ function ScriptEditor(seEvents, leftToolbar, treeEditor, toolbarParentSprite, tr
     this.pad.addChild(this.compileBtn);
 
     //Setup each panel object
-    this.toolbar = leftToolbar;
-    this.treeEditor = treeEditor;
+    this.toolbar = new Toolbar(this.panels.ltoolbar, this.seEvents);
+    this.treeEditor = new ScriptTreeEditor(rootScope, this.panels.script, this.seEvents);
     this.treeEditor.update = this.updateStage = this.update.bind(this);
 
     this.renderer.render(this.stage);
@@ -107,7 +107,14 @@ function ScriptEditorStaticConstructor(completionCB) {
     loader.load();
 }
 
-function ScriptEditorFactory($rootScope, events, leftToolbar, treeEditor,
-    toolbarParentSprite, treeEditorParentSprite) {
-    return new ScriptEditor(events, leftToolbar, treeEditor, toolbarParentSprite, treeEditorParentSprite);
+function ScriptEditorFactory(rootScope, events) {
+    return new ScriptEditor(rootScope, events);
+}
+
+function ToolbarFactory(scriptEditor) {
+    return scriptEditor.toolbar;
+}
+
+function TreeEditorFactory(scriptEditor) {
+    return scriptEditor.treeEditor;
 };

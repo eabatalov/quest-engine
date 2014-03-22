@@ -1,5 +1,7 @@
 function ToolBarItem(type, seEvents) {
     PIXI.Sprite.call(this, ToolBarItem.TEXTURES.icons[type]);
+	this.width = 56;
+    this.height = 56;
     this.type = type;
     this.setInteractive(true);
     this.buttonMode = true;
@@ -84,7 +86,7 @@ function Toolbar(parentPanel, seEvents) {
 
     //Make toolbar items layout
     var ix = 0;
-    var maxPerColumn = 4;
+    var maxPerColumn = this.height / (this.icons.none.height + TOOL_ITEM_MARGIN);
     $.each(this.icons, function(key, icon) {
         icon.position.x = Math.floor(ix / maxPerColumn) * (TOOL_ITEM_MARGIN + icon.width);
         icon.position.y = (ix % maxPerColumn) * (TOOL_ITEM_MARGIN + icon.height);
@@ -98,7 +100,3 @@ function ToolbarStaticConstructor(completionCB) {
     Toolbar.prototype.constructor = Toolbar;
     completionCB();
 }
-
-function ToolbarFactory(toolbarParentSprite, seEvents) {
-    return new Toolbar(toolbarParentSprite, seEvents);
-};

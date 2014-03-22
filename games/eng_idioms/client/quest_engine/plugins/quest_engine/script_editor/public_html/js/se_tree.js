@@ -165,7 +165,3 @@ function ScriptTreeEditorStaticConstructor(completionCB) {
     };
     loader.load();
 }
-
-function TreeEditorFactory(rootScope, treeEditorParentSprite, seEvents) {
-    return new ScriptTreeEditor(rootScope, treeEditorParentSprite, seEvents);
-};
