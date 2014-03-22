@@ -2763,6 +2763,52 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="Sprite4" sid="8966315601222655">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9284980087906382" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="zoomInTrigger" sid="8563774610673534">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4908106919530684" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.145161" y="0.0114796" />
+                            <point x="0.5" y="0" />
+                            <point x="0.854839" y="0.0114796" />
+                            <point x="0.596774" y="0.5" />
+                            <point x="0.596774" y="0.968112" />
+                            <point x="0.5" y="0.992347" />
+                            <point x="0.403226" y="0.968112" />
+                            <point x="0.403226" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="zoomOutTrigger" sid="742426464402164">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1938586519495648" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.145161" y="0.0114796" />
+                            <point x="0.5" y="0" />
+                            <point x="0.854839" y="0.0114796" />
+                            <point x="0.596774" y="0.5" />
+                            <point x="0.596774" y="0.968112" />
+                            <point x="0.5" y="0.992347" />
+                            <point x="0.403226" y="0.968112" />
+                            <point x="0.403226" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="0">
