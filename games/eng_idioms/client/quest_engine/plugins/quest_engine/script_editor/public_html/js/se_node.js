@@ -1,10 +1,6 @@
 function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
-    PIXI.Sprite.call(this, SENode.TEXTURES.nodes[type]);
-    //Workaround to make node icons smaller
-    //because they are too big now
-    this.width = 56;
-    this.height = 56;
-    this.hitArea = this.getBounds();
+    SESpriteObject.call(this);
+    this.setDO(new PIXI.Sprite(SENode.TEXTURES.nodes[type]));
 
     this.seEvents = seEvents;
     this.type = type;
@@ -65,21 +61,19 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     }
     this.props =  props;
     this.conds = [];
-    this.setInteractive(true);
-    this.click = nodeClicked.bind(this);
+    this.do.click = nodeClicked.bind(this);
 }
+
+SENode.prototype = new SESpriteObject();
+SENode.prototype.constructor = SENode;
 
 function nodeClicked(intData) {
     if (intData.originalEvent.shiftKey) {
-        /*Looks like a PIXI bug
-        Interation manager throws exception after
-        interactive object was deleted*/
-        this.setInteractive(false);
         SENode.treeEditor.deleteNode(this);
     } else {
         this.seEvents.broadcast({
             name : "NODE_PROP_EDIT",
-            obj : intData.target
+            obj : this
         });
     }
 }
@@ -100,14 +94,14 @@ function stageTakeFromPool(objId) {
 
 function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS = { nodes : {} };
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none56.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
@@ -131,8 +125,6 @@ function SENodeStaticConstructor(completionCB) {
         SENode.TEXTURES.nodes[_QUEST_NODES.NONE] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
 
-        SENode.prototype = new PIXI.Sprite(SENode.TEXTURES.nodes[_QUEST_NODES.NONE]);
-        SENode.prototype.constructor = SENode;
         completionCB();
     };
     loader.load();

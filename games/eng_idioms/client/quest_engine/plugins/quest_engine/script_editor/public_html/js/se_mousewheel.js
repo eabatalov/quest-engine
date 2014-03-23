@@ -1,6 +1,6 @@
 function MouseWheelManager() {
 	//Make scene not scrollable and etc
-	this.useDefaultWheelEvents = false;	
+	this.useDefaultWheelEvents = true;	
 }
 
 /*
@@ -9,25 +9,25 @@ function MouseWheelManager() {
  * onInteractive should be called after object interactive events were set up
  * returns true when wnats event to propagate
  */
-MouseWheelManager.prototype.onInteractive = function(pixiObj, cb) {
+MouseWheelManager.prototype.onSEDO = function(sedo, cb) {
 	var thiz = this;
 	var isMouseOnObj = false;
 
-	var objMouseOver = pixiObj.mouseover;
-	pixiObj.mouseover = function(intData) {
+	var objMouseOver = sedo.do.mouseover;
+	sedo.do.mouseover = function(intData) {
 		isMouseOnObj = true;
 		if (objMouseOver) objMouseOver(intData);
 	};
 
-	var objMouseOut = pixiObj.mouseout;
-	pixiObj.mouseout = function(intData) {
+	var objMouseOut = sedo.mouseout;
+	sedo.do.mouseout = function(intData) {
 		isMouseOnObj = false;
 		if (objMouseOut) objMouseOut(intData);
 	}
 
 	this.onDocument(function(yDelta) {
 		if (isMouseOnObj)
-			return cb.call(pixiObj, yDelta);
+			return cb.call(sedo, yDelta);
 		else
 			return thiz.useDefaultWheelEvents;
 	});

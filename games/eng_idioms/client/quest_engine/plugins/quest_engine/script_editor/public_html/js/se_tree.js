@@ -1,22 +1,20 @@
-function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, sceneUpdater) {
-    PIXI.Sprite.call(this, ScriptTreeEditor.TEXTURES.bg);
-    this.hitArea = new PIXI.Rectangle(0, 0, this.width, this.height);
-    parentPanel.addChild(this);
+function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, sceneUpdater, mouseWheelManager) {
+    SESpriteObject.call(this);
+    this.setDO(new PIXI.Sprite(ScriptTreeEditor.TEXTURES.bg));
+    this.setParent(parentPanel);
 
     //XXX
-    //this.update is initialized externally
     this.mouse = {
         x: -1,
         y: -1
     };
     this.seEvents = seEvents;
-	this.sceneUpdater = sceneUpdater;
-    this.setInteractive(true);
-    this.mousedown = scriptTreeEditorMouseDown.bind(this);
-    this.mouseup = scriptTreeEditorMouseUp.bind(this);
-    this.mouseupoutside = scriptTreeEditorMouseUpOutside.bind(this);
-    this.deleteNode = scriptTreeEditorDeleteNode;
-    this.deleteCond = scriptTreeEditorDeleteCond;
+    this.sceneUpdater = sceneUpdater;
+    this.do.mousedown = scriptTreeEditorMouseDown.bind(this);
+    this.do.mouseup = scriptTreeEditorMouseUp.bind(this);
+    this.do.mouseupoutside = scriptTreeEditorMouseUpOutside.bind(this);
+    this.positionValidator = new SETreeEditorPositionValidator(this);
+    mouseWheelManager.onSEDO(this, seTreeEditorOnMouseWheel);
 
     //Initial script tree nodes
     this.conds = [];
@@ -27,14 +25,14 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
             { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
-    this.nodes.stages[0].x = this.width / 2;
-    this.nodes.stages[0].y = this.nodes.stages[0].height;
+    this.nodes.stages[0].setPosition(this.getWidth() / 2, this.nodes.stages[0].getHeight());
 
     this.nodes.storyLines = [
-        new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0], { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
+        new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0],
+            { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
     ];
-    this.nodes.storyLines[0].x = this.nodes.stages[0].x;
-    this.nodes.storyLines[0].y = this.nodes.stages[0].y + this.nodes.stages[0].height * 2;
+    this.nodes.storyLines[0].setPosition(this.nodes.stages[0].getX(),
+        this.nodes.stages[0].getY() + this.nodes.stages[0].getHeight() * 2);
 
     this.nodes.stages[0].conds.push(
         new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.nodes.storyLines[0], this.seEvents)
@@ -42,56 +40,89 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
 
     this.conds.push(this.nodes.stages[0].conds[0]);
     this.conds[0].setSrc(new PIXI.Point(
-        this.nodes.stages[0].x + this.nodes.stages[0].width / 2,
-        this.nodes.stages[0].y + this.nodes.stages[0].height
+        this.nodes.stages[0].getX() + this.nodes.stages[0].getWidth() / 2,
+        this.nodes.stages[0].getY() + this.nodes.stages[0].getHeight()
     ));
     this.conds[0].setDst(new PIXI.Point(
-        this.nodes.storyLines[0].x + this.nodes.storyLines[0].width / 2,
-        this.nodes.storyLines[0].y
+        this.nodes.storyLines[0].getX() + this.nodes.storyLines[0].getWidth() / 2,
+        this.nodes.storyLines[0].getY()
     ));
 
     //Register all initial nodes and conds
     $.each(this.nodes.stages, function(ix, node) {
         this.nodes.all.push(node);
-        this.addChild(node);
+        node.setParent(this);
     }.bind(this));
     $.each(this.nodes.storyLines, function(ix, node) {
         this.nodes.all.push(node);
-        this.addChild(node);
+        node.setParent(this);
     }.bind(this));
     $.each(this.conds, function(ix, cond) {
-        this.addChild(cond);
+        cond.setParent(this);
     }.bind(this));
 
     this.scope = rootScope;
     this.scope.$on('seEvent', scriptTreeEditorOnSeEvent.bind(this));
 
-    //Looks like XXX but need to inject onve instance for all
+    //Looks like XXX but need to inject one instance for all
     //the nodes and conds some way
+    //TODO use angular injector someway
     SENode.treeEditor = this;
     SECond.treeEditor = this;
+    SECond.sceneUpdater = this.sceneUpdater;
+    ToolBarItem.positionValidator = this.positionValidator;
+    SECond.positionValidator = this.positionValidator;
+}
+
+ScriptTreeEditor.prototype = new SESpriteObject();
+
+function SETreeEditorPositionValidator(seTreeEditor) {
+    /*
+     * Return true if specified rectangular object can be placed on editor.
+     * Rect bounds are passed as parameters.
+     */
+    this.validate = function(intData, wh) {
+        var rectOrigin = seTreeEditor.getLocalPosition(intData);
+
+        var overallBoundsOk = (
+            0 <= rectOrigin.x &&
+            0 <= rectOrigin.y &&
+            seTreeEditor.getWidth() >= (rectOrigin.x + wh.x) &&
+            seTreeEditor.getHeight() >= (rectOrigin.y + wh.y)
+        ) ? true : false;
+
+        if (!overallBoundsOk)
+            return false;
+
+        var NODE_MARGIN = 10;
+        var nodesOk = true;
+        var nodeHitArea = new PIXI.Rectangle(-NODE_MARGIN, -NODE_MARGIN, 0, 0);
+        $.each(seTreeEditor.nodes.all, function(ix, node) {
+            nodeHitArea.width = node.getWidth() + 2 * NODE_MARGIN;
+            nodeHitArea.height = node.getHeight() + 2 * NODE_MARGIN;
+            var rectOriginAtNode = node.getLocalPosition(intData);
+
+            if (nodeHitArea.contains(rectOriginAtNode.x, rectOriginAtNode.y) ||
+                nodeHitArea.contains(rectOriginAtNode.x + wh.x, rectOriginAtNode.y) ||
+                nodeHitArea.contains(rectOriginAtNode.x, rectOriginAtNode.y + wh.y) ||
+                nodeHitArea.contains(rectOriginAtNode.x + wh.x, rectOriginAtNode.y + wh.y)) {
+                nodesOk = false;
+                return false;
+            }
+        });
+        return nodesOk;
+    };
 }
 
 function scriptTreeEditorOnSeEvent() {
     if (this.seEvents.args.name === "NODE_CREATE") {
-        var newNodePt = this.seEvents.args.intData.getLocalPosition(this);
-
-		if (!this.hitArea.contains(newNodePt.x, newNodePt.y)) {
-			return;
-		}
-
+        //Position of new node was validated by position validator
+        var newNodePt = this.getLocalPosition(this.seEvents.args.intData);
         var newNode = new SENode(this.seEvents.args.type, this.seEvents, false,
-			this.nodes.storyLines[0],
-			this.nodes.stages[0]);
-        newNode.position = newNodePt;
-
-		if (newNodePt.x < 0 || newNodePt.y < 0 ||
-            newNodePt.x > this.width - newNode.width ||
-            newNodePt.y > this.height - newNode.height) {
-            return;
-        }
-
-        this.addChild(newNode);
+            this.nodes.storyLines[0],
+            this.nodes.stages[0]);
+        newNode.setPosition(newNodePt.x, newNodePt.y);
+        newNode.setParent(this);
         this.nodes.all.push(newNode);
         this.sceneUpdater.up();
         this.seEvents.broadcast({
@@ -101,10 +132,22 @@ function scriptTreeEditorOnSeEvent() {
     }
 }
 
+function seTreeEditorOnMouseWheel(yDelta) {
+    //alert(yDelta.toString());
+    if (yDelta > 0) {
+        this.setScale(this.getScale() + 0.1);
+    } else if (yDelta < 0) {
+        this.setScale(this.getScale() - 0.1);
+    }
+    this.sceneUpdater.up();
+    return false;
+}
+
 function scriptTreeEditorMouseDown(intData) {
     if (intData.originalEvent.ctrlKey) {
-        this.mouse.x = intData.global.x;
-        this.mouse.y = intData.global.y;
+        var src = this.getLocalPosition(intData);
+        this.mouse.x = src.x;
+        this.mouse.y = src.y;
     }
 }
 
@@ -112,11 +155,11 @@ function scriptTreeEditorMouseUp(intData) {
     if (this.mouse.x !== -1) {
         var newCond = new SECond(_QUEST_CONDS.NONE, null, this.nodes.storyLines[0], this.seEvents);
 
-        newCond.setSrc(this.parent.glbPtToIntl(this.mouse));
-        newCond.setDst(this.parent.glbPtToIntl(intData.global));
+        newCond.setSrc(new PIXI.Point(this.mouse.x, this.mouse.y));
+        newCond.setDst(this.getLocalPosition(intData));
 
         this.conds.push(newCond);
-        this.addChild(newCond);
+        newCond.setParent(this);
         this.sceneUpdater.up();
 
         this.mouse.x = -1;
@@ -132,7 +175,7 @@ function scriptTreeEditorMouseUp(intData) {
 function scriptTreeEditorMouseUpOutside(intData) {
     //Mouse up outside can be called when we "up" on some object
     //located in script tree editor area. Check it.
-    if (this.hitArea.contains(this.parent.glbPtToIntl(intData.global))) {
+    if (this.contains(this.getLocalPosition(intData))) {
         this.mouseup(intData);
     } else {
         this.mouse.x = -1;
@@ -140,15 +183,15 @@ function scriptTreeEditorMouseUpOutside(intData) {
     }
 }
 
-function scriptTreeEditorDeleteNode(node) {
+ScriptTreeEditor.prototype.deleteNode = function(node) {
     this.nodes.all.remove(node);
-    this.removeChild(node);
+    node.detachParent();
     this.sceneUpdater.up();
-}
+};
 
-function scriptTreeEditorDeleteCond(cond) {
+ScriptTreeEditor.prototype.deleteCond = function(cond) {
     this.conds.remove(cond);
-    this.removeChild(cond);
+    cond.detachParent();
     this.sceneUpdater.up();
 }
 
@@ -162,9 +205,11 @@ function ScriptTreeEditorStaticConstructor(completionCB) {
         ScriptTreeEditor.TEXTURES = {};
         ScriptTreeEditor.TEXTURES.bg =
             PIXI.Texture.fromImage(ScriptTreeEditor.TEXTURE_PATHS.bg);
-        ScriptTreeEditor.prototype = new PIXI.Sprite(ScriptTreeEditor.TEXTURES.bg);
-        ScriptTreeEditor.prototype.constructor = ScriptTreeEditor;
         completionCB();
     };
     loader.load();
+}
+
+function PositionValidatorFactory(treeEditor) {
+    return treeEditor.positionValidator;
 }

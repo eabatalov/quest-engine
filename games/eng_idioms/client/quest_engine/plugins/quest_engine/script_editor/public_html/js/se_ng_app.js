@@ -1,3 +1,8 @@
+var scriptEditorApp = null;
+
+/* Execution time dependent bootstrap code */
+function ScriptEditorBootstrap() {
+
 /*
  * ScriptEditor app bootstrap code.
  * Performs all the sync/async initialization first and then
@@ -53,11 +58,15 @@ scriptEditorApp.factory('ScriptEditorEvents', ['$rootScope',
         return events;
     }]);
 
-scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", ScriptEditorFactory]);
+scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
+
+scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "MouseWheelManager", ScriptEditorFactory]);
 
 scriptEditorApp.factory("Toolbar", ["ScriptEditor", ToolbarFactory]);
 
 scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
+
+scriptEditorApp.factory("TreeObjectPositionValidator", ["TreeEditor", PositionValidatorFactory]);
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents',
     ScriptEditorPropertiesWindowController]);
@@ -65,8 +74,6 @@ scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 
 scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
     TreeCompilerFactory]);
 
-/* Execution time dependent bootstrap code */
-function ScriptEditorBootstrap() {
     this.staticConstructorsCnt = 6;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);
     ScriptEditorStaticConstructor(constrComplCB);
@@ -77,7 +84,6 @@ function ScriptEditorBootstrap() {
     ToolbarStaticConstructor(constrComplCB);
 }
 
-seBootstrap = null;
 $(document).ready(function() {
     seBootstrap = new ScriptEditorBootstrap();
 });

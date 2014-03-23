@@ -1,5 +1,6 @@
 function SECond(/* _QUEST_CONDS.* */ type, /* SENode */ node, storyLine, seEvents, props) {
-    PIXI.Graphics.call(this);
+    SEDisplayObject.call(this);
+    this.setDO(new PIXI.Graphics());
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
     this.points.dst = new PIXI.Point(0, 0);
@@ -17,8 +18,62 @@ function SECond(/* _QUEST_CONDS.* */ type, /* SENode */ node, storyLine, seEvent
     } else {
         this.changeType(type);
     }
-    this.setInteractive(true);
-    this.click = condClicked.bind(this);
+
+    this.dragging = {};
+    this.dragging.pending = false;
+    this.dragging.circle = new PIXI.Circle(0, 0, 0);
+
+    this.do.click = condClicked.bind(this);
+    this.do.mousedown = this.do.touchstart = condMouseDown.bind(this);
+    this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
+        this.do.touchendoutside = condMouseUp.bind(this);
+    this.do.mousemove = this.touchmove = condMouseMove.bind(this);
+}
+
+SECond.prototype = new SEDisplayObject(); 
+SECond.prototype.constructor = SECond;
+
+SECond.CIRCLE_RADIUS = 5;
+
+function condMouseDown(intData) {
+    if (!this.dragging.pending) {
+        var clickPt = this.do.parent.sedo.getLocalPosition(intData);
+        this.dragging.circle.x = this.points.dst.x;
+        this.dragging.circle.y = this.points.dst.y;
+        this.dragging.circle.radius = SECond.CIRCLE_RADIUS;
+
+        if (this.dragging.circle.contains(clickPt.x, clickPt.y)) {
+            this.do.alpha = 0.5;
+            this.dragging.intData = intData;
+            this.dragging.pending = true;
+            this.dragging.srcPos = this.do.position.clone();
+        }
+    }
+}
+
+function condMouseMove(intData) {
+    if (this.dragging.pending)
+    {
+        //var wh
+        //if (!ToolBarItem.position.verify(this.dragging.intData, wh))
+        //    return;
+
+        var newPosition = this.do.parent.sedo.getLocalPosition(this.dragging.intData);
+        this.setDst(newPosition);
+        SECond.sceneUpdater.up();
+    }
+}
+
+function condMouseUp(intData) {
+    if (this.dragging.pending) {
+        //Do nothing
+    }
+
+    this.do.alpha = 1;
+    this.dragging.pending = false;
+    this.dragging.intData = null;
+    this.srcPos = null;
+    SECond.sceneUpdater.up();
 }
 
 function condChangeType(type) {
@@ -41,16 +96,16 @@ function condSetDst(point) {
 }
 
 function condDrawEdge() {
-    this.clear();
+    this.do.clear();
     var WIDTH = 5;
     var CLICK_WIDTH = WIDTH + 10;
-    this.lineStyle(WIDTH, 0x000000, 1);
-    this.moveTo(this.points.src.x, this.points.src.y);
-    this.lineTo(this.points.dst.x, this.points.dst.y);
+    this.do.lineStyle(WIDTH, 0x000000, 1);
+    this.do.moveTo(this.points.src.x, this.points.src.y);
+    this.do.lineTo(this.points.dst.x, this.points.dst.y);
 
-    this.drawCircle(this.points.dst.x, this.points.dst.y, WIDTH);
+    this.do.drawCircle(this.points.dst.x, this.points.dst.y, SECond.CIRCLE_RADIUS);
     //XXX error here
-    this.hitArea = new PIXI.Polygon([
+    this.do.hitArea = new PIXI.Polygon([
         new PIXI.Point(this.points.src.x, this.points.src.y + CLICK_WIDTH / 2),
         new PIXI.Point(this.points.src.x - CLICK_WIDTH / 2, this.points.src.y),
         new PIXI.Point(this.points.src.x, this.points.src.y - CLICK_WIDTH / 2),
@@ -65,21 +120,15 @@ function condDrawEdge() {
 
 function condClicked(intData) {
     if (intData.originalEvent.shiftKey) {
-        /*Looks like a PIXI bug
-        Interation manager throws exception after
-        interactive object was deleted*/
-        this.setInteractive(false);
         SECond.treeEditor.deleteCond(this);
     } else {
         this.seEvents.broadcast({
             name : "COND_PROP_EDIT",
-            obj : intData.target
+            obj : this
         });
     }
 }
 
 function SECondStaticConstructor(completionCB) {
-    SECond.prototype = new PIXI.Graphics();
-    SECond.prototype.constructor = SECond;
     completionCB();
 }

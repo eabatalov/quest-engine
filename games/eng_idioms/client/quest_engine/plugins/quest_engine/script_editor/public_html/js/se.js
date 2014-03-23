@@ -1,16 +1,14 @@
-function ScriptEditor(rootScope, seEvents) {
+function ScriptEditor(rootScope, seEvents, mouseWheelManager) {
     this.seEvents = seEvents;
 
     this.stage = new PIXI.Stage(0xFFFFFF, true);
 
-    this.pad = new PIXI.Sprite(ScriptEditor.TEXTURES.bg);
-    this.pad.position.x = 0;
-    this.pad.position.y = 0;
-    //this.pad.width = 1340;//1366;
-    //this.pad.height = 768;
-    this.stage.addChild(this.pad);
+    this.pad = new SESpriteObject();
+    this.pad.setDO(new PIXI.Sprite(ScriptEditor.TEXTURES.bg));
+    this.pad.setPosition(0, 0);
+    this.pad.setParent(this.stage);
 
-    this.renderer = PIXI.autoDetectRenderer(this.pad.width, this.pad.height,
+    this.renderer = PIXI.autoDetectRenderer(this.pad.getWidth(), this.pad.getHeight(),
         $("#scriptEditorCanvas").get(0));
     this.renderer.view.style.position = "absolute";
     this.renderer.view.style.width = window.innerWidth.toString() + "px";
@@ -31,63 +29,73 @@ function ScriptEditor(rootScope, seEvents) {
 
     $("#propsDiv").get(0).style.position = "absolute";
     $("#propsDiv").get(0).style.width =
-        ((PROP_WIDTH) / this.pad.width * window.innerWidth).toString() + "px";
+        ((PROP_WIDTH) / this.pad.getWidth() * window.innerWidth).toString() + "px";
     $("#propsDiv").get(0).style.height = "100%";
     $("#propsDiv").get(0).style.top = "0";
     $("#propsDiv").get(0).style.right =
-        ((PROP_RMARGIN) / this.pad.width * window.innerWidth).toString() + "px";
+        ((PROP_RMARGIN) / this.pad.getWidth() * window.innerWidth).toString() + "px";
     $("#propsDiv").get(0).style.display = "block";
     $("#propsDiv").get(0).style.paddingTop =
-        (TOP_PADDING / this.pad.height * window.innerHeight).toString() + "px";
+        (TOP_PADDING / this.pad.getHeight() * window.innerHeight).toString() + "px";
     $("#propsDiv").get(0).style.paddingBottom =
-        (BOT_PADDING / this.pad.height * window.innerHeight).toString() + "px";
+        (BOT_PADDING / this.pad.getHeight() * window.innerHeight).toString() + "px";
     $("#propsDiv").get(0).style.zindex = 1;
 
     this.panels = {};
-    this.panels.ltoolbar = new PIXI.DisplayObjectContainer();
-    this.panels.ltoolbar.position.x = LEFT_PADDING_LTB;
-    this.panels.ltoolbar.position.y = TOP_PADDING;
-    this.panels.ltoolbar.width = 248;
-    this.panels.ltoolbar.height = this.pad.height - BOT_PADDING - TOP_PADDING;
+    this.panels.ltoolbar = new SEDisplayObject();
+    this.panels.ltoolbar.setDO(new PIXI.DisplayObjectContainer());
+    this.panels.ltoolbar.setPosition(LEFT_PADDING_LTB, TOP_PADDING);
+    this.panels.ltoolbar.setWH(
+        248,
+        this.pad.getHeight() - BOT_PADDING - TOP_PADDING
+    );
 
-    this.panels.script = new PIXI.DisplayObjectContainer();
-    this.panels.script.position.x = this.panels.ltoolbar.position.x + this.panels.ltoolbar.width + LEFT_PADDING_SC;
-    this.panels.script.position.y = TOP_PADDING;
-    this.panels.script.width = SCRIPT_WIDTH;
-    this.panels.script.height = this.pad.height - BOT_PADDING - TOP_PADDING;
-    this.panels.script.glbPtToIntl = function(glblPt) {
-        return new PIXI.Point(
-            glblPt.x - this.x,
-            glblPt.y - this.y
-        );
-    };
+    this.panels.script = new SEDisplayObject();
+    this.panels.script.setDO(new PIXI.DisplayObjectContainer());
+    this.panels.script.setPosition(
+        this.panels.ltoolbar.getX() + this.panels.ltoolbar.getWidth() + LEFT_PADDING_SC,
+        TOP_PADDING);
+    this.panels.script.setWH(
+        SCRIPT_WIDTH,
+        this.pad.getHeight() - BOT_PADDING - TOP_PADDING
+    );
 
-    this.pad.addChild(this.panels.script);
-    this.pad.addChild(this.panels.ltoolbar);
+    this.panels.script.setParent(this.pad);
+    this.panels.ltoolbar.setParent(this.pad);
 
-    this.compileBtn = new PIXI.Sprite(ScriptEditor.TEXTURES.compileBtn);
-    this.compileBtn.position.x = this.panels.script.position.x + this.panels.script.width
-        - this.compileBtn.width - 110 /* XXX */;
-    this.compileBtn.position.y = 55;
-    this.compileBtn.setInteractive(true);
-    this.compileBtn.click = function() {
+    this.compileBtn = new SESpriteObject();
+    this.compileBtn.setDO(new PIXI.Sprite(ScriptEditor.TEXTURES.compileBtn));
+    this.compileBtn.setPosition(
+        this.panels.script.getX() + this.panels.script.getWidth() - this.compileBtn.getWidth() /* XXX */,
+        55
+    );
+    this.compileBtn.do.click = function() {
         this.seEvents.broadcast({
             name : "COMPILE"
         });
     }.bind(this);
-    this.pad.addChild(this.compileBtn);
+    this.compileBtn.setParent(this.pad);
 
-	this.sceneUpdater = { se : this };
-	this.sceneUpdater.up = function() {
-		this.se.renderer.render(this.se.stage);
-	};
+    this.sceneUpdater = { se : this };
+    this.sceneUpdater.up = function() {
+        this.se.renderer.render(this.se.stage);
+    }.bind(this.sceneUpdater);
+    this.sceneUpdater.runUpLoop = function() {
+        //TODO remove this update loop once PIXI interaction manager is
+        //decoupled from rendering
+        //http://www.html5gamedevs.com/topic/1636-interactionmanagerupdate-is-coupled-to-render-loop/
+        requestAnimFrame(this.up);
+        setTimeout(this.runUpLoop, 1000 / 30); //30 FPS
+    }.bind(this.sceneUpdater);
 
     //Setup each panel object
     this.toolbar = new Toolbar(this.panels.ltoolbar, this.seEvents, this.sceneUpdater);
-    this.treeEditor = new ScriptTreeEditor(rootScope, this.panels.script, this.seEvents, this.sceneUpdater);
+    this.treeEditor = new ScriptTreeEditor(rootScope, this.panels.script, this.seEvents,
+        this.sceneUpdater, mouseWheelManager);
 
-    this.sceneUpdater.up();
-	requestAnimFrame(this.sceneUpdater.up.bind(this.sceneUpdater));
+    this.sceneUpdater.runUpLoop();
+    /*this.sceneUpdater.up();
+    requestAnimFrame(this.sceneUpdater.up);*/
 }
 
 function ScriptEditorStaticConstructor(completionCB) {
@@ -106,8 +114,8 @@ function ScriptEditorStaticConstructor(completionCB) {
     loader.load();
 }
 
-function ScriptEditorFactory(rootScope, events) {
-    return new ScriptEditor(rootScope, events);
+function ScriptEditorFactory(rootScope, events, mouseWheelManager) {
+    return new ScriptEditor(rootScope, events, mouseWheelManager);
 }
 
 function ToolbarFactory(scriptEditor) {
