@@ -14,11 +14,11 @@ SEDisplayObject.prototype.setDO = function(dispObj) {
 
 //Scale independent sizes
 SEDisplayObject.prototype.getWidth = function() {
-    return this.do.getLocalBounds().width;
+    return this.do.width;
 };
 
 SEDisplayObject.prototype.getHeight = function() {
-    return this.do.getLocalBounds().height;
+    return this.do.height;
 };
 
 SEDisplayObject.prototype.setWH = function(w, h) {
@@ -106,6 +106,15 @@ SESpriteObject.prototype = new SEDisplayObject();
 SESpriteObject.prototype.setDO = function(dispObj) {
     SEDisplayObject.prototype.setDO.call(this, dispObj);
     this.do.hitArea = this.do.getLocalBounds().clone();
+};
+
+//Scale independent sizes
+SESpriteObject.prototype.getWidth = function() {
+    return this.do.getLocalBounds().width;
+};
+
+SESpriteObject.prototype.getHeight = function() {
+    return this.do.getLocalBounds().height;
 };
 
 SESpriteObject.prototype.setWH = function(w, h) {

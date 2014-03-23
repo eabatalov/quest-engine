@@ -11,10 +11,10 @@ function ToolBarItem(type, seEvents, sceneUpdater) {
 	this.dragging = {};
 	this.dragging.wh = new PIXI.Point(this.getWidth(), this.getHeight());
 	this.dragging.lastValidPos = new PIXI.Point(0, 0);
-	this.mousedown = this.touchstart = toolBarItemMouseDown;
-	this.mouseup = this.mouseupoutside = this.touchend =
-		this.touchendoutside = toolBarItemMouseUp;
-	this.mousemove = this.touchmove = toolBarItemMouseMove;
+	this.do.mousedown = this.do.touchstart = toolBarItemMouseDown.bind(this);
+	this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
+		this.do.touchendoutside = toolBarItemMouseUp.bind(this);
+	this.do.mousemove = this.do.touchmove = toolBarItemMouseMove.bind(this);
 }
 
 ToolBarItem.prototype = new SESpriteObject();
@@ -27,7 +27,7 @@ function toolBarItemMouseDown(intData) {
 	    this.setAlpha(0.5);
     	this.dragging.intData = intData;
     	this.dragging.pending = true;
-    	this.dragging.srcPos = this.getPos.clone();
+    	this.dragging.srcPos = this.getPos().clone();
     }
 }
 
@@ -39,7 +39,7 @@ function toolBarItemMouseMove(intData) {
 
 		this.dragging.lastValidPos.x = this.dragging.intData.global.x
 		this.dragging.lastValidPos.y = this.dragging.intData.global.y;
-		var newPosition = this.parent.sedo.getLocalPosition(this.dragging.intData);
+		var newPosition = this.do.parent.sedo.getLocalPosition(this.dragging.intData);
         this.setPosition(newPosition.x, newPosition.y);
 		this.sceneUpdater.up();
 	}
@@ -109,7 +109,7 @@ function Toolbar(parentPanel, seEvents, sceneUpdater) {
     SEDisplayObject.call(this);
     this.setDO(new PIXI.DisplayObjectContainer());
 
-    this.setWH(parentPanel.width, parentPanel.height);
+    this.setWH(parentPanel.getWidth(), parentPanel.getHeight());
     this.setParent(parentPanel);
 
     this.seEvents = seEvents;
@@ -128,11 +128,11 @@ function Toolbar(parentPanel, seEvents, sceneUpdater) {
 
     //Make toolbar items layout
     var ix = 0;
-    var maxPerColumn = this.height / (this.icons.none.height + TOOL_ITEM_MARGIN);
+    var maxPerColumn = this.getHeight() / (this.icons.none.getHeight() + TOOL_ITEM_MARGIN);
     $.each(this.icons, function(key, icon) {
         icon.setPosition(
-            Math.floor(ix / maxPerColumn) * (TOOL_ITEM_MARGIN + icon.width),
-            (ix % maxPerColumn) * (TOOL_ITEM_MARGIN + icon.height)
+            Math.floor(ix / maxPerColumn) * (TOOL_ITEM_MARGIN + icon.getWidth()),
+            (ix % maxPerColumn) * (TOOL_ITEM_MARGIN + icon.getHeight())
         );
         icon.setParent(this);
         ++ix;
