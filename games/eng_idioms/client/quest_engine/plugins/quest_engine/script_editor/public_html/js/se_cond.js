@@ -35,9 +35,9 @@ SECond.prototype.constructor = SECond;
 
 SECond.CIRCLE_RADIUS = 5;
 
-function condMouseDown(intData) {
+SECond.prototype.beginDragging = function(intData) {
     if (!this.dragging.pending) {
-        var clickPt = this.do.parent.sedo.getLocalPosition(intData);
+        var clickPt = this.getParentBasedPosition(intData);
         this.dragging.circle.x = this.points.dst.x;
         this.dragging.circle.y = this.points.dst.y;
         this.dragging.circle.radius = SECond.CIRCLE_RADIUS;
@@ -46,19 +46,21 @@ function condMouseDown(intData) {
             this.do.alpha = 0.5;
             this.dragging.intData = intData;
             this.dragging.pending = true;
-            this.dragging.srcPos = this.do.position.clone();
         }
     }
+};
+
+function condMouseDown(intData) {
+    this.beginDragging(intData);
 }
 
 function condMouseMove(intData) {
     if (this.dragging.pending)
     {
-        //var wh
-        //if (!ToolBarItem.position.verify(this.dragging.intData, wh))
-        //    return;
+        if (!SECond.positionValidator.validate(this.dragging.intData, this))
+            return;
 
-        var newPosition = this.do.parent.sedo.getLocalPosition(this.dragging.intData);
+        var newPosition = this.getParentBasedPosition(this.dragging.intData);
         this.setDst(newPosition);
         SECond.sceneUpdater.up();
     }
@@ -72,7 +74,6 @@ function condMouseUp(intData) {
     this.do.alpha = 1;
     this.dragging.pending = false;
     this.dragging.intData = null;
-    this.srcPos = null;
     SECond.sceneUpdater.up();
 }
 

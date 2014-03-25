@@ -77,20 +77,11 @@ SEDisplayObject.prototype.detachParent = function() {
 };
 
 SEDisplayObject.prototype.getLocalPosition = function(intData) {
-    /*XXX PixiJS workaround
-     * Pixi takes into account only the first parent's base;
-     */
-    var realGlobal = intData.global;
-    var tunedGlobal = intData.global = realGlobal.clone();
-    var parent = this.do.parent.parent;
-    while(parent) {
-        tunedGlobal.x -= parent.position.x;
-        tunedGlobal.y -= parent.position.y;
-        parent = parent.parent;
-    }
-    var res = intData.getLocalPosition(this.do);
-    intData.global = realGlobal;
-    return res;
+    return intData.getLocalPosition(this.do);
+};
+
+SEDisplayObject.prototype.getParentBasedPosition = function(intData) {
+    return intData.getLocalPosition(this.do.parent);
 };
 
 SEDisplayObject.prototype.contains = function(px, py) {
@@ -110,11 +101,11 @@ SESpriteObject.prototype.setDO = function(dispObj) {
 
 //Scale independent sizes
 SESpriteObject.prototype.getWidth = function() {
-    return this.do.getLocalBounds().width;
+    return this.do.texture.width;
 };
 
 SESpriteObject.prototype.getHeight = function() {
-    return this.do.getLocalBounds().height;
+    return this.do.texture.height;
 };
 
 SESpriteObject.prototype.setWH = function(w, h) {

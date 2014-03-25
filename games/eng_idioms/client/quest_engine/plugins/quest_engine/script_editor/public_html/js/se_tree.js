@@ -3,17 +3,9 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
     this.setDO(new PIXI.Sprite(ScriptTreeEditor.TEXTURES.bg));
     this.setParent(parentPanel);
 
-    //XXX
-    this.mouse = {
-        x: -1,
-        y: -1
-    };
     this.seEvents = seEvents;
     this.sceneUpdater = sceneUpdater;
     this.do.mousedown = scriptTreeEditorMouseDown.bind(this);
-    this.do.mouseup = scriptTreeEditorMouseUp.bind(this);
-    this.do.mouseupoutside = scriptTreeEditorMouseUpOutside.bind(this);
-    this.positionValidator = new SETreeEditorPositionValidator(this);
     mouseWheelManager.onSEDO(this, seTreeEditorOnMouseWheel);
 
     //Initial script tree nodes
@@ -70,25 +62,41 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
     SENode.treeEditor = this;
     SECond.treeEditor = this;
     SECond.sceneUpdater = this.sceneUpdater;
-    ToolBarItem.positionValidator = this.positionValidator;
-    SECond.positionValidator = this.positionValidator;
+    ToolBarItem.positionValidator = new SEToolBarItemPositionValidator(this);
+    ToolBarItem.visualTrans = new SEToolBarItemVisualTransformer(this);
+    SECond.positionValidator = new SECondPositionValidator(this);
 }
 
 ScriptTreeEditor.prototype = new SESpriteObject();
 
-function SETreeEditorPositionValidator(seTreeEditor) {
-    /*
-     * Return true if specified rectangular object can be placed on editor.
-     * Rect bounds are passed as parameters.
-     */
-    this.validate = function(intData, wh) {
+function SECondPositionValidator(seTreeEditor) {
+    this.validate = function(intData, cond) {
         var rectOrigin = seTreeEditor.getLocalPosition(intData);
 
         var overallBoundsOk = (
             0 <= rectOrigin.x &&
             0 <= rectOrigin.y &&
-            seTreeEditor.getWidth() >= (rectOrigin.x + wh.x) &&
-            seTreeEditor.getHeight() >= (rectOrigin.y + wh.y)
+            seTreeEditor.getWidth() >= (rectOrigin.x + SECond.CIRCLE_RADIUS) &&
+            seTreeEditor.getHeight() >= (rectOrigin.y + SECond.CIRCLE_RADIUS)
+        ) ? true : false;
+
+        return overallBoundsOk
+    }
+}
+
+function SEToolBarItemPositionValidator(seTreeEditor) {
+    /*
+     * Return true if specified rectangular object can be placed on editor.
+     * Rect bounds are passed as parameters.
+     */
+    this.validate = function(intData, item) {
+        var rectOrigin = seTreeEditor.getLocalPosition(intData);
+
+        var overallBoundsOk = (
+            0 <= rectOrigin.x &&
+            0 <= rectOrigin.y &&
+            seTreeEditor.getWidth() >= (rectOrigin.x + item.getWidth()) &&
+            seTreeEditor.getHeight() >= (rectOrigin.y + item.getHeight())
         ) ? true : false;
 
         if (!overallBoundsOk)
@@ -101,17 +109,25 @@ function SETreeEditorPositionValidator(seTreeEditor) {
             nodeHitArea.width = node.getWidth() + 2 * NODE_MARGIN;
             nodeHitArea.height = node.getHeight() + 2 * NODE_MARGIN;
             var rectOriginAtNode = node.getLocalPosition(intData);
-
             if (nodeHitArea.contains(rectOriginAtNode.x, rectOriginAtNode.y) ||
-                nodeHitArea.contains(rectOriginAtNode.x + wh.x, rectOriginAtNode.y) ||
-                nodeHitArea.contains(rectOriginAtNode.x, rectOriginAtNode.y + wh.y) ||
-                nodeHitArea.contains(rectOriginAtNode.x + wh.x, rectOriginAtNode.y + wh.y)) {
+                nodeHitArea.contains(rectOriginAtNode.x + item.getWidth(), rectOriginAtNode.y) ||
+                nodeHitArea.contains(rectOriginAtNode.x, rectOriginAtNode.y + item.getHeight()) ||
+                nodeHitArea.contains(rectOriginAtNode.x + item.getWidth(), rectOriginAtNode.y + item.getHeight())) {
                 nodesOk = false;
                 return false;
             }
         });
         return nodesOk;
     };
+}
+
+function SEToolBarItemVisualTransformer(seTreeEditor) {
+    this.trans = function(seObj) {
+        seObj.setScale(seTreeEditor.getScale());
+    };
+    this.transBack = function(seObj) {
+        seObj.setScale(seObj.do.parent.sedo.getScale());
+    }
 }
 
 function scriptTreeEditorOnSeEvent() {
@@ -133,7 +149,6 @@ function scriptTreeEditorOnSeEvent() {
 }
 
 function seTreeEditorOnMouseWheel(yDelta) {
-    //alert(yDelta.toString());
     if (yDelta > 0) {
         this.setScale(this.getScale() + 0.1);
     } else if (yDelta < 0) {
@@ -145,41 +160,19 @@ function seTreeEditorOnMouseWheel(yDelta) {
 
 function scriptTreeEditorMouseDown(intData) {
     if (intData.originalEvent.ctrlKey) {
-        var src = this.getLocalPosition(intData);
-        this.mouse.x = src.x;
-        this.mouse.y = src.y;
-    }
-}
-
-function scriptTreeEditorMouseUp(intData) {
-    if (this.mouse.x !== -1) {
         var newCond = new SECond(_QUEST_CONDS.NONE, null, this.nodes.storyLines[0], this.seEvents);
-
-        newCond.setSrc(new PIXI.Point(this.mouse.x, this.mouse.y));
-        newCond.setDst(this.getLocalPosition(intData));
-
-        this.conds.push(newCond);
         newCond.setParent(this);
-        this.sceneUpdater.up();
+        this.conds.push(newCond);
 
-        this.mouse.x = -1;
-        this.mouse.y = -1;
+        var src = this.getLocalPosition(intData);
+        newCond.setSrc(src);
+        newCond.setDst(src);
 
         this.seEvents.broadcast({
             name : "COND_PROP_EDIT",
             obj : newCond
         });
-    }
-}
-
-function scriptTreeEditorMouseUpOutside(intData) {
-    //Mouse up outside can be called when we "up" on some object
-    //located in script tree editor area. Check it.
-    if (this.contains(this.getLocalPosition(intData))) {
-        this.mouseup(intData);
-    } else {
-        this.mouse.x = -1;
-        this.mouse.y = -1;
+        newCond.beginDragging(intData);
     }
 }
 

@@ -9,7 +9,6 @@ function ToolBarItem(type, seEvents, sceneUpdater) {
 	this.sceneUpdater = sceneUpdater;
 
 	this.dragging = {};
-	this.dragging.wh = new PIXI.Point(this.getWidth(), this.getHeight());
 	this.dragging.lastValidPos = new PIXI.Point(0, 0);
 	this.do.mousedown = this.do.touchstart = toolBarItemMouseDown.bind(this);
 	this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
@@ -34,12 +33,13 @@ function toolBarItemMouseDown(intData) {
 function toolBarItemMouseMove(intData) {
 	if (this.dragging.pending)
 	{
-		if (!ToolBarItem.positionValidator.validate(this.dragging.intData, this.dragging.wh))
+		if (!ToolBarItem.positionValidator.validate(this.dragging.intData, this))
 			return;
+        ToolBarItem.visualTrans.trans(this);
 
 		this.dragging.lastValidPos.x = this.dragging.intData.global.x
 		this.dragging.lastValidPos.y = this.dragging.intData.global.y;
-		var newPosition = this.do.parent.sedo.getLocalPosition(this.dragging.intData);
+		var newPosition = this.getParentBasedPosition(this.dragging.intData);
         this.setPosition(newPosition.x, newPosition.y);
 		this.sceneUpdater.up();
 	}
@@ -47,20 +47,22 @@ function toolBarItemMouseMove(intData) {
 
 function toolBarItemMouseUp(intData) {
 	if (this.dragging.pending) {
-		this.setPosition(this.dragging.srcPos.x, this.dragging.srcPos.y);
+        var global = intData.global;//XXX
+        intData.global = this.dragging.lastValidPos;
+        if (ToolBarItem.positionValidator.validate(intData, this)) {
+            this.seEvents.broadcast({
+                name : "NODE_CREATE",
+                type : this.type,
+                intData : intData
+            });
+        }
+        intData.global = global;
 
-		//XXX
-		var global = intData.global;
-		intData.global = this.dragging.lastValidPos;
-		this.seEvents.broadcast({
-			name : "NODE_CREATE",
-			type : this.type,
-			intData : intData
-		});
-		intData.global = global;
+	    this.setAlpha(1);
+        this.setPosition(this.dragging.srcPos.x, this.dragging.srcPos.y);
+        ToolBarItem.visualTrans.transBack(this);
 	}
 
-	this.setAlpha(1);
 	this.dragging.pending = false;
 	this.dragging.intData = null;
 	this.dragging.srcPos = null;
