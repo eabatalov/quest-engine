@@ -2,6 +2,10 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
     SESpriteObject.call(this);
     this.setDO(new PIXI.Sprite(ScriptTreeEditor.TEXTURES.bg));
     this.setParent(parentPanel);
+    this.nodesLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
+    this.condsLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
+    this.nodesLayer.setParent(this);
+    this.condsLayer.setParent(this);
 
     this.seEvents = seEvents;
     this.sceneUpdater = sceneUpdater;
@@ -43,14 +47,14 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
     //Register all initial nodes and conds
     $.each(this.nodes.stages, function(ix, node) {
         this.nodes.all.push(node);
-        node.setParent(this);
+        node.setParent(this.nodesLayer);
     }.bind(this));
     $.each(this.nodes.storyLines, function(ix, node) {
         this.nodes.all.push(node);
-        node.setParent(this);
+        node.setParent(this.nodesLayer);
     }.bind(this));
     $.each(this.conds, function(ix, cond) {
-        cond.setParent(this);
+        cond.setParent(this.condsLayer);
     }.bind(this));
 
     this.scope = rootScope;
@@ -138,7 +142,7 @@ function scriptTreeEditorOnSeEvent() {
             this.nodes.storyLines[0],
             this.nodes.stages[0]);
         newNode.setPosition(newNodePt.x, newNodePt.y);
-        newNode.setParent(this);
+        newNode.setParent(this.nodesLayer);
         this.nodes.all.push(newNode);
         this.sceneUpdater.up();
         this.seEvents.broadcast({
@@ -161,7 +165,7 @@ function seTreeEditorOnMouseWheel(yDelta) {
 function scriptTreeEditorMouseDown(intData) {
     if (intData.originalEvent.ctrlKey) {
         var newCond = new SECond(_QUEST_CONDS.NONE, null, this.nodes.storyLines[0], this.seEvents);
-        newCond.setParent(this);
+        newCond.setParent(this.condsLayer);
         this.conds.push(newCond);
 
         var src = this.getLocalPosition(intData);

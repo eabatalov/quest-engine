@@ -1,9 +1,9 @@
 /*
  * Helper classes to fix different PIXI issues
  */
-function SEDisplayObject() {
+function SEDisplayObject(dispObj) {
     //PIXI display object which is used to draw this object
-    this.do = null;
+    this.do = dispObj === undefined ? null : dispObj;
 }
 
 SEDisplayObject.prototype.setDO = function(dispObj) {
