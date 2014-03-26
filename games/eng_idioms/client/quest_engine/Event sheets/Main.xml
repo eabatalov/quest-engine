@@ -39,5 +39,17 @@
                 </action>
             </actions>
         </event-block>
+        <comment>Smooth camera</comment>
+        <event-block sid="1129006647175923">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1149080068650859" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="1559922197643707" type="camera">
+                    <param id="0" name="X">lerp(Self.X, Player.X, 0.04)</param>
+                    <param id="1" name="Y">lerp(Self.Y, Player.Y-160, 0.04)</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
