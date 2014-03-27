@@ -12,16 +12,17 @@
     div.tool-bar-item:hover
     {
        background-color: gray; 
-   }
+    }
 
     div.tool-bar-item-active
     {
         background-color: red;
     }
 
-    .tool-bar-item-label
+    p.tool-bar-item-label
     {
         margin: 4px;
+        display: inline-block;
     }
 </style>
 
@@ -31,7 +32,7 @@
     <div class="row tool-bar-item" ng-repeat="toolbarItem in toolbarItems"
         ng-click="itemClicked(toolbarItem)" ng-class="{ 'tool-bar-item-active' : toolbarItem.isActive }">
 
-            <img ng-src="{{toolbarItem.imgUrl()}}" style="float: left;"/>
+            <img ng-src="{{toolbarItem.imgUrl()}}" style="display: inline-block;"/>
             <p class="tool-bar-item-label">
                 {{ toolbarItem.label() }}
             </p>
