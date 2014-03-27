@@ -3,7 +3,10 @@
  */
 function SEDisplayObject(dispObj) {
     //PIXI display object which is used to draw this object
-    this.do = dispObj === undefined ? null : dispObj;
+    if (dispObj === undefined)
+        this.do = null;
+    else
+        this.setDO(dispObj);
 }
 
 SEDisplayObject.prototype.setDO = function(dispObj) {
@@ -88,8 +91,11 @@ SEDisplayObject.prototype.contains = function(px, py) {
     return this.do.hitArea.contains(px, py)
 };
 
-function SESpriteObject() {
-    SEDisplayObject.call(this);
+/*
+ * Sprite object with sizes independent of its scale
+ */
+function SESpriteObject(dispObj) {
+    SEDisplayObject.call(this, dispObj);
 }
 
 SESpriteObject.prototype = new SEDisplayObject();

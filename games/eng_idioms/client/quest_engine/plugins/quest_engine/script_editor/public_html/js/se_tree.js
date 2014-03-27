@@ -1,11 +1,15 @@
-function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, sceneUpdater, mouseWheelManager) {
-    SESpriteObject.call(this);
-    this.setDO(new PIXI.Sprite(ScriptTreeEditor.TEXTURES.bg));
-    this.setParent(parentPanel);
+function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpdater, mouseWheelManager) {
+    SEDisplayObject.call(this, new PIXI.DisplayObjectContainer());
+    this.setPosition(0, 0);
+    this.setWH(parent.getWidth(), parent.getHeight());
+    this.setParent(parent);
+    this.editingBg = new SEDisplayObject(new PIXI.DisplayObjectContainer());
+    this.editingBg.setWH(5000, 5000);
+    this.editingBg.setParent(this);
     this.nodesLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.condsLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
-    this.nodesLayer.setParent(this);
-    this.condsLayer.setParent(this);
+    this.nodesLayer.setParent(this.editingBg);
+    this.condsLayer.setParent(this.editingBg);
 
     this.seEvents = seEvents;
     this.sceneUpdater = sceneUpdater;
@@ -21,7 +25,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
             { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
-    this.nodes.stages[0].setPosition(this.getWidth() / 2, this.nodes.stages[0].getHeight());
+    this.nodes.stages[0].setPosition(400, this.nodes.stages[0].getHeight());
 
     this.nodes.storyLines = [
         new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0],
@@ -71,7 +75,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parentPanel, seEvents, s
     SECond.positionValidator = new SECondPositionValidator(this);
 }
 
-ScriptTreeEditor.prototype = new SESpriteObject();
+ScriptTreeEditor.prototype = new SEDisplayObject();
 
 function SECondPositionValidator(seTreeEditor) {
     this.validate = function(intData, cond) {
@@ -193,18 +197,7 @@ ScriptTreeEditor.prototype.deleteCond = function(cond) {
 }
 
 function ScriptTreeEditorStaticConstructor(completionCB) {
-    ScriptTreeEditor.TEXTURE_PATHS = {};
-    ScriptTreeEditor.TEXTURE_PATHS.bg = "images/scene_tile.png";
-
-    var assetsToLoad = $.map(ScriptTreeEditor.TEXTURE_PATHS, function(value, ix) { return [value]; });
-    loader = new PIXI.AssetLoader(assetsToLoad);
-    loader.onComplete = function() {
-        ScriptTreeEditor.TEXTURES = {};
-        ScriptTreeEditor.TEXTURES.bg =
-            PIXI.Texture.fromImage(ScriptTreeEditor.TEXTURE_PATHS.bg);
-        completionCB();
-    };
-    loader.load();
+    completionCB();
 }
 
 function PositionValidatorFactory(treeEditor) {

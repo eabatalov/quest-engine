@@ -53,4 +53,8 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents) {
         $scope.condTypeChanged = function() {
             $scope.cond.changeType($scope.cond.type);
         };
+
+        $scope.initialized = function() {
+            seEvents.broadcast({ name : "PROPS_WIND_INITED" });
+        };
     };

@@ -62,14 +62,16 @@ scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
 scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "MouseWheelManager", ScriptEditorFactory]);
 
-scriptEditorApp.factory("Toolbar", ["ScriptEditor", ToolbarFactory]);
-
 scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
 
 scriptEditorApp.factory("TreeObjectPositionValidator", ["TreeEditor", PositionValidatorFactory]);
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents',
     ScriptEditorPropertiesWindowController]);
+
+scriptEditorApp.controller("ToolbarWindowController", ["$rootScope", '$scope', 'ScriptEditorEvents', ToolbarWindowController]);
+
+scriptEditorApp.controller("CompileBtnController", ['$scope', 'ScriptEditorEvents', CompileBtnController]);
 
 scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
     TreeCompilerFactory]);

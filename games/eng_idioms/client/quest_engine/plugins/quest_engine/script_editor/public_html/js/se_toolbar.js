@@ -1,22 +1,15 @@
-function ToolBarItem(type, seEvents, sceneUpdater) {
-    SESpriteObject.call(this);
-    this.setDO(new PIXI.Sprite(ToolBarItem.TEXTURES.icons[type]));
-
+function ToolBarItem(type, seEvents) {
     this.type = type;
-    this.do.buttonMode = true;
 
     this.seEvents = seEvents;
-	this.sceneUpdater = sceneUpdater;
 
 	this.dragging = {};
 	this.dragging.lastValidPos = new PIXI.Point(0, 0);
-	this.do.mousedown = this.do.touchstart = toolBarItemMouseDown.bind(this);
+	/*this.do.mousedown = this.do.touchstart = toolBarItemMouseDown.bind(this);
 	this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
 		this.do.touchendoutside = toolBarItemMouseUp.bind(this);
-	this.do.mousemove = this.do.touchmove = toolBarItemMouseMove.bind(this);
+	this.do.mousemove = this.do.touchmove = toolBarItemMouseMove.bind(this);*/
 }
-
-ToolBarItem.prototype = new SESpriteObject();
 
 function toolBarItemMouseDown(intData) {
 	//store a refference to the interaction data
@@ -41,7 +34,6 @@ function toolBarItemMouseMove(intData) {
 		this.dragging.lastValidPos.y = this.dragging.intData.global.y;
 		var newPosition = this.getParentBasedPosition(this.dragging.intData);
         this.setPosition(newPosition.x, newPosition.y);
-		this.sceneUpdater.up();
 	}
 }
 
@@ -66,82 +58,67 @@ function toolBarItemMouseUp(intData) {
 	this.dragging.pending = false;
 	this.dragging.intData = null;
 	this.dragging.srcPos = null;
-	this.sceneUpdater.up();
 }
+
+ToolBarItem.prototype.imgUrl = function() {
+    return ToolBarItem.IMG_PATHS.icons[this.type];
+};
 
 function ToolBarItemStaticConstructor(completionCB) {
-    ToolBarItem.TEXTURE_PATHS = { icons : {} };
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.ANIM] = "images/node_anim56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.PHRASE] = "images/node_phrase56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.QUIZ] = "images/node_quiz56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STAGE] = "images/node_stage56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STORYLINE] = "images/node_stln56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.WAIT] = "images/node_wait56.png";
-    ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.NONE] = "images/node_none56.png";
+    ToolBarItem.IMG_PATHS = { icons : {} };
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.ANIM] = "images/node_anim56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.PHRASE] = "images/node_phrase56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.QUIZ] = "images/node_quiz56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STAGE] = "images/node_stage56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STORYLINE] = "images/node_stln56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.WAIT] = "images/node_wait56.png";
+    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.NONE] = "images/node_none56.png";
+    completionCB();
+}
 
-    var assetsToLoad = $.map(ToolBarItem.TEXTURE_PATHS.icons,
-        function(value, index) { return [value]; });
-    loader = new PIXI.AssetLoader(assetsToLoad);
-    loader.onComplete = function() {
-        ToolBarItem.TEXTURES = { icons : {} };
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.ANIM] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.ANIM]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.PHRASE] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.PHRASE]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.QUIZ] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.QUIZ]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.STAGE] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STAGE]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.STAGE_CLEAR] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STAGE_CLEAR]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.STORYLINE] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.STORYLINE]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.WAIT] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.WAIT]);
-        ToolBarItem.TEXTURES.icons[_QUEST_NODES.NONE] =
-            PIXI.Texture.fromImage(ToolBarItem.TEXTURE_PATHS.icons[_QUEST_NODES.NONE]);
+ToolbarWindowController = function($rootScope, $scope, seEvents) {
+    $scope.toolbarRows = [
+        [
+            new ToolBarItem(_QUEST_NODES.ANIM, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.PHRASE, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.QUIZ, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.STAGE, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.STORYLINE, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.WAIT, seEvents)
+        ],
+        [
+            new ToolBarItem(_QUEST_NODES.NONE, seEvents)
+        ]
+    ];
 
-        completionCB();
+    $scope.initialized = function() {
+        seEvents.broadcast({ name : "TOOLBAR_INITED"});
     };
-    loader.load();
-}
 
-function Toolbar(parentPanel, seEvents, sceneUpdater) {
-    SEDisplayObject.call(this);
-    this.setDO(new PIXI.DisplayObjectContainer());
+    $scope.onMouseDown = function(toolbarItem) {
 
-    this.setWH(parentPanel.getWidth(), parentPanel.getHeight());
-    this.setParent(parentPanel);
+    };
+    $scope.onMouseMove = function(toolbarItem) {
 
-    this.seEvents = seEvents;
-	this.sceneUpdater = sceneUpdater;
+    };
+    $scope.onMouseUp = function(toolbarItem) {
 
-    var TOOL_ITEM_MARGIN = 8;
-    this.icons = {};
-    this.icons.anim = new ToolBarItem(_QUEST_NODES.ANIM, this.seEvents, this.sceneUpdater);
-    this.icons.phrase = new ToolBarItem(_QUEST_NODES.PHRASE, this.seEvents, this.sceneUpdater);
-    this.icons.quiz = new ToolBarItem(_QUEST_NODES.QUIZ, this.seEvents, this.sceneUpdater);
-    this.icons.stage = new ToolBarItem(_QUEST_NODES.STAGE, this.seEvents, this.sceneUpdater);
-    this.icons.stageClear = new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, this.seEvents, this.sceneUpdater);
-    this.icons.storyLine = new ToolBarItem(_QUEST_NODES.STORYLINE, this.seEvents, this.sceneUpdater);
-    this.icons.wait = new ToolBarItem(_QUEST_NODES.WAIT, this.seEvents, this.sceneUpdater);
-    this.icons.none = new ToolBarItem(_QUEST_NODES.NONE, this.seEvents, this.sceneUpdater);
-
-    //Make toolbar items layout
-    var ix = 0;
-    var maxPerColumn = this.getHeight() / (this.icons.none.getHeight() + TOOL_ITEM_MARGIN);
-    $.each(this.icons, function(key, icon) {
-        icon.setPosition(
-            Math.floor(ix / maxPerColumn) * (TOOL_ITEM_MARGIN + icon.getWidth()),
-            (ix % maxPerColumn) * (TOOL_ITEM_MARGIN + icon.getHeight())
-        );
-        icon.setParent(this);
-        ++ix;
-    }.bind(this));
-}
-
-Toolbar.prototype = new SEDisplayObject();
+    };
+};
 
 function ToolbarStaticConstructor(completionCB) {
     completionCB();
