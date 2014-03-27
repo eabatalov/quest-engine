@@ -2,64 +2,20 @@ function ToolBarItem(type, seEvents, label) {
 
     this.type = type;
     this.seEvents = seEvents;
-
-	this.dragging = {};
-	this.dragging.lastValidPos = new PIXI.Point(0, 0);
-	/*this.do.mousedown = this.do.touchstart = toolBarItemMouseDown.bind(this);
-	this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
-		this.do.touchendoutside = toolBarItemMouseUp.bind(this);
-	this.do.mousemove = this.do.touchmove = toolBarItemMouseMove.bind(this);*/
     this.isActive = false;
 }
 
-function toolBarItemMouseDown(intData) {
-	//store a refference to the interaction data
-	//The reason for this is because of multitouch
-	//we want to track the movement of this particular touch
-    if (!this.dragging.pending) {
-	    this.setAlpha(0.5);
-    	this.dragging.intData = intData;
-    	this.dragging.pending = true;
-    	this.dragging.srcPos = this.getPos().clone();
+ToolBarItem.prototype.activate = function() {
+    if (!this.isActive) {
+        this.isActive = true;
     }
-}
+};
 
-function toolBarItemMouseMove(intData) {
-	if (this.dragging.pending)
-	{
-		if (!ToolBarItem.positionValidator.validate(this.dragging.intData, this))
-			return;
-        ToolBarItem.visualTrans.trans(this);
-
-		this.dragging.lastValidPos.x = this.dragging.intData.global.x
-		this.dragging.lastValidPos.y = this.dragging.intData.global.y;
-		var newPosition = this.getParentBasedPosition(this.dragging.intData);
-        this.setPosition(newPosition.x, newPosition.y);
-	}
-}
-
-function toolBarItemMouseUp(intData) {
-	if (this.dragging.pending) {
-        var global = intData.global;//XXX
-        intData.global = this.dragging.lastValidPos;
-        if (ToolBarItem.positionValidator.validate(intData, this)) {
-            this.seEvents.broadcast({
-                name : "NODE_CREATE",
-                type : this.type,
-                intData : intData
-            });
-        }
-        intData.global = global;
-
-	    this.setAlpha(1);
-        this.setPosition(this.dragging.srcPos.x, this.dragging.srcPos.y);
-        ToolBarItem.visualTrans.transBack(this);
-	}
-
-	this.dragging.pending = false;
-	this.dragging.intData = null;
-	this.dragging.srcPos = null;
-}
+ToolBarItem.prototype.deactivate = function() {
+    if (this.isActive) {
+        this.isActive = false;
+    }
+};
 
 ToolBarItem.prototype.imgUrl = function() {
     return ToolBarItem.DATA[this.type].iconUrl;
@@ -105,26 +61,14 @@ ToolbarWindowController = function($rootScope, $scope, seEvents) {
         $rootScope.$emit("TOOLBAR_INITED");
     };
 
-    $scope.activateItem = function(toolbarItem) {
-        if (!toolbarItem.isActive) {
-            toolbarItem.isActive = true;
-        }
-    };
-
-    $scope.deactivateItem = function(toolbarItem) {
-        if (toolbarItem.isActive) {
-            toolbarItem.isActive = false;
-        }
-    };
-
     $scope.itemClicked = function(toolbarItem) {
         $.each($scope.toolbarItems, function(ix, item) {
             if (toolbarItem.equals(item)) {
                 if (toolbarItem.isActive)
-                    $scope.deactivateItem(toolbarItem);
-                else $scope.activateItem(toolbarItem);
+                    toolbarItem.deactivate();
+                else toolbarItem.activate();
             } else {
-                $scope.deactivateItem(item);
+                item.deactivate();
             }
         });
     };

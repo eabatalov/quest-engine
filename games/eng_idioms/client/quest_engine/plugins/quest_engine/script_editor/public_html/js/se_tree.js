@@ -14,6 +14,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.seEvents = seEvents;
     this.sceneUpdater = sceneUpdater;
     this.do.mousedown = scriptTreeEditorMouseDown.bind(this);
+    this.do.mousemove = scriptTreeEditorMouseMove.bind(this);
     mouseWheelManager.onSEDO(this, seTreeEditorOnMouseWheel);
 
     //Initial script tree nodes
@@ -71,7 +72,6 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     SECond.treeEditor = this;
     SECond.sceneUpdater = this.sceneUpdater;
     ToolBarItem.positionValidator = new SEToolBarItemPositionValidator(this);
-    ToolBarItem.visualTrans = new SEToolBarItemVisualTransformer(this);
     SECond.positionValidator = new SECondPositionValidator(this);
 }
 
@@ -129,15 +129,6 @@ function SEToolBarItemPositionValidator(seTreeEditor) {
     };
 }
 
-function SEToolBarItemVisualTransformer(seTreeEditor) {
-    this.trans = function(seObj) {
-        seObj.setScale(seTreeEditor.getScale());
-    };
-    this.transBack = function(seObj) {
-        seObj.setScale(seObj.do.parent.sedo.getScale());
-    }
-}
-
 function scriptTreeEditorOnSeEvent() {
     if (this.seEvents.args.name === "NODE_CREATE") {
         //Position of new node was validated by position validator
@@ -183,6 +174,10 @@ function scriptTreeEditorMouseDown(intData) {
         newCond.beginDragging(intData);
     }
 }
+
+function scriptTreeEditorMouseMove(intData) {
+    //console.log(intData.global.x.toString() + " " + intData.global.y.toString());
+};
 
 ScriptTreeEditor.prototype.deleteNode = function(node) {
     this.nodes.all.remove(node);
