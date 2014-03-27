@@ -1,6 +1,6 @@
-function ToolBarItem(type, seEvents) {
-    this.type = type;
+function ToolBarItem(type, seEvents, label) {
 
+    this.type = type;
     this.seEvents = seEvents;
 
 	this.dragging = {};
@@ -9,6 +9,7 @@ function ToolBarItem(type, seEvents) {
 	this.do.mouseup = this.do.mouseupoutside = this.do.touchend =
 		this.do.touchendoutside = toolBarItemMouseUp.bind(this);
 	this.do.mousemove = this.do.touchmove = toolBarItemMouseMove.bind(this);*/
+    this.isActive = false;
 }
 
 function toolBarItemMouseDown(intData) {
@@ -61,62 +62,67 @@ function toolBarItemMouseUp(intData) {
 }
 
 ToolBarItem.prototype.imgUrl = function() {
-    return ToolBarItem.IMG_PATHS.icons[this.type];
+    return ToolBarItem.DATA[this.type].iconUrl;
+};
+
+ToolBarItem.prototype.label = function() {
+    return ToolBarItem.DATA[this.type].label;
+}
+
+ToolBarItem.prototype.equals = function(itemB) {
+    return this.type === itemB.type;
 };
 
 function ToolBarItemStaticConstructor(completionCB) {
-    ToolBarItem.IMG_PATHS = { icons : {} };
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.ANIM] = "images/node_anim56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.PHRASE] = "images/node_phrase56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.QUIZ] = "images/node_quiz56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STAGE] = "images/node_stage56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.STORYLINE] = "images/node_stln56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.WAIT] = "images/node_wait56.png";
-    ToolBarItem.IMG_PATHS.icons[_QUEST_NODES.NONE] = "images/node_none56.png";
+    function ItemConfig(iconUrl, label) { this.iconUrl = iconUrl; this.label = label; }
+    ToolBarItem.DATA = {};
+    ToolBarItem.DATA[_QUEST_NODES.ANIM] =
+        new ItemConfig("images/node_anim56.png", "Animation");
+    ToolBarItem.DATA[_QUEST_NODES.PHRASE] = new ItemConfig("images/node_phrase56.png", "Phrase");
+    ToolBarItem.DATA[_QUEST_NODES.QUIZ] = new ItemConfig("images/node_quiz56.png", "Quiz");
+    ToolBarItem.DATA[_QUEST_NODES.STAGE] = new ItemConfig("images/node_stage56.png", "Stage");
+    ToolBarItem.DATA[_QUEST_NODES.STAGE_CLEAR] = new ItemConfig("images/node_stcl56.png", "Clear");
+    ToolBarItem.DATA[_QUEST_NODES.STORYLINE] = new ItemConfig("images/node_stln56.png", "Storyline");
+    ToolBarItem.DATA[_QUEST_NODES.WAIT] = new ItemConfig("images/node_wait56.png", "Delay");
+    ToolBarItem.DATA[_QUEST_NODES.NONE] = new ItemConfig("images/node_none56.png", "Nothing");
+
     completionCB();
 }
 
 ToolbarWindowController = function($rootScope, $scope, seEvents) {
-    $scope.toolbarRows = [
-        [
-            new ToolBarItem(_QUEST_NODES.ANIM, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.PHRASE, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.QUIZ, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.STAGE, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.STORYLINE, seEvents)
-        ],
-        [
-            new ToolBarItem(_QUEST_NODES.WAIT, seEvents)
-        ],
-        [
+    $scope.toolbarItems = [
+            new ToolBarItem(_QUEST_NODES.ANIM, seEvents),
+            new ToolBarItem(_QUEST_NODES.PHRASE, seEvents),
+            new ToolBarItem(_QUEST_NODES.QUIZ, seEvents),
+            new ToolBarItem(_QUEST_NODES.STAGE, seEvents),
+            new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, seEvents),
+            new ToolBarItem(_QUEST_NODES.STORYLINE, seEvents),
+            new ToolBarItem(_QUEST_NODES.WAIT, seEvents),
             new ToolBarItem(_QUEST_NODES.NONE, seEvents)
-        ]
     ];
 
     $scope.initialized = function() {
         seEvents.broadcast({ name : "TOOLBAR_INITED"});
     };
 
-    $scope.onMouseDown = function(toolbarItem) {
-
+    $scope.activateItem = function(toolbarItem) {
+        toolbarItem.isActive = true;
     };
-    $scope.onMouseMove = function(toolbarItem) {
 
+    $scope.deactivateItem = function(toolbarItem) {
+        toolbarItem.isActive = false;
     };
-    $scope.onMouseUp = function(toolbarItem) {
 
+    $scope.itemClicked = function(toolbarItem) {
+        $.each($scope.toolbarItems, function(ix, item) {
+            if (toolbarItem.equals(item)) {
+                if (toolbarItem.isActive)
+                    $scope.deactivateItem(toolbarItem);
+                else $scope.activateItem(toolbarItem);
+            } else {
+                $scope.deactivateItem(item);
+            }
+        });
     };
 };
 

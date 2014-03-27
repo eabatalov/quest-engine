@@ -1,8 +1,39 @@
+<style>
+    div.tool-bar-item
+    {
+        padding: 4px;
+        margin: 0px;
+        border-style: solid;
+        border-width: 1px;
+        width: 100%;
+        background-color: white;
+    }
+
+    div.tool-bar-item:hover
+    {
+       background-color: gray; 
+   }
+
+    div.tool-bar-item-active
+    {
+        background-color: red;
+    }
+
+    .tool-bar-item-label
+    {
+        margin: 4px;
+    }
+</style>
+
 <div id="toolbarDiv" ng-controller="ToolbarWindowController" ng-init="initialized()"
     style="border-style: solid; border-width: 1px; overflow-x: hidden; overflow-y: auto;">
-    <div class="row" ng-repeat="toolbarRow in toolbarRows">
-        <div class="col-md-4" ng-repeat="toolbarItem in toolbarRow" style="border-style: solid; border-width: 1px;">
-            <img ng-src="{{toolbarItem.imgUrl()}}" style="padding: 4px;"/>
-        </div>
+
+    <div class="row tool-bar-item" ng-repeat="toolbarItem in toolbarItems"
+        ng-click="itemClicked(toolbarItem)" ng-class="{ 'tool-bar-item-active' : toolbarItem.isActive }">
+
+            <img ng-src="{{toolbarItem.imgUrl()}}" style="float: left;"/>
+            <p class="tool-bar-item-label">
+                {{ toolbarItem.label() }}
+            </p>
     </div>
 </div>
