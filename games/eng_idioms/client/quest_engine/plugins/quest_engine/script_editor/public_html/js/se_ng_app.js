@@ -52,7 +52,7 @@ scriptEditorApp.factory('ScriptEditorEvents', ['$rootScope',
 
         events.broadcast = function(args) {
             this.args = args;
-            $rootScope.$broadcast('seEvent');
+            $rootScope.$emit('seEvent');
         };
 
         return events;

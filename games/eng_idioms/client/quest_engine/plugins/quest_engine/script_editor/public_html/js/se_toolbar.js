@@ -102,15 +102,19 @@ ToolbarWindowController = function($rootScope, $scope, seEvents) {
     ];
 
     $scope.initialized = function() {
-        seEvents.broadcast({ name : "TOOLBAR_INITED"});
+        $rootScope.$emit("TOOLBAR_INITED");
     };
 
     $scope.activateItem = function(toolbarItem) {
-        toolbarItem.isActive = true;
+        if (!toolbarItem.isActive) {
+            toolbarItem.isActive = true;
+        }
     };
 
     $scope.deactivateItem = function(toolbarItem) {
-        toolbarItem.isActive = false;
+        if (toolbarItem.isActive) {
+            toolbarItem.isActive = false;
+        }
     };
 
     $scope.itemClicked = function(toolbarItem) {

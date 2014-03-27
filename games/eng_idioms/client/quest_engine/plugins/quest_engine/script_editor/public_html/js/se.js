@@ -13,12 +13,10 @@ function ScriptEditor(rootScope, seEvents, mouseWheelManager) {
 }
 
 ScriptEditor.prototype.setupEventHandlers = function($rootScope, seEvents) {
-    $rootScope.$on('seEvent', function() {
-        if (seEvents.args.name === "SIZES_INIT_COMPLITED") {
+    $rootScope.$on('SIZES_INIT_COMPLITED', function() {
             this.sceneUpdater.runUpLoop();
             /*this.sceneUpdater.up();
               requestAnimFrame(this.sceneUpdater.up);*/
-        }
     }.bind(this));
 };
 
@@ -60,7 +58,7 @@ function SizeManager($rootScope, seEvents, se) {
         this.calcViewWH();
         se.renderer = PIXI.autoDetectRenderer(this.viewWidth, this.viewHeight, this.jqCanvas.get(0), true);
         this.resizeView();
-        seEvents.broadcast({ name : "SIZES_INIT_COMPLITED" });
+        $rootScope.$emit("SIZES_INIT_COMPLITED");
     };
 
     this.calcViewWH = function() {
@@ -77,17 +75,14 @@ function SizeManager($rootScope, seEvents, se) {
         this.jqToolbar.height(this.viewHeight);
     }.bind(this);
 
-    $(document).ready(function(){
+    var signalOneInitCompleted = function() {
         this.initNum -= 1;
         this.onInitCompleted();
-    }.bind(this));
+    }.bind(this);
+    $(document).ready(signalOneInitCompleted);
+    $rootScope.$on('TOOLBAR_INITED', signalOneInitCompleted);
+    $rootScope.$on('PROPS_WIND_INITED', signalOneInitCompleted);
 
-    $rootScope.$on('seEvent', function() {
-        if (seEvents.args.name === "TOOLBAR_INITED" || seEvents.args.name === "PROPS_WIND_INITED") {
-            this.initNum -= 1;
-            this.onInitCompleted();
-        }
-    }.bind(this));
     $(window).resize(this.resizeView);
 }
 

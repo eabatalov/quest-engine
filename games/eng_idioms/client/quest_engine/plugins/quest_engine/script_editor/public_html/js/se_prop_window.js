@@ -55,6 +55,6 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents) {
         };
 
         $scope.initialized = function() {
-            seEvents.broadcast({ name : "PROPS_WIND_INITED" });
+            $scope.$emit("PROPS_WIND_INITED");
         };
     };
