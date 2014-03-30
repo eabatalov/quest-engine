@@ -77,7 +77,7 @@ SEInputManager.prototype.nodeDragCancellHandler = function(evName, args) {
 };
 
 SEInputManager.prototype.procStateNodeDrag = function(evName, args) {
-    if (evName === "EDITOR_CLICK") {
+    if (evName === "EDITOR_UP") {
         this.seEvents.broadcast({ name : "NODE_END_DRAG", node : this.dragNode });
         this.seEvents.broadcast({ name : "NODE_PROP_EDIT", obj : this.dragNode });
         this.dragNode = null;

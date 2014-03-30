@@ -63,8 +63,6 @@ scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "Mo
 
 scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
 
-scriptEditorApp.factory("TreeObjectPositionValidator", ["TreeEditor", PositionValidatorFactory]);
-
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', '$timeout',
     ScriptEditorPropertiesWindowController]);
 

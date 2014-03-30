@@ -17,8 +17,8 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.editingBg.setParent(this);
     this.nodesLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.condsLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
-    this.nodesLayer.setParent(this.editingBg);
     this.condsLayer.setParent(this.editingBg);
+    this.nodesLayer.setParent(this.editingBg);
 
     this.input = { dragging : { node : null, all : false, prevAllDragPos : new PIXI.Point(0, 0) } };
     this.do.hitArea = new PIXI.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
@@ -40,7 +40,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
             { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
-    this.nodes.stages[0].setPosition(400, this.nodes.stages[0].getHeight());
+    this.nodes.stages[0].setPosition(0, 0);
 
     this.nodes.storyLines = [
         new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0],
@@ -49,19 +49,11 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.nodes.storyLines[0].setPosition(this.nodes.stages[0].getX(),
         this.nodes.stages[0].getY() + this.nodes.stages[0].getHeight() * 2);
 
-    this.nodes.stages[0].conds.push(
-        new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.nodes.storyLines[0], this.seEvents)
-    );
+    var firstCond = new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
 
-    this.conds.push(this.nodes.stages[0].conds[0]);
-    this.conds[0].setSrc(new PIXI.Point(
-        this.nodes.stages[0].getX() + this.nodes.stages[0].getWidth() / 2,
-        this.nodes.stages[0].getY() + this.nodes.stages[0].getHeight()
-    ));
-    this.conds[0].setDst(new PIXI.Point(
-        this.nodes.storyLines[0].getX() + this.nodes.storyLines[0].getWidth() / 2,
-        this.nodes.storyLines[0].getY()
-    ));
+    this.nodes.stages[0].addOutCond(firstCond);
+    this.nodes.storyLines[0].addInCond(firstCond);
+    this.conds.push(firstCond);
 
     //Register all initial nodes and conds
     $.each(this.nodes.stages, function(ix, node) {
@@ -78,59 +70,84 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
 
     this.seEvents.on(scriptTreeEditorOnSeEvent.bind(this));
 
-    this.nodePositionValidator = new SENodePositionValidator(this);
+    this.posValidator = new SEEditorPositionValidator(this);
     //Looks like XXX but need to inject one instance for all
     //the nodes and conds some way
     //TODO use angular injector someway
     SECond.treeEditor = this;
     SECond.sceneUpdater = this.sceneUpdater;
-    SECond.positionValidator = new SECondPositionValidator(this);
 }
 
 ScriptTreeEditor.prototype = new SEDisplayObject();
 
-function SECondPositionValidator(seTreeEditor) {
-    this.validate = function(intData, cond) {
-        var rectOrigin = seTreeEditor.getLocalPosition(intData);
+function SEEditorPositionValidator(seTreeEditor) {
+    var pointList = [];
+    //points pool
+    var p1 = new PIXI.Point(0, 0);
+    var p2 = new PIXI.Point(0, 0);
+    var p3 = new PIXI.Point(0, 0);
+    var p4 = new PIXI.Point(0, 0);
+    var p5 = new PIXI.Point(0, 0);
+    var p6 = new PIXI.Point(0, 0);
+    var p7 = new PIXI.Point(0, 0);
+    var p8 = new PIXI.Point(0, 0);
 
-        var overallBoundsOk = (
-            0 <= rectOrigin.x &&
-            0 <= rectOrigin.y &&
-            seTreeEditor.getWidth() >= (rectOrigin.x + SECond.CIRCLE_RADIUS) &&
-            seTreeEditor.getHeight() >= (rectOrigin.y + SECond.CIRCLE_RADIUS)
-        ) ? true : false;
+    this.validateNode = function(node) {
+        pointList.length = 0;
+        p1.x = node.getX();
+        p1.y = node.getY();
+        p2.x = node.getX();
+        p2.y = node.getY() + node.getHeight();
+        p3.x = node.getX() + node.getWidth();
+        p3.y = node.getY();
+        p4.x = node.getX() + node.getWidth();
+        p4.y = node.getY() + node.getHeight();
+        pointList.push(p1, p2, p3, p4);
 
-        return overallBoundsOk
-    }
-}
+        return validatePointList.call(this, node.getId());
+    };
 
-function SENodePositionValidator(seTreeEditor) {
-    /*
-     * Return true if specified rectangular object can be placed on editor.
-     * Rect bounds are passed as parameters.
-     */
-    this.validate = function(vNode) {
-        var NODE_MARGIN = 10;
-        var nodesOk = true;
-        var nodeHitArea = new PIXI.Rectangle(0, 0, 0, 0);
-        var vNodeRect = new PIXI.Rectangle(vNode.getX(), vNode.getY(), vNode.getWidth(), vNode.getHeight());
+    this.validateCond = function(cond) {
+        return true;
+    };
+
+    this.pointIsNotContained = function(px, py) {
+        //Doesn't point is contained within some editor object?
+        pointList.length = 0;
+        p1.x = px;
+        p1.y = py;
+        pointList.push(p1);
+        return validatePointList.call(this);
+    };
+
+    function validatePointList(objIdToExclude) {
+        var ok = true;
         $.each(seTreeEditor.nodes.all, function(ix, node) {
-            if (vNode.id === node.id)
+            if (objIdToExclude === node.getId())
                 return true;
 
-            nodeHitArea.x = node.getX() - NODE_MARGIN;
-            nodeHitArea.y = node.getY() - NODE_MARGIN;
-            nodeHitArea.width = node.getWidth() + 2 * NODE_MARGIN;
-            nodeHitArea.height = node.getHeight() + 2 * NODE_MARGIN;
-            if (nodeHitArea.contains(vNodeRect.x, vNodeRect.y) ||
-                nodeHitArea.contains(vNodeRect.x + vNodeRect.width, vNodeRect.y) ||
-                nodeHitArea.contains(vNodeRect.x, vNodeRect.y + vNodeRect.height) ||
-                nodeHitArea.contains(vNodeRect.x + vNodeRect.width, vNodeRect.y + vNodeRect.height)) {
-                    nodesOk = false;
-                    return false;
+            for (i = 0; i < pointList.length; ++i) {
+                if (node.contains(pointList[i].x, pointList[i].y)) {
+                    ok = false;
+                    break;
+                }
             }
         });
-        return nodesOk;
+
+        if (!ok) return ok;
+
+        $.each(seTreeEditor.conds, function(ix, cond) {
+             if (objIdToExclude === cond.getId())
+                return true;
+
+                for (i = 0; i < pointList.length; ++i) {
+                    if (cond.contains(pointList[i].x, pointList[i].y)) {
+                        ok = false;
+                        break;
+                    }
+                }           
+        });
+        return ok;
     };
 }
 
@@ -191,6 +208,11 @@ function seTreeEditorOnMouseWheel(yDelta) {
     return false;
 }
 
+ScriptTreeEditor.prototype.editorMouseEvent = function(intData) {
+    var pt = this.editingBg.getLocalPosition(intData);
+    return this.posValidator.pointIsNotContained(pt.x, pt.y);
+}
+
 function scriptTreeEditorInputEvent(evName, intData) {
     if (evName === "MOVE") {
         if (this.input.dragging.node) {
@@ -198,13 +220,12 @@ function scriptTreeEditorInputEvent(evName, intData) {
             var oldY = this.input.dragging.node.getY();
             var newDragPos = this.nodesLayer.getLocalPosition(intData);
             this.input.dragging.node.dragTo(newDragPos);
-            if (this.nodePositionValidator.validate(this.input.dragging.node)) {
+            if (this.posValidator.validateNode(this.input.dragging.node)) {
                 this.sceneUpdater.up();
             } else {
                 this.input.dragging.node.setPosition(oldX, oldY);
             }
         } else if (this.input.dragging.all) {
-            console.log("dragging all editor");
             var BOUNDS = { MIN_X : -250, MAX_X : 250, MIN_Y : -250, MAX_Y : 250 };
             var mPos = this.getLocalPosition(intData);
             var dx = mPos.x - this.input.dragging.prevAllDragPos.x;
@@ -222,46 +243,25 @@ function scriptTreeEditorInputEvent(evName, intData) {
         return;
     }
 
-    if (evName === "CLICK") {
-        console.log(evName);
+    if (evName === "CLICK" && this.editorMouseEvent(intData)) {
         this.seEvents.broadcast({ name : "EDITOR_CLICK", intData : intData });
         return;
     }
 
-    if (evName === "DOWN") {
-        console.log(evName);
+    if (evName === "DOWN" && this.editorMouseEvent(intData)) {
         this.seEvents.broadcast({ name : "EDITOR_DOWN", intData : intData });
         return;
     }
 
-    if (evName === "UP") {
-        console.log(evName);
+    if ((evName === "UP" && this.input.dragging.node) ||
+        (evName === "UP" && this.editorMouseEvent(intData))) {
         this.seEvents.broadcast({ name : "EDITOR_UP" });
         return;
     }
 
     if (evName === "UP_OUTSIDE") {
-        console.log(evName);
         this.seEvents.broadcast({ name : "EDITOR_UP_OUTSIDE" });
         return;
-    }
-}
-
-function scriptTreeEditorMouseDown(intData) {
-    if (intData.originalEvent.ctrlKey) {
-        var newCond = new SECond(_QUEST_CONDS.NONE, null, this.nodes.storyLines[0], this.seEvents);
-        newCond.setParent(this.condsLayer);
-        this.conds.push(newCond);
-
-        var src = this.getLocalPosition(intData);
-        newCond.setSrc(src);
-        newCond.setDst(src);
-
-        this.seEvents.broadcast({
-            name : "COND_PROP_EDIT",
-            obj : newCond
-        });
-        newCond.beginDragging(intData);
     }
 }
 
@@ -279,8 +279,4 @@ ScriptTreeEditor.prototype.deleteCond = function(cond) {
 
 function ScriptTreeEditorStaticConstructor(completionCB) {
     completionCB();
-}
-
-function PositionValidatorFactory(treeEditor) {
-    return treeEditor.positionValidator;
 }

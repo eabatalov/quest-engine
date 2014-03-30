@@ -12,6 +12,10 @@ function SEDisplayObject(dispObj) {
 
 SEDisplayObject.seqID = 0;
 
+SEDisplayObject.prototype.getId = function() {
+    return this.id;
+};
+
 SEDisplayObject.prototype.setDO = function(dispObj) {
     this.do = dispObj;
     this.do.setInteractive(true);
@@ -91,7 +95,12 @@ SEDisplayObject.prototype.getParentBasedPosition = function(intData) {
 };
 
 SEDisplayObject.prototype.contains = function(px, py) {
-    return this.do.hitArea.contains(px, py)
+    if (this.do.hitArea) {
+        return this.do.hitArea.contains(px, py);
+    } else {
+        var rect = new PIXI.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        return rect.contains(px, py);
+    }
 };
 
 /*

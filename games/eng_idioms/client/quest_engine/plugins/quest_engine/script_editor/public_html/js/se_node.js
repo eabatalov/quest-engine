@@ -60,15 +60,18 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
         break;
     }
     this.props =  props;
-    this.conds = [];
+    this.inConds = [];
+    this.outConds = [];
+    this.middle = new PIXI.Point(0, 0);
 
     this.dragging = { clickPoint : new PIXI.Point(0, 0) };
+    this.bounds = new PIXI.Rectangle();
     this.do.mousedown = this.do.touchstart = this.inputEvent.bind(this, "DOWN");
     this.do.mouseup = this.do.touchend = this.inputEvent.bind(this, "UP");
     this.do.mouseout = this.inputEvent.bind(this, "OUT");
     this.do.mouseover = this.inputEvent.bind(this, "IN");
     this.do.mousemove = this.do.touchmove = this.inputEvent.bind(this, "MOVE");
-    this.do.click  = this.do.tap = this.inputEvent.bind(this, "CLICK");
+    this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
     this.do.mouseupoutside = this.do.touchendoutside = this.inputEvent.bind(this, "UP_OUTSIDE");
 
 }
@@ -77,7 +80,6 @@ SENode.prototype = new SESpriteObject();
 
 SENode.prototype.inputEvent = function(evName, intData) {
     if (evName === "DOWN") {
-        console.log("NODE DOWN");
         var dragPos = this.getLocalPosition(intData);
         this.dragging.clickPoint.x = dragPos.x;
         this.dragging.clickPoint.y = dragPos.y;
@@ -100,6 +102,41 @@ function stageTakeFromPool(objId) {
     this.props.objPool.remove(objId);
 }
 
+SENode.prototype.setPosition = function(x, y) {
+    SESpriteObject.prototype.setPosition.call(this, x, y);
+    this.middle.x = this.getX() + this.getWidth() / 2;
+    this.middle.y = this.getY() + this.getHeight() / 2;
+
+    for (i = 0; i < this.inConds.length; ++i) {
+        var cond = this.inConds[i];
+        this.positionInCond(cond);
+    }
+    for (i = 0; i < this.outConds.length; ++i) {
+        var cond = this.outConds[i];
+        this.positionOutCond(cond);
+    }
+};
+
+SENode.prototype.positionInCond = function(cond) {
+    cond.setDst(this.middle);
+};
+
+SENode.prototype.addInCond = function(cond) {
+    this.inConds.push(cond);
+    cond.setDstNode(this);
+    this.positionInCond(cond);
+};
+
+SENode.prototype.positionOutCond = function(cond) {
+    cond.setSrc(this.middle);
+};
+
+SENode.prototype.addOutCond = function(cond) {
+    this.outConds.push(cond);
+    cond.setSrcNode(this);
+    this.positionOutCond(cond);
+};
+
 SENode.prototype.dragTo = function(point) {
     this.setPosition(point.x - this.dragging.clickPoint.x,
         point.y - this.dragging.clickPoint.y);
@@ -110,16 +147,26 @@ SENode.prototype.endDrag = function() {
     this.dragging.clickPoint.y = 0;
 };
 
+SENode.prototype.contains = function(px, py) {
+    var MARGIN = 10;
+    this.bounds.x = this.getX() - MARGIN;
+    this.bounds.y = this.getY() - MARGIN;
+    this.bounds.width = this.getWidth() + 2 * MARGIN;
+    this.bounds.height = this.getHeight() + 2 * MARGIN;
+
+    return this.bounds.contains(px, py);
+};
+
 function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS = { nodes : {} };
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait56.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none56.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
+    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
