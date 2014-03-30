@@ -16,10 +16,26 @@ SEDisplayObject.prototype.getId = function() {
     return this.id;
 };
 
+function SEObjectConfig() {
+    Array.prototype.removeBySEId = function(id) {
+        for (i = 0; i < this.length; ++i) {
+            if (this[i].getId() === id) {
+                this.splice(i, 1);
+                break;
+            }
+        }
+        return this;
+    };
+}
+
 SEDisplayObject.prototype.setDO = function(dispObj) {
     this.do = dispObj;
     this.do.setInteractive(true);
     this.do.sedo = this;
+};
+
+SEDisplayObject.prototype.setInteractive = function(val) {
+    this.do.setInteractive(val);
 };
 
 //Scale independent sizes

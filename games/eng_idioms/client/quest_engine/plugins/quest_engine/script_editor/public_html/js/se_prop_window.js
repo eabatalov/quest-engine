@@ -23,14 +23,10 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
         $scope.cond = null;
 
         seEvents.on(function(args) {
-            if (args.name === "NODE_PROP_EDIT") {
+            if (args.name === "OBJECT_FOCUS") {
                 $timeout(function() {
                     //Safe digest
-                    $scope.$apply(function() { $scope.setPropsObject(args.obj, true); });
-                });
-            } else if (args.name === "COND_PROP_EDIT") {
-                $timeout(function() {
-                    $scope.$apply(function() { $scope.setPropsObject(args.obj, false); });
+                    $scope.$apply(function() { $scope.setPropsObject(args.obj, args.type === "NODE" ); });
                 });
             }
         });

@@ -22,9 +22,7 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
         this.changeType(type);
     }
 
-    this.dragging = {};
-    this.dragging.pending = false;
-    this.dragging.circle = new PIXI.Circle(0, 0, 0);
+    this.seEvents.on(this.onSeEvent.bind(this));
 }
 
 SECond.prototype = new SEDisplayObject(); 
@@ -36,11 +34,37 @@ SECond.prototype.contains = function(px, py) {
         return false;
 };
 
-SECond.prototype.controlEvent = function(ctlName, evName) {
-    if (ctlName === "DEL" && evName === "CLICK") {
-        console.log(ctlName + " " + evName);
+SECond.prototype.onSeEvent = function(args) {
+    if (args.name === "OBJECT_FOCUS") {
+        if (args.obj.getId() === this.getId()) {
+            this.setControlsVisible(true);
+        } else {
+            this.setControlsVisible(false);
+        };
+        //XXX it work without update because we have rendering loop now
+        //sceneUpdater.up();
         return;
     }
+};
+
+SECond.prototype.controlEvent = function(ctlName, evName) {
+    if (ctlName === "DEL" && evName === "CLICK") {
+        this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this });
+        //console.log(ctlName + " " + evName);
+        return;
+    }
+};
+
+SECond.prototype.delete = function() {
+    if (this.srcNode) {
+        this.srcNode.deleteOutCond(this);
+    }
+    if (this.dstNode) {
+        this.dstNode.deleteInCond(this);
+    }
+    this.detachParent();
+    this.setInteractive(false);
+    this.seEvents.broadcast({ name : "COND_DELETED", cond : this });
 };
 
 SECond.prototype.changeType = function(type) {
@@ -134,17 +158,8 @@ SECond.prototype.reDraw = function() {
         midX - this.buttons.del.getWidth() / 2,
         midY - this.buttons.del.getHeight() / 2
     );
-}
-
-function condClicked(intData) {
-    if (intData.originalEvent.shiftKey) {
-        SECond.treeEditor.deleteCond(this);
-    } else {
-        this.seEvents.broadcast({
-            name : "COND_PROP_EDIT",
-            obj : this
-        });
-    }
+    //XXX it work without update because we have rendering loop now
+    //sceneUpdater.up();
 }
 
 function SECondStaticConstructor(completionCB) {

@@ -71,11 +71,6 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.seEvents.on(scriptTreeEditorOnSeEvent.bind(this));
 
     this.posValidator = new SEEditorPositionValidator(this);
-    //Looks like XXX but need to inject one instance for all
-    //the nodes and conds some way
-    //TODO use angular injector someway
-    SECond.treeEditor = this;
-    SECond.sceneUpdater = this.sceneUpdater;
 }
 
 ScriptTreeEditor.prototype = new SEDisplayObject();
@@ -159,9 +154,13 @@ function scriptTreeEditorOnSeEvent(args) {
             this.nodes.storyLines[0],
             this.nodes.stages[0]);
         newNode.setPosition(pos.x, pos.y);
-        newNode.setParent(this.nodesLayer);
-        this.nodes.all.push(newNode);
-        this.sceneUpdater.up();
+        //TODO need 100% creation to send confiramation event
+        //if (this.posValidator.validateNode(newNode)) {
+            newNode.setParent(this.nodesLayer);
+            this.nodes.all.push(newNode);
+            this.sceneUpdater.up();
+        //} else newNode = null; //TODO move node to the nearest appropriate position
+        this.seEvents.broadcast({ name : "NODE_CREATED", node : newNode });
         return;
     }
 
@@ -187,6 +186,22 @@ function scriptTreeEditorOnSeEvent(args) {
         this.input.dragging.all = false;
         this.input.dragging.prevAllDragPos.x = 0;
         this.input.dragging.prevAllDragPos.y = 0;
+        return;
+    }
+
+    if (args.name === "NODE_DELETED") {
+        console.log(args.name);
+        this.nodes.all.removeBySEId(args.node.getId());
+        this.nodes.stages.removeBySEId(args.node.getId());
+        this.nodes.storyLines.removeBySEId(args.node.getId());
+        this.sceneUpdater.up();
+        return;
+    }
+
+    if (args.name === "COND_DELETED") {
+        console.log(args.name);
+        this.conds.removeBySEId(args.cond.getId());
+        this.sceneUpdater.up();
         return;
     }
 }
@@ -254,6 +269,7 @@ function scriptTreeEditorInputEvent(evName, intData) {
     }
 
     if ((evName === "UP" && this.input.dragging.node) ||
+        (evName === "UP" && this.input.dragging.all) ||
         (evName === "UP" && this.editorMouseEvent(intData))) {
         this.seEvents.broadcast({ name : "EDITOR_UP" });
         return;
@@ -263,18 +279,6 @@ function scriptTreeEditorInputEvent(evName, intData) {
         this.seEvents.broadcast({ name : "EDITOR_UP_OUTSIDE" });
         return;
     }
-}
-
-ScriptTreeEditor.prototype.deleteNode = function(node) {
-    this.nodes.all.remove(node);
-    node.detachParent();
-    this.sceneUpdater.up();
-};
-
-ScriptTreeEditor.prototype.deleteCond = function(cond) {
-    this.conds.remove(cond);
-    cond.detachParent();
-    this.sceneUpdater.up();
 }
 
 function ScriptTreeEditorStaticConstructor(completionCB) {

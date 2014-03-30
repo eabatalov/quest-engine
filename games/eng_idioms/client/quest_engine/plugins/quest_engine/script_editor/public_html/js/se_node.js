@@ -14,7 +14,7 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.buttons.cond.setPosition(this.getWidth() - this.buttons.cond.getWidth() + CONTROL_DIST, -CONTROL_DIST);
     this.buttons.del.do.buttonMode = true;
     this.buttons.cond.do.buttonMode = true;
-    //this.setControlsVisible(false);
+    this.setControlsVisible(false);
 
     this.seEvents = seEvents;
     this.type = type;
@@ -89,6 +89,8 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.do.mouseupoutside = this.do.touchendoutside = this.inputEvent.bind(this, "UP_OUTSIDE");
     this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
     this.buttons.cond.do.click = this.controlEvent.bind(this, "COND", "CLICK");
+
+    this.seEvents.on(this.onSeEvent.bind(this));
 }
 
 SENode.prototype = new SESpriteObject();
@@ -99,7 +101,17 @@ SENode.prototype.isNodeEvent = function(intData) {
         this.buttons.cond.contains(p.x, p.y))
         return false;
     else return true;
+};
 
+SENode.prototype.onSeEvent = function(args) {
+    if (args.name === "OBJECT_FOCUS") {
+        if (args.obj.getId() === this.getId()) {
+            this.setControlsVisible(true);
+        } else {
+            this.setControlsVisible(false);
+        };
+        return;
+    }
 };
 
 SENode.prototype.inputEvent = function(evName, intData) {
@@ -114,12 +126,14 @@ SENode.prototype.inputEvent = function(evName, intData) {
 
 SENode.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
-        console.log(ctlName + " " + evName);
+        this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this });
+        //console.log(ctlName + " " + evName);
         return;
     }
 
     if (ctlName === "COND" && evName === "CLICK") {
-        console.log(ctlName + " " + evName);
+        this.seEvents.broadcast({ name : "NODE_NEW_COND_CLICK" , node : this });
+        //console.log(ctlName + " " + evName);
         return;
     }
 };
@@ -168,6 +182,16 @@ SENode.prototype.addInCond = function(cond) {
     this.positionInCond(cond);
 };
 
+SENode.prototype.deleteInCond = function(dCond) {
+    for (i = 0; i < this.inConds.length; ++i) {
+        var cond = this.inConds[i];
+        if (cond.getId() == dCond.getId()) {
+            this.inConds.splice(i, 1);
+            return;
+        }
+    }
+};
+
 SENode.prototype.positionOutCond = function(cond) {
     cond.setSrc(this.middle);
 };
@@ -176,6 +200,30 @@ SENode.prototype.addOutCond = function(cond) {
     this.outConds.push(cond);
     cond.setSrcNode(this);
     this.positionOutCond(cond);
+};
+
+SENode.prototype.deleteOutCond = function(dCond) {
+    for (i = 0; i < this.outConds.length; ++i) {
+        var cond = this.outConds[i];
+        if (cond.getId() == dCond.getId()) {
+            this.outConds.splice(i, 1);
+            return;
+        }
+    }
+};
+
+SENode.prototype.delete = function() {
+    for (i = 0; i < this.inConds.length; ++i) {
+        var cond = this.inConds[i];
+        cond.delete();
+    }
+    for (i = 0; i < this.outConds.length; ++i) {
+        var cond = this.outConds[i];
+        cond.delete();
+    }
+    this.detachParent();
+    this.setInteractive(false);
+    this.seEvents.broadcast({ name : "NODE_DELETED", node : this });
 };
 
 SENode.prototype.dragTo = function(point) {

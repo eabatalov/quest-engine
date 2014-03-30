@@ -22,7 +22,7 @@ scriptEditorApp.config(function() {
         }
         return this;
     };
-});
+}).config(SEObjectConfig);
 
 scriptEditorApp.run(['ScriptEditorEvents', "ScriptEditor", "TreeCompiler",
     function(seEvents, scriptEditor, treeCompiler) {
