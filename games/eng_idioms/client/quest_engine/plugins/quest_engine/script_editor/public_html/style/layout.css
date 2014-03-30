@@ -883,10 +883,8 @@ blockquote.pull-right:before {
 		margin-left: 0;
 	}
 }
-
-
 #content-wrapper {
-	background: #eeeeee;
+    border-collapse:separate;
 	height: 100%;
 	margin-top: 0;
 	margin-bottom: 0;

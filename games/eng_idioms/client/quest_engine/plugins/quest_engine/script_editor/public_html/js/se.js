@@ -54,7 +54,7 @@ function SizeManager($rootScope, seEvents, se) {
     this.calcViewWH = function() {
         //this.viewWidth = this.jqCanvas.parent().width();
         //this.viewHeight = $(window).height() * 0.8;
-        this.viewWidth = this.viewHeight = this.jqCanvas.parent().width() * 0.8;
+        this.viewWidth = this.viewHeight = this.jqCanvas.parent().width() * 1;
     };
 
     this.resizeView = function() {
