@@ -32,15 +32,14 @@ ToolBarItem.prototype.equals = function(itemB) {
 function ToolBarItemStaticConstructor(completionCB) {
     function ItemConfig(iconUrl, label) { this.iconUrl = iconUrl; this.label = label; }
     ToolBarItem.DATA = {};
-    ToolBarItem.DATA[_QUEST_NODES.ANIM] =
-        new ItemConfig("images/node_anim56.png", "Animation");
-    ToolBarItem.DATA[_QUEST_NODES.PHRASE] = new ItemConfig("images/node_phrase56.png", "Phrase");
-    ToolBarItem.DATA[_QUEST_NODES.QUIZ] = new ItemConfig("images/node_quiz56.png", "Quiz");
-    ToolBarItem.DATA[_QUEST_NODES.STAGE] = new ItemConfig("images/node_stage56.png", "Stage");
-    ToolBarItem.DATA[_QUEST_NODES.STAGE_CLEAR] = new ItemConfig("images/node_stcl56.png", "Clear");
-    ToolBarItem.DATA[_QUEST_NODES.STORYLINE] = new ItemConfig("images/node_stln56.png", "Storyline");
-    ToolBarItem.DATA[_QUEST_NODES.WAIT] = new ItemConfig("images/node_wait56.png", "Delay");
-    ToolBarItem.DATA[_QUEST_NODES.NONE] = new ItemConfig("images/node_none56.png", "Nothing");
+    ToolBarItem.DATA[_QUEST_NODES.ANIM] = new ItemConfig("images/nav/nav_anim.png", "Animation");
+    ToolBarItem.DATA[_QUEST_NODES.PHRASE] = new ItemConfig("images/nav/nav_phrase.png", "Phrase");
+    ToolBarItem.DATA[_QUEST_NODES.QUIZ] = new ItemConfig("images/nav/nav_quiz.png", "Quiz");
+    ToolBarItem.DATA[_QUEST_NODES.STAGE] = new ItemConfig("images/nav/nav_stage.png", "Stage");
+    ToolBarItem.DATA[_QUEST_NODES.STAGE_CLEAR] = new ItemConfig("images/nav/nav_stcl.png", "Clear");
+    ToolBarItem.DATA[_QUEST_NODES.STORYLINE] = new ItemConfig("images/nav/nav_stln.png", "Storyline");
+    ToolBarItem.DATA[_QUEST_NODES.WAIT] = new ItemConfig("images/nav/nav_wait.png", "Delay");
+    ToolBarItem.DATA[_QUEST_NODES.NONE] = new ItemConfig("images/nav/nav_none.png", "Nothing");
 
     completionCB();
 }
