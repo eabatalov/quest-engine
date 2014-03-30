@@ -123,6 +123,10 @@ SEDisplayObject.prototype.setVisible = function(val) {
     this.do.visible = val;
 };
 
+SEDisplayObject.prototype.getVisible = function() {
+    return this.do.visible;
+};
+
 /*
  * Sprite object with sizes independent of its scale
  */

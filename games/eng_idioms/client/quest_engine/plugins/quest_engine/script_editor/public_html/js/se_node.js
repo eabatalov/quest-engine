@@ -97,8 +97,8 @@ SENode.prototype = new SESpriteObject();
 
 SENode.prototype.isNodeEvent = function(intData) {
     var p = this.getLocalPosition(intData);
-    if (this.buttons.del.contains(p.x, p.y) ||
-        this.buttons.cond.contains(p.x, p.y))
+    if ((this.buttons.del.getVisible() && this.buttons.del.contains(p.x, p.y)) ||
+        (this.buttons.cond.getVisible() && this.buttons.cond.contains(p.x, p.y)))
         return false;
     else return true;
 };

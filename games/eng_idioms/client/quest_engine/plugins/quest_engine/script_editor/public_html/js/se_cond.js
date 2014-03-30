@@ -3,12 +3,17 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
     this.points.dst = new PIXI.Point(0, 0);
+    this.points.srcVisible = new PIXI.Point(0, 0);
+    this.points.dstVisible = new PIXI.Point(0, 0);
+    this.points.draw = new PIXI.Point(0, 0);
+
     this.buttons = {
         del : new SESpriteObject(new PIXI.Sprite(SECond.TEXTURES.buttons.del)),
     }
     this.buttons.del.setParent(this);
     this.buttons.del.do.buttonMode = true;
     this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
+    this.setControlsVisible(false);
 
     this.seEvents = seEvents;
     this.type = type;
@@ -23,6 +28,8 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     }
 
     this.seEvents.on(this.onSeEvent.bind(this));
+
+    this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
 }
 
 SECond.prototype = new SEDisplayObject(); 
@@ -46,6 +53,21 @@ SECond.prototype.onSeEvent = function(args) {
         return;
     }
 };
+
+SECond.prototype.isCondEvent = function(intData) {
+    var p = this.getLocalPosition(intData);
+    if (this.buttons.del.getVisible() && this.buttons.del.contains(p.x, p.y))
+        return false;
+    else return true;
+};
+
+SECond.prototype.inputEvent = function(evName, intData) {
+    console.log(evName);
+    if (evName === "CLICK" && this.isCondEvent(intData)) {
+        this.seEvents.broadcast({ name : "COND_CLICK", cond : this });
+        return;
+    }
+}
 
 SECond.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
@@ -104,8 +126,12 @@ SECond.prototype.reDraw = function() {
     var WIDTH = 10;
     var PICK_LEN = 10;
 
-    var srcPt = this.points.src.clone();
-    var dstPt = this.points.dst.clone();
+    var srcPt = this.points.srcVisible;
+    srcPt.x = this.points.src.x;
+    srcPt.y = this.points.src.y;
+    var dstPt = this.points.dstVisible;
+    dstPt.x = this.points.dst.x;
+    dstPt.y = this.points.dst.y;
 
     var srcDistance = this.srcNode ? this.srcNode.getWidth() / 2 + 10 : 0;
     var dstDistance = this.dstNode ? this.dstNode.getWidth() / 2 + 10 : 0;
@@ -117,10 +143,11 @@ SECond.prototype.reDraw = function() {
     var phi = Math.atan2(vecY, vecX);
     var phiCos = Math.cos(phi);
     var phiSin = Math.sin(phi);
+    var phiNormCos = Math.cos(phi + Math.PI / 2);
+    var phiNormSin = Math.sin(phi + Math.PI / 2);
 
     srcPt.x += srcDistance * phiCos;
     srcPt.y += srcDistance * phiSin;
-
     dstPt.x -= dstDistance * phiCos;
     dstPt.y -= dstDistance * phiSin;
 
@@ -130,24 +157,26 @@ SECond.prototype.reDraw = function() {
     this.do.lineTo(dstPt.x, dstPt.y);
     //Arrow pick
     var PICK_WIDTH = 10;
-    //Work with dstPt, srcPt not to create new on
-    var phiNormCos = Math.cos(phi + Math.PI / 2);
-    var phiNormSin = Math.sin(phi + Math.PI / 2);
-    dstPt.x += PICK_LEN * phiCos;
-    dstPt.y += PICK_LEN * phiSin;
-    srcPt.x = dstPt.x - PICK_LEN * phiCos;
-    srcPt.y = dstPt.y - PICK_LEN * phiSin;
     this.do.beginFill(0x000000);
-    this.do.moveTo(dstPt.x, dstPt.y);
-    srcPt.x += PICK_WIDTH / 2 * phiNormCos;
-    srcPt.y += PICK_WIDTH / 2 * phiNormSin;
-    this.do.lineTo(srcPt.x, srcPt.y);
-    srcPt.x -= PICK_WIDTH * phiNormCos;;
-    srcPt.y -= PICK_WIDTH * phiNormSin;
-    this.do.lineTo(srcPt.x, srcPt.y);
-    this.do.lineTo(dstPt.x, dstPt.y);
+    var pt = this.points.draw;
+    pt.x = dstPt.x; pt.y = dstPt.y;
+    pt.x += PICK_LEN * phiCos;
+    pt.y += PICK_LEN * phiSin;
+    this.do.moveTo(pt.x, pt.y);
+
+    pt.x -= PICK_LEN * phiCos + PICK_WIDTH / 2 * phiNormCos;
+    pt.y -= PICK_LEN * phiSin + PICK_WIDTH / 2 * phiNormSin;
+    this.do.lineTo(pt.x, pt.y);
+
+    pt.x += PICK_WIDTH * phiNormCos;;
+    pt.y += PICK_WIDTH * phiNormSin;
+    this.do.lineTo(pt.x, pt.y);
+
+    pt.x += PICK_LEN * phiCos - PICK_WIDTH / 2 * phiNormCos;
+    pt.y += PICK_LEN * phiSin - PICK_WIDTH / 2 * phiNormSin;
+    this.do.lineTo(pt.x, pt.y);
     this.do.endFill();
-    //
+    //Place button in the middle
     var len = Math.sqrt(
         (this.points.dst.x - this.points.src.x) * (this.points.dst.x - this.points.src.x) +
         (this.points.dst.y - this.points.src.y) * (this.points.dst.y - this.points.src.y)
@@ -158,6 +187,24 @@ SECond.prototype.reDraw = function() {
         midX - this.buttons.del.getWidth() / 2,
         midY - this.buttons.del.getHeight() / 2
     );
+    //Hit area
+    var CLICK_WIDTH = WIDTH * 2;
+    var hitAreaPoints = [
+        new PIXI.Point(this.points.srcVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y + CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.srcVisible.x - CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y - CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.dstVisible.x - CLICK_WIDTH / 2 * phiNormCos, this.points.dstVisible.y - CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.dstVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.dstVisible.y + CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.srcVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y + CLICK_WIDTH / 2 * phiNormSin)
+    ];
+    this.do.hitArea = new PIXI.Polygon(hitAreaPoints);
+    //Debug
+    /*this.do.lineStyle(1, 0x000000, 1);
+    for (i = 1; i < hitAreaPoints.length; ++i) {
+        this.do.moveTo(hitAreaPoints[i - 1].x, hitAreaPoints[i - 1].y);
+        this.do.lineTo(hitAreaPoints[i].x, hitAreaPoints[i].y);
+    }
+    this.do.moveTo(hitAreaPoints[hitAreaPoints.length - 1].x, hitAreaPoints[hitAreaPoints.length - 1].y);
+    this.do.lineTo(hitAreaPoints[0].x, hitAreaPoints[0].y);*/
     //XXX it work without update because we have rendering loop now
     //sceneUpdater.up();
 }
