@@ -1,7 +1,7 @@
 function ScriptEditor(rootScope, seEvents, mouseWheelManager) {
     this.stage = new PIXI.Stage(0xFFFFFF, true);
 
-    this.pad = new SEDisplayObject(new PIXI.Sprite(ScriptEditor.TEXTURES.bg));
+    this.pad = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.pad.setPosition(0, 0);
     this.pad.setParent(this.stage);
 
@@ -22,18 +22,7 @@ ScriptEditor.prototype.setupEventHandlers = function($rootScope, seEvents) {
 };
 
 function ScriptEditorStaticConstructor(completionCB) {
-    ScriptEditor.TEXTURE_PATHS = {};
-    ScriptEditor.TEXTURE_PATHS.bg = "images/scene_tile.png";
-
-    var assetsToLoad = $.map(ScriptEditor.TEXTURE_PATHS, function(value, ix) { return [value]; });
-    loader = new PIXI.AssetLoader(assetsToLoad);
-    loader.onComplete = function() {
-        ScriptEditor.TEXTURES = {};
-        ScriptEditor.TEXTURES.bg =
-            PIXI.Texture.fromImage(ScriptEditor.TEXTURE_PATHS.bg);
-        completionCB();
-    };
-    loader.load();
+    completionCB();
 }
 
 function ScriptEditorFactory(rootScope, events, mouseWheelManager) {
@@ -63,8 +52,9 @@ function SizeManager($rootScope, seEvents, se) {
     };
 
     this.calcViewWH = function() {
-        this.viewWidth = this.jqCanvas.parent().width();
-        this.viewHeight = $(window).height() * 0.8;
+        //this.viewWidth = this.jqCanvas.parent().width();
+        //this.viewHeight = $(window).height() * 0.8;
+        this.viewWidth = this.viewHeight = this.jqCanvas.parent().width() * 0.8;
     };
 
     this.resizeView = function() {
