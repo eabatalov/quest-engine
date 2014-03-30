@@ -1,6 +1,20 @@
 function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
-    SESpriteObject.call(this);
-    this.setDO(new PIXI.Sprite(SENode.TEXTURES.nodes[type]));
+    SESpriteObject.call(this, new PIXI.Sprite(SENode.TEXTURES.nodes[type]));
+    this.buttons = {
+        del : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.del)),
+        cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
+    };
+    this.label = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label));
+    this.buttons.del.setParent(this);
+    this.buttons.cond.setParent(this);
+    this.label.setParent(this);
+    var CONTROL_DIST = 10;
+    this.label.setPosition((this.getWidth() - this.label.getWidth()) / 2, this.getHeight() + CONTROL_DIST);
+    this.buttons.del.setPosition(-CONTROL_DIST, -CONTROL_DIST);
+    this.buttons.cond.setPosition(this.getWidth() - this.buttons.cond.getWidth() + CONTROL_DIST, -CONTROL_DIST);
+    this.buttons.del.do.buttonMode = true;
+    this.buttons.cond.do.buttonMode = true;
+    //this.setControlsVisible(false);
 
     this.seEvents = seEvents;
     this.type = type;
@@ -73,13 +87,23 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.do.mousemove = this.do.touchmove = this.inputEvent.bind(this, "MOVE");
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
     this.do.mouseupoutside = this.do.touchendoutside = this.inputEvent.bind(this, "UP_OUTSIDE");
-
+    this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
+    this.buttons.cond.do.click = this.controlEvent.bind(this, "COND", "CLICK");
 }
 
 SENode.prototype = new SESpriteObject();
 
+SENode.prototype.isNodeEvent = function(intData) {
+    var p = this.getLocalPosition(intData);
+    if (this.buttons.del.contains(p.x, p.y) ||
+        this.buttons.cond.contains(p.x, p.y))
+        return false;
+    else return true;
+
+};
+
 SENode.prototype.inputEvent = function(evName, intData) {
-    if (evName === "DOWN") {
+    if (evName === "DOWN" && this.isNodeEvent(intData)) {
         var dragPos = this.getLocalPosition(intData);
         this.dragging.clickPoint.x = dragPos.x;
         this.dragging.clickPoint.y = dragPos.y;
@@ -87,6 +111,23 @@ SENode.prototype.inputEvent = function(evName, intData) {
         return;
     }
 }
+
+SENode.prototype.controlEvent = function(ctlName, evName) {
+    if (ctlName === "DEL" && evName === "CLICK") {
+        console.log(ctlName + " " + evName);
+        return;
+    }
+
+    if (ctlName === "COND" && evName === "CLICK") {
+        console.log(ctlName + " " + evName);
+        return;
+    }
+};
+
+SENode.prototype.setControlsVisible = function(val) {
+    this.buttons.del.setVisible(val);
+    this.buttons.cond.setVisible(val);
+};
 
 function storyLineAddObject(objId) {
     this.props.objs.push(objId);
@@ -154,11 +195,13 @@ SENode.prototype.contains = function(px, py) {
     this.bounds.width = this.getWidth() + 2 * MARGIN;
     this.bounds.height = this.getHeight() + 2 * MARGIN;
 
-    return this.bounds.contains(px, py);
+    return this.bounds.contains(px, py) ||
+        this.buttons.del.contains(px - this.getX(), py - this.getY()) ||
+        this.buttons.cond.contains(px - this.getX(), py - this.getY());
 };
 
 function SENodeStaticConstructor(completionCB) {
-    SENode.TEXTURE_PATHS = { nodes : {} };
+    SENode.TEXTURE_PATHS = { nodes : {}, buttons : {} };
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz.png";
@@ -167,12 +210,19 @@ function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
+    SENode.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
+    SENode.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
+    SENode.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
+     assetsToLoad = assetsToLoad.concat($.map(SENode.TEXTURE_PATHS.buttons,
+        function(value, index) { return [value]; }));
+    assetsToLoad.push(SENode.TEXTURE_PATHS.label);
+
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
-        SENode.TEXTURES = { nodes : {} };
+        SENode.TEXTURES = { nodes : {}, buttons : {} };
         SENode.TEXTURES.nodes[_QUEST_NODES.ANIM] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
         SENode.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
@@ -189,6 +239,12 @@ function SENodeStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT]);
         SENode.TEXTURES.nodes[_QUEST_NODES.NONE] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
+        SENode.TEXTURES.buttons.del =
+            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.del);
+        SENode.TEXTURES.buttons.cond =
+            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.cond);
+        SENode.TEXTURES.label =
+            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.label);
 
         completionCB();
     };

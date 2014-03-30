@@ -1,9 +1,14 @@
 function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
-    SEDisplayObject.call(this);
-    this.setDO(new PIXI.Graphics());
+    SEDisplayObject.call(this, new PIXI.Graphics());
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
     this.points.dst = new PIXI.Point(0, 0);
+    this.buttons = {
+        del : new SESpriteObject(new PIXI.Sprite(SECond.TEXTURES.buttons.del)),
+    }
+    this.buttons.del.setParent(this);
+    this.buttons.del.do.buttonMode = true;
+    this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
 
     this.seEvents = seEvents;
     this.type = type;
@@ -31,6 +36,12 @@ SECond.prototype.contains = function(px, py) {
         return false;
 };
 
+SECond.prototype.controlEvent = function(ctlName, evName) {
+    if (ctlName === "DEL" && evName === "CLICK") {
+        console.log(ctlName + " " + evName);
+        return;
+    }
+};
 
 SECond.prototype.changeType = function(type) {
     this.props = {};
@@ -61,8 +72,12 @@ SECond.prototype.setDstNode = function(node) {
     this.dstNode = node;
 };
 
+SECond.prototype.setControlsVisible = function(val) {
+    this.buttons.del.setVisible(val);
+};
+
 SECond.prototype.reDraw = function() {
-    var WIDTH = 5;
+    var WIDTH = 10;
     var PICK_LEN = 10;
 
     var srcPt = this.points.src.clone();
@@ -108,6 +123,17 @@ SECond.prototype.reDraw = function() {
     this.do.lineTo(srcPt.x, srcPt.y);
     this.do.lineTo(dstPt.x, dstPt.y);
     this.do.endFill();
+    //
+    var len = Math.sqrt(
+        (this.points.dst.x - this.points.src.x) * (this.points.dst.x - this.points.src.x) +
+        (this.points.dst.y - this.points.src.y) * (this.points.dst.y - this.points.src.y)
+    );
+    var midX = this.points.src.x + len/2 * phiCos;
+    var midY = this.points.src.y + len/2 * phiSin;
+    this.buttons.del.setPosition(
+        midX - this.buttons.del.getWidth() / 2,
+        midY - this.buttons.del.getHeight() / 2
+    );
 }
 
 function condClicked(intData) {
@@ -122,5 +148,20 @@ function condClicked(intData) {
 }
 
 function SECondStaticConstructor(completionCB) {
-    completionCB();
+    SECond.TEXTURE_PATHS = { buttons : {} };
+    SECond.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
+
+    var assetsToLoad = $.map(SECond.TEXTURE_PATHS.buttons,
+        function(value, index) { return [value]; });
+
+    loader = new PIXI.AssetLoader(assetsToLoad);
+    loader.onComplete = function() {
+        SECond.TEXTURES = {
+            buttons : {
+                del : PIXI.Texture.fromImage(SECond.TEXTURE_PATHS.buttons.del) 
+            }
+        };
+        completionCB();
+    };
+    loader.load();
 }

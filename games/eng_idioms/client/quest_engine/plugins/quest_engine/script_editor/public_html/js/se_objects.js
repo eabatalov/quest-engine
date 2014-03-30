@@ -96,11 +96,15 @@ SEDisplayObject.prototype.getParentBasedPosition = function(intData) {
 
 SEDisplayObject.prototype.contains = function(px, py) {
     if (this.do.hitArea) {
-        return this.do.hitArea.contains(px, py);
+        return this.do.hitArea.contains(px - this.getX(), py - this.getY());
     } else {
         var rect = new PIXI.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         return rect.contains(px, py);
     }
+};
+
+SEDisplayObject.prototype.setVisible = function(val) {
+    this.do.visible = val;
 };
 
 /*
