@@ -6,10 +6,11 @@ function ScriptEditor(rootScope, seEvents, mouseWheelManager) {
     this.pad.setParent(this.stage);
 
     this.setupEventHandlers(rootScope, seEvents);
-    this.treeEditor = new ScriptTreeEditor(rootScope, this.pad, seEvents,
-        this.sceneUpdater, mouseWheelManager);
     this.sceneUpdater = new SceneUpdater(this);
     this.sizeManager = new SizeManager(rootScope, seEvents, this);
+    this.inputManager = new SEInputManager(seEvents);
+    this.treeEditor = new ScriptTreeEditor(rootScope, this.pad, seEvents,
+        this.sceneUpdater, mouseWheelManager);
 }
 
 ScriptEditor.prototype.setupEventHandlers = function($rootScope, seEvents) {

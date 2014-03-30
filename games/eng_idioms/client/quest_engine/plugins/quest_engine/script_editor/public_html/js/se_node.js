@@ -61,20 +61,28 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     }
     this.props =  props;
     this.conds = [];
-    this.do.click = nodeClicked.bind(this);
+
+    this.dragging = { clickPoint : new PIXI.Point(0, 0) };
+    this.do.mousedown = this.do.touchstart = this.inputEvent.bind(this, "DOWN");
+    this.do.mouseup = this.do.touchend = this.inputEvent.bind(this, "UP");
+    this.do.mouseout = this.inputEvent.bind(this, "OUT");
+    this.do.mouseover = this.inputEvent.bind(this, "IN");
+    this.do.mousemove = this.do.touchmove = this.inputEvent.bind(this, "MOVE");
+    this.do.click  = this.do.tap = this.inputEvent.bind(this, "CLICK");
+    this.do.mouseupoutside = this.do.touchendoutside = this.inputEvent.bind(this, "UP_OUTSIDE");
+
 }
 
 SENode.prototype = new SESpriteObject();
-SENode.prototype.constructor = SENode;
 
-function nodeClicked(intData) {
-    if (intData.originalEvent.shiftKey) {
-        SENode.treeEditor.deleteNode(this);
-    } else {
-        this.seEvents.broadcast({
-            name : "NODE_PROP_EDIT",
-            obj : this
-        });
+SENode.prototype.inputEvent = function(evName, intData) {
+    if (evName === "DOWN") {
+        console.log("NODE DOWN");
+        var dragPos = this.getLocalPosition(intData);
+        this.dragging.clickPoint.x = dragPos.x;
+        this.dragging.clickPoint.y = dragPos.y;
+        this.seEvents.broadcast({ name : "NODE_DOWN", intData : intData, node : this });
+        return;
     }
 }
 
@@ -91,6 +99,16 @@ function stageAddObject(objId) {
 function stageTakeFromPool(objId) {
     this.props.objPool.remove(objId);
 }
+
+SENode.prototype.dragTo = function(point) {
+    this.setPosition(point.x - this.dragging.clickPoint.x,
+        point.y - this.dragging.clickPoint.y);
+};
+
+SENode.prototype.endDrag = function() {
+    this.dragging.clickPoint.x = 0;
+    this.dragging.clickPoint.y = 0;
+};
 
 function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS = { nodes : {} };

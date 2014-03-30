@@ -1,4 +1,4 @@
-ScriptEditorPropertiesWindowController = function($scope, seEvents) {
+ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
         //Make global constants accessible from $scope
         $scope.PLAYER_ACTIONS = _PLAYER_ACTIONS;
 		$scope.UI_ACTIONS = _UI_ACTIONS;
@@ -22,14 +22,17 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents) {
         $scope.node = null;
         $scope.cond = null;
 
-        $scope.$on('seEvent', function() {
-            $scope.$apply(function() {
-                if (seEvents.args.name === "NODE_PROP_EDIT") {
-                    $scope.setPropsObject(seEvents.args.obj, true);
-                } else if (seEvents.args.name === "COND_PROP_EDIT") {
-                    $scope.setPropsObject(seEvents.args.obj, false);
-                }
-            });
+        seEvents.on(function(args) {
+            if (args.name === "NODE_PROP_EDIT") {
+                $timeout(function() {
+                    //Safe digest
+                    $scope.$apply(function() { $scope.setPropsObject(args.obj, true); });
+                });
+            } else if (args.name === "COND_PROP_EDIT") {
+                $timeout(function() {
+                    $scope.$apply(function() { $scope.setPropsObject(args.obj, false); });
+                });
+            }
         });
 
         $scope.addObjectToStoryLine = function() {

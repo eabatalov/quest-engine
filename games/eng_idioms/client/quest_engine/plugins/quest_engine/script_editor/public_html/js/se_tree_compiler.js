@@ -4,8 +4,8 @@ function TreeCompiler(scope, treeEditor, seEvents) {
     scope.$on('seEvent', this.onSeEvent.bind(this));
 }
 
-TreeCompiler.prototype.onSeEvent = function() {
-    if (this.seEvents.args.name !== "COMPILE")
+TreeCompiler.prototype.onSeEvent = function(args) {
+    if (args.name !== "COMPILE")
         return;
 
     this.uploadCompiledScript(this.compile());

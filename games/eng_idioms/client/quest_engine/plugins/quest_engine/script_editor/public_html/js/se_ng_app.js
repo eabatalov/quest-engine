@@ -45,18 +45,17 @@ scriptEditorApp.factory('ScriptEditorEvents', ['$rootScope',
     function($rootScope) {
         var events = {};
 
-        events.args = {
-            name : "",
-            obj : null
+        events.broadcast = function(args) {
+            $rootScope.$broadcast('seEvent', args);
         };
 
-        events.broadcast = function(args) {
-            this.args = args;
-            $rootScope.$emit('seEvent');
+        events.on = function(cb) {
+            $rootScope.$on('seEvent', function(ev, args) { cb(args); });
         };
 
         return events;
-    }]);
+    }
+]);
 
 scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
@@ -66,17 +65,18 @@ scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
 
 scriptEditorApp.factory("TreeObjectPositionValidator", ["TreeEditor", PositionValidatorFactory]);
 
-scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents',
+scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', '$timeout',
     ScriptEditorPropertiesWindowController]);
 
-scriptEditorApp.controller("ToolbarWindowController", ["$rootScope", '$scope', 'ScriptEditorEvents', ToolbarWindowController]);
+scriptEditorApp.controller("ToolbarWindowController", ["$rootScope", '$scope', 'ScriptEditorEvents', '$timeout',
+    ToolbarWindowController]);
 
 scriptEditorApp.controller("CompileBtnController", ['$scope', 'ScriptEditorEvents', CompileBtnController]);
 
 scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
     TreeCompilerFactory]);
 
-    this.staticConstructorsCnt = 6;
+    this.staticConstructorsCnt = 7;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);
     ScriptEditorStaticConstructor(constrComplCB);
     ScriptTreeEditorStaticConstructor(constrComplCB);
@@ -84,6 +84,7 @@ scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEdit
     SECondStaticConstructor(constrComplCB);
     ToolBarItemStaticConstructor(constrComplCB);
     ToolbarStaticConstructor(constrComplCB);
+    SEInputManagerStaticConstructor(constrComplCB);
 }
 
 $(document).ready(function() {

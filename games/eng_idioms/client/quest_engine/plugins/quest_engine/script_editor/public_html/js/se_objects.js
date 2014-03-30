@@ -2,12 +2,15 @@
  * Helper classes to fix different PIXI issues
  */
 function SEDisplayObject(dispObj) {
+    this.id = SEDisplayObject.seqID++;
     //PIXI display object which is used to draw this object
     if (dispObj === undefined)
         this.do = null;
     else
         this.setDO(dispObj);
 }
+
+SEDisplayObject.seqID = 0;
 
 SEDisplayObject.prototype.setDO = function(dispObj) {
     this.do = dispObj;

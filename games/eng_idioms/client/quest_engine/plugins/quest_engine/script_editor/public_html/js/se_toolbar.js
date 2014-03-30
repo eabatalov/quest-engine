@@ -45,7 +45,7 @@ function ToolBarItemStaticConstructor(completionCB) {
     completionCB();
 }
 
-ToolbarWindowController = function($rootScope, $scope, seEvents) {
+ToolbarWindowController = function($rootScope, $scope, seEvents, $timeout) {
     $scope.toolbarItems = [
             new ToolBarItem(_QUEST_NODES.ANIM, seEvents),
             new ToolBarItem(_QUEST_NODES.PHRASE, seEvents),
@@ -62,16 +62,40 @@ ToolbarWindowController = function($rootScope, $scope, seEvents) {
     };
 
     $scope.itemClicked = function(toolbarItem) {
-        $.each($scope.toolbarItems, function(ix, item) {
-            if (toolbarItem.equals(item)) {
-                if (toolbarItem.isActive)
-                    toolbarItem.deactivate();
-                else toolbarItem.activate();
-            } else {
-                item.deactivate();
-            }
-        });
+        var evName = toolbarItem.isActive ? "TOOLBAR_ITEM_DEACTIVATE_CLICK" : "TOOLBAR_ITEM_ACTIVATE_CLICK";
+        seEvents.broadcast({ name : evName, item : toolbarItem, type : toolbarItem.type });
     };
+
+    seEvents.on(function(args) {
+        if (args.name === "TOOLBAR_ITEM_ACTIVATE") {
+            $timeout(function() {
+                $scope.$apply(function() {
+                    var toolbarItem = args.item;
+                    $.each($scope.toolbarItems, function(ix, item) {
+                        if (toolbarItem.equals(item)) {
+                            if (toolbarItem.isActive)
+                                toolbarItem.deactivate();
+                            else toolbarItem.activate();
+                        } else {
+                            item.deactivate();
+                        }
+                    });
+                });
+            });
+            return;
+        }
+
+        if (args.name === "TOOLBAR_ITEM_DEACTIVATE") {
+            $timeout(function() {
+                    $scope.$apply(function() {
+                        $.each($scope.toolbarItems, function(ix, item) {
+                            item.deactivate();
+                            });
+                    });
+            });
+            return;
+        }
+    });
 };
 
 function ToolbarStaticConstructor(completionCB) {
