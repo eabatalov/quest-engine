@@ -14,6 +14,8 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     this.buttons.del.do.buttonMode = true;
     this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
     this.setControlsVisible(false);
+    /*this.label = new SEDisplayObject(new PIXI.Text("Default label"), false);
+    this.label.setParent(this);*/
 
     this.seEvents = seEvents;
     this.type = type;
@@ -204,6 +206,18 @@ SECond.prototype.reDraw = function() {
         midX - this.buttons.del.getWidth() / 2,
         midY - this.buttons.del.getHeight() / 2
     );
+    //Label
+    /*if (!this.styleIsSet) {
+        this.styleIsSet = true;
+        var font = "bold " + (WIDTH).toString() + "px Arial";
+        this.label.do.setStyle({ font : font, fill : "white" });
+        //TODO remove next line to make text visible
+        this.label.setVisible(false);
+    }
+    this.label.do.setText("Condition");
+    this.label.do.rotation = phi;
+    this.label.setPosition(srcPt.x + 3 * phiCos, srcPt.y + 3 * phiSin - WIDTH / 2 * phiNormSin);*/
+
     //Hit area
     var hitAreaPoints = [
         new PIXI.Point(this.points.srcVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y + CLICK_WIDTH / 2 * phiNormSin),

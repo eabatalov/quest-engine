@@ -1,13 +1,13 @@
 /*
  * Helper classes to fix different PIXI issues
  */
-function SEDisplayObject(dispObj) {
+function SEDisplayObject(dispObj, interactive) {
     this.id = SEDisplayObject.seqID++;
     //PIXI display object which is used to draw this object
     if (dispObj === undefined)
         this.do = null;
     else
-        this.setDO(dispObj);
+        this.setDO(dispObj, interactive);
 }
 
 SEDisplayObject.seqID = 0;
@@ -28,9 +28,9 @@ function SEObjectConfig() {
     };
 }
 
-SEDisplayObject.prototype.setDO = function(dispObj) {
+SEDisplayObject.prototype.setDO = function(dispObj, interactive) {
     this.do = dispObj;
-    this.do.setInteractive(true);
+    this.do.setInteractive(interactive ? interactive : true);
     this.do.sedo = this;
 };
 
@@ -136,8 +136,8 @@ function SESpriteObject(dispObj) {
 
 SESpriteObject.prototype = new SEDisplayObject();
 
-SESpriteObject.prototype.setDO = function(dispObj) {
-    SEDisplayObject.prototype.setDO.call(this, dispObj);
+SESpriteObject.prototype.setDO = function(dispObj, interactive) {
+    SEDisplayObject.prototype.setDO.call(this, dispObj, interactive);
     this.do.hitArea = this.do.getLocalBounds().clone();
 };
 
