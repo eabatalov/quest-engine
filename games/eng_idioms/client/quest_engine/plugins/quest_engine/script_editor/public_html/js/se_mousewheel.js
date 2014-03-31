@@ -38,21 +38,9 @@ MouseWheelManager.prototype.onDocument = function (cb) {
 };
 
 MouseWheelManager.prototype.onSelector = function(selector, cb) {
-	$(selector).on('DOMMouseScroll mousewheel wheel', function (e) {
-		return cb(e.originalEvent.detail ||
-			e.originalEvent.wheelDelta ||
-			e.originalEvent.wheelDeltaY);
-		/* http://learn.javascript.ru/mousewheel
-		if(e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) {
-			//alternative options for wheelData: wheelDeltaX & wheelDeltaY
-			//scroll down
-			cb();
-		} else {
-			//scroll up
-			cb();
-		}
-		//prevent page fom scrolling
-		return false;*/
+	$(selector).on('mousewheel wheel', function (e) {
+		return cb(e.originalEvent.wheelDelta || e.originalEvent.deltaY);
+		/* http://learn.javascript.ru/mousewheel */
 	});
 };
 
