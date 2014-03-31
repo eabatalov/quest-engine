@@ -123,8 +123,12 @@ SECond.prototype.setControlsVisible = function(val) {
 };
 
 SECond.prototype.reDraw = function() {
-    var WIDTH = 10;
-    var PICK_LEN = 10;
+    var WIDTH = 15;
+    var CLICK_WIDTH = WIDTH * 2;
+    var PICK_LEN = 40;
+    var PICK_WIDTH = WIDTH * 2.5;
+    var SRC_DIST = 1;
+    var DST_DIST = 1;
 
     var srcPt = this.points.srcVisible;
     srcPt.x = this.points.src.x;
@@ -133,10 +137,6 @@ SECond.prototype.reDraw = function() {
     dstPt.x = this.points.dst.x;
     dstPt.y = this.points.dst.y;
 
-    var srcDistance = this.srcNode ? this.srcNode.getWidth() / 2 + 10 : 0;
-    var dstDistance = this.dstNode ? this.dstNode.getWidth() / 2 + 10 : 0;
-    dstDistance += PICK_LEN;
-    
     var vecX = dstPt.x - srcPt.x;
     var vecY = dstPt.y - srcPt.y;
     var r = Math.sqrt(vecX * vecX + vecY * vecY);
@@ -145,6 +145,29 @@ SECond.prototype.reDraw = function() {
     var phiSin = Math.sin(phi);
     var phiNormCos = Math.cos(phi + Math.PI / 2);
     var phiNormSin = Math.sin(phi + Math.PI / 2);
+
+    var len = Math.sqrt(
+        (this.points.dst.x - this.points.src.x) * (this.points.dst.x - this.points.src.x) +
+        (this.points.dst.y - this.points.src.y) * (this.points.dst.y - this.points.src.y)
+    );
+    var midX = this.points.src.x + len/2 * phiCos;
+    var midY = this.points.src.y + len/2 * phiSin;
+
+    var srcDistance = 0;
+    if (this.srcNode) {
+        var srcDiagLen = Math.sqrt(Math.pow(this.srcNode.getWidth(), 2) + Math.pow(this.srcNode.getHeight(), 2));
+        srcDistance = srcDiagLen / 2 + SRC_DIST;
+    }
+    var dstDistance = 0;
+    if (this.dstNode) {
+        var dstDiagLen = Math.sqrt(Math.pow(this.dstNode.getWidth(), 2) +  Math.pow(this.dstNode.getHeight(), 2));
+        dstDistance = dstDiagLen / 2 + DST_DIST;
+        dstDistance += PICK_LEN;
+    }
+    if (len - srcDistance - dstDistance <= 0) {
+        srcDistance = len / 2 - PICK_LEN / 2;
+        dstDistance = len / 2 + PICK_LEN / 2;
+    }
 
     srcPt.x += srcDistance * phiCos;
     srcPt.y += srcDistance * phiSin;
@@ -156,7 +179,7 @@ SECond.prototype.reDraw = function() {
     this.do.moveTo(srcPt.x, srcPt.y);
     this.do.lineTo(dstPt.x, dstPt.y);
     //Arrow pick
-    var PICK_WIDTH = 10;
+    this.do.lineStyle(1, 0x000000, 1);
     this.do.beginFill(0x000000);
     var pt = this.points.draw;
     pt.x = dstPt.x; pt.y = dstPt.y;
@@ -177,23 +200,18 @@ SECond.prototype.reDraw = function() {
     this.do.lineTo(pt.x, pt.y);
     this.do.endFill();
     //Place button in the middle
-    var len = Math.sqrt(
-        (this.points.dst.x - this.points.src.x) * (this.points.dst.x - this.points.src.x) +
-        (this.points.dst.y - this.points.src.y) * (this.points.dst.y - this.points.src.y)
-    );
-    var midX = this.points.src.x + len/2 * phiCos;
-    var midY = this.points.src.y + len/2 * phiSin;
     this.buttons.del.setPosition(
         midX - this.buttons.del.getWidth() / 2,
         midY - this.buttons.del.getHeight() / 2
     );
     //Hit area
-    var CLICK_WIDTH = WIDTH * 2;
     var hitAreaPoints = [
         new PIXI.Point(this.points.srcVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y + CLICK_WIDTH / 2 * phiNormSin),
         new PIXI.Point(this.points.srcVisible.x - CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y - CLICK_WIDTH / 2 * phiNormSin),
-        new PIXI.Point(this.points.dstVisible.x - CLICK_WIDTH / 2 * phiNormCos, this.points.dstVisible.y - CLICK_WIDTH / 2 * phiNormSin),
-        new PIXI.Point(this.points.dstVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.dstVisible.y + CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.dstVisible.x + PICK_LEN * phiCos - CLICK_WIDTH / 2 * phiNormCos,
+            this.points.dstVisible.y + PICK_LEN * phiSin - CLICK_WIDTH / 2 * phiNormSin),
+        new PIXI.Point(this.points.dstVisible.x + PICK_LEN * phiCos + CLICK_WIDTH / 2 * phiNormCos,
+            this.points.dstVisible.y + PICK_LEN * phiSin + CLICK_WIDTH / 2 * phiNormSin),
         new PIXI.Point(this.points.srcVisible.x + CLICK_WIDTH / 2 * phiNormCos, this.points.srcVisible.y + CLICK_WIDTH / 2 * phiNormSin)
     ];
     this.do.hitArea = new PIXI.Polygon(hitAreaPoints);
@@ -202,9 +220,9 @@ SECond.prototype.reDraw = function() {
     for (i = 1; i < hitAreaPoints.length; ++i) {
         this.do.moveTo(hitAreaPoints[i - 1].x, hitAreaPoints[i - 1].y);
         this.do.lineTo(hitAreaPoints[i].x, hitAreaPoints[i].y);
-    }
+    }*/
     this.do.moveTo(hitAreaPoints[hitAreaPoints.length - 1].x, hitAreaPoints[hitAreaPoints.length - 1].y);
-    this.do.lineTo(hitAreaPoints[0].x, hitAreaPoints[0].y);*/
+    this.do.lineTo(hitAreaPoints[0].x, hitAreaPoints[0].y);
     //XXX it work without update because we have rendering loop now
     //sceneUpdater.up();
 }
