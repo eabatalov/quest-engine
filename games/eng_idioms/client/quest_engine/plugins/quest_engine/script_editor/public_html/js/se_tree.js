@@ -20,7 +20,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.condsLayer.setParent(this.editingBg);
     this.nodesLayer.setParent(this.editingBg);
 
-    this.input = { dragging : { node : null, all : false, prevAllDragPos : new PIXI.Point(0, 0) } };
+    this.input = { dragging : { node : null, cond: null, all : false, prevAllDragPos : new PIXI.Point(0, 0) } };
     this.do.hitArea = new PIXI.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     this.do.mousedown = this.do.touchstart = scriptTreeEditorInputEvent.bind(this, "DOWN");
     this.do.mouseup = this.do.touchend = scriptTreeEditorInputEvent.bind(this, "UP");
@@ -189,18 +189,43 @@ function scriptTreeEditorOnSeEvent(args) {
         return;
     }
 
-    if (args.name === "NODE_DELETED") {
-        console.log(args.name);
-        this.nodes.all.removeBySEId(args.node.getId());
-        this.nodes.stages.removeBySEId(args.node.getId());
-        this.nodes.storyLines.removeBySEId(args.node.getId());
+    if (args.name === "COND_CREATE_FROM_NODE") {
+        var newCond = new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
+        newCond.setParent(this.condsLayer);
+        this.conds.push(newCond);
+        args.node.addOutCond(newCond);
+        this.seEvents.broadcast({ name : "COND_CREATED", cond : newCond });
+        return;
+    }
+
+    if (args.name === "COND_START_DRAG") {
+        this.input.dragging.cond = args.cond;
+        return;
+    }
+
+    if (args.name === "COND_END_DRAG") {
+        this.input.dragging.cond = null;
+        return;
+    }
+
+    if (args.name === "NODE_ADD_IN_COND") {
+        args.node.addInCond(args.cond);
         this.sceneUpdater.up();
         return;
     }
 
-    if (args.name === "COND_DELETED") {
-        console.log(args.name);
+    if (args.name === "NODE_DELETE") {
+        this.nodes.all.removeBySEId(args.node.getId());
+        this.nodes.stages.removeBySEId(args.node.getId());
+        this.nodes.storyLines.removeBySEId(args.node.getId());
+        args.node.delete(function(cond) { this.conds.removeBySEId(cond.getId()); }.bind(this));
+        this.sceneUpdater.up();
+        return;
+    }
+
+    if (args.name === "COND_DELETE") {
         this.conds.removeBySEId(args.cond.getId());
+        args.cond.delete();
         this.sceneUpdater.up();
         return;
     }
@@ -240,6 +265,10 @@ function scriptTreeEditorInputEvent(evName, intData) {
             } else {
                 this.input.dragging.node.setPosition(oldX, oldY);
             }
+        } else if (this.input.dragging.cond) {
+            var pt = this.condsLayer.getLocalPosition(intData);
+            this.input.dragging.cond.setDst(pt);
+            this.sceneUpdater.up();
         } else if (this.input.dragging.all) {
             var BOUNDS = { MIN_X : -250, MAX_X : 250, MIN_Y : -250, MAX_Y : 250 };
             var mPos = this.getLocalPosition(intData);
@@ -269,6 +298,7 @@ function scriptTreeEditorInputEvent(evName, intData) {
     }
 
     if ((evName === "UP" && this.input.dragging.node) ||
+        (evName === "UP" && this.input.dragging.cond) ||
         (evName === "UP" && this.input.dragging.all) ||
         (evName === "UP" && this.editorMouseEvent(intData))) {
         this.seEvents.broadcast({ name : "EDITOR_UP" });

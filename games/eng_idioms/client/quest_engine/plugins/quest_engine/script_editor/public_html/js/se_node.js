@@ -115,6 +115,9 @@ SENode.prototype.onSeEvent = function(args) {
 };
 
 SENode.prototype.inputEvent = function(evName, intData) {
+    if (!this.getInteractive())
+        return;
+
     if (evName === "DOWN" && this.isNodeEvent(intData)) {
         var dragPos = this.getLocalPosition(intData);
         this.dragging.clickPoint.x = dragPos.x;
@@ -127,7 +130,6 @@ SENode.prototype.inputEvent = function(evName, intData) {
 SENode.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
         this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this });
-        //console.log(ctlName + " " + evName);
         return;
     }
 
@@ -212,18 +214,19 @@ SENode.prototype.deleteOutCond = function(dCond) {
     }
 };
 
-SENode.prototype.delete = function() {
-    for (i = 0; i < this.inConds.length; ++i) {
-        var cond = this.inConds[i];
+SENode.prototype.delete = function(condCB) {
+    while (this.inConds.length > 0) {
+        var cond = this.inConds.pop();
+        condCB(cond);
         cond.delete();
     }
-    for (i = 0; i < this.outConds.length; ++i) {
-        var cond = this.outConds[i];
+    while (this.outConds.length > 0) {
+        var cond = this.outConds.pop();
+        condCB(cond);
         cond.delete();
     }
     this.detachParent();
     this.setInteractive(false);
-    this.seEvents.broadcast({ name : "NODE_DELETED", node : this });
 };
 
 SENode.prototype.dragTo = function(point) {

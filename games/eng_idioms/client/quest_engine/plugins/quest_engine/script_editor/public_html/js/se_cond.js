@@ -64,7 +64,9 @@ SECond.prototype.isCondEvent = function(intData) {
 };
 
 SECond.prototype.inputEvent = function(evName, intData) {
-    console.log(evName);
+    if (!this.getInteractive())
+        return;
+
     if (evName === "CLICK" && this.isCondEvent(intData)) {
         this.seEvents.broadcast({ name : "COND_CLICK", cond : this });
         return;
@@ -74,7 +76,6 @@ SECond.prototype.inputEvent = function(evName, intData) {
 SECond.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
         this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this });
-        //console.log(ctlName + " " + evName);
         return;
     }
 };
@@ -88,7 +89,6 @@ SECond.prototype.delete = function() {
     }
     this.detachParent();
     this.setInteractive(false);
-    this.seEvents.broadcast({ name : "COND_DELETED", cond : this });
 };
 
 SECond.prototype.changeType = function(type) {

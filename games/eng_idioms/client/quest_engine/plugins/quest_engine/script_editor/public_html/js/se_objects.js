@@ -30,12 +30,16 @@ function SEObjectConfig() {
 
 SEDisplayObject.prototype.setDO = function(dispObj, interactive) {
     this.do = dispObj;
-    this.do.setInteractive(interactive ? interactive : true);
+    this.setInteractive(interactive ? interactive : true);
     this.do.sedo = this;
 };
 
 SEDisplayObject.prototype.setInteractive = function(val) {
-    this.do.setInteractive(val);
+    this.do.interactive = val;
+};
+
+SEDisplayObject.prototype.getInteractive = function() {
+    return this.do.interactive;
 };
 
 //Scale independent sizes

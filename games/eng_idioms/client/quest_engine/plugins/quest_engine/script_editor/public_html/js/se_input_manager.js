@@ -23,6 +23,10 @@ SEInputManager.prototype.procEvent = function(args) {
     SEInputManager.STATE_PROC[this.state].call(this, evName, args);
 };
 
+
+SEInputManager.prototype.procStateIgnoreAllEvents = function(evName, args) {
+};
+
 SEInputManager.prototype.procStateNone = function(evName, args) {
     if (evName === "TOOLBAR_ITEM_ACTIVATE_CLICK") {
         this.activeTBNodeType = args.type;
@@ -45,16 +49,19 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "COND_DEL_CLICK") {
-        args.cond.delete();
+        this.seEvents.broadcast({ name : "COND_DELETE", cond : args.cond });
         return;
     }
 
     if (evName === "NODE_DEL_CLICK") {
-        args.node.delete();
+        this.seEvents.broadcast({ name : "NODE_DELETE", node : args.node });
         return;
     }
 
     if (evName === "NODE_NEW_COND_CLICK") {
+        this.dragCondSrcNode = args.node;
+        this.setState(SEInputManager.STATES.COND_CREATION_WAIT);
+        this.seEvents.broadcast({ name : "COND_CREATE_FROM_NODE", node : args.node });
         return;
     }
 
@@ -130,6 +137,46 @@ SEInputManager.prototype.procStateEditorAllMove = function(evName, args) {
     this.editorAllMoveCancellHandler(evName, args);
 };
 
+//NONE -> COND_CREATION_WAIT -> COND_DRAGGING -> NONE
+SEInputManager.prototype.condCreationCancelHandler = function(evName, args) {
+};
+
+SEInputManager.prototype.procStateCondCreationWait = function(evName, args) {
+    if (evName === "COND_CREATED") {
+        this.dragCond = args.cond;
+        this.setState(SEInputManager.STATES.COND_DRAGGING);
+        this.seEvents.broadcast({ name : "COND_START_DRAG", cond : args.cond });
+        return;
+    }
+
+    this.condCreationCancelHandler(evName, args);
+};
+
+SEInputManager.prototype.procStateCondDragging = function(evName, args) {
+    if (evName === "NODE_DOWN") {
+        this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
+        this.seEvents.broadcast({ name : "COND_END_DRAG" });
+        this.seEvents.broadcast({ name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
+        //this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
+        this.dragCond = null;
+        this.dragCondSrcNode = null;
+        this.setState(SEInputManager.STATES.NONE);
+        return;
+    }
+
+    if (evName === "EDITOR_UP") {
+        this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
+        this.seEvents.broadcast({ name : "COND_END_DRAG" });
+        this.seEvents.broadcast({ name : "COND_DELETE", cond : this.dragCond });
+        this.dragCond = null;
+        this.dragCondSrcNode = null;
+        this.setState(SEInputManager.STATES.NONE);
+        return;
+    }
+
+    this.condCreationCancelHandler(evName, args);
+};
+
 function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES = {};
     SEInputManager.STATES.NONE = 0;
@@ -139,6 +186,11 @@ function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES.NODE_DRAG = 3;
 
     SEInputManager.STATES.EDITOR_ALL_MOVE = 4;
+
+    SEInputManager.STATES.COND_CREATION_WAIT = 6;
+    SEInputManager.STATES.COND_DRAGGING = 7;
+
+    SEInputManager.STATES.IGNORE_ALL_EVENTS = 8;
 
     SEInputManager.STATE_PROC = {};
     SEInputManager.STATE_PROC[SEInputManager.STATES.NONE] =
@@ -153,6 +205,14 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATE_PROC[SEInputManager.STATES.EDITOR_ALL_MOVE] =
         SEInputManager.prototype.procStateEditorAllMove;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.COND_CREATION_WAIT] =
+        SEInputManager.prototype.procStateCondCreationWait;
+    SEInputManager.STATE_PROC[SEInputManager.STATES.COND_DRAGGING] =
+        SEInputManager.prototype.procStateCondDragging;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.IGNORE_ALL_EVENTS] =
+        SEInputManager.prototype.procStateIgnoreAllEvents;
 
     SEInputManager.STATE_ENTER = {};
 
