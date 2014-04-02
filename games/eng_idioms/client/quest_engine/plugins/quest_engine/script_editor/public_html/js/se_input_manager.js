@@ -154,13 +154,17 @@ SEInputManager.prototype.procStateCondCreationWait = function(evName, args) {
 
 SEInputManager.prototype.procStateCondDragging = function(evName, args) {
     if (evName === "NODE_DOWN") {
-        this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
-        this.seEvents.broadcast({ name : "COND_END_DRAG" });
-        this.seEvents.broadcast({ name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
-        //this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
-        this.dragCond = null;
-        this.dragCondSrcNode = null;
-        this.setState(SEInputManager.STATES.NONE);
+        if (args.node.getId() !== this.dragCondSrcNode.getId()) {
+            this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
+            this.seEvents.broadcast({ name : "COND_END_DRAG" });
+            this.seEvents.broadcast({ name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
+            args.node.highlight(false);
+            //Enable this line to focus newely created condition if we decide to do it
+            //this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
+            this.dragCond = null;
+            this.dragCondSrcNode = null;
+            this.setState(SEInputManager.STATES.NONE);
+        }
         return;
     }
 
@@ -171,6 +175,18 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
         this.dragCond = null;
         this.dragCondSrcNode = null;
         this.setState(SEInputManager.STATES.NONE);
+        return;
+    }
+
+    if (evName === "NODE_IN") {
+        if (args.node.getId() !== this.dragCondSrcNode.getId()) {
+            this.seEvents.broadcast({ name : "COND_SNAP_TO_NODE", cond : this.dragCond, node : args.node });
+        }
+        return;
+    }
+
+    if (evName === "NODE_OUT") {
+        this.seEvents.broadcast({ name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
         return;
     }
 

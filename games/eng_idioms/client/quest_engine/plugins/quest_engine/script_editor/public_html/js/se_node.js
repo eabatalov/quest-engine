@@ -5,6 +5,8 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
         cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
     };
     this.label = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label));
+    this.highlightBG = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlightBG[type]));
+    this.highlightBG.setParent(this);
     this.buttons.del.setParent(this);
     this.buttons.cond.setParent(this);
     this.label.setParent(this);
@@ -15,6 +17,11 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.buttons.del.do.buttonMode = true;
     this.buttons.cond.do.buttonMode = true;
     this.setControlsVisible(false);
+    this.highlightBG.setPosition(
+        (this.getWidth() - this.highlightBG.getWidth()) / 2,
+        (this.getHeight() - this.highlightBG.getHeight()) / 2
+    );
+    this.highlightBG.setVisible(false);
 
     this.seEvents = seEvents;
     this.type = type;
@@ -124,6 +131,14 @@ SENode.prototype.inputEvent = function(evName, intData) {
         this.dragging.clickPoint.y = dragPos.y;
         this.seEvents.broadcast({ name : "NODE_DOWN", intData : intData, node : this });
         return;
+    }
+
+    if (evName === "IN") {
+        this.seEvents.broadcast({ name : "NODE_IN", node : this });
+    }
+
+    if (evName === "OUT") {
+        this.seEvents.broadcast({ name : "NODE_OUT", node : this });
     }
 }
 
@@ -251,6 +266,10 @@ SENode.prototype.contains = function(px, py) {
         this.buttons.cond.contains(px - this.getX(), py - this.getY());
 };
 
+SENode.prototype.highlight = function(/*bool*/enable) {
+    this.highlightBG.setVisible(enable);
+};
+
 function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS = { nodes : {}, buttons : {} };
     SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
@@ -264,16 +283,18 @@ function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENode.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENode.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
+    SENode.TEXTURE_PATHS.highlightBG = "images/node_greenorb.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
      assetsToLoad = assetsToLoad.concat($.map(SENode.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; }));
     assetsToLoad.push(SENode.TEXTURE_PATHS.label);
+    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightBG);
 
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
-        SENode.TEXTURES = { nodes : {}, buttons : {} };
+        SENode.TEXTURES = { nodes : {}, buttons : {}, highlightBG : {} };
         SENode.TEXTURES.nodes[_QUEST_NODES.ANIM] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
         SENode.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
@@ -296,7 +317,9 @@ function SENodeStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.cond);
         SENode.TEXTURES.label =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.label);
-
+        $.each(_QUEST_NODES, function(name, value) {
+	        SENode.TEXTURES.highlightBG[value] = PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.highlightBG);
+        });
         completionCB();
     };
     loader.load();

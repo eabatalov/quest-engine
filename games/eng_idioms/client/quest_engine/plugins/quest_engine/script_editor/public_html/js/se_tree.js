@@ -175,7 +175,7 @@ function scriptTreeEditorOnSeEvent(args) {
     }
 
     if (args.name === "EDITOR_START_DRAG") {
-        var pos  = this.getLocalPosition(args.intData);
+        var pos  = this.editingBg.getLocalPosition(args.intData);
         this.input.dragging.prevAllDragPos.x = pos.x;
         this.input.dragging.prevAllDragPos.y = pos.y;
         this.input.dragging.all = true;
@@ -194,6 +194,7 @@ function scriptTreeEditorOnSeEvent(args) {
         newCond.setParent(this.condsLayer);
         this.conds.push(newCond);
         args.node.addOutCond(newCond);
+        args.node.positionInCond(newCond);
         this.seEvents.broadcast({ name : "COND_CREATED", cond : newCond });
         return;
     }
@@ -227,6 +228,19 @@ function scriptTreeEditorOnSeEvent(args) {
         this.conds.removeBySEId(args.cond.getId());
         args.cond.delete();
         this.sceneUpdater.up();
+        return;
+    }
+
+    if (args.name === "COND_SNAP_TO_NODE") {
+        this.input.dragging.condSnap = true;
+        args.node.positionInCond(args.cond);
+        args.node.highlight(true);
+        return;
+    }
+
+    if (args.name === "COND_UNSNAP_TO_NODE") {
+        this.input.dragging.condSnap = false;
+        args.node.highlight(false);
         return;
     }
 }
@@ -265,13 +279,13 @@ function scriptTreeEditorInputEvent(evName, intData) {
             } else {
                 this.input.dragging.node.setPosition(oldX, oldY);
             }
-        } else if (this.input.dragging.cond) {
+        } else if (this.input.dragging.cond && ! this.input.dragging.condSnap) {
             var pt = this.condsLayer.getLocalPosition(intData);
             this.input.dragging.cond.setDst(pt);
             this.sceneUpdater.up();
         } else if (this.input.dragging.all) {
             var BOUNDS = { MIN_X : -250, MAX_X : 250, MIN_Y : -250, MAX_Y : 250 };
-            var mPos = this.getLocalPosition(intData);
+            var mPos = this.editingBg.getLocalPosition(intData);
             var dx = mPos.x - this.input.dragging.prevAllDragPos.x;
             var dy = mPos.y - this.input.dragging.prevAllDragPos.y;
             var newX = this.editingBg.getX() + dx;
@@ -297,12 +311,21 @@ function scriptTreeEditorInputEvent(evName, intData) {
         return;
     }
 
-    if ((evName === "UP" && this.input.dragging.node) ||
-        (evName === "UP" && this.input.dragging.cond) ||
-        (evName === "UP" && this.input.dragging.all) ||
-        (evName === "UP" && this.editorMouseEvent(intData))) {
-        this.seEvents.broadcast({ name : "EDITOR_UP" });
+    if (evName === "UP" &&
+        (this.input.dragging.node || this.input.dragging.all) &&
+        true) {
+            this.seEvents.broadcast({ name : "EDITOR_UP" });
         return;
+    }
+
+    if (evName === "UP" && this.input.dragging.cond) {
+        var pt = this.editingBg.getLocalPosition(intData);
+        if (this.editorMouseEvent(intData) ||
+            this.input.dragging.cond.contains(pt.x, pt.y))
+        {
+            this.seEvents.broadcast({ name : "EDITOR_UP" });
+            return;
+        }
     }
 
     if (evName === "UP_OUTSIDE") {
