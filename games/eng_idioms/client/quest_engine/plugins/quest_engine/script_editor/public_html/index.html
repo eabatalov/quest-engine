@@ -1,74 +1,93 @@
 ﻿<!DOCTYPE html>
 <html class="html">
-    <head>
-        <title>Quibble: quest script editor</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Style -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" type="text/css" href="style/layout.css" id="pagesheet"/>
-        <!-- Libs -->
-        <script src="js/libs/jquery/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="js/libs/angular.js"></script>
-        <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
-        <script src="js/libs/blob/Blob.js"></script>
-        <script src="js/libs/filesaver/FileSaver.js"></script>
-        <!-- Source -->
-        <script src="js/quest_engine/quest_engine_consts.js"></script>
-        <script src="js/quest_engine/quest_scripting.js"></script>
-        <script src="js/se_mousewheel.js"></script>
-        <script src="js/se_objects.js"></script>
-        <script src="js/se_node.js"></script>
-        <script src="js/se_cond.js"></script>
-        <script src="js/se_toolbar.js"></script>
-        <script src="js/se_tree.js"></script>
-        <script src="js/se_compile_btn.js"></script>
-        <script src="js/se_prop_window.js"></script>
-        <script src="js/se.js"></script>
-        <script src="js/se_tree_compiler.js"></script>
-        <script src="js/se_input_manager.js"></script>
-        <script src="js/se_ng_app.js"></script>
-    </head>
-    <body>
-        <header class="navbar" id="header-nav">
-            <div class="container">
-                <a href="index.html" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
-                    <img src="images/logo.png" alt="" />
-                </a>
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="fa fa-bars"></span>
-                </button>
-
-                <div id="header-nav" class="nav-no-collapse" ng-controller="CompileBtnController">
-                    <button type="button" class="btn btn-default pull-right">
-                        <span class="glyphicon glyphicon-star"></span>Compile
-                    </button>
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">Stage-1</a></li>
-                        <li><a href="#">Stage-2</a></li>
-                        <li><a href="#">Stage-3</a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </header>
+<head>
+    <title>Quibble: quest script editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Style -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="style/layout.css" id="pagesheet" />
+    <link rel="stylesheet" type="text/css" href="style/toolbar.css" id="pagesheet">
+    <link rel="stylesheet" type="text/css" href="style/demo.css" id="pagesheet">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/jquery.stacktable.js"></script>
+    <script src="js/application.js"></script>
+    <!-- Libs -->
+    <script src="js/libs/jquery/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/libs/angular.js"></script>
+    <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
+    <script src="js/libs/blob/Blob.js"></script>
+    <script src="js/libs/filesaver/FileSaver.js"></script>
+    <!-- Source -->
+    <script src="js/quest_engine/quest_engine_consts.js"></script>
+    <script src="js/quest_engine/quest_scripting.js"></script>
+    <script src="js/se_mousewheel.js"></script>
+    <script src="js/se_objects.js"></script>
+    <script src="js/se_node.js"></script>
+    <script src="js/se_cond.js"></script>
+    <script src="js/se_toolbar.js"></script>
+    <script src="js/se_tree.js"></script>
+    <script src="js/se_compile_btn.js"></script>
+    <script src="js/se_prop_window.js"></script>
+    <script src="js/se.js"></script>
+    <script src="js/se_tree_compiler.js"></script>
+    <script src="js/se_input_manager.js"></script>
+    <script src="js/se_ng_app.js"></script>
+</head>
+<body>
+    <header class="navbar" id="header-nav">
         <div class="container">
-            <div class="row">
-                <div class="col-md-2" id="nav-col">
-                    <ng-include src="'/toolbar.html'"></ng-include>
-                </div>
-                <div class="col-md-8" id="content-wrapper">
-                    <canvas id="scriptEditorCanvas"></canvas>
-                </div>
-                <div class="col-md-2">
-                    <ng-include src="'/prop_window.html'"></ng-include>
-                </div>
+            <a href="index.html" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+                <img src="images/logo.png" alt="" />
+            </a>
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <div id="header-nav" class="nav-no-collapse" ng-controller="CompileBtnController">
+                <button type="button" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-star"></span>Compile
+                </button>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">Stage-1</a></li>
+                    <li><a href="#">Stage-2</a></li>
+                    <li><a href="#">Stage-3</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2" id="nav-col">
+                <ng-include src="'/toolbar.html'"></ng-include>
+            </div>
+            <div class="col-md-8" id="content-wrapper">
+                <canvas id="scriptEditorCanvas"></canvas>
+            </div>
+            <div class="col-md-2">
+
+                <ng-include src="'/prop_window.html'"></ng-include>
             </div>
         </div>
-        <footer>
+    </div>
+    <footer>
+        <div class="dialog">
+            <span class="fui-mail mrm"></span>
+            This zone is for a system notification.
+        </div>
 
-        </footer>
-    </body>
+    </footer>
+</body>
 </html>
