@@ -5,11 +5,7 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
         cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
     };
     this.label = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label));
-    this.highlightBG = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlightBG[type]));
-    this.highlightBG.setParent(this);
-    this.buttons.del.setParent(this);
-    this.buttons.cond.setParent(this);
-    this.label.setParent(this);
+    this.highlightBG = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlightBG[type]), false);
     var CONTROL_DIST = 10;
     this.label.setPosition((this.getWidth() - this.label.getWidth()) / 2, this.getHeight() + CONTROL_DIST);
     this.buttons.del.setPosition(-CONTROL_DIST, -CONTROL_DIST);
@@ -17,11 +13,15 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.buttons.del.do.buttonMode = true;
     this.buttons.cond.do.buttonMode = true;
     this.setControlsVisible(false);
+    this.highlightBG.setVisible(false);
     this.highlightBG.setPosition(
         (this.getWidth() - this.highlightBG.getWidth()) / 2,
         (this.getHeight() - this.highlightBG.getHeight()) / 2
     );
-    this.highlightBG.setVisible(false);
+    this.highlightBG.setParent(this);
+    this.buttons.del.setParent(this);
+    this.buttons.cond.setParent(this);
+    this.label.setParent(this);
 
     this.seEvents = seEvents;
     this.type = type;

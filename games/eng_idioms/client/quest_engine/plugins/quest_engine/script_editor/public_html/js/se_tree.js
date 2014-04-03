@@ -235,12 +235,14 @@ function scriptTreeEditorOnSeEvent(args) {
         this.input.dragging.condSnap = true;
         args.node.positionInCond(args.cond);
         args.node.highlight(true);
+        this.sceneUpdater.up();
         return;
     }
 
     if (args.name === "COND_UNSNAP_TO_NODE") {
         this.input.dragging.condSnap = false;
         args.node.highlight(false);
+        this.sceneUpdater.up();
         return;
     }
 }
