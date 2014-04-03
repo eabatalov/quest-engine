@@ -175,7 +175,7 @@ function scriptTreeEditorOnSeEvent(args) {
     }
 
     if (args.name === "EDITOR_START_DRAG") {
-        var pos  = this.editingBg.getLocalPosition(args.intData);
+        var pos  = this.getLocalPosition(args.intData);
         this.input.dragging.prevAllDragPos.x = pos.x;
         this.input.dragging.prevAllDragPos.y = pos.y;
         this.input.dragging.all = true;
@@ -285,7 +285,7 @@ function scriptTreeEditorInputEvent(evName, intData) {
             this.sceneUpdater.up();
         } else if (this.input.dragging.all) {
             var BOUNDS = { MIN_X : -250, MAX_X : 250, MIN_Y : -250, MAX_Y : 250 };
-            var mPos = this.editingBg.getLocalPosition(intData);
+            var mPos = this.getLocalPosition(intData);
             var dx = mPos.x - this.input.dragging.prevAllDragPos.x;
             var dy = mPos.y - this.input.dragging.prevAllDragPos.y;
             var newX = this.editingBg.getX() + dx;
@@ -319,7 +319,7 @@ function scriptTreeEditorInputEvent(evName, intData) {
     }
 
     if (evName === "UP" && this.input.dragging.cond) {
-        var pt = this.editingBg.getLocalPosition(intData);
+        var pt = this.condsLayer.getLocalPosition(intData);
         if (this.editorMouseEvent(intData) ||
             this.input.dragging.cond.contains(pt.x, pt.y))
         {
