@@ -6,7 +6,7 @@
    parent world. object shouldn't be aware of its parent coordinate system. Fix it.
 10. Fix bug appeared in properties window after rework of its design.
 17. Implement node labels
-18. Implements beautiful and aonvenient conditions with many from/to edges.
+18. Implements beautiful and convenient conditions with many from/to edges.
 
 11. Quest script errors reporting to construct game
 12. Quest script error reporting for quest script editor
@@ -23,3 +23,4 @@
 14. Possible condition type should depend on its source node.
 15. Implement animation support in quest engine.
 16. Implement sound playback support in quest engine.
+17. Implement proper scaling and scrolling of the scene.
