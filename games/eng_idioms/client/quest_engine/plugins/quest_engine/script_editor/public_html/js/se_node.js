@@ -323,14 +323,16 @@ function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENode.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENode.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
-    SENode.TEXTURE_PATHS.highlight = "images/node_greenorb.png";
+    SENode.TEXTURE_PATHS.highlightRect = "images/node_greenorb.png";
+    SENode.TEXTURE_PATHS.highlightHex = "images/node_greenorbhex.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
      assetsToLoad = assetsToLoad.concat($.map(SENode.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; }));
     assetsToLoad.push(SENode.TEXTURE_PATHS.label);
-    assetsToLoad.push(SENode.TEXTURE_PATHS.highlight);
+    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightRect);
+    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightHex);
 
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
@@ -357,8 +359,11 @@ function SENodeStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.cond);
         SENode.TEXTURES.label =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.label);
-        $.each(_QUEST_NODES, function(name, value) {
-	        SENode.TEXTURES.highlight[value] = PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.highlight);
+        $.each(_QUEST_NODES, function(name, type) {
+            var path = SENode.TEXTURE_PATHS.highlightRect;
+            if (type === _QUEST_NODES.STAGE_CLEAR || type === _QUEST_NODES.STAGE)
+                path = SENode.TEXTURE_PATHS.highlightHex;
+	        SENode.TEXTURES.highlight[type] = PIXI.Texture.fromImage(path);
         });
         completionCB();
     };
