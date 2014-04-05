@@ -79,9 +79,9 @@ scriptEditorApp.controller("StagesPanelController", ['$scope', 'ScriptEditorEven
     this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);
     ScriptEditorStaticConstructor(constrComplCB);
-    ScriptTreeEditorStaticConstructor(constrComplCB);
-    SENodeStaticConstructor(constrComplCB);
-    SECondStaticConstructor(constrComplCB);
+    SEStageEditorStaticConstructor(constrComplCB);
+    SENodeViewStaticConstructor(constrComplCB);
+    SECondViewStaticConstructor(constrComplCB);
     ToolBarItemStaticConstructor(constrComplCB);
     ToolbarStaticConstructor(constrComplCB);
     SEInputManagerStaticConstructor(constrComplCB);

@@ -1,4 +1,4 @@
-function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
+function SECondView(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     SEDisplayObject.call(this, new PIXI.Graphics());
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
@@ -8,7 +8,7 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     this.points.draw = new PIXI.Point(0, 0);
 
     this.buttons = {
-        del : new SESpriteObject(new PIXI.Sprite(SECond.TEXTURES.buttons.del)),
+        del : new SESpriteObject(new PIXI.Sprite(SECondView.TEXTURES.buttons.del)),
     }
     this.buttons.del.setParent(this);
     this.buttons.del.do.buttonMode = true;
@@ -34,16 +34,16 @@ function SECond(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
 }
 
-SECond.prototype = new SEDisplayObject(); 
+SECondView.prototype = new SEDisplayObject(); 
 
-SECond.prototype.contains = function(px, py) {
+SECondView.prototype.contains = function(px, py) {
     if (this.do.hitArea)
         return this.do.hitArea.contains(px, py);
     else
         return false;
 };
 
-SECond.prototype.onSeEvent = function(args) {
+SECondView.prototype.onSeEvent = function(args) {
     if (args.name === "OBJECT_FOCUS") {
         if (args.obj.getId() === this.getId()) {
             this.setControlsVisible(true);
@@ -56,14 +56,14 @@ SECond.prototype.onSeEvent = function(args) {
     }
 };
 
-SECond.prototype.isCondEvent = function(intData) {
+SECondView.prototype.isCondEvent = function(intData) {
     var p = this.getLocalPosition(intData);
     if (this.buttons.del.getVisible() && this.buttons.del.contains(p.x, p.y))
         return false;
     else return true;
 };
 
-SECond.prototype.inputEvent = function(evName, intData) {
+SECondView.prototype.inputEvent = function(evName, intData) {
     if (!this.getInteractive())
         return;
 
@@ -73,14 +73,14 @@ SECond.prototype.inputEvent = function(evName, intData) {
     }
 }
 
-SECond.prototype.controlEvent = function(ctlName, evName) {
+SECondView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
         this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this });
         return;
     }
 };
 
-SECond.prototype.delete = function() {
+SECondView.prototype.delete = function() {
     if (this.srcNode) {
         this.srcNode.deleteOutCond(this);
     }
@@ -91,7 +91,7 @@ SECond.prototype.delete = function() {
     this.setInteractive(false);
 };
 
-SECond.prototype.changeType = function(type) {
+SECondView.prototype.changeType = function(type) {
     this.props = {};
     switch(type) {
         case _QUEST_CONDS.OBJECT_CLICKED:
@@ -100,31 +100,31 @@ SECond.prototype.changeType = function(type) {
     }
 }
 
-SECond.prototype.setSrc = function(point) {
+SECondView.prototype.setSrc = function(point) {
     this.points.src.x = point.x;
     this.points.src.y = point.y;
     this.reDraw();
 }
 
-SECond.prototype.setDst = function(point) {
+SECondView.prototype.setDst = function(point) {
     this.points.dst.x = point.x;
     this.points.dst.y = point.y;
     this.reDraw();
 }
 
-SECond.prototype.setSrcNode = function(node) {
+SECondView.prototype.setSrcNode = function(node) {
     this.srcNode = node;
 };
 
-SECond.prototype.setDstNode = function(node) {
+SECondView.prototype.setDstNode = function(node) {
     this.dstNode = node;
 };
 
-SECond.prototype.setControlsVisible = function(val) {
+SECondView.prototype.setControlsVisible = function(val) {
     this.buttons.del.setVisible(val);
 };
 
-SECond.prototype.reDraw = function() {
+SECondView.prototype.reDraw = function() {
     var WIDTH = 15;
     var CLICK_WIDTH = WIDTH * 2;
     var PICK_LEN = 40;
@@ -241,18 +241,18 @@ SECond.prototype.reDraw = function() {
     //sceneUpdater.up();
 }
 
-function SECondStaticConstructor(completionCB) {
-    SECond.TEXTURE_PATHS = { buttons : {} };
-    SECond.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
+function SECondViewStaticConstructor(completionCB) {
+    SECondView.TEXTURE_PATHS = { buttons : {} };
+    SECondView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
 
-    var assetsToLoad = $.map(SECond.TEXTURE_PATHS.buttons,
+    var assetsToLoad = $.map(SECondView.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; });
 
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
-        SECond.TEXTURES = {
+        SECondView.TEXTURES = {
             buttons : {
-                del : PIXI.Texture.fromImage(SECond.TEXTURE_PATHS.buttons.del) 
+                del : PIXI.Texture.fromImage(SECondView.TEXTURE_PATHS.buttons.del) 
             }
         };
         completionCB();

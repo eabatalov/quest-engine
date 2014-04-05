@@ -9,7 +9,7 @@ function ScriptEditor(rootScope, seEvents, mouseWheelManager) {
     this.sceneUpdater = new SceneUpdater(this);
     this.sizeManager = new SizeManager(rootScope, seEvents, this);
     this.inputManager = new SEInputManager(seEvents);
-    this.treeEditor = new ScriptTreeEditor(rootScope, this.pad, seEvents,
+    this.treeEditor = new SEStageEditor(rootScope, this.pad, seEvents,
         this.sceneUpdater, mouseWheelManager);
 }
 

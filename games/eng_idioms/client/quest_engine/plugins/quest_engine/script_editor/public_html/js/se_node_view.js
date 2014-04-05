@@ -1,15 +1,15 @@
-function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
-    SESpriteObject.call(this, new PIXI.Sprite(SENode.TEXTURES.nodes[type]));
+function SENodeView(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
+    SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[type]));
     this.controls = {
         buttons : {
-            del : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.del)),
-            cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
+            del : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.buttons.del)),
+            cond : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.buttons.cond))
         },
         label : {
-            bg : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label), false),
+            bg : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.label), false),
             txt : new SETextObject(new PIXI.Text(""), false),
         },
-        highlight : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlight[type]), false)
+        highlight : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.highlight[type]), false)
     };
     var LBL_TXT_LR_MARGIN_PX = 10;
     var LBL_TXT_PX_HEIGHT = this.controls.label.bg.getHeight() / 3 * 2;
@@ -128,9 +128,9 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.seEvents.on(this.onSeEvent.bind(this));
 }
 
-SENode.prototype = new SESpriteObject();
+SENodeView.prototype = new SESpriteObject();
 
-SENode.prototype.isNodeEvent = function(intData) {
+SENodeView.prototype.isNodeEvent = function(intData) {
     var p = this.getLocalPosition(intData);
     if ((this.controls.buttons.del.getVisible() && this.controls.buttons.del.contains(p.x, p.y)) ||
         (this.controls.buttons.cond.getVisible() && this.controls.buttons.cond.contains(p.x, p.y)))
@@ -138,7 +138,7 @@ SENode.prototype.isNodeEvent = function(intData) {
     else return true;
 };
 
-SENode.prototype.onSeEvent = function(args) {
+SENodeView.prototype.onSeEvent = function(args) {
     if (args.name === "OBJECT_FOCUS") {
         if (args.obj.getId() === this.getId()) {
             this.setButtonsVisible(true);
@@ -149,7 +149,7 @@ SENode.prototype.onSeEvent = function(args) {
     }
 };
 
-SENode.prototype.inputEvent = function(evName, intData) {
+SENodeView.prototype.inputEvent = function(evName, intData) {
     if (!this.getInteractive())
         return;
 
@@ -170,7 +170,7 @@ SENode.prototype.inputEvent = function(evName, intData) {
     }
 }
 
-SENode.prototype.controlEvent = function(ctlName, evName) {
+SENodeView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
         this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this });
         return;
@@ -183,7 +183,7 @@ SENode.prototype.controlEvent = function(ctlName, evName) {
     }
 };
 
-SENode.prototype.setButtonsVisible = function(val) {
+SENodeView.prototype.setButtonsVisible = function(val) {
     this.controls.buttons.del.setVisible(val);
     this.controls.buttons.cond.setVisible(val);
 };
@@ -202,7 +202,7 @@ function stageTakeFromPool(objId) {
     this.props.objPool.remove(objId);
 }
 
-SENode.prototype.setPosition = function(x, y) {
+SENodeView.prototype.setPosition = function(x, y) {
     SESpriteObject.prototype.setPosition.call(this, x, y);
     this.middle.x = this.getX() + this.getWidth() / 2;
     this.middle.y = this.getY() + this.getHeight() / 2;
@@ -217,17 +217,17 @@ SENode.prototype.setPosition = function(x, y) {
     }
 };
 
-SENode.prototype.positionInCond = function(cond) {
+SENodeView.prototype.positionInCond = function(cond) {
     cond.setDst(this.middle);
 };
 
-SENode.prototype.addInCond = function(cond) {
+SENodeView.prototype.addInCond = function(cond) {
     this.inConds.push(cond);
     cond.setDstNode(this);
     this.positionInCond(cond);
 };
 
-SENode.prototype.deleteInCond = function(dCond) {
+SENodeView.prototype.deleteInCond = function(dCond) {
     for (i = 0; i < this.inConds.length; ++i) {
         var cond = this.inConds[i];
         if (cond.getId() == dCond.getId()) {
@@ -237,17 +237,17 @@ SENode.prototype.deleteInCond = function(dCond) {
     }
 };
 
-SENode.prototype.positionOutCond = function(cond) {
+SENodeView.prototype.positionOutCond = function(cond) {
     cond.setSrc(this.middle);
 };
 
-SENode.prototype.addOutCond = function(cond) {
+SENodeView.prototype.addOutCond = function(cond) {
     this.outConds.push(cond);
     cond.setSrcNode(this);
     this.positionOutCond(cond);
 };
 
-SENode.prototype.deleteOutCond = function(dCond) {
+SENodeView.prototype.deleteOutCond = function(dCond) {
     for (i = 0; i < this.outConds.length; ++i) {
         var cond = this.outConds[i];
         if (cond.getId() == dCond.getId()) {
@@ -257,7 +257,7 @@ SENode.prototype.deleteOutCond = function(dCond) {
     }
 };
 
-SENode.prototype.delete = function(condCB) {
+SENodeView.prototype.delete = function(condCB) {
     while (this.inConds.length > 0) {
         var cond = this.inConds.pop();
         condCB(cond);
@@ -272,17 +272,17 @@ SENode.prototype.delete = function(condCB) {
     this.setInteractive(false);
 };
 
-SENode.prototype.dragTo = function(point) {
+SENodeView.prototype.dragTo = function(point) {
     this.setPosition(point.x - this.dragging.clickPoint.x,
         point.y - this.dragging.clickPoint.y);
 };
 
-SENode.prototype.endDrag = function() {
+SENodeView.prototype.endDrag = function() {
     this.dragging.clickPoint.x = 0;
     this.dragging.clickPoint.y = 0;
 };
 
-SENode.prototype.contains = function(px, py) {
+SENodeView.prototype.contains = function(px, py) {
     var MARGIN = 10;
     this.bounds.x = this.getX() - MARGIN;
     this.bounds.y = this.getY() - MARGIN;
@@ -294,11 +294,11 @@ SENode.prototype.contains = function(px, py) {
         this.controls.buttons.cond.contains(px - this.getX(), py - this.getY());
 };
 
-SENode.prototype.highlight = function(/*bool*/enable) {
+SENodeView.prototype.highlight = function(/*bool*/enable) {
     this.controls.highlight.setVisible(enable);
 };
 
-SENode.prototype.setLabelTxt = function(val) {
+SENodeView.prototype.setLabelTxt = function(val) {
     this.labelTxt = val;
     this.controls.label.txt.setText(val);
     if (val && val !== "") {
@@ -310,60 +310,60 @@ SENode.prototype.setLabelTxt = function(val) {
     }
 };
 
-function SENodeStaticConstructor(completionCB) {
-    SENode.TEXTURE_PATHS = { nodes : {}, buttons : {} };
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
-    SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
-    SENode.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
-    SENode.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
-    SENode.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
-    SENode.TEXTURE_PATHS.highlightRect = "images/node_greenorb.png";
-    SENode.TEXTURE_PATHS.highlightHex = "images/node_greenorbhex.png";
+function SENodeViewStaticConstructor(completionCB) {
+    SENodeView.TEXTURE_PATHS = { nodes : {}, buttons : {} };
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ] = "images/node_quiz.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE] = "images/node_stage.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR] = "images/node_stcl.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
+    SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
+    SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
+    SENodeView.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
+    SENodeView.TEXTURE_PATHS.highlightRect = "images/node_greenorb.png";
+    SENodeView.TEXTURE_PATHS.highlightHex = "images/node_greenorbhex.png";
 
-    var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
+    var assetsToLoad = $.map(SENodeView.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
-     assetsToLoad = assetsToLoad.concat($.map(SENode.TEXTURE_PATHS.buttons,
+     assetsToLoad = assetsToLoad.concat($.map(SENodeView.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; }));
-    assetsToLoad.push(SENode.TEXTURE_PATHS.label);
-    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightRect);
-    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightHex);
+    assetsToLoad.push(SENodeView.TEXTURE_PATHS.label);
+    assetsToLoad.push(SENodeView.TEXTURE_PATHS.highlightRect);
+    assetsToLoad.push(SENodeView.TEXTURE_PATHS.highlightHex);
 
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
-        SENode.TEXTURES = { nodes : {}, buttons : {}, highlight : {} };
-        SENode.TEXTURES.nodes[_QUEST_NODES.ANIM] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.QUIZ] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.STAGE] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.STAGE_CLEAR] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.STORYLINE] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.WAIT] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT]);
-        SENode.TEXTURES.nodes[_QUEST_NODES.NONE] =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
-        SENode.TEXTURES.buttons.del =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.del);
-        SENode.TEXTURES.buttons.cond =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.buttons.cond);
-        SENode.TEXTURES.label =
-            PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.label);
+        SENodeView.TEXTURES = { nodes : {}, buttons : {}, highlight : {} };
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.ANIM] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.QUIZ] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.STAGE] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.STAGE_CLEAR] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.STORYLINE] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.WAIT] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.NONE] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
+        SENodeView.TEXTURES.buttons.del =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.buttons.del);
+        SENodeView.TEXTURES.buttons.cond =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.buttons.cond);
+        SENodeView.TEXTURES.label =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.label);
         $.each(_QUEST_NODES, function(name, type) {
-            var path = SENode.TEXTURE_PATHS.highlightRect;
+            var path = SENodeView.TEXTURE_PATHS.highlightRect;
             if (type === _QUEST_NODES.STAGE_CLEAR || type === _QUEST_NODES.STAGE)
-                path = SENode.TEXTURE_PATHS.highlightHex;
-	        SENode.TEXTURES.highlight[type] = PIXI.Texture.fromImage(path);
+                path = SENodeView.TEXTURE_PATHS.highlightHex;
+	        SENodeView.TEXTURES.highlight[type] = PIXI.Texture.fromImage(path);
         });
         completionCB();
     };

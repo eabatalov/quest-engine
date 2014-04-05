@@ -1,4 +1,4 @@
-function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpdater, mouseWheelManager) {
+function SEStageEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpdater, mouseWheelManager) {
     SEDisplayObject.call(this, new PIXI.DisplayObjectContainer());
     this.seEvents = seEvents;
     this.sceneUpdater = sceneUpdater;
@@ -36,20 +36,20 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.nodes = {};
     this.nodes.all = [];
     this.nodes.stages = [
-        new SENode(_QUEST_NODES.STAGE, this.seEvents, false, null, null,
+        new SENodeView(_QUEST_NODES.STAGE, this.seEvents, false, null, null,
             { name : "Stage1", objs : [ _QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0" ], objPool : [] })
     ];
     this.nodes.stages[0]._stage = this.nodes.stages[0];
     this.nodes.stages[0].setPosition(0, 0);
 
     this.nodes.storyLines = [
-        new SENode(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0],
+        new SENodeView(_QUEST_NODES.STORYLINE, this.seEvents, false, null, this.nodes.stages[0],
             { objs: [_QUEST_PLAYER_ID, "older", "firstLantern", "secondLantern", "0"] })
     ];
     this.nodes.storyLines[0].setPosition(this.nodes.stages[0].getX(),
         this.nodes.stages[0].getY() + this.nodes.stages[0].getHeight() * 2);
 
-    var firstCond = new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
+    var firstCond = new SECondView(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
 
     this.nodes.stages[0].addOutCond(firstCond);
     this.nodes.storyLines[0].addInCond(firstCond);
@@ -73,7 +73,7 @@ function ScriptTreeEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneU
     this.posValidator = new SEEditorPositionValidator(this);
 }
 
-ScriptTreeEditor.prototype = new SEDisplayObject();
+SEStageEditor.prototype = new SEDisplayObject();
 
 function SEEditorPositionValidator(seTreeEditor) {
     var pointList = [];
@@ -149,7 +149,7 @@ function SEEditorPositionValidator(seTreeEditor) {
 function scriptTreeEditorOnSeEvent(args) {
     if (args.name === "NODE_CREATE") {
         var pos = this.nodesLayer.getLocalPosition(args.intData);
-        var newNode = new SENode(args.type,
+        var newNode = new SENodeView(args.type,
             this.seEvents, false,
             this.nodes.storyLines[0],
             this.nodes.stages[0]);
@@ -190,7 +190,7 @@ function scriptTreeEditorOnSeEvent(args) {
     }
 
     if (args.name === "COND_CREATE_FROM_NODE") {
-        var newCond = new SECond(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
+        var newCond = new SECondView(_QUEST_CONDS.NONE, this.nodes.storyLines[0], this.seEvents);
         newCond.setParent(this.condsLayer);
         this.conds.push(newCond);
         args.node.addOutCond(newCond);
@@ -264,7 +264,7 @@ function seTreeEditorOnMouseWheel(yDelta) {
     return false;
 }
 
-ScriptTreeEditor.prototype.editorMouseEvent = function(intData) {
+SEStageEditor.prototype.editorMouseEvent = function(intData) {
     var pt = this.editingBg.getLocalPosition(intData);
     return this.posValidator.pointIsNotContained(pt.x, pt.y);
 }
@@ -336,6 +336,6 @@ function scriptTreeEditorInputEvent(evName, intData) {
     }
 }
 
-function ScriptTreeEditorStaticConstructor(completionCB) {
+function SEStageEditorStaticConstructor(completionCB) {
     completionCB();
 }
