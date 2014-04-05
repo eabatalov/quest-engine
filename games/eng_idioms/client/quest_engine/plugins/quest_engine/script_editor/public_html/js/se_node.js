@@ -1,37 +1,53 @@
 function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
     SESpriteObject.call(this, new PIXI.Sprite(SENode.TEXTURES.nodes[type]));
-    this.buttons = {
-        del : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.del)),
-        cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
+    this.controls = {
+        buttons : {
+            del : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.del)),
+            cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
+        },
+        label : {
+            bg : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label)),
+            txt : new SETextObject(new PIXI.Text("Foo bar buzz 123456789"), false),
+            txtLRMarginPX : 10
+        },
+        highlight : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlight[type]), false)
     };
-    this.label = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label));
-    this.highlightBG = new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlightBG[type]), false);
     var CONTROL_DIST = 10;
-    this.label.setPosition((this.getWidth() - this.label.getWidth()) / 2, this.getHeight() + CONTROL_DIST);
-    this.buttons.del.setPosition(-CONTROL_DIST, -CONTROL_DIST);
-    this.buttons.cond.setPosition(this.getWidth() - this.buttons.cond.getWidth() + CONTROL_DIST, -CONTROL_DIST);
-    this.buttons.del.do.buttonMode = true;
-    this.buttons.cond.do.buttonMode = true;
-    this.setControlsVisible(false);
-    this.highlightBG.setVisible(false);
-    this.highlightBG.setPosition(
-        (this.getWidth() - this.highlightBG.getWidth()) / 2,
-        (this.getHeight() - this.highlightBG.getHeight()) / 2
+    this.controls.label.bg.setPosition((this.getWidth() - this.controls.label.bg.getWidth()) / 2, this.getHeight() + CONTROL_DIST);
+    this.controls.label.txt.setFont({
+        bold : false,
+        color : "white",
+        height : this.controls.label.bg.getHeight(),
+        unit : "px",
+        typeFace : "Arial"
+    });
+    //this.controls.label.txt.setWH(this.controls.label.bg.getWidth(), this.controls.label.bg.getHeight());
+    this.controls.buttons.del.setPosition(-CONTROL_DIST, -CONTROL_DIST);
+    this.controls.buttons.cond.setPosition(this.getWidth() - this.controls.buttons.cond.getWidth() + CONTROL_DIST, -CONTROL_DIST);
+    this.controls.buttons.del.do.buttonMode = true;
+    this.controls.buttons.cond.do.buttonMode = true;
+    this.setButtonsVisible(false);
+    this.controls.highlight.setVisible(false);
+    this.controls.highlight.setPosition(
+        (this.getWidth() - this.controls.highlight.getWidth()) / 2,
+        (this.getHeight() - this.controls.highlight.getHeight()) / 2
     );
-    this.highlightBG.setParent(this);
-    this.buttons.del.setParent(this);
-    this.buttons.cond.setParent(this);
-    this.label.setParent(this);
+    this.controls.highlight.setParent(this);
+    this.controls.buttons.del.setParent(this);
+    this.controls.buttons.cond.setParent(this);
+    this.controls.label.bg.setParent(this);
+    this.controls.label.txt.setParent(this.controls.label.bg);
 
     this.seEvents = seEvents;
     this.type = type;
     this.storyLine = storyLine;
     this._stage = stage;
+    this.label  = "";
     this.continue = (isContinue !== null && isContinue !== undefined) ?
         isContinue : false;
     if (props === null || props === undefined) {
         //Which fields we have for each type of node
-        props = {};
+        props = { };
         switch(type) {
             case _QUEST_NODES.NONE:
             break;
@@ -94,8 +110,8 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.do.mousemove = this.do.touchmove = this.inputEvent.bind(this, "MOVE");
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
     this.do.mouseupoutside = this.do.touchendoutside = this.inputEvent.bind(this, "UP_OUTSIDE");
-    this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
-    this.buttons.cond.do.click = this.controlEvent.bind(this, "COND", "CLICK");
+    this.controls.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
+    this.controls.buttons.cond.do.click = this.controlEvent.bind(this, "COND", "CLICK");
 
     this.seEvents.on(this.onSeEvent.bind(this));
 }
@@ -104,8 +120,8 @@ SENode.prototype = new SESpriteObject();
 
 SENode.prototype.isNodeEvent = function(intData) {
     var p = this.getLocalPosition(intData);
-    if ((this.buttons.del.getVisible() && this.buttons.del.contains(p.x, p.y)) ||
-        (this.buttons.cond.getVisible() && this.buttons.cond.contains(p.x, p.y)))
+    if ((this.controls.buttons.del.getVisible() && this.controls.buttons.del.contains(p.x, p.y)) ||
+        (this.controls.buttons.cond.getVisible() && this.controls.buttons.cond.contains(p.x, p.y)))
         return false;
     else return true;
 };
@@ -113,9 +129,9 @@ SENode.prototype.isNodeEvent = function(intData) {
 SENode.prototype.onSeEvent = function(args) {
     if (args.name === "OBJECT_FOCUS") {
         if (args.obj.getId() === this.getId()) {
-            this.setControlsVisible(true);
+            this.setButtonsVisible(true);
         } else {
-            this.setControlsVisible(false);
+            this.setButtonsVisible(false);
         };
         return;
     }
@@ -155,9 +171,9 @@ SENode.prototype.controlEvent = function(ctlName, evName) {
     }
 };
 
-SENode.prototype.setControlsVisible = function(val) {
-    this.buttons.del.setVisible(val);
-    this.buttons.cond.setVisible(val);
+SENode.prototype.setButtonsVisible = function(val) {
+    this.controls.buttons.del.setVisible(val);
+    this.controls.buttons.cond.setVisible(val);
 };
 
 function storyLineAddObject(objId) {
@@ -262,12 +278,19 @@ SENode.prototype.contains = function(px, py) {
     this.bounds.height = this.getHeight() + 2 * MARGIN;
 
     return this.bounds.contains(px, py) ||
-        this.buttons.del.contains(px - this.getX(), py - this.getY()) ||
-        this.buttons.cond.contains(px - this.getX(), py - this.getY());
+        this.controls.buttons.del.contains(px - this.getX(), py - this.getY()) ||
+        this.controls.buttons.cond.contains(px - this.getX(), py - this.getY());
 };
 
 SENode.prototype.highlight = function(/*bool*/enable) {
-    this.highlightBG.setVisible(enable);
+    this.controls.highlight.setVisible(enable);
+};
+
+SENode.prototype.setLabel = function(text) {
+    this.label = text;
+    //TODO
+    //this.controls.label.txt =
+    this.controls.label.txt.setPosition(15, 0);
 };
 
 function SENodeStaticConstructor(completionCB) {
@@ -283,18 +306,18 @@ function SENodeStaticConstructor(completionCB) {
     SENode.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENode.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENode.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
-    SENode.TEXTURE_PATHS.highlightBG = "images/node_greenorb.png";
+    SENode.TEXTURE_PATHS.highlight = "images/node_greenorb.png";
 
     var assetsToLoad = $.map(SENode.TEXTURE_PATHS.nodes,
         function(value, index) { return [value]; });
      assetsToLoad = assetsToLoad.concat($.map(SENode.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; }));
     assetsToLoad.push(SENode.TEXTURE_PATHS.label);
-    assetsToLoad.push(SENode.TEXTURE_PATHS.highlightBG);
+    assetsToLoad.push(SENode.TEXTURE_PATHS.highlight);
 
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
-        SENode.TEXTURES = { nodes : {}, buttons : {}, highlightBG : {} };
+        SENode.TEXTURES = { nodes : {}, buttons : {}, highlight : {} };
         SENode.TEXTURES.nodes[_QUEST_NODES.ANIM] =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
         SENode.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
@@ -318,7 +341,7 @@ function SENodeStaticConstructor(completionCB) {
         SENode.TEXTURES.label =
             PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.label);
         $.each(_QUEST_NODES, function(name, value) {
-	        SENode.TEXTURES.highlightBG[value] = PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.highlightBG);
+	        SENode.TEXTURES.highlight[value] = PIXI.Texture.fromImage(SENode.TEXTURE_PATHS.highlight);
         });
         completionCB();
     };

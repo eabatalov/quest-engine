@@ -134,8 +134,8 @@ SEDisplayObject.prototype.getVisible = function() {
 /*
  * Sprite object with sizes independent of its scale
  */
-function SESpriteObject(dispObj) {
-    SEDisplayObject.call(this, dispObj);
+function SESpriteObject(dispObj, interactive) {
+    SEDisplayObject.call(this, dispObj, interactive);
 }
 
 SESpriteObject.prototype = new SEDisplayObject();
@@ -156,4 +156,20 @@ SESpriteObject.prototype.getHeight = function() {
 
 SESpriteObject.prototype.setWH = function(w, h) {
     throw "Setting WH on sprite objects is not allowed";
+};
+
+/*
+ * Text object
+ */
+function SETextObject(dispObj, interactive) {
+    SEDisplayObject.call(this, dispObj, interactive);
+}
+
+SETextObject.prototype = new SEDisplayObject();
+
+SETextObject.prototype.setFont = function(font) {
+    var fontStr = "";
+    fontStr += font.bold ? "bold " : "";
+    fontStr += font.height.toString() + font.unit + " " + font.typeFace;
+    this.do.setStyle({ font : fontStr, fill : font.color });
 };
