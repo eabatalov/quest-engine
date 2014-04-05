@@ -167,9 +167,21 @@ function SETextObject(dispObj, interactive) {
 
 SETextObject.prototype = new SEDisplayObject();
 
-SETextObject.prototype.setFont = function(font) {
+SETextObject.prototype.setStyle = function(val) {
     var fontStr = "";
-    fontStr += font.bold ? "bold " : "";
-    fontStr += font.height.toString() + font.unit + " " + font.typeFace;
-    this.do.setStyle({ font : fontStr, fill : font.color });
+    fontStr += val.font.bold ? "bold " : "";
+    fontStr += val.font.height.toString() + val.font.unit + " " + val.font.typeFace;
+    this.do.setStyle({
+        font : fontStr,
+        fill : val.color,
+        align: val.align,
+        stroke : val.stroke,
+        strokeThickness : val.strokeThickness,
+        wordWrap : val.wordWrap,
+        wordWrapWidth : val.wordWrapWidth
+    });
+};
+
+SETextObject.prototype.setText = function(val) {
+    this.do.setText(val);
 };

@@ -6,24 +6,36 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
             cond : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.buttons.cond))
         },
         label : {
-            bg : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label)),
-            txt : new SETextObject(new PIXI.Text("Foo bar buzz 123456789"), false),
-            txtLRMarginPX : 10
+            bg : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.label), false),
+            txt : new SETextObject(new PIXI.Text(""), false),
         },
         highlight : new SESpriteObject(new PIXI.Sprite(SENode.TEXTURES.highlight[type]), false)
     };
-    var CONTROL_DIST = 10;
-    this.controls.label.bg.setPosition((this.getWidth() - this.controls.label.bg.getWidth()) / 2, this.getHeight() + CONTROL_DIST);
-    this.controls.label.txt.setFont({
-        bold : false,
+    var LBL_TXT_LR_MARGIN_PX = 10;
+    var LBL_TXT_PX_HEIGHT = this.controls.label.bg.getHeight() / 3 * 2;
+    var LBL_TXT_PX_WIDTH = this.controls.label.bg.getWidth() - LBL_TXT_LR_MARGIN_PX;
+    var LBL_TXT_Y_OFFSET_PX = (this.controls.label.bg.getHeight() - LBL_TXT_PX_HEIGHT) / 2;
+    var LBL_TXT_X_OFFSET_PX = LBL_TXT_LR_MARGIN_PX;
+
+    var BUTTONS_DIST = 10;
+    this.controls.label.bg.setPosition((this.getWidth() - this.controls.label.bg.getWidth()) / 2, this.getHeight() + BUTTONS_DIST);
+    this.controls.label.txt.setStyle({
+        font : {
+            bold : false,
+            height : LBL_TXT_PX_HEIGHT,
+            unit : "px",
+            typeFace : "Arial"
+        },
         color : "white",
-        height : this.controls.label.bg.getHeight(),
-        unit : "px",
-        typeFace : "Arial"
+        align : "center",
+        wordWrap : true,
+        wordWrapWidth : LBL_TXT_PX_WIDTH 
     });
-    //this.controls.label.txt.setWH(this.controls.label.bg.getWidth(), this.controls.label.bg.getHeight());
-    this.controls.buttons.del.setPosition(-CONTROL_DIST, -CONTROL_DIST);
-    this.controls.buttons.cond.setPosition(this.getWidth() - this.controls.buttons.cond.getWidth() + CONTROL_DIST, -CONTROL_DIST);
+    this.controls.label.txt.setPosition(LBL_TXT_X_OFFSET_PX, LBL_TXT_Y_OFFSET_PX);
+    this.controls.label.bg.setVisible(false);
+    this.controls.label.txt.setVisible(false);
+    this.controls.buttons.del.setPosition(-BUTTONS_DIST, -BUTTONS_DIST);
+    this.controls.buttons.cond.setPosition(this.getWidth() - this.controls.buttons.cond.getWidth() + BUTTONS_DIST, -BUTTONS_DIST);
     this.controls.buttons.del.do.buttonMode = true;
     this.controls.buttons.cond.do.buttonMode = true;
     this.setButtonsVisible(false);
@@ -42,9 +54,9 @@ function SENode(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stag
     this.type = type;
     this.storyLine = storyLine;
     this._stage = stage;
-    this.label  = "";
     this.continue = (isContinue !== null && isContinue !== undefined) ?
         isContinue : false;
+    this.labelTxt = "";
     if (props === null || props === undefined) {
         //Which fields we have for each type of node
         props = { };
@@ -286,11 +298,16 @@ SENode.prototype.highlight = function(/*bool*/enable) {
     this.controls.highlight.setVisible(enable);
 };
 
-SENode.prototype.setLabel = function(text) {
-    this.label = text;
-    //TODO
-    //this.controls.label.txt =
-    this.controls.label.txt.setPosition(15, 0);
+SENode.prototype.setLabelTxt = function(val) {
+    this.labelTxt = val;
+    this.controls.label.txt.setText(val);
+    if (val && val !== "") {
+        this.controls.label.txt.setVisible(true);
+        this.controls.label.bg.setVisible(true);
+    } else {
+        this.controls.label.txt.setVisible(false);
+        this.controls.label.bg.setVisible(false);
+    }
 };
 
 function SENodeStaticConstructor(completionCB) {

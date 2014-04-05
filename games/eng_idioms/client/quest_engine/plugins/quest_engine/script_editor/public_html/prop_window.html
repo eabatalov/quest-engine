@@ -12,6 +12,15 @@
 
     <div ng-show="node !== null">
         <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="labelTxt">Label</label>
+                    <input ng-model="node.labelTxt" ng-change="node.setLabelTxt(node.labelTxt)" type="text" placeholder="Text" class="form-control input-sm" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-xs-12" ng-show="node.props.name | hasFieldValue">
                 <div class="form-group">
                     <label for="name">Name</label>
