@@ -1,0 +1,11 @@
+<div class="nav" ng-controller="StagesPanelController">
+    <button type="button" class="btn btn-default pull-left" ng-click="newStage()">
+        <span class="glyphicon glyphicon-plus"></span>New
+    </button>
+    <ul class="nav nav-tabs">
+        <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">
+            <a href="#" ng-click="changeCurrent(stage)">{{ stage.getName() }}</a>
+        </li>
+    </ul>
+</div>
+

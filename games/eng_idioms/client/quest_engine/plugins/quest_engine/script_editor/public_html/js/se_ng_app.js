@@ -74,7 +74,9 @@ scriptEditorApp.controller("CompileBtnController", ['$scope', 'ScriptEditorEvent
 scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
     TreeCompilerFactory]);
 
-    this.staticConstructorsCnt = 7;
+scriptEditorApp.controller("StagesPanelController", ['$scope', 'ScriptEditorEvents', StagesPanelController]);
+
+    this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);
     ScriptEditorStaticConstructor(constrComplCB);
     ScriptTreeEditorStaticConstructor(constrComplCB);
@@ -83,6 +85,7 @@ scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEdit
     ToolBarItemStaticConstructor(constrComplCB);
     ToolbarStaticConstructor(constrComplCB);
     SEInputManagerStaticConstructor(constrComplCB);
+    SEStagesManagerStaticConstructor(constrComplCB);
 }
 
 $(document).ready(function() {

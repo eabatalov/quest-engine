@@ -41,6 +41,8 @@
     <script src="js/se.js"></script>
     <script src="js/se_tree_compiler.js"></script>
     <script src="js/se_input_manager.js"></script>
+    <script src="js/se_stage.js"></script>
+    <script src="js/se_stages_manager.js"></script>
     <script src="js/se_ng_app.js"></script>
 </head>
 <body>
@@ -58,11 +60,7 @@
                 <button type="button" class="btn btn-default pull-right">
                     <span class="glyphicon glyphicon-star"></span>Compile
                 </button>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#">Stage-1</a></li>
-                    <li><a href="#">Stage-2</a></li>
-                    <li><a href="#">Stage-3</a></li>
-                </ul>
+                <ng-include src="'/stages_nav.html'"></ng-include>
             </div>
 
         </div>
