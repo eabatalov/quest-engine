@@ -157,8 +157,8 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
         if (args.node.getId() !== this.dragCondSrcNode.getId()) {
             this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
             this.seEvents.broadcast({ name : "COND_END_DRAG" });
+            this.seEvents.broadcast({ name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
             this.seEvents.broadcast({ name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
-            args.node.highlight(false);
             //Enable this line to focus newely created condition if we decide to do it
             //this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
             this.dragCond = null;

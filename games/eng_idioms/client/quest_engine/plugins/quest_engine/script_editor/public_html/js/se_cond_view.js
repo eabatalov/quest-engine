@@ -1,5 +1,8 @@
-function SECondView(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
+function SECondView(type, seEvents) {
     SEDisplayObject.call(this, new PIXI.Graphics());
+    this.cond = new SECond(type);
+    this.cond.__view = this;
+
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
     this.points.dst = new PIXI.Point(0, 0);
@@ -18,23 +21,16 @@ function SECondView(/* _QUEST_CONDS.* */ type, storyLine, seEvents, props) {
     this.label.setParent(this);*/
 
     this.seEvents = seEvents;
-    this.type = type;
-    this.storyLine = storyLine;
-    this.srcNode = null; //Node which we come through the condition from
-    this.dstNode = null; //Node which will be picked if cond is met
-
-    if (props !== null && props !== undefined) {
-        this.props =  props;
-    } else {
-        this.changeType(type);
-    }
-
     this.seEvents.on(this.onSeEvent.bind(this));
 
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
 }
 
 SECondView.prototype = new SEDisplayObject(); 
+
+SECondView.prototype.getCond = function() {
+    return this.cond;
+};
 
 SECondView.prototype.contains = function(px, py) {
     if (this.do.hitArea)
@@ -45,7 +41,8 @@ SECondView.prototype.contains = function(px, py) {
 
 SECondView.prototype.onSeEvent = function(args) {
     if (args.name === "OBJECT_FOCUS") {
-        if (args.obj.getId() === this.getId()) {
+        var condView = SECondView.fromSECond(args.obj);
+        if (condView && condView.getId() === this.getId()) {
             this.setControlsVisible(true);
         } else {
             this.setControlsVisible(false);
@@ -68,37 +65,22 @@ SECondView.prototype.inputEvent = function(evName, intData) {
         return;
 
     if (evName === "CLICK" && this.isCondEvent(intData)) {
-        this.seEvents.broadcast({ name : "COND_CLICK", cond : this });
+        this.seEvents.broadcast({ name : "COND_CLICK", cond : this.cond });
         return;
     }
 }
 
 SECondView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this });
+        this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this.cond });
         return;
     }
 };
 
-SECondView.prototype.delete = function() {
-    if (this.srcNode) {
-        this.srcNode.deleteOutCond(this);
-    }
-    if (this.dstNode) {
-        this.dstNode.deleteInCond(this);
-    }
+SECondView.prototype.onCondDeleted = function() {
     this.detachParent();
     this.setInteractive(false);
 };
-
-SECondView.prototype.changeType = function(type) {
-    this.props = {};
-    switch(type) {
-        case _QUEST_CONDS.OBJECT_CLICKED:
-            this.props.id = "";
-        break;
-    }
-}
 
 SECondView.prototype.setSrc = function(point) {
     this.points.src.x = point.x;
@@ -111,14 +93,6 @@ SECondView.prototype.setDst = function(point) {
     this.points.dst.y = point.y;
     this.reDraw();
 }
-
-SECondView.prototype.setSrcNode = function(node) {
-    this.srcNode = node;
-};
-
-SECondView.prototype.setDstNode = function(node) {
-    this.dstNode = node;
-};
 
 SECondView.prototype.setControlsVisible = function(val) {
     this.buttons.del.setVisible(val);
@@ -156,13 +130,15 @@ SECondView.prototype.reDraw = function() {
     var midY = this.points.src.y + len/2 * phiSin;
 
     var srcDistance = 0;
-    if (this.srcNode) {
-        var srcDiagLen = Math.sqrt(Math.pow(this.srcNode.getWidth(), 2) + Math.pow(this.srcNode.getHeight(), 2));
+    var srcNode = SENodeView.fromSENode(this.getCond().getSrcNode());
+    if (srcNode) {
+        var srcDiagLen = Math.sqrt(Math.pow(srcNode.getWidth(), 2) + Math.pow(srcNode.getHeight(), 2));
         srcDistance = srcDiagLen / 2 + SRC_DIST;
     }
     var dstDistance = 0;
-    if (this.dstNode) {
-        var dstDiagLen = Math.sqrt(Math.pow(this.dstNode.getWidth(), 2) +  Math.pow(this.dstNode.getHeight(), 2));
+    var dstNode = SENodeView.fromSENode(this.getCond().getDstNode());
+    if (dstNode) {
+        var dstDiagLen = Math.sqrt(Math.pow(dstNode.getWidth(), 2) +  Math.pow(dstNode.getHeight(), 2));
         dstDistance = dstDiagLen / 2 + DST_DIST;
         dstDistance += PICK_LEN;
     }
@@ -241,7 +217,21 @@ SECondView.prototype.reDraw = function() {
     //sceneUpdater.up();
 }
 
+SECondView.fromSECond = function(cond) {
+    if (cond)
+        return cond.__view;
+    else return null;
+};
+
+SECondView.onCondDeleted = function(cond) {
+    var condView = SECondView.fromSECond(cond);
+    if (condView)
+        condView.onCondDeleted();
+};
+
 function SECondViewStaticConstructor(completionCB) {
+    SECond.events.condDeleted.subscribe(null, SECondView.onCondDeleted);
+
     SECondView.TEXTURE_PATHS = { buttons : {} };
     SECondView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
 

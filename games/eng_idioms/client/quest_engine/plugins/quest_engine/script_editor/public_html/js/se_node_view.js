@@ -1,5 +1,11 @@
-function SENodeView(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, stage, props) {
+function SENodeView(type, seEvents) {
     SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[type]));
+    this.node = SENodeFabric(type);
+    this.node.__view = this;
+    this.node.events.inCondAdded.subscribe(this, this.onInCondAdded);
+    this.node.events.outCondAdded.subscribe(this, this.onOutCondAdded);
+    this.node.events.labelChanged.subscribe(this, this.onLabelChanged);
+
     this.controls = {
         buttons : {
             del : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.buttons.del)),
@@ -51,66 +57,6 @@ function SENodeView(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, 
     this.controls.label.txt.setParent(this.controls.label.bg);
 
     this.seEvents = seEvents;
-    this.type = type;
-    this.storyLine = storyLine;
-    this._stage = stage;
-    this.continue = (isContinue !== null && isContinue !== undefined) ?
-        isContinue : false;
-    this.labelTxt = "";
-    if (props === null || props === undefined) {
-        //Which fields we have for each type of node
-        props = { };
-        switch(type) {
-            case _QUEST_NODES.NONE:
-            break;
-            case _QUEST_NODES.PHRASE:
-                props.storyLine = null;
-                props.id = "";
-                props.text = "";
-                props.phraseType = _UI_PHRASE_TYPES.SPEAK;
-            break;
-            case _QUEST_NODES.QUIZ:
-                props.storyLine = null;
-                props.id = "";
-                props.text = "";
-                props.phraseType = _UI_PHRASE_TYPES.SPEAK;
-                props.ans1 = "";
-                props.ans2 = "";
-                props.ans3 = "";
-                props.ans4 = "";
-            break;
-            case _QUEST_NODES.ANIM:
-                props.storyLine = null;
-                props.id = "";
-                props.name = "";
-            break;
-            case _QUEST_NODES.WAIT:
-                props.secs = "0";
-            break;
-            case _QUEST_NODES.STAGE_CLEAR:
-            break;
-            case _QUEST_NODES.STORYLINE:
-                props.objs = [];
-            break;
-            case _QUEST_NODES.STAGE:
-                props.name = "";
-            break;
-        }
-    }
-    switch(type) {
-        case _QUEST_NODES.STORYLINE:
-            this.methods = {};
-            this.methods.addObject = storyLineAddObject.bind(this);
-        break;
-        case _QUEST_NODES.STAGE:
-            this.methods = {};
-            this.methods.addObject = stageAddObject.bind(this);
-            this.methods.takeFromPool = stageTakeFromPool.bind(this);
-        break;
-    }
-    this.props =  props;
-    this.inConds = [];
-    this.outConds = [];
     this.middle = new PIXI.Point(0, 0);
 
     this.dragging = { clickPoint : new PIXI.Point(0, 0) };
@@ -130,6 +76,10 @@ function SENodeView(/* _QUEST_NODES.* */ type, seEvents, isContinue, storyLine, 
 
 SENodeView.prototype = new SESpriteObject();
 
+SENodeView.prototype.getNode = function() {
+    return this.node;
+};
+
 SENodeView.prototype.isNodeEvent = function(intData) {
     var p = this.getLocalPosition(intData);
     if ((this.controls.buttons.del.getVisible() && this.controls.buttons.del.contains(p.x, p.y)) ||
@@ -140,7 +90,8 @@ SENodeView.prototype.isNodeEvent = function(intData) {
 
 SENodeView.prototype.onSeEvent = function(args) {
     if (args.name === "OBJECT_FOCUS") {
-        if (args.obj.getId() === this.getId()) {
+        var nodeView = SENodeView.fromSENode(args.obj);
+        if (nodeView && nodeView.getId() === this.getId()) {
             this.setButtonsVisible(true);
         } else {
             this.setButtonsVisible(false);
@@ -157,28 +108,27 @@ SENodeView.prototype.inputEvent = function(evName, intData) {
         var dragPos = this.getLocalPosition(intData);
         this.dragging.clickPoint.x = dragPos.x;
         this.dragging.clickPoint.y = dragPos.y;
-        this.seEvents.broadcast({ name : "NODE_DOWN", intData : intData, node : this });
+        this.seEvents.broadcast({ name : "NODE_DOWN", intData : intData, node : this.node });
         return;
     }
 
     if (evName === "IN") {
-        this.seEvents.broadcast({ name : "NODE_IN", node : this });
+        this.seEvents.broadcast({ name : "NODE_IN", node : this.node });
     }
 
     if (evName === "OUT") {
-        this.seEvents.broadcast({ name : "NODE_OUT", node : this });
+        this.seEvents.broadcast({ name : "NODE_OUT", node : this.node });
     }
 }
 
 SENodeView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this });
+        this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this.node });
         return;
     }
 
     if (ctlName === "COND" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "NODE_NEW_COND_CLICK" , node : this });
-        //console.log(ctlName + " " + evName);
+        this.seEvents.broadcast({ name : "NODE_NEW_COND_CLICK" , node : this.node });
         return;
     }
 };
@@ -188,86 +138,38 @@ SENodeView.prototype.setButtonsVisible = function(val) {
     this.controls.buttons.cond.setVisible(val);
 };
 
-function storyLineAddObject(objId) {
-    this.props.objs.push(objId);
-    this._stage.methods.takeFromPool(objId);
-}
-
-function stageAddObject(objId) {
-    this.props.objs.push(objId);
-    this.props.objPool.push(objId);
-}
-
-function stageTakeFromPool(objId) {
-    this.props.objPool.remove(objId);
-}
-
 SENodeView.prototype.setPosition = function(x, y) {
     SESpriteObject.prototype.setPosition.call(this, x, y);
     this.middle.x = this.getX() + this.getWidth() / 2;
     this.middle.y = this.getY() + this.getHeight() / 2;
 
-    for (i = 0; i < this.inConds.length; ++i) {
-        var cond = this.inConds[i];
-        this.positionInCond(cond);
+    for (i = 0; i < this.node.getInConds().length; ++i) {
+        var condView = SECondView.fromSECond(this.node.getInConds()[i]);
+        this.positionInCond(condView);
     }
-    for (i = 0; i < this.outConds.length; ++i) {
-        var cond = this.outConds[i];
-        this.positionOutCond(cond);
-    }
-};
-
-SENodeView.prototype.positionInCond = function(cond) {
-    cond.setDst(this.middle);
-};
-
-SENodeView.prototype.addInCond = function(cond) {
-    this.inConds.push(cond);
-    cond.setDstNode(this);
-    this.positionInCond(cond);
-};
-
-SENodeView.prototype.deleteInCond = function(dCond) {
-    for (i = 0; i < this.inConds.length; ++i) {
-        var cond = this.inConds[i];
-        if (cond.getId() == dCond.getId()) {
-            this.inConds.splice(i, 1);
-            return;
-        }
+    for (i = 0; i < this.node.getOutConds().length; ++i) {
+        var condView = SECondView.fromSECond(this.node.getOutConds()[i]);
+        this.positionOutCond(condView);
     }
 };
 
-SENodeView.prototype.positionOutCond = function(cond) {
-    cond.setSrc(this.middle);
+SENodeView.prototype.positionInCond = function(condView) {
+    condView.setDst(this.middle);
 };
 
-SENodeView.prototype.addOutCond = function(cond) {
-    this.outConds.push(cond);
-    cond.setSrcNode(this);
-    this.positionOutCond(cond);
+SENodeView.prototype.onInCondAdded = function(cond) {
+    this.positionInCond(SECondView.fromSECond(cond));
 };
 
-SENodeView.prototype.deleteOutCond = function(dCond) {
-    for (i = 0; i < this.outConds.length; ++i) {
-        var cond = this.outConds[i];
-        if (cond.getId() == dCond.getId()) {
-            this.outConds.splice(i, 1);
-            return;
-        }
-    }
+SENodeView.prototype.positionOutCond = function(condView) {
+    condView.setSrc(this.middle);
 };
 
-SENodeView.prototype.delete = function(condCB) {
-    while (this.inConds.length > 0) {
-        var cond = this.inConds.pop();
-        condCB(cond);
-        cond.delete();
-    }
-    while (this.outConds.length > 0) {
-        var cond = this.outConds.pop();
-        condCB(cond);
-        cond.delete();
-    }
+SENodeView.prototype.onOutCondAdded = function(cond) {
+    this.positionOutCond(SECondView.fromSECond(cond));
+};
+
+SENodeView.prototype.onNodeDeleted = function() {
     this.detachParent();
     this.setInteractive(false);
 };
@@ -298,8 +200,8 @@ SENodeView.prototype.highlight = function(/*bool*/enable) {
     this.controls.highlight.setVisible(enable);
 };
 
-SENodeView.prototype.setLabelTxt = function(val) {
-    this.labelTxt = val;
+SENodeView.prototype.onLabelChanged = function() {
+    var val = this.node.getLabel();
     this.controls.label.txt.setText(val);
     if (val && val !== "") {
         this.controls.label.txt.setVisible(true);
@@ -310,7 +212,21 @@ SENodeView.prototype.setLabelTxt = function(val) {
     }
 };
 
+SENodeView.fromSENode = function(node) {
+    if (node)
+        return node.__view;
+    else return null;
+};
+
+SENodeView.onNodeDeleted = function(node) {
+    var nodeView = SENodeView.fromSENode(node);
+    if (nodeView)
+        nodeView.onNodeDeleted();
+};
+
 function SENodeViewStaticConstructor(completionCB) {
+    SENode.events.nodeDeleted.subscribe(null, SENodeView.onNodeDeleted);
+
     SENodeView.TEXTURE_PATHS = { nodes : {}, buttons : {} };
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";
