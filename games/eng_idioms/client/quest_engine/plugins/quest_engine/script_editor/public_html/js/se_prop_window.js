@@ -32,11 +32,15 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
         });
 
         $scope.addObjectToStoryLine = function() {
-            $scope.node.methods.addObject($scope.objToAddId);
+            if ($scope.node.getType() === _QUEST_NODES.STORYLINE) {
+                $scope.node.addObject($scope.objToAddId);
+            }
         };
 
         $scope.addObjectToStage = function() {
-            $scope.node.methods.addObject($scope.objToAddId);
+            if ($scope.node.getType() === _QUEST_NODES.STAGE) {
+                $scope.node.addObject($scope.objToAddId);
+            }
         };
 
         $scope.setPropsObject = function(obj, isNode) {
@@ -50,10 +54,10 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
         };
 
         $scope.condTypeChanged = function() {
-            $scope.cond.changeType($scope.cond.type);
+            $scope.cond.setType($scope.cond.getType());
         };
 
         $scope.initialized = function() {
             $scope.$emit("PROPS_WIND_INITED");
         };
-    };
+};

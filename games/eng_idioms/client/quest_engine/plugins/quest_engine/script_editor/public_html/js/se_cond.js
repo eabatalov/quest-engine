@@ -1,6 +1,6 @@
 function SECond(type) {
     this.id = SECond.idCnt++;
-    this.changeType(type);
+    this.setType(type);
     this.storyline = null;
     this.srcNode = null; //Node which we come through the condition from
     this.dstNode = null; //Node which will be picked if cond is met
@@ -54,7 +54,7 @@ SECond.prototype.propagateStoryline = function(visited, storyline) {
     this.dstNode.propagateStoryline(visited, storyline);
 };
 
-SECond.prototype.changeType = function(type) {
+SECond.prototype.setType = function(type) {
     this.type = type;
     this.props = {};
     switch(type) {

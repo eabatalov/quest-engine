@@ -177,7 +177,7 @@ SEStorylineNode.prototype.addObject = function(objId) {
         this.getStage().takeFromPool(objId);
     else
         console.error("Unexpected action");
-}
+};
 
 SEStorylineNode.prototype.getStage = function() {
     return this.stage;
