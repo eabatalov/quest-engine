@@ -155,11 +155,11 @@ SEStageNode.prototype = new SENode(_QUEST_NODES.STAGE);
 SEStageNode.prototype.addObject = function(objId) {
     this.props.objs.push(objId);
     this.props.objPool.push(objId);
-}
+};
 
 SEStageNode.prototype.takeFromPool = function(objId) {
     this.props.objPool.remove(objId);
-}
+};
 
 // ============ STORYLINE ============
 function SEStorylineNode() {
