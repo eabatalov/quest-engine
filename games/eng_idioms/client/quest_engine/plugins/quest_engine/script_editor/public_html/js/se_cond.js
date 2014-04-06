@@ -25,6 +25,10 @@ SECond.prototype.getType = function() {
     return this.type;
 };
 
+SECond.prototype.getStoryline = function() {
+    return this.storyline;
+};
+
 SECond.prototype.setProp = function(name, value) {
     this.props[name] = value;
 };
