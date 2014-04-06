@@ -61,6 +61,10 @@ ToolbarWindowController = function($rootScope, $scope, seEvents, $timeout) {
     };
 
     $scope.itemClicked = function(toolbarItem) {
+        //XXX make work with stage more intuitive
+        if (toolbarItem.type === _QUEST_NODES.STAGE)
+            return;
+
         var evName = toolbarItem.isActive ? "TOOLBAR_ITEM_DEACTIVATE_CLICK" : "TOOLBAR_ITEM_ACTIVATE_CLICK";
         seEvents.broadcast({ name : evName, item : toolbarItem, type : toolbarItem.type });
     };
