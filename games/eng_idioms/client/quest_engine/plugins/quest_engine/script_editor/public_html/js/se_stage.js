@@ -1,18 +1,27 @@
 function SEStage(name) {
-    this.id = SEStage.stageIDCounter++;
-    this.name = name;
+    this.node = new SEStageNode();
+    this.node.props.name = name;
+    this.node.setLabel(name);
+
+    var cond = new SECond(_QUEST_CONDS.NONE);
+    var storylineNode = new SEStorylineNode();
+    this.node.addOutCond(cond);
+    storylineNode.addInCond(cond);
+
+    this.utils = {
+        storylineSearch : new SEStorylineSearch(this),
+        stageSearch : new SEStageSearch(this)
+    };
 }
 
 SEStage.prototype.getName = function() {
-    return this.name;
+    return this.node.props.name;
 };
 
-SEStage.prototype.getID = function() {
-    return this.id;
+SEStage.prototype.getId = function() {
+    return this.node.getId();
 };
 
-SEStage.prototype.setName = function(val) {
-    this.name = val;
+SEStage.prototype.getNode = function() {
+    return this.node;
 };
-
-SEStage.stageIDCounter = 0;

@@ -2,7 +2,7 @@ function StagesPanelController($scope, seEvents) {
     var thiz = this;
 
     $scope.isCurrent = function(stage) {
-        return thiz.currenStage.getID() === stage.getID();
+        return thiz.currenStage.getId() === stage.getId();
     };
 
     $scope.stages = function() {
