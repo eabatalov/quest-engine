@@ -1,7 +1,6 @@
 function SECond(type) {
     this.id = SECond.idCnt++;
     this.setType(type);
-    this.storyline = null;
     this.srcNode = null; //Node which we come through the condition from
     this.dstNode = null; //Node which will be picked if cond is met
     this.deleted = false;
@@ -23,10 +22,6 @@ SECond.prototype.getId = function() {
 
 SECond.prototype.getType = function() {
     return this.type;
-};
-
-SECond.prototype.getStoryline = function() {
-    return this.storyline;
 };
 
 SECond.prototype.setProp = function(name, value) {
@@ -53,11 +48,6 @@ SECond.prototype.setDstNode = function(node) {
     this.dstNode = node;
 };
 
-SECond.prototype.propagateStoryline = function(visited, storyline) {
-    this.storyline = storyline;
-    this.dstNode.propagateStoryline(visited, storyline);
-};
-
 SECond.prototype.setType = function(type) {
     this.type = type;
     this.props = {};
@@ -79,7 +69,6 @@ SECond.prototype.delete = function() {
         if (this.dstNode) {
             this.dstNode.deleteInCond(this);
         }
-        this.storyline = null;
         this.srcNode = null;
         this.dstNode = null;
         SECond.events.condDeleted.publish(this);

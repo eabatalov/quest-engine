@@ -3,7 +3,6 @@ function SENode(type) {
     this.type = type;
     this.label = null;
     this.continue = false;
-    this.storyline = null;
     this.inConds = [];
     this.outConds = [];
     this.deleted = false;
@@ -60,10 +59,6 @@ SENode.prototype.setContinue = function(val) {
     this.continue = val;
 };
 
-SENode.prototype.getStoryline = function() {
-    return this.storyline;
-};
-
 SENode.prototype.getInConds = function() {
     return this.inConds;
 }
@@ -71,9 +66,6 @@ SENode.prototype.getInConds = function() {
 SENode.prototype.addInCond = function(cond) {
     this.inConds.push(cond);
     cond.setDstNode(this);
-    if (cond.getSrcNode().getType() === _QUEST_NODES.STORYLINE) {
-        cond.propagateStoryline({}, cond);
-    }
     this.events.inCondAdded.publish(cond);
 };
 
@@ -82,9 +74,6 @@ SENode.prototype.deleteInCond = function(delCond) {
         var cond = this.inConds[i];
         if (cond.getId() == delCond.getId()) {
             this.inConds.splice(i, 1);
-            if (cond.getSrcNode().getType() === _QUEST_NODES.STORYLINE) {
-                cond.propagateStoryline({}, null);
-            }
             cond.delete();
             this.events.inCondDeleted.publish(delCond);
             return;
@@ -124,21 +113,9 @@ SENode.prototype.delete = function() {
         while (this.outConds.length > 0) {
             this.deleteOutCond(this.outConds[0])
         }
-        this.storyline= null;
         this.inConds = null;
         this.outConds = null;
         SENode.events.nodeDeleted.publish(this);
-    }
-};
-
-SENode.prototype.propagateStoryline = function(visited, storyline) {
-    if (visited[this.getId()] === true)
-        return;
-
-    this.storyline = storyline;
-    visited[this.getId()] = true;
-    for (i = 0; i < this.outConds.length; ++i) {
-        this.outConds[i].propagateStoryline(visited, storyline);
     }
 };
 
@@ -165,35 +142,20 @@ SEStageNode.prototype.takeFromPool = function(objId) {
 function SEStorylineNode() {
     SENode.call(this, _QUEST_NODES.STORYLINE);
     this.props.objs = [];
-    this.stage = null;
-    this.storyline = this;
 }
 
 SEStorylineNode.prototype = new SENode(_QUEST_NODES.STORYLINE);
 
-SEStorylineNode.prototype.addObject = function(objId) {
+SEStorylineNode.prototype.addObject = function(objId, stageNode) {
     this.props.objs.push(objId);
-    if (this.getStage())
-        this.getStage().takeFromPool(objId);
-    else
-        console.error("Unexpected action");
-};
-
-SEStorylineNode.prototype.getStage = function() {
-    return this.stage;
+    stageNode.takeFromPool(objId);
 };
 
 SEStorylineNode.prototype.addInCond = function(cond) {
     SENode.prototype.addInCond.call(this, cond);
-    if (cond.getSrcNode().getType() === _QUEST_NODES.STAGE) {
-        this.stage = cond.getSrcNode();
-    }
 };
 
 SEStorylineNode.prototype.deleteInCond = function(delCond) {
-    if (delCond.getSrcNode().getType() === _QUEST_NODES.STAGE) {
-        this.stage = null;
-    }
     SENode.prototype.deleteInCond.call(this, delCond);
 };
 

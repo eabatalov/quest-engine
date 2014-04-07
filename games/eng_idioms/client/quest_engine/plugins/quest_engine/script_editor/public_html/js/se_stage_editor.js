@@ -63,11 +63,11 @@ function SEStageEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpda
     storylineView.setParent(this.nodesLayer);
     storylineView.getNode().addInCond(condView.getCond());
     storylineView.positionInCond(condView);
-    storylineView.getNode().addObject(_QUEST_PLAYER_ID);
-    storylineView.getNode().addObject("older");
-    storylineView.getNode().addObject("firstLantern");
-    storylineView.getNode().addObject("secondLantern");
-    storylineView.getNode().addObject("0");
+    storylineView.getNode().addObject(_QUEST_PLAYER_ID, stageView.getNode());
+    storylineView.getNode().addObject("older", stageView.getNode());
+    storylineView.getNode().addObject("firstLantern", stageView.getNode());
+    storylineView.getNode().addObject("secondLantern", stageView.getNode());
+    storylineView.getNode().addObject("0", stageView.getNode());
 
     this.seEvents.on(this.onSeEvent.bind(this));
     this.posValidator = new SEEditorPositionValidator(this);
