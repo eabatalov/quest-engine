@@ -2,8 +2,8 @@
 <html class="html">
 <head>
     <title>Quibble: quest script editor</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Libs -->
     <script src="js/libs/jquery/jquery.js"></script>
     <script src="js/libs/angular.js"></script>
@@ -11,11 +11,11 @@
     <script src="js/libs/blob/Blob.js"></script>
     <script src="js/libs/filesaver/FileSaver.js"></script>
     <!-- Style -->
-	<script src="style/js/bootstrap.js"></script>
-    <link href="style/css/bootstrap.css" rel="stylesheet" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="style/css/layout.css" id="pagesheet"/>
-    <link rel="stylesheet" type="text/css" href="style/css/toolbar.css" id="pagesheet"/>
-    <link rel="stylesheet" type="text/css" href="style/css/demo.css" id="pagesheet"/>
+    <script src="style/js/bootstrap.js"></script>
+    <link href="style/css/bootstrap.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" type="text/css" href="style/css/layout.css" id="pagesheet" />
+    <link rel="stylesheet" type="text/css" href="style/css/toolbar.css" id="pagesheet" />
+    <link rel="stylesheet" type="text/css" href="style/css/demo.css" id="pagesheet" />
     <script src="style/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="style/js/jquery.ui.touch-punch.min.js"></script>
     <script src="style/js/bootstrap.min.js"></script>
@@ -79,8 +79,12 @@
                 <canvas id="scriptEditorCanvas"></canvas>
             </div>
             <div class="col-md-2">
-
-                <ng-include src="'/prop_window.html'"></ng-include>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Properties</div>
+                    <div class="panel-body">
+                        <ng-include src="'/prop_window.html'"></ng-include>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
