@@ -239,7 +239,6 @@ function SENodeViewStaticConstructor(completionCB) {
     SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENodeView.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
-    SENodeView.TEXTURE_PATHS.highlightRect = "images/node_greenorb.png";
     SENodeView.TEXTURE_PATHS.highlightHex = "images/node_greenorbhex.png";
 
     var assetsToLoad = $.map(SENodeView.TEXTURE_PATHS.nodes,
@@ -247,7 +246,6 @@ function SENodeViewStaticConstructor(completionCB) {
      assetsToLoad = assetsToLoad.concat($.map(SENodeView.TEXTURE_PATHS.buttons,
         function(value, index) { return [value]; }));
     assetsToLoad.push(SENodeView.TEXTURE_PATHS.label);
-    assetsToLoad.push(SENodeView.TEXTURE_PATHS.highlightRect);
     assetsToLoad.push(SENodeView.TEXTURE_PATHS.highlightHex);
 
     loader = new PIXI.AssetLoader(assetsToLoad);
@@ -276,7 +274,7 @@ function SENodeViewStaticConstructor(completionCB) {
         SENodeView.TEXTURES.label =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.label);
         $.each(_QUEST_NODES, function(name, type) {
-            var path = SENodeView.TEXTURE_PATHS.highlightRect;
+            var path = SENodeView.TEXTURE_PATHS.highlightHex;
             if (type === _QUEST_NODES.STAGE_CLEAR || type === _QUEST_NODES.STAGE)
                 path = SENodeView.TEXTURE_PATHS.highlightHex;
 	        SENodeView.TEXTURES.highlight[type] = PIXI.Texture.fromImage(path);
