@@ -38,6 +38,7 @@ function SENodeView(type, seEvents) {
         wordWrapWidth : LBL_TXT_PX_WIDTH 
     });
     this.controls.label.txt.setPosition(LBL_TXT_X_OFFSET_PX, LBL_TXT_Y_OFFSET_PX);
+    this.controls.label.txt.setWH(LBL_TXT_PX_WIDTH, LBL_TXT_PX_HEIGHT + 5 /* special for letters with "tails" */);
     this.controls.label.bg.setVisible(false);
     this.controls.label.txt.setVisible(false);
     this.controls.buttons.del.setPosition(-BUTTONS_DIST, -BUTTONS_DIST);

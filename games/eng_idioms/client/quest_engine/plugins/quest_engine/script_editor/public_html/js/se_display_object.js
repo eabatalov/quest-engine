@@ -163,6 +163,7 @@ SESpriteObject.prototype.setWH = function(w, h) {
  */
 function SETextObject(dispObj, interactive) {
     SEDisplayObject.call(this, dispObj, interactive);
+    dispObj.__se = this;
 }
 
 SETextObject.prototype = new SEDisplayObject();
@@ -184,4 +185,23 @@ SETextObject.prototype.setStyle = function(val) {
 
 SETextObject.prototype.setText = function(val) {
     this.do.setText(val);
+};
+
+(function() {
+    /*
+    PIXI's bug from HELL:
+    in function PIXI.Text.prototype.determineFontHeight = function(fontStyle)
+    PIXI determines font height using KOSTIL from HELL.
+    It creates new div in html body. This div gets default style determined by document css.
+    In our case div has 100% width and height. But PIXI thinks that it has 0 W and H.
+    XXX use temporal hack to fix
+    */
+    PIXI.Text.prototype.determineFontHeight = function() {
+        return this.__se ? this.__se.height : 20;
+    };
+})();
+
+SETextObject.prototype.setWH = function(w, h) {
+    this.width = w;
+    this.height= h;
 };
