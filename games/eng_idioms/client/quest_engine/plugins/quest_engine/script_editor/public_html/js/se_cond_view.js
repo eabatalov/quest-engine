@@ -210,9 +210,9 @@ SECondView.prototype.reDraw = function() {
     for (i = 1; i < hitAreaPoints.length; ++i) {
         this.do.moveTo(hitAreaPoints[i - 1].x, hitAreaPoints[i - 1].y);
         this.do.lineTo(hitAreaPoints[i].x, hitAreaPoints[i].y);
-    }*/
+    }
     this.do.moveTo(hitAreaPoints[hitAreaPoints.length - 1].x, hitAreaPoints[hitAreaPoints.length - 1].y);
-    this.do.lineTo(hitAreaPoints[0].x, hitAreaPoints[0].y);
+    this.do.lineTo(hitAreaPoints[0].x, hitAreaPoints[0].y);*/
     //XXX it work without update because we have rendering loop now
     //sceneUpdater.up();
 }
