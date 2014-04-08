@@ -3,10 +3,6 @@ function SEStage(name) {
     this.node.props.name = name;
     this.node.setLabel(name);
 
-    this.utils = {
-        storylineSearch : new SEStorylineSearch(this),
-        stageSearch : new SEStageSearch(this)
-    };
     /*
      * Setup initial stage objects 
      */
