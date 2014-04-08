@@ -1,31 +1,191 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="html">
 <head>
     <title>Quibble: quest script editor</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Style -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="style/layout.css" id="pagesheet" />
-    <link rel="stylesheet" type="text/css" href="style/toolbar.css" id="pagesheet">
-    <link rel="stylesheet" type="text/css" href="style/demo.css" id="pagesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Libs -->
     <script src="js/libs/jquery/jquery.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
-    <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="js/jquery.stacktable.js"></script>
+    <script src="js/libs/angular.js"></script>
+    <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
+    <script src="js/libs/blob/Blob.js"></script>
+    <script src="js/libs/filesaver/FileSaver.js"></script>
+    <!-- Style -->
+    <script src="style/js/bootstrap.js"></script>
+    <script src="style/js/bootstrap-select.js"></script>
+    <link href="style/css/bootstrap.css" rel="stylesheet" />
+    <link href="style/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="style/css/style.css" />
 </head>
 <body>
-    <script> 
-        $(function(){
-            $("body").load("prop_window.html"); 
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('.selectpicker').selectpicker();
         });
-    </script> 
+    </script>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Properties</div>
+            <div class="panel-body">
+                <div class="container" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
+
+
+                    <div class="row" ng-show="cond !== null">
+                        <div class="col-xs-12">
+                            <label for="id">Condition Type</label>
+                            <!-- name="info" -->
+                            <select class="selectpicker"
+                                    ng-model="cond.type"
+                                    ng-change="condTypeChanged()"
+                                    ng-options="type.id as type.title for type in condTypes"></select>
+                            <div ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
+                                <label for="id">Object</label>
+                                <!-- name="info"-->
+                                <select name="id" class="selectpicker" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="node !== null">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="label">Label</label>
+                                    <input ng-model="node.label" ng-change="node.setLabel(node.label)" type="text" placeholder="Text" class="form-control input-sm" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12" ng-show="node.getProps().name | hasFieldValue">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input ng-model="node.getProps().name" type="text" value="" placeholder="Text" class="form-control input-sm" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12" ng-show="node.getProps().id | hasFieldValue">
+                                <div>
+                                    <label for="id">Object</label>
+                                    <!-- name="info" -->
+                                    <select name="id" class="selectpicker" ng-model="node.getProps().id"
+                                            ng-options="obj for obj in node.getStoryline().getProps().objs"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6" ng-show="node.getProps().secs  | hasFieldValue">
+                                <div class="form-group">
+                                    <label for="secs">Wait </label>
+                                    <input id="spinner-01" class="form-control spinner" type="text" name="secs" ng-model="node.getProps().secs" value="0" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12" ng-show="node.getProps().text  | hasFieldValue">
+                                <div class="form-group">
+                                    <label for="secs">Text</label>
+                                    <textarea class="form-control input-sm" rows="2" placeholder="Text" ng-model="node.getProps().text"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" ng-show="node.getProps().phraseType  | hasFieldValue">
+                                <div>
+                                    <label for="phraseType">Appearance</label>
+                                    <!-- name="small"-->
+                                    <select name="phraseType" class="selectpicker" ng-model="node.getProps().phraseType"
+                                            ng-options="option.value as option.name for option in
+                    [{ name: 'Speak', value: UI_PHRASE_TYPES.SPEAK }, { name: 'Think', value: UI_PHRASE_TYPES.THINK }];"></select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" ng-show="node.getProps().ans1  | hasFieldValue">
+                                <div>
+                                    <label for="ans1">Answer 1</label>
+                                    <input class="form-control input-sm" type="text" name="ans1" ng-model="node.getProps().ans1" placeholder="ANSWER OPTION 1" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" ng-show="node.getProps().ans2  | hasFieldValue">
+                                <div>
+                                    <label for="ans2">Answer 2</label>
+                                    <input class="form-control input-sm" type="text" name="ans2" ng-model="node.getProps().ans2" placeholder="ANSWER OPTION 2" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" ng-show="node.getProps().ans3  | hasFieldValue">
+                                <div>
+                                    <label for="ans3">Answer 3</label>
+                                    <input class="form-control input-sm" type="text" name="ans3" ng-model="node.getProps().ans3" placeholder="ANSWER OPTION 3" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12" ng-show="node.getProps().ans4  | hasFieldValue">
+                                <div>
+                                    <label for="ans4">Answer 4</label>
+                                    <input class="form-control input-sm" type="text" name="ans4" ng-model="node.getProps().ans4" placeholder="ANSWER OPTION 4" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="node.getType() === QUEST_NODES.STORYLINE">
+                            <div class="col-xs-12">
+                                <div>
+                                    <label for="objToAddId">Add Object to Storyline</label>
+                                    <!--name="small"-->
+                                    <select name="objToAddId" class="selectpicker" ng-model="objToAddId"
+                                            ng-options="obj for obj in node.getStage().getProps().objPool"></select>
+                                    <button class="btn btn-sm btn-block btn-primary" ng-click="addObjectToStoryLine()">
+                                        Add to story line
+                                    </button>
+                                    <ul>
+                                        <li ng-repeat="obj in node.getProps().objs">
+                                            <div class="demo-inline demo-labels">
+                                                <span class="label label-important">{{ obj }}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="node.getType() === QUEST_NODES.STAGE">
+                            <div class="col-xs-12">
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control" id="appendedInputButton-04" type="text" placeholder="Add Object to Stage" ng-model="objToAddId" required ng-maxlength="50">
+                                    <span class="input-group-btn">
+                                        <button class="btn" type="button" ng-click="addObjectToStage()"><span class="fui-check-inverted"></span></button>
+                                    </span>
+                                </div>
+                                <ul>
+                                    <li ng-repeat="obj in node.getProps().objs">
+                                        <div class="demo-inline demo-labels">
+                                            <span class="label label-info">{{ obj }}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2" ng-show="node.continue  | hasFieldValue">
+                                <div>
+                                    <label for="continue">Sequence?</label>
+                                    <!--name="small"-->
+                                    <select id="continue" class="selectpicker" ng-model="node.continue"
+                                            ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

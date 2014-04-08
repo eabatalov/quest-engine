@@ -1,6 +1,6 @@
 <div class="nav" ng-controller="StagesPanelController">
-    <button type="button" class="btn btn-default pull-left" ng-click="newStage()">
-        <span class="glyphicon glyphicon-plus"></span>New
+    <button type="button" class="btn btn-inverse btn-circle" ng-click="newStage()">
+        <i class="glyphicon glyphicon-plus"></i>
     </button>
     <ul class="nav nav-tabs">
         <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">

@@ -1,20 +1,17 @@
 <!-- XXX as Angular doesn't provide two-way getter/setter data binding -->
 <div class="container" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
-
-
     <div class="row" ng-show="cond !== null">
         <div class="col-xs-12">
             <label for="id">Condition Type</label>
             <!-- name="info" -->
-            <select class="select-block mbl"
-                ng-model="cond.type"
-                ng-change="condTypeChanged()"
-                ng-options="type.id as type.title for type in condTypes">
-            </select>
+            <select class="selectpicker"
+                    ng-model="cond.type"
+                    ng-change="condTypeChanged()"
+                    ng-options="type.id as type.title for type in condTypes"></select>
             <div ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
                 <label for="id">Object</label>
                 <!-- name="info"-->
-                <select name="id" class="select-block mbl" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
+                <select name="id" class="selectpicker" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
             </div>
         </div>
     </div>
@@ -44,7 +41,7 @@
                 <div>
                     <label for="id">Object</label>
                     <!-- name="info" -->
-                    <select name="id" class="select-block mbl" ng-model="node.getProps().id"
+                    <select name="id" class="selectpicker" ng-model="node.getProps().id"
                             ng-options="obj for obj in node.getStoryline().getProps().objs"></select>
                 </div>
             </div>
@@ -71,7 +68,7 @@
                 <div>
                     <label for="phraseType">Appearance</label>
                     <!-- name="small"-->
-                    <select name="phraseType" class="select-block mbl" ng-model="node.getProps().phraseType"
+                    <select name="phraseType" class="selectpicker" ng-model="node.getProps().phraseType"
                             ng-options="option.value as option.name for option in
                     [{ name: 'Speak', value: UI_PHRASE_TYPES.SPEAK }, { name: 'Think', value: UI_PHRASE_TYPES.THINK }];"></select>
                 </div>
@@ -107,11 +104,11 @@
         </div>
 
         <div class="row" ng-show="node.getType() === QUEST_NODES.STORYLINE">
-            <div class="col-xs-12" >
+            <div class="col-xs-12">
                 <div>
                     <label for="objToAddId">Add Object to Storyline</label>
                     <!--name="small"-->
-                    <select name="objToAddId" class="select-block mb1" ng-model="objToAddId"
+                    <select name="objToAddId" class="selectpicker" ng-model="objToAddId"
                             ng-options="obj for obj in node.getStage().getProps().objPool"></select>
                     <button class="btn btn-sm btn-block btn-primary" ng-click="addObjectToStoryLine()">
                         Add to story line
@@ -132,30 +129,33 @@
                 <div class="input-group input-group-sm">
                     <input class="form-control" id="appendedInputButton-04" type="text" placeholder="Add Object to Stage" ng-model="objToAddId" required ng-maxlength="50">
                     <span class="input-group-btn">
-                        <button class="btn" type="button" ng-click="addObjectToStage()"><span class="fui-check-inverted"></span></button>
+                        <button class="btn" type="button" ng-click="addObjectToStage()"><span class="glyphicon glyphicon-ok form-control-feedback"></span></button>
                     </span>
                 </div>
                 <ul>
                     <li ng-repeat="obj in node.getProps().objs">
-                    <div class="demo-inline demo-labels">
-                        <span class="label label-info">{{ obj }}</span>
-                    </div>
+                        <div class="demo-inline demo-labels">
+                            <span class="label label-info">{{ obj }}</span>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-8" ng-show="node.continue  | hasFieldValue">
+            <div class="col-xs-2" ng-show="node.continue  | hasFieldValue">
                 <div>
                     <label for="continue">Sequence?</label>
                     <!--name="small"-->
-                    <select name="continue" class="select-block mbl" ng-model="node.continue"
-                        ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
+                    <select id="continue" class="selectpicker" ng-model="node.continue"
+                            ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-<script src="js/application.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('.selectpicker').selectpicker();
+    });
+</script>
