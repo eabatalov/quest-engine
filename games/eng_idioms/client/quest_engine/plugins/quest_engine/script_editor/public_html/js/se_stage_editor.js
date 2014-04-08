@@ -1,12 +1,21 @@
-function SEStageEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpdater, mouseWheelManager) {
-    SEDisplayObject.call(this, new PIXI.DisplayObjectContainer());
+function SEStageEditor($rootScope, seEvents, mouseWheelManager) {
     this.seEvents = seEvents;
-    this.sceneUpdater = sceneUpdater;
+
+    this.scene = new SEScene();
+    this.scene.startPeriodicRendering();
+    this.sceneSizeTweak = new SESceneSizeTweak($rootScope, this.scene);
+
+    this.pad = new SEDisplayObject(new PIXI.DisplayObjectContainer(), true);
+    this.pad.setPosition(0, 0);
+    this.pad.setParent(this.scene.getRootSceneObj());
+    this.sceneSizeTweak.onSizeChanged = function(w, h) {
+        this.pad.setWH(w, h);
+        this.pad.setHitArea(new PIXI.Rectangle(0, 0, w, h));
+    }.bind(this);
+
+    this.inputManager = new SEInputManager(seEvents);
 
     var VIRTUAL_SIZE = { WIDTH : 10000, HEIGHT : 10000 };
-    this.setPosition(0, 0);
-    this.setWH(VIRTUAL_SIZE.WIDTH, VIRTUAL_SIZE.HEIGHT);
-    this.setParent(parent);
     //We will scale and move this object
     this.editingBg = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.editingBg.setPosition(0, 0);
@@ -14,22 +23,21 @@ function SEStageEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpda
     this.editingBg.do.hitArea =
         new PIXI.Rectangle(this.editingBg.getX(), this.editingBg.getY(),
                 this.editingBg.getWidth(), this.editingBg.getHeight());
-    this.editingBg.setParent(this);
+    this.editingBg.setParent(this.pad);
     this.nodesLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.condsLayer = new SEDisplayObject(new PIXI.DisplayObjectContainer());
     this.condsLayer.setParent(this.editingBg);
     this.nodesLayer.setParent(this.editingBg);
 
     this.input = { dragging : { nodeView : null, condView: null, all : false, prevAllDragPos : new PIXI.Point(0, 0) } };
-    this.do.hitArea = new PIXI.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-    this.do.mousedown = this.do.touchstart = this.onInputEvent.bind(this, "DOWN");
-    this.do.mouseup = this.do.touchend = this.onInputEvent.bind(this, "UP");
-    this.do.mouseout = this.onInputEvent.bind(this, "OUT");
-    this.do.mouseover = this.onInputEvent.bind(this, "IN");
-    this.do.mousemove = this.do.touchmove = this.onInputEvent.bind(this, "MOVE");
-    this.do.click  = this.do.tap = this.onInputEvent.bind(this, "CLICK");
-    this.do.mouseupoutside = this.do.touchendoutside = this.onInputEvent.bind(this, "UP_OUTSIDE");
-    mouseWheelManager.onSEDO(this, this.onMouseWheel);
+    this.pad.do.mousedown = this.pad.do.touchstart = this.onInputEvent.bind(this, "DOWN");
+    this.pad.do.mouseup = this.pad.do.touchend = this.onInputEvent.bind(this, "UP");
+    this.pad.do.mouseout = this.onInputEvent.bind(this, "OUT");
+    this.pad.do.mouseover = this.onInputEvent.bind(this, "IN");
+    this.pad.do.mousemove = this.pad.do.touchmove = this.onInputEvent.bind(this, "MOVE");
+    this.pad.do.click  = this.pad.do.tap = this.onInputEvent.bind(this, "CLICK");
+    this.pad.do.mouseupoutside = this.pad.do.touchendoutside = this.onInputEvent.bind(this, "UP_OUTSIDE");
+    mouseWheelManager.onSEDO(this.pad, this.onMouseWheel.bind(this));
 
     SENode.events.nodeDeleted.subscribe(this, this.onNodeDeleted);
     SECond.events.condDeleted.subscribe(this, this.onCondDeleted);
@@ -70,12 +78,12 @@ function SEStageEditor(rootScope, /*DisplayObject */ parent, seEvents, sceneUpda
     storylineView.getNode().addObject("0", stageView.getNode());
 
     this.seEvents.on(this.onSeEvent.bind(this));
-    this.posValidator = new SEEditorPositionValidator(this);
+    this.posValidator = new SEStageEditorObjPosValidator(this);
 }
 
 SEStageEditor.prototype = new SEDisplayObject();
 
-function SEEditorPositionValidator(seTreeEditor) {
+function SEStageEditorObjPosValidator(seTreeEditor) {
     var pointList = [];
     //points pool
     var p1 = new PIXI.Point(0, 0);
@@ -156,7 +164,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         //if (this.posValidator.validateNodeView(newNodeView)) {
             newNodeView.setParent(this.nodesLayer);
             this.nodeViews.all.push(newNodeView);
-            this.sceneUpdater.up();
+            this.scene.update();
         //} else newNode = null; //TODO move node to the nearest appropriate position
         this.seEvents.broadcast({ name : "NODE_CREATED", node : newNodeView.getNode() });
         return;
@@ -173,7 +181,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "EDITOR_START_DRAG") {
-        var pos  = this.getLocalPosition(args.intData);
+        var pos = this.pad.getLocalPosition(args.intData);
         this.input.dragging.prevAllDragPos.x = pos.x;
         this.input.dragging.prevAllDragPos.y = pos.y;
         this.input.dragging.all = true;
@@ -209,7 +217,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
 
     if (args.name === "NODE_ADD_IN_COND") {
         args.node.addInCond(args.cond);
-        this.sceneUpdater.up();
+        this.scene.update();
         return;
     }
 
@@ -218,14 +226,14 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         if (this.nodeViews.stage.getNode().getId() == args.node.getId())
             return;
         args.node.delete();
-        this.sceneUpdater.up();
+        this.scene.update();
         return;
     }
 
     if (args.name === "COND_DELETE") {
         this.condViews.removeBySEId(args.cond.getId());
         args.cond.delete();
-        this.sceneUpdater.up();
+        this.scene.update();
         return;
     }
 
@@ -235,7 +243,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         var condView = SECondView.fromSECond(args.cond);
         nodeView.positionInCond(condView);
         nodeView.highlight(true);
-        this.sceneUpdater.up();
+        this.scene.update();
         return;
     }
 
@@ -243,7 +251,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         var nodeView = SENodeView.fromSENode(args.node);
         this.input.dragging.condSnap = false;
         nodeView.highlight(false);
-        this.sceneUpdater.up();
+        this.scene.update();
         return;
     }
 };
@@ -261,7 +269,7 @@ SEStageEditor.prototype.onMouseWheel = function(yDelta) {
             this.editingBg.setScale(this.editingBg.getScale() - 0.1);
         }
     }
-    this.sceneUpdater.up();
+    this.scene.update();
     return false;
 };
 
@@ -271,7 +279,6 @@ SEStageEditor.prototype.editorMouseEvent = function(intData) {
 };
 
 SEStageEditor.prototype.onInputEvent = function(evName, intData) {
-    //console.log(evName);
     if (evName === "MOVE") {
         if (this.input.dragging.nodeView) {
             var oldX = this.input.dragging.nodeView.getX();
@@ -279,17 +286,17 @@ SEStageEditor.prototype.onInputEvent = function(evName, intData) {
             var newDragPos = this.nodesLayer.getLocalPosition(intData);
             this.input.dragging.nodeView.dragTo(newDragPos);
             if (this.posValidator.validateNodeView(this.input.dragging.nodeView)) {
-                this.sceneUpdater.up();
+                this.scene.update();
             } else {
                 this.input.dragging.nodeView.setPosition(oldX, oldY);
             }
         } else if (this.input.dragging.condView && ! this.input.dragging.condSnap) {
             var pt = this.condsLayer.getLocalPosition(intData);
             this.input.dragging.condView.setDst(pt);
-            this.sceneUpdater.up();
+            this.scene.update();
         } else if (this.input.dragging.all) {
             var BOUNDS = { MIN_X : -250, MAX_X : 250, MIN_Y : -250, MAX_Y : 250 };
-            var mPos = this.getLocalPosition(intData);
+            var mPos = this.pad.getLocalPosition(intData);
             var dx = mPos.x - this.input.dragging.prevAllDragPos.x;
             var dy = mPos.y - this.input.dragging.prevAllDragPos.y;
             var newX = this.editingBg.getX() + dx;
@@ -300,7 +307,7 @@ SEStageEditor.prototype.onInputEvent = function(evName, intData) {
             }
             this.input.dragging.prevAllDragPos.x = mPos.x;
             this.input.dragging.prevAllDragPos.y = mPos.y;
-            this.sceneUpdater.up();
+            this.scene.update();
         }
         return;
     }

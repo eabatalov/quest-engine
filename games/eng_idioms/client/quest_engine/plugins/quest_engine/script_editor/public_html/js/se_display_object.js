@@ -133,6 +133,10 @@ SEDisplayObject.prototype.getVisible = function() {
     return this.do.visible;
 };
 
+SEDisplayObject.prototype.setHitArea = function(hitArea) {
+    this.do.hitArea = hitArea;
+};
+
 /*
  * Sprite object with sizes independent of its scale
  */

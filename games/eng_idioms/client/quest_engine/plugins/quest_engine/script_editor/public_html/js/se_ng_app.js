@@ -24,11 +24,10 @@ scriptEditorApp.config(function() {
     };
 }).config(SEObjectConfig);
 
-scriptEditorApp.run(['ScriptEditorEvents', "ScriptEditor", "TreeCompiler",
+scriptEditorApp.run(['ScriptEditorEvents', "ScriptEditor",
     function(seEvents, scriptEditor, treeCompiler) {
         this.seEvents = seEvents;
         this.scriptEditor = scriptEditor;
-        this.treeCompiler = treeCompiler;
     }
 ]);
 
@@ -61,8 +60,6 @@ scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
 scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "MouseWheelManager", ScriptEditorFactory]);
 
-scriptEditorApp.factory("TreeEditor", ["ScriptEditor", TreeEditorFactory]);
-
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', '$timeout',
     ScriptEditorPropertiesWindowController]);
 
@@ -70,9 +67,6 @@ scriptEditorApp.controller("ToolbarWindowController", ["$rootScope", '$scope', '
     ToolbarWindowController]);
 
 scriptEditorApp.controller("CompileBtnController", ['$scope', 'ScriptEditorEvents', CompileBtnController]);
-
-scriptEditorApp.factory("TreeCompiler", ["$rootScope", "TreeEditor", "ScriptEditorEvents",
-    TreeCompilerFactory]);
 
 scriptEditorApp.controller("StagesPanelController", ['$scope', 'ScriptEditorEvents', StagesPanelController]);
 
