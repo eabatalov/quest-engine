@@ -96,9 +96,11 @@ SEDisplayObject.prototype.setParent = function(parent) {
 };
 
 SEDisplayObject.prototype.detachParent = function() {
-    /*Looks like a PIXI bug
+    /* XXX
+    Looks like a PIXI bug
     Interation manager throws exception after
-    interactive object was deleted*/
+    interactive object was deleted
+    */
     this.do.setInteractive(false);
 
     if (this.do.parent) {

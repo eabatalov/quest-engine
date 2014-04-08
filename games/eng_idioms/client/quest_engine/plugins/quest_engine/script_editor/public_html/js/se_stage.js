@@ -3,15 +3,17 @@ function SEStage(name) {
     this.node.props.name = name;
     this.node.setLabel(name);
 
-    var cond = new SECond(_QUEST_CONDS.NONE);
-    var storylineNode = new SEStorylineNode();
-    this.node.addOutCond(cond);
-    storylineNode.addInCond(cond);
-
     this.utils = {
         storylineSearch : new SEStorylineSearch(this),
         stageSearch : new SEStageSearch(this)
     };
+    /*
+     * Setup initial stage objects 
+     */
+    var cond = new SECond(_QUEST_CONDS.NONE);
+    var storylineNode = new SEStorylineNode();
+    this.node.addOutCond(cond);
+    storylineNode.addInCond(cond);
 }
 
 SEStage.prototype.getName = function() {
