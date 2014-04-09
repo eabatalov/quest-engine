@@ -65,14 +65,14 @@ SECondView.prototype.inputEvent = function(evName, intData) {
         return;
 
     if (evName === "CLICK" && this.isCondEvent(intData)) {
-        this.seEvents.broadcast({ name : "COND_CLICK", cond : this.cond });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_CLICK", cond : this.cond });
         return;
     }
 }
 
 SECondView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "COND_DEL_CLICK" , cond : this.cond });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_DEL_CLICK" , cond : this.cond });
         return;
     }
 };

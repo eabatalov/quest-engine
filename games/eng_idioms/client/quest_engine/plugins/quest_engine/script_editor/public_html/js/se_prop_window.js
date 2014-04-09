@@ -1,4 +1,5 @@
-ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
+ScriptEditorPropertiesWindowController = function($scope, seEventRouter, $timeout) {
+        var seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
         //Make global constants accessible from $scope
         $scope.PLAYER_ACTIONS = _PLAYER_ACTIONS;
 		$scope.UI_ACTIONS = _UI_ACTIONS;
@@ -58,6 +59,6 @@ ScriptEditorPropertiesWindowController = function($scope, seEvents, $timeout) {
         };
 
         $scope.initialized = function() {
-            $scope.$emit("PROPS_WIND_INITED");
+            seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_ALL_STAGES, { name : "PROPS_WIND_INITED" });
         };
 };

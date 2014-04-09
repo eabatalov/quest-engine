@@ -1,4 +1,4 @@
-function SESceneSizeTweak($rootScope, scene) {
+function SESceneSizeTweak(seEvents, scene) {
     this.onSizeChanged = null;
     this.initNum = 3;
 
@@ -33,8 +33,10 @@ function SESceneSizeTweak($rootScope, scene) {
         this.onInitCompleted();
     }.bind(this);
     $(document).ready(signalOneInitCompleted);
-    $rootScope.$on('TOOLBAR_INITED', signalOneInitCompleted);
-    $rootScope.$on('PROPS_WIND_INITED', signalOneInitCompleted);
+    seEvents.on(function(msg) {
+        if (msg.name === 'TOOLBAR_INITED' || msg.name === 'PROPS_WIND_INITED')
+            signalOneInitCompleted();
+    });
 
     $(window).resize(this.resizeView);
 }

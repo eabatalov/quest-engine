@@ -1,7 +1,6 @@
-function ToolBarItem(type, seEvents, label) {
+function ToolBarItem(type, label) {
 
     this.type = type;
-    this.seEvents = seEvents;
     this.isActive = false;
 }
 
@@ -44,20 +43,22 @@ function ToolBarItemStaticConstructor(completionCB) {
     completionCB();
 }
 
-ToolbarWindowController = function($rootScope, $scope, seEvents, $timeout) {
+ToolbarWindowController = function($scope, seEventRouter, $timeout) {
+    seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+
     $scope.toolbarItems = [
-            new ToolBarItem(_QUEST_NODES.ANIM, seEvents),
-            new ToolBarItem(_QUEST_NODES.PHRASE, seEvents),
-            new ToolBarItem(_QUEST_NODES.QUIZ, seEvents),
-            new ToolBarItem(_QUEST_NODES.STAGE, seEvents),
-            new ToolBarItem(_QUEST_NODES.STAGE_CLEAR, seEvents),
-            new ToolBarItem(_QUEST_NODES.STORYLINE, seEvents),
-            new ToolBarItem(_QUEST_NODES.WAIT, seEvents),
-            new ToolBarItem(_QUEST_NODES.NONE, seEvents)
+            new ToolBarItem(_QUEST_NODES.ANIM),
+            new ToolBarItem(_QUEST_NODES.PHRASE),
+            new ToolBarItem(_QUEST_NODES.QUIZ),
+            new ToolBarItem(_QUEST_NODES.STAGE),
+            new ToolBarItem(_QUEST_NODES.STAGE_CLEAR),
+            new ToolBarItem(_QUEST_NODES.STORYLINE),
+            new ToolBarItem(_QUEST_NODES.WAIT),
+            new ToolBarItem(_QUEST_NODES.NONE)
     ];
 
     $scope.initialized = function() {
-        $rootScope.$emit("TOOLBAR_INITED");
+        seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_ALL_STAGES, { name : "TOOLBAR_INITED" });
     };
 
     $scope.itemClicked = function(toolbarItem) {
@@ -66,7 +67,7 @@ ToolbarWindowController = function($rootScope, $scope, seEvents, $timeout) {
             return;
 
         var evName = toolbarItem.isActive ? "TOOLBAR_ITEM_DEACTIVATE_CLICK" : "TOOLBAR_ITEM_ACTIVATE_CLICK";
-        seEvents.broadcast({ name : evName, item : toolbarItem, type : toolbarItem.type });
+        seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : evName, item : toolbarItem, type : toolbarItem.type });
     };
 
     seEvents.on(function(args) {

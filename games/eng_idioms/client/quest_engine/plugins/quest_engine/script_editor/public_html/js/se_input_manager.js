@@ -1,7 +1,7 @@
-function SEInputManager(seEvents) {
+function SEInputManager(seEventRouter) {
     this.state = SEInputManager.STATES.NONE;
-    this.seEvents = seEvents;
-    seEvents.on(this.procEvent.bind(this));
+    this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+    this.seEvents.on(this.procEvent, this);
 
     this.dragNode = null;
     this.activeTBNodeType = null;
@@ -31,42 +31,42 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     if (evName === "TOOLBAR_ITEM_ACTIVATE_CLICK") {
         this.activeTBNodeType = args.type;
         this.setState(SEInputManager.STATES.WAIT_NODE_POSITIONING);
-        this.seEvents.broadcast({ name : "TOOLBAR_ITEM_ACTIVATE", item : args.item });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "TOOLBAR_ITEM_ACTIVATE", item : args.item });
         return;
     };
 
     if (evName === "NODE_DOWN") {
         this.dragNode = args.node;
         this.setState(SEInputManager.STATES.NODE_DRAG);
-        this.seEvents.broadcast({ name : "NODE_DRAG", node : this.dragNode });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_DRAG", node : this.dragNode });
         return;
     }
 
     if (evName === "EDITOR_DOWN") {
         this.setState(SEInputManager.STATES.EDITOR_ALL_MOVE);
-        this.seEvents.broadcast({ name : "EDITOR_START_DRAG", intData : args.intData });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "EDITOR_START_DRAG", intData : args.intData });
         return;
     }
 
     if (evName === "COND_DEL_CLICK") {
-        this.seEvents.broadcast({ name : "COND_DELETE", cond : args.cond });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_DELETE", cond : args.cond });
         return;
     }
 
     if (evName === "NODE_DEL_CLICK") {
-        this.seEvents.broadcast({ name : "NODE_DELETE", node : args.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_DELETE", node : args.node });
         return;
     }
 
     if (evName === "NODE_NEW_COND_CLICK") {
         this.dragCondSrcNode = args.node;
         this.setState(SEInputManager.STATES.COND_CREATION_WAIT);
-        this.seEvents.broadcast({ name : "COND_CREATE_FROM_NODE", node : args.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_CREATE_FROM_NODE", node : args.node });
         return;
     }
 
     if (evName === "COND_CLICK") {
-        this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : args.cond, type : "COND" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.cond, type : "COND" });
         return;
     };
 };
@@ -76,14 +76,14 @@ SEInputManager.prototype.nodeCreationCancellHandler = function(evName, args) {
     if (evName === "TOOLBAR_ITEM_DEACTIVATE_CLICK") {
         this.activeTBNodeType = null;
         this.setState(SEInputManager.STATES.NONE);
-        this.seEvents.broadcast({ name : "TOOLBAR_ITEM_DEACTIVATE", item : args.item });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "TOOLBAR_ITEM_DEACTIVATE", item : args.item });
         return;
     }
 
     if (evName === "TOOLBAR_ITEM_ACTIVATE_CLICK") {
         this.activeTBNodeType = args.type;
         this.setState(SEInputManager.STATES.WAIT_NODE_POSITIONING);
-        this.seEvents.broadcast({ name : "TOOLBAR_ITEM_ACTIVATE", item : args.item });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "TOOLBAR_ITEM_ACTIVATE", item : args.item });
         return;
     }
 };
@@ -91,7 +91,7 @@ SEInputManager.prototype.nodeCreationCancellHandler = function(evName, args) {
 SEInputManager.prototype.procStateWaitNodePositioning = function(evName, args) {
     if (evName === "EDITOR_CLICK") {
         this.setState(SEInputManager.STATES.WAIT_NODE_CREATION);
-        this.seEvents.broadcast({ name : "NODE_CREATE", type : this.activeTBNodeType, intData : args.intData });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_CREATE", type : this.activeTBNodeType, intData : args.intData });
         return;
     }
     this.nodeCreationCancellHandler(evName, args);
@@ -101,8 +101,8 @@ SEInputManager.prototype.procStateWaitNodeCreation = function(evName, args) {
     if (evName === "NODE_CREATED") {
         this.activeTBNodeType = null;
         this.setState(SEInputManager.STATES.NONE);
-        this.seEvents.broadcast({ name : "TOOLBAR_ITEM_DEACTIVATE" });
-        this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : args.node, type : "NODE" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "TOOLBAR_ITEM_DEACTIVATE" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.node, type : "NODE" });
         return;
     }
     
@@ -115,8 +115,8 @@ SEInputManager.prototype.nodeDragCancellHandler = function(evName, args) {
 
 SEInputManager.prototype.procStateNodeDrag = function(evName, args) {
     if (evName === "EDITOR_UP") {
-        this.seEvents.broadcast({ name : "NODE_END_DRAG", node : this.dragNode });
-        this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragNode, type : "NODE" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_END_DRAG", node : this.dragNode });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : this.dragNode, type : "NODE" });
         this.dragNode = null;
         this.setState(SEInputManager.STATES.NONE);
         return;
@@ -131,7 +131,7 @@ SEInputManager.prototype.editorAllMoveCancellHandler = function() {
 SEInputManager.prototype.procStateEditorAllMove = function(evName, args) {
     if (evName === "EDITOR_UP" || evName === "EDITOR_UP_OUTSIDE") {
         this.setState(SEInputManager.STATES.NONE);
-        this.seEvents.broadcast({ name : "EDITOR_END_DRAG" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "EDITOR_END_DRAG" });
     }
 
     this.editorAllMoveCancellHandler(evName, args);
@@ -145,7 +145,7 @@ SEInputManager.prototype.procStateCondCreationWait = function(evName, args) {
     if (evName === "COND_CREATED") {
         this.dragCond = args.cond;
         this.setState(SEInputManager.STATES.COND_DRAGGING);
-        this.seEvents.broadcast({ name : "COND_START_DRAG", cond : args.cond });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_START_DRAG", cond : args.cond });
         return;
     }
 
@@ -156,11 +156,11 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
     if (evName === "NODE_DOWN") {
         if (args.node.getId() !== this.dragCondSrcNode.getId()) {
             this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
-            this.seEvents.broadcast({ name : "COND_END_DRAG" });
-            this.seEvents.broadcast({ name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
-            this.seEvents.broadcast({ name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_END_DRAG" });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_ADD_IN_COND", cond : this.dragCond, node : args.node });
             //Enable this line to focus newely created condition if we decide to do it
-            //this.seEvents.broadcast({ name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
+            //this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : this.dragCond, type : "COND" });
             this.dragCond = null;
             this.dragCondSrcNode = null;
             this.setState(SEInputManager.STATES.NONE);
@@ -170,8 +170,8 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
 
     if (evName === "EDITOR_UP") {
         this.setState(SEInputManager.STATES.IGNORE_ALL_EVENTS);
-        this.seEvents.broadcast({ name : "COND_END_DRAG" });
-        this.seEvents.broadcast({ name : "COND_DELETE", cond : this.dragCond });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_END_DRAG" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_DELETE", cond : this.dragCond });
         this.dragCond = null;
         this.dragCondSrcNode = null;
         this.setState(SEInputManager.STATES.NONE);
@@ -180,13 +180,13 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
 
     if (evName === "NODE_IN") {
         if (args.node.getId() !== this.dragCondSrcNode.getId()) {
-            this.seEvents.broadcast({ name : "COND_SNAP_TO_NODE", cond : this.dragCond, node : args.node });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_SNAP_TO_NODE", cond : this.dragCond, node : args.node });
         }
         return;
     }
 
     if (evName === "NODE_OUT") {
-        this.seEvents.broadcast({ name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_UNSNAP_TO_NODE", cond : this.dragCond, node : args.node });
         return;
     }
 

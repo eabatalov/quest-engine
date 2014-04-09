@@ -24,9 +24,9 @@ scriptEditorApp.config(function() {
     };
 }).config(SEObjectConfig);
 
-scriptEditorApp.run(['ScriptEditorEvents', "ScriptEditor",
-    function(seEvents, scriptEditor, treeCompiler) {
-        this.seEvents = seEvents;
+scriptEditorApp.run(['SEEventRouter', "ScriptEditor",
+    function(seEventRouter, scriptEditor, treeCompiler) {
+        this.seEventRouter = seEventRouter;
         this.scriptEditor = scriptEditor;
     }
 ]);
@@ -40,35 +40,21 @@ scriptEditorApp.filter('hasFieldValue', function() {
     };
 });
 
-scriptEditorApp.factory('ScriptEditorEvents', ['$rootScope',
-    function($rootScope) {
-        var events = {};
-
-        events.broadcast = function(args) {
-            $rootScope.$broadcast('seEvent', args);
-        };
-
-        events.on = function(cb) {
-            $rootScope.$on('seEvent', function(ev, args) { cb(args); });
-        };
-
-        return events;
-    }
-]);
+scriptEditorApp.factory('SEEventRouter', [SEEventRouterFactory]);
 
 scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
-scriptEditorApp.factory("ScriptEditor", ["$rootScope", "ScriptEditorEvents", "MouseWheelManager", ScriptEditorFactory]);
+scriptEditorApp.factory("ScriptEditor", ["SEEventRouter", "MouseWheelManager", ScriptEditorFactory]);
 
-scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'ScriptEditorEvents', '$timeout',
+scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'SEEventRouter', '$timeout',
     ScriptEditorPropertiesWindowController]);
 
-scriptEditorApp.controller("ToolbarWindowController", ["$rootScope", '$scope', 'ScriptEditorEvents', '$timeout',
+scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter', '$timeout',
     ToolbarWindowController]);
 
-scriptEditorApp.controller("CompileBtnController", ['$scope', 'ScriptEditorEvents', CompileBtnController]);
+scriptEditorApp.controller("CompileBtnController", ['$scope', 'SEEventRouter', CompileBtnController]);
 
-scriptEditorApp.controller("StagesPanelController", ['$scope', 'ScriptEditorEvents', StagesPanelController]);
+scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', StagesPanelController]);
 
     this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);

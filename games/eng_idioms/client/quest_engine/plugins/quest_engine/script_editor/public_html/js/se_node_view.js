@@ -109,27 +109,27 @@ SENodeView.prototype.inputEvent = function(evName, intData) {
         var dragPos = this.getLocalPosition(intData);
         this.dragging.clickPoint.x = dragPos.x;
         this.dragging.clickPoint.y = dragPos.y;
-        this.seEvents.broadcast({ name : "NODE_DOWN", intData : intData, node : this.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_DOWN", intData : intData, node : this.node });
         return;
     }
 
     if (evName === "IN") {
-        this.seEvents.broadcast({ name : "NODE_IN", node : this.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_IN", node : this.node });
     }
 
     if (evName === "OUT") {
-        this.seEvents.broadcast({ name : "NODE_OUT", node : this.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_OUT", node : this.node });
     }
 }
 
 SENodeView.prototype.controlEvent = function(ctlName, evName) {
     if (ctlName === "DEL" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "NODE_DEL_CLICK" , node : this.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_DEL_CLICK" , node : this.node });
         return;
     }
 
     if (ctlName === "COND" && evName === "CLICK") {
-        this.seEvents.broadcast({ name : "NODE_NEW_COND_CLICK" , node : this.node });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_NEW_COND_CLICK" , node : this.node });
         return;
     }
 };

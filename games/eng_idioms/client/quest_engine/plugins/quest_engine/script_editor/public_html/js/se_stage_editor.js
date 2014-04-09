@@ -1,9 +1,11 @@
-function SEStageEditor($rootScope, seEvents, mouseWheelManager) {
-    this.seEvents = seEvents;
+function SEStageEditor(seEventRouter, mouseWheelManager) {
+    var stageAddr = SE_ROUTER_EP_ADDR.STAGE_GROUP + 1 /* stage id */;
+    this.seEvents = seEventRouter.createEP(stageAddr);
+    seEventRouter.setCurrentStageAddr(stageAddr);
 
     this.scene = new SEScene();
     this.scene.startPeriodicRendering();
-    this.sceneSizeTweak = new SESceneSizeTweak($rootScope, this.scene);
+    this.sceneSizeTweak = new SESceneSizeTweak(this.seEvents, this.scene);
 
     this.pad = new SEDisplayObject(new PIXI.DisplayObjectContainer(), true);
     this.pad.setPosition(0, 0);
@@ -12,8 +14,6 @@ function SEStageEditor($rootScope, seEvents, mouseWheelManager) {
         this.pad.setWH(w, h);
         this.pad.setHitArea(new PIXI.Rectangle(0, 0, w, h));
     }.bind(this);
-
-    this.inputManager = new SEInputManager(seEvents);
 
     var VIRTUAL_SIZE = { WIDTH : 10000, HEIGHT : 10000 };
     //We will scale and move this object
@@ -77,7 +77,7 @@ function SEStageEditor($rootScope, seEvents, mouseWheelManager) {
     storylineView.getNode().addObject("secondLantern", stageView.getNode());
     storylineView.getNode().addObject("0", stageView.getNode());
 
-    this.seEvents.on(this.onSeEvent.bind(this));
+    this.seEvents.on(this.onSeEvent, this);
     this.posValidator = new SEStageEditorObjPosValidator(this);
 }
 
@@ -166,7 +166,8 @@ SEStageEditor.prototype.onSeEvent = function(args) {
             this.nodeViews.all.push(newNodeView);
             this.scene.update();
         //} else newNode = null; //TODO move node to the nearest appropriate position
-        this.seEvents.broadcast({ name : "NODE_CREATED", node : newNodeView.getNode() });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "NODE_CREATED", node : newNodeView.getNode() });
         return;
     }
 
@@ -201,7 +202,8 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         this.condViews.push(newCondView);
         args.node.addOutCond(newCondView.getCond());
         SENodeView.fromSENode(args.node).positionInCond(newCondView);
-        this.seEvents.broadcast({ name : "COND_CREATED", cond : newCondView.getCond() });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "COND_CREATED", cond : newCondView.getCond() });
         return;
     }
 
@@ -313,18 +315,20 @@ SEStageEditor.prototype.onInputEvent = function(evName, intData) {
     }
 
     if (evName === "CLICK" && this.editorMouseEvent(intData)) {
-        this.seEvents.broadcast({ name : "EDITOR_CLICK", intData : intData });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "EDITOR_CLICK", intData : intData });
         return;
     }
 
     if (evName === "DOWN" && this.editorMouseEvent(intData)) {
-        this.seEvents.broadcast({ name : "EDITOR_DOWN", intData : intData });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "EDITOR_DOWN", intData : intData });
         return;
     }
 
     if (evName === "UP" &&
         (this.input.dragging.nodeView || this.input.dragging.all)) {
-            this.seEvents.broadcast({ name : "EDITOR_UP" });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES, { name : "EDITOR_UP" });
         return;
     }
 
@@ -333,13 +337,14 @@ SEStageEditor.prototype.onInputEvent = function(evName, intData) {
         if (this.editorMouseEvent(intData) ||
             this.input.dragging.condView.contains(pt.x, pt.y))
         {
-            this.seEvents.broadcast({ name : "EDITOR_UP" });
+            this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES, { name : "EDITOR_UP" });
             return;
         }
     }
 
     if (evName === "UP_OUTSIDE") {
-        this.seEvents.broadcast({ name : "EDITOR_UP_OUTSIDE" });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "EDITOR_UP_OUTSIDE" });
         return;
     }
 };

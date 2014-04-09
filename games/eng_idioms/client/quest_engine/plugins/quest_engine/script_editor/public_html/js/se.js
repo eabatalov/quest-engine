@@ -1,5 +1,6 @@
-function ScriptEditor($rootScope, seEvents, mouseWheelManager) {
-    this.stage1Editor = new SEStageEditor($rootScope, seEvents, mouseWheelManager);
+function ScriptEditor(seEventRouter, mouseWheelManager) {
+    this.inputManager = new SEInputManager(seEventRouter);
+    this.stage1Editor = new SEStageEditor(seEventRouter, mouseWheelManager);
 }
 
 function ScriptEditorStaticConstructor(completionCB) {
