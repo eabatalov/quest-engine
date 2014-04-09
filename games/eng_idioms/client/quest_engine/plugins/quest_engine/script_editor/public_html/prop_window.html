@@ -48,7 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-6" ng-show="node.getProps().secs  | hasFieldValue">
+            <div class="col-xs-12" ng-show="node.getProps().secs  | hasFieldValue">
                 <div class="form-group">
                     <label for="secs">Wait </label>
                     <input id="spinner-01" class="form-control spinner" type="text" name="secs" ng-model="node.getProps().secs" value="0" />
@@ -143,11 +143,11 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-2" ng-show="node.continue  | hasFieldValue">
+            <div class="col-xs-12" ng-show="node.continue  | hasFieldValue">
                 <div>
                     <label for="continue">Sequence?</label>
                     <!--name="small"-->
-                    <select id="continue" class="selectpicker" ng-model="node.continue"
+                    <select name="continue" class="btn-sm btn-primary" ng-model="node.continue"
                             ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
                 </div>
             </div>

@@ -10,13 +10,20 @@
     <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
     <script src="js/libs/blob/Blob.js"></script>
     <script src="js/libs/filesaver/FileSaver.js"></script>
-    <!-- Style -->
+    <!-- Loading Style Bootstrap & jQuery UI -->
     <script src="style/js/bootstrap.js"></script>
-    <script src="style/js/bootstrap-select.js"></script>
+    <script src="style/js/bootstrap.select.js"></script>
+    <script src="style/js/bootstrap.switch.js"></script>
+    <script src="style/js/jquery.ui.js"></script>
+    <script src="style/js/jquery.tagsinput.js"></script>
+    <script src="style/js/jquery.placeholder.js"></script>
+    <!-- Loading Style build -->
+    <script src="style/js/application.js"></script>
+    <!-- Loading Style CSS -->
     <link href="style/css/bootstrap.css" rel="stylesheet" />
-    <link href="style/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="style/css/style.css" />
-    <link href="style/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="style/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="style/css/application.css" rel="stylesheet" type="text/css" />
+    <link href="style/css/toolbar.css" rel="stylesheet" type="text/css" />
     <!-- Script model -->
     <script src="js/quest_engine/quest_engine_consts.js"></script>
     <script src="js/quest_engine/quest_scripting.js"></script>
@@ -48,25 +55,19 @@
     <script src="js/se_ng_app.js"></script>
 </head>
 <body>
-    <header class="navbar" id="header-nav">
-        <div class="container">
-            <a href="index.html" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+    <nav class="navbar navbar-embossed" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a href="index.html" id="logo" class="navbar-brand">
                 <img src="images/logo.png" alt="" />
             </a>
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="fa fa-bars"></span>
-            </button>
-
-            <div id="header-nav" class="nav-no-collapse" ng-controller="CompileBtnController">
-                <button type="button" class="btn btn-default pull-right">
-                    <span class="glyphicon glyphicon-star"></span>Compile
-                </button>
-                <ng-include src="'/stages_nav.html'"></ng-include>
-            </div>
-
         </div>
-    </header>
+        <div class="collapse navbar-collapse" id="#navbar-collapse-02" ng-controller="CompileBtnController">
+            <ng-include src="'/stages_nav.html'"></ng-include>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
             <div class="col-md-2" id="nav-col">
@@ -78,7 +79,7 @@
             <div class="col-md-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Properties</div>
-                    <div class="panel-body">
+                    <div data-spy="scroll" class="panel-body">
                         <ng-include src="'/prop_window.html'"></ng-include>
                     </div>
                 </div>
