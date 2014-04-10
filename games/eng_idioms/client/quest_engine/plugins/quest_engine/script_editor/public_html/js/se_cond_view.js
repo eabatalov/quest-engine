@@ -1,7 +1,5 @@
-function SECondView(type, seEvents) {
+function SECondView(cond, seEvents) {
     SEDisplayObject.call(this, new PIXI.Graphics());
-    this.cond = new SECond(type);
-    this.cond.__view = this;
 
     this.points = {};
     this.points.src = new PIXI.Point(0, 0);
@@ -17,8 +15,9 @@ function SECondView(type, seEvents) {
     this.buttons.del.do.buttonMode = true;
     this.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
     this.setControlsVisible(false);
-    /*this.label = new SEDisplayObject(new PIXI.Text("Default label"), false);
-    this.label.setParent(this);*/
+
+    this.cond = cond;
+    this.cond.__view = this;
 
     this.seEvents = seEvents;
     this.seEvents.on(this.onSeEvent.bind(this));
@@ -27,6 +26,27 @@ function SECondView(type, seEvents) {
 }
 
 SECondView.prototype = new SEDisplayObject(); 
+
+SECondView.prototype.save = function() {
+    return {
+        ver : 1,
+        condId : this.cond.getId(),
+        points : {
+            src : { x : this.points.src.x, y : this.points.src.y },
+            dst : { x : this.points.dst.x, y : this.points.dst.y }
+        }
+    };
+};
+
+SECondView.load = function(cond, seEvents, savedData) {
+    assert(savedData.ver === 1);
+    assert(savedData.condId === cond.getId());
+
+    var condView = new SECondView(cond, seEvents);
+    condView.setSrc(savedData.points.src);
+    condView.setDst(savedData.points.dst);
+    return condView;
+};
 
 SECondView.prototype.getCond = function() {
     return this.cond;
@@ -182,17 +202,6 @@ SECondView.prototype.reDraw = function() {
         midX - this.buttons.del.getWidth() / 2,
         midY - this.buttons.del.getHeight() / 2
     );
-    //Label
-    /*if (!this.styleIsSet) {
-        this.styleIsSet = true;
-        var font = "bold " + (WIDTH).toString() + "px Arial";
-        this.label.do.setStyle({ font : font, fill : "white" });
-        //TODO remove next line to make text visible
-        this.label.setVisible(false);
-    }
-    this.label.do.setText("Condition");
-    this.label.do.rotation = phi;
-    this.label.setPosition(srcPt.x + 3 * phiCos, srcPt.y + 3 * phiSin - WIDTH / 2 * phiNormSin);*/
 
     //Hit area
     var hitAreaPoints = [

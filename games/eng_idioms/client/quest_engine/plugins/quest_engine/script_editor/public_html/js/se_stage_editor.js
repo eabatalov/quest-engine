@@ -62,7 +62,8 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     this.nodeViews.stage = stageView;
     stageView.setParent(this.nodesLayer);
 
-    var condView = new SECondView(_QUEST_CONDS.NONE, this.seEvents);
+    var cond = new SECond(_QUEST_CONDS.NONE);
+    var condView = new SECondView(cond, this.seEvents);
     this.condViews.push(condView);
     condView.setParent(this.condsLayer);
     stageView.getNode().addOutCond(condView.getCond());
@@ -202,7 +203,8 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "COND_CREATE_FROM_NODE") {
-        var newCondView = new SECondView(_QUEST_CONDS.NONE, this.seEvents);
+        var newCond = new SECond(_QUEST_CONDS.NONE);
+        var newCondView = new SECondView(newCond, this.seEvents);
         newCondView.setParent(this.condsLayer);
         this.condViews.push(newCondView);
         args.node.addOutCond(newCondView.getCond());
