@@ -6,6 +6,8 @@ function SENode(type) {
     this.inConds = [];
     this.outConds = [];
     this.deleted = false;
+    //Public node type dependent data is stored in props
+    this.props = {};
 
     this.events = {
         inCondAdded : new SEEvent(), /* function(cond) */
@@ -14,8 +16,6 @@ function SENode(type) {
         outCondDeleted : new SEEvent(), /* function(cond) */
         labelChanged : new SEEvent() /* function() */
     };
-    //Public node type dependent data is stored in props
-    this.props = {};
 
     SENode.events.nodeCreated.publish(this);
 }
@@ -24,6 +24,48 @@ SENode.idCnt = 0;
 SENode.events = {
     nodeCreated : new SEEvent(), /* function(node) */
     nodeDeleted : new SEEvent() /* function(node) */
+};
+
+SENode.prototype.save = function() {
+    function idCb(cond, ix) { return cond.getId(); };
+    return {
+        ver : 1,
+        id: this.id,
+        type : this.type,
+        label : this.label,
+        continue : this.continue,
+        inCondIds : $.map(this.inConds, idCb),
+        outCondIds : $.map(this.outConds, idCb),
+        props : this.props
+    };
+};
+
+SENode.loadConds = function(condIds, allConds, isInConds) {
+    var conds = $.map(condIds, function(id) {
+        return $.grep(allConds, function(cond) { return cond.getId() === id; })[0];
+    });
+    $.each(conds, function(ix, cond) {
+        if (isInConds)
+            cond.setDstNode(this);    
+        else
+            cond.setSrcNode(this);
+    });
+    return conds;
+};
+
+SENode.load = function(savedData, allConds) {
+    assert(savedData.ver === 1);
+    SENode.idCnt = Math.max(SENode.idCnt, savedData.id + 1);
+
+    var node = new SENode();
+    node.id = savedData.id;
+    node.type = savedData.type;
+    node.label = savedData.label;
+    node.continue = savedData.continue;
+    node.inConds = SENode.loadConds(savedData.inCondIds, allConds, true);
+    node.outConds = SENode.loadConds(savedData.outCondIds, allConds, false);
+    node.props = savedData.props;
+    return node;
 };
 
 SENode.prototype.getId = function() {
