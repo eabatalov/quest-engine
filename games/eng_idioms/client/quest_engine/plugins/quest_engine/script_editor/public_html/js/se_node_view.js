@@ -1,10 +1,5 @@
-function SENodeView(type, seEvents) {
-    SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[type]));
-    this.node = SENodeFabric(type);
-    this.node.__view = this;
-    this.node.events.inCondAdded.subscribe(this, this.onInCondAdded);
-    this.node.events.outCondAdded.subscribe(this, this.onOutCondAdded);
-    this.node.events.labelChanged.subscribe(this, this.onLabelChanged);
+function SENodeView(node, seEvents) {
+    SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[node.getType()]));
 
     this.controls = {
         buttons : {
@@ -15,7 +10,7 @@ function SENodeView(type, seEvents) {
             bg : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.label), false),
             txt : new SETextObject(new PIXI.Text(""), false),
         },
-        highlight : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.highlight[type]), false)
+        highlight : new SESpriteObject(new PIXI.Sprite(SENodeView.TEXTURES.highlight[node.getType()]), false)
     };
     var LBL_TXT_LR_MARGIN_PX = 10;
     var LBL_TXT_PX_HEIGHT = this.controls.label.bg.getHeight() / 3 * 2;
@@ -57,7 +52,6 @@ function SENodeView(type, seEvents) {
     this.controls.label.bg.setParent(this);
     this.controls.label.txt.setParent(this.controls.label.bg);
 
-    this.seEvents = seEvents;
     this.middle = new PIXI.Point(0, 0);
 
     this.dragging = { clickPoint : new PIXI.Point(0, 0) };
@@ -72,10 +66,36 @@ function SENodeView(type, seEvents) {
     this.controls.buttons.del.do.click = this.controlEvent.bind(this, "DEL", "CLICK");
     this.controls.buttons.cond.do.click = this.controlEvent.bind(this, "COND", "CLICK");
 
+    this.node = node;
+    this.node.__view = this;
+    this.node.events.inCondAdded.subscribe(this, this.onInCondAdded);
+    this.node.events.outCondAdded.subscribe(this, this.onOutCondAdded);
+    this.node.events.labelChanged.subscribe(this, this.onLabelChanged);
+    this.onLabelChanged();
+
+    this.seEvents = seEvents;
     this.seEvents.on(this.onSeEvent.bind(this));
 }
 
 SENodeView.prototype = new SESpriteObject();
+
+SENodeView.prototype.save = function() {
+    return {
+        ver : 1,
+        nodeId : this.node.getId(),
+        x : this.getX(),
+        y : this.getY()
+    };
+};
+
+SENodeView.load = function(node, seEvents, savedData) {
+    assert(savedData.ver === 1);
+    assert(node.getId() === savedData.nodeId);
+
+    var nodeView = new SENodeView(node, seEvents);
+    nodeView.setPosition(savedData.x, savedData.y);
+    return nodeView;
+};
 
 SENodeView.prototype.getNode = function() {
     return this.node;
@@ -276,8 +296,6 @@ function SENodeViewStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.label);
         $.each(_QUEST_NODES, function(name, type) {
             var path = SENodeView.TEXTURE_PATHS.highlightHex;
-            if (type === _QUEST_NODES.STAGE_CLEAR || type === _QUEST_NODES.STAGE)
-                path = SENodeView.TEXTURE_PATHS.highlightHex;
 	        SENodeView.TEXTURES.highlight[type] = PIXI.Texture.fromImage(path);
         });
         completionCB();

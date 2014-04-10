@@ -42,13 +42,15 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     SENode.events.nodeDeleted.subscribe(this, this.onNodeDeleted);
     SECond.events.condDeleted.subscribe(this, this.onCondDeleted);
 
-    //Initial script tree nodes
-    var stageView = new SENodeView(_QUEST_NODES.STAGE, this.seEvents);
     this.condViews = [];
     this.nodeViews = {
         all : [],
         stage : stageView
     };
+
+    //Initial script tree nodes
+    var stageNode = new SEStageNode();
+    var stageView = new SENodeView(stageNode, this.seEvents);
     stageView.setPosition(0, 0);
     stageView.getNode().setLabel("Stage 1");
     stageView.getNode().addObject(_QUEST_PLAYER_ID);
@@ -57,6 +59,7 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     stageView.getNode().addObject("secondLantern");
     stageView.getNode().addObject("0");
     this.nodeViews.all.push(stageView);
+    this.nodeViews.stage = stageView;
     stageView.setParent(this.nodesLayer);
 
     var condView = new SECondView(_QUEST_CONDS.NONE, this.seEvents);
@@ -65,7 +68,8 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     stageView.getNode().addOutCond(condView.getCond());
     stageView.positionOutCond(condView);
 
-    var storylineView = new SENodeView(_QUEST_NODES.STORYLINE, this.seEvents);
+    var storylineNode = new SEStorylineNode();
+    var storylineView = new SENodeView(storylineNode, this.seEvents);
     storylineView.setPosition(stageView.getX(), stageView.getY() + stageView.getHeight() * 2);
     this.nodeViews.all.push(storylineView);
     storylineView.setParent(this.nodesLayer);
@@ -158,7 +162,8 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     //console.log(args.name);
     if (args.name === "NODE_CREATE") {
         var pos = this.nodesLayer.getLocalPosition(args.intData);
-        var newNodeView = new SENodeView(args.type, this.seEvents);
+        var newNode = SENodeFabric(args.type);
+        var newNodeView = new SENodeView(newNode, this.seEvents);
         newNodeView.setPosition(pos.x, pos.y);
         //TODO need 100% creation to send confiramation event
         //if (this.posValidator.validateNodeView(newNodeView)) {

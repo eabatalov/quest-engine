@@ -1,7 +1,7 @@
 function SENode(type) {
     this.id = SENode.idCnt++;
     this.type = type;
-    this.label = null;
+    this.label = "";
     this.continue = false;
     this.inConds = [];
     this.outConds = [];
