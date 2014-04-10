@@ -16,6 +16,27 @@ SECond.events = {
     condDeleted : new SEEvent()
 };
 
+SECond.prototype.save = function() {
+    return {
+        ver : 1,
+        id : this.id,
+        type : this.type,
+        props : this.props
+    };
+};
+
+SECond.load = function(savedData) {
+    //Nodes will set our src/dst nodes on its load
+    assert(savedData.ver === 1);
+    SECond.idCnt = Math.max(SECond.idCnt, savedData.id + 1);
+
+    var cond = new SECond();
+    cond.id = savedData.id;
+    cond.type = savedData.type;
+    cond.props = savedData.props;
+    return cond;
+};
+
 SECond.prototype.getId = function() {
     return this.id;
 };
