@@ -2,190 +2,225 @@
 <html class="html">
 <head>
     <title>Quibble: quest script editor</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Libs -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <script src="js/libs/jquery/jquery.js"></script>
-    <script src="js/libs/angular.js"></script>
-    <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
-    <script src="js/libs/blob/Blob.js"></script>
-    <script src="js/libs/filesaver/FileSaver.js"></script>
-    <!-- Style -->
     <script src="style/js/bootstrap.js"></script>
-    <script src="style/js/bootstrap-select.js"></script>
     <link href="style/css/bootstrap.css" rel="stylesheet" />
-    <link href="style/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="style/css/style.css" />
+    <link href="dashboard.css" rel="stylesheet" />
+
+
+
 </head>
 <body>
-    <script type="text/javascript">
-        $(document).ready(function (e) {
-            $('.selectpicker').selectpicker();
-        });
-    </script>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Properties</div>
-            <div class="panel-body">
-                <div class="container" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
 
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </div>
+        </div>
+    </div>
 
-                    <div class="row" ng-show="cond !== null">
-                        <div class="col-xs-12">
-                            <label for="id">Condition Type</label>
-                            <!-- name="info" -->
-                            <select class="selectpicker"
-                                    ng-model="cond.type"
-                                    ng-change="condTypeChanged()"
-                                    ng-options="type.id as type.title for type in condTypes"></select>
-                            <div ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
-                                <label for="id">Object</label>
-                                <!-- name="info"-->
-                                <select name="id" class="selectpicker" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
-                            </div>
-                        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#">Overview</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Export</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Nav item</a></li>
+                    <li><a href="">Nav item again</a></li>
+                    <li><a href="">One more nav</a></li>
+                    <li><a href="">Another nav item</a></li>
+                    <li><a href="">More navigation</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Nav item again</a></li>
+                    <li><a href="">One more nav</a></li>
+                    <li><a href="">Another nav item</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Dashboard</h1>
+
+                <div class="row placeholders">
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
                     </div>
-
-                    <div ng-show="node !== null">
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="label">Label</label>
-                                    <input ng-model="node.label" ng-change="node.setLabel(node.label)" type="text" placeholder="Text" class="form-control input-sm" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12" ng-show="node.getProps().name | hasFieldValue">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input ng-model="node.getProps().name" type="text" value="" placeholder="Text" class="form-control input-sm" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12" ng-show="node.getProps().id | hasFieldValue">
-                                <div>
-                                    <label for="id">Object</label>
-                                    <!-- name="info" -->
-                                    <select name="id" class="selectpicker" ng-model="node.getProps().id"
-                                            ng-options="obj for obj in node.getStoryline().getProps().objs"></select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-6" ng-show="node.getProps().secs  | hasFieldValue">
-                                <div class="form-group">
-                                    <label for="secs">Wait </label>
-                                    <input id="spinner-01" class="form-control spinner" type="text" name="secs" ng-model="node.getProps().secs" value="0" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12" ng-show="node.getProps().text  | hasFieldValue">
-                                <div class="form-group">
-                                    <label for="secs">Text</label>
-                                    <textarea class="form-control input-sm" rows="2" placeholder="Text" ng-model="node.getProps().text"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12" ng-show="node.getProps().phraseType  | hasFieldValue">
-                                <div>
-                                    <label for="phraseType">Appearance</label>
-                                    <!-- name="small"-->
-                                    <select name="phraseType" class="selectpicker" ng-model="node.getProps().phraseType"
-                                            ng-options="option.value as option.name for option in
-                    [{ name: 'Speak', value: UI_PHRASE_TYPES.SPEAK }, { name: 'Think', value: UI_PHRASE_TYPES.THINK }];"></select>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12" ng-show="node.getProps().ans1  | hasFieldValue">
-                                <div>
-                                    <label for="ans1">Answer 1</label>
-                                    <input class="form-control input-sm" type="text" name="ans1" ng-model="node.getProps().ans1" placeholder="ANSWER OPTION 1" />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12" ng-show="node.getProps().ans2  | hasFieldValue">
-                                <div>
-                                    <label for="ans2">Answer 2</label>
-                                    <input class="form-control input-sm" type="text" name="ans2" ng-model="node.getProps().ans2" placeholder="ANSWER OPTION 2" />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12" ng-show="node.getProps().ans3  | hasFieldValue">
-                                <div>
-                                    <label for="ans3">Answer 3</label>
-                                    <input class="form-control input-sm" type="text" name="ans3" ng-model="node.getProps().ans3" placeholder="ANSWER OPTION 3" />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12" ng-show="node.getProps().ans4  | hasFieldValue">
-                                <div>
-                                    <label for="ans4">Answer 4</label>
-                                    <input class="form-control input-sm" type="text" name="ans4" ng-model="node.getProps().ans4" placeholder="ANSWER OPTION 4" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="node.getType() === QUEST_NODES.STORYLINE">
-                            <div class="col-xs-12">
-                                <div>
-                                    <label for="objToAddId">Add Object to Storyline</label>
-                                    <!--name="small"-->
-                                    <select name="objToAddId" class="selectpicker" ng-model="objToAddId"
-                                            ng-options="obj for obj in node.getStage().getProps().objPool"></select>
-                                    <button class="btn btn-sm btn-block btn-primary" ng-click="addObjectToStoryLine()">
-                                        Add to story line
-                                    </button>
-                                    <ul>
-                                        <li ng-repeat="obj in node.getProps().objs">
-                                            <div class="demo-inline demo-labels">
-                                                <span class="label label-important">{{ obj }}</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" ng-show="node.getType() === QUEST_NODES.STAGE">
-                            <div class="col-xs-12">
-                                <div class="input-group input-group-sm">
-                                    <input class="form-control" id="appendedInputButton-04" type="text" placeholder="Add Object to Stage" ng-model="objToAddId" required ng-maxlength="50">
-                                    <span class="input-group-btn">
-                                        <button class="btn" type="button" ng-click="addObjectToStage()"><span class="fui-check-inverted"></span></button>
-                                    </span>
-                                </div>
-                                <ul>
-                                    <li ng-repeat="obj in node.getProps().objs">
-                                        <div class="demo-inline demo-labels">
-                                            <span class="label label-info">{{ obj }}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-2" ng-show="node.continue  | hasFieldValue">
-                                <div>
-                                    <label for="continue">Sequence?</label>
-                                    <!--name="small"-->
-                                    <select id="continue" class="selectpicker" ng-model="node.continue"
-                                            ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
                     </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>Label</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                </div>
+
+                <h2 class="sub-header">Section title</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1,001</td>
+                                <td>Lorem</td>
+                                <td>ipsum</td>
+                                <td>dolor</td>
+                                <td>sit</td>
+                            </tr>
+                            <tr>
+                                <td>1,002</td>
+                                <td>amet</td>
+                                <td>consectetur</td>
+                                <td>adipiscing</td>
+                                <td>elit</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>Integer</td>
+                                <td>nec</td>
+                                <td>odio</td>
+                                <td>Praesent</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>libero</td>
+                                <td>Sed</td>
+                                <td>cursus</td>
+                                <td>ante</td>
+                            </tr>
+                            <tr>
+                                <td>1,004</td>
+                                <td>dapibus</td>
+                                <td>diam</td>
+                                <td>Sed</td>
+                                <td>nisi</td>
+                            </tr>
+                            <tr>
+                                <td>1,005</td>
+                                <td>Nulla</td>
+                                <td>quis</td>
+                                <td>sem</td>
+                                <td>at</td>
+                            </tr>
+                            <tr>
+                                <td>1,006</td>
+                                <td>nibh</td>
+                                <td>elementum</td>
+                                <td>imperdiet</td>
+                                <td>Duis</td>
+                            </tr>
+                            <tr>
+                                <td>1,007</td>
+                                <td>sagittis</td>
+                                <td>ipsum</td>
+                                <td>Praesent</td>
+                                <td>mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,008</td>
+                                <td>Fusce</td>
+                                <td>nec</td>
+                                <td>tellus</td>
+                                <td>sed</td>
+                            </tr>
+                            <tr>
+                                <td>1,009</td>
+                                <td>augue</td>
+                                <td>semper</td>
+                                <td>porta</td>
+                                <td>Mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,010</td>
+                                <td>massa</td>
+                                <td>Vestibulum</td>
+                                <td>lacinia</td>
+                                <td>arcu</td>
+                            </tr>
+                            <tr>
+                                <td>1,011</td>
+                                <td>eget</td>
+                                <td>nulla</td>
+                                <td>Class</td>
+                                <td>aptent</td>
+                            </tr>
+                            <tr>
+                                <td>1,012</td>
+                                <td>taciti</td>
+                                <td>sociosqu</td>
+                                <td>ad</td>
+                                <td>litora</td>
+                            </tr>
+                            <tr>
+                                <td>1,013</td>
+                                <td>torquent</td>
+                                <td>per</td>
+                                <td>conubia</td>
+                                <td>nostra</td>
+                            </tr>
+                            <tr>
+                                <td>1,014</td>
+                                <td>per</td>
+                                <td>inceptos</td>
+                                <td>himenaeos</td>
+                                <td>Curabitur</td>
+                            </tr>
+                            <tr>
+                                <td>1,015</td>
+                                <td>sodales</td>
+                                <td>ligula</td>
+                                <td>in</td>
+                                <td>libero</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 </html>

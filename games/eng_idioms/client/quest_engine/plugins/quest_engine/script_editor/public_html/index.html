@@ -10,7 +10,7 @@
     <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
     <script src="js/libs/blob/Blob.js"></script>
     <script src="js/libs/filesaver/FileSaver.js"></script>
-    <script src="js/utils.js"></script>
+	<script src="js/utils.js"></script>
     <!-- Loading Style Bootstrap & jQuery UI -->
     <script src="style/js/bootstrap.js"></script>
     <script src="style/js/bootstrap.select.js"></script>
@@ -22,9 +22,8 @@
     <script src="style/js/application.js"></script>
     <!-- Loading Style CSS -->
     <link href="style/css/bootstrap.css" rel="stylesheet" />
-    <link href="style/css/style.css" rel="stylesheet" type="text/css" />
     <link href="style/css/application.css" rel="stylesheet" type="text/css" />
-    <link href="style/css/toolbar.css" rel="stylesheet" type="text/css" />
+
     <!-- Script model -->
     <script src="js/quest_engine/quest_engine_consts.js"></script>
     <script src="js/quest_engine/quest_scripting.js"></script>
@@ -57,29 +56,41 @@
     <script src="js/se_ng_app.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-embossed" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a href="index.html" id="logo" class="navbar-brand">
-                <img src="images/logo.png" alt="" />
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="#navbar-collapse-02" ng-controller="CompileBtnController">
-            <ng-include src="'/stages_nav.html'"></ng-include>
+    <nav class="navbar navbar-fixed-top role=" navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" id="logo" class="navbar-brand">
+                    <img src="images/logo.png" alt="" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" ng-controller="CompileBtnController">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="ui-group-buttons">
+                        <button class="btn btn-success">Save</button>
+                        <div class="or"></div>
+                        <button class="btn btn-inverse">Load</button>
+                    </li>
+                </ul>
+                <ng-include src="'/stages_nav.html'"></ng-include>
+            </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-2" id="nav-col">
                 <ng-include src="'/toolbar.html'"></ng-include>
             </div>
-            <div class="col-md-8" id="content-wrapper">
+            <div class="col-md-7 col-md-offset-2" id="content-wrapper">
                 <div id="scene-editor-canvases-ontainer"></div>
             </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
+            <div class="col-sm-3 col-md-3 sidebar">
+                <div class="panel nav-sidebar panel-success">
                     <div class="panel-heading">Properties</div>
                     <div data-spy="scroll" class="panel-body">
                         <ng-include src="'/prop_window.html'"></ng-include>
@@ -88,10 +99,10 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="dialog">
-            <span class="fui-mail mrm"></span>
-            This zone is for a system notification.
+    <footer class="nav navbar-fixed-bottom">
+        <div class=" dialog">
+        <span class="fui-mail mrm"></span>
+        This zone is for a system notification.
         </div>
 
     </footer>

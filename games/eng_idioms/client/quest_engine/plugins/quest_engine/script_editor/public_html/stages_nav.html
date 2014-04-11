@@ -1,35 +1,9 @@
+<ul class="nav nav-tabs" ng-controller="StagesPanelController">
+    <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">
+        <a href="#" ng-click="changeCurrent(stage)">{{ stage.getName() }}</a>
+    </li>
 
-
-    <ul class="pagination" ng-controller="StagesPanelController">
-        <li class="previous"><a href="#fakelink" class="glyphicon glyphicon-chevron-left"></a></li>
-        <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">
-            <a href="#" ng-click="changeCurrent(stage)">{{ stage.getName() }}</a>
-        </li>
-
-        <li class="btn" ng-click="newStage()">
-            <i class="glyphicon glyphicon-plus"></i>
-        </li>
-        <li class="next"><a href="#fakelink" class="glyphicon glyphicon-chevron-right"></a></li>
-    </ul>
-
-
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add Variable <b class="caret"></b></a>
-            <span class="dropdown-arrow navbar-form"></span>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </li>
-        <li class="ui-group-buttons">
-
-                <button class="btn btn-success">Save</button>
-                <div class="or"></div>
-                <button class="btn btn-inverse">Load</button>
-
-        </li>
-    </ul>
+    <li class="btn btn-circle btn-success" ng-click="newStage()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </li>
+</ul>
