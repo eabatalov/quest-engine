@@ -1,5 +1,5 @@
 <!-- XXX as Angular doesn't provide two-way getter/setter data binding -->
-<div class="container" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
+<div class="container" id="script-editor-properties-window" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
     <div class="row" ng-show="cond !== null">
         <div class="col-xs-12">
             <label for="id">Condition Type</label>
@@ -154,8 +154,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function (e) {
-        $('.selectpicker').selectpicker();
-    });
-</script>

@@ -59,6 +59,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, $timeou
         };
 
         $scope.initialized = function() {
+            //$('#script-editor-properties-window .selectpicker').selectpicker();
             seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_ALL_STAGES, { name : "PROPS_WIND_INITED" });
         };
 };
