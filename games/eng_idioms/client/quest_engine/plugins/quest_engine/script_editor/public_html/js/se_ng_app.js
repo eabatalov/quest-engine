@@ -25,7 +25,7 @@ scriptEditorApp.config(function() {
 }).config(SEObjectConfig);
 
 scriptEditorApp.run(['SEEventRouter', "ScriptEditor",
-    function(seEventRouter, scriptEditor, treeCompiler) {
+    function(seEventRouter, scriptEditor) {
         this.seEventRouter = seEventRouter;
         this.scriptEditor = scriptEditor;
     }

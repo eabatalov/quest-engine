@@ -97,6 +97,12 @@ SENodeView.load = function(node, seEvents, savedData) {
     return nodeView;
 };
 
+SENodeView.prototype.delete = function() {
+    delete this.node.__view;
+    this.detachParent();
+    this.setInteractive(false);
+};
+
 SENodeView.prototype.getNode = function() {
     return this.node;
 };
@@ -190,11 +196,6 @@ SENodeView.prototype.onOutCondAdded = function(cond) {
     this.positionOutCond(SECondView.fromSECond(cond));
 };
 
-SENodeView.prototype.onNodeDeleted = function() {
-    this.detachParent();
-    this.setInteractive(false);
-};
-
 SENodeView.prototype.dragTo = function(point) {
     this.setPosition(point.x - this.dragging.clickPoint.x,
         point.y - this.dragging.clickPoint.y);
@@ -239,15 +240,7 @@ SENodeView.fromSENode = function(node) {
     else return null;
 };
 
-SENodeView.onNodeDeleted = function(node) {
-    var nodeView = SENodeView.fromSENode(node);
-    if (nodeView)
-        nodeView.onNodeDeleted();
-};
-
 function SENodeViewStaticConstructor(completionCB) {
-    SENode.events.nodeDeleted.subscribe(null, SENodeView.onNodeDeleted);
-
     SENodeView.TEXTURE_PATHS = { nodes : {}, buttons : {} };
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM] = "images/node_anim.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE] = "images/node_phrase.png";

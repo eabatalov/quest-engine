@@ -1,8 +1,13 @@
-function SEStageEditor(seEventRouter, mouseWheelManager) {
-    var stageAddr = SE_ROUTER_EP_ADDR.STAGE_GROUP + 1 /* stage id */;
-    this.seEvents = seEventRouter.createEP(stageAddr);
-    seEventRouter.setCurrentStageAddr(stageAddr);
+function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
+    //Stage dependant stuff
+    this.condViews = [];
+    this.nodeViews = [];
+    this.stage = stage;
+    this.addr = SE_ROUTER_EP_ADDR.STAGE_GROUP_FIRST + this.stage.getId();
+    this.seEvents = seEventRouter.createEP(this.addr);
+    this.seEvents.on(this.onSeEvent, this);
 
+    //Visual stuff
     this.scene = new SEScene();
     this.scene.startPeriodicRendering();
     this.sceneSizeTweak = new SESceneSizeTweak(this.seEvents, this.scene);
@@ -39,17 +44,10 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     this.pad.do.mouseupoutside = this.pad.do.touchendoutside = this.onInputEvent.bind(this, "UP_OUTSIDE");
     mouseWheelManager.onSEDO(this.pad, this.onMouseWheel.bind(this));
 
-    SENode.events.nodeDeleted.subscribe(this, this.onNodeDeleted);
-    SECond.events.condDeleted.subscribe(this, this.onCondDeleted);
+    this.posValidator = new SEStageEditorObjPosValidator(this);
 
-    this.condViews = [];
-    this.nodeViews = {
-        all : [],
-        stage : stageView
-    };
-
-    //Initial script tree nodes
-    var stageNode = new SEStageNode();
+    //Initial stage script tree nodes
+    var stageNode = this.stage.getStageNode();
     var stageView = new SENodeView(stageNode, this.seEvents);
     stageView.setPosition(0, 0);
     stageView.getNode().setLabel("Stage 1");
@@ -58,21 +56,20 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     stageView.getNode().addObject("firstLantern");
     stageView.getNode().addObject("secondLantern");
     stageView.getNode().addObject("0");
-    this.nodeViews.all.push(stageView);
-    this.nodeViews.stage = stageView;
+    this.nodeViews.push(stageView);
     stageView.setParent(this.nodesLayer);
 
-    var cond = new SECond(_QUEST_CONDS.NONE);
+    var cond = this.stage.createCond(_QUEST_CONDS.NONE);
     var condView = new SECondView(cond, this.seEvents);
     this.condViews.push(condView);
     condView.setParent(this.condsLayer);
     stageView.getNode().addOutCond(condView.getCond());
     stageView.positionOutCond(condView);
 
-    var storylineNode = new SEStorylineNode();
+    var storylineNode = this.stage.createNode(_QUEST_NODES.STORYLINE);
     var storylineView = new SENodeView(storylineNode, this.seEvents);
     storylineView.setPosition(stageView.getX(), stageView.getY() + stageView.getHeight() * 2);
-    this.nodeViews.all.push(storylineView);
+    this.nodeViews.push(storylineView);
     storylineView.setParent(this.nodesLayer);
     storylineView.getNode().addInCond(condView.getCond());
     storylineView.positionInCond(condView);
@@ -81,12 +78,13 @@ function SEStageEditor(seEventRouter, mouseWheelManager) {
     storylineView.getNode().addObject("firstLantern", stageView.getNode());
     storylineView.getNode().addObject("secondLantern", stageView.getNode());
     storylineView.getNode().addObject("0", stageView.getNode());
-
-    this.seEvents.on(this.onSeEvent, this);
-    this.posValidator = new SEStageEditorObjPosValidator(this);
 }
 
 SEStageEditor.prototype = new SEDisplayObject();
+
+SEStageEditor.prototype.getAddr = function() {
+    return this.addr;
+};
 
 function SEStageEditorObjPosValidator(seTreeEditor) {
     var pointList = [];
@@ -130,7 +128,7 @@ function SEStageEditorObjPosValidator(seTreeEditor) {
 
     function validatePointList(objIdToExclude) {
         var ok = true;
-        $.each(seTreeEditor.nodeViews.all, function(ix, nodeView) {
+        $.each(seTreeEditor.nodeViews, function(ix, nodeView) {
             if (objIdToExclude === nodeView.getId())
                 return true;
 
@@ -163,13 +161,13 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     //console.log(args.name);
     if (args.name === "NODE_CREATE") {
         var pos = this.nodesLayer.getLocalPosition(args.intData);
-        var newNode = SENodeFabric(args.type);
+        var newNode = this.stage.createNode(args.type);
         var newNodeView = new SENodeView(newNode, this.seEvents);
         newNodeView.setPosition(pos.x, pos.y);
         //TODO need 100% creation to send confiramation event
         //if (this.posValidator.validateNodeView(newNodeView)) {
             newNodeView.setParent(this.nodesLayer);
-            this.nodeViews.all.push(newNodeView);
+            this.nodeViews.push(newNodeView);
             this.scene.update();
         //} else newNode = null; //TODO move node to the nearest appropriate position
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
@@ -203,7 +201,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "COND_CREATE_FROM_NODE") {
-        var newCond = new SECond(_QUEST_CONDS.NONE);
+        var newCond = this.stage.createCond(_QUEST_CONDS.NONE);
         var newCondView = new SECondView(newCond, this.seEvents);
         newCondView.setParent(this.condsLayer);
         this.condViews.push(newCondView);
@@ -232,18 +230,14 @@ SEStageEditor.prototype.onSeEvent = function(args) {
 
     if (args.name === "NODE_DELETE") {
         //XXX Implement more user friendly
-        if (this.nodeViews.stage.getNode().getId() == args.node.getId())
+        if (args.node.getType() === _QUEST_NODES.STAGE)
             return;
-        args.node.delete();
-        this.scene.update();
+        this.deleteNode(args.node);
         return;
     }
 
     if (args.name === "COND_DELETE") {
-        this.condViews.removeBySEId(args.cond.getId());
-        args.cond.delete();
-        this.scene.update();
-        return;
+        this.deleteCond(args.cond);
     }
 
     if (args.name === "COND_SNAP_TO_NODE") {
@@ -263,6 +257,24 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         this.scene.update();
         return;
     }
+};
+
+SEStageEditor.prototype.deleteNode = function(node) {
+    var nodeView = SENodeView.fromSENode(node);
+    this.nodeViews.removeBySEId(nodeView.getId());
+    nodeView.delete();
+    node.events.inCondDeleted.subscribe(this, this.deleteCond);
+    node.events.outCondDeleted.subscribe(this, this.deleteCond);
+    this.stage.deleteNode(node);
+    this.scene.update();
+};
+
+SEStageEditor.prototype.deleteCond = function(cond) {
+    var condView = SECondView.fromSECond(cond);
+    this.condViews.removeBySEId(condView.getId());
+    condView.delete();
+    this.stage.deleteCond(cond);
+    this.scene.update();
 };
 
 SEStageEditor.prototype.onMouseWheel = function(yDelta) {
@@ -353,20 +365,6 @@ SEStageEditor.prototype.onInputEvent = function(evName, intData) {
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
             { name : "EDITOR_UP_OUTSIDE" });
         return;
-    }
-};
-
-SEStageEditor.prototype.onNodeDeleted = function(node) {
-    var nodeView = SENodeView.fromSENode(node);
-    if (nodeView) {
-        this.nodeViews.all.removeBySEId(nodeView.getId());
-    }
-};
-
-SEStageEditor.prototype.onCondDeleted = function(cond) {
-    var condView = SECondView.fromSECond(cond);
-    if (condView) {
-        this.condViews.removeBySEId(condView.getId());
     }
 };
 

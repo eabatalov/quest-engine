@@ -48,6 +48,12 @@ SECondView.load = function(cond, seEvents, savedData) {
     return condView;
 };
 
+SECondView.prototype.delete = function() {
+    delete this.cond.__view;
+    this.detachParent();
+    this.setInteractive(false);
+};
+
 SECondView.prototype.getCond = function() {
     return this.cond;
 };
@@ -95,11 +101,6 @@ SECondView.prototype.controlEvent = function(ctlName, evName) {
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_DEL_CLICK" , cond : this.cond });
         return;
     }
-};
-
-SECondView.prototype.onCondDeleted = function() {
-    this.detachParent();
-    this.setInteractive(false);
 };
 
 SECondView.prototype.setSrc = function(point) {
@@ -232,15 +233,7 @@ SECondView.fromSECond = function(cond) {
     else return null;
 };
 
-SECondView.onCondDeleted = function(cond) {
-    var condView = SECondView.fromSECond(cond);
-    if (condView)
-        condView.onCondDeleted();
-};
-
 function SECondViewStaticConstructor(completionCB) {
-    SECond.events.condDeleted.subscribe(null, SECondView.onCondDeleted);
-
     SECondView.TEXTURE_PATHS = { buttons : {} };
     SECondView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
 

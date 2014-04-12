@@ -12,8 +12,8 @@ function SECond(type) {
 
 SECond.idCnt = 0;
 SECond.events = {
-    condCreated : new SEEvent(),
-    condDeleted : new SEEvent()
+    condCreated : new SEEvent(), /* function(cond) */
+    condDeleted : new SEEvent() /* function(cond) */
 };
 
 SECond.prototype.save = function() {

@@ -6,10 +6,12 @@ SE_ROUTER_EP_ADDR = {
     BROADCAST_ALL_STAGES : 0x7, //+0th bit set
 
     CONTROLS_GROUP : 1000, //Broadcast addr for controls group
+    CONTROLS_GROUP_FIRST : 1001,
     CONTROLS_GROUP_LAST : 4999,
 
     STAGE_CURRENT : 5000, //Only for delivery
     STAGE_GROUP : 5001, //Broadcast add for stage group
+    STAGE_GROUP_FIRST : 5002,
     STAGE_GROUP_LAST : 10000
 };
 

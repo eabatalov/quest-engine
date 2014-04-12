@@ -116,8 +116,8 @@ SENode.prototype.deleteInCond = function(delCond) {
         var cond = this.inConds[i];
         if (cond.getId() == delCond.getId()) {
             this.inConds.splice(i, 1);
+            this.events.inCondDeleted.publish(cond);
             cond.delete();
-            this.events.inCondDeleted.publish(delCond);
             return;
         }
     }
@@ -138,8 +138,8 @@ SENode.prototype.deleteOutCond = function(delCond) {
         var cond = this.outConds[i];
         if (cond.getId() == delCond.getId()) {
             this.outConds.splice(i, 1);
+            this.events.outCondDeleted.publish(cond);
             cond.delete();
-            this.events.outCondDeleted.publish(delCond);
             return;
         }
     }
