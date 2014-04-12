@@ -1,6 +1,4 @@
-﻿
-
-body > div {
+﻿body > div {
     width: 100%;
     height: 100%;
 }
@@ -159,10 +157,10 @@ blockquote.pull-right {
 
 
 
-    .navbar-nav > li > .dropdown-menu {
-        border-radius: 0;
-        min-width: 223px;
-    }
+.navbar-nav > li > .dropdown-menu {
+    border-radius: 0;
+    min-width: 223px;
+}
 
 .dropdown-menu > li > a {
     color: #707070;
@@ -1129,3 +1127,35 @@ blockquote.pull-right {
         color: #fff;
         background-color: #428bca;
     }
+
+
+/*
+ * Properties panel
+ */
+
+/*Width 100% select menu */
+.select {
+    width: 100%;
+}
+
+    .select .pull-left {
+        float: none !important;
+    }
+
+    .select .btn {
+        width: 100%;
+    }
+/* Object to stage tie*/
+.breadcrumb > .active {
+    color: #49575C;
+    font-kerning: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.42857143;
+}
+
+.breadcrumb > li + li:before {
+    content: "♟";
+    padding: 0 5px;
+    color: #AAAAAA;
+}

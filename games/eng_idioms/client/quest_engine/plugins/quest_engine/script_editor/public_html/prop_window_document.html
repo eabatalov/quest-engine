@@ -20,15 +20,18 @@
     <div class="container" id="script-editor-properties-window" ng-controller="ScriptEditorPropertiesWindowController" ng-init="initialized()">
         <div class="row" ng-show="cond !== null">
             <div class="col-xs-12">
-                <label for="id">Condition Type</label>
-                <select name="id"
-                        ng-model="cond.type"
-                        ng-change="condTypeChanged()"
-                        ng-options="type.id as type.title for type in condTypes"></select>
-                <div ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
-                    <label for="id">Object</label>
-                    <select name="id" class="selectpicker" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="id">Condition Type</label>
+                    <select name="id" class="control-label select"
+                            ng-model="cond.type"
+                            ng-change="condTypeChanged()"
+                            ng-options="type.id as type.title for type in condTypes"></select>
                 </div>
+                <div class="form-group has-feedback" ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
+                    <label class="control-label" for="id">Object</label>
+                    <select name="id" class="control-label select" ng-model="cond.getProps().id" ng-options="obj for obj in cond.getStoryLine().getProps().objs"></select>
+                </div>
+
             </div>
         </div>
 
@@ -59,7 +62,7 @@
                 <div class="col-xs-12" ng-show="node.getProps().id | hasFieldValue">
                     <div>
                         <label for="id">Object</label>
-                        <select name="id" class="selectpicker"
+                        <select name="id" class="control-label select"
                                 ng-model="node.getProps().id"
                                 ng-options="obj for obj in node.getStoryline().getProps().objs"></select>
                     </div>
@@ -70,7 +73,7 @@
                 <div class="col-xs-6" ng-show="node.getProps().secs  | hasFieldValue">
                     <div class="form-group has-feedback">
                         <label class="control-label" for="secs">Wait </label>
-                        <input id="secs" class="form-control input-sm" type="time"
+                        <input id="secs" class="form-control input-sm" type="number" min="0" step="1"
                                ng-model="node.getProps().secs" value="0" />
                         <span class="glyphicon glyphicon-time form-control-feedback"></span>
                     </div>
@@ -83,14 +86,14 @@
                         <label class="control-label" for="report">Text</label>
                         <textarea id="report" class="form-control input-sm" rows="2" placeholder="Text"
                                   ng-model="node.getProps().text"></textarea>
-                        <span class="glyphicon glyphicon-align-left form-control-feedback"></span>
                     </div>
                 </div>
 
                 <div class="col-xs-12" ng-show="node.getProps().phraseType  | hasFieldValue">
                     <div class="form-group has-feedback">
                         <label class="control-label" for="phraseType">Appearance</label>
-                        <select name="phraseType" ng-model="node.getProps().phraseType"
+                        <select name="phraseType" class="control-label select"
+                                ng-model="node.getProps().phraseType"
                                 ng-options="option.value as option.name for option in
                                 [{ name: 'Speak', value: UI_PHRASE_TYPES.SPEAK }, { name: 'Think', value: UI_PHRASE_TYPES.THINK }];"></select>
                     </div>
@@ -106,7 +109,7 @@
                 </div>
 
                 <div class="col-xs-12" ng-show="node.getProps().ans2  | hasFieldValue">
-                    <div class ="form-group has-feedback">
+                    <div class="form-group has-feedback">
                         <label class="control-label" for="ans2">Answer 2</label>
                         <input class="form-control input-sm" type="text" name="ans2"
                                ng-model="node.getProps().ans2" placeholder="ANSWER OPTION 2" />
@@ -135,10 +138,13 @@
 
             <div class="row" ng-show="node.getType() === QUEST_NODES.STORYLINE">
                 <div class="col-xs-12">
-                    <div>
+                    <div class="form-group has-feedback">
                         <label for="objToAddId">Add Object to Storyline</label>
-                        <select name="objToAddId" ng-model="objToAddId"
+                        <select name="objToAddId" class="control-label select"
+                                ng-model="objToAddId"
                                 ng-options="obj for obj in node.getStage().getProps().objPool"></select>
+                    </div>
+                    <div class="form-group has-feedback">
                         <button class="btn btn-sm btn-block btn-primary" ng-click="addObjectToStoryLine()">
                             Add to story line
                         </button>
@@ -150,6 +156,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="row" ng-show="node.getType() === QUEST_NODES.STAGE">
                 <div class="col-xs-12">
@@ -170,7 +177,8 @@
                 <div class="col-xs-12" ng-show="node.continue  | hasFieldValue">
                     <div>
                         <label for="continue">Sequence?</label>
-                        <select name="continue" ng-model="node.continue"
+                        <select name="continue" class="control-label select"
+                                ng-model="node.continue"
                                 ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
                     </div>
                 </div>
