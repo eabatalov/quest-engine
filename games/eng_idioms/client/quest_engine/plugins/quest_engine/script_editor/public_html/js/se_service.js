@@ -8,10 +8,13 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
 
     //On application bootstrap we always create script editor with default contents
     this.script = new SEScript("Default script name"); 
-    this.script.createStage("Stage 1");
+    this.script.createStage("New stage");
 
     this.scriptEditor = new ScriptEditor(this.script, this.seEventRouter, this.mouseWheelManager);
-    this.scriptEditor.setCurrentStageIx(0);
+};
+
+ScriptEditorService.prototype.getSE = function() {
+    return this.scriptEditor;
 };
 
 function ScriptEditorServiceFactory(seEventRouter, mouseWheelManager, userInteractionManager) {

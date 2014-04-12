@@ -69,6 +69,16 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.cond, type : "COND" });
         return;
     };
+
+    if (evName === "STAGE_NEW_CLICK") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "NEW_STAGE" });
+        return;
+    }
+
+    if (evName === "STAGE_CHANGE_CLICK") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGE", stage : args.stage });
+        return;
+    }
 };
 
 // NONE -> WAIT_NODE_POSITIONING -> WAIT_NODE_CREATION -> NONE

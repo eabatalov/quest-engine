@@ -56,7 +56,8 @@ scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter'
 
 scriptEditorApp.controller("CompileBtnController", ['$scope', 'SEEventRouter', CompileBtnController]);
 
-scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', 'ScriptEditorService', StagesPanelController]);
+scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', 'ScriptEditorService', '$timeout',
+    StagesPanelController]);
 
     this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);

@@ -44,7 +44,8 @@ SEScript.prototype.getStages = function() {
 SEScript.prototype.createStage = function(name) {
     var stage = new SEStage(name);
     this.events.stageAdded.publish(stage);
-    return this.stages.push(stage);
+    this.stages.push(stage);
+    return stage;
 };
 
 SEStage.prototype.deleteStage = function(stage) {

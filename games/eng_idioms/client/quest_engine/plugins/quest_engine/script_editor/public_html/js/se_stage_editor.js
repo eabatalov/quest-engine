@@ -86,8 +86,14 @@ SEStageEditor.prototype.getAddr = function() {
     return this.addr;
 };
 
-SEStageEditor.prototype.getScene = function() {
-    return this.scene;
+SEStageEditor.prototype.setEnable = function(enable) {
+    if (enable) {
+        this.scene.show();
+        this.scene.startPeriodicRendering();
+    } else {
+        this.scene.hide();
+        this.scene.stopPeriodicRendering();
+    }
 };
 
 function SEStageEditorObjPosValidator(seTreeEditor) {

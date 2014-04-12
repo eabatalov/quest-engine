@@ -14,7 +14,8 @@ function SENode(type) {
         inCondDeleted : new SEEvent(), /* function(cond) */
         outCondAdded : new SEEvent(), /* function(cond) */
         outCondDeleted : new SEEvent(), /* function(cond) */
-        labelChanged : new SEEvent() /* function() */
+        labelChanged : new SEEvent(), /* function() */
+        propChanged : new SEEvent() /* function(propName) */
     };
 
     SENode.events.nodeCreated.publish(this);
@@ -87,6 +88,7 @@ SENode.prototype.setLabel = function(val) {
 
 SENode.prototype.setProp = function(name, value) {
     this.props[name] = value;
+    this.events.propChanged.publish(name);
 };
 
 SENode.prototype.getProps = function() {
