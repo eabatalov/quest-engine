@@ -1,9 +1,9 @@
-function ScriptEditor(seEventRouter, mouseWheelManager) {
-    this.inputManager = new SEInputManager(seEventRouter);
+function ScriptEditor(script, seEventRouter, mouseWheelManager) {
+    this.seEventRouter = seEventRouter;
+    this.seEvents = this.seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP_SCRIPT_EDTIOR);
+    this.seEvents.on(this.onSeEvent, this);
 
-    //At this point we always create script editor with default contents
-    this.script = new SEScript("Default script name"); 
-    this.script.newStage("Stage 1");
+    this.script = script;
 
     this.stageEditors = [];
     for (var i = 0; i < this.script.getStages().length; ++i) {
@@ -12,7 +12,6 @@ function ScriptEditor(seEventRouter, mouseWheelManager) {
             new SEStageEditor(stage, seEventRouter, mouseWheelManager)
         );
     }
-    seEventRouter.setCurrentStageAddr(this.stageEditors[0].getAddr());
 }
 
 ScriptEditor.prototype.save = function() {
@@ -22,6 +21,25 @@ ScriptEditor.prototype.save = function() {
 
 ScriptEditor.load = function(savedData) {
     return null;
+};
+
+ScriptEditor.prototype.getScript = function() {
+    return this.script;
+};
+
+ScriptEditor.prototype.setCurrentStageIx = function(ix) {
+    this.seEventRouter.setCurrentStageAddr(this.stageEditors[ix].getAddr());
+};
+
+ScriptEditor.prototype.onSeEvent = function(args) {
+    if (args.name === "NEW_STAGE") {
+        return;
+    }
+
+    if (args.name === "CHANGE_CURRENT_STAGE") {
+        //stage.getScene()
+        return;
+    }
 };
 
 function ScriptEditorStaticConstructor(completionCB) {

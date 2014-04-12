@@ -24,10 +24,9 @@ scriptEditorApp.config(function() {
     };
 }).config(SEObjectConfig);
 
-scriptEditorApp.run(['SEEventRouter', "ScriptEditor",
-    function(seEventRouter, scriptEditor) {
-        this.seEventRouter = seEventRouter;
-        this.scriptEditor = scriptEditor;
+scriptEditorApp.run(["ScriptEditorService",
+    function(scriptEditorService) {
+       this.service = scriptEditorService;
     }
 ]);
 
@@ -44,7 +43,10 @@ scriptEditorApp.factory('SEEventRouter', [SEEventRouterFactory]);
 
 scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
-scriptEditorApp.factory("ScriptEditor", ["SEEventRouter", "MouseWheelManager", ScriptEditorFactory]);
+scriptEditorApp.factory("SEUserInteractionManager", ["SEEventRouter", SEUserInteractionManagerFactory]);
+
+scriptEditorApp.factory("ScriptEditorService", ["SEEventRouter", "MouseWheelManager", "SEUserInteractionManager",
+    ScriptEditorServiceFactory]);
 
 scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'SEEventRouter', '$timeout',
     ScriptEditorPropertiesWindowController]);
@@ -54,7 +56,7 @@ scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter'
 
 scriptEditorApp.controller("CompileBtnController", ['$scope', 'SEEventRouter', CompileBtnController]);
 
-scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', StagesPanelController]);
+scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', 'ScriptEditorService', StagesPanelController]);
 
     this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);

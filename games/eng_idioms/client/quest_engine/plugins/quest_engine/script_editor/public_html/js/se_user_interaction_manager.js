@@ -234,3 +234,7 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     completionCB();
 }
+
+function SEUserInteractionManagerFactory(seEventRouter) {
+    return new SEInputManager(seEventRouter);
+};

@@ -1,6 +1,12 @@
 function SEScript(name) {
     this.name = name;
     this.stages = [];
+
+    this.events = {
+        stageAdded : new SEEvent(), /* function(stage) */
+        stageDeleted : new SEEvent(), /* function(stage) */
+        stagesReordered : new SEEvent() /* function() */
+    };
 }
 
 SEScript.prototype.save = function() {
@@ -35,6 +41,20 @@ SEScript.prototype.getStages = function() {
     return this.stages;
 };
 
-SEScript.prototype.newStage = function(name) {
-    return this.stages.push(new SEStage(name));
+SEScript.prototype.createStage = function(name) {
+    var stage = new SEStage(name);
+    this.events.stageAdded.publish(stage);
+    return this.stages.push(stage);
+};
+
+SEStage.prototype.deleteStage = function(stage) {
+    //TODO
+    throw "Not implemented";
+    this.events.stageDeleted.publish(stage);
+};
+
+SEStage.prototype.moveStageAfter = function(stageAfter, stageToMove) {
+    //TODO
+    throw "Not implemented";
+    this.events.stagesReordered.publish();
 };

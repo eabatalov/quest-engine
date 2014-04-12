@@ -1,4 +1,4 @@
-function StagesPanelController($scope, seEvents) {
+function StagesPanelController($scope, seEventRouter, scriptEditorService) {
     var thiz = this;
 
     $scope.isCurrent = function(stage) {

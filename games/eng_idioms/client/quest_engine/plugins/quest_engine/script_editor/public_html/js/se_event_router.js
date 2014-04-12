@@ -6,7 +6,7 @@ SE_ROUTER_EP_ADDR = {
     BROADCAST_ALL_STAGES : 0x7, //+0th bit set
 
     CONTROLS_GROUP : 1000, //Broadcast addr for controls group
-    CONTROLS_GROUP_FIRST : 1001,
+    CONTROLS_GROUP_SCRIPT_EDTIOR : 1001,
     CONTROLS_GROUP_LAST : 4999,
 
     STAGE_CURRENT : 5000, //Only for delivery

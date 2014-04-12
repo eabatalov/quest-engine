@@ -86,6 +86,10 @@ SEStageEditor.prototype.getAddr = function() {
     return this.addr;
 };
 
+SEStageEditor.prototype.getScene = function() {
+    return this.scene;
+};
+
 function SEStageEditorObjPosValidator(seTreeEditor) {
     var pointList = [];
     //points pool
