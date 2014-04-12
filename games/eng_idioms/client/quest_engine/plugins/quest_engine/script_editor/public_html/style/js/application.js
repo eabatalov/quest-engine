@@ -6,19 +6,20 @@ String.prototype.repeat = function(num) {
 
 (function($) {
 
-  // Add segments to a slider
+
   $(function() {
 
-    // Custom Selects
-    $("select[name='large']").selectpicker({style: 'btn-lg btn-danger'});
-    $("select[name='info']").selectpicker({style: 'btn-info'});
-    $("select[name='continue']").selectpicker({ style: 'btn-sm btn-primary' });
+      // Load Boodstrap.select.js
+      $("select[name='id']").selectpicker({ style: 'btn-sm btn-default' });
+      $("select[name='phraseType']").selectpicker({ style: 'btn-sm btn-default' });
+      $("select[name='objToAddId']").selectpicker({ style: 'btn-sm btn-default' });
+      $("select[name='continue']").selectpicker({ style: 'btn-sm btn-default' });
 
-    // Tabs
-    $(".nav-tabs a").on('click', function (e) {
-      e.preventDefault();
-      $(this).tab("show");
-    })
+    // NavigationSidebar with Toggle
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
 
     // make code pretty
     window.prettyPrint && prettyPrint();
