@@ -38,6 +38,7 @@ function SEDOMouseWheelEventHandler(mwManager, cb, sedo) {
     this.origMouseOut = sedo.do.mouseout;
     this.sedo = sedo;
     this.isMouseOnObj = false;
+    this.sedoCB = cb;
 
 	this.sedo.do.mouseover = function(intData) {
 		this.isMouseOnObj = true;
@@ -55,7 +56,7 @@ function SEDOMouseWheelEventHandler(mwManager, cb, sedo) {
 SEDOMouseWheelEventHandler.prototype = new DOMObjMouseWheelEventHandler();
 SEDOMouseWheelEventHandler.prototype.mouseWheelCB = function(yDelta) {
     if (this.isMouseOnObj)
-		return this.cb.call(this.sedo, yDelta);
+		return this.sedoCB.call(this.sedo, yDelta);
 	else
 		return this.mwManager.useDefaultWheelEvents;
 };
@@ -65,6 +66,7 @@ SEDOMouseWheelEventHandler.prototype.delete = function() {
     this.sedo.do.mouseover = this.origMouseOver;
     this.sedo.do.mouseout = this.origMouseOut;
     delete this.sedo;
+    delete this.sedoCB;
     delete this.origMouseOver;
     delete this.origMouseOut;
     delete this.isMouseOnObj;
