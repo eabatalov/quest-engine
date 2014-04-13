@@ -6,11 +6,12 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.mouseWheelManager = mouseWheelManager;
     this.seEventRouter = seEventRouter;
     this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+    this.projectSaver = new SEProjectSaver(this);
+    this.projectLoader = new SEProjectLoader(this);
 
     //On application bootstrap we always create script editor with default contents
-    this.script = new SEScript("Default script name"); 
+    this.script = new SEScript("story");
     this.script.createStage("New stage");
-
     this.scriptEditor = new ScriptEditor(this.script, this.seEventRouter, this.mouseWheelManager);
 
     //Saving/loading inline testing
@@ -37,6 +38,36 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
 
 ScriptEditorService.prototype.getSE = function() {
     return this.scriptEditor;
+};
+
+function SEProjectSaver(seService) {
+    this.seService = seService;
+    seService.seEvents.on(function(msg) {
+        if (msg.name === "PROJECT_SAVE")
+            this.run();
+    }, this);
+};
+
+SEProjectSaver.prototype.run = function() {
+    var projectSaved = {
+        script : this.seService.script.save(),
+        scriptEditor : this.seService.scriptEditor.save()
+    };
+    projectSavedJSON = JSON.stringify(projectSaved, null, '\t');
+    var scriptAsBlob = new Blob([projectSavedJSON], { type : 'application/json' });
+    saveAs(scriptAsBlob, this.seService.script.getName() + ".json");
+};
+
+function SEProjectLoader(seService) {
+    this.seService = seService;
+    seService.seEvents.on(function(msg) {
+        if (msg.name === "PROJECT_LOAD")
+            this.run();
+    }, this);
+};
+
+SEProjectLoader.prototype.run = function() {
+
 };
 
 function ScriptEditorServiceFactory(seEventRouter, mouseWheelManager, userInteractionManager) {

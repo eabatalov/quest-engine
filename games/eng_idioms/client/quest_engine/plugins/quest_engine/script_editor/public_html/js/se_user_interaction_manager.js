@@ -80,6 +80,16 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
             { name : "STAGE_CHANGE", fromStage : args.fromStage, toStage : args.toStage });
         return;
     }
+
+    if (evName === "PROJECT_SAVE_CLICK") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_SAVE"});
+        return;
+    }
+
+    if (evName === "PROJECT_LOAD_CLICK") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_LOAD" });
+        return;
+    }
 };
 
 // NONE -> WAIT_NODE_POSITIONING -> WAIT_NODE_CREATION -> NONE

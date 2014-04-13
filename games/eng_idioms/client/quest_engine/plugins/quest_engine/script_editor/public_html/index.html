@@ -40,15 +40,15 @@
     <script src="js/se_scene.js"></script>
     <script src="js/se_scene_size_tweak.js"></script>
     <script src="js/se_stage_editor.js"></script>
+    <script src="js/se.js"></script>
 
     <script src="js/se_mousewheel.js"></script>
     <script src="js/se_compile_btn.js"></script>
     <script src="js/se_prop_window.js"></script>
     <script src="js/se_user_interaction_manager.js"></script>
-    <script src="js/se_service.js"></script>
     <script src="js/se_stages_panel.js"></script>
-
-    <script src="js/se.js"></script>
+    <script src="js/se_save_load_btn.js"></script>
+    <script src="js/se_service.js"></script>
     <script src="js/se_ng_app.js"></script>
 </head>
 <body>
@@ -61,11 +61,7 @@
             </div>
             <div class="collapse navbar-collapse" ng-controller="CompileBtnController">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="ui-group-buttons">
-                        <button class="btn btn-success">Save</button>
-                        <div class="or"></div>
-                        <button class="btn btn-inverse">Load</button>
-                    </li>
+                    <ng-include src="'/save_load_buttons.html'"></ng-include>
                 </ul>
                 <ng-include src="'/stages_panel.html'"></ng-include>
             </div>
