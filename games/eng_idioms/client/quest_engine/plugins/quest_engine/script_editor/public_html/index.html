@@ -79,10 +79,20 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2" id="nav-col">
-                <ng-include src="'/toolbar.html'"></ng-include>
+            <div id="wrapper" class="active">
+
+                <!-- Sidebar -->
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul id="sidebar_menu" class="sidebar-nav">
+                        <li class="sidebar-brand"><a id="menu-toggle" href="#">Tool<span id="main_icon" class="glyphicon glyphicon-th"></span></a></li>
+                    </ul>
+                    <ul class="sidebar-nav" id="sidebar">
+                        <ng-include src="'/toolbar.html'"></ng-include>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-10 col-md-offset-2" id="content-wrapper">
+            <div class="col-md-12" id="content-wrapper">
                 <div id="scene-editor-canvases-ontainer"></div>
             </div>
             <div class="col-md-2 sidebar">
