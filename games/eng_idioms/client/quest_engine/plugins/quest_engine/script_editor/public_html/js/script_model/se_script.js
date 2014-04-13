@@ -33,10 +33,10 @@ SEScript.load = function(savedData) {
 };
 
 SEScript.prototype.delete = function() {
-    var thiz = this;
-    jQuery.each(this.stages, function(ix, stage) {
-        thiz.deleteStage(stage);
-    });
+    for (var i = 0; i < this.stages.length; ++i) {
+        var stage = this.stages[i];
+        this.deleteStage(stage);
+    }
     delete this.stages;
     jQuery.each(this.events, function(ix, ev) {
         ev.delete();

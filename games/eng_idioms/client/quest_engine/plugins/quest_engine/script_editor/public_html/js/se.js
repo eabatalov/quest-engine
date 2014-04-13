@@ -43,6 +43,7 @@ ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData
         var stage = script.getStageById(savedData.stageIds[i]);
         var stageEditor = SEStageEditor.load(stage, seEventRouter, mouseWheelManager, savedStageEditor);
         scriptEditor.stageEditors[stage.getId()] = stageEditor;
+        stageEditor.setEnable(false);
     }
     scriptEditor.setCurrentStage(scriptEditor.stageEditors[savedData.currentStageId].getStage());
     return scriptEditor;

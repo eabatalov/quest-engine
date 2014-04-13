@@ -62,12 +62,21 @@ function SEProjectLoader(seService) {
     this.seService = seService;
     seService.seEvents.on(function(msg) {
         if (msg.name === "PROJECT_LOAD")
-            this.run();
+            this.run(msg.json);
     }, this);
 };
 
-SEProjectLoader.prototype.run = function() {
-
+SEProjectLoader.prototype.run = function(projectSavedJSON) {
+    var projectSaved = JSON.parse(projectSavedJSON);
+    this.seService.scriptEditor.delete();
+    this.seService.script.delete();
+    this.seService.script = SEScript.load(projectSaved.script);
+    this.seService.scriptEditor = ScriptEditor.load(
+        this.seService.script,
+        this.seService.seEventRouter,
+        this.seService.mouseWheelManager,
+        projectSaved.scriptEditor
+    );
 };
 
 function ScriptEditorServiceFactory(seEventRouter, mouseWheelManager, userInteractionManager) {

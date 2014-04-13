@@ -67,14 +67,14 @@ SENode.prototype.save = function() {
     };
 };
 
-SENode.loadConds = function(condIds, allCondsMap, isInConds) {
+SENode.loadConds = function(node, condIds, allCondsMap, isInConds) {
     conds = [];
     $.each(condIds, function(ix, condId) {
         conds.push(allCondsMap[condId]);
         if (isInConds)
-            allCondsMap[condId].setDstNode(this);    
+            allCondsMap[condId].setDstNode(node);    
         else
-            allCondsMap[condId].setSrcNode(this);
+            allCondsMap[condId].setSrcNode(node);
     });
     return conds;
 };
@@ -88,8 +88,8 @@ SENode.load = function(savedData, allCondsMap) {
     node.type = savedData.type;
     node.label = savedData.label;
     node.continue = savedData.continue;
-    node.inConds = SENode.loadConds(savedData.inCondIds, allCondsMap, true);
-    node.outConds = SENode.loadConds(savedData.outCondIds, allCondsMap, false);
+    node.inConds = SENode.loadConds(node, savedData.inCondIds, allCondsMap, true);
+    node.outConds = SENode.loadConds(node, savedData.outCondIds, allCondsMap, false);
     node.props = savedData.props;
     return node;
 };

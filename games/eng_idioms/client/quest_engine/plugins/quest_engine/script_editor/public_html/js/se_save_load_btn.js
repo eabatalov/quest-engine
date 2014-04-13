@@ -6,6 +6,28 @@ function SaveLoadController($scope, seEventRouter) {
     };
 
     $scope.load = function() {
-        seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_LOAD_CLICK" });
+        $("#projectFileInput").click();
     };
+
+    $("#projectFileInput").change(function() {
+        /* Doesn't work with IE9
+         * http://caniuse.com/#search=xhr
+         */
+        var projectFileForm = $('#projectFileForm')[0];
+        var projectFileInput = $('#projectFileInput')[0];
+        var projectFile = projectFileInput.files[0];
+        if (projectFile === '')
+            return;
+
+        var reader = new FileReader();
+        reader.readAsText(projectFile, 'UTF-8');
+        reader.onload = projectUploadCompleted;
+
+        function projectUploadCompleted(event) {
+            var projectSavedJSON = event.target.result;
+            var fileName = projectFile.name;
+            projectFileForm.reset();
+            seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_LOAD_CLICK", json : projectSavedJSON });
+        }
+    });
 }
