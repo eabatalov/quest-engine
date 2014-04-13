@@ -87,7 +87,6 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "PROJECT_LOAD_CLICK") {
-        console.log(evName);
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_LOAD", json : args.json });
         return;
     }
