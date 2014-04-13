@@ -1,6 +1,6 @@
 function SEScene() {
     this.stage = new PIXI.Stage(0xFFFFFF, true);
-    this.renderer = PIXI.autoDetectRenderer(null, null, null, true);
+    this.renderer = PIXI.autoDetectRenderer(null, null, null, true, true);
     $("#scene-editor-canvases-container").append(this.renderer.view);
 
     this.periodicRender = false;
