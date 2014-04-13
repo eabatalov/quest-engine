@@ -74,11 +74,12 @@
     <div id="wrapper" class="active">
         <div id="sidebar-wrapper">
             <ul id="sidebar_menu" class="sidebar-nav">
-                <li class="sidebar-brand"><a id="menu-toggle" href="#">Tool<span id="main_icon" class="glyphicon glyphicon-th"></span></a></li>
+                <li class="sidebar-brand"><a id="menu-toggle">
+                    Tools
+                    <span id="main_icon"><img src="images/nav/nav_tools.png" alt="" />
+                    </span></a></li>
             </ul>
-            <ul class="sidebar-nav" id="sidebar">
-                <ng-include src="'/toolbar.html'"></ng-include>
-            </ul>
+            <ng-include src="'/toolbar.html'"></ng-include>
         </div>
     </div>
     <div class="container-fluid">

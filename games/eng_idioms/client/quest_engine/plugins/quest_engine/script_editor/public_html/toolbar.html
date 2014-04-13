@@ -1,5 +1,4 @@
 <section ng-controller="ToolbarWindowController" ng-init="initialized()">
-
     <div ng-repeat="toolbarItem in toolbarItems"
          ng-click="itemClicked(toolbarItem)"
          ng-mouseenter="isHover = true;"
@@ -7,13 +6,12 @@
          ng-init="isHover = false;"
          ng-class="{ 'tool-bar-item-active' : toolbarItem.isActive, 'tool-bar-item-hover' : !toolbarItem.isActive && isHover }">
 
-
-        <ul class="nav nav-pills nav-stacked">
+        <ul class="sidebar-nav" id="sidebar">
             <li>
-                <span class="tool-bar-item-label">
+                <a>
                     {{ toolbarItem.label() }}
-                </span>
-                <img ng-src="{{toolbarItem.imgUrl()}}" />
+                    <span class="sub_icon"><img ng-src="{{toolbarItem.imgUrl()}}" /></span>
+                </a>
             </li>
         </ul>
     </div>
