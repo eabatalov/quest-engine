@@ -18,7 +18,8 @@ function StagesPanelController($scope, seEventRouter, seService, $timeout) {
     };
 
     $scope.changeCurrentClick = function(stage) {
-        seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGE_CLICK", stage : stage });
+        seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+            { name : "STAGE_CHANGE_CLICK", fromStage : seService.getSE().getCurrentStage(), toStage : stage });
     };
 }
 

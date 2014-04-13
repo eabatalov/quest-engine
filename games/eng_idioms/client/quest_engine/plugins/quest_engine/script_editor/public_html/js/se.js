@@ -60,8 +60,9 @@ ScriptEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "STAGE_CHANGE") {
-        this.setCurrentStage(args.stage); 
-        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGED", stage : args.stage});
+        assert(this.getCurrentStage().getId() === args.fromStage.getId());
+        this.setCurrentStage(args.toStage);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGED", stage : args.toStage});
         return;
     }
 

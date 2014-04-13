@@ -1,42 +1,30 @@
-function SESceneSizeTweak(seEvents, scene) {
+function SESceneSizeTweak(seEventRouter, scene, stage) {
+    this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+    this.scene = scene;
+    this.stage = stage;
     this.onSizeChanged = null;
-    this.initNum = 3;
+    this.viewWidth = 0;
+    this.viewHeight = 0;
 
-    this.onInitCompleted = function() {
-        if (this.initNum !== 0)
-            return;
-        this.jqCanvas = $(scene.getDOMElem());
-        this.jqPropWindow = $("#propsDiv");
-        this.jqToolbar = $("#toolbarDiv");
-        this.viewWidth = 0;
-        this.viewHeight = 0;
-        this.calcViewWH();
-        this.resizeView();
-    };
+    this.jqCanvas = $(scene.getDOMElem());
+    this.jqCanvasContainer = $("#scene-editor-canvases-container");
+    $(window).resize(this.resizeView.bind(this));
 
-    this.calcViewWH = function() {
-        this.viewWidth = this.viewHeight = this.jqCanvas.parent().width() * 1;
-    };
-
-    this.resizeView = function() {
-        this.calcViewWH();
-        scene.resize(this.viewWidth, this.viewHeight);
-        this.jqPropWindow.height(this.viewHeight);
-        this.jqToolbar.height(this.viewHeight);
-        if (this.onSizeChanged)
-            this.onSizeChanged(this.viewWidth, this.viewHeight);
-        scene.update();
-    }.bind(this);
-
-    var signalOneInitCompleted = function() {
-        this.initNum -= 1;
-        this.onInitCompleted();
-    }.bind(this);
-    $(document).ready(signalOneInitCompleted);
-    seEvents.on(function(msg) {
-        if (msg.name === 'TOOLBAR_INITED' || msg.name === 'PROPS_WIND_INITED')
-            signalOneInitCompleted();
-    });
-
-    $(window).resize(this.resizeView);
+    this.resizeView();
+    this.seEvents.on(this.onSeEvent, this);
 }
+
+SESceneSizeTweak.prototype.resizeView = function() {
+    this.viewWidth = this.jqCanvasContainer.width();
+    this.viewHeight = Math.max(this.jqCanvasContainer.height(), 1000);
+    this.scene.resize(this.viewWidth, this.viewHeight);
+    if (this.onSizeChanged)
+        this.onSizeChanged(this.viewWidth, this.viewHeight);
+    this.scene.update();
+};
+
+SESceneSizeTweak.prototype.onSeEvent = function(msg) {
+    if (msg.name === 'STAGE_CHANGED' && this.stage.getId() === msg.stage.getId()) {
+        this.resizeView();
+    }
+};

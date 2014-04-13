@@ -10,7 +10,7 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
     //Visual stuff
     this.scene = new SEScene();
     this.scene.startPeriodicRendering();
-    this.sceneSizeTweak = new SESceneSizeTweak(this.seEvents, this.scene);
+    this.sceneSizeTweak = new SESceneSizeTweak(seEventRouter, this.scene, this.stage);
 
     this.pad = new SEDisplayObject(new PIXI.DisplayObjectContainer(), true);
     this.pad.setPosition(0, 0);
@@ -49,7 +49,7 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
     //Initial stage script tree nodes
     var stageNode = this.stage.getStageNode();
     var stageView = new SENodeView(stageNode, this.seEvents);
-    stageView.setPosition(0, 0);
+    stageView.setPosition(400, 100);
     stageView.getNode().setLabel("Stage 1");
     stageView.getNode().addObject(_QUEST_PLAYER_ID);
     stageView.getNode().addObject("older");
@@ -89,9 +89,11 @@ SEStageEditor.prototype.getAddr = function() {
 SEStageEditor.prototype.setEnable = function(enable) {
     if (enable) {
         this.scene.show();
+        this.sceneSizeTweak.resizeView();
         this.scene.startPeriodicRendering();
     } else {
         this.scene.hide();
+        this.sceneSizeTweak.resizeView();
         this.scene.stopPeriodicRendering();
     }
 };

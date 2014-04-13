@@ -76,7 +76,8 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "STAGE_CHANGE_CLICK") {
-        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGE", stage : args.stage });
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+            { name : "STAGE_CHANGE", fromStage : args.fromStage, toStage : args.toStage });
         return;
     }
 };
