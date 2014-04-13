@@ -27,6 +27,32 @@ SENode.events = {
     nodeDeleted : new SEEvent() /* function(node) */
 };
 
+SENode.prototype.delete = function() {
+    if (!this.deleted) {
+        //Use "deleted" flag to break cascade deletion chains
+        this.deleted = true;
+        SENode.events.nodeDeleted.publish(this);
+        while (this.inConds.length > 0) {
+            this.deleteInCond(this.inConds[0])
+        }
+        while (this.outConds.length > 0) {
+            this.deleteOutCond(this.outConds[0])
+        }
+        delete this.inConds;
+        delete this.outConds;
+        jQuery.each(this.events, function(evName, ev) {
+            ev.delete();
+        });
+        delete this.events;
+        delete this.id;
+        delete this.type;
+        delete this.label;
+        delete this.continue;
+        delete this.deleted;
+        delete this.props;
+    }
+};
+
 SENode.prototype.save = function() {
     function idCb(cond, ix) { return cond.getId(); };
     return {
@@ -41,20 +67,19 @@ SENode.prototype.save = function() {
     };
 };
 
-SENode.loadConds = function(condIds, allConds, isInConds) {
-    var conds = $.map(condIds, function(id) {
-        return $.grep(allConds, function(cond) { return cond.getId() === id; })[0];
-    });
-    $.each(conds, function(ix, cond) {
+SENode.loadConds = function(condIds, allCondsMap, isInConds) {
+    conds = [];
+    $.each(condIds, function(ix, condId) {
+        conds.push(allCondsMap[condId]);
         if (isInConds)
-            cond.setDstNode(this);    
+            allCondsMap[condId].setDstNode(this);    
         else
-            cond.setSrcNode(this);
+            allCondsMap[condId].setSrcNode(this);
     });
     return conds;
 };
 
-SENode.load = function(savedData, allConds) {
+SENode.load = function(savedData, allCondsMap) {
     assert(savedData.ver === 1);
     SENode.idCnt = Math.max(SENode.idCnt, savedData.id + 1);
 
@@ -63,8 +88,8 @@ SENode.load = function(savedData, allConds) {
     node.type = savedData.type;
     node.label = savedData.label;
     node.continue = savedData.continue;
-    node.inConds = SENode.loadConds(savedData.inCondIds, allConds, true);
-    node.outConds = SENode.loadConds(savedData.outCondIds, allConds, false);
+    node.inConds = SENode.loadConds(savedData.inCondIds, allCondsMap, true);
+    node.outConds = SENode.loadConds(savedData.outCondIds, allCondsMap, false);
     node.props = savedData.props;
     return node;
 };
@@ -144,22 +169,6 @@ SENode.prototype.deleteOutCond = function(delCond) {
             cond.delete();
             return;
         }
-    }
-};
-
-SENode.prototype.delete = function() {
-    if (!this.deleted) {
-        //Use "deleted" flag to break cascade deletion chains
-        this.deleted = true;
-        while (this.inConds.length > 0) {
-            this.deleteInCond(this.inConds[0])
-        }
-        while (this.outConds.length > 0) {
-            this.deleteOutCond(this.outConds[0])
-        }
-        this.inConds = null;
-        this.outConds = null;
-        SENode.events.nodeDeleted.publish(this);
     }
 };
 

@@ -8,11 +8,26 @@ function SESceneSizeTweak(seEventRouter, scene, stage) {
 
     this.jqCanvas = $(scene.getDOMElem());
     this.jqCanvasContainer = $("#scene-editor-canvases-container");
-    $(window).resize(this.resizeView.bind(this));
+    this.resizeViewCB = this.resizeView.bind(this);
+    $(window).on('resize', null, this.resizeViewCB);
 
     this.resizeView();
     this.seEvents.on(this.onSeEvent, this);
 }
+
+SESceneSizeTweak.prototype.delete = function() {
+    this.seEvents.delete();
+    $(window).off('resize', null, this.resizeViewCB);
+    delete this.seEvents;
+    delete this.scene;
+    delete this.stage;
+    delete this.onSizeChanged;
+    delete this.viewWidth;
+    delete this.viewHeight;
+    delete this.jqCanvas;
+    delete this.jqCanvasContainer;
+    delete this.resizeViewCB;
+};
 
 SESceneSizeTweak.prototype.resizeView = function() {
     this.viewWidth = this.jqCanvasContainer.width();

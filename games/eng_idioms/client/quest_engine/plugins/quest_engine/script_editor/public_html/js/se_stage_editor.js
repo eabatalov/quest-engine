@@ -1,4 +1,6 @@
-function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
+function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usage */load) {
+    if (stage.getNodes().length > 0 || stage.getConds().length > 0)
+        throw "Automatic nodes and conds layout is not implemented";
     //Stage dependant stuff
     this.condViews = [];
     this.nodeViews = [];
@@ -42,10 +44,12 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
     this.pad.do.mousemove = this.pad.do.touchmove = this.onInputEvent.bind(this, "MOVE");
     this.pad.do.click  = this.pad.do.tap = this.onInputEvent.bind(this, "CLICK");
     this.pad.do.mouseupoutside = this.pad.do.touchendoutside = this.onInputEvent.bind(this, "UP_OUTSIDE");
-    mouseWheelManager.onSEDO(this.pad, this.onMouseWheel.bind(this));
+    this.wheelEventHandler = mouseWheelManager.onSEDO(this.pad, this.onMouseWheel.bind(this));
 
     this.posValidator = new SEStageEditorObjPosValidator(this);
 
+    if (load)
+        return;
     //Initial stage script tree nodes
     var stageNode = this.stage.getStageNode();
     var stageView = new SENodeView(stageNode, this.seEvents);
@@ -82,8 +86,93 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager) {
 
 SEStageEditor.prototype = new SEDisplayObject();
 
+SEStageEditor.prototype.save = function() {
+    var savedData = {
+        ver : 1,
+        nodeViews : [],
+        nodeIds : [],
+        condViews : [],
+        condIds : [],
+        scale : this.editingBg.getScale(),
+        pos : {
+            x : this.editingBg.getPos().x,
+            y : this.editingBg.getPos().y
+        }
+    };
+    for (var i = 0; i < this.nodeViews.length; ++i) {
+        var nodeView = this.nodeViews[i];
+        savedData.nodeViews.push(nodeView.save());
+        savedData.nodeIds.push(nodeView.getNode().getId());
+    }
+    for (var i = 0; i < this.condViews.length; ++i) {
+       var condView = this.condViews[i];
+        savedData.condViews.push(condView.save());
+        savedData.condIds.push(condView.getCond().getId());
+    }
+    return savedData;
+};
+
+SEStageEditor.load = function(stage, seEventRouter, mouseWheelManager, savedData) {
+    assert(savedData.ver === 1);
+    var stageEditor = new SEStageEditor(stage, seEventRouter, mouseWheelManager, true);
+    for (var i = 0; i < savedData.nodeViews.length; ++i) {
+        var nodeViewSaved = savedData.nodeViews[i];
+        var node = stage.getNodeById(savedData.nodeIds[i]);
+        var nodeView = SENodeView.load(node, stageEditor.seEvents, nodeViewSaved);
+        stageEditor.nodeViews.push(nodeView);
+        nodeView.setParent(stageEditor.nodesLayer);
+    }
+    for (var i = 0; i < savedData.condViews.length; ++i) {
+        var condViewSaved = savedData.condViews[i];
+        var cond = stage.getCondById(savedData.condIds[i]);
+        var condView = SECondView.load(cond, stageEditor.seEvents, condViewSaved);
+        stageEditor.condViews.push(condView);
+        condView.setParent(stageEditor.condsLayer);
+    }
+    stageEditor.editingBg.setScale(savedData.scale);
+    stageEditor.editingBg.setPosition(savedData.pos.x, savedData.pos.y);
+    return stageEditor;
+};
+
+SEStageEditor.prototype.delete = function() {
+    this.seEvents.delete();
+    delete this.seEvents;
+    jQuery.each(this.condViews, function(ix, condView) {
+        condView.delete();
+    });
+    delete this.condViews;
+    jQuery.each(this.nodeViews, function(ix, nodeView) {
+        nodeView.delete();
+    });
+    delete this.nodeViews;
+
+    this.pad.do.mousedown = this.pad.do.touchstart = null;
+    this.pad.do.mouseup = this.pad.do.touchend = null;
+    this.pad.do.mouseout = null;
+    this.pad.do.mouseover = null;
+    this.pad.do.mousemove = this.pad.do.touchmove = null;
+    this.pad.do.click  = this.pad.do.tap = null;
+    this.pad.do.mouseupoutside = this.pad.do.touchendoutside = null;
+    this.pad.setInteractive(false);
+    this.pad.detachParent();
+    delete this.pad;
+
+    this.wheelEventHandler.delete();
+    delete this.wheelEventHandler;
+    delete this.posValidator;
+
+    this.sceneSizeTweak.delete();
+    delete this.sceneSizeTweak;
+    this.scene.delete();
+    delete this.scene;
+};
+
 SEStageEditor.prototype.getAddr = function() {
     return this.addr;
+};
+
+SEStageEditor.prototype.getStage = function() {
+    return this.stage;
 };
 
 SEStageEditor.prototype.setEnable = function(enable) {

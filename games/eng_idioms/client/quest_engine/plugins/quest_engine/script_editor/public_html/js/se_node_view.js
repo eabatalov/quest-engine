@@ -68,9 +68,11 @@ function SENodeView(node, seEvents) {
 
     this.node = node;
     this.node.__view = this;
-    this.node.events.inCondAdded.subscribe(this, this.onInCondAdded);
-    this.node.events.outCondAdded.subscribe(this, this.onOutCondAdded);
-    this.node.events.labelChanged.subscribe(this, this.onLabelChanged);
+    this.eventHandlers = [
+        this.node.events.inCondAdded.subscribe(this, this.onInCondAdded),
+        this.node.events.outCondAdded.subscribe(this, this.onOutCondAdded),
+        this.node.events.labelChanged.subscribe(this, this.onLabelChanged),
+    ];
     this.onLabelChanged();
 
     this.seEvents = seEvents;
@@ -93,14 +95,31 @@ SENodeView.load = function(node, seEvents, savedData) {
     assert(node.getId() === savedData.nodeId);
 
     var nodeView = new SENodeView(node, seEvents);
-    nodeView.setPosition(savedData.x, savedData.y);
+    /* Only set position without update of other connected objects
+     * because their positions are saved and will be restored correctly.
+     */
+    SESpriteObject.prototype.setPosition.call(nodeView, savedData.x, savedData.y);
     return nodeView;
 };
 
 SENodeView.prototype.delete = function() {
-    delete this.node.__view;
+    //TODO implement more accurately
     this.detachParent();
     this.setInteractive(false);
+    this.do.mousedown = this.do.touchstart = null; 
+    this.do.mouseup = this.do.touchend = null; 
+    this.do.mouseout = null;;
+    this.do.mouseover = null;
+    this.do.mousemove = this.do.touchmove = null;
+    this.do.click = this.do.tap = null;
+    this.do.mouseupoutside = this.do.touchendoutside = null;
+    this.controls.buttons.del.do.click = null;
+    this.controls.buttons.cond.do.click = null;
+    for (var i = 0; i < this.eventHandlers.length; ++i) {
+        this.eventHandlers[i].delete();
+    }
+    delete this.eventHandlers;
+    delete this.node.__view;
 };
 
 SENodeView.prototype.getNode = function() {

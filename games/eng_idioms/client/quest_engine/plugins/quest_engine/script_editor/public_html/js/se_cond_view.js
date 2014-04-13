@@ -49,9 +49,12 @@ SECondView.load = function(cond, seEvents, savedData) {
 };
 
 SECondView.prototype.delete = function() {
-    delete this.cond.__view;
+    //TODO implement more accurately
+    this.buttons.del.do.click = null;
+    this.do.click = this.do.tap = null;
     this.detachParent();
     this.setInteractive(false);
+    delete this.cond.__view;
 };
 
 SECondView.prototype.getCond = function() {

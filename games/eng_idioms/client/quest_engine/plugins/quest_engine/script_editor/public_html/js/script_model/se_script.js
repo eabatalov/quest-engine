@@ -24,13 +24,25 @@ SEScript.prototype.save = function() {
 
 SEScript.load = function(savedData) {
     assert(savedData.ver === 1);
-    var script = new SEScript();
-    script.name = savedData.name;
+    var script = new SEScript(savedData.name);
     for (var i = 0; i < savedData.stages.length; ++i) {
         var stage = savedData.stages[i];
         script.stages.push(SEStage.load(stage));
     }
     return script;
+};
+
+SEScript.prototype.delete = function() {
+    var thiz = this;
+    jQuery.each(this.stages, function(ix, stage) {
+        thiz.deleteStage(stage);
+    });
+    delete this.stages;
+    jQuery.each(this.events, function(ix, ev) {
+        ev.delete();
+    });
+    delete this.events;
+    delete this.name;
 };
 
 SEScript.prototype.getName = function() {
@@ -41,6 +53,12 @@ SEScript.prototype.getStages = function() {
     return this.stages;
 };
 
+SEScript.prototype.getStageById = function(stageId) {
+    return jQuery.grep(this.stages, function(stage, ix) {
+        return stage.getId() === stageId;
+    })[0];
+};
+
 SEScript.prototype.createStage = function(name) {
     var stage = new SEStage(name);
     this.events.stageAdded.publish(stage);
@@ -48,13 +66,17 @@ SEScript.prototype.createStage = function(name) {
     return stage;
 };
 
-SEStage.prototype.deleteStage = function(stage) {
-    //TODO
-    throw "Not implemented";
-    this.events.stageDeleted.publish(stage);
+SEScript.prototype.deleteStage = function(delStage) {
+    for (var i = 0; i < this.stages.length; ++i) {
+        var stage = this.stages[i];
+        if (stage.getId() === delStage.getId()) {
+            this.stages.splice(i, 1);
+            this.events.stageDeleted.publish(stage);
+        }
+    }
 };
 
-SEStage.prototype.moveStageAfter = function(stageAfter, stageToMove) {
+SEScript.prototype.moveStageAfter = function(stageAfter, stageToMove) {
     //TODO
     throw "Not implemented";
     this.events.stagesReordered.publish();

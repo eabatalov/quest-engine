@@ -26,6 +26,16 @@ SEEventRouter.prototype.createEP = function(epAddr) {
     return newEP;
 };
 
+SEEventRouter.prototype.deleteEP = function(delEP) {
+    for (var i = 0; i < this.endPoints.length; ++i){
+        var ep = this.endPoints[i];
+        if (ep.id === delEP.id) {
+            this.endPoints.splice(i, 1);
+            return;
+        }
+    };
+};
+
 SEEventRouter.prototype.deliver = function(targetEPAddr, message) {
     var matchControlGroup = targetEPAddr & 0x4 ||
         targetEPAddr === SE_ROUTER_EP_ADDR.CONTROLS_GROUP;
@@ -72,10 +82,13 @@ SEEventRouter.prototype.setCurrentStageAddr = function(addr) {
 };
 
 function SEEventEP(addr, router) {
+    this.id = SEEventEP.idCnt++;
     this.addr = addr;
     this.router = router;
     this.onEvent = [];
 }
+
+SEEventEP.idCnt = 0;
 
 SEEventEP.prototype.deliver = function(msg) {
     for (var i = 0; i < this.onEvent.length; ++i) {
@@ -93,6 +106,14 @@ SEEventEP.prototype.send = function(epAddr, message) {
 
 SEEventEP.prototype.on = function(cb, thiz) {
     this.onEvent.push({ cb : cb, thiz : thiz });
+};
+
+SEEventEP.prototype.delete = function() {
+    this.router.deleteEP(this);
+    delete this.id;
+    delete this.addr;
+    delete this.router;
+    delete this.onEvent;
 };
 
 function SEEventRouterFactory() {

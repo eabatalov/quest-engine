@@ -20,6 +20,16 @@ function SEScene() {
     }.bind(this);
 }
 
+SEScene.prototype.delete = function() {
+    this.stopPeriodicRendering();
+    jQuery(this.renderer.view).remove();
+    delete this.stage;
+    delete this.rederer;
+    delete this.periodicRender;
+    delete this.update;
+    delete this.runUpLoop;
+};
+
 SEScene.prototype.resize = function(w, h) {
     this.renderer.resize(w, h);
 };

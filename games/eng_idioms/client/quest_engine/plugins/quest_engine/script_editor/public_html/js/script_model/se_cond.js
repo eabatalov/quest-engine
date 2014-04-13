@@ -16,6 +16,27 @@ SECond.events = {
     condDeleted : new SEEvent() /* function(cond) */
 };
 
+SECond.prototype.delete = function() {
+    if (!this.deleted) {
+        //Use "deleted" flag to break cascade deletion chains
+        this.deleted = true;
+        SECond.events.condDeleted.publish(this);
+
+        if (this.srcNode) {
+            this.srcNode.deleteOutCond(this);
+        }
+        if (this.dstNode) {
+            this.dstNode.deleteInCond(this);
+        }
+        delete this.srcNode;
+        delete this.dstNode;
+        delete this.id;
+        delete this.type;
+        delete this.deleted;
+        delete this.props;
+    }
+};
+
 SECond.prototype.save = function() {
     return {
         ver : 1,
@@ -76,22 +97,5 @@ SECond.prototype.setType = function(type) {
         case _QUEST_CONDS.OBJECT_CLICKED:
             this.props.id = "";
         break;
-    }
-};
-
-SECond.prototype.delete = function() {
-    if (!this.deleted) {
-        //Use "deleted" flag to break cascade deletion chains
-        this.deleted = true;
-
-        if (this.srcNode) {
-            this.srcNode.deleteOutCond(this);
-        }
-        if (this.dstNode) {
-            this.dstNode.deleteInCond(this);
-        }
-        this.srcNode = null;
-        this.dstNode = null;
-        SECond.events.condDeleted.publish(this);
     }
 };

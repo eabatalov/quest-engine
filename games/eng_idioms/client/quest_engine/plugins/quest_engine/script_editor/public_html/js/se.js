@@ -1,31 +1,60 @@
-function ScriptEditor(script, seEventRouter, mouseWheelManager) {
+function ScriptEditor(script, seEventRouter, mouseWheelManager, /* internal use */ load) {
     this.seEventRouter = seEventRouter;
     this.mouseWheelManager = mouseWheelManager;
     this.seEvents = this.seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP_SCRIPT_EDTIOR);
     this.seEvents.on(this.onSeEvent, this);
-
     this.script = script;
-
     this.stageEditors = {};
+    this.currentStage = null;
+
+    if (load)
+        return;
+
     for (var i = 0; i < this.script.getStages().length; ++i) {
         var stage = this.script.getStages()[i];
         this.stageEditors[stage.getId()] =
             new SEStageEditor(stage, this.seEventRouter, this.mouseWheelManager);
         this.stageEditors[stage.getId()].setEnable(false);
     }
-    this.currentStage = null;
 
     if (this.script.getStages().length > 0)
         this.setCurrentStage(this.script.getStages()[0]);
 }
 
 ScriptEditor.prototype.save = function() {
-    var savedData = {};
+    var savedData = {
+        ver : 1,
+        currentStageId : this.currentStage.getId(),
+        stageEditors : [],
+        stageIds : []
+    };
+    jQuery.each(this.stageEditors, function(ix, stageEditor) {
+        savedData.stageEditors.push(stageEditor.save());
+        savedData.stageIds.push(stageEditor.getStage().getId());
+    });
     return savedData;
 };
 
-ScriptEditor.load = function(savedData) {
-    return null;
+ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData) {
+    assert(savedData.ver === 1);
+    var scriptEditor = new ScriptEditor(script, seEventRouter, mouseWheelManager, true);
+    for (var i = 0; i < savedData.stageEditors.length; ++i) {
+        var savedStageEditor = savedData.stageEditors[i];
+        var stage = script.getStageById(savedData.stageIds[i]);
+        var stageEditor = SEStageEditor.load(stage, seEventRouter, mouseWheelManager, savedStageEditor);
+        scriptEditor.stageEditors[stage.getId()] = stageEditor;
+    }
+    scriptEditor.setCurrentStage(scriptEditor.stageEditors[savedData.currentStageId].getStage());
+    return scriptEditor;
+};
+
+ScriptEditor.prototype.delete = function() {
+    this.seEvents.delete();
+    delete this.seEvents;
+    jQuery.each(this.stageEditors, function(ix, stageEditor) {
+        stageEditor.delete();
+    });
+    delete this.stageEditors;
 };
 
 ScriptEditor.prototype.getScript = function() {
@@ -39,6 +68,7 @@ ScriptEditor.prototype.setCurrentStage = function(stage) {
     this.currentStage = stage;
     this.seEventRouter.setCurrentStageAddr(this.stageEditors[stage.getId()].getAddr());
     this.stageEditors[this.currentStage.getId()].setEnable(true);
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGED", stage : stage});
 };
 
 ScriptEditor.prototype.getCurrentStage = function() {
@@ -62,7 +92,6 @@ ScriptEditor.prototype.onSeEvent = function(args) {
     if (args.name === "STAGE_CHANGE") {
         assert(this.getCurrentStage().getId() === args.fromStage.getId());
         this.setCurrentStage(args.toStage);
-        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGED", stage : args.toStage});
         return;
     }
 
