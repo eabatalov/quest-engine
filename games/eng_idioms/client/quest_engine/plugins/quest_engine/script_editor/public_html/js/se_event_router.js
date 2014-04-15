@@ -104,6 +104,7 @@ SEEventEP.prototype.send = function(epAddr, message) {
     this.router.deliver(epAddr, message); 
 };
 
+/* cb : function(args) */
 SEEventEP.prototype.on = function(cb, thiz) {
     this.onEvent.push({ cb : cb, thiz : thiz });
 };
