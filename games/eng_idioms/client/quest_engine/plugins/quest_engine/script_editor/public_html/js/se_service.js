@@ -13,27 +13,6 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.script = new SEScript("story");
     this.script.createStage("New stage");
     this.scriptEditor = new ScriptEditor(this.script, this.seEventRouter, this.mouseWheelManager);
-
-    //Saving/loading inline testing
-    /*var scriptSavedJSON = JSON.stringify(this.script.save(), null, '\t');
-    console.log(scriptSavedJSON);
-    var scriptEditorSavedJSON = JSON.stringify(this.scriptEditor.save(), null, '\t');
-    console.log(scriptEditorSavedJSON);
-    this.scriptEditor.delete();
-    this.script.delete();
-    this.script = SEScript.load(JSON.parse(scriptSavedJSON));
-    this.scriptEditor = ScriptEditor.load(
-        this.script,
-        this.seEventRouter,
-        this.mouseWheelManager,
-        JSON.parse(scriptEditorSavedJSON)
-    );
-    var scriptEditorSavedJSONAfterLoad = JSON.stringify(this.scriptEditor.save(), null, '\t');
-    var scriptSavedJSONAfterLoad = JSON.stringify(this.script.save(), null, '\t');
-    console.log(scriptEditorSavedJSONAfterLoad);
-    console.log(scriptSavedJSONAfterLoad);
-    assert(scriptEditorSavedJSON === scriptEditorSavedJSONAfterLoad);
-    assert(scriptSavedJSON === scriptSavedJSONAfterLoad);*/
 };
 
 ScriptEditorService.prototype.getSE = function() {
@@ -82,3 +61,32 @@ SEProjectOpener.prototype.run = function(projectSavedJSON) {
 function ScriptEditorServiceFactory(seEventRouter, mouseWheelManager, userInteractionManager) {
     return new ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionManager);
 }
+
+//Temporal save/load testing method. Used until we have our unit tests.
+ScriptEditorService.prototype.testSaveLoad = function() {
+    var scriptSavedJSON = JSON.stringify(this.script.save(), null, '\t');
+    var scriptEditorSavedJSON = JSON.stringify(this.scriptEditor.save(), null, '\t');
+    this.scriptEditor.delete();
+    this.script.delete();
+    this.script = SEScript.load(JSON.parse(scriptSavedJSON));
+    this.scriptEditor = ScriptEditor.load(
+        this.script,
+        this.seEventRouter,
+        this.mouseWheelManager,
+        JSON.parse(scriptEditorSavedJSON)
+    );
+    var scriptEditorSavedJSONAfterLoad = JSON.stringify(this.scriptEditor.save(), null, '\t');
+    var scriptSavedJSONAfterLoad = JSON.stringify(this.script.save(), null, '\t');
+
+    if (scriptEditorSavedJSON !== scriptEditorSavedJSONAfterLoad) {
+        console.error("scriptEditorSavedJSON !== scriptEditorSavedJSONAfterLoad");
+        console.log("Before \n" + scriptEditorSavedJSON);
+        console.log("After: \n" + scriptEditorSavedJSONAfterLoad);
+    }
+
+    if (scriptSavedJSON !== scriptSavedJSONAfterLoad) {
+        console.error(scriptSavedJSON !== scriptSavedJSONAfterLoad);
+        console.log("Before \n" + scriptSavedJSON);
+        console.log("After \n" + scriptSavedJSONAfterLoad);
+    }
+};
