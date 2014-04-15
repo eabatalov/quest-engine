@@ -7,7 +7,7 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.seEventRouter = seEventRouter;
     this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     this.projectSaver = new SEProjectSaver(this);
-    this.projectLoader = new SEProjectLoader(this);
+    this.projectOpener = new SEProjectOpener(this);
 
     //On application bootstrap we always create script editor with default contents
     this.script = new SEScript("story");
@@ -58,15 +58,15 @@ SEProjectSaver.prototype.run = function() {
     saveAs(scriptAsBlob, this.seService.script.getName() + ".json");
 };
 
-function SEProjectLoader(seService) {
+function SEProjectOpener(seService) {
     this.seService = seService;
     seService.seEvents.on(function(msg) {
-        if (msg.name === "PROJECT_LOAD")
+        if (msg.name === "PROJECT_FILE_OPEN")
             this.run(msg.json);
     }, this);
 };
 
-SEProjectLoader.prototype.run = function(projectSavedJSON) {
+SEProjectOpener.prototype.run = function(projectSavedJSON) {
     var projectSaved = JSON.parse(projectSavedJSON);
     this.seService.scriptEditor.delete();
     this.seService.script.delete();
