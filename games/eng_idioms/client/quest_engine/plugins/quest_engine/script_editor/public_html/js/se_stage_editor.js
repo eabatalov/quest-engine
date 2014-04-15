@@ -54,7 +54,6 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usag
     var stageNode = this.stage.getStageNode();
     var stageView = new SENodeView(stageNode, this.seEvents);
     stageView.setPosition(400, 100);
-    stageView.getNode().setLabel("Stage 1");
     stageView.getNode().addObject(_QUEST_PLAYER_ID);
     stageView.getNode().addObject("older");
     stageView.getNode().addObject("firstLantern");
