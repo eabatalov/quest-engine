@@ -1,3 +1,9 @@
+/*
+ * If some part of editor doesn't know what to do in particular event
+ * then it should signal it to SEInputManager. SEInputManager knows bout all
+ * the high level user interactions occuring now.
+ */
+
 function SEInputManager(seEventRouter) {
     this.state = SEInputManager.STATES.NONE;
     this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
@@ -76,6 +82,7 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "STAGE_CHANGE_CLICK") {
+        this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
             { name : "STAGE_CHANGE", fromStage : args.fromStage, toStage : args.toStage });
         return;
@@ -214,6 +221,15 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
     this.condCreationCancelHandler(evName, args);
 };
 
+//NONE -> STAGE_CHANGE_WAIT -> NONE
+SEInputManager.prototype.procStateStageChangeWait = function(evName, args) {
+    //Just block other user interactions until transition is done
+    if (evName === "STAGE_CHANGED") {
+        this.setState(SEInputManager.STATES.NONE);
+        return;
+    }
+};
+
 function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES = {};
     SEInputManager.STATES.NONE = 0;
@@ -228,6 +244,8 @@ function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES.COND_DRAGGING = 7;
 
     SEInputManager.STATES.IGNORE_ALL_EVENTS = 8;
+
+    SEInputManager.STATES.STAGE_CHANGE_WAIT = 9;
 
     SEInputManager.STATE_PROC = {};
     SEInputManager.STATE_PROC[SEInputManager.STATES.NONE] =
@@ -250,6 +268,9 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATE_PROC[SEInputManager.STATES.IGNORE_ALL_EVENTS] =
         SEInputManager.prototype.procStateIgnoreAllEvents;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.STAGE_CHANGE_WAIT] =
+        SEInputManager.prototype.procStateStageChangeWait;
 
     SEInputManager.STATE_ENTER = {};
 
