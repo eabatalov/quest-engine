@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Raleway:400,700");
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 /*!
  * Bootswatch v3.1.1+1
  * Homepage: http://bootswatch.com
@@ -273,7 +273,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.42857143;
   color: #333333;
@@ -362,7 +362,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   line-height: 1.1;
   color: inherit;
@@ -5781,7 +5781,7 @@ button.close {
   }
 }
 .navbar {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .navbar-nav > li > a {
   padding: 8px 12px;
@@ -5806,13 +5806,13 @@ button.close {
   margin-top: 6px;
 }
 .btn {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 legend {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .input-group-addon {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -5820,14 +5820,14 @@ legend {
   border: 1px solid #ddd;
 }
 .pagination {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 14px 24px;
 }
 .pager {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .pager a {
   color: #333333;
@@ -5855,7 +5855,7 @@ legend {
   opacity: 1;
 }
 .label {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 .label-default {
@@ -5865,7 +5865,7 @@ legend {
 .badge {
   padding: 1px 7px 5px;
   vertical-align: 2px;
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 .panel {
@@ -5875,7 +5875,7 @@ legend {
 .panel-default .panel-heading,
 .panel-default .panel-footer {
   background-color: #fff;
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ruda", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 .panel-primary .panel-heading,

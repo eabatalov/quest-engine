@@ -1,4 +1,14 @@
-﻿body > div {
+﻿/*
+Style Name: QUIB - Bootstrap 3.x.x
+Author: Andy Legenki
+ */
+
+/* Import fonts */
+@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+
+
+/* BASIC THEME CONFIGURATION */
+body > div {
     width: 100%;
     height: 100%;
 }
@@ -8,7 +18,7 @@ header {
 }
 
 html, body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ruda', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -19,7 +29,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Titillium Web', Geneva, sans-serif;
+    font-family: 'Ruda', Geneva, sans-serif;
     font-weight: 400;
 }
 
@@ -59,13 +69,13 @@ h5 {
 }
 
 a {
-    color: #2bb6a3;
+    color: #663399;
     outline: none !important;
 }
 
     a:hover,
     a:focus {
-        color: #2bb6a3;
+        color: #663399;
     }
 
 @media (max-width: 420px) {
@@ -782,8 +792,9 @@ blockquote.pull-right {
 #content-wrapper {
     border-collapse: separate;
     height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: -100px;
+    margin-left: 50px;
+    margin-bottom: -100px;
     position: relative;
     min-height: 100%;
     padding: 15px;
@@ -846,13 +857,15 @@ blockquote.pull-right {
 
 /* Circle buttom */
 .btn-circle {
-    width: 36px;
-    height: 20px;
+    width: 38px;
+    height: 24px;
     text-align: center;
-    padding: 0 10px;
-    font-size: 12px;
+    padding: 20px 0px 1px 30px;
+    font-size: 10px;
     line-height: 1.6;
-    border-radius: 20px;
+    border: 1px solid #c8c8cb;
+    margin: 4px;
+    border-radius: 16px;
 }
 
     .btn-circle.btn-lg {
@@ -873,13 +886,12 @@ blockquote.pull-right {
         border-radius: 35px;
     }
 
-/* Tabs in Dialod */
+/* Footer Dialod */
 
 .dialog {
-    background-color: #3F3D41;
-    border-top: 2px solid #2D292E;
+    background-color: #663399;
     font-size: 14px;
-    padding: 2px 0 2px;
+    padding: 4px 0 4px;
     position: relative;
     text-align: center;
     color: rgb(190, 190, 190);
@@ -934,6 +946,12 @@ blockquote.pull-right {
 
 /* Group buttons SAVE&LOAD in navbar */
 
+.btn {
+
+  padding: 2px 12px;
+  font-size: 14px;
+
+}
 .ui-group-buttons .or {
     position: relative;
     float: left;
@@ -1036,32 +1054,76 @@ blockquote.pull-right {
             padding-left: 15px;
         }
 
+/*
+ * NavTabs
+ */
+
+/* Tabs of stages in top navigation panel */
+.nav-tabs {
+  border-bottom: 0;
+}
+.navbar {
+  position: relative;
+  min-height: 56px;
+}
+.navbar-fixed-top {
+  top: 0;
+  border-bottom: 1px solid #c8c8cb;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #555555;
+  background-color: #e9e9ec;
+  border: 1px solid #c8c8cb;
+  border-bottom-color: transparent;
+
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 8px 20px 10px 20px;
+}
 /*top navbar*/
 .container-fluid {
     margin-right: auto;
     margin-left: auto;
     padding-left: 0px;
-    padding-right: 15px;
-    padding-top: 15px;
+    padding-right: 14px;
+    padding-top: 14px;
 }
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #c8c8cb;
+  border-bottom-color: transparent;
 
+}
 .navbar-brand {
     margin-top: 0px;
     float: left;
-    padding: 6px 20px;
+    padding: 0px 16px;
     font-size: 20px;
     line-height: 22px;
     height: 50px;
 }
-
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
-        margin-right: 15px;
+        margin-right: 60px;
         margin-left: 0;
     }
 }
-
+@media (min-width: 300px) {
+  .container > .navbar-header,
+  .container-fluid > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: -14px;
+}
 /*
  * Sidebar
  */
@@ -1075,22 +1137,41 @@ blockquote.pull-right {
     .sidebar {
         position: fixed;
         top: 51px;
-        bottom: 0;
+        bottom: initial;
         right: 0;
         z-index: 8;
         display: block;
         padding: 20px;
         overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        overflow-y: auto;
         margin-top: 20px;
-        margin-bottom: 60px;
+        margin-bottom: 5px;
         margin-right: 15px;
     }
 }
 
+/*
+ * Properties panel
+ */
 /* Sidebar navigation */
+
+.panel {
+  margin-bottom: 22px;
+  background-color: #fff;
+  border: 1px solid #c8c8cb;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel-default > .panel-heading {
+  color: #252525;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #c8c8cb;
+  
+}
+
 .nav-sidebar {
-    margin-right: -21px; /* 20px padding + 1px border */
+    margin-right: -20px; /* 20px padding + 1px border */
     margin-bottom: 20px;
     margin-left: -20px;
 }
@@ -1105,10 +1186,6 @@ blockquote.pull-right {
         background-color: #428bca;
     }
 
-
-/*
- * Properties panel
- */
 
 /*Width 100% select menu */
 .select {
@@ -1161,14 +1238,14 @@ position: fixed;
 }
 
 #sidebar-wrapper {
-    top: 66px;
+    top: 56px;
     margin-left: -166px;
     left: 70px;
     width: 160px;
     background: #222;
     position: fixed;
     height: 100%;
-    z-index: 5;
+    z-index: 10000;
     transition: all .4s ease 0s;
 }
 
@@ -1228,26 +1305,40 @@ position: fixed;
 
 .sidebar-nav li {
   color: #999999;
+  font-size: 12px;
   display: block;
   text-decoration: none;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:hover,
+.sidebar-nav li a:before {
   color: #fff;
   background-color: #4c4c4c;
   text-decoration: none;
+  display: block;
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
-    background-color: #fe635f;
-    text-decoration: none;
+    background: #4ECDC4;
+    color: #fff;
+    display: block;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+ul.sidebar-nav li a span{
+    display: inline-block;
 }
 
 .sidebar-nav > .sidebar-brand {
   height: 65px;
   line-height: 60px;
-  font-size: 24px;
+  font-size: 19px;
 }
 
 .sidebar-nav > .sidebar-brand a {
@@ -1298,3 +1389,6 @@ position: fixed;
     transition: all .4s ease 0s;
 }
 }
+
+
+

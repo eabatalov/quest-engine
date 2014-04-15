@@ -10,7 +10,7 @@
     <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
     <script src="js/libs/blob/Blob.js"></script>
     <script src="js/libs/filesaver/FileSaver.js"></script>
-	<script src="js/utils.js"></script>
+    <script src="js/utils.js"></script>
     <!-- Loading Style Bootstrap-->
     <script src="style/js/bootstrap.js"></script>
     <script src="style/js/bootstrap.select.js"></script>
@@ -56,7 +56,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="index.html" id="logo" class="navbar-brand">
-                    <img src="images/logo.png" alt="" />
+                    <img src="images/logo.svg" width="120" height="30" alt="" />
                 </a>
             </div>
             <div class="collapse navbar-collapse" ng-controller="CompileBtnController">
@@ -67,38 +67,45 @@
             </div>
         </div>
     </nav>
-    <div id="wrapper" class="active">
-        <div id="sidebar-wrapper">
-            <ul id="sidebar_menu" class="sidebar-nav">
-                <li class="sidebar-brand"><a id="menu-toggle">
-                    Tools
-                    <span id="main_icon"><img src="images/nav/nav_tools.png" alt="" />
-                    </span></a></li>
-            </ul>
-            <ng-include src="'/toolbar.html'"></ng-include>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12" id="content-wrapper">
-                <div id="scene-editor-canvases-container"></div>
+    <aside>
+        <div id="wrapper" class="active">
+            <div id="sidebar-wrapper">
+                <ul id="sidebar_menu" class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a id="menu-toggle">
+                            Tools
+                            <span id="main_icon">
+                                <img src="images/nav/nav_tools.png" alt="" />
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <ng-include src="'/toolbar.html'"></ng-include>
             </div>
-            <div class="col-md-2 sidebar">
-                <div class="panel nav-sidebar panel-success">
-                    <div class="panel-heading">Properties</div>
-                    <div data-spy="scroll" class="panel-body">
-                        <ng-include src="'/prop_window.html'"></ng-include>
+        </div>
+    </aside>
+    <section id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="content-wrapper">
+                    <div id="scene-editor-canvases-container"></div>
+                </div>
+                <div class="col-md-3 sidebar">
+                    <div class="panel nav-sidebar panel-default">
+                        <div class="panel-heading">Properties</div>
+                        <div data-spy="scroll" class="panel-body">
+                            <ng-include src="'/prop_window.html'"></ng-include>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <footer class="nav navbar-fixed-bottom">
         <div class=" dialog">
-        <span class="fui-mail mrm"></span>
-        This zone is for a system notification.
+            <span class="fui-mail mrm"></span>
+            This zone is for a system notification.
         </div>
-
     </footer>
 </body>
 </html>

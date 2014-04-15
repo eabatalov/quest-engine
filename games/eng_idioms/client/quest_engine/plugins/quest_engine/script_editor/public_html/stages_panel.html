@@ -1,9 +1,8 @@
 <ul class="nav nav-tabs" ng-controller="StagesPanelController">
-    <li class="btn btn-circle btn-success" ng-click="newStageClick()">
-        <i class="glyphicon glyphicon-plus"></i>
-    </li>
-
     <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">
         <a href="#" ng-click="changeCurrentClick(stage)">{{ stage.getName() }}</a>
+    </li>
+    <li class="btn btn-circle" ng-click="newStageClick()">
+        <i class="glyphicon glyphicon-plus"></i>
     </li>
 </ul>
