@@ -1,6 +1,17 @@
 <ul class="nav nav-tabs" ng-controller="StagesPanelController">
     <li ng-repeat="stage in stages()" ng-class="{ 'active' : isCurrent(stage) }">
         <a href="#" ng-click="changeCurrentClick(stage)">{{ stage.getName() }}</a>
+        <button type="button" class="btn btn-caret dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Put Stage After</a></li>
+            <li><a href="#">Put Stage Before</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Delete</a></li>
+        </ul>
+
     </li>
     <li class="btn btn-circle" ng-click="newStageClick()">
         <i class="glyphicon glyphicon-plus"></i>

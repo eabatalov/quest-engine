@@ -1,13 +1,16 @@
 <li class="ui-group-buttons" ng-controller="SaveLoadController">
-    <button class="btn btn-success"
+    <button class="btn btn-default"
+            ng-click="compileClick()">
+        Compile
+    </button>
+    <button class="btn btn-default"
             ng-click="saveClick()">
+        <span class="glyphicon glyphicon-cloud-download"></span>
         Save
     </button>
-    <div class="or">
-    </div>
-    <button class="btn btn-inverse"
+    <button class="btn btn-default"
         ng-click="loadClick()">
-        Load
+        <span class="glyphicon glyphicon-cloud-upload"></span>
     </button>
     <div style="display: none;">
         <form id="projectFileForm">

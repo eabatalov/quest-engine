@@ -73,8 +73,8 @@
                 <div class="col-xs-6" ng-show="node.getProps().secs  | hasFieldValue">
                     <div class="form-group has-feedback">
                         <label class="control-label" for="secs">Wait </label>
-                        <input id="secs" class="form-control input-sm" type="number" min="0" step="1"
-                               ng-model="node.getProps().secs" value="0" />
+                        <input id="secs" class="form-control input-sm" type="text" placeholder="Seconds"
+                               ng-model="node.getProps().secs" />
                         <span class="glyphicon glyphicon-time form-control-feedback"></span>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                 <div class="col-xs-12" ng-show="node.continue  | hasFieldValue">
                     <div>
                         <label for="continue">Sequence?</label>
-                        <select name="continue" class="control-label select"
+                        <select name="continue" data-size="auto" class="control-label select"
                                 ng-model="node.continue"
                                 ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];"></select>
                     </div>
