@@ -6,11 +6,12 @@ function SEScene() {
     this.periodicRender = false;
 
     this.update = function() {
-        this.renderer.render(this.stage);
+        if (this.renderer && this.stage)
+            this.renderer.render(this.stage);
     }.bind(this);
 
     this.runUpLoop = function() {
-        if (!this.periodicRender)
+        if (!this.periodicRender || !this.update || !this.runUpLoop)
             return;
         //TODO remove this update loop once PIXI interaction manager is
         //decoupled from rendering
@@ -23,8 +24,9 @@ function SEScene() {
 SEScene.prototype.delete = function() {
     this.stopPeriodicRendering();
     jQuery(this.renderer.view).remove();
+    delete this.renderer.view;
     delete this.stage;
-    delete this.rederer;
+    delete this.renderer;
     delete this.periodicRender;
     delete this.update;
     delete this.runUpLoop;
