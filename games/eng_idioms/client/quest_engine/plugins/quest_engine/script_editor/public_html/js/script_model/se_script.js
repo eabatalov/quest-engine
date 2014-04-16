@@ -61,8 +61,8 @@ SEScript.prototype.getStageById = function(stageId) {
 
 SEScript.prototype.createStage = function(name) {
     var stage = new SEStage(name);
-    this.events.stageAdded.publish(stage);
     this.stages.push(stage);
+    this.events.stageAdded.publish(stage);
     return stage;
 };
 

@@ -57,10 +57,6 @@ ToolbarWindowController = function($scope, seEventRouter, $timeout) {
             new ToolBarItem(_QUEST_NODES.NONE)
     ];
 
-    $scope.initialized = function() {
-        seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_ALL_STAGES, { name : "TOOLBAR_INITED" });
-    };
-
     $scope.itemClicked = function(toolbarItem) {
         //XXX make work with stage more intuitive
         if (toolbarItem.type === _QUEST_NODES.STAGE)
@@ -100,6 +96,7 @@ ToolbarWindowController = function($scope, seEventRouter, $timeout) {
             return;
         }
     });
+    seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_TOOLBAR" });
 };
 
 function ToolbarStaticConstructor(completionCB) {

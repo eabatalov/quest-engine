@@ -58,7 +58,5 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, $timeou
             $scope.cond.setType($scope.cond.getType());
         };
 
-        $scope.initialized = function() {
-            seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_ALL_STAGES, { name : "PROPS_WIND_INITED" });
-        };
+        seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_PROP_WIND" });
 };

@@ -77,13 +77,20 @@ ScriptEditor.prototype.getCurrentStage = function() {
     return this.currentStage;
 };
 
+ScriptEditor.prototype.newStage = function(stageName) {
+    stageName = stageName || "New stage";
+
+    var stage = this.script.createStage(stageName);
+    var stageEditor = new SEStageEditor(stage, this.seEventRouter, this.mouseWheelManager);
+    this.stageEditors[stage.getId()] = stageEditor;
+    stageEditor.setEnable(false);
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CREATED", stage : stage });
+    this.setCurrentStage(stage);
+};
+
 ScriptEditor.prototype.onSeEvent = function(args) {
     if (args.name === "NEW_STAGE") {
-        var stage = this.script.createStage("New stage");
-        var stageEditor = new SEStageEditor(stage, this.seEventRouter, this.mouseWheelManager);
-        this.stageEditors[stage.getId()] = stageEditor;
-        stageEditor.setEnable(false);
-        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CREATED", stage : stage });
+        this.newStage();
         return;
     }
 

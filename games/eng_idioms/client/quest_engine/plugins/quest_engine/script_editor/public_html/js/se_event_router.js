@@ -97,6 +97,8 @@ SEEventEP.prototype.deliver = function(msg) {
             handler.cb.call(handler.thiz, msg);
         else
             handler.cb(msg);
+        if (!this.id)
+            return; //was deleted in callback
     }
 };
 

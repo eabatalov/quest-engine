@@ -6,7 +6,9 @@ function StagesPanelController($scope, seEventRouter, seService, $timeout) {
     this.seEvents.on(this.onSeEvent, this);
 
     $scope.isCurrent = function(stage) {
-        return seService.getSE().getCurrentStage().getId() === stage.getId();
+        if (seService.getSE().getCurrentStage())
+            return seService.getSE().getCurrentStage().getId() === stage.getId();
+        else return false;
     };
 
     $scope.stages = function() {
@@ -21,6 +23,8 @@ function StagesPanelController($scope, seEventRouter, seService, $timeout) {
         seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
             { name : "STAGE_CHANGE_CLICK", fromStage : seService.getSE().getCurrentStage(), toStage : stage });
     };
+
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_STAGES_PANEL" });
 }
 
 StagesPanelController.prototype.safeDigest = function() {
@@ -30,7 +34,7 @@ StagesPanelController.prototype.safeDigest = function() {
     });
 };
 
-StagesPanelController.prototype.currentStagePropChanged = function(propName) {
+StagesPanelController.prototype.stageNameChanged = function(propName) {
     if (propName === "name") {
         this.safeDigest();
     }
@@ -38,9 +42,8 @@ StagesPanelController.prototype.currentStagePropChanged = function(propName) {
 
 StagesPanelController.prototype.onSeEvent = function(args) {
     if (args.name === "STAGE_CREATED") {
-        //TODO implement unsubscription on stage deletion
-        this.seService.getSE().getCurrentStage().getStageNode().events.
-            propChanged.subscribe(this.currentStagePropChanged, this);
+        args.stage.getStageNode().events.
+            propChanged.subscribe(this.stageNameChanged, this);
         this.safeDigest();
         return;
     }

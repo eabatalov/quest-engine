@@ -55,10 +55,6 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usag
     var stageView = new SENodeView(stageNode, this.seEvents);
     stageView.setPosition(400, 100);
     stageView.getNode().addObject(_QUEST_PLAYER_ID);
-    stageView.getNode().addObject("older");
-    stageView.getNode().addObject("firstLantern");
-    stageView.getNode().addObject("secondLantern");
-    stageView.getNode().addObject("0");
     this.nodeViews.push(stageView);
     stageView.setParent(this.nodesLayer);
 
@@ -77,10 +73,6 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usag
     storylineView.getNode().addInCond(condView.getCond());
     storylineView.positionInCond(condView);
     storylineView.getNode().addObject(_QUEST_PLAYER_ID, stageView.getNode());
-    storylineView.getNode().addObject("older", stageView.getNode());
-    storylineView.getNode().addObject("firstLantern", stageView.getNode());
-    storylineView.getNode().addObject("secondLantern", stageView.getNode());
-    storylineView.getNode().addObject("0", stageView.getNode());
 }
 
 SEStageEditor.prototype = new SEDisplayObject();

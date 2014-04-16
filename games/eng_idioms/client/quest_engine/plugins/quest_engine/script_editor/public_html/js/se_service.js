@@ -8,9 +8,7 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.projectSaver = new SEProjectSaveService(this, seEventRouter);
     this.projectOpener = new SEProjectOpenService(this, seEventRouter);
 
-    //On application bootstrap we always create script editor with default contents
     this.script = new SEScript("story");
-    this.script.createStage("New stage");
     this.scriptEditor = new ScriptEditor(this.script, this.seEventRouter, this.mouseWheelManager);
 };
 
