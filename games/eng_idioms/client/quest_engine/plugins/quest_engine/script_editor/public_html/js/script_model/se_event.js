@@ -17,9 +17,11 @@ function SEEvent() {
 }
 
 SEEvent.prototype.delete = function() {
-    jQuery.each(this.subscribers, function(ix, evHandler) {
-            evHandler.delete();
-    });
+    for (var i = 0; i < this.subscribers.length; i++) {
+        //event handler will delete itself from our subscribers list
+        var evHandler = this.subscribers[i];
+        evHandler.delete();
+    };
     delete this.subscribers;
 };
 
