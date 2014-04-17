@@ -137,6 +137,10 @@ SEDisplayObject.prototype.setHitArea = function(hitArea) {
     this.do.hitArea = hitArea;
 };
 
+SEDisplayObject.prototype.delete = function() {
+    delete this.id;
+    delete this.do;
+};
 /*
  * Sprite object with sizes independent of its scale
  */
@@ -210,4 +214,12 @@ SETextObject.prototype.setText = function(val) {
 SETextObject.prototype.setWH = function(w, h) {
     this.width = w;
     this.height= h;
+};
+
+SETextObject.prototype.delete = function() {
+    //XXX private API usage
+    PIXI.Texture.removeTextureFromCache(this.do.canvas._pixiId);
+    delete PIXI.BaseTextureCache[this.do.canvas._pixiId];
+    this.do.destroy(true);
+    SEDisplayObject.prototype.delete.call(this);
 };

@@ -13,9 +13,9 @@ function SEScene() {
     this.runUpLoop = function() {
         if (!this.periodicRender || !this.update || !this.runUpLoop)
             return;
-        //TODO remove this update loop once PIXI interaction manager is
-        //decoupled from rendering
-        //http://www.html5gamedevs.com/topic/1636-interactionmanagerupdate-is-coupled-to-render-loop/
+        /* TODO remove this update loop once PIXI interaction manager is
+           decoupled from rendering
+           http://www.html5gamedevs.com/topic/1636-interactionmanagerupdate-is-coupled-to-render-loop/ */
         requestAnimFrame(this.update);
         setTimeout(this.runUpLoop, 1000 / 30); //30 FPS
     }.bind(this);
@@ -23,10 +23,20 @@ function SEScene() {
 
 SEScene.prototype.delete = function() {
     this.stopPeriodicRendering();
+    if (this.renderer.destroy)
+        this.renderer.destroy();
     jQuery(this.renderer.view).remove();
     delete this.renderer.view;
-    delete this.stage;
     delete this.renderer;
+
+    /* XXX cleanup hack.
+     * Using internal non public properties.
+     */
+    this.stage.interactionManager.interactiveItems = [];
+    this.stage.interactionManager.removeEvents();
+    this.stage.removeStageReference();
+    delete this.stage;
+
     delete this.periodicRender;
     delete this.update;
     delete this.runUpLoop;

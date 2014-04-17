@@ -106,6 +106,7 @@ SENodeView.prototype.delete = function() {
     //TODO implement more accurately
     this.detachParent();
     this.setInteractive(false);
+    this.controls.label.txt.delete();
     this.do.mousedown = this.do.touchstart = null; 
     this.do.mouseup = this.do.touchend = null; 
     this.do.mouseout = null;;

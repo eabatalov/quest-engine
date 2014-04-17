@@ -1,5 +1,6 @@
 var scriptEditorApp = null;
 var scriptEditorService = null;
+var scriptEditorAppInjector = null;
 var seEventRouter = new SEEventRouter();
 
 /* Execution time dependent bootstrap code */
@@ -86,6 +87,7 @@ ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
     this.staticConstructorsCnt -= 1;
     if (this.staticConstructorsCnt > 0)
         return;
+
     /*
      * All the controllers should be initialized
      * before performing new project initialization
@@ -109,6 +111,7 @@ ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
         }
     });
     //Bootstrap only after event handler was set up 
-    var scriptEditorAppInjector =
+    scriptEditorAppInjector =
         angular.bootstrap(document, [scriptEditorApp.name]);
+    scriptEditorService = scriptEditorAppInjector.get("ScriptEditorService");
 };
