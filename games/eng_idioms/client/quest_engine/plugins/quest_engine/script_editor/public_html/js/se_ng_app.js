@@ -1,71 +1,64 @@
-var scriptEditorApp = null;
-var scriptEditorService = null;
-var scriptEditorAppInjector = null;
-var seEventRouter = new SEEventRouter();
-
 /* Execution time dependent bootstrap code */
 function ScriptEditorBootstrap() {
 
-/*
- * ScriptEditor app bootstrap code.
- * Performs all the sync/async initialization first and then
- * starts the app.
- */
-/* Execution time independent bootstrap code */
-scriptEditorApp = angular.module('ScriptEditorApp', []);
+    this.scriptEditorApp = null;
+    this.seEventRouter = new SEEventRouter();
 
-scriptEditorApp.config(function() {
-    Array.prototype.remove = function() {
-        var what, a = arguments, L = a.length, ax;
-        while (L && this.length) {
-            what = a[--L];
-            while ((ax = this.indexOf(what)) !== -1) {
-                this.splice(ax, 1);
+    /*
+     * ScriptEditor app bootstrap code.
+     * Performs all the sync/async initialization first and then
+     * starts the app.
+     */
+    /* Execution time independent bootstrap code */
+    this.scriptEditorApp = angular.module('ScriptEditorApp', []);
+
+    this.scriptEditorApp.config(function() {
+        Array.prototype.remove = function() {
+            var what, a = arguments, L = a.length, ax;
+            while (L && this.length) {
+                what = a[--L];
+                while ((ax = this.indexOf(what)) !== -1) {
+                    this.splice(ax, 1);
+                }
             }
-        }
-        return this;
-    };
-}).config(SEObjectConfig);
+            return this;
+        };
+    }).config(SEObjectConfig);
 
-scriptEditorApp.run([
-    function() {
-    }
-]);
-
-scriptEditorApp.filter('hasFieldValue', function() {
-    return function(value) {
-        if (value !== null && value !== undefined) {
+    this.scriptEditorApp.filter('hasFieldValue', function() {
+        return function(value) {
+            if (value !== null && value !== undefined) {
                 return true;
             } else
-                return false;
-    };
-});
+        return false;
+        };
+    });
 
-scriptEditorApp.value('SEEventRouter', seEventRouter);
+    this.scriptEditorApp.value('SEEventRouter', this.seEventRouter);
 
-scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
+    this.scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
-scriptEditorApp.factory("SEUserInteractionManager", ["SEEventRouter", SEUserInteractionManagerFactory]);
+    this.scriptEditorApp.factory("SEUserInteractionManager", ["SEEventRouter", SEUserInteractionManagerFactory]);
 
-scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'SEEventRouter', '$timeout',
-    ScriptEditorPropertiesWindowController]);
+    this.scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'SEEventRouter', '$timeout',
+            ScriptEditorPropertiesWindowController]);
 
-scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter', '$timeout',
-    ToolbarWindowController]);
+    this.scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter', '$timeout',
+            ToolbarWindowController]);
 
-scriptEditorApp.controller("CompileBtnController", ['$scope', 'SEEventRouter', CompileBtnController]);
+    this.scriptEditorApp.controller("CompileBtnController", ['$scope', 'SEEventRouter', CompileBtnController]);
 
-scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', 'ScriptEditorService', '$timeout',
-    StagesPanelController]);
+    this.scriptEditorApp.controller("StagesPanelController", ['$scope', 'SEEventRouter', 'ScriptEditorService', '$timeout',
+            StagesPanelController]);
 
-scriptEditorApp.controller("SaveLoadController", ['$scope', 'SEEventRouter', SaveLoadController]);
+    this.scriptEditorApp.controller("SaveLoadController", ['$scope', 'SEEventRouter', SaveLoadController]);
 
-scriptEditorApp.factory("ScriptEditorService", [
-    "SEEventRouter",
-    "MouseWheelManager",
-    "SEUserInteractionManager",
-    ScriptEditorServiceFactory
-]);
+    this.scriptEditorApp.factory("ScriptEditorService", [
+            "SEEventRouter",
+            "MouseWheelManager",
+            "SEUserInteractionManager",
+            ScriptEditorServiceFactory
+            ]);
 
     this.staticConstructorsCnt = 8;
     var constrComplCB = this.onStaticConstrCompleted.bind(this);
@@ -79,8 +72,9 @@ scriptEditorApp.factory("ScriptEditorService", [
     SEStagesManagerStaticConstructor(constrComplCB);
 }
 
+var seBootstrap = null;
 $(document).ready(function() {
-    var seBootstrap = new ScriptEditorBootstrap();
+    seBootstrap = new ScriptEditorBootstrap();
 });
 
 ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
@@ -94,24 +88,28 @@ ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
      * because we need their functionality.
      * ...And Angular can't help us with it.
      */
-    var cntrlInitCnt = 0;
-    var waitAllInitEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+    var ALL_INIT_EVENTS = ["CNTRL_INIT_STAGES_PANEL",
+        "CNTRL_INIT_TOOLBAR", "CNTRL_INIT_SL_BTN",
+        "CNTRL_INIT_PROP_WIND", "CNTRL_INIT_COMPILE_BTN"];
+    var cntrlInitCnt = ALL_INIT_EVENTS.length;
+    var waitAllInitEvents = this.seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     waitAllInitEvents.on(function(args) {
-        if (jQuery.inArray(args.name, ["CNTRL_INIT_STAGES_PANEL",
-                "CNTRL_INIT_TOOLBAR", "CNTRL_INIT_SL_BTN",
-                "CNTRL_INIT_PROP_WIND", "CNTRL_INIT_COMPILE_BTN"]) !== -1) {
-            ++cntrlInitCnt;
+        if (jQuery.inArray(args.name, ALL_INIT_EVENTS) !== -1) {
+            --cntrlInitCnt;
         }
 
-        if (cntrlInitCnt === 5) {
+        if (cntrlInitCnt === 0) {
             console.log("All controllers are loaded");
             waitAllInitEvents.delete();
-            scriptEditorAppInjector.get("ScriptEditorService").newProject();
+
+            this.scriptEditorService =
+                angular.element(document).injector().get("ScriptEditorService");
+            this.scriptEditorService.newProject();
             console.log("Empty project created");
         }
     });
-    //Bootstrap only after event handler was set up 
-    scriptEditorAppInjector =
-        angular.bootstrap(document, [scriptEditorApp.name]);
-    scriptEditorService = scriptEditorAppInjector.get("ScriptEditorService");
+
+    //Bootstrap only after init events handler was set up 
+    this.scriptEditorAppInjector =
+        angular.bootstrap(document, [this.scriptEditorApp.name]);
 };
