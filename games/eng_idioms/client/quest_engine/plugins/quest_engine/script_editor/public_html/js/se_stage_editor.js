@@ -323,9 +323,6 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "NODE_DELETE") {
-        //XXX Implement more user friendly
-        if (args.node.getType() === _QUEST_NODES.STAGE)
-            return;
         this.deleteNode(args.node);
         return;
     }

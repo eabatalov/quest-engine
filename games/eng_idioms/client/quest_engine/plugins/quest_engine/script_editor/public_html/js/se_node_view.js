@@ -77,6 +77,11 @@ function SENodeView(node, seEvents) {
 
     this.seEvents = seEvents;
     this.seEvHandler = this.seEvents.on(this.onSeEvent.bind(this));
+
+    //XXX will be coded cleanly when we have SENodeView subclasses
+    if (this.node.getType() === _QUEST_NODES.STAGE) {
+        this.controls.buttons.del.detachParent();
+    }
 }
 
 SENodeView.prototype = new SESpriteObject();
