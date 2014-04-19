@@ -20,7 +20,7 @@ function SECondView(cond, seEvents) {
     this.cond.__view = this;
 
     this.seEvents = seEvents;
-    this.seEvents.on(this.onSeEvent.bind(this));
+    this.seEvHandler = this.seEvents.on(this.onSeEvent.bind(this));
 
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
 }
@@ -50,6 +50,9 @@ SECondView.load = function(cond, seEvents, savedData) {
 
 SECondView.prototype.delete = function() {
     //TODO implement more accurately
+    this.seEvHandler.delete();
+    delete this.seEvHandler;
+    delete this.seEvents;
     this.buttons.del.do.click = null;
     this.do.click = this.do.tap = null;
     this.detachParent();

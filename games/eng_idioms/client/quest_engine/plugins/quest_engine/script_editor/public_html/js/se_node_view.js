@@ -76,7 +76,7 @@ function SENodeView(node, seEvents) {
     this.onLabelChanged();
 
     this.seEvents = seEvents;
-    this.seEvents.on(this.onSeEvent.bind(this));
+    this.seEvHandler = this.seEvents.on(this.onSeEvent.bind(this));
 }
 
 SENodeView.prototype = new SESpriteObject();
@@ -104,6 +104,9 @@ SENodeView.load = function(node, seEvents, savedData) {
 
 SENodeView.prototype.delete = function() {
     //TODO implement more accurately
+    this.seEvHandler.delete();
+    delete this.seEvHandler;
+    delete this.seEvents;
     this.detachParent();
     this.setInteractive(false);
     this.controls.label.txt.delete();

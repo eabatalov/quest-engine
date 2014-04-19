@@ -7,7 +7,7 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usag
     this.stage = stage;
     this.addr = SE_ROUTER_EP_ADDR.STAGE_GROUP_FIRST + this.stage.getId();
     this.seEvents = seEventRouter.createEP(this.addr);
-    this.seEvents.on(this.onSeEvent, this);
+    this.seEvHandler = this.seEvents.on(this.onSeEvent, this);
 
     //Visual stuff
     this.scene = new SEScene();
@@ -126,6 +126,8 @@ SEStageEditor.load = function(stage, seEventRouter, mouseWheelManager, savedData
 };
 
 SEStageEditor.prototype.delete = function() {
+    this.seEvHandler.delete();
+    delete this.seEvHandler;
     this.seEvents.delete();
     delete this.seEvents;
     jQuery.each(this.condViews, function(ix, condView) {

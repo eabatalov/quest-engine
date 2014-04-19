@@ -48,7 +48,7 @@ SEEventRouter.prototype.deliver = function(targetEPAddr, message) {
         var ep = this.endPoints[i];
         var epAddr = ep.addr;
 
-        if (!ep.onEvent.length)
+        if (!ep.evHandlers.length)
             continue;
 
         if (epAddr === targetEPAddr) {
@@ -85,18 +85,18 @@ function SEEventEP(addr, router) {
     this.id = SEEventEP.idCnt++;
     this.addr = addr;
     this.router = router;
-    this.onEvent = [];
+    this.evHandlers = [];
 }
 
 SEEventEP.idCnt = 0;
 
 SEEventEP.prototype.deliver = function(msg) {
-    for (var i = 0; i < this.onEvent.length; ++i) {
-        var handler = this.onEvent[i];
+    for (var i = 0; i < this.evHandlers.length; ++i) {
+        var handler = this.evHandlers[i];
         if (handler.thiz)
-            handler.cb.call(handler.thiz, msg);
+            handler.callback.call(handler.thiz, msg);
         else
-            handler.cb(msg);
+            handler.callback(msg);
         if (!this.id)
             return; //was deleted in callback
     }
@@ -106,9 +106,21 @@ SEEventEP.prototype.send = function(epAddr, message) {
     this.router.deliver(epAddr, message); 
 };
 
-/* cb : function(args) */
-SEEventEP.prototype.on = function(cb, thiz) {
-    this.onEvent.push({ cb : cb, thiz : thiz });
+/* callback : function(args) */
+SEEventEP.prototype.on = function(callback, thiz) {
+    var evHandler = new SEEventEPHandler(callback, thiz, this);
+    this.evHandlers.push(evHandler);
+    return evHandler;
+};
+
+SEEventEP.prototype.deleteHandler = function(delEvHandler) {
+    for (var i = 0; i < this.evHandlers.length; ++i) {
+        var handler = this.evHandlers[i];
+        if (handler === delEvHandler) {
+            this.evHandlers.splice(i, 1);
+            return;
+        }
+    }
 };
 
 SEEventEP.prototype.delete = function() {
@@ -117,6 +129,19 @@ SEEventEP.prototype.delete = function() {
     delete this.addr;
     delete this.router;
     delete this.onEvent;
+};
+
+function SEEventEPHandler(callback, thiz, endpoint) {
+    this.callback = callback;
+    this.thiz = thiz;
+    this.endpoint = endpoint;
+}
+
+SEEventEPHandler.prototype.delete = function() {
+    this.endpoint.deleteHandler(this);
+    delete this.endpoint;
+    delete this.callback;
+    delete this.thiz;
 };
 
 function SEEventRouterFactory() {

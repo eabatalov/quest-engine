@@ -2,7 +2,7 @@ function ScriptEditor(script, seEventRouter, mouseWheelManager, /* internal use 
     this.seEventRouter = seEventRouter;
     this.mouseWheelManager = mouseWheelManager;
     this.seEvents = this.seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP_SCRIPT_EDTIOR);
-    this.seEvents.on(this.onSeEvent, this);
+    this.seEvHandler = this.seEvents.on(this.onSeEvent, this);
     this.script = script;
     this.stageEditors = {};
     this.currentStage = null;
@@ -50,6 +50,8 @@ ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData
 };
 
 ScriptEditor.prototype.delete = function() {
+    this.seEvHandler.delete();
+    delete this.seEvHandler;
     this.seEvents.delete();
     delete this.seEvents;
     jQuery.each(this.stageEditors, function(ix, stageEditor) {
