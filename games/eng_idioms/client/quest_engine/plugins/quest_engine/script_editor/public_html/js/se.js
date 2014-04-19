@@ -71,7 +71,6 @@ ScriptEditor.prototype.setCurrentStage = function(stage) {
     this.currentStage = stage;
     this.seEventRouter.setCurrentStageAddr(this.stageEditors[stage.getId()].getAddr());
     this.stageEditors[this.currentStage.getId()].setEnable(true);
-    this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : stage.getStageNode(), type : "NODE" });
     this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "STAGE_CHANGED", stage : stage});
 };
 
@@ -101,7 +100,8 @@ ScriptEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "STAGE_CHANGE") {
-        assert(this.getCurrentStage().getId() === args.fromStage.getId());
+        if (args.fromStage && this.currentStage)
+            assert(this.currentStage.getId() === args.fromStage.getId());
         this.setCurrentStage(args.toStage);
         return;
     }

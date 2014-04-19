@@ -357,6 +357,8 @@ SEStageEditor.prototype.deleteNode = function(node) {
     node.events.inCondDeleted.subscribe(this, this.deleteCond);
     node.events.outCondDeleted.subscribe(this, this.deleteCond);
     this.stage.deleteNode(node);
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+        { name : "NODE_DELETED", node : node, stage : this.stage });
     this.scene.update();
 };
 
@@ -365,6 +367,8 @@ SEStageEditor.prototype.deleteCond = function(cond) {
     this.condViews.removeBySEId(condView.getId());
     condView.delete();
     this.stage.deleteCond(cond);
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+        { name : "COND_DELETED", cond : cond, stage : this.stage });
     this.scene.update();
 };
 

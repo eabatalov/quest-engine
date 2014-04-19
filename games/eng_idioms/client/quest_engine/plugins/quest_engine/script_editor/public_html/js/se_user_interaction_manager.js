@@ -5,7 +5,8 @@
  */
 
 function SEInputManager(seEventRouter) {
-    this.state = SEInputManager.STATES.NONE;
+    //Kickstart code should initiate first stage creation
+    this.state = SEInputManager.STATES.STAGE_CREATION_WAIT;
     this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     this.seEvents.on(this.procEvent, this);
 
@@ -25,6 +26,7 @@ SEInputManager.prototype.setState = function(newState) {
 };
 
 SEInputManager.prototype.procEvent = function(args) {
+    //console.log("state: " + this.state + " event: " + args.name);
     var evName = args.name;
     SEInputManager.STATE_PROC[this.state].call(this, evName, args);
 };
@@ -55,11 +57,13 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "COND_DEL_CLICK") {
+        this.setState(SEInputManager.STATES.COND_DELETE_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "COND_DELETE", cond : args.cond });
         return;
     }
 
     if (evName === "NODE_DEL_CLICK") {
+        this.setState(SEInputManager.STATES.NODE_DELETE_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "NODE_DELETE", node : args.node });
         return;
     }
@@ -77,6 +81,7 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     };
 
     if (evName === "STAGE_NEW_CLICK") {
+        this.setState(SEInputManager.STATES.STAGE_CREATION_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "NEW_STAGE" });
         return;
     }
@@ -94,6 +99,7 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "PROJECT_FILE_LOADED") {
+        this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_OPEN", json : args.json });
         return;
     }
@@ -223,9 +229,36 @@ SEInputManager.prototype.procStateCondDragging = function(evName, args) {
 
 //NONE -> STAGE_CHANGE_WAIT -> NONE
 SEInputManager.prototype.procStateStageChangeWait = function(evName, args) {
-    //Just block other user interactions until transition is done
     if (evName === "STAGE_CHANGED") {
         this.setState(SEInputManager.STATES.NONE);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.stage.getStageNode(), type : "NODE" });
+        return;
+    }
+};
+
+//NONE -> STAGE_CREATION_WAIT -> STAGE_CHANGE_WAIT -> NONE
+SEInputManager.prototype.procStateStageCreationWait = function(evName, args) {
+    if (evName === "STAGE_CREATED") {
+        this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+            { name : "STAGE_CHANGE", fromStage : null, toStage : args.stage });
+    }
+};
+
+//NONE -> NODE_DELETE_WAIT -> NONE
+SEInputManager.prototype.procStateNodeDeleteWait = function(evName, args) {
+    if (evName === "NODE_DELETED") {
+        this.setState(SEInputManager.STATES.NONE);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.stage.getStageNode(), type : "NODE" });
+        return;
+    }
+};
+
+//NONE -> COND_DELETE_WAIT -> NONE
+SEInputManager.prototype.procStateCondDeleteWait = function(evName, args) {
+    if (evName === "COND_DELETED") {
+        this.setState(SEInputManager.STATES.NONE);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE, { name : "OBJECT_FOCUS", obj : args.stage.getStageNode(), type : "NODE" });
         return;
     }
 };
@@ -246,6 +279,11 @@ function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES.IGNORE_ALL_EVENTS = 8;
 
     SEInputManager.STATES.STAGE_CHANGE_WAIT = 9;
+
+    SEInputManager.STATES.STAGE_CREATION_WAIT = 10;
+
+    SEInputManager.STATES.NODE_DELETE_WAIT = 11;
+    SEInputManager.STATES.COND_DELETE_WAIT = 12;
 
     SEInputManager.STATE_PROC = {};
     SEInputManager.STATE_PROC[SEInputManager.STATES.NONE] =
@@ -271,6 +309,15 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATE_PROC[SEInputManager.STATES.STAGE_CHANGE_WAIT] =
         SEInputManager.prototype.procStateStageChangeWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.STAGE_CREATION_WAIT] =
+        SEInputManager.prototype.procStateStageCreationWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.NODE_DELETE_WAIT] =
+        SEInputManager.prototype.procStateNodeDeleteWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.COND_DELETE_WAIT] =
+        SEInputManager.prototype.procStateCondDeleteWait;
 
     SEInputManager.STATE_ENTER = {};
 

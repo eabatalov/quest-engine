@@ -43,7 +43,7 @@ StagesPanelController.prototype.stageNameChanged = function(propName) {
 StagesPanelController.prototype.onSeEvent = function(args) {
     if (args.name === "STAGE_CREATED") {
         args.stage.getStageNode().events.
-            propChanged.subscribe(this.stageNameChanged, this);
+            propChanged.subscribe(this, this.stageNameChanged);
         this.safeDigest();
         return;
     }
