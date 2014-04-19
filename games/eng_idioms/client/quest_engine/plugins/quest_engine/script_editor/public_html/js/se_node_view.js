@@ -99,6 +99,7 @@ SENodeView.load = function(node, seEvents, savedData) {
      * because their positions are saved and will be restored correctly.
      */
     SESpriteObject.prototype.setPosition.call(nodeView, savedData.x, savedData.y);
+    nodeView.updateMiddlePoint();
     return nodeView;
 };
 
@@ -188,10 +189,14 @@ SENodeView.prototype.setButtonsVisible = function(val) {
     this.controls.buttons.cond.setVisible(val);
 };
 
-SENodeView.prototype.setPosition = function(x, y) {
-    SESpriteObject.prototype.setPosition.call(this, x, y);
+SENodeView.prototype.updateMiddlePoint = function() {
     this.middle.x = this.getX() + this.getWidth() / 2;
     this.middle.y = this.getY() + this.getHeight() / 2;
+};
+
+SENodeView.prototype.setPosition = function(x, y) {
+    SESpriteObject.prototype.setPosition.call(this, x, y);
+    this.updateMiddlePoint();
 
     for (i = 0; i < this.node.getInConds().length; ++i) {
         var condView = SECondView.fromSECond(this.node.getInConds()[i]);
