@@ -34,7 +34,6 @@ function ToolBarItemStaticConstructor(completionCB) {
     ToolBarItem.DATA[_QUEST_NODES.ANIM] = new ItemConfig("images/nav/nav_anim.png", "Animation");
     ToolBarItem.DATA[_QUEST_NODES.PHRASE] = new ItemConfig("images/nav/nav_phrase.png", "Phrase");
     ToolBarItem.DATA[_QUEST_NODES.QUIZ] = new ItemConfig("images/nav/nav_quiz.png", "Quiz");
-    ToolBarItem.DATA[_QUEST_NODES.STAGE] = new ItemConfig("images/nav/nav_stage.png", "Stage");
     ToolBarItem.DATA[_QUEST_NODES.STAGE_CLEAR] = new ItemConfig("images/nav/nav_stcl.png", "Clear");
     ToolBarItem.DATA[_QUEST_NODES.STORYLINE] = new ItemConfig("images/nav/nav_stln.png", "Storyline");
     ToolBarItem.DATA[_QUEST_NODES.WAIT] = new ItemConfig("images/nav/nav_wait.png", "Delay");
@@ -50,7 +49,6 @@ ToolbarWindowController = function($scope, seEventRouter, $timeout) {
             new ToolBarItem(_QUEST_NODES.ANIM),
             new ToolBarItem(_QUEST_NODES.PHRASE),
             new ToolBarItem(_QUEST_NODES.QUIZ),
-            new ToolBarItem(_QUEST_NODES.STAGE),
             new ToolBarItem(_QUEST_NODES.STAGE_CLEAR),
             new ToolBarItem(_QUEST_NODES.STORYLINE),
             new ToolBarItem(_QUEST_NODES.WAIT),
