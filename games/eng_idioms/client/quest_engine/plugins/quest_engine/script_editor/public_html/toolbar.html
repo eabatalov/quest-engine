@@ -6,11 +6,15 @@
          ng-init="isHover = false;"
          ng-class="{ 'tool-bar-item-active' : toolbarItem.isActive, 'tool-bar-item-hover' : !toolbarItem.isActive && isHover }">
 
-        <ul class="sidebar-nav" id="sidebar">
+        <ul class="sidebar-nav">
             <li>
                 <a>
-                    {{ toolbarItem.label() }}
-                    <span class="sub_icon"><img ng-src="{{toolbarItem.imgUrl()}}" /></span>
+                    <span class="tool-bar-item-label">
+                        {{ toolbarItem.label() }}
+                    </span>
+                    <span class="sub_icon">
+                        <img ng-src="{{toolbarItem.imgUrl()}}" />
+                    </span>
                 </a>
             </li>
         </ul>
