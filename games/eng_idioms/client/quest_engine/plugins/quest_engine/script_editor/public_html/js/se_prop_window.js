@@ -118,5 +118,16 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
             }
         }.bind(this);
 
+        $scope.storylineObjects = function(graphObj) {
+            if (!graphObj)
+                return [];
+
+            var storyline = this.seService.getSE().scriptPlugins.storylineSearch.search(graphObj);
+            if (!storyline)
+                return [];
+
+            return storyline.getProps().objs;
+        }.bind(this);
+
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_PROP_WIND" });
 };

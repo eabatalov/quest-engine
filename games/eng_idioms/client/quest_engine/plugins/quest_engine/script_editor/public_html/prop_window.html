@@ -15,7 +15,7 @@
                 <select name="id"
                         class="control-label select"
                         ng-model="cond.getProps().id"
-                        ng-options="obj for obj in cond.getStoryLine().getProps().objs">
+                        ng-options="obj for obj in storylineObjects(cond)">
 
                 </select>
             </div>
@@ -55,7 +55,7 @@
                     <label class="control-label" for="id">Object</label>
                     <select name="id" class="control-label select"
                             ng-model="node.getProps().id"
-                            ng-options="obj for obj in node.getStoryline().getProps().objs">
+                            ng-options="obj for obj in storylineObjects(node)">
                     </select>
                 </div>
             </div>

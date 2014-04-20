@@ -1,15 +1,16 @@
-/*
- * @stage : SEStage object this search is working in
- */
-function SEStorylineSearch(stage) {
-    this.stage = stage;
+function StorylineSearch(script) {
+    this.script = script;
 }
+
+StorylineSearch.prototype.delete = function() {
+    delete this.script;
+};
 
 /*
  * Returns SEStageNode if it exists.
  * Otherwise null.
  */
-SEStorylineSearch.prototype.search = function(graphObj) {
+StorylineSearch.prototype.search = function(graphObj) {
     if (graphObj instanceof SENode) {
         return this.searchNode(graphObj, {});
     } else if (graphObj instanceof SECond) {
@@ -20,8 +21,8 @@ SEStorylineSearch.prototype.search = function(graphObj) {
     }
 };
 
-SEStorylineSearch.prototype.searchNode = function(node, nodesVisited) {
-    if (!node || (nodesVisited[node.getId()] !== true))
+StorylineSearch.prototype.searchNode = function(node, nodesVisited) {
+    if (!node || nodesVisited[node.getId()])
         return null;
 
     nodesVisited[node.getId()] = true;
@@ -36,7 +37,7 @@ SEStorylineSearch.prototype.searchNode = function(node, nodesVisited) {
     }
 };
 
-SEStorylineSearch.prototype.searchCond = function(cond, nodesVisited) {
+StorylineSearch.prototype.searchCond = function(cond, nodesVisited) {
     if (!cond)
         return null;
 

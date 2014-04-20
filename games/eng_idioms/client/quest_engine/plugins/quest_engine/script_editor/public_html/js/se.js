@@ -9,7 +9,8 @@ function ScriptEditor(script, seEventRouter, mouseWheelManager, /* internal use 
     this.scriptPlugins = {
         notificationCenter : new ScriptNotificationCenter(this.script),
         condTypeValidator : new CondTypeValidator(this.script),
-        stageSearch : new StageSearch(this.script)
+        stageSearch : new StageSearch(this.script),
+        storylineSearch : new StorylineSearch(this.script)
     };
     this.scriptPlugins.validator = new ValidationBroker(
         this.scriptPlugins.condTypeValidator,
