@@ -5,8 +5,9 @@ function SEEventHandler(thiz, callback, ev) {
 }
 
 SEEventHandler.prototype.delete = function() {
+    if (!this.ev)
+        return; //protect from double deletion
     this.ev.deleteEH(this);
-    delete this.id;
     delete this.thiz;
     delete this.callback;
     delete this.ev;

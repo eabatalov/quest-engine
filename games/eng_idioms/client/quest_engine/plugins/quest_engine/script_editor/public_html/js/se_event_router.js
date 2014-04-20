@@ -138,6 +138,9 @@ function SEEventEPHandler(callback, thiz, endpoint) {
 }
 
 SEEventEPHandler.prototype.delete = function() {
+    //Protect from double deletion
+    if (!this.endpoint)
+        return;
     this.endpoint.deleteHandler(this);
     delete this.endpoint;
     delete this.callback;
