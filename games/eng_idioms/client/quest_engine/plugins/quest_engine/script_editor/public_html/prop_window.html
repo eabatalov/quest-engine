@@ -2,13 +2,12 @@
     <div class="row" ng-show="cond !== null">
         <div class="col-xs-12">
             <div class="form-group has-feedback">
-                <label class="control-label" for="id">Condition Type</label>
-                <select name="id"
+                <label class="control-label" for="type">Condition Type</label>
+                <select name="type"
                         class="control-label select"
                         ng-model="cond.type"
                         ng-change="condTypeChanged()"
-                        ng-options="type.id as type.title for type in condTypes">
-
+                        ng-options="type.id as type.title for type in condTypes(cond)">
                 </select>
             </div>
             <div class="form-group has-feedback" ng-show="cond.getType() === QUEST_CONDS.OBJECT_CLICKED">
@@ -207,7 +206,7 @@
                 <label class="control-label" for="continue">Sequence?</label>
                 <select name="continue"
                         class="control-label select"
-                        ng-model="node.continue"
+                        ng-model="node.continue" ng-change="node.setContinue(node.continue)"
                         ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];">
                 </select>
             </div>

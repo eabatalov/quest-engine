@@ -6,6 +6,14 @@ function ScriptEditor(script, seEventRouter, mouseWheelManager, /* internal use 
     this.script = script;
     this.stageEditors = {};
     this.currentStage = null;
+    this.scriptPlugins = {
+        notificationCenter: new ScriptNotificationCenter(this.script),
+        condTypeValidator: new CondTypeValidator(this.script)
+    };
+    this.scriptPlugins.validator = new ValidationBroker(
+        this.scriptPlugins.condTypeValidator,
+        this.scriptPlugins.notificationCenter
+    );
 
     if (load)
         return;
@@ -49,14 +57,14 @@ ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData
 };
 
 ScriptEditor.prototype.delete = function() {
+    var objDelete = function(ix, obj) { obj.delete() };
     this.seEvHandler.delete();
     delete this.seEvHandler;
     this.seEvents.delete();
     delete this.seEvents;
-    jQuery.each(this.stageEditors, function(ix, stageEditor) {
-        stageEditor.delete();
-    });
+    jQuery.each(this.stageEditors, objDelete);
     delete this.stageEditors;
+    jQuery.each(this.scriptPlugins, objDelete);
 };
 
 ScriptEditor.prototype.getScript = function() {

@@ -40,7 +40,8 @@ function ScriptEditorBootstrap() {
 
     this.scriptEditorApp.factory("SEUserInteractionManager", ["SEEventRouter", SEUserInteractionManagerFactory]);
 
-    this.scriptEditorApp.controller("ScriptEditorPropertiesWindowController", ['$scope', 'SEEventRouter', '$timeout',
+    this.scriptEditorApp.controller("ScriptEditorPropertiesWindowController", 
+            ['$scope', 'SEEventRouter', 'ScriptEditorService', '$timeout',
             ScriptEditorPropertiesWindowController]);
 
     this.scriptEditorApp.controller("ToolbarWindowController", ['$scope', 'SEEventRouter', '$timeout',
