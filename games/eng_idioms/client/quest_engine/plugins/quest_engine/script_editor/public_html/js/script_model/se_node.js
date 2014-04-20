@@ -14,8 +14,9 @@ function SENode(type) {
         inCondDeleted : new SEEvent(), /* function(cond) */
         outCondAdded : new SEEvent(), /* function(cond) */
         outCondDeleted : new SEEvent(), /* function(cond) */
-        labelChanged : new SEEvent(), /* function() */
-        propChanged : new SEEvent() /* function(propName) */
+        labelChanged : new SEEvent(), /* function(node) */
+        continueChanged : new SEEvent(), /* function(node) */
+        propChanged : new SEEvent() /* function(propName, node) */
     };
 
     SENode.events.nodeCreated.publish(this);
@@ -108,12 +109,12 @@ SENode.prototype.getLabel = function() {
 
 SENode.prototype.setLabel = function(val) {
     this.label = val;
-    this.events.labelChanged.publish();
+    this.events.labelChanged.publish(this);
 };
 
 SENode.prototype.setProp = function(name, value) {
     this.props[name] = value;
-    this.events.propChanged.publish(name);
+    this.events.propChanged.publish(name, this);
 };
 
 SENode.prototype.getProps = function() {
@@ -126,6 +127,7 @@ SENode.prototype.getContinue = function() {
 
 SENode.prototype.setContinue = function(val) {
     this.continue = val;
+    this.events.continueChanged.publish(this);
 };
 
 SENode.prototype.getInConds = function() {
