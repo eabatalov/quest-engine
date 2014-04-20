@@ -73,12 +73,6 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
             }
         }, this);
 
-        $scope.addObjectToStoryLine = function() {
-            if ($scope.node.getType() === _QUEST_NODES.STORYLINE) {
-                $scope.node.addObject($scope.objToAddId);
-            }
-        };
-
         $scope.addObjectToStage = function() {
             if ($scope.node.getType() === _QUEST_NODES.STAGE) {
                 $scope.node.addObject($scope.objToAddId);
@@ -100,6 +94,29 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
         $scope.condTypeChanged = function() {
             $scope.cond.setType($scope.cond.getType());
         };
+
+        $scope.stageObjectPool = function(node) {
+            if (!node)
+                return [];
+
+            var stage = this.seService.getSE().scriptPlugins.stageSearch.search(node);
+            if (!stage)
+                return [];
+
+            return stage.getProps().objPool;
+        }.bind(this);
+
+        $scope.addObjectToStoryLine = function() {
+            if ($scope.node.getType() === _QUEST_NODES.STORYLINE) {
+                var stage = this.seService.getSE().scriptPlugins.stageSearch.search($scope.node);
+                if (!stage)
+                    return;
+                $scope.node.addObject($scope.objToAddId, stage);
+                //autoselect next avaliable object
+                if (stage.getProps().objPool.length > 0)
+                    $scope.objToAddId = stage.getProps().objPool[0];
+            }
+        }.bind(this);
 
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_PROP_WIND" });
 };
