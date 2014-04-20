@@ -185,12 +185,27 @@ function SEStageNode() {
 SEStageNode.prototype = new SENode(_QUEST_NODES.STAGE);
 
 SEStageNode.prototype.addObject = function(objId) {
+    if (this.props.objs.indexOf(objId) !== -1)
+        return;
+
     this.props.objs.push(objId);
     this.props.objPool.push(objId);
 };
 
 SEStageNode.prototype.takeFromPool = function(objId) {
+    if (this.props.objPool.indexOf(objId) === -1)
+        return false;
+
     this.props.objPool.remove(objId);
+    return true;
+};
+
+SEStageNode.prototype.putBackToPool = function(objId) {
+    if (this.props.objs.indexOf(objId) === -1)
+        return false;
+
+    this.props.objPool.push(objId);
+    return true;
 };
 
 // ============ STORYLINE ============
@@ -202,8 +217,21 @@ function SEStorylineNode() {
 SEStorylineNode.prototype = new SENode(_QUEST_NODES.STORYLINE);
 
 SEStorylineNode.prototype.addObject = function(objId, stageNode) {
-    this.props.objs.push(objId);
-    stageNode.takeFromPool(objId);
+    if (this.props.objs.indexOf(objId) !== -1)
+        return;
+
+    if (stageNode.takeFromPool(objId)) {
+        this.props.objs.push(objId);
+    }
+};
+
+SEStorylineNode.prototype.removeObject = function(objId, stageNode) {
+    if (this.props.objs.indexOf(objId) === -1)
+        return;
+
+    if (stageNode.putBackToPool(objId)) {
+        this.props.objs.splice(this.props.objs.indexOf(objId), 1);
+    }
 };
 
 SEStorylineNode.prototype.addInCond = function(cond) {
