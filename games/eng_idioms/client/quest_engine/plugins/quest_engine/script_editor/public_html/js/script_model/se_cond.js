@@ -8,6 +8,11 @@ function SECond(type) {
     //Public cond type dependent data is stored in props
     this.props = {};
     SECond.events.condCreated.publish(this);
+
+    this.events = {
+        typeChanged : new SEEvent(),
+        srcNodeChanged : new SEEvent()
+    };
 }
 
 SECond.idCnt = 0;
@@ -79,7 +84,10 @@ SECond.prototype.getSrcNode = function() {
 };
 
 SECond.prototype.setSrcNode = function(node) {
+    var oldNode = this.srcNode;
     this.srcNode = node;
+    if (oldNode !== this.srcNode)
+        this.events.srcNodeChanged.publish(this);
 };
 
 SECond.prototype.getDstNode = function(node) {
@@ -98,4 +106,6 @@ SECond.prototype.setType = function(type) {
             this.props.id = "";
         break;
     }
+    if (this.events)
+        this.events.typeChanged.publish(this);
 };
