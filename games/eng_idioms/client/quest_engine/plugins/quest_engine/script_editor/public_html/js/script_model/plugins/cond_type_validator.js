@@ -94,6 +94,9 @@ CondTypeValidator.getValidCondTypes = function(cond) {
     if (!srcNode)
         return [];
 
+    if (srcNode.getType() === _QUEST_NODES.STAGE)
+        return CondTypeValidator.typeLists.stage;
+
     if (srcNode.continue)
         return CondTypeValidator.typeLists.continue;
 
@@ -105,8 +108,6 @@ CondTypeValidator.getValidCondTypes = function(cond) {
 	    case _QUEST_NODES.STORYLINE:
 	    case _QUEST_NODES.WAIT:
             return CondTypeValidator.typeLists.simple;
-	    case _QUEST_NODES.STAGE:
-            return CondTypeValidator.typeLists.stage;
         case _QUEST_NODES.QUIZ:
             return CondTypeValidator.typeLists.quiz;
         default:
