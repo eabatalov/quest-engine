@@ -1153,6 +1153,21 @@ blockquote.pull-right {
     /*Width 100% select menu */
     .select {
         width: 100%;
+		padding: 6px;
+		border-radius: 4px;
+		-webkit-transition: all 0.9s ease;
+		-moz-transition: all 0.9s ease;
+		-o-transition: all 0.9s ease;
+		-ms-transition: all 0.9s ease;
+		transition: all 0.9s ease;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #333333;
+		border: 1px solid #dddddd;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
     }
 
         .select .pull-left {
