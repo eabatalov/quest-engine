@@ -45,7 +45,6 @@ ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData
         scriptEditor.stageEditors[stage.getId()] = stageEditor;
         stageEditor.setEnable(false);
     }
-    scriptEditor.setCurrentStage(scriptEditor.stageEditors[savedData.currentStageId].getStage());
     return scriptEditor;
 };
 
@@ -102,7 +101,8 @@ ScriptEditor.prototype.onSeEvent = function(args) {
     if (args.name === "STAGE_CHANGE") {
         if (args.fromStage && this.currentStage)
             assert(this.currentStage.getId() === args.fromStage.getId());
-        this.setCurrentStage(args.toStage);
+        var toStage = args.toStage || this.script.getStages()[0];
+        this.setCurrentStage(toStage);
         return;
     }
 

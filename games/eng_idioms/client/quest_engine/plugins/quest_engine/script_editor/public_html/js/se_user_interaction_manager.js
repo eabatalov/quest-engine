@@ -99,7 +99,7 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
     }
 
     if (evName === "PROJECT_FILE_LOADED") {
-        this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
+        this.setState(SEInputManager.STATES.PROJECT_FILE_OPEN_WAIT);
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_OPEN", json : args.json });
         return;
     }
@@ -263,6 +263,17 @@ SEInputManager.prototype.procStateCondDeleteWait = function(evName, args) {
     }
 };
 
+//NONE -> PROJECT_FILE_OPEN_WAIT -> STAGE_CHANGE_WAIT -> NONE
+SEInputManager.prototype.procStateProjectFileOpenWait = function(evName, args) {
+    if (evName === "PROJECT_FILE_OPENED") {
+        //All the object are created. We can send "kickstart" message
+        this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+            { name : "STAGE_CHANGE", fromStage : null, toStage : null });
+        return;
+    }
+};
+
 function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES = {};
     SEInputManager.STATES.NONE = 0;
@@ -284,6 +295,8 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATES.NODE_DELETE_WAIT = 11;
     SEInputManager.STATES.COND_DELETE_WAIT = 12;
+
+    SEInputManager.STATES.PROJECT_FILE_OPEN_WAIT = 13;
 
     SEInputManager.STATE_PROC = {};
     SEInputManager.STATE_PROC[SEInputManager.STATES.NONE] =
@@ -318,6 +331,9 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATE_PROC[SEInputManager.STATES.COND_DELETE_WAIT] =
         SEInputManager.prototype.procStateCondDeleteWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.PROJECT_FILE_OPEN_WAIT] =
+        SEInputManager.prototype.procStateProjectFileOpenWait;
 
     SEInputManager.STATE_ENTER = {};
 

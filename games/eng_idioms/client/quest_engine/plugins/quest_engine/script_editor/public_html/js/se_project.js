@@ -37,6 +37,7 @@ SEProjectOpenService.prototype.run = function(projectSavedJSON) {
         this.seService.mouseWheelManager,
         projectSaved.scriptEditor
     );
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_OPENED" });
 };
 
 //Temporal save/load testing method. Used until we have our unit tests.
