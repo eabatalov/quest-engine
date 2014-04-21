@@ -1,4 +1,0 @@
-
-To install NodeJS packages requires by the server run:
-sudo npm install -g node-gyp
-npm install socket.io
