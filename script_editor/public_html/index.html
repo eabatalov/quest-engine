@@ -4,33 +4,35 @@
     <title>Quibble: quest script editor</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Libs -->
-    <script src="js/libs/jquery/jquery.js"></script>
-    <script src="js/libs/angular.js"></script>
-    <script src="js/libs/pixi.js-1.5.1/bin/pixi.dev.js"></script>
-    <script src="js/libs/blob/Blob.js"></script>
-    <script src="js/libs/filesaver/FileSaver.js"></script>
-    <script src="js/utils.js"></script>
-    <!-- Loading Style Bootstrap-->
+    <!-- External libs -->
+    <script src="js/lib/external/jquery/jquery.js"></script>
+    <script src="js/lib/external/angular.js"></script>
+    <script src="js/lib/external/pixi.js-1.5.1/bin/pixi.dev.js"></script>
+    <script src="js/lib/external/blob/Blob.js"></script>
+    <script src="js/lib/external/filesaver/FileSaver.js"></script>
+    <!-- Style Bootstrap-->
     <script src="style/js/bootstrap.js"></script>
     <link href="style/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <!-- Loading Style build -->
+    <!-- Style build -->
     <script src="style/js/application.js"></script>
     <link href="style/css/application.css" rel="stylesheet" type="text/css" />
-    <!-- Script model -->
-    <script src="js/quest_engine/quest_engine_consts.js"></script>
-    <script src="js/quest_engine/quest_scripting.js"></script>
-    <script src="js/script_model/se_event.js"></script>
-    <script src="js/script_model/se_node.js"></script>
-    <script src="js/script_model/se_cond.js"></script>
-    <script src="js/script_model/se_stage.js"></script>
-    <script src="js/script_model/se_script.js"></script>
-    <!-- Model plugins -->
-    <script src="js/script_model/plugins/notification_center.js"></script>
-    <script src="js/script_model/plugins/storyline_search.js"></script>
-    <script src="js/script_model/plugins/stage_search.js"></script>
-    <script src="js/script_model/plugins/cond_type_validator.js"></script>
-    <script src="js/script_model/plugins/validation_broker.js"></script>
+    <!-- Utils -->
+    <script src="js/lib/util/misc.js"></script>
+    <script src="js/lib/util/event.js"></script>
+    <script src="js/lib/util/object_map.js"></script>
+    <!-- Notification center -->
+    <script src="js/lib/notificator/notification_center.js"></script>
+    <!-- Quest script -->
+    <script src="js/lib/quest_script/consts.js"></script>
+    <script src="js/lib/quest_script/node.js"></script>
+    <script src="js/lib/quest_script/cond.js"></script>
+    <script src="js/lib/quest_script/stage.js"></script>
+    <script src="js/lib/quest_script/script.js"></script>
+    <!-- Quest script plugins -->
+    <script src="js/lib/quest_script/plugins/storyline_search.js"></script>
+    <script src="js/lib/quest_script/plugins/stage_search.js"></script>
+    <script src="js/lib/quest_script/plugins/cond_type_validator.js"></script>
+    <script src="js/lib/quest_script/plugins/validation_broker.js"></script>
     <!-- Script editor -->
     <script src="js/se_event_router.js"></script>
     <script src="js/se_display_object.js"></script>

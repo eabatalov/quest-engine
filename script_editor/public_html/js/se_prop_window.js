@@ -1,9 +1,6 @@
 ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seService, $timeout) {
         //Make global constants accessible from $scope
-        $scope.PLAYER_ACTIONS = _PLAYER_ACTIONS;
-		$scope.UI_ACTIONS = _UI_ACTIONS;
-		$scope.UI_ACTORS = _UI_ACTORS;
-		$scope.UI_PHRASE_TYPES = _UI_PHRASE_TYPES;
+		$scope.QUEST_PHRASE_TYPES = _QUEST_PHRASE_TYPES;
 		$scope.QUEST_NODES = _QUEST_NODES;
 		$scope.QUEST_CONDS = _QUEST_CONDS;
 
