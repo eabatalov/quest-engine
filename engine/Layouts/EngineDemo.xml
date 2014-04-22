@@ -1859,7 +1859,7 @@
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="QuestAction" uid="16" />
+        <instance type="QuestRuntimeInterface" uid="16" />
     </nonworld-instances>
     <effects />
 </c2layout>

@@ -1,17 +1,17 @@
 ﻿function GetPluginSettings()
 {
 	return {
-		"name":			"Quest Game Action",				// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
-		"id":			"QuestActionPlugin",				// this is used to identify this plugin and is saved to the project; never change it
+		"name":			"Quest Runtime",		// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
+		"id":			"QuestRuntimePlugin",	// this is used to i`ntify this plugin and is saved to the project; never change it
 		"version":		"0.1",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
-		"description":	"Convenient representation of data about player's last actions and current UI state",
-		"author":		"Eugene/Learzing",
-		"help url":		"Learzing.com",
-		"category":		"Learzing",				// Prefer to re-use existing categories, but you can set anything here
+		"description":	"Learzing quest game logic execution runtime",
+		"author":		"Eugene/learzing",
+		"help url":		"http://learzing.com/quest_engine",
+		"category":		"Game engine",				// Prefer to re-use existing categories, but you can set anything here
 		"type":			"object",				// either "world" (appears in layout and is drawn), else ""
 		"rotatable":	false,					// only used when "type" is "world".  Enables an angle property on the object.
 		"flags":		0						// uncomment lines to enable flags...
-					//	| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
+						| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
 					//	| pf_texture			// object has a single texture (e.g. tiled background)
 					//	| pf_position_aces		// compare/set/get x, y...
 					//	| pf_size_aces			// compare/set/get width, height...
@@ -24,6 +24,20 @@
 					//	| pf_effects			// allow WebGL shader effects to be added
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
+		, "dependency":
+			"http://learzing.com/scripts/jquery.cookie.js;"
+			+ "http://learzing.com/scripts/angular.js;"
+			+ "http://learzing.com/scripts/sdk/utils.js;"
+			+ "http://learzing.com/scripts/sdk/skills.js;"
+			+ "http://learzing.com/scripts/sdk/learzing.js;"
+			+ "quest_engine_consts.js;"
+			+ "quest_scripting.js;"
+			+ "quest_interpretator.js;"
+			+ "quest_engine.js;"
+			+ "quest_engine_debug.js;"
+			+ "story.js"
+			//+ "example_quest_script.js;"
+			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
 };
 
@@ -48,6 +62,7 @@
 // AddCondition(id,					// any positive integer to uniquely identify this condition
 //				flags,				// (see docs) cf_none, cf_trigger, cf_fake_trigger, cf_static, cf_not_invertible,
 //									// cf_deprecated, cf_incompatible_with_triggers, cf_looping
+//https://www.scirra.com/manual/19/actions-conditions-and-expressions
 //				list_name,			// appears in event wizard list
 //				category,			// category in event wizard list
 //				display_str,		// as appears in event sheet - use {0}, {1} for parameters and also <b></b>, <i></i>
@@ -55,8 +70,12 @@
 //				script_name);		// corresponding runtime function name
 				
 // example				
-//AddNumberParam("Number", "Enter a number to test if positive.");
-//AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive", "Description for my condition!", "MyCondition");
+/*AddNumberParam("Number", "Enter a number to test if positive.");
+AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive", "Description for my condition!", "MyCondition");*/
+AddCondition(0, cf_none, "Game finishing", "General", "Game finishing",
+	"Triggered when the game is finishing. After this event was processed "
+	+ "quest logic will store and show final game results",
+	"gameFinishing");
 
 ////////////////////////////////////////
 // Actions
@@ -70,24 +89,25 @@
 //			 script_name);		// corresponding runtime function name
 
 // example
-//AddStringParam("Message", "Enter a string to alert.");
-//AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my action!", "MyAction");
-AddStringParam("Value", "Stage name (String)");
-AddAction(0, af_none, "Set current stage", "Setters", "Set current stage to {0}",
-	"Set stage name with which we'll work now.", "setStage");
+/*AddStringParam("Message", "Enter a string to alert.");
+AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my action!", "MyAction");*/
+AddObjectParam("Action", "Action object type");
+AddAction(1, af_none, "Execute last player action on current stage", "General",
+	"Execute last player action {0} on current stage",
+	"Execute last player action on current stage",
+	"playerActionExec");
 
-AddStringParam("Last action",
-	"Last action performed by player: "
-	+ "\"PLAYER_CLICKED\" | \"NPC_CLICKED\" | \"ANSWERx_CLICKED\" | \"CONTINUE\"");	
-AddAction(1, af_none, "Set last player action", "Setters", "Set last player's action to {0}",
-	"Sets player's action", "setLastPlayerAction");
+AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
+AddObjectParam("Quest action type", "Quest action type we'll be initialized");
+AddAction(2, af_none, "Setup quest objects.", "General",
+	"Setup quest objects.", "Setup quest objects.", "setupQuestObjects");
 
-AddStringParam("Value", "Action target id");
-AddAction(2, af_none, "Set last action target id", "Setters", "Set last action target id to {0}",
-	"Too complicated", "setLastActionTargetId");
-
+AddStringParam("Quest script file URL", "Quest script file URL", "example_quest_script.js");
+AddAction(3, af_none, "Setup quest script URL.", "General",
+	"Setup quest script URL to {0}.", "Setup quest script URL.", "setupQuestScript");
 ////////////////////////////////////////
 // Expressions
+
 // AddExpression(id,			// any positive integer to uniquely identify this expression
 //				 flags,			// (see docs) ef_none, ef_deprecated, ef_return_number, ef_return_string,
 //								// ef_return_any, ef_variadic_parameters (one return flag must be specified)
@@ -96,39 +116,8 @@ AddAction(2, af_none, "Set last action target id", "Setters", "Set last action t
 //				 exp_name,		// the expression name after the dot, e.g. "foo" for "myobject.foo" - also the runtime function name
 //				 description);	// description in expressions panel
 
-AddExpression(13, ef_return_string, "Current stage", "Getters", "getCurrentStage",
-	"Current stage");
-AddExpression(1, ef_return_string, "Current actor type", "Getters", "getActor",
-	"Current actor. Possble values: \"PLAYER\" | \"NPC\"");
-AddExpression(2, ef_return_number, "Current NPC actor UID", "Getters", "getNPCActorUID",
-	"UID of current acting NPC.");
-AddExpression(3, ef_return_string, "Current action type", "Getters", "getAction",
-	"Current action. Possible values: "
-	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" \"DELAY\" | \"STAGE_CLEAR\" | \"NONE\""
-);
-
-AddExpression(4, ef_return_string, "Current animation name", "Getters", "getAnimationName",
-	"if current action type is \"question\" contains current animation name");
-
-AddExpression(5, ef_return_string, "text", "Getters", "getText",
-	"if current action type is \"speech\" or \"question\" contains its text");
-AddExpression(6, ef_return_string, "answer 1 text", "Getters", "getAnswer1Text",
-	"Text of 1st answer to the question");
-AddExpression(7, ef_return_string, "answer 2 text", "Getters", "getAnswer2Text",
-	"Text of 2nd answer to the question");
-AddExpression(8, ef_return_string, "answer 3 text", "Getters", "getAnswer3Text",
-	"Text of 3rd answer to the question");
-AddExpression(9, ef_return_string, "answer 4 text", "Getters", "getAnswer4Text",
-	"Text of 4th answer to the question");
-AddExpression(10, ef_return_string, "Phrase type", "Getters", "getPhraseType",
-	"Phrase type");
-
-AddExpression(11, ef_return_number, "Delay in seconds", "Getters", "getDelay",
-	"Delay in seconds.");
-AddExpression(12, ef_return_number,
-	"1 to continue to the next action not hiding current stage objects and behaviors",
-	"Getters", "getContinue",
-	"1 to continue to the next action not hiding current stage objects and behaviors");
+// example
+/*AddExpression(0, ef_return_number, "Leet expression", "My category", "MyExpression", "Return the number 1337.");*/
 
 ////////////////////////////////////////
 ACESDone();
@@ -143,7 +132,9 @@ ACESDone();
 // new cr.Property(ept_combo,		name,	"Item 1",		description, "Item 1|Item 2|Item 3")	// a dropdown list (initial_value is string of initially selected item)
 // new cr.Property(ept_link,		name,	link_text,		description, "firstonly")		// has no associated value; simply calls "OnPropertyChanged" on click
 
-var property_list = [];
+var property_list = [
+	/*new cr.Property(ept_integer, 	"My property",		77,		"An example property.")*/
+	];
 	
 // Called by IDE when a new object type is to be created
 function CreateIDEObjectType()

@@ -63,7 +63,7 @@
                     </conditions>
                     <actions>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="3435159101825479" type="NPCPhraseTxt">
-                            <param id="0" name="Text">QuestAction.getText</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                     </actions>
                 </event-block>
@@ -76,7 +76,7 @@
                         <event-block sid="9255208735694716">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="9125257067185511" type="System">
-                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="0" name="First value">QuestRuntimeInterface.getPhraseType</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;SPEAK&quot;</param>
                                 </condition>
@@ -91,7 +91,7 @@
                         <event-block sid="6315473732246069">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="7943965306799148" type="System">
-                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="0" name="First value">QuestRuntimeInterface.getPhraseType</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;THINK&quot;</param>
                                 </condition>
@@ -167,16 +167,16 @@
                             <param id="1" name="Parameter {n}">NPC.UID</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="238142047908137" type="NPCAns1Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer1Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer1Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="7803463118312961" type="NPCAns2Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer2Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer2Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="1301381891047896" type="NPCAns3Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer3Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer3Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="7047921950740458" type="NPCAns4Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer4Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer4Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="1" name="CompleteAll" sid="715854554933087" type="NPCAns1Txt" />
                         <action id="0" name="Call function" sid="7683840746796909" type="Function">
@@ -449,7 +449,7 @@
                     </conditions>
                     <actions>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="8448293784846375" type="PlayerPhraseTxt">
-                            <param id="0" name="Text">QuestAction.getText</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                     </actions>
                 </event-block>
@@ -462,7 +462,7 @@
                         <event-block sid="3336207269604883">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="6746007235374595" type="System">
-                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="0" name="First value">QuestRuntimeInterface.getPhraseType</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;SPEAK&quot;</param>
                                 </condition>
@@ -477,7 +477,7 @@
                         <event-block sid="5047793466862367">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="4239130951151388" type="System">
-                                    <param id="0" name="First value">QuestAction.getPhraseType</param>
+                                    <param id="0" name="First value">QuestRuntimeInterface.getPhraseType</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;THINK&quot;</param>
                                 </condition>
@@ -557,16 +557,16 @@
                             <param id="1" name="Parameter {n}">Player.UID</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="4331935626829113" type="PlayerAns1Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer1Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer1Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="5431462874773578" type="PlayerAns2Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer2Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer2Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="7009269611684178" type="PlayerAns3Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer3Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer3Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="0" name="SetTextAndAutoResize" sid="647585997233084" type="PlayerAns4Txt">
-                            <param id="0" name="Text">QuestAction.getAnswer4Text</param>
+                            <param id="0" name="Text">QuestRuntimeInterface.getAnswer4Text</param>
                         </action>
                         <action behavior="TextAutoResize" id="1" name="CompleteAll" sid="3067913921391241" type="PlayerAns1Txt" />
                         <action id="0" name="Call function" sid="1390912680364879" type="Function">

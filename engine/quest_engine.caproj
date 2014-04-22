@@ -13,8 +13,8 @@
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
-        <plugin author="Eugene/Learzing" id="QuestActionPlugin" version="0.100000001">Quest Game Action</plugin>
-        <plugin author="Eugene/learzing" id="QuestLogicPlugin" version="0.100000001">Quest Engine</plugin>
+        <plugin author="Eugene/Learzing" id="QuestRuntimeInterfacePlugin" version="0.100000001">Quest Runtime Interface</plugin>
+        <plugin author="Eugene/learzing" id="QuestRuntimePlugin" version="0.100000001">Quest Runtime</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="BrashMonkey" id="Spriter" version="1">Scml</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
@@ -2617,10 +2617,10 @@
                 </object-type>
             </object-folder>
             <object-type name="QuestEngine" sid="6155412818206068">
-                <plugin id="QuestLogicPlugin" />
+                <plugin id="QuestRuntimePlugin" />
             </object-type>
-            <object-type global="1" name="QuestAction" sid="4980129753739623">
-                <plugin id="QuestActionPlugin" />
+            <object-type global="1" name="QuestRuntimeInterface" sid="4980129753739623">
+                <plugin id="QuestRuntimeInterfacePlugin" />
             </object-type>
             <object-type name="StageChanger" sid="7618603551053084">
                 <plugin id="Sprite" />

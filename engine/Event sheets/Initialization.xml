@@ -10,13 +10,13 @@
             <actions>
                 <action id="2" name="Setup quest objects." sid="7533819724177504" type="QuestEngine">
                     <param id="0" name="NPC object type">NPC</param>
-                    <param id="1" name="Quest action type">QuestAction</param>
+                    <param id="1" name="Quest runtime interface type">QuestRuntimeInterface</param>
                 </action>
                 <action id="0" name="Call function" sid="3374487306171643" type="Function">
                     <param id="0" name="Name">&quot;InitUI&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="0" name="Set current stage" sid="2931653126024059" type="QuestAction">
+                <action id="0" name="Set current stage" sid="2931653126024059" type="QuestRuntimeInterface">
                     <param id="0" name="Value">Player.CurrentStage</param>
                 </action>
             </actions>

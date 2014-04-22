@@ -189,7 +189,7 @@
                     <param id="0" name="Instance variable">CurrentStage</param>
                     <param id="1" name="Value">StageChanger.Stage</param>
                 </action>
-                <action id="0" name="Set current stage" sid="9866364592141594" type="QuestAction">
+                <action id="0" name="Set current stage" sid="9866364592141594" type="QuestRuntimeInterface">
                     <param id="0" name="Value">StageChanger.Stage</param>
                 </action>
                 <action id="0" name="Call function" sid="6816952854045386" type="Function">
