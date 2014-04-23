@@ -6,16 +6,26 @@ function ScriptEditor(script, seEventRouter, mouseWheelManager, /* internal use 
     this.script = script;
     this.stageEditors = {};
     this.currentStage = null;
-    this.scriptPlugins = {
-        notificationCenter : new ScriptNotificationCenter(this.script),
-        condTypeValidator : new CondTypeValidator(this.script),
-        stageSearch : new StageSearch(this.script),
-        storylineSearch : new StorylineSearch(this.script)
-    };
-    this.scriptPlugins.validator = new ValidationBroker(
-        this.scriptPlugins.condTypeValidator,
-        this.scriptPlugins.notificationCenter
-    );
+
+    this.scriptPlugins = [];
+    this.scriptPlugins[_SCRIPT_PLUGINS.NOTIFICATION_CENTER] =
+        new ScriptNotificationCenter(this.script);
+    this.scriptPlugins[_SCRIPT_PLUGINS.COND_TYPE_VALIDATOR] =
+        new CondTypeValidator(this.script);
+    this.scriptPlugins[_SCRIPT_PLUGINS.STAGE_SEARCH] =
+        new StageSearch(this.script);
+    this.scriptPlugins[_SCRIPT_PLUGINS.STORYLINE_SEARCH] =
+        new StorylineSearch(this.script);
+    this.scriptPlugins[_SCRIPT_PLUGINS.VALIDATION_BROKER] =
+        new ValidationBroker(
+            this.scriptPlugins[_SCRIPT_PLUGINS.COND_TYPE_VALIDATOR],
+            this.scriptPlugins[_SCRIPT_PLUGINS.NOTIFICATION_CENTER]
+        );
+    this.scriptPlugins[_SCRIPT_PLUGINS.QUEST_OBJECT_MANAGER] =
+        new QuestObjectsManager(
+            this.script,
+            this.scriptPlugins[_SCRIPT_PLUGINS.STAGE_SEARCH]
+        );
 
     if (load)
         return;
@@ -59,14 +69,21 @@ ScriptEditor.load = function(script, seEventRouter, mouseWheelManager, savedData
 };
 
 ScriptEditor.prototype.delete = function() {
-    var objDelete = function(ix, obj) { obj.delete() };
     this.seEvHandler.delete();
     delete this.seEvHandler;
     this.seEvents.delete();
     delete this.seEvents;
-    jQuery.each(this.stageEditors, objDelete);
+    jQuery.each(this.stageEditors, collectionObjectDelete);
     delete this.stageEditors;
-    jQuery.each(this.scriptPlugins, objDelete);
+    jQuery.each(this.scriptPlugins, collectionObjectDelete);
+};
+
+ScriptEditor.prototype.getScriptPlugin = function(id) {
+    if (id >= _SCRIPT_PLUGINS.FIRST &&
+            id <= _SCRIPT_PLUGINS.LAST)
+        return this.scriptPlugins[id];
+    else
+        return null;
 };
 
 ScriptEditor.prototype.getScript = function() {

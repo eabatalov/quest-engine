@@ -10,7 +10,8 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
 
         this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
         this.seService = seService;
-        this.condTypeValidator = function() { return this.seService.getSE().scriptPlugins.condTypeValidator; };
+        this.condTypeValidator = function() {
+            return this.seService.getSE().getScriptPlugin(_SCRIPT_PLUGINS.COND_TYPE_VALIDATOR); };
         this.condTypeListChangedEvHandler = null;
         this.condTypesCached = null;
 
@@ -96,7 +97,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
             if (!node)
                 return [];
 
-            var stage = this.seService.getSE().scriptPlugins.stageSearch.search(node);
+            var stage = this.seService.getSE().getScriptPlugin(_SCRIPT_PLUGINS.STAGE_SEARCH).search(node);
             if (!stage)
                 return [];
 
@@ -105,7 +106,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
 
         $scope.addObjectToStoryLine = function() {
             if ($scope.node.getType() === _QUEST_NODES.STORYLINE) {
-                var stage = this.seService.getSE().scriptPlugins.stageSearch.search($scope.node);
+                var stage = this.seService.getSE().getScriptPlugin(_SCRIPT_PLUGINS.STAGE_SEARCH).search($scope.node);
                 if (!stage)
                     return;
                 $scope.node.addObject($scope.objToAddId, stage);
@@ -119,7 +120,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
             if (!graphObj)
                 return [];
 
-            var storyline = this.seService.getSE().scriptPlugins.storylineSearch.search(graphObj);
+            var storyline = this.seService.getSE().getScriptPlugin(_SCRIPT_PLUGINS.STORYLINE_SEARCH).search(graphObj);
             if (!storyline)
                 return [];
 
