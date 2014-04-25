@@ -28,5 +28,10 @@ function SaveLoadController($scope, seEventRouter) {
             seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_LOADED", json : projectSavedJSON });
         }
     });
+
+    $scope.compileClick = function() {
+        seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "SCRIPT_COMPILE_CLICK" });
+    };
+
     seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_SL_BTN" });
 }

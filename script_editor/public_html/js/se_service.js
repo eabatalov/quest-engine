@@ -7,6 +7,7 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.seEventRouter = seEventRouter;
     this.projectSaver = new SEProjectSaveService(this, seEventRouter);
     this.projectOpener = new SEProjectOpenService(this, seEventRouter);
+    this.scriptCompiler = new SEScriptCompiler(this, seEventRouter);
 
     this.script = new SEScript("story");
     this.scriptEditor = new ScriptEditor(this.script, this.seEventRouter, this.mouseWheelManager);

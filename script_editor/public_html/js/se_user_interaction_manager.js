@@ -103,6 +103,11 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_OPEN", json : args.json });
         return;
     }
+
+    if (evName === "SCRIPT_COMPILE_CLICK") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "SCRIPT_COMPILE" });
+        return;
+    }
 };
 
 // NONE -> WAIT_NODE_POSITIONING -> WAIT_NODE_CREATION -> NONE

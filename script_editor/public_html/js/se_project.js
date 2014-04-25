@@ -12,9 +12,10 @@ SEProjectSaveService.prototype.run = function() {
         script : this.seService.script.save(),
         scriptEditor : this.seService.scriptEditor.save()
     };
+
     projectSavedJSON = JSON.stringify(projectSaved, null, '\t');
-    var scriptAsBlob = new Blob([projectSavedJSON], { type : 'application/json' });
-    saveAs(scriptAsBlob, this.seService.script.getName() + ".json");
+    var projectSavedJSONBlob = new Blob([projectSavedJSON], { type : 'application/json' });
+    saveAs(projectSavedJSONBlob, this.seService.script.getName() + "_project.json");
 };
 
 function SEProjectOpenService(seService, seEventRouter) {
@@ -38,6 +39,19 @@ SEProjectOpenService.prototype.run = function(projectSavedJSON) {
         projectSaved.scriptEditor
     );
     this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PROJECT_FILE_OPENED" });
+};
+
+function SEScriptCompiler(seService, seEventRouter) {
+    this.seService = seService;
+    this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
+    this.seEvents.on(function(msg) {
+        if (msg.name === "SCRIPT_COMPILE")
+            this.run();
+    }, this);
+}
+
+SEScriptCompiler.prototype.run = function() {
+    saveScript(this.seService.script);
 };
 
 //Temporal save/load testing method. Used until we have our unit tests.
