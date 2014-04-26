@@ -5,7 +5,6 @@
 11. Quest script errors reporting to construct game
 12. Quest script error reporting for quest script editor
 
-14. Possible condition type should depend on its source node.
 15. Implement animation support in quest engine.
 16. Implement sound playback support in quest engine.
 17. Implement proper scaling and scrolling of the scene.

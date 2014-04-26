@@ -7,4 +7,7 @@ To make plugins avaliable in Construct2:
 5. mklink /D scml REPO_DIR\engine\plugins\scml
 
 6. cd "C:\Program Files\Construct 2\exporters\html5\behaviours"
-7. mklink /D text_auto_resize REPOSITORY_DIR\engine\plugins\text_auto_resize
+7. mklink /D text_auto_resize REPO_DIR\engine\plugins\text_auto_resize
+
+8. cd REPOSITORY_DIR\lib
+9. mklink /D lib REPO_DIR\engine\plugins\quest_runtime\lib

@@ -44,7 +44,7 @@ cr.plugins_.QuestRuntimePlugin = function(runtime)
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
 		// e.g...
 		// this.myValue = 0;
-		this.quest = new QuestEngine();
+		this.questRuntime = new QuestRuntime();
 	};
 	
 	// called whenever an instance is destroyed
@@ -138,14 +138,16 @@ cr.plugins_.QuestRuntimePlugin = function(runtime)
 }());
 
 //Actions
-function playerActionExec(actionType) {
-	this.quest.playerActionExec(actionType.getFirstPicked());
+function playerActionExec(questRuntimeInterfaceType) {
+	this.questRuntime.playerActionExec(
+        questRuntimeInterfaceType.getFirstPicked().uiActionManager
+    );
 }
 
-function setupQuestObjects(NPCType, GameActionType) {
-	this.quest.setupObjects(NPCType, GameActionType);
+function setupQuestObjects(npcType) {
+	this.questRuntime.setupObjects(npcType);
 }
 
 function setupQuestScript(scriptURL) {
-	this.quest.setupScript(scriptURL);
+	this.questRuntime.setupScript(scriptURL);
 }

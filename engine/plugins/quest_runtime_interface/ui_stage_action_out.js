@@ -4,8 +4,8 @@ function UIStageActionOut(name) {
 };
 
 UIStageActionOut.prototype.clearFields = function() {
-    this.actor = "";
-    this.action = "";
+    this.actorType = "";
+    this.actionType = "";
     this.npcActorUID = 0;
 
     this.animationName = "";
@@ -17,16 +17,20 @@ UIStageActionOut.prototype.clearFields = function() {
     this.answer4Text = "";
     this.phraseType = "";
 
-    this.delay = 0;
-    this.continue = 0;
+    this.delaySec = 0;
+    this.isContinue = 0; //0 or 1
+};
+
+UIStageActionOut.prototype.getStageName = function() {
+    return this.stageName;
 };
 
 UIStageActionOut.prototype.setActorType = function(actorType) {
-    this.actor = actorType;
+    this.actorType = actorType;
 };
 
 UIStageActionOut.prototype.getActorType = function() {
-    return this.actor;
+    return this.actorType;
 };
 
 UIStageActionOut.prototype.setNPCActorUID = function(npcActorUID) {
@@ -38,11 +42,11 @@ UIStageActionOut.prototype.getNPCActorUID = function() {
 };
 
 UIStageActionOut.prototype.setActionType = function(actionType) {
-    this.action = actionType;
+    this.actionType = actionType;
 };
 
 UIStageActionOut.prototype.getActionType = function() {
-    return this.action;
+    return this.actionType;
 };
 
 UIStageActionOut.prototype.setAnimationName = function(animName) {
@@ -102,17 +106,21 @@ UIStageActionOut.prototype.getPhraseType = function() {
 };
 
 UIStageActionOut.prototype.setDelaySec = function(delaySec) {
-    this.delay = delaySec;
+    this.delaySec = delaySec;
 };
 
 UIStageActionOut.prototype.getDelaySec = function() {
-    return this.delay;
+    return this.delaySec;
 };
 
 UIStageActionOut.prototype.setIsContinue = function(isContinue) {
-    this.continue = isContinue;
+    this.isContinue = isContinue;
 };
 
 UIStageActionOut.prototype.getIsContinue = function() {
-    return this.continue;
+    return this.isContinue;
+};
+
+UIStageActionOut.prototype.toString = function() {
+    return JSON.stringify(this, null, '\t');
 };

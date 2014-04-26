@@ -4,15 +4,15 @@ function UIStageActionManager() {
 	this.uiStageActions = {};
 };
 
-UIStageAction.prototype.getCurrentStageUIActionIN = function() {
+UIStageActionManager.prototype.getCurrentStageUIActionIN = function() {
     return this.uiStageActions[this.curStageName].in;
 };
 
-UIStageAction.prototype.getCurrentStageUIActionOUT = function() {
+UIStageActionManager.prototype.getCurrentStageUIActionOUT = function() {
     return this.uiStageActions[this.curStageName].out;
 };
 
-UIStageActionManager.prototype.setCurrentStageName(stageName) {
+UIStageActionManager.prototype.setCurrentStageName = function(stageName) {
     if (!(stageName in this.uiStageActions)) {
         this.uiStageActions[stageName] = {
             in : new UIStageActionIn(stageName),

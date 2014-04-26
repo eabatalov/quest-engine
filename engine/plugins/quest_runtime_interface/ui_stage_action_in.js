@@ -4,24 +4,30 @@ function UIStageActionIn(name) {
 };
 
 UIStageActionIn.prototype.clearFields = function() {
-	this.lastPlayerAction = "";
-	this.lastActionTargetId = "";
+	this.actionType = "";
+	this.targetId = "";
+};
+
+UIStageActionIn.prototype.getStageName = function() {
+    return this.stageName;
 };
 
 UIStageActionIn.prototype.setActionType = function(actionType) {
-    this.lastPlayerAction = actionType;
+    this.actionType = actionType;
 };
 
 UIStageActionIn.prototype.getActionType = function() {
-    return this.lastPlayerAction;
+    return this.actionType;
 };
 
 UIStageActionIn.prototype.setTargetId = function(targetId) {
-    this.lastActionTargetId = targetId;
+    this.targetId = targetId;
 };
 
 UIStageActionIn.prototype.getTargetId = function() {
-    return this.lastActionTargetId;
+    return this.targetId;
 };
 
-
+UIStageActionIn.prototype.toString = function() {
+    return JSON.stringify(this, null, '\t');
+};
