@@ -11,7 +11,7 @@
 		"category":		"Learzing",				// Prefer to re-use existing categories, but you can set anything here
 		"type":			"object",				// either "world" (appears in layout and is drawn), else ""
 		"rotatable":	false,					// only used when "type" is "world".  Enables an angle property on the object.
-		"flags":		0						// uncomment lines to enable flags...
+		"flags":		0,						// uncomment lines to enable flags...
 					//	| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
 					//	| pf_texture			// object has a single texture (e.g. tiled background)
 					//	| pf_position_aces		// compare/set/get x, y...
@@ -25,6 +25,10 @@
 					//	| pf_effects			// allow WebGL shader effects to be added
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
+        "dependency":
+                "ui_stage_action_in.js;"
+            +   "ui_stage_action_out.js;"
+            +   "ui_stage_action_manager.js;"
 	};
 };
 

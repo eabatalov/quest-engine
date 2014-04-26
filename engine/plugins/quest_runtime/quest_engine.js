@@ -22,10 +22,7 @@ QuestEngine.prototype.setupObjects = function(NPCType, GameActionType) {
 
 	$.each(NPCType.instances, function(ix, npc) {
 		var stageName = npc.instance_vars[_NPC_INST_PROP_STAGE_IX];
-		if (!(stageName in gameAction.stageActions)) {
-			var stageAction = new gameAction.StageAction();
-			stageAction.stageName = stageName;
-			gameAction.stageActions[stageName] = stageAction;
+		if (!(stageName in quest.stageNPCs)) {
 			quest.stageNPCs[stageName] = {};
 		}
 		quest.stageNPCs[stageName][npc.instance_vars[_NPC_INST_PROP_NPC_ID_ON_STAGE_IX]] = npc.uid;

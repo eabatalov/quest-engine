@@ -35,8 +35,15 @@
 			+ "quest_interpretator.js;"
 			+ "quest_engine.js;"
 			+ "quest_engine_debug.js;"
-			+ "story.js"
-			//+ "example_quest_script.js;"
+			+ "story.js;"
+            + "lib/util/misc.js;"
+            + "lib/util/event.js;"
+            + "lib/util/object_map.js;"
+            + "lib/quest_script/consts.js;"
+            + "lib/quest_script/node.js;"
+            + "lib/quest_script/cond.js;"
+            + "lib/quest_script/stage.js;"
+            + "lib/quest_script/script.js;"
 			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
 };

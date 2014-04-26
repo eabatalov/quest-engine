@@ -9,34 +9,6 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
 	this.runtime = runtime;
 };
 
-function StageAction() {
-	//Const
-	this.stageName = "";
-	//INs
-	this.lastPlayerAction = "";
-	this.lastActionTargetId = "";
-
-	this.clearOutFields = function() {
-		//OUTs
-		this.actor = "";
-		this.action = "";
-		this.npcActorUID = 0;
-
-		this.animationName = "";
-
-		this.text = "";
-		this.answer1Text = "";
-		this.answer2Text = "";
-		this.answer3Text = "";
-		this.answer4Text = "";
-		this.phraseType = "";
-
-		this.delay = 0;
-		this.continue = 0;
-	};
-	this.clearOutFields();
-}
-
 (function ()
 {
 	var pluginProto = cr.plugins_.QuestRuntimeInterfacePlugin.prototype;
@@ -72,14 +44,8 @@ function StageAction() {
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
 		// e.g...
 		// this.myValue = 0;
-		this.StageAction = StageAction;
-		this.curStageName = null;
-		this.stageActions = {}; //stage name -> Stage
+		this.uiActionManager = new UIStageActionManager();
 	};
-
-	instanceProto.curStageAction = function() {
-		return this.stageActions[this.curStageName];
-	}
 	
 	// called whenever an instance is destroyed
 	// note the runtime may keep the object after this call for recycling; be sure
@@ -164,16 +130,16 @@ function StageAction() {
 	// Actions
 	function Acts() {};
 
-	Acts.prototype.setStage = function(value) {
-		this.curStageName = value;
+	Acts.prototype.setStage = function(stageName) {
+        this.uiActionManager.setCurrentStageName(stageName);
 	};
 
 	Acts.prototype.setLastPlayerAction = function(value) {
-		this.curStageAction().lastPlayerAction = value;
+        this.uiActionManager.getCurrentStageUIActionIN().setActionType(value);
 	};
 
 	Acts.prototype.setLastActionTargetId = function(value) {
-		this.curStageAction().lastActionTargetId = value;
+        this.uiActionManager.getCurrentStageUIActionIN().setTargetId(value);
 	};
 
 	pluginProto.acts = new Acts();
@@ -184,56 +150,82 @@ function StageAction() {
 	//this is instance in expressions
 	Exps.prototype.getCurrentStage = function(ret)
 	{
-		ret.set_string(this.curStageName);	
+		ret.set_string(
+            this.uiActionManager.getCurrentStageName()
+        );
 	}
 
 	Exps.prototype.getActor = function(ret)
 	{
-		ret.set_string(this.curStageAction().actor);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getActorType()
+        );
 	};
 
 	Exps.prototype.getNPCActorUID = function(ret) {
-		ret.set_int(this.curStageAction().npcActorUID);
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getNPCActorUID()
+        );
 	};
 
 	Exps.prototype.getAction = function(ret) {
-		ret.set_string(this.curStageAction().action);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getActionType()
+        );
 	};
 
 	Exps.prototype.getAnimationName = function(ret) {
-		ret.set_string(this.curStageAction().animationName);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getAnimationName()
+        );
 	};
 
 	Exps.prototype.getText = function(ret) {
-		ret.set_string(this.curStageAction().text);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getText()
+        );
 	};
 
 	Exps.prototype.getAnswer1Text = function(ret) {
-		ret.set_string(this.curStageAction().answer1Text);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer1Text()
+        );
 	};
 
 	Exps.prototype.getAnswer2Text = function(ret) {
-		ret.set_string(this.curStageAction().answer2Text);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer2Text()
+        );
 	};
 
 	Exps.prototype.getAnswer3Text = function(ret) {
-		ret.set_string(this.curStageAction().answer3Text);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer3Text()
+        );
 	};
 
 	Exps.prototype.getAnswer4Text = function(ret) {
-		ret.set_string(this.curStageAction().answer4Text);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer4Text()
+        );
 	};
 
 	Exps.prototype.getPhraseType = function(ret) {
-		ret.set_string(this.curStageAction().phraseType);
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getPhraseType()
+        );
 	};
 
 	Exps.prototype.getDelay = function(ret) {
-		ret.set_int(this.curStageAction().delay);
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getDelaySec();
+        );
 	};
 
 	Exps.prototype.getContinue = function(ret) {
-		ret.set_int(this.curStageAction().continue);
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getContinue();
+        );
 	};
 
 	pluginProto.exps = new Exps();
