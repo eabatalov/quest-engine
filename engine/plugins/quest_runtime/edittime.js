@@ -26,24 +26,11 @@
 												// a single non-tiling image the size of the object) - required for effects to work properly
 		, "dependency":
 			"http://learzing.com/scripts/jquery.cookie.js;"
-			+ "http://learzing.com/scripts/angular.js;"
+			/*+ "http://learzing.com/scripts/angular.js;"
 			+ "http://learzing.com/scripts/sdk/utils.js;"
 			+ "http://learzing.com/scripts/sdk/skills.js;"
-			+ "http://learzing.com/scripts/sdk/learzing.js;"
-			+ "quest_runtime.js;"
-			+ "quest_runtime_debug.js;"
-            + "lib/util/misc.js;"
-            + "lib/util/event.js;"
-            + "lib/util/object_map.js;"
-            + "lib/quest_script/consts.js;"
-            + "lib/quest_script/node.js;"
-            + "lib/quest_script/cond.js;"
-            + "lib/quest_script/stage.js;"
-            + "lib/quest_script/script.js;"
-            + "lib/quest_script/interpretator/quest_event.js;"
-            + "lib/quest_script/interpretator/storyline.js;"
-            + "lib/quest_script/interpretator/stage.js;"
-            + "lib/quest_script/interpretator/script.js;"
+			+ "http://learzing.com/scripts/sdk/learzing.js;"*/
+			+ "quest_runtime.dev.js;"
 			+ "story.js;"
 			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
