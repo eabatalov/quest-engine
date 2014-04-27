@@ -1,0 +1,26 @@
+{
+    "name" : "learzing-quest-engine-util-lib",
+    "version" : "0.1.0",
+    "description" : "Basic utility library for many learzing quest engine projects",
+    "keywords" : ["learzing", "quest", "engine", "utility", "library"],
+    "homepage" : "http://learzing.com/quest_engine",
+    "bugs" : "eugene@learzing.com",
+    "author" : {
+        "name" : "Eugene Batalov",
+        "email" : "eugene@learzing.com"
+    },
+
+    "main": "bin/utils.dev.js",
+
+    "dependencies" : {
+        "jquery" : "~2.1.0"
+    },
+
+    "devDependencies": {
+        "grunt" : "~0.4.1",
+        "grunt-contrib-concat" : "~0.3",
+        "grunt-contrib-uglify" : "0.4.0"
+    },
+
+    "private" : true
+}
