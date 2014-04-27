@@ -218,13 +218,13 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
 
 	Exps.prototype.getDelay = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getDelaySec();
+            this.uiActionManager.getCurrentStageUIActionOUT().getDelaySec()
         );
 	};
 
 	Exps.prototype.getContinue = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getContinue();
+            this.uiActionManager.getCurrentStageUIActionOUT().getIsContinue()
         );
 	};
 

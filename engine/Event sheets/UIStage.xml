@@ -50,8 +50,9 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUI">
+        <event-group description="" sid="6888331275258145" title="NPCUI">
             <sub-events>
+                <comment>XXX Due to defered &quot;TextAutoResize new text was drawn&quot; here we have race. If &quot;continue&quot; is triggered as next ui event then we loose QuestRuntimeInterface fileds values. Thus we should readl all the QuestRuntimeInterface values before &quot;continue&quot; can be generated.</comment>
                 <event-block sid="2078795932936655">
                     <conditions>
                         <condition id="0" name="On function" sid="6830635473425752" type="Function">
@@ -66,12 +67,6 @@
                             <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                     </actions>
-                </event-block>
-                <event-block sid="6689006835659497">
-                    <conditions>
-                        <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="3187111328691282" type="NPCPhraseTxt" />
-                    </conditions>
-                    <actions />
                     <sub-events>
                         <event-block sid="9255208735694716">
                             <conditions>
@@ -103,6 +98,14 @@
                                 </action>
                             </actions>
                         </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6689006835659497">
+                    <conditions>
+                        <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="3187111328691282" type="NPCPhraseTxt" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
                         <event-block sid="7807202322977173">
                             <conditions />
                             <actions>
@@ -212,7 +215,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="4475203334158127">
+                <event-block collapsed="1" sid="4475203334158127">
                     <conditions>
                         <condition id="0" name="On function" sid="9390743698732721" type="Function">
                             <param id="0" name="Name">&quot;PositionNPCQuizGUI&quot;</param>
@@ -436,7 +439,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6702021473764103" title="PlayerUI">
+        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <event-block sid="566202086767859">
                     <conditions>
@@ -602,7 +605,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block collapsed="1" sid="1790664730454496">
+                <event-block sid="1790664730454496">
                     <conditions>
                         <condition id="0" name="On function" sid="3442607008895169" type="Function">
                             <param id="0" name="Name">&quot;PositionPlayerQuizGUI&quot;</param>

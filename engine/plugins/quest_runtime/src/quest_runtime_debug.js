@@ -119,6 +119,6 @@ function dumpQuestNode(questNode) {
 		return;
 
 	console.log("==QUEST NODE==\n"
-        + questNode.save()
+        + JSON.stringify(questNode.save(), null, '\t')
 	);
 }

@@ -31,7 +31,7 @@
 			+ "http://learzing.com/scripts/sdk/skills.js;"
 			+ "http://learzing.com/scripts/sdk/learzing.js;"*/
 			+ "quest_runtime.dev.js;"
-			+ "story.js;"
+			+ "story_script.js;"
 			//+ "http://learzing.com:8081/socket.io/socket.io.js;"
 	};
 };

@@ -56,7 +56,7 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Quest">
+        <object-folder expanded="0" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -595,7 +595,7 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="Player">
+            <object-folder expanded="1" name="Player">
                 <object-folder expanded="0" name="Animation">
                     <object-type name="PlayerBelt" sid="610851170955573">
                         <plugin id="Sprite" />
@@ -2864,7 +2864,7 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="1">
+    <files-folder expanded="0">
         <file-folder expanded="0" name="Icons">
             <file name="icon-16.png" />
             <file name="icon-32.png" />
@@ -2873,7 +2873,7 @@
             <file name="icon-256.png" />
             <file name="loading-logo.png" />
         </file-folder>
-        <file-folder expanded="1" name="SpriterAnimations">
+        <file-folder expanded="0" name="SpriterAnimations">
             <file name="player.scml" />
             <file name="player.scon" />
         </file-folder>

@@ -81,7 +81,7 @@ UIStageActionOut.prototype.getAnswer2Text = function() {
     return this.answer2Text;
 };
 
-UIStageActionOut.prototype.setAnswer1Text = function(text) {
+UIStageActionOut.prototype.setAnswer3Text = function(text) {
     this.answer3Text = text;
 };
 

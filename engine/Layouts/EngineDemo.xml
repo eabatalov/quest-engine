@@ -211,7 +211,7 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Stage>Stage1</Stage>
+                        <Stage>Stage2</Stage>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid">
@@ -323,35 +323,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="camera" uid="73">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="ScrollTo">
-                            <properties>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>471.96875</x>
-                        <y>132.877685547</y>
-                        <z>0</z>
-                        <width>80</width>
-                        <height>60</height>
-                        <depth>0</depth>
-                        <hotspotX>0.506493509</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
             </instances>
             <effects />
         </layer>
@@ -377,8 +348,8 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Stage>Stage1</Stage>
-                        <NpcIDInStage>0</NpcIDInStage>
+                        <Stage>Stage2</Stage>
+                        <NpcIDInStage>FatNerd</NpcIDInStage>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -404,7 +375,7 @@
                     </properties>
                     <instance-variables>
                         <Stage>Stage1</Stage>
-                        <NpcIDInStage>older</NpcIDInStage>
+                        <NpcIDInStage>Older</NpcIDInStage>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -510,58 +481,6 @@
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
-                    </world>
-                </instance>
-                <instance type="NPC" uid="0">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>NPCYellow</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <Stage>Stage1</Stage>
-                        <NpcIDInStage>firstLantern</NpcIDInStage>
-                    </instance-variables>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>585.939086914</x>
-                        <y>421.406005859</y>
-                        <z>0</z>
-                        <width>167.434417725</width>
-                        <height>235.151672363</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0.082635239</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="NPC" uid="17">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>NPCYellow</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <Stage>Stage1</Stage>
-                        <NpcIDInStage>secondLantern</NpcIDInStage>
-                    </instance-variables>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>1014.505371094</x>
-                        <y>409.288543701</y>
-                        <z>0</z>
-                        <width>168.249725342</width>
-                        <height>236.147415161</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0.007663307</angle>
-                        <opacity>1</opacity>
                     </world>
                 </instance>
                 <instance type="PlayerEye1Right" uid="49">
@@ -1095,8 +1014,8 @@
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
             <parallax>
-                <x>1</x>
-                <y>1</y>
+                <x>0</x>
+                <y>0</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>

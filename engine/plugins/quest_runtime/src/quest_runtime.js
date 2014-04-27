@@ -51,12 +51,12 @@ QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
 	var questNode = this.scriptInterp.step(questEvent);
 	dumpQuestNode(questNode);
 
-	questNodeToUIStageActionOut(questNode, outAction);
+	this.questNodeToUIStageActionOut(questNode, outAction);
 	validateUIStageActionOut(outAction);
 	dumpUIStageActionOut(outAction);
 }
 
-function questNodeToUIStageActionOut(questNode, action) {
+QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
 	var setActorInfo = false;
 	switch(questNode.getType()) {
 		case _QUEST_NODES.NONE:
@@ -73,10 +73,10 @@ function questNodeToUIStageActionOut(questNode, action) {
 			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ);
 			action.setText(questNode.getProp("text"));
 			action.setPhraseType(questNode.getProp("phraseType"));
-            action.setAnswer1Text(questNodei.getProp("ans1"));
-            action.setAnswer2Text(questNodei.getProp("ans2"));
-            action.setAnswer3Text(questNodei.getProp("ans3"));
-            action.setAnswer4Text(questNodei.getProp("ans4"));
+            action.setAnswer1Text(questNode.getProp("ans1"));
+            action.setAnswer2Text(questNode.getProp("ans2"));
+            action.setAnswer3Text(questNode.getProp("ans3"));
+            action.setAnswer4Text(questNode.getProp("ans4"));
 			setActorInfo = true;
 		break;
 		case _QUEST_NODES.ANIM:
@@ -107,7 +107,7 @@ function questNodeToUIStageActionOut(questNode, action) {
                 : null
         );
 	}
-	stageAct.continue = questNode.continue === true ? 1 : 0;
+    action.setIsContinue(questNode.continue === true ? 1 : 0);
 }
 
 function uiStageActionInToQuestEvent(action) {
@@ -115,31 +115,31 @@ function uiStageActionInToQuestEvent(action) {
     var props = null;
 
 	switch(action.getActionType()) {
-		case _PLAYER_ACTIONS.PLAYER_CLICKED:
+		case _UI_STAGE_ACTION_IN.ACTION_TYPES.PLAYER_CLICKED:
 			type = _QUEST_EVENTS.OBJECT_CLICKED;
             props = { id : _QUEST_PLAYER_ID };
 		break;
-		case _PLAYER_ACTIONS.NPC_CLICKED:
+		case _UI_STAGE_ACTION_IN.ACTION_TYPES.NPC_CLICKED:
             type = _QUEST_EVENTS.OBJECT_CLICKED;
             props = { id : action.getTargetId() };
 		break;
-		case  _PLAYER_ACTIONS.ANSWER1_CLICKED:
+		case  _UI_STAGE_ACTION_IN.ACTION_TYPES.ANSWER1_CLICKED:
             type = _QUEST_EVENTS.ANSWER_1_CLICKED;
 		    props = { id : action.getTargetId() };
 		break;
-		case _PLAYER_ACTIONS.ANSWER2_CLICKED:
+		case _UI_STAGE_ACTION_IN.ACTION_TYPES.ANSWER2_CLICKED:
             type = _QUEST_EVENTS.ANSWER_2_CLICKED,
 			props = { id : action.getTargetId() };
 		break;
-		case _PLAYER_ACTIONS.ANSWER3_CLICKED:
+		case _UI_STAGE_ACTION_IN.ACTION_TYPES.ANSWER3_CLICKED:
             type = _QUEST_EVENTS.ANSWER_3_CLICKED,
 			props = { id : action.getTargetId() };
 		break;
-		case _PLAYER_ACTIONS.ANSWER4_CLICKED:
+		case _UI_STAGE_ACTION_IN.ACTION_TYPES.ANSWER4_CLICKED:
             type = _QUEST_EVENTS.ANSWER_4_CLICKED;
 		    props = { id : action.getTargetId() };
 		break;
-		case  _PLAYER_ACTIONS.CONTINUE:
+		case  _UI_STAGE_ACTION_IN.ACTION_TYPES.CONTINUE:
             type = _QUEST_EVENTS.CONTINUE;
 		break;
 		default:
