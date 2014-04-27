@@ -1,0 +1,38 @@
+{
+    "name" : "learzing-quest-engine-script-editor",
+    "version" : "0.1.0",
+    "description" : "Learzing quest script visual editor application",
+    "keywords" : ["learzing", "quest", "script", "editor", "application"],
+    "homepage" : "http://learzing.com/quest_engine",
+    "bugs" : "eugene@learzing.com",
+    "author" : {
+        "name" : "Eugene Batalov",
+        "email" : "eugene@learzing.com"
+    },
+
+    "main": "bin/script_editor.dev.js",
+
+    "dependencies" : {
+        "jquery" : "~2.1.0"
+    },
+
+    "devDependencies": {
+        "grunt" : "~0.4.1",
+        "grunt-contrib-concat" : "~0.3",
+        "grunt-contrib-uglify" : "~0.4.0",
+        "exec-sync" : "~0.1.6"
+    },
+
+    "gruntDependencies" : [
+        {
+            "path" : "lib/util",
+            "args" : ""
+        },
+        {
+            "path" : "lib/quest_script",
+            "args" : "--plugins=1"
+        }
+    ],
+
+    "private" : true
+}
