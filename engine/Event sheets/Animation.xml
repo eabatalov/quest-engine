@@ -12,86 +12,6 @@
                         <condition id="666" name="On initialised" sid="2482119295865044" type="PlayerSCML" />
                     </conditions>
                     <actions>
-                        <action id="666" name="Associate object type" sid="1848717832653719" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerEye1Right</param>
-                            <param id="1" name="Name">&quot;eye1_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="5129372548402303" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerPalmRight</param>
-                            <param id="1" name="Name">&quot;palm_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="9958633300677465" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHand2Right</param>
-                            <param id="1" name="Name">&quot;hand2_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="1032118890119269" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHand1Right</param>
-                            <param id="1" name="Name">&quot;hand1_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="7923842915934885" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerLeg1</param>
-                            <param id="1" name="Name">&quot;leg1&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="1284410239523655" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerBootsBack</param>
-                            <param id="1" name="Name">&quot;boots_back&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="6964286098696733" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerLeg2Right</param>
-                            <param id="1" name="Name">&quot;leg2_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="6972603961200714" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerLegRright</param>
-                            <param id="1" name="Name">&quot;leg1_right&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="9039928783024793" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerBoots</param>
-                            <param id="1" name="Name">&quot;boots&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="7602137991964949" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerLeg2</param>
-                            <param id="1" name="Name">&quot;leg2&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="3698010038328032" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHand1</param>
-                            <param id="1" name="Name">&quot;hand1&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="2625332063382172" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHand2</param>
-                            <param id="1" name="Name">&quot;hand2&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="9459501486911141" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerPalm</param>
-                            <param id="1" name="Name">&quot;palm&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="7478408976039798" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerBody</param>
-                            <param id="1" name="Name">&quot;body&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="3274168964390179" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerBelt</param>
-                            <param id="1" name="Name">&quot;belt&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="1803592165266198" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerTrunk</param>
-                            <param id="1" name="Name">&quot;trunk&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="4147114521979613" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHead</param>
-                            <param id="1" name="Name">&quot;head&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="8677945402718181" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerHair</param>
-                            <param id="1" name="Name">&quot;hair&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="4608238945214845" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerEye1</param>
-                            <param id="1" name="Name">&quot;eye1&quot;</param>
-                        </action>
-                        <action id="666" name="Associate object type" sid="7200562034052872" type="PlayerSCML">
-                            <param id="0" name="Object">PlayerSmile</param>
-                            <param id="1" name="Name">&quot;smile&quot;</param>
-                        </action>
                         <action id="-9" name="Set value" sid="5088079343122227" type="System">
                             <param id="0" name="Variable">PLAYER_ANIM_SCALING_DEFAULT</param>
                             <param id="1" name="Value">min(Player.Height/(PlayerHair.Height/2+ PlayerTrunk.Height + PlayerLeg1.Height + PlayerLeg2.Height/2), Player.Width/(PlayerHair.Width))</param>
@@ -116,7 +36,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Animation logic which is not changing during the game." sid="5129574936545948" title="Static">
+        <event-group collapsed="1" description="Animation logic which is not changing during the game." sid="5129574936545948" title="Static">
             <sub-events>
                 <event-block sid="8984455808387501">
                     <conditions>
@@ -342,7 +262,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic">
+        <event-group collapsed="1" description="Animation logic which can be enabled/disabled on external demand." sid="8278518111259733" title="Dynamic">
             <sub-events>
                 <event-block sid="8945119670845163">
                     <conditions>

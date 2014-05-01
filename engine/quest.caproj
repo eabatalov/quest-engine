@@ -2838,8 +2838,8 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
-        <event-folder expanded="0" name="Quest">
+    <event-folder expanded="1">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Initialization.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -2849,6 +2849,7 @@
             <event-sheet>UIMisc.xml</event-sheet>
             <event-sheet>Animation.xml</event-sheet>
         </event-folder>
+        <event-sheet>SCMLSpriteBindings.xml</event-sheet>
         <event-sheet>Main.xml</event-sheet>
     </event-folder>
     <global-instances>

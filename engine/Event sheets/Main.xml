@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Main</name>
     <events>
+        <include>SCMLSpriteBindings</include>
         <include>Quest</include>
         <event-block sid="3704540223976062">
             <conditions>
