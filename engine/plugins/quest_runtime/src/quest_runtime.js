@@ -1,11 +1,11 @@
 function QuestRuntime() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
-	this.scriptInterp = new ScriptInterpretator(getQuestScript());
+	this.scriptInterp = null;
 }
 
 QuestRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
 	return this.stageNPCs[stageName][npcIDInStage];
-}
+};
 
 _NPC_INST_PROP_STAGE_IX = 0;
 _NPC_INST_PROP_NPC_ID_ON_STAGE_IX = 1;
@@ -19,18 +19,19 @@ QuestRuntime.prototype.setupObjects = function(NPCType) {
 		}
 		quest.stageNPCs[stageName][npc.instance_vars[_NPC_INST_PROP_NPC_ID_ON_STAGE_IX]] = npc.uid;
 	});
-}
+};
 
 QuestRuntime.prototype.setupScript = function(scriptURL) {
-	//XXX Temporarely disabled for debugging convenience
-	/*jQuery.getScript(scriptURL, function( data, textStatus, jqxhr ) {
+	jQuery.getScript(scriptURL, function( data, textStatus, jqxhr ) {
 		console.log("Quest script load was performed");
 		console.log("Script URL: " + scriptURL);
 		//console.log(data); // Data returned
 		console.log(textStatus); // Success
 		console.log(jqxhr.status); // 200
-	});*/
-}
+        console.log("Starting up script interpretator");
+        this.scriptInterp = new ScriptInterpretator(getQuestScript());
+	}.bind(this));
+};
 
 /* 
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
@@ -54,7 +55,7 @@ QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
 	this.questNodeToUIStageActionOut(questNode, outAction);
 	validateUIStageActionOut(outAction);
 	dumpUIStageActionOut(outAction);
-}
+};
 
 QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
 	var setActorInfo = false;
@@ -108,7 +109,7 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
         );
 	}
     action.setIsContinue(questNode.continue === true ? 1 : 0);
-}
+};
 
 function uiStageActionInToQuestEvent(action) {
     var type = null;
@@ -151,4 +152,4 @@ function uiStageActionInToQuestEvent(action) {
 	return new QuestEvent(
         action.getStageName(), type, props
     );
-};
+}
