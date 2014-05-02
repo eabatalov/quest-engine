@@ -50,7 +50,7 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-group description="" sid="6888331275258145" title="NPCUI">
+        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUI">
             <sub-events>
                 <comment>XXX Due to defered &quot;TextAutoResize new text was drawn&quot; here we have race. If &quot;continue&quot; is triggered as next ui event then we loose QuestRuntimeInterface fileds values. Thus we should readl all the QuestRuntimeInterface values before &quot;continue&quot; can be generated.</comment>
                 <event-block sid="2078795932936655">
@@ -439,8 +439,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
+        <event-group description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
+                <comment>XXX Due to defered &quot;TextAutoResize new text was drawn&quot; here we have race. If &quot;continue&quot; is triggered as next ui event then we loose QuestRuntimeInterface fileds values. Thus we should readl all the QuestRuntimeInterface values before &quot;continue&quot; can be generated.</comment>
                 <event-block sid="566202086767859">
                     <conditions>
                         <condition id="0" name="On function" sid="1757451801164955" type="Function">
@@ -455,12 +456,6 @@
                             <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                     </actions>
-                </event-block>
-                <event-block sid="2153683620744093">
-                    <conditions>
-                        <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="5342987844029183" type="PlayerPhraseTxt" />
-                    </conditions>
-                    <actions />
                     <sub-events>
                         <event-block sid="3336207269604883">
                             <conditions>
@@ -492,6 +487,14 @@
                                 </action>
                             </actions>
                         </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="2153683620744093">
+                    <conditions>
+                        <condition behavior="TextAutoResize" id="0" name="New text redrawn" sid="5342987844029183" type="PlayerPhraseTxt" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
                         <event-block sid="1485529321202152">
                             <conditions />
                             <actions>
