@@ -55,7 +55,7 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="1">
+    <object-folder expanded="0">
         <object-folder expanded="0" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
@@ -1444,7 +1444,7 @@
                 <plugin id="Touch" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Animation">
+        <object-folder expanded="0" name="Animation">
             <object-folder expanded="1" name="Player">
                 <object-type name="PlayerBelt" sid="610851170955573">
                     <plugin id="Sprite" />
@@ -2840,7 +2840,7 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
+    <event-folder expanded="1">
         <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Initialization.xml</event-sheet>
