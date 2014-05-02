@@ -59,7 +59,7 @@
                 </action>
             </actions>
         </event-block>
-        <event-block collapsed="1" sid="9904846653411464">
+        <event-block sid="9904846653411464">
             <conditions>
                 <condition id="0" name="On function" sid="1782576799532024" type="Function">
                     <param id="0" name="Name">&quot;ApplyInitialUIState&quot;</param>
@@ -109,6 +109,15 @@
                             <param id="0" name="X">0</param>
                             <param id="1" name="Y">0</param>
                         </action>
+                        <action id="-26" name="Move to layer" sid="1954010794761984" type="PlayerSpeechBg">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="1486921475863991" type="PlayerPhraseTxt">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="5151622101950851" type="PlayerPhraseBg">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="7461917200921227">
@@ -152,6 +161,15 @@
                         <action id="-3" name="Set position" sid="7381168843074747" type="NPCAnsBg">
                             <param id="0" name="X">0</param>
                             <param id="1" name="Y">0</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="4853900451121702" type="NPCSpeechBg">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="4480052949283986" type="NPCPhraseTxt">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="6163938762955854" type="NPCPhraseBg">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -242,7 +260,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="7222953450595312" title="PlayerUInit">
+        <event-group description="" sid="7222953450595312" title="PlayerUInit">
             <sub-events>
                 <event-block sid="4928173719961111">
                     <conditions>
