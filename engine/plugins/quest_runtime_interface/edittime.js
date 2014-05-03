@@ -136,6 +136,9 @@ AddExpression(12, ef_return_number,
 	"Getters", "getContinue",
 	"1 to continue to the next action not hiding current stage objects and behaviors");
 
+AddExpression(13, ef_return_string, "Function name", "Getters", "getFuncName",
+	"Function name");
+
 ////////////////////////////////////////
 ACESDone();
 

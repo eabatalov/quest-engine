@@ -228,6 +228,12 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
         );
 	};
 
+    Exps.prototype.getFuncName = function(ret) {
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getFuncName()
+        );
+	};
+
 	pluginProto.exps = new Exps();
 
 }());

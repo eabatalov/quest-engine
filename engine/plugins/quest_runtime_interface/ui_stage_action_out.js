@@ -19,6 +19,8 @@ UIStageActionOut.prototype.clearFields = function() {
 
     this.delaySec = 0;
     this.isContinue = 0; //0 or 1
+
+    this.funcName = "";
 };
 
 UIStageActionOut.prototype.getStageName = function() {
@@ -119,6 +121,14 @@ UIStageActionOut.prototype.setIsContinue = function(isContinue) {
 
 UIStageActionOut.prototype.getIsContinue = function() {
     return this.isContinue;
+};
+
+UIStageActionOut.prototype.getFuncName = function() {
+    return this.funcName;
+};
+
+UIStageActionOut.prototype.setFuncName = function(funcName) {
+    this.funcName = funcName;
 };
 
 UIStageActionOut.prototype.toString = function() {

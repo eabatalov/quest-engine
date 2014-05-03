@@ -283,6 +283,7 @@ function SENodeViewStaticConstructor(completionCB) {
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE] = "images/node_stln.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL] = "images/node_none.png";
     SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENodeView.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
@@ -314,6 +315,8 @@ function SENodeViewStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT]);
         SENodeView.TEXTURES.nodes[_QUEST_NODES.NONE] =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.FUNC_CALL] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL]);
         SENodeView.TEXTURES.buttons.del =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.buttons.del);
         SENodeView.TEXTURES.buttons.cond =

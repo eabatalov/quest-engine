@@ -92,6 +92,10 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
 		case _QUEST_NODES.STAGE_CLEAR:
 			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
 		break;
+		case _QUEST_NODES.FUNC_CALL:
+			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
+			action.setFuncName(questNode.getProp("name"));
+		break;
 		default:
 			console.error("Error. Invalid quest node type: " +
                 questNode.getType().toString());

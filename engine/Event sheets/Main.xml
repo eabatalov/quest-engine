@@ -52,5 +52,17 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="6826827011740204">
+            <conditions>
+                <condition id="0" name="On function" sid="8586095129384644" type="Function">
+                    <param id="0" name="Name">&quot;foo&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Alert" sid="6902889610611173" type="Browser">
+                    <param id="0" name="Message">&quot;Quest engine demo function foo was called&quot;</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
