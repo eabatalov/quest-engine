@@ -25,6 +25,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
         this.condTypeNames[_QUEST_CONDS.ANSWER_OTHER_CLICKED] = 'Answer other clicked';
         this.condTypeNames[_QUEST_CONDS.CONTINUE] = 'Continue';
         this.condTypeNames[_QUEST_CONDS.DEFAULT] = 'Default';
+        this.condTypeNames[_QUEST_CONDS.CUSTOM_EVENT] = 'Custom event';
 
         $scope.condTypes = function(cond) {
             if (!cond)

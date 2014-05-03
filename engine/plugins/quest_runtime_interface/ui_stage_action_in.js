@@ -6,6 +6,7 @@ function UIStageActionIn(name) {
 UIStageActionIn.prototype.clearFields = function() {
 	this.actionType = "";
 	this.targetId = "";
+    this.name = ""; //only for CUSTOM_EVENT for now
 };
 
 UIStageActionIn.prototype.getStageName = function() {
@@ -26,6 +27,14 @@ UIStageActionIn.prototype.setTargetId = function(targetId) {
 
 UIStageActionIn.prototype.getTargetId = function() {
     return this.targetId;
+};
+
+UIStageActionIn.prototype.setName = function(name) {
+    this.name = name;
+};
+
+UIStageActionIn.prototype.getName = function() {
+    return this.name;
 };
 
 UIStageActionIn.prototype.toString = function() {

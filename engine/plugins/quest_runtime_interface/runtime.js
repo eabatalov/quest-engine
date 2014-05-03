@@ -142,6 +142,10 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
         this.uiActionManager.getCurrentStageUIActionIN().setTargetId(value);
 	};
 
+    Acts.prototype.setLastActionName = function(value) {
+        this.uiActionManager.getCurrentStageUIActionIN().setName(value);
+	};
+
 	pluginProto.acts = new Acts();
 	
 	//////////////////////////////////////

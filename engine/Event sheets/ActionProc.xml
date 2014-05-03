@@ -51,7 +51,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process action dedicated for UI state change.&#x0D;&#x0A;if QuestRuntimeInterface.getContinue == true ProcUIAction can be called only from ProcGameAction because together they form continuation loop. If you call this func from another place you create 2 continuation loops and this is invlaid.</comment>
-                <event-block sid="9685306970185458">
+                <event-block collapsed="1" sid="9685306970185458">
                     <conditions>
                         <condition id="0" name="On function" sid="4879756541203689" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
@@ -327,6 +327,9 @@
                         </action>
                         <action id="2" name="Set last action target id" sid="3582665451453215" type="QuestRuntimeInterface">
                             <param id="0" name="Value">Function.Param(1)</param>
+                        </action>
+                        <action id="3" name="Set last last action &apos;name&apos; value" sid="8914542710056691" type="QuestRuntimeInterface">
+                            <param id="0" name="Value">Function.Param(2)</param>
                         </action>
                         <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestEngine">
                             <param id="0" name="Action">QuestRuntimeInterface</param>

@@ -19,6 +19,15 @@
 
                 </select>
             </div>
+            <div class="form-group has-feedback" ng-show="cond.getType() === QUEST_CONDS.CUSTOM_EVENT">
+                <label class="control-label" for="name">Name</label>
+                <input ng-model="cond.getProps().name"
+                       ng-change="cond.setProp('name', cond.getProps().name)"
+                       type="text"
+                       placeholder="Text"
+                       class="form-control input-sm" />
+                <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+            </div>
         </div>
     </div>
 

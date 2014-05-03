@@ -92,6 +92,10 @@ AddStringParam("Value", "Action target id");
 AddAction(2, af_none, "Set last action target id", "Setters", "Set last action target id to {0}",
 	"Too complicated", "setLastActionTargetId");
 
+AddStringParam("Value", "Action name");
+AddAction(3, af_none, "Set last last action 'name' value", "Setters", "Set 'name' to {0}",
+	"", "setLastActionName");
+
 ////////////////////////////////////////
 // Expressions
 // AddExpression(id,			// any positive integer to uniquely identify this expression
