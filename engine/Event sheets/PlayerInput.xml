@@ -16,14 +16,14 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-group collapsed="1" description="" sid="1401962210358661" title="NPC">
+                        <event-group description="" sid="1401962210358661" title="NPC">
                             <sub-events>
                                 <event-block sid="3455966220737066">
                                     <conditions>
                                         <condition id="3" name="On touched object" sid="4526777227602263" type="Touch">
                                             <param id="0" name="Object">NPC</param>
                                         </condition>
-                                        <condition id="-9" name="Is visible" sid="179424338218357" type="NPC" />
+                                        <condition disabled="1" id="-9" name="Is visible" sid="179424338218357" type="NPC" />
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Call function" sid="2770755106419538" type="Function">
