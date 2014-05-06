@@ -81,6 +81,10 @@
                                     <param id="0" name="Animation">&quot;Speak&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="0" name="Call function" sid="4020709400817282" type="Function">
+                                    <param id="0" name="Name">&quot;NPCAnimSay&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="6315473732246069">
@@ -95,6 +99,10 @@
                                 <action id="4" name="Set animation" sid="7118728048350618" type="NPCSpeechBg">
                                     <param id="0" name="Animation">&quot;Think&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="693338315134088" type="Function">
+                                    <param id="0" name="Name">&quot;NPCAnimThink&quot;</param>
+                                    <param id="1" name="Parameter {n}">NPC.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -439,7 +447,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6702021473764103" title="PlayerUI">
+        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <comment>XXX Due to defered &quot;TextAutoResize new text was drawn&quot; here we have race. If &quot;continue&quot; is triggered as next ui event then we loose QuestRuntimeInterface fileds values. Thus we should readl all the QuestRuntimeInterface values before &quot;continue&quot; can be generated.</comment>
                 <event-block sid="566202086767859">
@@ -470,6 +478,10 @@
                                     <param id="0" name="Animation">&quot;Speak&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="0" name="Call function" sid="7067417842225699" type="Function">
+                                    <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="5047793466862367">
@@ -484,6 +496,10 @@
                                 <action id="4" name="Set animation" sid="3434206596030371" type="PlayerSpeechBg">
                                     <param id="0" name="Animation">&quot;Think&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="7629816639267521" type="Function">
+                                    <param id="0" name="Name">&quot;AnimPlayerThink&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -539,10 +555,6 @@
                                 </action>
                                 <action id="-15" name="Set visible" sid="1056599444429625" type="PlayerSpeechBg">
                                     <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action id="0" name="Call function" sid="7067417842225699" type="Function">
-                                    <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
-                                    <param id="1" name="Parameter {n}">Player.UID</param>
                                 </action>
                             </actions>
                         </event-block>

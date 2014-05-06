@@ -176,7 +176,7 @@
                 <i folder="5" file="1"/>
             </frames>
         </obj_info>
-        <animation id="0" name="walk" length="1024">
+        <animation id="0" name="main" length="1024">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="20" key="0"/>
@@ -1664,7 +1664,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="jump_start" length="300">
+        <animation id="2" name="jumpup" length="300">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="20" key="0"/>
@@ -2213,7 +2213,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="jump_loop" length="588">
+        <animation id="3" name="flight" length="588">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="20" key="0"/>
@@ -4460,7 +4460,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="7" name="say" length="1024">
+        <animation id="7" name="speak" length="1024">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="20" key="0"/>

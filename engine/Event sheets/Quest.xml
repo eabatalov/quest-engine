@@ -5,7 +5,7 @@
     <events>
         <include>Initialization</include>
         <include>UInit</include>
-        <include>Animation</include>
+        <include>PlayerAnimation</include>
         <include>UIStage</include>
         <include>UIMisc</include>
         <include>ActionProc</include>

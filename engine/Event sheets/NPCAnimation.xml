@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>NPCAnimation</name>
+    <events>
+        <event-block sid="6847560595534974">
+            <conditions>
+                <condition id="0" name="On function" sid="6671805097441326" type="Function">
+                    <param id="0" name="Name">&quot;NPCAnimSay&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="163561885161493" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="996349034861642">
+            <conditions>
+                <condition id="0" name="On function" sid="7351459786208324" type="Function">
+                    <param id="0" name="Name">&quot;NPCAnimThink&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="8504671363393989" type="NPC">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+    </events>
+</c2eventsheet>
