@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>SCMLSpriteBindings</name>
     <events>
+        <variable constant="0" name="ANIMS_TO_INIT" sid="5508776730630773" static="0" type="number">1</variable>
         <comment>Define animation sprite bindings of your script here</comment>
         <event-block sid="9016563247743718">
             <conditions>
@@ -93,8 +94,8 @@
                     <param id="0" name="Variable">PLAYER_ANIM_SCALING_DEFAULT</param>
                     <param id="1" name="Value">min(Player.Height/(PlayerHair.Height/2+ PlayerTrunk.Height + PlayerLeg1.Height + PlayerLeg2.Height/2), Player.Width/(PlayerHair.Width))</param>
                 </action>
-                <action id="0" name="Call function" sid="6016041779762259" type="Function">
-                    <param id="0" name="Name">&quot;initAnimation&quot;</param>
+                <action id="0" name="Call function" sid="1252021524514156" type="Function">
+                    <param id="0" name="Name">&quot;AnimInited&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>

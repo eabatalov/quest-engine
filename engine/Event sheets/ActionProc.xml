@@ -44,7 +44,7 @@
                             <actions>
                                 <action id="0" name="Call function" sid="3661026114796109" type="Function">
                                     <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;CONTINUE&quot;{###}&quot;&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;CONTINUE&quot;{###}&quot;&quot;{###}&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -310,7 +310,7 @@
                         </action>
                         <action id="0" name="Call function" sid="4631591131679396" type="Function">
                             <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                            <param id="1" name="Parameter {n}">Function.Param(1){###}Function.Param(2)</param>
+                            <param id="1" name="Parameter {n}">Function.Param(1){###}Function.Param(2){###}&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>

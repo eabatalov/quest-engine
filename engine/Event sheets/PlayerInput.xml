@@ -3,7 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>PlayerInput</name>
     <events>
-        <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">0</variable>
+        <comment>Block player input on start until game was inited</comment>
+        <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">1</variable>
         <event-group collapsed="1" description="" sid="545184742850449" title="Touch">
             <sub-events>
                 <event-block sid="2646781791677467">

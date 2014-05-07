@@ -66,10 +66,8 @@
 // example				
 /*AddNumberParam("Number", "Enter a number to test if positive.");
 AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive", "Description for my condition!", "MyCondition");*/
-AddCondition(0, cf_none, "Game finishing", "General", "Game finishing",
-	"Triggered when the game is finishing. After this event was processed "
-	+ "quest logic will store and show final game results",
-	"gameFinishing");
+AddCondition(0, cf_trigger, "Quest script loaded", "General",
+    "Quest script loaded", "Quest script loaded", "QuestScriptLoaded");
 
 ////////////////////////////////////////
 // Actions

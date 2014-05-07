@@ -44,7 +44,12 @@ cr.plugins_.QuestRuntimePlugin = function(runtime)
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
 		// e.g...
 		// this.myValue = 0;
+        var thiz = this;
 		this.questRuntime = new QuestRuntime();
+        this.questRuntime.events.scriptLoaded = function() {
+            thiz.runtime.trigger(
+                cr.plugins_.QuestRuntimePlugin.prototype.cnds.QuestScriptLoaded, thiz);
+        };
 	};
 	
 	// called whenever an instance is destroyed
@@ -115,7 +120,7 @@ cr.plugins_.QuestRuntimePlugin = function(runtime)
 	// Conditions
 	function Cnds() {};
 
-	//Cnds.prototype.gameFinishing = gameFinishing;
+	Cnds.prototype.QuestScriptLoaded = questScriptLoaded;
 	
 	pluginProto.cnds = new Cnds();
 	
@@ -150,4 +155,9 @@ function setupQuestObjects(npcType) {
 
 function setupQuestScript(scriptURL) {
 	this.questRuntime.setupScript(scriptURL);
+}
+
+//Conds
+function questScriptLoaded() {
+	return true; //cf_trigger was signaled explicitly
 }

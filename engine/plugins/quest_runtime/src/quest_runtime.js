@@ -1,6 +1,9 @@
 function QuestRuntime() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
 	this.scriptInterp = null;
+    this.events = {
+        scriptLoaded : null
+    };
 }
 
 QuestRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
@@ -30,6 +33,8 @@ QuestRuntime.prototype.setupScript = function(scriptURL) {
 		console.log(jqxhr.status); // 200
         console.log("Starting up script interpretator");
         this.scriptInterp = new ScriptInterpretator(getQuestScript());
+        if (this.events.scriptLoaded)
+            this.events.scriptLoaded();
 	}.bind(this));
 };
 
@@ -38,9 +43,16 @@ QuestRuntime.prototype.setupScript = function(scriptURL) {
  * Works accorind to current stage quest script
  */
 QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
+
     var inAction = uiActionManager.getCurrentStageUIActionIN();
     var outAction = uiActionManager.getCurrentStageUIActionOUT();
     outAction.clearFields();
+
+    if (!this.scriptInterp) {
+        console.warn("Game action was performed before script runtime was initialized");
+        this.questNodeToUIStageActionOut(SENodeFabric(_QUEST_NODES.NONE), outAction);
+        return;
+    }
 
 	validateUIStageActionIN(inAction);
 	dumpUIStageActionIn(inAction);

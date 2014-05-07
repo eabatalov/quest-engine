@@ -5,13 +5,17 @@
     <events>
         <include>SCMLSpriteBindings</include>
         <include>Quest</include>
-        <event-block sid="3704540223976062">
+        <include>Stage1</include>
+        <event-block sid="6267414245119264">
             <conditions>
-                <condition id="-2" name="On start of layout" sid="1002490218619657" type="System" />
+                <condition id="0" name="On function" sid="2143593114485784" type="Function">
+                    <param id="0" name="Name">&quot;InitGame&quot;</param>
+                </condition>
             </conditions>
             <actions>
-                <action id="3" name="Setup quest script URL." sid="8826336374758966" type="QuestEngine">
-                    <param id="0" name="Quest script file URL">&quot;story_script.js&quot;</param>
+                <action id="0" name="Call function" sid="7517296882430685" type="Function">
+                    <param id="0" name="Name">&quot;StartGame&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;story_script.js&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -49,34 +53,6 @@
                 <action id="-3" name="Set position" sid="1559922197643707" type="camera">
                     <param id="0" name="X">lerp(Self.X, Player.X, 0.02)</param>
                     <param id="1" name="Y">lerp(Self.Y, Player.Y-160, 0.02)</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="6826827011740204">
-            <conditions>
-                <condition id="0" name="On function" sid="8586095129384644" type="Function">
-                    <param id="0" name="Name">&quot;foo&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Alert" sid="6902889610611173" type="Browser">
-                    <param id="0" name="Message">&quot;Quest engine demo function foo was called&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="4355617863089235">
-            <conditions>
-                <condition id="3" name="On touched object" sid="8560096060632667" type="Touch">
-                    <param id="0" name="Object">CustomEventTrigger</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Set current stage" sid="9788625772019159" type="QuestRuntimeInterface">
-                    <param id="0" name="Value">Player.CurrentStage</param>
-                </action>
-                <action id="0" name="Call function" sid="3033999618434919" type="Function">
-                    <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}&quot;custom_event_check&quot;</param>
                 </action>
             </actions>
         </event-block>

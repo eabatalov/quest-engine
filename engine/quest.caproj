@@ -2841,9 +2841,12 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="LayoutLoadingLabel" sid="5407995934875156">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
-    <layout-folder expanded="0">
+    <layout-folder expanded="1">
         <layout-folder expanded="1" name="Quest">
             <layout>EngineDemo.xml</layout>
         </layout-folder>
@@ -2851,13 +2854,16 @@
     <event-folder expanded="1">
         <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
-            <event-sheet>Initialization.xml</event-sheet>
+            <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
             <event-sheet>UInit.xml</event-sheet>
             <event-sheet>ActionProc.xml</event-sheet>
             <event-sheet>UIStage.xml</event-sheet>
             <event-sheet>UIMisc.xml</event-sheet>
             <event-sheet>PlayerAnimation.xml</event-sheet>
+        </event-folder>
+        <event-folder expanded="1" name="stages">
+            <event-sheet>Stage1.xml</event-sheet>
         </event-folder>
         <event-sheet>SCMLSpriteBindings.xml</event-sheet>
         <event-sheet>Main.xml</event-sheet>

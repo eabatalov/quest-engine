@@ -5,12 +5,12 @@
     <events>
         <variable constant="0" name="PLAYER_ANIM_SCALING_DEFAULT" sid="4744348570009192" static="0" type="number">0</variable>
         <variable comment="Leave it zero. != condition will force recomputation of this var." constant="0" name="PLAYER_ANIM_SCALING_CURRENT" sid="7409917232449734" static="0" type="number">0</variable>
-        <event-group collapsed="1" description="" sid="5020068825746262" title="Initialization">
+        <event-group description="" sid="5020068825746262" title="Initialization">
             <sub-events>
                 <event-block sid="9016563247743718">
                     <conditions>
                         <condition id="0" name="On function" sid="2482119295865044" type="Function">
-                            <param id="0" name="Name">&quot;initAnimation&quot;</param>
+                            <param id="0" name="Name">&quot;initPlayerAnimation&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -26,9 +26,6 @@
                         <action id="-4" name="Set position to another object" sid="5890246426763598" type="PlayerSCML">
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Image point (optional)">&quot;AnimationPoint&quot;</param>
-                        </action>
-                        <action behavior="Platform" id="11" name="Set enabled" sid="7766762237757505" type="Player">
-                            <param id="0" name="State">1</param>
                         </action>
                     </actions>
                 </event-block>

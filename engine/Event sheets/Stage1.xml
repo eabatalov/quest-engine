@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Stage1</name>
+    <events>
+        <event-block sid="5807844879162779">
+            <conditions>
+                <condition id="0" name="On function" sid="1019723360568688" type="Function">
+                    <param id="0" name="Name">&quot;foo&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Alert" sid="3095842032867659" type="Browser">
+                    <param id="0" name="Message">&quot;Quest engine demo function foo was called&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="531235346033195">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5560454129314232" type="Touch">
+                    <param id="0" name="Object">CustomEventTrigger</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set current stage" sid="5255669457951863" type="QuestRuntimeInterface">
+                    <param id="0" name="Value">Player.CurrentStage</param>
+                </action>
+                <action id="0" name="Call function" sid="6991897946341484" type="Function">
+                    <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}&quot;custom_event_check&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
