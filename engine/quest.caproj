@@ -56,8 +56,8 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="0">
-        <object-folder expanded="0" name="Quest">
+    <object-folder expanded="1">
+        <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -1443,6 +1443,39 @@
             </object-type>
             <object-type name="Touch" sid="3923997852658944">
                 <plugin id="Touch" />
+            </object-type>
+            <object-type name="ControlLeft" sid="8599358988558656">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Inactive" pingpong="0" repeatcount="1" repeatto="0" sid="7808624073318811" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.704082" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Active" pingpong="0" repeatcount="1" repeatto="0" sid="1940354729408618" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.704082" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ControlUp" sid="4631254980050191">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Inactive" pingpong="0" repeatcount="1" repeatto="0" sid="9103189219403999" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Active" pingpong="0" repeatcount="1" repeatto="0" sid="2727320026896923" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ControlRight" sid="1285977779535817">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Inactive" pingpong="0" repeatcount="1" repeatto="0" sid="2605953018128906" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.613333" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Active" pingpong="0" repeatcount="1" repeatto="0" sid="4379671408981421" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.613333" />
+                    </animation>
+                </animation-folder>
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="Animation">
