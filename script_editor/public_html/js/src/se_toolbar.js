@@ -38,7 +38,7 @@ function ToolBarItemStaticConstructor(completionCB) {
     ToolBarItem.DATA[_QUEST_NODES.STORYLINE] = new ItemConfig("images/nav/nav_stln.png", "Storyline");
     ToolBarItem.DATA[_QUEST_NODES.WAIT] = new ItemConfig("images/nav/nav_wait.png", "Delay");
     ToolBarItem.DATA[_QUEST_NODES.NONE] = new ItemConfig("images/nav/nav_none.png", "Nothing");
-    ToolBarItem.DATA[_QUEST_NODES.FUNC_CALL] = new ItemConfig("images/nav/nav_none.png", "Function call");
+    ToolBarItem.DATA[_QUEST_NODES.FUNC_CALL] = new ItemConfig("images/nav/nav_funcall.png", "Function call");
 
     completionCB();
 }
