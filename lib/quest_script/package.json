@@ -22,8 +22,11 @@
         "grunt-contrib-uglify" : "0.4.0"
     },
 
-    "questEngineDependencies" : [
-        "lib/util"
+    "gruntDependencies" : [
+        {
+            "path" : "lib/util",
+            "args" : ""
+        }
     ],
 
     "private" : true
