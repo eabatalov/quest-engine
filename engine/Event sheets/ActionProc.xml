@@ -6,7 +6,7 @@
         <event-group description="" sid="3100647790949735" title="ActionProcess">
             <sub-events>
                 <comment>Common processing after delay and non-delay UI action</comment>
-                <event-block collapsed="1" sid="5462294256267517">
+                <event-block sid="5462294256267517">
                     <conditions>
                         <condition id="0" name="On function" sid="3958206933563915" type="Function">
                             <param id="0" name="Name">&quot;ProcAfterUIAction&quot;</param>
@@ -51,7 +51,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process action dedicated for UI state change.&#x0D;&#x0A;if QuestRuntimeInterface.getContinue == true ProcUIAction can be called only from ProcGameAction because together they form continuation loop. If you call this func from another place you create 2 continuation loops and this is invlaid.</comment>
-                <event-block collapsed="1" sid="9685306970185458">
+                <event-block sid="9685306970185458">
                     <conditions>
                         <condition id="0" name="On function" sid="4879756541203689" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
@@ -131,22 +131,22 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="3741966421030721">
+                                <event-block sid="8053717838498043">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" sid="7799643318218584" type="System">
+                                        <condition id="-8" name="Compare two values" sid="469706981218546" type="System">
                                             <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;FUNC_CALL&quot;</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Call function" sid="4915527879828267" type="Function">
+                                        <action id="0" name="Call function" sid="108391144848168" type="Function">
                                             <param id="0" name="Name">QuestRuntimeInterface.getFuncName</param>
                                             <param id="1" name="Parameter {n}"></param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block collapsed="1" sid="6632858068048924">
+                                <event-block sid="6632858068048924">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="3014435150508187" type="System">
                                             <param id="0" name="First value">QuestRuntimeInterface.getActor</param>
@@ -203,7 +203,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block collapsed="1" sid="5664582232474535">
+                                <event-block sid="5664582232474535">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="6477690124574981" type="System">
                                             <param id="0" name="First value">QuestRuntimeInterface.getActor</param>
@@ -279,16 +279,11 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>Process user action on quest backend&#x0D;&#x0A;p1: Stage&#x0D;&#x0A;p2: Player action&#x0D;&#x0A;p3: Player action target id</comment>
+                <comment>Process player action&#x0D;&#x0A;p0: Player action type&#x0D;&#x0A;p1: Player action &apos;target id&apos; data</comment>
                 <event-block sid="1359721088397747">
                     <conditions>
                         <condition id="0" name="On function" sid="549117859264555" type="Function">
                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                        </condition>
-                        <condition id="1" name="Compare parameter" sid="3272049639604337" type="Function">
-                            <param id="0" name="Index">0</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">Player.CurrentStage</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="4412876326954315" type="System">
                             <param id="0" name="First value">BlockPlayerInput</param>
@@ -305,16 +300,40 @@
                             <param id="0" name="Name">&quot;HideStageUI&quot;</param>
                             <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
                         </action>
-                        <action id="0" name="Set current stage" sid="6208246865265524" type="QuestRuntimeInterface">
-                            <param id="0" name="Value">Function.Param(0)</param>
-                        </action>
                         <action id="0" name="Call function" sid="4631591131679396" type="Function">
                             <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                            <param id="1" name="Parameter {n}">Function.Param(1){###}Function.Param(2){###}&quot;&quot;</param>
+                            <param id="1" name="Parameter {n}">Function.Param(0){###}Function.Param(1){###}&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>
-                <comment>Process action performed by any game actor (Player or Continue for now)&#x0D;&#x0A;p1: Player action&#x0D;&#x0A;p2: Player action target id</comment>
+                <comment>Process custom event triggered by player activity&#x0D;&#x0A;p0: Custom event name</comment>
+                <event-block sid="1316027862354772">
+                    <conditions>
+                        <condition id="0" name="On function" sid="158342733640637" type="Function">
+                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="7111090258796726" type="System">
+                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9956919483730849" type="System">
+                            <param id="0" name="Variable">BlockPlayerInput</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3743524068143124" type="Function">
+                            <param id="0" name="Name">&quot;HideStageUI&quot;</param>
+                            <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
+                        </action>
+                        <action id="0" name="Call function" sid="7233653807269136" type="Function">
+                            <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Process action performed by any game actor (Player or Continue for now)&#x0D;&#x0A;p0: Player action type&#x0D;&#x0A;p1: Player action &apos;target id&apos; data&#x0D;&#x0A;p2: Player action &apos;name&apos; data</comment>
                 <event-block sid="6301185671590818">
                     <conditions>
                         <condition id="0" name="On function" sid="6910645582081889" type="Function">
@@ -328,7 +347,7 @@
                         <action id="2" name="Set last action target id" sid="3582665451453215" type="QuestRuntimeInterface">
                             <param id="0" name="Value">Function.Param(1)</param>
                         </action>
-                        <action id="3" name="Set last last action &apos;name&apos; value" sid="8914542710056691" type="QuestRuntimeInterface">
+                        <action id="3" name="Set last last action &apos;name&apos; value" sid="4107819312138807" type="QuestRuntimeInterface">
                             <param id="0" name="Value">Function.Param(2)</param>
                         </action>
                         <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestEngine">

@@ -5,7 +5,7 @@
     <events>
         <comment>Block player input on start until game was inited</comment>
         <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">1</variable>
-        <event-group collapsed="1" description="" sid="545184742850449" title="Touch">
+        <event-group description="" sid="545184742850449" title="Touch">
             <sub-events>
                 <event-block sid="2646781791677467">
                     <conditions>
@@ -17,7 +17,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-group collapsed="1" description="" sid="1401962210358661" title="NPC">
+                        <event-group description="" sid="1401962210358661" title="NPC">
                             <sub-events>
                                 <event-block sid="3455966220737066">
                                     <conditions>
@@ -25,11 +25,16 @@
                                             <param id="0" name="Object">NPC</param>
                                         </condition>
                                         <condition disabled="1" id="-9" name="Is visible" sid="179424338218357" type="NPC" />
+                                        <condition id="-8" name="Compare two values" sid="669172279919466" type="System">
+                                            <param id="0" name="First value">NPC.Stage</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">Player.CurrentStage</param>
+                                        </condition>
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Call function" sid="2770755106419538" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;NPC_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                            <param id="1" name="Parameter {n}">&quot;NPC_CLICKED&quot;{###}NPC.NpcIDInStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -43,7 +48,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="2675259609986753" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER1_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}NPC.NpcIDInStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -57,7 +62,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="7050424250600247" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER2_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}NPC.NpcIDInStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -71,7 +76,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="4838897346030362" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER3_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}NPC.NpcIDInStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -85,13 +90,13 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="1568713964449812" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">NPC.Stage{###}&quot;ANSWER4_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}NPC.NpcIDInStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-group>
-                        <event-group collapsed="1" description="" sid="2379961360243928" title="Player">
+                        <event-group description="" sid="2379961360243928" title="Player">
                             <sub-events>
                                 <event-block sid="9325264978992444">
                                     <conditions>
@@ -103,7 +108,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="7949244741719582" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;PLAYER_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;PLAYER_CLICKED&quot;{###}&quot;Player&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -117,7 +122,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="2942613109157845" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;ANSWER1_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}&quot;Player&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -131,7 +136,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="1219161001189522" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;ANSWER2_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}&quot;Player&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -145,7 +150,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="1564174612408053" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;ANSWER3_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}&quot;Player&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -159,7 +164,7 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="7422782588932453" type="Function">
                                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">Player.CurrentStage{###}&quot;ANSWER4_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}&quot;Player&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -180,7 +185,7 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Second value">0</param>
                 </condition>
-                <condition id="-8" name="Compare two values" sid="7795351675249403" type="System">
+                <condition id="-8" name="Compare two values" sid="2039766089303173" type="System">
                     <param id="0" name="First value">Player.CurrentStage</param>
                     <param id="1" name="Comparison">1</param>
                     <param id="2" name="Second value">StageChanger.Stage</param>
