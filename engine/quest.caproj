@@ -41,6 +41,7 @@
         <height>600</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
+    <first-layout>EngineDemo</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>

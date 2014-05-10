@@ -3,78 +3,82 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Bootstrap</name>
     <events>
-        <variable constant="0" name="LAYOUT_INITED" sid="1513207940217613" static="0" type="number">0</variable>
-        <event-block sid="9557538045866116">
+        <variable constant="0" name="LAYOUT_INITED" sid="8205382910114632" static="0" type="number">0</variable>
+        <event-block sid="4009566570811764">
             <conditions>
-                <condition id="0" name="On function" sid="8692581220131758" type="Function">
+                <condition id="0" name="On function" sid="2896692718437938" type="Function">
                     <param id="0" name="Name">&quot;StartGame&quot;</param>
                 </condition>
             </conditions>
             <actions>
-                <action disabled="1" id="0" name="Call function" sid="6402165708709776" type="Function">
+                <action disabled="1" id="0" name="Call function" sid="3230638068171425" type="Function">
                     <param id="0" name="Name">&quot;InitUI&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="0" name="Call function" sid="7248201102347024" type="Function">
+                <action id="0" name="Call function" sid="2396820917685016" type="Function">
                     <param id="0" name="Name">&quot;initPlayerAnimation&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="0" name="Set current stage" sid="6799091831357834" type="QuestRuntimeInterface">
+                <action id="0" name="Set current stage" sid="2931653126024059" type="QuestRuntimeInterface">
                     <param id="0" name="Value">Player.CurrentStage</param>
                 </action>
-                <action id="2" name="Setup quest objects." sid="6739749652283035" type="QuestEngine">
+                <action id="2" name="Setup quest objects." sid="7533819724177504" type="QuestEngine">
                     <param id="0" name="NPC object type">NPC</param>
                 </action>
-                <action id="3" name="Setup quest script URL." sid="8193316396797689" type="QuestEngine">
+                <action id="3" name="Setup quest script URL." sid="3974431105479061" type="QuestEngine">
                     <param id="0" name="Quest script file URL">Function.Param(0)</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="4736714825013149">
+        <event-block sid="3608536962210634">
             <conditions>
-                <condition id="0" name="Quest script loaded" sid="1127632640785932" type="QuestEngine" />
+                <condition id="0" name="Quest script loaded" sid="9984593045440814" type="QuestEngine" />
             </conditions>
             <actions>
-                <action behavior="Platform" id="11" name="Set enabled" sid="6070150582912637" type="Player">
+                <action behavior="Platform" id="11" name="Set enabled" sid="348973051373935" type="Player">
                     <param id="0" name="State">1</param>
                 </action>
-                <action id="-9" name="Set value" sid="4750922962504277" type="System">
+                <action id="-9" name="Set value" sid="7040096352838036" type="System">
                     <param id="0" name="Variable">BlockPlayerInput</param>
                     <param id="1" name="Value">0</param>
                 </action>
-                <action id="-15" name="Set visible" sid="5361270159839996" type="LayoutLoadingLabel">
+                <action id="-15" name="Set visible" sid="9149529890147767" type="LayoutLoadingLabel">
                     <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="0" name="Call function" sid="574361318582553" type="Function">
+                    <param id="0" name="Name">&quot;GameStarted&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="8140657814611287">
+        <event-block sid="1988503493942841">
             <conditions>
-                <condition id="0" name="On function" sid="4040621248362716" type="Function">
+                <condition id="0" name="On function" sid="2929697047297015" type="Function">
                     <param id="0" name="Name">&quot;AnimInited&quot;</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Set value" sid="6565789996522174" type="System">
+                <action id="-9" name="Set value" sid="1929058994938141" type="System">
                     <param id="0" name="Variable">ANIMS_TO_INIT</param>
                     <param id="1" name="Value">ANIMS_TO_INIT-1</param>
                 </action>
             </actions>
             <sub-events>
-                <event-block sid="1546137788836026">
+                <event-block sid="1315579844635974">
                     <conditions>
-                        <condition id="-8" name="Compare two values" sid="8054708172857991" type="System">
+                        <condition id="-8" name="Compare two values" sid="3729583370069346" type="System">
                             <param id="0" name="First value">ANIMS_TO_INIT</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" sid="357487257691692" type="System">
+                        <condition id="-8" name="Compare two values" sid="1814590626142868" type="System">
                             <param id="0" name="First value">LAYOUT_INITED</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">1</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="1910614070997202" type="Function">
+                        <action id="0" name="Call function" sid="4027384266352133" type="Function">
                             <param id="0" name="Name">&quot;InitGame&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
@@ -83,36 +87,36 @@
             </sub-events>
         </event-block>
         <comment>Init simple ui elements before anything else to hide them from user&#x0D;&#x0A;XXX: for some reason we can&apos;t call IniUI from StartGame. Probably sprite positions change after load of layout and we compute some invalid offsets.</comment>
-        <event-block sid="4655240169251648">
+        <event-block sid="844645502322932">
             <conditions>
-                <condition id="-25" name="On loader layout complete" sid="7516104602690579" type="System" />
+                <condition id="-25" name="On loader layout complete" sid="5486295187743681" type="System" />
             </conditions>
             <actions>
-                <action id="0" name="Call function" sid="2823216055235935" type="Function">
+                <action id="0" name="Call function" sid="3374487306171643" type="Function">
                     <param id="0" name="Name">&quot;InitUI&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="-9" name="Set value" sid="6169712084248248" type="System">
+                <action id="-9" name="Set value" sid="7995133675498134" type="System">
                     <param id="0" name="Variable">LAYOUT_INITED</param>
                     <param id="1" name="Value">1</param>
                 </action>
             </actions>
             <sub-events>
-                <event-block sid="9829569755810717">
+                <event-block sid="2991987067297528">
                     <conditions>
-                        <condition id="-8" name="Compare two values" sid="2672355345337502" type="System">
+                        <condition id="-8" name="Compare two values" sid="3785321760266058" type="System">
                             <param id="0" name="First value">ANIMS_TO_INIT</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" sid="6632739464358129" type="System">
+                        <condition id="-8" name="Compare two values" sid="5123341025633361" type="System">
                             <param id="0" name="First value">LAYOUT_INITED</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">1</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="5995152059270749" type="Function">
+                        <action id="0" name="Call function" sid="3255277236769612" type="Function">
                             <param id="0" name="Name">&quot;InitGame&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>
