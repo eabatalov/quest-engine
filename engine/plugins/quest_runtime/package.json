@@ -19,7 +19,7 @@
         "grunt" : "~0.4.1",
         "grunt-contrib-concat" : "~0.3",
         "grunt-contrib-uglify" : "~0.4.0",
-        "exec-sync" : "~0.1.6"
+        "execSync" : "~1.0"
     },
 
     "gruntDependencies" : [

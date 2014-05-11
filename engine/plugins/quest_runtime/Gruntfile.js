@@ -86,7 +86,7 @@ module.exports = function(grunt) {
  * Our custom bicycle to build all dependencies recursively
  */
 function buildDependencies(grunt, recursiveLevel, allDepSet, srcFiles) {
-    var execSync = require("exec-sync");
+    var sh = require('execSync');
     var REPO_PATH = "../../../";
     var gruntDependencies =
         grunt.file.readJSON('package.json').gruntDependencies;
@@ -113,7 +113,7 @@ function buildDependencies(grunt, recursiveLevel, allDepSet, srcFiles) {
 
         grunt.log.ok(recursiveLevel, "Building dependency ", depPackage.name, " exec: ", depBuildCmd);
         process.chdir(depPath);
-        var gruntResult = execSync(depBuildCmd);
+        var gruntResult = sh.exec(depBuildCmd);
         grunt.log.writeln(gruntResult.toString());
 
         buildDependencies(grunt, recursiveLevel + 1, allDepSet, srcFiles);  
