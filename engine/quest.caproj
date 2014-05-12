@@ -26,7 +26,6 @@
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
-        <behavior author="Eugene/learzing" id="TextAutoResize" version="1">TextAutoResize</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
@@ -57,7 +56,7 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Quest">
+        <object-folder expanded="0" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
@@ -247,9 +246,6 @@
                         <behavior-type name="Pin" sid="9402127484170792">
                             <behavior id="Pin" />
                         </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="5388177633950917">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -311,9 +307,6 @@
                     <behaviors>
                         <behavior-type name="Pin" sid="6636315209548967">
                             <behavior id="Pin" />
-                        </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="8089922372682447">
-                            <behavior id="TextAutoResize" />
                         </behavior-type>
                     </behaviors>
                     <container>
@@ -377,9 +370,6 @@
                         <behavior-type name="Pin" sid="5129278153068563">
                             <behavior id="Pin" />
                         </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="8199534329704946">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -442,9 +432,6 @@
                         <behavior-type name="Pin" sid="8507284842999611">
                             <behavior id="Pin" />
                         </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="2913264033600516">
-                            <behavior id="TextAutoResize" />
-                        </behavior-type>
                     </behaviors>
                     <container>
                         <type>NPC</type>
@@ -506,9 +493,6 @@
                     <behaviors>
                         <behavior-type name="Pin" sid="9142202874314624">
                             <behavior id="Pin" />
-                        </behavior-type>
-                        <behavior-type name="TextAutoResize" sid="4174184288676545">
-                            <behavior id="TextAutoResize" />
                         </behavior-type>
                     </behaviors>
                     <container>
@@ -659,11 +643,6 @@
                     </object-type>
                     <object-type name="PlayerAns1Txt" sid="585522396544899">
                         <plugin id="Text" />
-                        <behaviors>
-                            <behavior-type name="TextAutoResize" sid="1337543218418621">
-                                <behavior id="TextAutoResize" />
-                            </behavior-type>
-                        </behaviors>
                         <container>
                             <type>PlayerPinPoint</type>
                             <type>Player</type>
@@ -763,11 +742,6 @@
                     </object-type>
                     <object-type name="PlayerAns2Txt" sid="237564297327457">
                         <plugin id="Text" />
-                        <behaviors>
-                            <behavior-type name="TextAutoResize" sid="5467638624379248">
-                                <behavior id="TextAutoResize" />
-                            </behavior-type>
-                        </behaviors>
                         <container>
                             <type>PlayerPinPoint</type>
                             <type>Player</type>
@@ -808,11 +782,6 @@
                     </object-type>
                     <object-type name="PlayerAns3Txt" sid="7128241683588556">
                         <plugin id="Text" />
-                        <behaviors>
-                            <behavior-type name="TextAutoResize" sid="5340848765991812">
-                                <behavior id="TextAutoResize" />
-                            </behavior-type>
-                        </behaviors>
                         <container>
                             <type>PlayerPinPoint</type>
                             <type>Player</type>
@@ -971,11 +940,6 @@
                     </object-type>
                     <object-type name="PlayerAns4Txt" sid="8380298320961702">
                         <plugin id="Text" />
-                        <behaviors>
-                            <behavior-type name="TextAutoResize" sid="4298243846706305">
-                                <behavior id="TextAutoResize" />
-                            </behavior-type>
-                        </behaviors>
                         <container>
                             <type>PlayerPinPoint</type>
                             <type>Player</type>
@@ -1128,9 +1092,6 @@
                         <behaviors>
                             <behavior-type name="Pin" sid="2907425597512426">
                                 <behavior id="Pin" />
-                            </behavior-type>
-                            <behavior-type name="TextAutoResize" sid="8290204590050255">
-                                <behavior id="TextAutoResize" />
                             </behavior-type>
                         </behaviors>
                         <container>
@@ -2968,8 +2929,8 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
-        <event-folder expanded="0" name="Quest">
+    <event-folder expanded="1">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>

@@ -1204,9 +1204,6 @@
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
-                    <behavior-instances>
-                        <behavior-instance type="TextAutoResize" />
-                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -1234,9 +1231,6 @@
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
-                    <behavior-instances>
-                        <behavior-instance type="TextAutoResize" />
-                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -1264,9 +1258,6 @@
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
-                    <behavior-instances>
-                        <behavior-instance type="TextAutoResize" />
-                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -1294,9 +1285,6 @@
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
-                    <behavior-instances>
-                        <behavior-instance type="TextAutoResize" />
-                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -1451,7 +1439,6 @@
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1482,7 +1469,6 @@
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1513,7 +1499,6 @@
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1544,7 +1529,6 @@
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1659,15 +1643,14 @@
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1740,15 +1723,14 @@
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <vertical-alignment>Center</vertical-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Character</wrapping>
                         <line-height>0</line-height>
                     </properties>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
-                        <behavior-instance type="TextAutoResize" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
