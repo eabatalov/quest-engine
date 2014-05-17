@@ -26,6 +26,7 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
         this.condTypeNames[_QUEST_CONDS.CONTINUE] = 'Continue';
         this.condTypeNames[_QUEST_CONDS.DEFAULT] = 'Default';
         this.condTypeNames[_QUEST_CONDS.CUSTOM_EVENT] = 'Custom event';
+        this.condTypeNames[_QUEST_CONDS.NEXT] = 'Next';
 
         $scope.condTypes = function(cond) {
             if (!cond)

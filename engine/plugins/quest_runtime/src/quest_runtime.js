@@ -163,6 +163,10 @@ function uiStageActionInToQuestEvent(action) {
             type = _QUEST_EVENTS.CUSTOM_EVENT;
 		    props = { name : action.getName(), id : "Player" /* XXX */ };
 		break;
+        case _UI_STAGE_ACTION_IN.ACTION_TYPES.NEXT:
+            type = _QUEST_EVENTS.NEXT;
+			props = { id : action.getTargetId() };
+        break;
 		default:
 			console.error("Invalid player stage action type type: "
                 + action.getActionType());

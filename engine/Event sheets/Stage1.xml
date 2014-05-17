@@ -31,5 +31,21 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="6343771775594799">
+            <conditions>
+                <condition id="3" name="On touched object" sid="1681915825806838" type="Touch">
+                    <param id="0" name="Object">NextTestTrigger</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set current stage" sid="926383337676464" type="QuestRuntimeInterface">
+                    <param id="0" name="Value">Player.CurrentStage</param>
+                </action>
+                <action id="0" name="Call function" sid="2019234199915549" type="Function">
+                    <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}&quot;check_next&quot;</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

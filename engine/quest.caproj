@@ -56,8 +56,403 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="0" name="Quest">
+        <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
+                <object-folder expanded="0" name="Speech">
+                    <object-type name="NPCAns1Bg" sid="1347035969697416">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="3696306880101659">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2736573699057615" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCAns1Txt" sid="2027124189350943">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="9142202874314624">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="NPCAns2Bg" sid="9672604453364808">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="939166036159611">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7945481242836725" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCAns2Txt" sid="7876777953796442">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="8507284842999611">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="NPCAns3Bg" sid="4561909957681184">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="4101964430248347">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9228664563406095" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCAns3Txt" sid="8419153112382574">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="5129278153068563">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="NPCAns4Bg" sid="9948741852932264">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="2553815170037593">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1301861696673986" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.00909091" y="0.0666667" />
+                                        <point x="0.5" y="0" />
+                                        <point x="0.990909" y="0.0666667" />
+                                        <point x="0.990909" y="0.933333" />
+                                        <point x="0.5" y="0.966667" />
+                                        <point x="0.00909091" y="0.933333" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCAns4Txt" sid="8009266168520097">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="6636315209548967">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="NPCAnsBg" sid="3591380349128814">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="4275652818353462">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1949978098674882" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <collision-poly>
+                                        <point x="0.0333333" y="0.0444444" />
+                                        <point x="0.966667" y="0.0444444" />
+                                        <point x="0.995833" y="0.5" />
+                                        <point x="0.991667" y="0.988889" />
+                                        <point x="0.00416667" y="0.994444" />
+                                        <point x="0" y="0.5" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCPhraseBg" sid="7674954217822327">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="3828529454693053">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9397272492932132" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0" />
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                    <object-type name="NPCPhraseTxt" sid="1131272889703957">
+                        <plugin id="Text" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="9402127484170792">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                    </object-type>
+                    <object-type name="NPCSpeechBg" sid="4916656936861965">
+                        <plugin id="Sprite" />
+                        <behaviors>
+                            <behavior-type name="Pin" sid="2418742186595581">
+                                <behavior id="Pin" />
+                            </behavior-type>
+                        </behaviors>
+                        <container>
+                            <type>NPC</type>
+                            <type>NPCSpeechBg</type>
+                            <type>NPCPhraseTxt</type>
+                            <type>NPCPhraseBg</type>
+                            <type>NPCAnsBg</type>
+                            <type>NPCPinPoint</type>
+                            <type>NPCAns1Bg</type>
+                            <type>NPCAns1Txt</type>
+                            <type>NPCAns2Bg</type>
+                            <type>NPCAns2Txt</type>
+                            <type>NPCAns3Bg</type>
+                            <type>NPCAns3Txt</type>
+                            <type>NPCAns4Bg</type>
+                            <type>NPCAns4Txt</type>
+                        </container>
+                        <animation-folder expanded="1">
+                            <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="7555485715947281" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <image-point name="Cock" x="0.134" y="0.96945" />
+                                    <collision-poly>
+                                        <point x="0.072" y="0.0733198" />
+                                        <point x="0.5" y="0.0203666" />
+                                        <point x="0.92" y="0.0814664" />
+                                        <point x="0.968" y="0.498982" />
+                                        <point x="0.878" y="0.875764" />
+                                        <point x="0.096" y="0.90224" />
+                                        <point x="0.022" y="0.498982" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                            <animation framecount="1" loop="0" name="Think" pingpong="0" repeatcount="1" repeatto="0" sid="6524464549893054" speed="5">
+                                <frame duration="1" hotspotX="0" hotspotY="0">
+                                    <image-point name="Cock" x="0.134" y="0.96945" />
+                                    <collision-poly>
+                                        <point x="0.072" y="0.0733198" />
+                                        <point x="0.5" y="0.0203666" />
+                                        <point x="0.92" y="0.0814664" />
+                                        <point x="0.968" y="0.498982" />
+                                        <point x="0.878" y="0.875764" />
+                                        <point x="0.096" y="0.90224" />
+                                        <point x="0.022" y="0.498982" />
+                                    </collision-poly>
+                                </frame>
+                            </animation>
+                        </animation-folder>
+                    </object-type>
+                </object-folder>
                 <object-type name="NPC" sid="2782814196772796">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -183,399 +578,6 @@
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2294945521149412" speed="5">
                             <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCSpeechBg" sid="4916656936861965">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="2418742186595581">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="7555485715947281" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <image-point name="Cock" x="0.134" y="0.96945" />
-                                <collision-poly>
-                                    <point x="0.072" y="0.0733198" />
-                                    <point x="0.5" y="0.0203666" />
-                                    <point x="0.92" y="0.0814664" />
-                                    <point x="0.968" y="0.498982" />
-                                    <point x="0.878" y="0.875764" />
-                                    <point x="0.096" y="0.90224" />
-                                    <point x="0.022" y="0.498982" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                        <animation framecount="1" loop="0" name="Think" pingpong="0" repeatcount="1" repeatto="0" sid="6524464549893054" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <image-point name="Cock" x="0.134" y="0.96945" />
-                                <collision-poly>
-                                    <point x="0.072" y="0.0733198" />
-                                    <point x="0.5" y="0.0203666" />
-                                    <point x="0.92" y="0.0814664" />
-                                    <point x="0.968" y="0.498982" />
-                                    <point x="0.878" y="0.875764" />
-                                    <point x="0.096" y="0.90224" />
-                                    <point x="0.022" y="0.498982" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCPhraseTxt" sid="1131272889703957">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="9402127484170792">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                </object-type>
-                <object-type name="NPCAnsBg" sid="3591380349128814">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="4275652818353462">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1949978098674882" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.0333333" y="0.0444444" />
-                                    <point x="0.966667" y="0.0444444" />
-                                    <point x="0.995833" y="0.5" />
-                                    <point x="0.991667" y="0.988889" />
-                                    <point x="0.00416667" y="0.994444" />
-                                    <point x="0" y="0.5" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCAns4Txt" sid="8009266168520097">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="6636315209548967">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                </object-type>
-                <object-type name="NPCAns4Bg" sid="9948741852932264">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="2553815170037593">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1301861696673986" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCAns3Txt" sid="8419153112382574">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="5129278153068563">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                </object-type>
-                <object-type name="NPCAns3Bg" sid="4561909957681184">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="4101964430248347">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9228664563406095" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCAns2Txt" sid="7876777953796442">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="8507284842999611">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                </object-type>
-                <object-type name="NPCAns2Bg" sid="9672604453364808">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="939166036159611">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7945481242836725" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCAns1Txt" sid="2027124189350943">
-                    <plugin id="Text" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="9142202874314624">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                </object-type>
-                <object-type name="NPCAns1Bg" sid="1347035969697416">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="3696306880101659">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2736573699057615" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0">
-                                <collision-poly>
-                                    <point x="0.00909091" y="0.0666667" />
-                                    <point x="0.5" y="0" />
-                                    <point x="0.990909" y="0.0666667" />
-                                    <point x="0.990909" y="0.933333" />
-                                    <point x="0.5" y="0.966667" />
-                                    <point x="0.00909091" y="0.933333" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="NPCPhraseBg" sid="7674954217822327">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin" sid="3828529454693053">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <container>
-                        <type>NPC</type>
-                        <type>NPCSpeechBg</type>
-                        <type>NPCPhraseTxt</type>
-                        <type>NPCPhraseBg</type>
-                        <type>NPCAnsBg</type>
-                        <type>NPCPinPoint</type>
-                        <type>NPCAns1Bg</type>
-                        <type>NPCAns1Txt</type>
-                        <type>NPCAns2Bg</type>
-                        <type>NPCAns2Txt</type>
-                        <type>NPCAns3Bg</type>
-                        <type>NPCAns3Txt</type>
-                        <type>NPCAns4Bg</type>
-                        <type>NPCAns4Txt</type>
-                    </container>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9397272492932132" speed="5">
-                            <frame duration="1" hotspotX="0" hotspotY="0" />
                         </animation>
                     </animation-folder>
                 </object-type>
@@ -2922,6 +2924,14 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="NextTestTrigger" sid="6278986037053643">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4712276204324084" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
@@ -2930,7 +2940,7 @@
         </layout-folder>
     </layout-folder>
     <event-folder expanded="1">
-        <event-folder expanded="1" name="Quest">
+        <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
