@@ -26,8 +26,8 @@
                     <param id="0" name="Value">Player.CurrentStage</param>
                 </action>
                 <action id="0" name="Call function" sid="6991897946341484" type="Function">
-                    <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}&quot;custom_event_check&quot;</param>
+                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;custom_event_check&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -42,8 +42,24 @@
                     <param id="0" name="Value">Player.CurrentStage</param>
                 </action>
                 <action id="0" name="Call function" sid="2019234199915549" type="Function">
-                    <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}&quot;check_next&quot;</param>
+                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;check_next&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4347083369049911">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8775302195056859" type="Touch">
+                    <param id="0" name="Object">NotificationTest</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set current stage" sid="7003290052636697" type="QuestRuntimeInterface">
+                    <param id="0" name="Value">Player.CurrentStage</param>
+                </action>
+                <action id="0" name="Call function" sid="9204588001384151" type="Function">
+                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;check_notification&quot;</param>
                 </action>
             </actions>
         </event-block>

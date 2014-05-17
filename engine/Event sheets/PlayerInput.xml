@@ -196,6 +196,21 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <comment>Global notification object can only be managed from the main storyline containing player</comment>
+                                <event-block sid="8980695286078322">
+                                    <conditions>
+                                        <condition id="3" name="On touched object" sid="2185397778219742" type="Touch">
+                                            <param id="0" name="Object">NotificationBg</param>
+                                        </condition>
+                                        <condition id="-9" name="Is visible" sid="8669286359530577" type="NotificationBg" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="8332285634666075" type="Function">
+                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}&quot;Player&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                             </sub-events>
                         </event-group>
                     </sub-events>

@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UInit</name>
     <events>
+        <variable constant="0" name="NOTIFICATION_TEXT_TOP_MARGIN" sid="1896060484947539" static="0" type="number">0</variable>
+        <variable constant="0" name="NOTIFICATION_TEXT_LEFT_MARGIN" sid="3628439654136423" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_COCK_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_SPEECH_HEIGHT" sid="4538826344581136" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_BG_X" sid="7145849639664372" static="0" type="number">0</variable>
@@ -55,6 +57,10 @@
                 </action>
                 <action id="0" name="Call function" sid="8051387559568225" type="Function">
                     <param id="0" name="Name">&quot;ComputePlayerUILayout&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="2973101320263603" type="Function">
+                    <param id="0" name="Name">&quot;ComputeNotificationUILayout&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
@@ -197,6 +203,29 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="7009231351450403">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Call function" sid="6738893702675816" type="Function">
+                            <param id="0" name="Name">&quot;HideNotification&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="1525336025461431" type="NotificationBg">
+                            <param id="0" name="Layer">&quot;Notification&quot;</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="9896540851845385" type="NotificationTxt">
+                            <param id="0" name="Layer">&quot;Notification&quot;</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7624687524155101" type="NotificationBg">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="3662457158518097" type="NotificationTxt">
+                            <param id="0" name="X">NotificationBg.X + NOTIFICATION_TEXT_LEFT_MARGIN</param>
+                            <param id="1" name="Y">NotificationBg.Y + NOTIFICATION_TEXT_TOP_MARGIN</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-block>
         <event-group description="" sid="3289015291960657" title="NPCUInit">
@@ -321,5 +350,22 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="1469019083020447">
+            <conditions>
+                <condition id="0" name="On function" sid="5071036019139747" type="Function">
+                    <param id="0" name="Name">&quot;ComputeNotificationUILayout&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4695405104506379" type="System">
+                    <param id="0" name="Variable">NOTIFICATION_TEXT_LEFT_MARGIN</param>
+                    <param id="1" name="Value">NotificationTxt.X - NotificationBg.X</param>
+                </action>
+                <action id="-9" name="Set value" sid="3515510548776567" type="System">
+                    <param id="0" name="Variable">NOTIFICATION_TEXT_TOP_MARGIN</param>
+                    <param id="1" name="Value">NotificationTxt.Y - NotificationBg.Y</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

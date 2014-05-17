@@ -4,7 +4,7 @@
     <name>UIStage</name>
     <events>
         <comment>p1: Stage</comment>
-        <event-block sid="8060985393539423">
+        <event-block collapsed="1" sid="8060985393539423">
             <conditions>
                 <condition id="0" name="On function" sid="6870888253004275" type="Function">
                     <param id="0" name="Name">&quot;HideStageUI&quot;</param>
@@ -48,9 +48,18 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="3207607856475652">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Call function" sid="1580027203851353" type="Function">
+                            <param id="0" name="Name">&quot;HideNotification&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-block>
-        <event-group description="" sid="6888331275258145" title="NPCUI">
+        <event-group collapsed="1" description="" sid="6888331275258145" title="NPCUI">
             <sub-events>
                 <comment>XXX: this every tick &quot;pinning&quot; is needed because construct has some bugs in computation of special sprite points.&#x0D;&#x0A;Construct return invalid values and we pin to them. But almost all the time Construct returns good values. This everytick pinning allows us to use this valid values.</comment>
                 <event-block sid="2604798924698626">
@@ -421,7 +430,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6702021473764103" title="PlayerUI">
+        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <comment>XXX: this every tick &quot;pinning&quot; is needed because construct has some bugs in computation of special sprite points.&#x0D;&#x0A;Construct return invalid values and we pin to them. But almost all the time Construct returns good values. This everytick pinning allows us to use this valid values.</comment>
                 <event-block sid="5619469661584902">
@@ -783,6 +792,46 @@
                         </action>
                         <action id="-15" name="Set visible" sid="8111916696491169" type="PlayerSpeechBg">
                             <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="6986851323157604" title="Notification">
+            <sub-events>
+                <event-block sid="2467896438487668">
+                    <conditions>
+                        <condition id="0" name="On function" sid="4480422704435398" type="Function">
+                            <param id="0" name="Name">&quot;HideNotification&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="6969764225011972" type="NotificationBg">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="5788949567484358" type="NotificationTxt">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>param(0): notification text</comment>
+                <event-block sid="3086431518048414">
+                    <conditions>
+                        <condition id="0" name="On function" sid="9583882527726912" type="Function">
+                            <param id="0" name="Name">&quot;ShowNotification&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="5581967901634872" type="NotificationTxt">
+                            <param id="0" name="Text">Function.Param(0)</param>
+                        </action>
+                        <action id="-25" name="Move to bottom" sid="9397713892381626" type="NotificationTxt" />
+                        <action id="-25" name="Move to bottom" sid="7110605039649892" type="NotificationBg" />
+                        <action id="-15" name="Set visible" sid="3632933500911169" type="NotificationBg">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="3695326354708191" type="NotificationTxt">
+                            <param id="0" name="Visibility">1</param>
                         </action>
                     </actions>
                 </event-block>

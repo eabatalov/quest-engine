@@ -284,6 +284,7 @@ function SENodeViewStaticConstructor(completionCB) {
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL] = "images/node_funcall.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION] = "images/node_none.png";
     SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENodeView.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
@@ -299,6 +300,7 @@ function SENodeViewStaticConstructor(completionCB) {
     loader = new PIXI.AssetLoader(assetsToLoad);
     loader.onComplete = function() {
         SENodeView.TEXTURES = { nodes : {}, buttons : {}, highlight : {} };
+
         SENodeView.TEXTURES.nodes[_QUEST_NODES.ANIM] =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
         SENodeView.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
@@ -317,6 +319,9 @@ function SENodeViewStaticConstructor(completionCB) {
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
         SENodeView.TEXTURES.nodes[_QUEST_NODES.FUNC_CALL] =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL]);
+        SENodeView.TEXTURES.nodes[_QUEST_NODES.NOTIFICATION] =
+            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION]);
+
         SENodeView.TEXTURES.buttons.del =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.buttons.del);
         SENodeView.TEXTURES.buttons.cond =
