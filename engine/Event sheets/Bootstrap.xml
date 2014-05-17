@@ -49,6 +49,10 @@
                     <param id="0" name="Name">&quot;GameStarted&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Call function" sid="6022014241380012" type="Function">
+                    <param id="0" name="Name">&quot;onStage&quot; &amp; Player.CurrentStage &amp; &quot;Active&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="1988503493942841">

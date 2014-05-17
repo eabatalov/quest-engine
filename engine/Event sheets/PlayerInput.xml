@@ -335,6 +335,10 @@
                     <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
+                <action id="0" name="Call function" sid="8555599054962123" type="Function">
+                    <param id="0" name="Name">&quot;onStage&quot; &amp; StageChanger.Stage &amp; &quot;Active&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
             </actions>
         </event-block>
     </events>
