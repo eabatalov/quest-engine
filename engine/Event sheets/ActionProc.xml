@@ -321,7 +321,7 @@
                         </action>
                     </actions>
                 </event-block>
-                <comment>Process custom event triggered by player activity&#x0D;&#x0A;p0: Custom event name</comment>
+                <comment>Process custom event triggered by player activity&#x0D;&#x0A;p0: Custom event name&#x0D;&#x0A;p1: Action &apos;target id&apos; data to identify storyline where to process event</comment>
                 <event-block sid="1316027862354772">
                     <conditions>
                         <condition id="0" name="On function" sid="158342733640637" type="Function">
@@ -344,7 +344,7 @@
                         </action>
                         <action id="0" name="Call function" sid="7233653807269136" type="Function">
                             <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}&quot;&quot;{###}Function.Param(0)</param>
+                            <param id="1" name="Parameter {n}">&quot;CUSTOM_EVENT&quot;{###}Function.Param(1){###}Function.Param(0)</param>
                         </action>
                     </actions>
                 </event-block>

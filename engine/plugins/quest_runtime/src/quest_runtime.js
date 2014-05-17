@@ -165,7 +165,7 @@ function uiStageActionInToQuestEvent(action) {
 		break;
         case _UI_STAGE_ACTION_IN.ACTION_TYPES.CUSTOM_EVENT:
             type = _QUEST_EVENTS.CUSTOM_EVENT;
-		    props = { name : action.getName(), id : "Player" /* XXX */ };
+		    props = { name : action.getName(), id : action.getTargetId() };
 		break;
         case _UI_STAGE_ACTION_IN.ACTION_TYPES.NEXT:
             type = _QUEST_EVENTS.NEXT;

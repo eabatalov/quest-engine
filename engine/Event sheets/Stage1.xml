@@ -27,7 +27,7 @@
                 </action>
                 <action id="0" name="Call function" sid="6991897946341484" type="Function">
                     <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;custom_event_check&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;custom_event_check&quot;{###}&quot;Player&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -43,7 +43,7 @@
                 </action>
                 <action id="0" name="Call function" sid="2019234199915549" type="Function">
                     <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;check_next&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;check_next&quot;{###}&quot;Player&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -59,7 +59,7 @@
                 </action>
                 <action id="0" name="Call function" sid="9204588001384151" type="Function">
                     <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;check_notification&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;check_notification&quot;{###}&quot;Player&quot;</param>
                 </action>
             </actions>
         </event-block>
