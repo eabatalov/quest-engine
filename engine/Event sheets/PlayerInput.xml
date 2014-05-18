@@ -302,44 +302,85 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <comment>Change stage context and render current UI action on stage</comment>
-        <event-block sid="9949365663832994">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="6721803164694401" type="Player">
-                    <param id="0" name="Object">StageChanger</param>
-                </condition>
-                <condition id="-8" name="Compare two values" sid="9836145392664095" type="System">
-                    <param id="0" name="First value">BlockPlayerInput</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Second value">0</param>
-                </condition>
-                <condition id="-8" name="Compare two values" sid="2039766089303173" type="System">
-                    <param id="0" name="First value">Player.CurrentStage</param>
-                    <param id="1" name="Comparison">1</param>
-                    <param id="2" name="Second value">StageChanger.Stage</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call function" sid="9662986366060641" type="Function">
-                    <param id="0" name="Name">&quot;HideStageUI&quot;</param>
-                    <param id="1" name="Parameter {n}">Player.CurrentStage</param>
-                </action>
-                <action id="-10" name="Set value" sid="968302635844418" type="Player">
-                    <param id="0" name="Instance variable">CurrentStage</param>
-                    <param id="1" name="Value">StageChanger.Stage</param>
-                </action>
-                <action id="0" name="Set current stage" sid="9866364592141594" type="QuestRuntimeInterface">
-                    <param id="0" name="Value">StageChanger.Stage</param>
-                </action>
-                <action id="0" name="Call function" sid="6816952854045386" type="Function">
-                    <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-                <action id="0" name="Call function" sid="8555599054962123" type="Function">
-                    <param id="0" name="Name">&quot;onStage&quot; &amp; StageChanger.Stage &amp; &quot;Active&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group collapsed="1" description="" sid="2755223319650143" title="Stage changer">
+            <sub-events>
+                <event-block sid="9949365663832994">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6721803164694401" type="Player">
+                            <param id="0" name="Object">StageChanger</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="9836145392664095" type="System">
+                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="2039766089303173" type="System">
+                            <param id="0" name="First value">Player.CurrentStage</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">StageChanger.Stage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="6251768207915564" type="Function">
+                            <param id="0" name="Name">&quot;ChangeStage&quot;</param>
+                            <param id="1" name="Parameter {n}">StageChanger.Stage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7609698910929058">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1160313490422418" type="Player">
+                            <param id="0" name="Object">CrankyStageChanger</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="8702323885905916" type="System">
+                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="9033207215331274" type="System">
+                            <param id="0" name="First value">Player.CurrentStage</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">CrankyStageChanger.Stage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="8040100302080544" type="Function">
+                            <param id="0" name="Name">&quot;ChangeStage&quot;</param>
+                            <param id="1" name="Parameter {n}">CrankyStageChanger.Stage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Change stage context and render current UI action on stage</comment>
+                <comment>p(0): new stage name</comment>
+                <event-block sid="6811936083988063">
+                    <conditions>
+                        <condition id="0" name="On function" sid="3098069443372747" type="Function">
+                            <param id="0" name="Name">&quot;ChangeStage&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="7588886292693031" type="Function">
+                            <param id="0" name="Name">&quot;HideStageUI&quot;</param>
+                            <param id="1" name="Parameter {n}">Player.CurrentStage</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7257467278459108" type="Player">
+                            <param id="0" name="Instance variable">CurrentStage</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="0" name="Set current stage" sid="7157665240375644" type="QuestRuntimeInterface">
+                            <param id="0" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="0" name="Call function" sid="3525188631633559" type="Function">
+                            <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="0" name="Call function" sid="2064427168564408" type="Function">
+                            <param id="0" name="Name">&quot;onStage&quot; &amp; StageChanger.Stage &amp; &quot;Active&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
