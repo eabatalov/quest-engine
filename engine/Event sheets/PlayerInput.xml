@@ -5,294 +5,99 @@
     <events>
         <comment>Block player input on start until game was inited</comment>
         <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">1</variable>
-        <event-group description="" sid="545184742850449" title="Touch">
+        <event-group description="" sid="2830842349648749" title="PlayerInput">
             <sub-events>
-                <event-block sid="2646781791677467">
-                    <conditions>
-                        <condition id="-8" name="Compare two values" sid="7887430280866534" type="System">
-                            <param id="0" name="First value">BlockPlayerInput</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions />
+                <variable constant="0" name="INPUT_STATE" sid="3003482212209299" static="1" type="text">IDLE</variable>
+                <event-group collapsed="1" description="" sid="2039030482302605" title="InputControls">
                     <sub-events>
-                        <event-group description="" sid="1401962210358661" title="NPC">
-                            <sub-events>
-                                <event-block sid="3455966220737066">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="4526777227602263" type="Touch">
-                                            <param id="0" name="Object">NPC</param>
-                                        </condition>
-                                        <condition disabled="1" id="-9" name="Is visible" sid="179424338218357" type="NPC" />
-                                        <condition id="-8" name="Compare two values" sid="669172279919466" type="System">
-                                            <param id="0" name="First value">NPC.Stage</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Second value">Player.CurrentStage</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="2770755106419538" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;NPC_CLICKED&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="3331927118393136">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="4179120028130057" type="Touch">
-                                            <param id="0" name="Object">NPCAns1Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="6432050601701229" type="NPCAns1Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="2675259609986753" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="5467358892886532">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="7685484704738249" type="Touch">
-                                            <param id="0" name="Object">NPCAns2Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="9303126660021892" type="NPCAns2Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="7050424250600247" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="269882646330502">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="8200306572401091" type="Touch">
-                                            <param id="0" name="Object">NPCAns3Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="6355819888936248" type="NPCAns3Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="4838897346030362" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="4685611529644997">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="5218183294187376" type="Touch">
-                                            <param id="0" name="Object">NPCAns4Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="3430890606024788" type="NPCAns4Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="1568713964449812" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="1729379983185067">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="222880269130967" type="Touch">
-                                            <param id="0" name="Object">NPCSpeechBg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="281866823687443" type="NPCSpeechBg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="3186624153274705" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}NPC.NpcIDInStage</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-group>
-                        <event-group description="" sid="2379961360243928" title="Player">
-                            <sub-events>
-                                <event-block sid="9325264978992444">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="2299257498356999" type="Touch">
-                                            <param id="0" name="Object">Player</param>
-                                        </condition>
-                                        <condition disabled="1" id="-9" name="Is visible" sid="6229130815197624" type="Player" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="7949244741719582" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;PLAYER_CLICKED&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="9746731776784917">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="4367833955018199" type="Touch">
-                                            <param id="0" name="Object">PlayerAns1Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="3780088647910636" type="PlayerAns1Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="2942613109157845" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="6082276302149916">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="3666284256112024" type="Touch">
-                                            <param id="0" name="Object">PlayerAns2Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="7348887536419889" type="PlayerAns2Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="1219161001189522" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="5374075430462438">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="6780760467045826" type="Touch">
-                                            <param id="0" name="Object">PlayerAns3Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="693925930479968" type="PlayerAns3Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="1564174612408053" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="1823271769955189">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="7382802086260756" type="Touch">
-                                            <param id="0" name="Object">PlayerAns4Bg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="3271603684703235" type="PlayerAns4Bg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="7422782588932453" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="7678653556197929">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="2731049911583237" type="Touch">
-                                            <param id="0" name="Object">PlayerSpeechBg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="3350811337496926" type="PlayerSpeechBg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="2739702537374694" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <comment>Global notification object can only be managed from the main storyline containing player</comment>
-                                <event-block sid="8980695286078322">
-                                    <conditions>
-                                        <condition id="3" name="On touched object" sid="2185397778219742" type="Touch">
-                                            <param id="0" name="Object">NotificationBg</param>
-                                        </condition>
-                                        <condition id="-9" name="Is visible" sid="8669286359530577" type="NotificationBg" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="0" name="Call function" sid="8332285634666075" type="Function">
-                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
-                                            <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}&quot;Player&quot;</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-group>
-                    </sub-events>
-                </event-block>
-                <event-group collapsed="1" description="" sid="9404869788081012" title="Controls">
-                    <sub-events>
-                        <event-block sid="3121774701855956">
+                        <event-block sid="2460676147359561">
                             <conditions>
-                                <condition id="4" name="Is touching object" sid="2240610174557253" type="Touch">
+                                <condition id="4" name="Is touching object" sid="7872365098574892" type="Touch">
                                     <param id="0" name="Object">ControlLeft</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="9459600295724443" type="ControlLeft">
+                                <action id="-9" name="Set value" sid="5170684600142153" type="System">
+                                    <param id="0" name="Variable">INPUT_STATE</param>
+                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="7650812421285198" type="ControlLeft">
                                     <param id="0" name="Animation">&quot;Active&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="6251032890855847" type="Player">
+                                <action behavior="Platform" id="7" name="Simulate control" sid="7465338080434785" type="Player">
                                     <param id="0" name="Control">0</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="6822722114337253">
+                        <event-block sid="9756299718136993">
                             <conditions>
-                                <condition id="-22" name="Else" sid="5013773127189127" type="System" />
+                                <condition id="-22" name="Else" sid="9627294804092428" type="System" />
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="6123215755617969" type="ControlLeft">
+                                <action id="4" name="Set animation" sid="2328713855887697" type="ControlLeft">
                                     <param id="0" name="Animation">&quot;Inactive&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="2509580711878021">
+                        <event-block sid="5531821665335205">
                             <conditions>
-                                <condition id="4" name="Is touching object" sid="132885344057923" type="Touch">
+                                <condition id="4" name="Is touching object" sid="9874340185052395" type="Touch">
                                     <param id="0" name="Object">ControlUp</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="8453742626031112" type="ControlUp">
+                                <action id="-9" name="Set value" sid="7555495061262899" type="System">
+                                    <param id="0" name="Variable">INPUT_STATE</param>
+                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="8836589157188082" type="ControlUp">
                                     <param id="0" name="Animation">&quot;Active&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="2078366957437163" type="Player">
+                                <action behavior="Platform" id="7" name="Simulate control" sid="1678550358678336" type="Player">
                                     <param id="0" name="Control">2</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="5970337470602645">
+                        <event-block sid="3873808371261588">
                             <conditions>
-                                <condition id="-22" name="Else" sid="4490621631252215" type="System" />
+                                <condition id="-22" name="Else" sid="9264341892091276" type="System" />
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="1519571201555174" type="ControlUp">
+                                <action id="4" name="Set animation" sid="4335675320092437" type="ControlUp">
                                     <param id="0" name="Animation">&quot;Inactive&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="7365885580819528">
+                        <event-block sid="7873564285693736">
                             <conditions>
-                                <condition id="4" name="Is touching object" sid="2395209845008634" type="Touch">
+                                <condition id="4" name="Is touching object" sid="5011398372712242" type="Touch">
                                     <param id="0" name="Object">ControlRight</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="6868010076720887" type="ControlRight">
+                                <action id="-9" name="Set value" sid="2483349212815995" type="System">
+                                    <param id="0" name="Variable">INPUT_STATE</param>
+                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="474836760416093" type="ControlRight">
                                     <param id="0" name="Animation">&quot;Active&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="6462054533144796" type="Player">
+                                <action behavior="Platform" id="7" name="Simulate control" sid="3347820634585081" type="Player">
                                     <param id="0" name="Control">1</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="691455311616565">
+                        <event-block sid="299444559484168">
                             <conditions>
-                                <condition id="-22" name="Else" sid="2567469818251342" type="System" />
+                                <condition id="-22" name="Else" sid="653012421233769" type="System" />
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" sid="409732019101038" type="ControlRight">
+                                <action id="4" name="Set animation" sid="3185710203343802" type="ControlRight">
                                     <param id="0" name="Animation">&quot;Inactive&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
@@ -300,9 +105,336 @@
                         </event-block>
                     </sub-events>
                 </event-group>
+                <event-block sid="1873999662377924">
+                    <conditions>
+                        <condition id="11" name="On Nth touch end" sid="769759410973024" type="Touch">
+                            <param id="0" name="Touch number">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Simple tap processing by objects priority</comment>
+                        <event-block sid="6172760554359036">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="7476127213764296" type="System">
+                                    <param id="0" name="First value">INPUT_STATE</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;IDLE&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="150128685285501" type="System">
+                                    <param id="0" name="First value">BlockPlayerInput</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-group description="" sid="5214444652765175" title="InputNotification">
+                                    <sub-events>
+                                        <comment>Global notification object can only be managed from the main storyline containing player</comment>
+                                        <event-block sid="960429598980419">
+                                            <conditions>
+                                                <condition id="4" name="Is touching object" sid="9925287132948592" type="Touch">
+                                                    <param id="0" name="Object">NotificationBg</param>
+                                                </condition>
+                                                <condition id="-9" name="Is visible" sid="2879201464132348" type="NotificationBg" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="2356844301923021" type="Function">
+                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                    <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}&quot;Player&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="4871650670022659">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="9715920151767901" type="System" />
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-group description="" sid="4613929316449932" title="InputQuizz">
+                                                    <sub-events>
+                                                        <event-block sid="3610033099566428">
+                                                            <conditions>
+                                                                <condition id="4" name="Is touching object" sid="7378105216803644" type="Touch">
+                                                                    <param id="0" name="Object">PlayerAnsBg</param>
+                                                                </condition>
+                                                                <condition id="-9" name="Is visible" sid="3465709122755686" type="PlayerAnsBg" />
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-group description="" sid="5570490472434793" title="InputQuizzPlayer">
+                                                                    <sub-events>
+                                                                        <event-block sid="9244327915283871">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="1434369844323443" type="Touch">
+                                                                                    <param id="0" name="Object">PlayerAns1Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="6797709380103244" type="PlayerAns1Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="7811283706256179" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="808987273599126">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="6641418128777404" type="Touch">
+                                                                                    <param id="0" name="Object">PlayerAns2Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="4970102135846657" type="PlayerAns2Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="5394762814746551" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="5220466744524609">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="4807380925583589" type="Touch">
+                                                                                    <param id="0" name="Object">PlayerAns3Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="8578014771509128" type="PlayerAns3Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="5325243694070209" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="3092933683416641">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="7297907820306031" type="Touch">
+                                                                                    <param id="0" name="Object">PlayerAns4Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="7217080684525388" type="PlayerAns4Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="745843360394716" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                    </sub-events>
+                                                                </event-group>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="6967947847990003">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="9856103202906761" type="System" />
+                                                                <condition id="4" name="Is touching object" sid="9988554973933489" type="Touch">
+                                                                    <param id="0" name="Object">NPCAnsBg</param>
+                                                                </condition>
+                                                                <condition id="-9" name="Is visible" sid="2742014454859619" type="NPCAnsBg" />
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-group collapsed="1" description="" sid="2410898144104873" title="InputQuizzNPC">
+                                                                    <sub-events>
+                                                                        <event-block sid="9244327915283871">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="8492629149623324" type="Touch">
+                                                                                    <param id="0" name="Object">NPCAns1Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="8524170090058752" type="NPCAns1Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="5188113430253159" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER1_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="6295839870821978">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="7243934845188166" type="Touch">
+                                                                                    <param id="0" name="Object">NPCAns2Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="5277225986935538" type="NPCAns2Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="3565961746369076" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER2_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="5220466744524609">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="6620377190070372" type="Touch">
+                                                                                    <param id="0" name="Object">NPCAns3Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="1113446108244117" type="NPCAns3Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="8542932235301472" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER3_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="3092933683416641">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="9417051112446105" type="Touch">
+                                                                                    <param id="0" name="Object">NPCAns4Bg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="3539413976546757" type="NPCAns4Bg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="5660083931098062" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;ANSWER4_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                    </sub-events>
+                                                                </event-group>
+                                                            </sub-events>
+                                                        </event-block>
+                                                        <event-block sid="3599448319066088">
+                                                            <conditions>
+                                                                <condition id="-22" name="Else" sid="7280772023547169" type="System" />
+                                                            </conditions>
+                                                            <actions />
+                                                            <sub-events>
+                                                                <event-group description="" sid="1445189008455471" title="InputBalloon">
+                                                                    <sub-events>
+                                                                        <event-block sid="576738969998819">
+                                                                            <conditions>
+                                                                                <condition id="4" name="Is touching object" sid="2068350486640474" type="Touch">
+                                                                                    <param id="0" name="Object">NPCSpeechBg</param>
+                                                                                </condition>
+                                                                                <condition id="-9" name="Is visible" sid="4980821966843262" type="NPCSpeechBg" />
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="0" name="Call function" sid="7342972398969219" type="Function">
+                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                    <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}NPC.NpcIDInStage</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <event-block sid="9061294361655323">
+                                                                            <conditions>
+                                                                                <condition id="-22" name="Else" sid="1407190567127321" type="System" />
+                                                                            </conditions>
+                                                                            <actions />
+                                                                            <sub-events>
+                                                                                <event-block sid="1321310949359807">
+                                                                                    <conditions>
+                                                                                        <condition id="4" name="Is touching object" sid="9744078061826525" type="Touch">
+                                                                                            <param id="0" name="Object">PlayerSpeechBg</param>
+                                                                                        </condition>
+                                                                                        <condition id="-9" name="Is visible" sid="7646473691644654" type="PlayerSpeechBg" />
+                                                                                    </conditions>
+                                                                                    <actions>
+                                                                                        <action id="0" name="Call function" sid="4553815621528198" type="Function">
+                                                                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                            <param id="1" name="Parameter {n}">&quot;NEXT&quot;{###}&quot;Player&quot;</param>
+                                                                                        </action>
+                                                                                    </actions>
+                                                                                </event-block>
+                                                                                <event-block sid="4091458548572446">
+                                                                                    <conditions>
+                                                                                        <condition id="-22" name="Else" sid="9148458480902659" type="System" />
+                                                                                    </conditions>
+                                                                                    <actions />
+                                                                                    <sub-events>
+                                                                                        <event-group description="" sid="1039263380297501" title="InputCharacter">
+                                                                                            <sub-events>
+                                                                                                <event-block sid="305809026854194">
+                                                                                                    <conditions>
+                                                                                                        <condition id="4" name="Is touching object" sid="2159834147064531" type="Touch">
+                                                                                                            <param id="0" name="Object">NPC</param>
+                                                                                                        </condition>
+                                                                                                        <condition id="-9" name="Is visible" sid="9116048015684113" type="NPC" />
+                                                                                                        <condition id="-8" name="Compare two values" sid="7962307094023783" type="System">
+                                                                                                            <param id="0" name="First value">NPC.Stage</param>
+                                                                                                            <param id="1" name="Comparison">0</param>
+                                                                                                            <param id="2" name="Second value">Player.CurrentStage</param>
+                                                                                                        </condition>
+                                                                                                    </conditions>
+                                                                                                    <actions>
+                                                                                                        <action id="0" name="Call function" sid="2801554626570156" type="Function">
+                                                                                                            <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                                            <param id="1" name="Parameter {n}">&quot;NPC_CLICKED&quot;{###}NPC.NpcIDInStage</param>
+                                                                                                        </action>
+                                                                                                    </actions>
+                                                                                                </event-block>
+                                                                                                <event-block sid="2359110758246322">
+                                                                                                    <conditions>
+                                                                                                        <condition id="-22" name="Else" sid="1712268859280778" type="System" />
+                                                                                                    </conditions>
+                                                                                                    <actions />
+                                                                                                    <sub-events>
+                                                                                                        <event-block sid="5786268401515178">
+                                                                                                            <conditions>
+                                                                                                                <condition id="4" name="Is touching object" sid="318352182056772" type="Touch">
+                                                                                                                    <param id="0" name="Object">Player</param>
+                                                                                                                </condition>
+                                                                                                                <condition id="-9" name="Is visible" sid="7582195372336179" type="Player" />
+                                                                                                            </conditions>
+                                                                                                            <actions>
+                                                                                                                <action id="0" name="Call function" sid="881150191223577" type="Function">
+                                                                                                                    <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
+                                                                                                                    <param id="1" name="Parameter {n}">&quot;PLAYER_CLICKED&quot;{###}&quot;Player&quot;</param>
+                                                                                                                </action>
+                                                                                                            </actions>
+                                                                                                        </event-block>
+                                                                                                        <comment>As game objects clicking processed here always has the highest input priority we can process input on all the other objects here</comment>
+                                                                                                        <event-block sid="2908475218621934">
+                                                                                                            <conditions>
+                                                                                                                <condition id="-22" name="Else" sid="7774944738033263" type="System" />
+                                                                                                            </conditions>
+                                                                                                            <actions>
+                                                                                                                <action id="0" name="Call function" sid="4227935258099288" type="Function">
+                                                                                                                    <param id="0" name="Name">&quot;procMiscInput&quot; &amp; Player.CurrentStage</param>
+                                                                                                                    <param id="1" name="Parameter {n}"></param>
+                                                                                                                </action>
+                                                                                                            </actions>
+                                                                                                        </event-block>
+                                                                                                    </sub-events>
+                                                                                                </event-block>
+                                                                                            </sub-events>
+                                                                                        </event-group>
+                                                                                    </sub-events>
+                                                                                </event-block>
+                                                                            </sub-events>
+                                                                        </event-block>
+                                                                    </sub-events>
+                                                                </event-group>
+                                                            </sub-events>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-group>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-group>
+                            </sub-events>
+                        </event-block>
+                        <comment>Input state specific &quot;end of touch&quot; processing here</comment>
+                        <event-block sid="7050173247763941">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3089364295613531" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="4772601113739412" type="System">
+                                    <param id="0" name="Variable">INPUT_STATE</param>
+                                    <param id="1" name="Value">&quot;IDLE&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="2755223319650143" title="Stage changer">
+        <event-group collapsed="1" description="" sid="332469586418499" title="Stage changer">
             <sub-events>
                 <event-block sid="9949365663832994">
                     <conditions>
@@ -359,7 +491,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Call function" sid="7392551718466762" type="Function">
+                        <action id="0" name="Call function" sid="7107882144466008" type="Function">
                             <param id="0" name="Name">&quot;onStage&quot; &amp; Player.CurrentStage&amp; &quot;Inactive&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
                         </action>

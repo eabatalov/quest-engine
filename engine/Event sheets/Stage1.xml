@@ -15,53 +15,83 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="531235346033195">
+        <event-block sid="2605166773287963">
             <conditions>
-                <condition id="3" name="On touched object" sid="5560454129314232" type="Touch">
-                    <param id="0" name="Object">CustomEventTrigger</param>
+                <condition id="0" name="On function" sid="847977287673169" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Set current stage" sid="5255669457951863" type="QuestRuntimeInterface">
-                    <param id="0" name="Value">Player.CurrentStage</param>
-                </action>
-                <action id="0" name="Call function" sid="6991897946341484" type="Function">
-                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;custom_event_check&quot;{###}&quot;Player&quot;</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="531235346033195">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="5560454129314232" type="Touch">
+                            <param id="0" name="Object">CustomEventTrigger</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set current stage" sid="5255669457951863" type="QuestRuntimeInterface">
+                            <param id="0" name="Value">Player.CurrentStage</param>
+                        </action>
+                        <action id="0" name="Call function" sid="6991897946341484" type="Function">
+                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;custom_event_check&quot;{###}&quot;Player&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
-        <event-block sid="6343771775594799">
+        <event-block sid="698821634525488">
             <conditions>
-                <condition id="3" name="On touched object" sid="1681915825806838" type="Touch">
-                    <param id="0" name="Object">NextTestTrigger</param>
+                <condition id="0" name="On function" sid="4757194551892542" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Set current stage" sid="926383337676464" type="QuestRuntimeInterface">
-                    <param id="0" name="Value">Player.CurrentStage</param>
-                </action>
-                <action id="0" name="Call function" sid="2019234199915549" type="Function">
-                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;check_next&quot;{###}&quot;Player&quot;</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="8438730669981154">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="7223551815260438" type="Touch">
+                            <param id="0" name="Object">NextTestTrigger</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set current stage" sid="5658588855349762" type="QuestRuntimeInterface">
+                            <param id="0" name="Value">Player.CurrentStage</param>
+                        </action>
+                        <action id="0" name="Call function" sid="337380940741201" type="Function">
+                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;check_next&quot;{###}&quot;Player&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
-        <event-block sid="4347083369049911">
+        <event-block sid="5601714305751923">
             <conditions>
-                <condition id="3" name="On touched object" sid="8775302195056859" type="Touch">
-                    <param id="0" name="Object">NotificationTest</param>
+                <condition id="0" name="On function" sid="9561681930138496" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Set current stage" sid="7003290052636697" type="QuestRuntimeInterface">
-                    <param id="0" name="Value">Player.CurrentStage</param>
-                </action>
-                <action id="0" name="Call function" sid="9204588001384151" type="Function">
-                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                    <param id="1" name="Parameter {n}">&quot;check_notification&quot;{###}&quot;Player&quot;</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="6639064483389677">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="784781157254056" type="Touch">
+                            <param id="0" name="Object">NotificationTest</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set current stage" sid="6796641429186421" type="QuestRuntimeInterface">
+                            <param id="0" name="Value">Player.CurrentStage</param>
+                        </action>
+                        <action id="0" name="Call function" sid="4748971152230559" type="Function">
+                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;check_notification&quot;{###}&quot;Player&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>
