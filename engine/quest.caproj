@@ -1546,6 +1546,26 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="TalkStartTrigger" sid="9807896771739052">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="NpcIDInStage" sid="2825221887980929" type="string" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3718824733583479" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0">
+                            <collision-poly>
+                                <point x="0.030303" y="0.00297619" />
+                                <point x="0.909091" y="0.00892857" />
+                                <point x="0.151515" y="0.5" />
+                                <point x="0.151515" y="0.916667" />
+                                <point x="0.484848" y="0.077381" />
+                                <point x="0.030303" y="0.997024" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Animation">
             <object-folder expanded="1" name="Player">
@@ -2988,7 +3008,7 @@
         </layout-folder>
     </layout-folder>
     <event-folder expanded="1">
-        <event-folder expanded="0" name="Quest">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>

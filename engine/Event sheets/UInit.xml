@@ -192,6 +192,12 @@
                         <action id="-6" name="Set height" sid="4611797907622094" type="StageChanger">
                             <param id="0" name="Height">LayoutHeight</param>
                         </action>
+                        <action id="-2" name="Set Y" sid="3390001329431749" type="TalkStartTrigger">
+                            <param id="0" name="Y">0</param>
+                        </action>
+                        <action id="-6" name="Set height" sid="9180956732448732" type="TalkStartTrigger">
+                            <param id="0" name="Height">LayoutHeight</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="998019353929911">

@@ -518,5 +518,23 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-group description="" sid="3984117986249243" title="Automatic start talk">
+            <sub-events>
+                <comment>Inject custom event with name &quot;auto_talk_start_&quot; + NPC id to start talking</comment>
+                <event-block sid="7124879317616865">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7991193214109111" type="TalkStartTrigger">
+                            <param id="0" name="Object">Player</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="8550995941394823" type="Function">
+                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;auto_talk_start_&quot;  &amp; TalkStartTrigger.NpcIDInStage{###}&quot;Player&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
     </events>
 </c2eventsheet>
