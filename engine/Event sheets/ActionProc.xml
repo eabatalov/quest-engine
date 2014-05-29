@@ -161,6 +161,48 @@
                                         </action>
                                     </actions>
                                 </event-block>
+                                <event-block sid="5649586967820558">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="1707103556340165" type="System">
+                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">&quot;PLAYER_MOVEMENT&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="7161771389107907">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="5297614932548567" type="System">
+                                                    <param id="0" name="First value">QuestRuntimeInterface.getEnabled</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="6093212877094258" type="Function">
+                                                    <param id="0" name="Name">&quot;DisablePlayerAvatarControls&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="7232433265394187">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="8124940118599622" type="System">
+                                                    <param id="0" name="First value">QuestRuntimeInterface.getEnabled</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="1315472048789617" type="Function">
+                                                    <param id="0" name="Name">&quot;EnablePlayerAvatarControls&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
                                 <event-block sid="6632858068048924">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="3014435150508187" type="System">

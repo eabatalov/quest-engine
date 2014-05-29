@@ -15,6 +15,7 @@
                                 <condition id="4" name="Is touching object" sid="7872365098574892" type="Touch">
                                     <param id="0" name="Object">ControlLeft</param>
                                 </condition>
+                                <condition id="-9" name="Is visible" sid="8925607421898263" type="ControlLeft" />
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" sid="5170684600142153" type="System">
@@ -46,6 +47,7 @@
                                 <condition id="4" name="Is touching object" sid="9874340185052395" type="Touch">
                                     <param id="0" name="Object">ControlUp</param>
                                 </condition>
+                                <condition id="-9" name="Is visible" sid="9834970139350979" type="ControlUp" />
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" sid="7555495061262899" type="System">
@@ -77,6 +79,7 @@
                                 <condition id="4" name="Is touching object" sid="5011398372712242" type="Touch">
                                     <param id="0" name="Object">ControlRight</param>
                                 </condition>
+                                <condition id="-9" name="Is visible" sid="9263402890969975" type="ControlRight" />
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" sid="2483349212815995" type="System">
@@ -105,7 +108,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block sid="1873999662377924">
+                <event-block collapsed="1" sid="1873999662377924">
                     <conditions>
                         <condition id="11" name="On Nth touch end" sid="769759410973024" type="Touch">
                             <param id="0" name="Touch number">0</param>
@@ -518,7 +521,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="3984117986249243" title="Automatic start talk">
+        <event-group collapsed="1" description="" sid="3984117986249243" title="Automatic start talk">
             <sub-events>
                 <comment>Inject custom event with name &quot;auto_talk_start_&quot; + NPC id to start talking</comment>
                 <event-block sid="7124879317616865">
@@ -536,5 +539,51 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="8694111219489924">
+            <conditions>
+                <condition id="0" name="On function" sid="5825575074126567" type="Function">
+                    <param id="0" name="Name">&quot;EnablePlayerAvatarControls&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="11" name="Set enabled" sid="2156812102459905" type="Player">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8450681033080737" type="ControlLeft">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4215953835019314" type="ControlRight">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5031764874179612" type="ControlUp">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Set horizontal speed to 0 because it is not logically set to 0 when platform is disabled</comment>
+        <event-block sid="3870640516651617">
+            <conditions>
+                <condition id="0" name="On function" sid="2178727481963409" type="Function">
+                    <param id="0" name="Name">&quot;DisablePlayerAvatarControls&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="8" name="Set vector X" sid="6313459378318555" type="Player">
+                    <param id="0" name="Vector X">0</param>
+                </action>
+                <action behavior="Platform" id="11" name="Set enabled" sid="2121347383591089" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6869784657833364" type="ControlLeft">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9430945953897008" type="ControlRight">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5401697065102518" type="ControlUp">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
