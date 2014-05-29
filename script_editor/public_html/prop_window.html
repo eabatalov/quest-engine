@@ -209,6 +209,7 @@
             </ul>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-6" ng-show="node.continue  | hasFieldValue">
             <div>
@@ -221,5 +222,18 @@
             </div>
         </div>
     </div>
-</div>
 
+    <div class="row" ng-show="node.getType() === QUEST_NODES.PLAYER_MOVEMENT">
+        <div class="col-xs-6" ng-show="node.getProps().enabled | hasFieldValue">
+            <div>
+                <label class="control-label" for="enabled">Enabled?</label>
+                <select name="enabled"
+                        class="control-label select"
+                        ng-model="node.getProps().enabled" ng-change="node.setProp('enabled', node.getProps().enabled)"
+                        ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];">
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>

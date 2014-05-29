@@ -1,5 +1,5 @@
 function SENodeView(node, seEvents) {
-    SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[node.getType()]));
+    SESpriteObject.call(this, new PIXI.Sprite(SENodeView.TEXTURES.nodes[node.getType()]["default"]));
 
     this.controls = {
         buttons : {
@@ -81,6 +81,20 @@ function SENodeView(node, seEvents) {
     //XXX will be coded cleanly when we have SENodeView subclasses
     if (this.node.getType() === _QUEST_NODES.STAGE) {
         this.controls.buttons.del.detachParent();
+    }
+
+    if (this.node.getType() === _QUEST_NODES.PLAYER_MOVEMENT) {
+        function onEnabledChanged(propName, node) {
+            if (propName !== "enabled")
+                return;
+
+            if (node.getProp("enabled"))
+                this.setTexture(SENodeView.TEXTURES.nodes[node.getType()]["enabled"]);
+            else
+                this.setTexture(SENodeView.TEXTURES.nodes[node.getType()]["disabled"]);
+        };
+        onEnabledChanged.call(this, "enabled", this.node);
+        this.node.events.propChanged.subscribe(this, onEnabledChanged);
     }
 }
 
@@ -285,15 +299,23 @@ function SENodeViewStaticConstructor(completionCB) {
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL] = "images/node_funcall.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION] = "images/node_none.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PLAYER_MOVEMENT] = {
+        "default" : "images/node_none.png",
+        "enabled" : "images/node_none.png",
+        "disabled" : "images/node_stcl.png"
+    };
     SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
     SENodeView.TEXTURE_PATHS.label = "images/nav/nav_namenode.png";
     SENodeView.TEXTURE_PATHS.highlightHex = "images/node_greenorbhex.png";
 
-    var assetsToLoad = $.map(SENodeView.TEXTURE_PATHS.nodes,
-        function(value, index) { return [value]; });
-     assetsToLoad = assetsToLoad.concat($.map(SENodeView.TEXTURE_PATHS.buttons,
-        function(value, index) { return [value]; }));
+    function extractTexturePaths(value, index) {
+        if (jQuery.type(value) === "string")
+            return [value];
+        else return jQuery.map(value, extractTexturePaths);
+    };
+    var assetsToLoad = jQuery.map(SENodeView.TEXTURE_PATHS.nodes, extractTexturePaths);
+    assetsToLoad = assetsToLoad.concat(jQuery.map(SENodeView.TEXTURE_PATHS.buttons, extractTexturePaths));
     assetsToLoad.push(SENodeView.TEXTURE_PATHS.label);
     assetsToLoad.push(SENodeView.TEXTURE_PATHS.highlightHex);
 
@@ -301,26 +323,17 @@ function SENodeViewStaticConstructor(completionCB) {
     loader.onComplete = function() {
         SENodeView.TEXTURES = { nodes : {}, buttons : {}, highlight : {} };
 
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.ANIM] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.ANIM]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.PHRASE] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PHRASE]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.QUIZ] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.QUIZ]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.STAGE] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.STAGE_CLEAR] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STAGE_CLEAR]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.STORYLINE] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.STORYLINE]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.WAIT] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.NONE] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.FUNC_CALL] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL]);
-        SENodeView.TEXTURES.nodes[_QUEST_NODES.NOTIFICATION] =
-            PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION]);
+        jQuery.each(SENodeView.TEXTURE_PATHS.nodes, function(nodeType, path) {
+            SENodeView.TEXTURES.nodes[nodeType] = {};
+            if (jQuery.type(path) === "string") {
+                SENodeView.TEXTURES.nodes[nodeType]["default"] = PIXI.Texture.fromImage(path);
+                return;
+            }
+
+            jQuery.each(path, function(textureKey, path) {
+                SENodeView.TEXTURES.nodes[nodeType][textureKey] = PIXI.Texture.fromImage(path);
+            });
+        });
 
         SENodeView.TEXTURES.buttons.del =
             PIXI.Texture.fromImage(SENodeView.TEXTURE_PATHS.buttons.del);

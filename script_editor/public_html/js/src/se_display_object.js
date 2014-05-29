@@ -168,6 +168,10 @@ SESpriteObject.prototype.setWH = function(w, h) {
     throw "Setting WH on sprite objects is not allowed";
 };
 
+SESpriteObject.prototype.setTexture = function(texture) {
+    this.do.setTexture(texture);
+};
+
 /*
  * Text object
  */
