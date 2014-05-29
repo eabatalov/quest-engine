@@ -143,6 +143,10 @@ AddExpression(12, ef_return_number,
 AddExpression(13, ef_return_string, "Function name", "Getters", "getFuncName",
 	"Function name");
 
+AddExpression(14, ef_return_number,
+	"1 to enable player avatar movement control by player",
+	"Getters", "getEnabled",
+	"1 to enable player avatar movement control by player");
 ////////////////////////////////////////
 ACESDone();
 

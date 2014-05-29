@@ -112,6 +112,10 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
             action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NOTIFICATION);
             action.setText(questNode.getProp("text"));
         break;
+        case _QUEST_NODES.PLAYER_MOVEMENT:
+            action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT);
+            action.setEnabled(questNode.getProp("enabled") === true ? 1 : 0);
+        break;
 		default:
 			console.error("Error. Invalid quest node type: " +
                 questNode.getType().toString());

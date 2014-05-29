@@ -238,6 +238,12 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
         );
 	};
 
+    Exps.prototype.getEnabled = function(ret) {
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getEnabled()
+        );
+	};
+
 	pluginProto.exps = new Exps();
 
 }());
