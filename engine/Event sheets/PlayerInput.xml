@@ -108,7 +108,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block collapsed="1" sid="1873999662377924">
+                <event-block sid="1873999662377924">
                     <conditions>
                         <condition id="11" name="On Nth touch end" sid="769759410973024" type="Touch">
                             <param id="0" name="Touch number">0</param>
@@ -355,7 +355,7 @@
                                                                                                         <condition id="4" name="Is touching object" sid="2159834147064531" type="Touch">
                                                                                                             <param id="0" name="Object">NPC</param>
                                                                                                         </condition>
-                                                                                                        <condition id="-9" name="Is visible" sid="9116048015684113" type="NPC" />
+                                                                                                        <condition disabled="1" id="-9" name="Is visible" sid="9116048015684113" type="NPC" />
                                                                                                         <condition id="-8" name="Compare two values" sid="7962307094023783" type="System">
                                                                                                             <param id="0" name="First value">NPC.Stage</param>
                                                                                                             <param id="1" name="Comparison">0</param>
@@ -380,7 +380,7 @@
                                                                                                                 <condition id="4" name="Is touching object" sid="318352182056772" type="Touch">
                                                                                                                     <param id="0" name="Object">Player</param>
                                                                                                                 </condition>
-                                                                                                                <condition id="-9" name="Is visible" sid="7582195372336179" type="Player" />
+                                                                                                                <condition disabled="1" id="-9" name="Is visible" sid="7582195372336179" type="Player" />
                                                                                                             </conditions>
                                                                                                             <actions>
                                                                                                                 <action id="0" name="Call function" sid="881150191223577" type="Function">
