@@ -1128,6 +1128,7 @@
                     </properties>
                     <instance-variables>
                         <NpcIDInStage>Older</NpcIDInStage>
+                        <ExpandToLayoutHeight>1</ExpandToLayoutHeight>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -1204,8 +1205,8 @@
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
             <parallax>
-                <x>0</x>
-                <y>0</y>
+                <x>1</x>
+                <y>1</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>

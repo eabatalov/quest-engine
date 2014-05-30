@@ -1550,6 +1550,7 @@
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable name="NpcIDInStage" sid="2825221887980929" type="string" />
+                    <instance-variable name="ExpandToLayoutHeight" sid="9507998440189625" type="number" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3718824733583479" speed="5">

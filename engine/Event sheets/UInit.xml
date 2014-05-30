@@ -199,6 +199,11 @@
                         <condition id="-11" name="For Each" sid="9402231475431198" type="System">
                             <param id="0" name="Object">TalkStartTrigger</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="4932582497339419" type="TalkStartTrigger">
+                            <param id="0" name="Instance variable">ExpandToLayoutHeight</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-2" name="Set Y" sid="9395285508304608" type="TalkStartTrigger">
