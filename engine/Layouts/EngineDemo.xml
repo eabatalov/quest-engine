@@ -2014,8 +2014,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>827</x>
-                        <y>86</y>
+                        <x>870</x>
+                        <y>74</y>
                         <z>0</z>
                         <width>100</width>
                         <height>100</height>
@@ -2036,8 +2036,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>957</x>
-                        <y>79</y>
+                        <x>936</x>
+                        <y>158</y>
                         <z>0</z>
                         <width>100</width>
                         <height>100</height>
@@ -2063,6 +2063,28 @@
                         <z>0</z>
                         <width>100</width>
                         <height>100</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Clutch" uid="83">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>902</x>
+                        <y>100</y>
+                        <z>0</z>
+                        <width>81</width>
+                        <height>81</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

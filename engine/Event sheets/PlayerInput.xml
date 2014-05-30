@@ -558,6 +558,9 @@
                 <action id="-15" name="Set visible" sid="5031764874179612" type="ControlUp">
                     <param id="0" name="Visibility">1</param>
                 </action>
+                <action id="-15" name="Set visible" sid="4648330971185187" type="Clutch">
+                    <param id="0" name="Visibility">1</param>
+                </action>
             </actions>
         </event-block>
         <comment>Set horizontal speed to 0 because it is not logically set to 0 when platform is disabled</comment>
@@ -581,6 +584,9 @@
                     <param id="0" name="Visibility">0</param>
                 </action>
                 <action id="-15" name="Set visible" sid="5401697065102518" type="ControlUp">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4179053113844566" type="Clutch">
                     <param id="0" name="Visibility">0</param>
                 </action>
             </actions>
