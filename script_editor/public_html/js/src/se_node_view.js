@@ -298,11 +298,11 @@ function SENodeViewStaticConstructor(completionCB) {
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.WAIT] = "images/node_wait.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NONE] = "images/node_none.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.FUNC_CALL] = "images/node_funcall.png";
-    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION] = "images/node_none.png";
+    SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.NOTIFICATION] = "images/node_notification.png";
     SENodeView.TEXTURE_PATHS.nodes[_QUEST_NODES.PLAYER_MOVEMENT] = {
-        "default" : "images/node_none.png",
-        "enabled" : "images/node_none.png",
-        "disabled" : "images/node_stcl.png"
+        "default" : "images/node_player_move.png",
+        "enabled" : "images/node_player_move.png",
+        "disabled" : "images/node_player_move_disabled.png"
     };
     SENodeView.TEXTURE_PATHS.buttons.del = "images/nav/nav_clnode.png";
     SENodeView.TEXTURE_PATHS.buttons.cond = "images/nav/nav_arrnode.png";
