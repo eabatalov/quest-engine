@@ -521,7 +521,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="3984117986249243" title="Automatic start talk">
+        <event-group description="" sid="3984117986249243" title="Automatic start talk">
             <sub-events>
                 <comment>Inject custom event with name &quot;auto_talk_start_&quot; + NPC id to start talking</comment>
                 <event-block sid="7124879317616865">
@@ -531,6 +531,9 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-15" name="Set visible" sid="1811636999028904" type="TalkStartHighlight">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                         <action id="0" name="Call function" sid="8550995941394823" type="Function">
                             <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
                             <param id="1" name="Parameter {n}">&quot;auto_talk_start_&quot;  &amp; TalkStartTrigger.NpcIDInStage{###}&quot;Player&quot;</param>

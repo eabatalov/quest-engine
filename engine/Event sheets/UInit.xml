@@ -194,25 +194,58 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="6468192201945781">
+                <event-block sid="61013415614206">
                     <conditions>
-                        <condition id="-11" name="For Each" sid="9402231475431198" type="System">
+                        <condition id="-11" name="For Each" sid="8468967723990054" type="System">
                             <param id="0" name="Object">TalkStartTrigger</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" sid="4932582497339419" type="TalkStartTrigger">
-                            <param id="0" name="Instance variable">ExpandToLayoutHeight</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
                     </conditions>
-                    <actions>
-                        <action id="-2" name="Set Y" sid="9395285508304608" type="TalkStartTrigger">
-                            <param id="0" name="Y">0</param>
-                        </action>
-                        <action id="-6" name="Set height" sid="3771340084660588" type="TalkStartTrigger">
-                            <param id="0" name="Height">LayoutHeight</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8401665124676131">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="899909807957602" type="TalkStartTrigger">
+                                    <param id="0" name="Instance variable">ExpandToLayoutHeight</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="3691333161022991" type="TalkStartTrigger">
+                                    <param id="0" name="Height">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
+                                </action>
+                                <action id="-2" name="Set Y" sid="188323938425431" type="TalkStartTrigger">
+                                    <param id="0" name="Y">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1824334134210891">
+                            <conditions />
+                            <actions>
+                                <action id="-26" name="Move to layer" sid="8642061692389979" type="TalkStartHighlight">
+                                    <param id="0" name="Layer">&quot;BackgroundF&quot;</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="9423369326129057" type="TalkStartHighlight">
+                                    <param id="0" name="X">TalkStartTrigger.ImagePointX(&quot;TalkStartHighlightOrigin&quot;)</param>
+                                    <param id="1" name="Y">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5075827548519141">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="9935034294634069" type="System">
+                                    <param id="0" name="First value">TalkStartTrigger.Highlight</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="8238122307382844" type="TalkStartHighlight">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="998019353929911">
                     <conditions />
