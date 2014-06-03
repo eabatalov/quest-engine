@@ -68,5 +68,17 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="8972079637192557">
+            <conditions>
+                <condition id="0" name="On function" sid="9914160566376022" type="Function">
+                    <param id="0" name="Name">&quot;procPopupClick&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Set return value" sid="7618631439743859" type="Function">
+                    <param id="0" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
