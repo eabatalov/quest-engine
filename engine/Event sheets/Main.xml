@@ -56,5 +56,17 @@
                 </action>
             </actions>
         </event-block>
+        <event-block sid="5372771361652245">
+            <conditions>
+                <condition id="0" name="On function" sid="2441806436062712" type="Function">
+                    <param id="0" name="Name">&quot;procSpecialControls&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Set return value" sid="7531506946247425" type="Function">
+                    <param id="0" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

@@ -389,17 +389,38 @@
                                                                                                                 </action>
                                                                                                             </actions>
                                                                                                         </event-block>
-                                                                                                        <comment>As game objects clicking processed here always has the highest input priority we can process input on all the other objects here</comment>
-                                                                                                        <event-block sid="2908475218621934">
+                                                                                                        <event-block sid="3195678924013606">
                                                                                                             <conditions>
-                                                                                                                <condition id="-22" name="Else" sid="7774944738033263" type="System" />
+                                                                                                                <condition id="-22" name="Else" sid="2367388761990516" type="System" />
                                                                                                             </conditions>
-                                                                                                            <actions>
-                                                                                                                <action id="0" name="Call function" sid="4227935258099288" type="Function">
-                                                                                                                    <param id="0" name="Name">&quot;procMiscInput&quot; &amp; Player.CurrentStage</param>
-                                                                                                                    <param id="1" name="Parameter {n}"></param>
-                                                                                                                </action>
-                                                                                                            </actions>
+                                                                                                            <actions />
+                                                                                                            <sub-events>
+                                                                                                                <event-block sid="5774257509514038">
+                                                                                                                    <conditions />
+                                                                                                                    <actions>
+                                                                                                                        <action id="0" name="Call function" sid="8893366977091893" type="Function">
+                                                                                                                            <param id="0" name="Name">&quot;procSpecialControls&quot;</param>
+                                                                                                                            <param id="1" name="Parameter {n}"></param>
+                                                                                                                        </action>
+                                                                                                                    </actions>
+                                                                                                                </event-block>
+                                                                                                                <comment>As game objects clicking processed here always has the highest input priority we can process input on all the other objects here</comment>
+                                                                                                                <event-block sid="3038435038797574">
+                                                                                                                    <conditions>
+                                                                                                                        <condition id="-8" name="Compare two values" sid="1217189735770374" type="System">
+                                                                                                                            <param id="0" name="First value">Function.ReturnValue</param>
+                                                                                                                            <param id="1" name="Comparison">0</param>
+                                                                                                                            <param id="2" name="Second value">0</param>
+                                                                                                                        </condition>
+                                                                                                                    </conditions>
+                                                                                                                    <actions>
+                                                                                                                        <action id="0" name="Call function" sid="999713382631484" type="Function">
+                                                                                                                            <param id="0" name="Name">&quot;procMiscInput&quot; &amp; Player.CurrentStage</param>
+                                                                                                                            <param id="1" name="Parameter {n}"></param>
+                                                                                                                        </action>
+                                                                                                                    </actions>
+                                                                                                                </event-block>
+                                                                                                            </sub-events>
                                                                                                         </event-block>
                                                                                                     </sub-events>
                                                                                                 </event-block>

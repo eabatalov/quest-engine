@@ -3063,7 +3063,7 @@
             <layout>EngineDemo.xml</layout>
         </layout-folder>
     </layout-folder>
-    <event-folder expanded="0">
+    <event-folder expanded="1">
         <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
@@ -3074,7 +3074,7 @@
             <event-sheet>UIMisc.xml</event-sheet>
             <event-sheet>PlayerAnimation.xml</event-sheet>
         </event-folder>
-        <event-folder expanded="1" name="stages">
+        <event-folder expanded="0" name="stages">
             <event-sheet>Stage1.xml</event-sheet>
         </event-folder>
         <event-sheet>SCMLSpriteBindings.xml</event-sheet>
