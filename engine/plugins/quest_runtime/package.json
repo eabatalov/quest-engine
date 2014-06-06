@@ -30,7 +30,7 @@
         },
         {
             "path" : "lib/quest_script",
-            "args" : "--interpretator=1"
+            "args" : "--interpretator=1 --plugins=1"
         }
     ],
 

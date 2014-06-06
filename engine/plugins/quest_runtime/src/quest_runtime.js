@@ -1,6 +1,7 @@
 function QuestRuntime() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
 	this.scriptInterp = null;
+    this.nextCondSearch = new NextCondSearch();
     this.events = {
         scriptLoaded : null
     };
@@ -70,6 +71,8 @@ QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
 };
 
 QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
+    action.setHasNext(this.nextCondSearch.get(questNode) !== null);
+
 	var setActorInfo = false;
 	switch(questNode.getType()) {
 		case _QUEST_NODES.NONE:

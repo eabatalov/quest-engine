@@ -244,6 +244,12 @@ cr.plugins_.QuestRuntimeInterfacePlugin = function(runtime)
         );
 	};
 
+    Exps.prototype.getHasNext = function(ret) {
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getHasNext()
+        );
+	};
+
 	pluginProto.exps = new Exps();
 
 }());

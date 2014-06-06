@@ -147,6 +147,11 @@ AddExpression(14, ef_return_number,
 	"1 to enable player avatar movement control by player",
 	"Getters", "getEnabled",
 	"1 to enable player avatar movement control by player");
+
+AddExpression(15, ef_return_number,
+	"1 if current script state can accept 'NEXT' player action",
+	"Getters", "getHasNext",
+	"1 if current script state can accept 'NEXT' player action");
 ////////////////////////////////////////
 ACESDone();
 

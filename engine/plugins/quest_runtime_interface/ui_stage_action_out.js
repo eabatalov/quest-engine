@@ -22,6 +22,7 @@ UIStageActionOut.prototype.clearFields = function() {
 
     this.funcName = "";
     this.enabled = 0; // 0 or 1
+    this.hasNext = 0; //0 or 1
 };
 
 UIStageActionOut.prototype.getStageName = function() {
@@ -138,6 +139,14 @@ UIStageActionOut.prototype.getEnabled = function() {
 
 UIStageActionOut.prototype.setEnabled = function(enabled) {
     this.enabled = enabled;
+};
+
+UIStageActionOut.prototype.getHasNext = function() {
+    return this.enabled;
+};
+
+UIStageActionOut.prototype.setHasNext = function(hasNext) {
+    this.hasNext = hasNext;
 };
 
 UIStageActionOut.prototype.toString = function() {
