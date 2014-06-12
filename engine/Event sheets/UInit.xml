@@ -3,6 +3,12 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>UInit</name>
     <events>
+        <variable constant="0" name="NOTIFICATION_NEXT_X" sid="3597593307308739" static="0" type="number">0</variable>
+        <variable constant="0" name="NOTIFICATION_NEXT_Y" sid="3987816690758282" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_NEXT_Y" sid="5384778007530167" static="0" type="number">0</variable>
+        <variable constant="0" name="NPC_PHRASE_NEXT_X" sid="8798909102969399" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_NEXT_Y" sid="3085895930272771" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_PHRASE_NEXT_X" sid="8168794852113401" static="0" type="number">0</variable>
         <variable constant="0" name="NOTIFICATION_TEXT_TOP_MARGIN" sid="1896060484947539" static="0" type="number">0</variable>
         <variable constant="0" name="NOTIFICATION_TEXT_LEFT_MARGIN" sid="3628439654136423" static="0" type="number">0</variable>
         <variable constant="0" name="PLAYER_PHRASE_COCK_HEIGHT" sid="8327119120210498" static="0" type="number">0</variable>
@@ -124,6 +130,9 @@
                         <action id="-26" name="Move to layer" sid="5151622101950851" type="PlayerPhraseBg">
                             <param id="0" name="Layer">&quot;Speech&quot;</param>
                         </action>
+                        <action id="-26" name="Move to layer" sid="5328759096955078" type="PlayerSpeechNextBtn">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="7461917200921227">
@@ -177,6 +186,9 @@
                         <action id="-26" name="Move to layer" sid="6163938762955854" type="NPCPhraseBg">
                             <param id="0" name="Layer">&quot;Speech&quot;</param>
                         </action>
+                        <action id="-26" name="Move to layer" sid="875176216217371" type="NPCSpeechNextBtn">
+                            <param id="0" name="Layer">&quot;Speech&quot;</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="4143300716619164">
@@ -194,53 +206,53 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="61013415614206">
+                <event-block sid="1365819667723329">
                     <conditions>
-                        <condition id="-11" name="For Each" sid="8468967723990054" type="System">
+                        <condition id="-11" name="For Each" sid="2546125422116422" type="System">
                             <param id="0" name="Object">TalkStartTrigger</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block sid="8401665124676131">
+                        <event-block sid="9839607574525604">
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="899909807957602" type="TalkStartTrigger">
+                                <condition id="-7" name="Compare instance variable" sid="8896980307790245" type="TalkStartTrigger">
                                     <param id="0" name="Instance variable">ExpandToLayoutHeight</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-6" name="Set height" sid="3691333161022991" type="TalkStartTrigger">
+                                <action id="-6" name="Set height" sid="1372737458980234" type="TalkStartTrigger">
                                     <param id="0" name="Height">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
                                 </action>
-                                <action id="-2" name="Set Y" sid="188323938425431" type="TalkStartTrigger">
+                                <action id="-2" name="Set Y" sid="2016526183702516" type="TalkStartTrigger">
                                     <param id="0" name="Y">0</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="1824334134210891">
+                        <event-block sid="5097624920623541">
                             <conditions />
                             <actions>
-                                <action id="-26" name="Move to layer" sid="8642061692389979" type="TalkStartHighlight">
+                                <action id="-26" name="Move to layer" sid="8399902970502837" type="TalkStartHighlight">
                                     <param id="0" name="Layer">&quot;BackgroundF&quot;</param>
                                 </action>
-                                <action id="-3" name="Set position" sid="9423369326129057" type="TalkStartHighlight">
+                                <action id="-3" name="Set position" sid="7353612384074733" type="TalkStartHighlight">
                                     <param id="0" name="X">TalkStartTrigger.ImagePointX(&quot;TalkStartHighlightOrigin&quot;)</param>
                                     <param id="1" name="Y">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="5075827548519141">
+                        <event-block sid="4404965032536985">
                             <conditions>
-                                <condition id="-8" name="Compare two values" sid="9935034294634069" type="System">
+                                <condition id="-8" name="Compare two values" sid="7753632143469906" type="System">
                                     <param id="0" name="First value">TalkStartTrigger.Highlight</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-15" name="Set visible" sid="8238122307382844" type="TalkStartHighlight">
+                                <action id="-15" name="Set visible" sid="529697503491252" type="TalkStartHighlight">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
                             </actions>
@@ -256,29 +268,40 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="7009231351450403">
-                    <conditions />
-                    <actions>
-                        <action id="0" name="Call function" sid="6738893702675816" type="Function">
-                            <param id="0" name="Name">&quot;HideNotification&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                        <action id="-26" name="Move to layer" sid="1525336025461431" type="NotificationBg">
-                            <param id="0" name="Layer">&quot;Notification&quot;</param>
-                        </action>
-                        <action id="-26" name="Move to layer" sid="9896540851845385" type="NotificationTxt">
-                            <param id="0" name="Layer">&quot;Notification&quot;</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="7624687524155101" type="NotificationBg">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                        </action>
-                        <action id="-3" name="Set position" sid="3662457158518097" type="NotificationTxt">
-                            <param id="0" name="X">NotificationBg.X + NOTIFICATION_TEXT_LEFT_MARGIN</param>
-                            <param id="1" name="Y">NotificationBg.Y + NOTIFICATION_TEXT_TOP_MARGIN</param>
-                        </action>
-                    </actions>
-                </event-block>
+                <event-group description="" sid="5619437179527673" title="NotificationInit">
+                    <sub-events>
+                        <event-block sid="7009231351450403">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Call function" sid="6738893702675816" type="Function">
+                                    <param id="0" name="Name">&quot;HideNotification&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="-26" name="Move to layer" sid="1525336025461431" type="NotificationBg">
+                                    <param id="0" name="Layer">&quot;Notification&quot;</param>
+                                </action>
+                                <action id="-26" name="Move to layer" sid="9896540851845385" type="NotificationTxt">
+                                    <param id="0" name="Layer">&quot;Notification&quot;</param>
+                                </action>
+                                <action id="-26" name="Move to layer" sid="8442919588485889" type="NotificationNextBtn">
+                                    <param id="0" name="Layer">&quot;Notification&quot;</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="7624687524155101" type="NotificationBg">
+                                    <param id="0" name="X">0</param>
+                                    <param id="1" name="Y">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3662457158518097" type="NotificationTxt">
+                                    <param id="0" name="X">NotificationBg.X + NOTIFICATION_TEXT_LEFT_MARGIN</param>
+                                    <param id="1" name="Y">NotificationBg.Y + NOTIFICATION_TEXT_TOP_MARGIN</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="2388206897675656" type="NotificationNextBtn">
+                                    <param id="0" name="X">NotificationBg.X + NOTIFICATION_NEXT_X</param>
+                                    <param id="1" name="Y">NotificationBg.Y + NOTIFICATION_NEXT_Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
             </sub-events>
         </event-block>
         <event-group description="" sid="3289015291960657" title="NPCUInit">
@@ -337,6 +360,14 @@
                         <action id="-9" name="Set value" sid="9054142649169507" type="System">
                             <param id="0" name="Variable">NPC_ANS_BG_Y_DIST</param>
                             <param id="1" name="Value">NPCAns2Bg.Y - (NPCAns1Bg.Y + NPCAns1Bg.Height)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="163976959703129" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_NEXT_X</param>
+                            <param id="1" name="Value">NPCSpeechNextBtn.X - NPCSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7339886766817168" type="System">
+                            <param id="0" name="Variable">NPC_PHRASE_NEXT_Y</param>
+                            <param id="1" name="Value">NPCSpeechNextBtn.Y - NPCSpeechBg.Y</param>
                         </action>
                     </actions>
                 </event-block>
@@ -399,6 +430,14 @@
                             <param id="0" name="Variable">PLAYER_ANS_BG_Y_DIST</param>
                             <param id="1" name="Value">PlayerAns2Bg.Y - (PlayerAns1Bg.Y + PlayerAns1Bg.Height)</param>
                         </action>
+                        <action id="-9" name="Set value" sid="6549453429258405" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_NEXT_X</param>
+                            <param id="1" name="Value">PlayerSpeechNextBtn.X - PlayerSpeechBg.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6490037141592622" type="System">
+                            <param id="0" name="Variable">PLAYER_PHRASE_NEXT_Y</param>
+                            <param id="1" name="Value">PlayerSpeechNextBtn.Y - PlayerSpeechBg.Y</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -417,6 +456,14 @@
                 <action id="-9" name="Set value" sid="3515510548776567" type="System">
                     <param id="0" name="Variable">NOTIFICATION_TEXT_TOP_MARGIN</param>
                     <param id="1" name="Value">NotificationTxt.Y - NotificationBg.Y</param>
+                </action>
+                <action id="-9" name="Set value" sid="6438783268674892" type="System">
+                    <param id="0" name="Variable">NOTIFICATION_NEXT_X</param>
+                    <param id="1" name="Value">NotificationNextBtn.X - NotificationBg.X</param>
+                </action>
+                <action id="-9" name="Set value" sid="4250026097388537" type="System">
+                    <param id="0" name="Variable">NOTIFICATION_NEXT_Y</param>
+                    <param id="1" name="Value">NotificationNextBtn.Y - NotificationBg.Y</param>
                 </action>
             </actions>
         </event-block>

@@ -142,7 +142,7 @@ UIStageActionOut.prototype.setEnabled = function(enabled) {
 };
 
 UIStageActionOut.prototype.getHasNext = function() {
-    return this.enabled;
+    return this.hasNext;
 };
 
 UIStageActionOut.prototype.setHasNext = function(hasNext) {

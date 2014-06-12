@@ -71,7 +71,7 @@ QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
 };
 
 QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
-    action.setHasNext(this.nextCondSearch.get(questNode) !== null);
+    action.setHasNext(this.nextCondSearch.get(questNode) === null ? 0 : 1);
 
 	var setActorInfo = false;
 	switch(questNode.getType()) {

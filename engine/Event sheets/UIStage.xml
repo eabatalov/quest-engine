@@ -4,7 +4,7 @@
     <name>UIStage</name>
     <events>
         <comment>p1: Stage</comment>
-        <event-block collapsed="1" sid="8060985393539423">
+        <event-block sid="8060985393539423">
             <conditions>
                 <condition id="0" name="On function" sid="6870888253004275" type="Function">
                     <param id="0" name="Name">&quot;HideStageUI&quot;</param>
@@ -82,6 +82,10 @@
                             <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_TXT_X</param>
                             <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_TXT_Y</param>
                         </action>
+                        <action id="-3" name="Set position" sid="2931281928546822" type="NPCSpeechNextBtn">
+                            <param id="0" name="X">NPCSpeechBg.X + NPC_PHRASE_NEXT_X</param>
+                            <param id="1" name="Y">NPCSpeechBg.Y + NPC_PHRASE_NEXT_Y</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="2078795932936655">
@@ -98,6 +102,7 @@
                             <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="4487465092045365" type="NPCPhraseTxt" />
+                        <action id="-25" name="Move to bottom" sid="9188985984097292" type="NPCSpeechNextBtn" />
                         <action id="-25" name="Move to bottom" sid="3260745429109428" type="NPCPhraseBg" />
                         <action id="-25" name="Move to bottom" sid="4021589683031011" type="NPCSpeechBg" />
                         <action id="-15" name="Set visible" sid="839835481329796" type="NPCPhraseBg">
@@ -124,6 +129,10 @@
                                     <param id="0" name="Animation">&quot;Speak&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="4" name="Set animation" sid="1324014859726249" type="NPCSpeechNextBtn">
+                                    <param id="0" name="Animation">&quot;Speak&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
                                 <action id="0" name="Call function" sid="1704179595407417" type="Function">
                                     <param id="0" name="Name">&quot;NPCAnimSay&quot;</param>
                                     <param id="1" name="Parameter {n}">NPC.UID</param>
@@ -143,9 +152,27 @@
                                     <param id="0" name="Animation">&quot;Think&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="4" name="Set animation" sid="7259459767164906" type="NPCSpeechNextBtn">
+                                    <param id="0" name="Animation">&quot;Think&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
                                 <action id="0" name="Call function" sid="6467516756852917" type="Function">
                                     <param id="0" name="Name">&quot;NPCAnimThink&quot;</param>
                                     <param id="1" name="Parameter {n}">NPC.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9907881911000948">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8671133233587165" type="System">
+                                    <param id="0" name="First value">QuestRuntimeInterface.getHasNext</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="2764065373146526" type="NPCSpeechNextBtn">
+                                    <param id="0" name="Visibility">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -426,6 +453,9 @@
                         <action id="-15" name="Set visible" sid="7638784932733143" type="NPCAns4Txt">
                             <param id="0" name="Visibility">0</param>
                         </action>
+                        <action id="-15" name="Set visible" sid="9823194379351544" type="NPCSpeechNextBtn">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -453,6 +483,10 @@
                             <param id="0" name="X">PlayerSpeechBg.X + PLAYER_PHRASE_TXT_X</param>
                             <param id="1" name="Y">PlayerSpeechBg.Y + PLAYER_PHRASE_TXT_Y</param>
                         </action>
+                        <action id="-3" name="Set position" sid="7177566349129579" type="PlayerSpeechNextBtn">
+                            <param id="0" name="X">PlayerSpeechBg.X + Player_PHRASE_NEXT_X</param>
+                            <param id="1" name="Y">PlayerSpeechBg.Y + Player_PHRASE_NEXT_Y</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="566202086767859">
@@ -469,6 +503,7 @@
                             <param id="0" name="Text">QuestRuntimeInterface.getText</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="4533967939786091" type="PlayerPhraseTxt" />
+                        <action id="-25" name="Move to bottom" sid="2654204385993533" type="PlayerSpeechNextBtn" />
                         <action id="-25" name="Move to bottom" sid="7078895510264422" type="PlayerPhraseBg" />
                         <action id="-25" name="Move to bottom" sid="2858302157683358" type="PlayerSpeechBg" />
                         <action id="-15" name="Set visible" sid="8723165850772302" type="PlayerPhraseTxt">
@@ -513,6 +548,20 @@
                                 <action id="4" name="Set animation" sid="3434206596030371" type="PlayerSpeechBg">
                                     <param id="0" name="Animation">&quot;Think&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9361711407233616">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4324279796923461" type="System">
+                                    <param id="0" name="First value">QuestRuntimeInterface.getHasNext</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="5229721842304233" type="PlayerSpeechNextBtn">
+                                    <param id="0" name="Visibility">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -793,6 +842,9 @@
                         <action id="-15" name="Set visible" sid="8111916696491169" type="PlayerSpeechBg">
                             <param id="0" name="Visibility">0</param>
                         </action>
+                        <action id="-15" name="Set visible" sid="8513310277800242" type="PlayerSpeechNextBtn">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -812,6 +864,9 @@
                         <action id="-15" name="Set visible" sid="5788949567484358" type="NotificationTxt">
                             <param id="0" name="Visibility">0</param>
                         </action>
+                        <action id="-15" name="Set visible" sid="5639425526544703" type="NotificationNextBtn">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>param(0): notification text</comment>
@@ -826,6 +881,7 @@
                             <param id="0" name="Text">Function.Param(0)</param>
                         </action>
                         <action id="-25" name="Move to bottom" sid="9397713892381626" type="NotificationTxt" />
+                        <action id="-25" name="Move to bottom" sid="9932683615191145" type="NotificationNextBtn" />
                         <action id="-25" name="Move to bottom" sid="7110605039649892" type="NotificationBg" />
                         <action id="-15" name="Set visible" sid="3632933500911169" type="NotificationBg">
                             <param id="0" name="Visibility">1</param>
@@ -834,6 +890,22 @@
                             <param id="0" name="Visibility">1</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="7648952794047313">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2061143193865437" type="System">
+                                    <param id="0" name="First value">QuestRuntimeInterface.getHasNext</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="2560478392975436" type="NotificationNextBtn">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

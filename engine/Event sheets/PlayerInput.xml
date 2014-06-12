@@ -132,7 +132,7 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-group description="" sid="4604465040462789" title="Popup">
+                                <event-group description="" sid="3223341456740552" title="Popup">
                                     <sub-events>
                                         <event-block sid="8249511115853068">
                                             <conditions />
@@ -159,9 +159,9 @@
                                                                 <event-block sid="960429598980419">
                                                                     <conditions>
                                                                         <condition id="4" name="Is touching object" sid="9925287132948592" type="Touch">
-                                                                            <param id="0" name="Object">NotificationBg</param>
+                                                                            <param id="0" name="Object">NotificationNextBtn</param>
                                                                         </condition>
-                                                                        <condition id="-9" name="Is visible" sid="2879201464132348" type="NotificationBg" />
+                                                                        <condition id="-9" name="Is visible" sid="2879201464132348" type="NotificationNextBtn" />
                                                                     </conditions>
                                                                     <actions>
                                                                         <action id="0" name="Call function" sid="2356844301923021" type="Function">
@@ -170,7 +170,7 @@
                                                                         </action>
                                                                     </actions>
                                                                 </event-block>
-                                                                <event-block collapsed="1" sid="4871650670022659">
+                                                                <event-block sid="4871650670022659">
                                                                     <conditions>
                                                                         <condition id="-22" name="Else" sid="9715920151767901" type="System" />
                                                                     </conditions>
@@ -259,7 +259,7 @@
                                                                                     </conditions>
                                                                                     <actions />
                                                                                     <sub-events>
-                                                                                        <event-group collapsed="1" description="" sid="2410898144104873" title="InputQuizzNPC">
+                                                                                        <event-group description="" sid="2410898144104873" title="InputQuizzNPC">
                                                                                             <sub-events>
                                                                                                 <event-block sid="9244327915283871">
                                                                                                     <conditions>
@@ -332,9 +332,9 @@
                                                                                                 <event-block sid="576738969998819">
                                                                                                     <conditions>
                                                                                                         <condition id="4" name="Is touching object" sid="2068350486640474" type="Touch">
-                                                                                                            <param id="0" name="Object">NPCSpeechBg</param>
+                                                                                                            <param id="0" name="Object">NPCSpeechNextBtn</param>
                                                                                                         </condition>
-                                                                                                        <condition id="-9" name="Is visible" sid="4980821966843262" type="NPCSpeechBg" />
+                                                                                                        <condition id="-9" name="Is visible" sid="4980821966843262" type="NPCSpeechNextBtn" />
                                                                                                     </conditions>
                                                                                                     <actions>
                                                                                                         <action id="0" name="Call function" sid="7342972398969219" type="Function">
@@ -352,9 +352,9 @@
                                                                                                         <event-block sid="1321310949359807">
                                                                                                             <conditions>
                                                                                                                 <condition id="4" name="Is touching object" sid="9744078061826525" type="Touch">
-                                                                                                                    <param id="0" name="Object">PlayerSpeechBg</param>
+                                                                                                                    <param id="0" name="Object">PlayerSpeechNextBtn</param>
                                                                                                                 </condition>
-                                                                                                                <condition id="-9" name="Is visible" sid="7646473691644654" type="PlayerSpeechBg" />
+                                                                                                                <condition id="-9" name="Is visible" sid="7646473691644654" type="PlayerSpeechNextBtn" />
                                                                                                             </conditions>
                                                                                                             <actions>
                                                                                                                 <action id="0" name="Call function" sid="4553815621528198" type="Function">
@@ -579,7 +579,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="1811636999028904" type="TalkStartHighlight">
+                        <action id="-15" name="Set visible" sid="8097163933482469" type="TalkStartHighlight">
                             <param id="0" name="Visibility">0</param>
                         </action>
                         <action id="0" name="Call function" sid="8550995941394823" type="Function">
@@ -609,7 +609,7 @@
                 <action id="-15" name="Set visible" sid="5031764874179612" type="ControlUp">
                     <param id="0" name="Visibility">1</param>
                 </action>
-                <action id="-15" name="Set visible" sid="4648330971185187" type="Clutch">
+                <action id="-15" name="Set visible" sid="463979294614175" type="Clutch">
                     <param id="0" name="Visibility">1</param>
                 </action>
             </actions>
@@ -637,7 +637,7 @@
                 <action id="-15" name="Set visible" sid="5401697065102518" type="ControlUp">
                     <param id="0" name="Visibility">0</param>
                 </action>
-                <action id="-15" name="Set visible" sid="4179053113844566" type="Clutch">
+                <action id="-15" name="Set visible" sid="37714701268698" type="Clutch">
                     <param id="0" name="Visibility">0</param>
                 </action>
             </actions>
