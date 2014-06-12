@@ -4,7 +4,7 @@
     <name>UIStage</name>
     <events>
         <comment>p1: Stage</comment>
-        <event-block sid="8060985393539423">
+        <event-block collapsed="1" sid="8060985393539423">
             <conditions>
                 <condition id="0" name="On function" sid="6870888253004275" type="Function">
                     <param id="0" name="Name">&quot;HideStageUI&quot;</param>
@@ -460,7 +460,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="6702021473764103" title="PlayerUI">
+        <event-group description="" sid="6702021473764103" title="PlayerUI">
             <sub-events>
                 <comment>XXX: this every tick &quot;pinning&quot; is needed because construct has some bugs in computation of special sprite points.&#x0D;&#x0A;Construct return invalid values and we pin to them. But almost all the time Construct returns good values. This everytick pinning allows us to use this valid values.</comment>
                 <event-block sid="5619469661584902">
@@ -530,6 +530,10 @@
                                     <param id="0" name="Animation">&quot;Speak&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
+                                <action id="4" name="Set animation" sid="4801008901531521" type="PlayerSpeechNextBtn">
+                                    <param id="0" name="Animation">&quot;Speak&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
                                 <action id="0" name="Call function" sid="7067417842225699" type="Function">
                                     <param id="0" name="Name">&quot;AnimPlayerSay&quot;</param>
                                     <param id="1" name="Parameter {n}">Player.UID</param>
@@ -546,6 +550,10 @@
                             </conditions>
                             <actions>
                                 <action id="4" name="Set animation" sid="3434206596030371" type="PlayerSpeechBg">
+                                    <param id="0" name="Animation">&quot;Think&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="9610531088894553" type="PlayerSpeechNextBtn">
                                     <param id="0" name="Animation">&quot;Think&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
@@ -849,7 +857,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="6986851323157604" title="Notification">
+        <event-group collapsed="1" description="" sid="6986851323157604" title="Notification">
             <sub-events>
                 <event-block sid="2467896438487668">
                     <conditions>
