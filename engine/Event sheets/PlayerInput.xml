@@ -3,136 +3,349 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>PlayerInput</name>
     <events>
-        <comment>Block player input on start until game was inited</comment>
-        <variable constant="0" name="BlockPlayerInput" sid="4976819164673977" static="0" type="number">1</variable>
+        <variable constant="0" name="BlockPlayerInputOnSeqAction" sid="4976819164673977" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockPlayerAvatarControls" sid="4613878177283259" static="0" type="number">0</variable>
         <event-group description="" sid="2830842349648749" title="PlayerInput">
             <sub-events>
-                <variable constant="0" name="INPUT_STATE" sid="3003482212209299" static="1" type="text">IDLE</variable>
-                <event-group collapsed="1" description="" sid="2039030482302605" title="InputControls">
+                <comment>Initial = &quot;BLOCKED&quot;: block player input on start until game was inited</comment>
+                <variable constant="0" name="INPUT_STATE" sid="3003482212209299" static="1" type="text">BLOCKED</variable>
+                <event-block sid="1413375697139928">
+                    <conditions>
+                        <condition id="0" name="On function" sid="8355803232665031" type="Function">
+                            <param id="0" name="Name">&quot;EnableInputAfterGameInited&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2574756175710693" type="System">
+                            <param id="0" name="Variable">INPUT_STATE</param>
+                            <param id="1" name="Value">&quot;IDLE&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-group collapsed="1" description="" sid="9069475156831885" title="PlayerAvatarControlsEnableDisable">
                     <sub-events>
-                        <event-block sid="2460676147359561">
+                        <event-block sid="8694111219489924">
                             <conditions>
-                                <condition id="4" name="Is touching object" sid="7872365098574892" type="Touch">
-                                    <param id="0" name="Object">ControlLeft</param>
+                                <condition id="0" name="On function" sid="5825575074126567" type="Function">
+                                    <param id="0" name="Name">&quot;EnablePlayerAvatarControls&quot;</param>
                                 </condition>
-                                <condition id="-9" name="Is visible" sid="8925607421898263" type="ControlLeft" />
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="5170684600142153" type="System">
-                                    <param id="0" name="Variable">INPUT_STATE</param>
-                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                <action id="-9" name="Set value" sid="7174361625186059" type="System">
+                                    <param id="0" name="Variable">BlockPlayerAvatarControls</param>
+                                    <param id="1" name="Value">0</param>
                                 </action>
-                                <action id="4" name="Set animation" sid="7650812421285198" type="ControlLeft">
-                                    <param id="0" name="Animation">&quot;Active&quot;</param>
-                                    <param id="1" name="From">1</param>
+                                <action id="-15" name="Set visible" sid="8450681033080737" type="ControlLeft">
+                                    <param id="0" name="Visibility">1</param>
                                 </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="7465338080434785" type="Player">
-                                    <param id="0" name="Control">0</param>
+                                <action id="-15" name="Set visible" sid="4215953835019314" type="ControlRight">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="5031764874179612" type="ControlUp">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="463979294614175" type="Clutch">
+                                    <param id="0" name="Visibility">1</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block sid="9756299718136993">
+                        <comment>Set horizontal speed to 0 because it is not logically set to 0 when platform is disabled</comment>
+                        <event-block sid="3870640516651617">
                             <conditions>
-                                <condition id="-22" name="Else" sid="9627294804092428" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="4" name="Set animation" sid="2328713855887697" type="ControlLeft">
-                                    <param id="0" name="Animation">&quot;Inactive&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="5531821665335205">
-                            <conditions>
-                                <condition id="4" name="Is touching object" sid="9874340185052395" type="Touch">
-                                    <param id="0" name="Object">ControlUp</param>
+                                <condition id="0" name="On function" sid="2178727481963409" type="Function">
+                                    <param id="0" name="Name">&quot;DisablePlayerAvatarControls&quot;</param>
                                 </condition>
-                                <condition id="-9" name="Is visible" sid="9834970139350979" type="ControlUp" />
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="7555495061262899" type="System">
-                                    <param id="0" name="Variable">INPUT_STATE</param>
-                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                <action id="-9" name="Set value" sid="5620162536875308" type="System">
+                                    <param id="0" name="Variable">BlockPlayerAvatarControls</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="4" name="Set animation" sid="8836589157188082" type="ControlUp">
-                                    <param id="0" name="Animation">&quot;Active&quot;</param>
-                                    <param id="1" name="From">1</param>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="6313459378318555" type="PlayerPlatform">
+                                    <param id="0" name="Vector X">0</param>
                                 </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="1678550358678336" type="Player">
-                                    <param id="0" name="Control">2</param>
+                                <action id="-15" name="Set visible" sid="6869784657833364" type="ControlLeft">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="3873808371261588">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="9264341892091276" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="4" name="Set animation" sid="4335675320092437" type="ControlUp">
-                                    <param id="0" name="Animation">&quot;Inactive&quot;</param>
-                                    <param id="1" name="From">1</param>
+                                <action id="-15" name="Set visible" sid="9430945953897008" type="ControlRight">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="7873564285693736">
-                            <conditions>
-                                <condition id="4" name="Is touching object" sid="5011398372712242" type="Touch">
-                                    <param id="0" name="Object">ControlRight</param>
-                                </condition>
-                                <condition id="-9" name="Is visible" sid="9263402890969975" type="ControlRight" />
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="2483349212815995" type="System">
-                                    <param id="0" name="Variable">INPUT_STATE</param>
-                                    <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                <action id="-15" name="Set visible" sid="5401697065102518" type="ControlUp">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
-                                <action id="4" name="Set animation" sid="474836760416093" type="ControlRight">
-                                    <param id="0" name="Animation">&quot;Active&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action behavior="Platform" id="7" name="Simulate control" sid="3347820634585081" type="Player">
-                                    <param id="0" name="Control">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="299444559484168">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="653012421233769" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="4" name="Set animation" sid="3185710203343802" type="ControlRight">
-                                    <param id="0" name="Animation">&quot;Inactive&quot;</param>
-                                    <param id="1" name="From">1</param>
+                                <action id="-15" name="Set visible" sid="37714701268698" type="Clutch">
+                                    <param id="0" name="Visibility">0</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-block sid="1873999662377924">
-                    <conditions>
-                        <condition id="11" name="On Nth touch end" sid="769759410973024" type="Touch">
-                            <param id="0" name="Touch number">0</param>
-                        </condition>
-                    </conditions>
-                    <actions />
+                <event-group description="" sid="2039030482302605" title="PlayerAvatarControls">
                     <sub-events>
-                        <comment>Simple tap processing by objects priority</comment>
-                        <event-block sid="6172760554359036">
+                        <event-block sid="9342819312308766">
                             <conditions>
-                                <condition id="-8" name="Compare two values" sid="7476127213764296" type="System">
+                                <condition id="0" name="On function" sid="1546118214549502" type="Function">
+                                    <param id="0" name="Name">&quot;PlayerInputLeft&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="1833462567661928" type="System">
+                                    <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="663044184148649" type="System">
+                                    <param id="0" name="First value">BlockPlayerAvatarControls</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="9061341482689768" type="PlayerPlatform">
+                                    <param id="0" name="Control">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9329715248934294">
+                            <conditions>
+                                <condition id="0" name="On function" sid="6022184579517512" type="Function">
+                                    <param id="0" name="Name">&quot;PlayerInputUp&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="8712063027820289" type="System">
+                                    <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="8849649317273765" type="System">
+                                    <param id="0" name="First value">BlockPlayerAvatarControls</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="5342964455517997" type="PlayerPlatform">
+                                    <param id="0" name="Control">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3302552265671319">
+                            <conditions>
+                                <condition id="0" name="On function" sid="6310757107772057" type="Function">
+                                    <param id="0" name="Name">&quot;PlayerInputRight&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="9335819726027978" type="System">
+                                    <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="4505893252888946" type="System">
+                                    <param id="0" name="First value">BlockPlayerAvatarControls</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="2342917029191362" type="PlayerPlatform">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block collapsed="1" sid="197122408042268">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4782168766558299" type="System">
                                     <param id="0" name="First value">INPUT_STATE</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;IDLE&quot;</param>
                                 </condition>
-                                <condition id="-8" name="Compare two values" sid="150128685285501" type="System">
-                                    <param id="0" name="First value">BlockPlayerInput</param>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="7771541835111028">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="482642893718096" type="Keyboard">
+                                            <param id="0" name="Key">37 (Left arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="7419849372254639" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;KEYBOARD_INPUT&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="6405561002478097" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputLeft&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="1880647738479693">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="5687427623885816" type="Keyboard">
+                                            <param id="0" name="Key">38 (Up arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="885911481618988" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;KEYBOARD_INPUT&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="5077595105849989" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputUp&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6085245019549563">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="9578522792593463" type="Keyboard">
+                                            <param id="0" name="Key">39 (Right arrow)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="6883124245071537" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;KEYBOARD_INPUT&quot;</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="7264654964244324" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputRight&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block collapsed="1" sid="7445959502215616">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="2926742354425532" type="System">
+                                    <param id="0" name="First value">INPUT_STATE</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;IDLE&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="2460676147359561">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="7872365098574892" type="Touch">
+                                            <param id="0" name="Object">ControlLeft</param>
+                                        </condition>
+                                        <condition id="-9" name="Is visible" sid="8925607421898263" type="ControlLeft" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="5170684600142153" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="7650812421285198" type="ControlLeft">
+                                            <param id="0" name="Animation">&quot;Active&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="1381328286345111" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputLeft&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="9756299718136993">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="9627294804092428" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="2328713855887697" type="ControlLeft">
+                                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="5531821665335205">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="9874340185052395" type="Touch">
+                                            <param id="0" name="Object">ControlUp</param>
+                                        </condition>
+                                        <condition id="-9" name="Is visible" sid="9834970139350979" type="ControlUp" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="7555495061262899" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="8836589157188082" type="ControlUp">
+                                            <param id="0" name="Animation">&quot;Active&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="7159468804663727" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputUp&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="3873808371261588">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="9264341892091276" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="4335675320092437" type="ControlUp">
+                                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="7873564285693736">
+                                    <conditions>
+                                        <condition id="4" name="Is touching object" sid="5011398372712242" type="Touch">
+                                            <param id="0" name="Object">ControlRight</param>
+                                        </condition>
+                                        <condition id="-9" name="Is visible" sid="9263402890969975" type="ControlRight" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="2483349212815995" type="System">
+                                            <param id="0" name="Variable">INPUT_STATE</param>
+                                            <param id="1" name="Value">&quot;TOUCHING_CONTROLS&quot;</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="474836760416093" type="ControlRight">
+                                            <param id="0" name="Animation">&quot;Active&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="1602582459151894" type="Function">
+                                            <param id="0" name="Name">&quot;PlayerInputRight&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="299444559484168">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="653012421233769" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="3185710203343802" type="ControlRight">
+                                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group collapsed="1" description="" sid="6040864831798009" title="GameObjectsClicking">
+                    <sub-events>
+                        <comment>Simple tap processing by objects priority</comment>
+                        <event-block collapsed="1" sid="4129211300491289">
+                            <conditions>
+                                <condition id="11" name="On Nth touch end" sid="8899231525800434" type="Touch">
+                                    <param id="0" name="Touch number">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="896470768932693" type="System">
+                                    <param id="0" name="First value">INPUT_STATE</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;IDLE&quot;</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="4024693441615328" type="System">
+                                    <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-group description="" sid="3223341456740552" title="Popup">
+                                <event-group description="" sid="5517294302164264" title="Popup">
                                     <sub-events>
                                         <event-block sid="8249511115853068">
                                             <conditions />
@@ -469,19 +682,22 @@
                                 </event-group>
                             </sub-events>
                         </event-block>
-                        <comment>Input state specific &quot;end of touch&quot; processing here</comment>
-                        <event-block sid="7050173247763941">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="3089364295613531" type="System" />
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" sid="4772601113739412" type="System">
-                                    <param id="0" name="Variable">INPUT_STATE</param>
-                                    <param id="1" name="Value">&quot;IDLE&quot;</param>
-                                </action>
-                            </actions>
-                        </event-block>
                     </sub-events>
+                </event-group>
+                <event-block sid="4773156587166359">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4094515129338966" type="System">
+                            <param id="0" name="First value">INPUT_STATE</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">&quot;BLOCKED&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="4772601113739412" type="System">
+                            <param id="0" name="Variable">INPUT_STATE</param>
+                            <param id="1" name="Value">&quot;IDLE&quot;</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -493,7 +709,7 @@
                             <param id="0" name="Object">StageChanger</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="9836145392664095" type="System">
-                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
@@ -516,7 +732,7 @@
                             <param id="0" name="Object">CrankyStageChanger</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="8702323885905916" type="System">
-                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
@@ -569,78 +785,51 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" sid="3984117986249243" title="Automatic start talk">
+        <event-group collapsed="1" description="" sid="3984117986249243" title="Automatic start talk">
             <sub-events>
                 <comment>Inject custom event with name &quot;auto_talk_start_&quot; + NPC id to start talking</comment>
                 <event-block sid="7124879317616865">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="7991193214109111" type="TalkStartTrigger">
-                            <param id="0" name="Object">Player</param>
+                            <param id="0" name="Object">PlayerMiddleMarker</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="8097163933482469" type="TalkStartHighlight">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="0" name="Call function" sid="8550995941394823" type="Function">
-                            <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
-                            <param id="1" name="Parameter {n}">&quot;auto_talk_start_&quot;  &amp; TalkStartTrigger.NpcIDInStage{###}&quot;Player&quot;</param>
-                        </action>
+                        <action id="-9" name="Destroy" sid="8097163933482469" type="TalkStartHighlight" />
+                        <action id="-9" name="Destroy" sid="2640317491128253" type="TalkStartTrigger" />
                     </actions>
+                    <sub-events>
+                        <event-block sid="421426358105787">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="8589615490797181" type="System">
+                                    <param id="0" name="First value">PlayerPlatform.Platform.VectorX</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="7738017988602158" type="PlayerPlatform">
+                                    <param id="0" name="Vector X">0</param>
+                                </action>
+                                <action id="2" name="Set object scale ratio" sid="4094644124897855" type="PlayerSCML">
+                                    <param id="0" name="Scale Ratio">PlayerSCML.ScaleRatio</param>
+                                    <param id="1" name="Flip X Axis">0</param>
+                                    <param id="2" name="Flip Y Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2309060373181358">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Call function" sid="8550995941394823" type="Function">
+                                    <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;auto_talk_start_&quot;  &amp; TalkStartTrigger.NpcIDInStage{###}&quot;Player&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="8694111219489924">
-            <conditions>
-                <condition id="0" name="On function" sid="5825575074126567" type="Function">
-                    <param id="0" name="Name">&quot;EnablePlayerAvatarControls&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Platform" id="11" name="Set enabled" sid="2156812102459905" type="Player">
-                    <param id="0" name="State">1</param>
-                </action>
-                <action id="-15" name="Set visible" sid="8450681033080737" type="ControlLeft">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="-15" name="Set visible" sid="4215953835019314" type="ControlRight">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="-15" name="Set visible" sid="5031764874179612" type="ControlUp">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="-15" name="Set visible" sid="463979294614175" type="Clutch">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <comment>Set horizontal speed to 0 because it is not logically set to 0 when platform is disabled</comment>
-        <event-block sid="3870640516651617">
-            <conditions>
-                <condition id="0" name="On function" sid="2178727481963409" type="Function">
-                    <param id="0" name="Name">&quot;DisablePlayerAvatarControls&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Platform" id="8" name="Set vector X" sid="6313459378318555" type="Player">
-                    <param id="0" name="Vector X">0</param>
-                </action>
-                <action behavior="Platform" id="11" name="Set enabled" sid="2121347383591089" type="Player">
-                    <param id="0" name="State">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="6869784657833364" type="ControlLeft">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="9430945953897008" type="ControlRight">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="5401697065102518" type="ControlUp">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-                <action id="-15" name="Set visible" sid="37714701268698" type="Clutch">
-                    <param id="0" name="Visibility">0</param>
-                </action>
-            </actions>
-        </event-block>
     </events>
 </c2eventsheet>

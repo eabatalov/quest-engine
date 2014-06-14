@@ -625,7 +625,7 @@
                 </object-type>
             </object-folder>
             <object-folder expanded="1" name="Player">
-                <object-folder expanded="1" name="Speech">
+                <object-folder expanded="0" name="Speech">
                     <object-type name="PlayerAns1Bg" sid="1149573424460968">
                         <plugin id="Sprite" />
                         <behaviors>
@@ -670,6 +670,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3213293281862042" speed="5">
@@ -725,6 +727,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns2Bg" sid="981179967951609">
@@ -771,6 +775,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4402831604063313" speed="5">
@@ -826,6 +832,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns3Txt" sid="7128241683588556">
@@ -867,6 +875,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAns3Bg" sid="108568565687126">
@@ -913,6 +923,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4914723057507207" speed="5">
@@ -973,6 +985,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9899613098915002" speed="5">
@@ -1028,6 +1042,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerAnsBg" sid="3577120867528994">
@@ -1074,6 +1090,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7926407920898488" speed="5">
@@ -1134,6 +1152,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4240597158861611" speed="5">
@@ -1185,6 +1205,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                     </object-type>
                     <object-type name="PlayerSpeechBg" sid="7274300587374179">
@@ -1231,6 +1253,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="3527017001319702" speed="5">
@@ -1302,6 +1326,8 @@
                             <type>PlayerTrunk</type>
                             <type>PlayerSCML</type>
                             <type>PlayerSpeechNextBtn</type>
+                            <type>PlayerPlatform</type>
+                            <type>PlayerMiddleMarker</type>
                         </container>
                         <animation-folder expanded="1">
                             <animation framecount="1" loop="0" name="Speak" pingpong="0" repeatcount="1" repeatto="0" sid="2093626714949461" speed="5">
@@ -1322,12 +1348,6 @@
                     <behaviors>
                         <behavior-type name="Pin" sid="7210831025845939">
                             <behavior id="Pin" />
-                        </behavior-type>
-                        <behavior-type name="Platform" sid="9963586999629436">
-                            <behavior id="Platform" />
-                        </behavior-type>
-                        <behavior-type name="ScrollTo" sid="7383344752669485">
-                            <behavior id="scrollto" />
                         </behavior-type>
                     </behaviors>
                     <container>
@@ -1367,6 +1387,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8749109394941585" speed="5">
@@ -1421,6 +1443,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5657753322977948" speed="5">
@@ -1467,7 +1491,113 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
+                </object-type>
+                <object-type name="PlayerPlatform" sid="6048129662985843">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Platform" sid="4292424751837887">
+                            <behavior id="Platform" />
+                        </behavior-type>
+                        <behavior-type name="ScrollTo" sid="4052473203502806">
+                            <behavior id="scrollto" />
+                        </behavior-type>
+                    </behaviors>
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                        <type>PlayerBelt</type>
+                        <type>PlayerBody</type>
+                        <type>PlayerBoots</type>
+                        <type>PlayerBootsBack</type>
+                        <type>PlayerEye1</type>
+                        <type>PlayerEye1Right</type>
+                        <type>PlayerHair</type>
+                        <type>PlayerHand1</type>
+                        <type>PlayerHand1Right</type>
+                        <type>PlayerHand2</type>
+                        <type>PlayerHand2Right</type>
+                        <type>PlayerHead</type>
+                        <type>PlayerLeg1</type>
+                        <type>PlayerLegRright</type>
+                        <type>PlayerLeg2</type>
+                        <type>PlayerLeg2Right</type>
+                        <type>PlayerPalm</type>
+                        <type>PlayerPalmRight</type>
+                        <type>PlayerSmile</type>
+                        <type>PlayerTrunk</type>
+                        <type>PlayerSCML</type>
+                        <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1363514439651274" speed="5">
+                            <frame duration="1" hotspotX="0.505882" hotspotY="0.514286" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="PlayerMiddleMarker" sid="4482886003261097">
+                    <plugin id="Sprite" />
+                    <container>
+                        <type>PlayerPinPoint</type>
+                        <type>Player</type>
+                        <type>PlayerAns1Bg</type>
+                        <type>PlayerAns1Txt</type>
+                        <type>PlayerAns2Bg</type>
+                        <type>PlayerAns2Txt</type>
+                        <type>PlayerAns3Bg</type>
+                        <type>PlayerAns3Txt</type>
+                        <type>PlayerAns4Bg</type>
+                        <type>PlayerAns4Txt</type>
+                        <type>PlayerAnsBg</type>
+                        <type>PlayerPhraseBg</type>
+                        <type>PlayerPhraseTxt</type>
+                        <type>PlayerSpeechBg</type>
+                        <type>PlayerBelt</type>
+                        <type>PlayerBody</type>
+                        <type>PlayerBoots</type>
+                        <type>PlayerBootsBack</type>
+                        <type>PlayerEye1</type>
+                        <type>PlayerEye1Right</type>
+                        <type>PlayerHair</type>
+                        <type>PlayerHand1</type>
+                        <type>PlayerHand1Right</type>
+                        <type>PlayerHand2</type>
+                        <type>PlayerHand2Right</type>
+                        <type>PlayerHead</type>
+                        <type>PlayerLeg1</type>
+                        <type>PlayerLegRright</type>
+                        <type>PlayerLeg2</type>
+                        <type>PlayerLeg2Right</type>
+                        <type>PlayerPalm</type>
+                        <type>PlayerPalmRight</type>
+                        <type>PlayerSmile</type>
+                        <type>PlayerTrunk</type>
+                        <type>PlayerSCML</type>
+                        <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
+                    </container>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7928116442361613" speed="5">
+                            <frame duration="1" hotspotX="0.545455" hotspotY="0.502222" />
+                        </animation>
+                    </animation-folder>
                 </object-type>
             </object-folder>
             <object-folder expanded="0" name="Controls">
@@ -1663,15 +1793,13 @@
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3718824733583479" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0">
-                            <image-point name="TalkStartHighlightOrigin" x="1" y="1" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="1">
                             <collision-poly>
-                                <point x="0.030303" y="0.00297619" />
-                                <point x="0.909091" y="0.00892857" />
-                                <point x="0.151515" y="0.5" />
-                                <point x="0.151515" y="0.916667" />
-                                <point x="0.484848" y="0.077381" />
-                                <point x="0.030303" y="0.997024" />
+                                <point x="0.02" y="0.030303" />
+                                <point x="0.5" y="0" />
+                                <point x="0.98" y="0.030303" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
                             </collision-poly>
                         </frame>
                     </animation>
@@ -1681,7 +1809,7 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="3" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8921900367453523" speed="1">
-                        <frame duration="1" hotspotX="1" hotspotY="0.505882">
+                        <frame duration="1" hotspotX="0.502222" hotspotY="0.505882">
                             <collision-poly>
                                 <point x="0.0888889" y="0.235294" />
                                 <point x="0.497778" y="0.0117647" />
@@ -1693,7 +1821,7 @@
                                 <point x="0.00888889" y="0.494118" />
                             </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="1" hotspotY="0.505882">
+                        <frame duration="1" hotspotX="0.502222" hotspotY="0.505882">
                             <collision-poly>
                                 <point x="0.0888889" y="0.235294" />
                                 <point x="0.497778" y="0.0117647" />
@@ -1705,7 +1833,7 @@
                                 <point x="0.00888889" y="0.494118" />
                             </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="1" hotspotY="0.505882">
+                        <frame duration="1" hotspotX="0.502222" hotspotY="0.505882">
                             <collision-poly>
                                 <point x="0.0888889" y="0.235294" />
                                 <point x="0.497778" y="0.0117647" />
@@ -1762,6 +1890,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7820011283227196" speed="0">
@@ -1818,6 +1948,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="787445259199876" speed="0">
@@ -1875,6 +2007,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7414836583774513" speed="0">
@@ -1931,6 +2065,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5410887832499994" speed="0">
@@ -1987,6 +2123,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8200228199643693" speed="0">
@@ -2052,6 +2190,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9522758501531871" speed="0">
@@ -2117,6 +2257,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6013730616994192" speed="0">
@@ -2174,6 +2316,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4795341424120077" speed="0">
@@ -2231,6 +2375,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5946201929190393" speed="0">
@@ -2288,6 +2434,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5560913480728518" speed="0">
@@ -2345,6 +2493,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1063539212190807" speed="0">
@@ -2402,6 +2552,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1158014418647551" speed="0">
@@ -2459,6 +2611,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="107534168327818" speed="0">
@@ -2516,6 +2670,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9554884659517846" speed="0">
@@ -2585,6 +2741,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4348204988500623" speed="0">
@@ -2642,6 +2800,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6137970475765391" speed="0">
@@ -2699,6 +2859,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3381794335972552" speed="0">
@@ -2779,6 +2941,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6669644297449329" speed="0">
@@ -2859,6 +3023,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="3" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3852049015097208" speed="0">
@@ -2939,6 +3105,8 @@
                         <type>PlayerTrunk</type>
                         <type>PlayerSCML</type>
                         <type>PlayerSpeechNextBtn</type>
+                        <type>PlayerPlatform</type>
+                        <type>PlayerMiddleMarker</type>
                     </container>
                     <animation-folder expanded="1">
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6740604799563142" speed="0">
@@ -3198,7 +3366,7 @@
         </layout-folder>
     </layout-folder>
     <event-folder expanded="1">
-        <event-folder expanded="1" name="Quest">
+        <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>

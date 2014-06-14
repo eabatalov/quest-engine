@@ -74,7 +74,7 @@
                                 <event-block collapsed="1" sid="3008209258546219">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="7908367217684909" type="System">
-                                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                                            <param id="0" name="First value">PlayerPlatform.Platform.VectorX</param>
                                             <param id="1" name="Comparison">4</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
@@ -89,7 +89,7 @@
                                     <sub-events>
                                         <event-block sid="3985185361995408">
                                             <conditions>
-                                                <condition behavior="Platform" id="2" name="Is on floor" sid="4378791190020036" type="Player" />
+                                                <condition behavior="Platform" id="2" name="Is on floor" sid="4378791190020036" type="PlayerPlatform" />
                                             </conditions>
                                             <actions>
                                                 <action id="0" name="Set animation" sid="1351177413420692" type="PlayerSCML">
@@ -97,7 +97,7 @@
                                                     <param id="1" name="Where to start playing this animation">2</param>
                                                 </action>
                                                 <action id="1" name="Set playback speed ratio" sid="8099747811586332" type="PlayerSCML">
-                                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                                    <param id="0" name="Speed Ratio">PlayerPlatform.Platform.VectorX/PlayerPlatform.Platform.MaxSpeed</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -106,7 +106,7 @@
                                 <event-block collapsed="1" sid="5406357282426264">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="5846899248192532" type="System">
-                                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                                            <param id="0" name="First value">PlayerPlatform.Platform.VectorX</param>
                                             <param id="1" name="Comparison">2</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
@@ -121,7 +121,7 @@
                                     <sub-events>
                                         <event-block sid="500645977210218">
                                             <conditions>
-                                                <condition behavior="Platform" id="2" name="Is on floor" sid="8001881969512536" type="Player" />
+                                                <condition behavior="Platform" id="2" name="Is on floor" sid="8001881969512536" type="PlayerPlatform" />
                                             </conditions>
                                             <actions>
                                                 <action id="0" name="Set animation" sid="204193904746895" type="PlayerSCML">
@@ -129,7 +129,7 @@
                                                     <param id="1" name="Where to start playing this animation">2</param>
                                                 </action>
                                                 <action id="1" name="Set playback speed ratio" sid="9458531368943897" type="PlayerSCML">
-                                                    <param id="0" name="Speed Ratio">Player.Platform.VectorX/Player.Platform.MaxSpeed</param>
+                                                    <param id="0" name="Speed Ratio">PlayerPlatform.Platform.VectorX/PlayerPlatform.Platform.MaxSpeed</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -138,7 +138,7 @@
                                 <event-block sid="2231857615780068">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="3012465634705975" type="System">
-                                            <param id="0" name="First value">Player.Platform.VectorX</param>
+                                            <param id="0" name="First value">PlayerPlatform.Platform.VectorX</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
@@ -147,7 +147,7 @@
                                             <param id="1" name="Comparison">1</param>
                                             <param id="2" name="Second value">&quot;idle&quot;</param>
                                         </condition>
-                                        <condition behavior="Platform" id="2" name="Is on floor" sid="6766173060938577" type="Player" />
+                                        <condition behavior="Platform" id="2" name="Is on floor" sid="6766173060938577" type="PlayerPlatform" />
                                         <condition id="-4" name="Trigger once while true" sid="7213511100289579" type="System" />
                                     </conditions>
                                     <actions>
@@ -168,7 +168,7 @@
                     <sub-events>
                         <event-block sid="9573781634401534">
                             <conditions>
-                                <condition behavior="Platform" id="5" name="On jump" sid="6025160277107431" type="Player" />
+                                <condition behavior="Platform" id="5" name="On jump" sid="6025160277107431" type="PlayerPlatform" />
                                 <condition id="-8" name="Is boolean instance variable set" sid="1549861636287261" type="Player">
                                     <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
                                 </condition>
@@ -259,24 +259,24 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="3018492728339597">
+                <event-block sid="5489627890018143">
                     <conditions>
-                        <condition id="0" name="On function" sid="5320681866047132" type="Function">
+                        <condition id="0" name="On function" sid="2124706362118779" type="Function">
                             <param id="0" name="Name">&quot;AnimPlayerThink&quot;</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="9717977799899244" type="Player">
+                        <condition id="-14" name="Pick by unique ID" sid="6538150537895359" type="Player">
                             <param id="0" name="Unique ID">Function.Param(0)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-13" name="Set boolean" sid="8176524875651504" type="Player">
+                        <action disabled="1" id="-13" name="Set boolean" sid="5242030614766607" type="Player">
                             <param id="0" name="Instance variable">IsCurrentAnimationModeAutomatic</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action disabled="1" id="1" name="Set playback speed ratio" sid="3774283089973361" type="PlayerSCML">
+                        <action disabled="1" id="1" name="Set playback speed ratio" sid="96779337590211" type="PlayerSCML">
                             <param id="0" name="Speed Ratio">1.0</param>
                         </action>
-                        <action disabled="1" id="0" name="Set animation" sid="2600737839622232" type="PlayerSCML">
+                        <action disabled="1" id="0" name="Set animation" sid="6131230958413653" type="PlayerSCML">
                             <param id="0" name="Animation">&quot;speak&quot;</param>
                             <param id="1" name="Where to start playing this animation">0</param>
                         </action>

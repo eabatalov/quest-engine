@@ -35,12 +35,9 @@
                 <condition id="0" name="Quest script loaded" sid="9984593045440814" type="QuestEngine" />
             </conditions>
             <actions>
-                <action behavior="Platform" id="11" name="Set enabled" sid="348973051373935" type="Player">
-                    <param id="0" name="State">1</param>
-                </action>
-                <action id="-9" name="Set value" sid="7040096352838036" type="System">
-                    <param id="0" name="Variable">BlockPlayerInput</param>
-                    <param id="1" name="Value">0</param>
+                <action id="0" name="Call function" sid="2717024278170931" type="Function">
+                    <param id="0" name="Name">&quot;EnableInputAfterGameInited&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
                 <action id="-15" name="Set visible" sid="9149529890147767" type="LayoutLoadingLabel">
                     <param id="0" name="Visibility">0</param>
@@ -49,7 +46,7 @@
                     <param id="0" name="Name">&quot;GameStarted&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="0" name="Call function" sid="6022014241380012" type="Function">
+                <action id="0" name="Call function" sid="6147665522133365" type="Function">
                     <param id="0" name="Name">&quot;onStage&quot; &amp; Player.CurrentStage &amp; &quot;Active&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>

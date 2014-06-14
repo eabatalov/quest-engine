@@ -55,6 +55,14 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" sid="4997264422297362" type="PlayerPinPoint">
+                            <param id="0" name="X">PlayerPlatform.X</param>
+                            <param id="1" name="Y">PlayerPlatform.X</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="1549219533529115" type="Player">
+                            <param id="0" name="X">PlayerPlatform.X</param>
+                            <param id="1" name="Y">PlayerPlatform.Y - (Player.Height / 2 - PlayerPlatform.Height)</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="9054984147582982" type="PlayerMiddleMarker">
                             <param id="0" name="X">Player.X</param>
                             <param id="1" name="Y">Player.Y</param>
                         </action>

@@ -133,6 +133,15 @@
                         <action id="-26" name="Move to layer" sid="5328759096955078" type="PlayerSpeechNextBtn">
                             <param id="0" name="Layer">&quot;Speech&quot;</param>
                         </action>
+                        <action id="-26" name="Move to layer" sid="7011129363249012" type="PlayerPlatform">
+                            <param id="0" name="Layer">Player.LayerName</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="818532151001473" type="PlayerMiddleMarker">
+                            <param id="0" name="Layer">Player.LayerName</param>
+                        </action>
+                        <action id="-26" name="Move to layer" sid="2239369044200776" type="PlayerPinPoint">
+                            <param id="0" name="Layer">Player.LayerName</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="7461917200921227">
@@ -224,10 +233,7 @@
                             </conditions>
                             <actions>
                                 <action id="-6" name="Set height" sid="1372737458980234" type="TalkStartTrigger">
-                                    <param id="0" name="Height">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
-                                </action>
-                                <action id="-2" name="Set Y" sid="2016526183702516" type="TalkStartTrigger">
-                                    <param id="0" name="Y">0</param>
+                                    <param id="0" name="Height">LayoutHeight</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -238,8 +244,8 @@
                                     <param id="0" name="Layer">&quot;BackgroundF&quot;</param>
                                 </action>
                                 <action id="-3" name="Set position" sid="7353612384074733" type="TalkStartHighlight">
-                                    <param id="0" name="X">TalkStartTrigger.ImagePointX(&quot;TalkStartHighlightOrigin&quot;)</param>
-                                    <param id="1" name="Y">TalkStartTrigger.Y + TalkStartTrigger.Height</param>
+                                    <param id="0" name="X">TalkStartTrigger.X</param>
+                                    <param id="1" name="Y">TalkStartTrigger.Y</param>
                                 </action>
                             </actions>
                         </event-block>

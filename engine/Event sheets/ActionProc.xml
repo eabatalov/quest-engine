@@ -28,7 +28,7 @@
                                     <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="5237815673853845" type="System">
-                                    <param id="0" name="Variable">BlockPlayerInput</param>
+                                    <param id="0" name="Variable">BlockPlayerInputOnSeqAction</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
                             </actions>
@@ -260,7 +260,7 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block collapsed="1" sid="5664582232474535">
+                                <event-block sid="5664582232474535">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="6477690124574981" type="System">
                                             <param id="0" name="First value">QuestRuntimeInterface.getActor</param>
@@ -343,14 +343,14 @@
                             <param id="0" name="Name">&quot;ProcPlayerAction&quot;</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="4412876326954315" type="System">
-                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="3602083228748498" type="System">
-                            <param id="0" name="Variable">BlockPlayerInput</param>
+                            <param id="0" name="Variable">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="7766630465012576" type="Function">
@@ -370,14 +370,14 @@
                             <param id="0" name="Name">&quot;ProcPlayerCustomEvent&quot;</param>
                         </condition>
                         <condition id="-8" name="Compare two values" sid="7111090258796726" type="System">
-                            <param id="0" name="First value">BlockPlayerInput</param>
+                            <param id="0" name="First value">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Second value">0</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" sid="9956919483730849" type="System">
-                            <param id="0" name="Variable">BlockPlayerInput</param>
+                            <param id="0" name="Variable">BlockPlayerInputOnSeqAction</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="0" name="Call function" sid="3743524068143124" type="Function">
