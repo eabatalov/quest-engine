@@ -1176,6 +1176,7 @@
                         <NpcIDInStage>Older</NpcIDInStage>
                         <ExpandToLayoutHeight>1</ExpandToLayoutHeight>
                         <Highlight>1</Highlight>
+                        <FireOnce>1</FireOnce>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>

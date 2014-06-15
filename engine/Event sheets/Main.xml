@@ -5,7 +5,7 @@
     <events>
         <include>SCMLSpriteBindings</include>
         <include>Quest</include>
-        <include>Stage1</include>
+        <include>Stages</include>
         <event-block sid="6267414245119264">
             <conditions>
                 <condition id="0" name="On function" sid="2143593114485784" type="Function">

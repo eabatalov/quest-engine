@@ -5,7 +5,7 @@
     <events>
         <variable constant="0" name="BlockPlayerInputOnSeqAction" sid="4976819164673977" static="0" type="number">0</variable>
         <variable constant="0" name="BlockPlayerAvatarControls" sid="4613878177283259" static="0" type="number">0</variable>
-        <event-group description="" sid="2830842349648749" title="PlayerInput">
+        <event-group collapsed="1" description="" sid="2830842349648749" title="PlayerInput">
             <sub-events>
                 <comment>Initial = &quot;BLOCKED&quot;: block player input on start until game was inited</comment>
                 <variable constant="0" name="INPUT_STATE" sid="3003482212209299" static="1" type="text">BLOCKED</variable>
@@ -80,7 +80,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="2039030482302605" title="PlayerAvatarControls">
+                <event-group collapsed="1" description="" sid="2039030482302605" title="PlayerAvatarControls">
                     <sub-events>
                         <event-block sid="9342819312308766">
                             <conditions>
@@ -785,7 +785,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="" sid="3984117986249243" title="Automatic start talk">
+        <event-group description="" sid="3984117986249243" title="Automatic start talk">
             <sub-events>
                 <comment>Inject custom event with name &quot;auto_talk_start_&quot; + NPC id to start talking</comment>
                 <event-block sid="7124879317616865">
@@ -794,11 +794,21 @@
                             <param id="0" name="Object">PlayerMiddleMarker</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="8097163933482469" type="TalkStartHighlight" />
-                        <action id="-9" name="Destroy" sid="2640317491128253" type="TalkStartTrigger" />
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <event-block sid="881256367298289">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="8273393451485714" type="TalkStartTrigger">
+                                    <param id="0" name="Instance variable">FireOnce</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="8097163933482469" type="TalkStartHighlight" />
+                                <action id="-9" name="Destroy" sid="2640317491128253" type="TalkStartTrigger" />
+                            </actions>
+                        </event-block>
                         <event-block sid="421426358105787">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="8589615490797181" type="System">
