@@ -1,0 +1,34 @@
+{
+    "name" : "learzing-quest-engine-tool-quest-script-to-text",
+    "version" : "0.1.0",
+    "description" : "Translates quest script file to human readbale textual representation",
+    "keywords" : ["learzing", "quest", "engine", "tool", "quest", "text"],
+    "homepage" : "http://learzing.com/quest_engine",
+    "bugs" : "eugene@learzing.com",
+    "author" : {
+        "name" : "Eugene Batalov",
+        "email" : "eugene@learzing.com"
+    },
+
+    "main": "bin/main.dev.js",
+
+    "dependencies" : {
+        "jquery-core-nodom" : "git+ssh://git@github.com:eabatalov/jquery-nodom.git"
+    },
+
+    "devDependencies": {
+        "grunt" : "~0.4.1",
+        "grunt-contrib-concat" : "~0.3",
+        "grunt-contrib-uglify" : "0.4.0",
+        "execSync" : "~1.0"
+    },
+
+    "gruntDependencies" : [
+        {
+            "path" : "lib/quest_script",
+            "args" : ""
+        }
+    ],
+
+    "private" : true
+}
