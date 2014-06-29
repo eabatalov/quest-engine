@@ -752,12 +752,142 @@
 						"props": {}
 					}
 				]
+			},
+			{
+				"ver": 1,
+				"stageNodeId": 113,
+				"nodes": [
+					{
+						"ver": 1,
+						"id": 113,
+						"type": 9,
+						"label": "init",
+						"continue": false,
+						"inCondIds": [],
+						"outCondIds": [
+							135
+						],
+						"props": {
+							"name": "init",
+							"objs": [
+								"Player"
+							],
+							"objPool": []
+						}
+					},
+					{
+						"ver": 1,
+						"id": 114,
+						"type": 8,
+						"label": "",
+						"continue": true,
+						"inCondIds": [
+							135
+						],
+						"outCondIds": [
+							136
+						],
+						"props": {
+							"objs": [
+								"Player"
+							]
+						}
+					},
+					{
+						"ver": 1,
+						"id": 115,
+						"type": 10,
+						"label": "Say init test",
+						"continue": true,
+						"inCondIds": [
+							136
+						],
+						"outCondIds": [
+							137
+						],
+						"props": {
+							"name": "QEShowDialog",
+							"source": "js",
+							"params": [
+								{
+									"type": "str",
+									"name": "message",
+									"value": "Initialization test",
+									"$$hashKey": "01E"
+								}
+							]
+						}
+					},
+					{
+						"ver": 1,
+						"id": 116,
+						"type": 10,
+						"label": "Say js func test",
+						"continue": true,
+						"inCondIds": [
+							137
+						],
+						"outCondIds": [
+							138
+						],
+						"props": {
+							"name": "QEShowDialog",
+							"source": "js",
+							"params": [
+								{
+									"type": "str",
+									"name": "message",
+									"value": "JS functions test",
+									"$$hashKey": "01H"
+								}
+							]
+						}
+					},
+					{
+						"ver": 1,
+						"id": 117,
+						"type": -1,
+						"label": "End",
+						"continue": false,
+						"inCondIds": [
+							138
+						],
+						"outCondIds": [],
+						"props": {}
+					}
+				],
+				"conds": [
+					{
+						"ver": 1,
+						"id": 135,
+						"type": 1,
+						"props": {}
+					},
+					{
+						"ver": 1,
+						"id": 136,
+						"type": 8,
+						"props": {}
+					},
+					{
+						"ver": 1,
+						"id": 137,
+						"type": 8,
+						"props": {}
+					},
+					{
+						"ver": 1,
+						"id": 138,
+						"type": 8,
+						"props": {}
+					}
+				]
 			}
 		]
 	},
 	"scriptEditor": {
 		"ver": 1,
-		"currentStageId": 8,
+		"currentStageId": 113,
 		"stageEditors": [
 			{
 				"ver": 1,
@@ -1220,8 +1350,8 @@
 				],
 				"scale": 0.6000000000000001,
 				"pos": {
-					"x": 244,
-					"y": 116
+					"x": 250,
+					"y": 135
 				}
 			},
 			{
@@ -1506,16 +1636,128 @@
 					21,
 					26
 				],
-				"scale": 0.30000000000000016,
+				"scale": 0.7000000000000001,
 				"pos": {
 					"x": 249,
 					"y": 114
+				}
+			},
+			{
+				"ver": 1,
+				"nodeViews": [
+					{
+						"ver": 1,
+						"nodeId": 113,
+						"x": 400,
+						"y": 100
+					},
+					{
+						"ver": 1,
+						"nodeId": 114,
+						"x": 402,
+						"y": 351
+					},
+					{
+						"ver": 1,
+						"nodeId": 115,
+						"x": 719,
+						"y": 178
+					},
+					{
+						"ver": 1,
+						"nodeId": 116,
+						"x": 965,
+						"y": 353
+					},
+					{
+						"ver": 1,
+						"nodeId": 117,
+						"x": 735,
+						"y": 560
+					}
+				],
+				"nodeIds": [
+					113,
+					114,
+					115,
+					116,
+					117
+				],
+				"condViews": [
+					{
+						"ver": 1,
+						"condId": 135,
+						"points": {
+							"src": {
+								"x": 480,
+								"y": 180
+							},
+							"dst": {
+								"x": 482,
+								"y": 431
+							}
+						}
+					},
+					{
+						"ver": 1,
+						"condId": 136,
+						"points": {
+							"src": {
+								"x": 482,
+								"y": 431
+							},
+							"dst": {
+								"x": 799,
+								"y": 258
+							}
+						}
+					},
+					{
+						"ver": 1,
+						"condId": 137,
+						"points": {
+							"src": {
+								"x": 799,
+								"y": 258
+							},
+							"dst": {
+								"x": 1045,
+								"y": 433
+							}
+						}
+					},
+					{
+						"ver": 1,
+						"condId": 138,
+						"points": {
+							"src": {
+								"x": 1045,
+								"y": 433
+							},
+							"dst": {
+								"x": 815,
+								"y": 640
+							}
+						}
+					}
+				],
+				"condIds": [
+					135,
+					136,
+					137,
+					138
+				],
+				"scale": 1,
+				"pos": {
+					"x": 14,
+					"y": 6
 				}
 			}
 		],
 		"stageIds": [
 			8,
-			10
+			10,
+			113
 		]
 	}
 }
