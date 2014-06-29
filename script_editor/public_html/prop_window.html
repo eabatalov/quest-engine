@@ -236,4 +236,55 @@
         </div>
     </div>
 
+    <div class="row" ng-show="node.getType() === QUEST_NODES.FUNC_CALL">
+        <div class="col-xs-6">
+            <div>
+                <label class="control-label" for="source">Source</label>
+                <select name="source"
+                        class="control-label select"
+                        ng-model="node.getProps().source" ng-change="node.setProp('source', node.getProps().source)"
+                        ng-options="option.value as option.name for option in [{ name: 'Construct2', value: FUNC_SOURCES.c2 }, { name: 'Javascript', value: FUNC_SOURCES.js }];">
+                </select>
+            </div>
+
+            <div>
+                <hr/>
+                <label class="control-label" for="parameters">Parameters</label>
+                <button class="btn btn-sm btn-primary"
+                    ng-click="addParam()">
+                    Add
+                </button>
+                <hr/>
+
+                <div class="input-group-sm form-group" ng-repeat="param in node.getProps().params">
+                    <label class="control-label" for="name">Name: </label>
+                    <button class="btn btn-sm btn-primary"
+                        ng-click="delParam(param.name)">
+                        Del
+                    </button>
+                    <input class="form-control"
+                       type="text"
+                       name="name"
+                       ng-model="param.name"
+                       placeholder="Name" />
+
+                    <label class="control-label" for="value">Value: </label>
+                    <textarea class="form-control input-sm"
+                              rows="2"
+                              placeholder="Value"
+                              ng-model="param.value">
+                    </textarea>
+
+                    <label class="control-label" for="type">Type: </label>
+                    <select name="type"
+                        class="control-label select"
+                        ng-model="param.type"
+                        ng-options="option.value as option.name for option in [{ name: 'String', value: FUNC_CALL_PARAMS.str }, { name: 'Number', value: FUNC_CALL_PARAMS.num }];">
+                    </select>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

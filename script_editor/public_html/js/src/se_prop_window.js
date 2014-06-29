@@ -3,6 +3,8 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
 		$scope.QUEST_PHRASE_TYPES = _QUEST_PHRASE_TYPES;
 		$scope.QUEST_NODES = _QUEST_NODES;
 		$scope.QUEST_CONDS = _QUEST_CONDS;
+        $scope.FUNC_CALL_PARAMS = SEFuncCallNodeParameter.types;
+        $scope.FUNC_SOURCES = SEFuncCallNode.sources;
 
         $scope.objToAddId = null;
         $scope.node = null;
@@ -127,6 +129,25 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
                 return [];
 
             return storyline.getProps().objs;
+        }.bind(this);
+
+        $scope.addParam = function() {
+            var params = $scope.node.getProp('params');
+            params.push(new SEFuncCallNodeParameter(
+                SEFuncCallNodeParameter.types.str,
+                '',
+                ''
+            ));
+        }.bind(this);
+
+        $scope.delParam = function(paramName) {
+            var params = $scope.node.getProp('params');
+            jQuery.each(params, function(ix, param) {
+                if (param.name === paramName) {
+                    params.splice(ix, 1);
+                    return false;
+                }
+            });
         }.bind(this);
 
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_PROP_WIND" });
