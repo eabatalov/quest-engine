@@ -25,6 +25,21 @@ QuestRuntime.prototype.setupObjects = function(NPCType) {
 	});
 };
 
+QuestRuntime.prototype.runQuestInitStage = function() {
+    var initStepEvent = new QuestEvent('init', _QUEST_EVENTS.CONTINUE);
+    var currentInitNode = this.scriptInterp.step(initStepEvent);
+    while(currentInitNode.getType() !== _QUEST_NODES.NONE) {
+        if (currentInitNode.getType() !== _QUEST_NODES.FUNC_CALL &&
+            currentInitNode.getProp('source') !== SEFuncCallNode.sources.js) {
+            console.error('Error during init stage. Not allowed node');
+            dumpQuestNode(currentInitNode);
+        }
+        this.jsFuncNodeExec(currentInitNode);
+        currentInitNode = this.scriptInterp.step(initStepEvent);
+    }
+    console.log('Init stage completed');
+};
+
 QuestRuntime.prototype.setupScript = function(scriptURL) {
 	jQuery.getScript(scriptURL, function( data, textStatus, jqxhr ) {
 		console.log("Quest script load was performed");
@@ -34,6 +49,7 @@ QuestRuntime.prototype.setupScript = function(scriptURL) {
 		console.log(jqxhr.status); // 200
         console.log("Starting up script interpretator");
         this.scriptInterp = new ScriptInterpretator(getQuestScript());
+        this.runQuestInitStage();
         if (this.events.scriptLoaded)
             this.events.scriptLoaded();
 	}.bind(this));
@@ -108,8 +124,13 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
 			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
 		break;
 		case _QUEST_NODES.FUNC_CALL:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
-			action.setFuncName(questNode.getProp("name"));
+            if (questNode.getProp('source') === SEFuncCallNode.sources.c2) {
+			    action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
+			    action.setFuncName(questNode.getProp("name"));
+            } else {
+                this.jsFuncNodeExec(questNode);
+                action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
+            }
 		break;
         case _QUEST_NODES.NOTIFICATION:
             action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NOTIFICATION);

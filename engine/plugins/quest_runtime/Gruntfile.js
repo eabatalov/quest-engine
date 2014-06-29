@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
     var srcFiles = [
         '<%= dirs.src %>quest_runtime.js',
+        '<%= dirs.src %>js_func_exec.js',
         '<%= dirs.src %>quest_runtime_debug.js'
     ];
 
