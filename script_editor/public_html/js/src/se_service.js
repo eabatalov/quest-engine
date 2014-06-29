@@ -5,6 +5,7 @@ function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionMa
     this.userInteractionManager = userInteractionManager;
     this.mouseWheelManager = mouseWheelManager;
     this.seEventRouter = seEventRouter;
+    this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     this.projectSaver = new SEProjectSaveService(this, seEventRouter);
     this.projectOpener = new SEProjectOpenService(this, seEventRouter);
     this.scriptCompiler = new SEScriptCompiler(this, seEventRouter);
@@ -18,6 +19,7 @@ ScriptEditorService.prototype.getSE = function() {
 };
 
 ScriptEditorService.prototype.newProject = function() {
+    this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name: "SCRIPT_CHANGED" });
     this.scriptEditor.newStage();
 };
 

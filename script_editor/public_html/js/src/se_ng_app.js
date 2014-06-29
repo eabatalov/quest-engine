@@ -54,6 +54,9 @@ function ScriptEditorBootstrap() {
 
     this.scriptEditorApp.controller("SaveLoadController", ['$scope', 'SEEventRouter', SaveLoadController]);
 
+    this.scriptEditorApp.controller("ScriptPropsController", ['$scope', 'SEEventRouter', 'ScriptEditorService', '$timeout',
+            ScriptPropsController]);
+
     this.scriptEditorApp.factory("ScriptEditorService", [
             "SEEventRouter",
             "MouseWheelManager",
@@ -91,7 +94,8 @@ ScriptEditorBootstrap.prototype.onStaticConstrCompleted = function() {
      */
     var ALL_INIT_EVENTS = ["CNTRL_INIT_STAGES_PANEL",
         "CNTRL_INIT_TOOLBAR", "CNTRL_INIT_SL_BTN",
-        "CNTRL_INIT_PROP_WIND", "CNTRL_INIT_COMPILE_BTN"];
+        "CNTRL_INIT_PROP_WIND", "CNTRL_INIT_COMPILE_BTN",
+        "CNTRL_INIT_SCPROPS_WIND"];
     var cntrlInitCnt = ALL_INIT_EVENTS.length;
     var waitAllInitEvents = this.seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     waitAllInitEvents.on(function(args) {

@@ -19,6 +19,7 @@ module.exports = function(grunt) {
         '<%= dirs.src %>se_user_interaction_manager.js',
         '<%= dirs.src %>se_stages_panel.js',
         '<%= dirs.src %>se_save_load_btn.js',
+        '<%= dirs.src %>se_script_props.js',
         '<%= dirs.src %>se_project.js',
         '<%= dirs.src %>se_service.js',
         '<%= dirs.src %>se_ng_app.js'

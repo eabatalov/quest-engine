@@ -273,6 +273,11 @@ SEInputManager.prototype.procStateProjectFileOpenWait = function(evName, args) {
     if (evName === "PROJECT_FILE_OPENED") {
         //All the object are created. We can send "kickstart" message
         this.setState(SEInputManager.STATES.STAGE_CHANGE_WAIT);
+        /* 
+         * XXX Send only "script changed" event here
+         * current event is used for simplicity
+         */
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "SCRIPT_CHANGED" });
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
             { name : "STAGE_CHANGE", fromStage : null, toStage : null });
         return;
