@@ -8,6 +8,9 @@ function dump(text) {
     console.log(text);
 }
 
+/*
+ * Cache identation strings not to load GC
+ */
 var identStrs = {};
 function identText(text, ident) {
     if (identStrs[ident]) {
@@ -23,6 +26,11 @@ function identText(text, ident) {
     return identStr + text;
 }
 
+//=======================================
+var context = {
+    stage : null
+};
+
 function isNodeTextual(node) {
     switch(node.getType()) {
         case _QUEST_NODES.STAGE:
@@ -31,6 +39,14 @@ function isNodeTextual(node) {
         case _QUEST_NODES.QUIZ:
         case _QUEST_NODES.NOTIFICATION:
             return true;
+        case _QUEST_NODES.FUNC_CALL:
+            /*
+            * Dump FUNC_CALLs from init stage
+            * Because they are usually contain
+            * human readable data.
+            */
+            if (context.stage.getName() === "init")
+                return true;
         default:
             return false;
     }
@@ -77,6 +93,16 @@ function nodeDump(node, ident) {
             text += identText("NOTIFICATION" + EOL, ident)
                 + identText("text: " + JSON.stringify(node.getProp("text")) + EOL, ident);
             break;
+        case _QUEST_NODES.FUNC_CALL:
+            var params = node.getProp("params");
+            text += identText("FUNCTION CALL" + EOL, ident)
+                + identText("name: " + node.getProp("name") + EOL, ident)
+                + (params.length ? identText("parametes:" + EOL, ident) : "");
+            ident += IDENT;
+            $.each(params, function(ix, param) {
+                text += identText(param.name + ": " + JSON.stringify(param.value) + EOL, ident);
+            });
+            ident -= IDENT;
         default:
     }
     ident -= IDENT;
@@ -104,6 +130,8 @@ function condDump(cond, ident, nodesVisited) {
 function stageDump(stage) {
     dump("=================================" + EOL
         + "STAGE " + stage.getName() + EOL);
+    context.stage = stage;
+
     var stageNode = stage.getStageNode();
     var nodesVisited = {};
 
