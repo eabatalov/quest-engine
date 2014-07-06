@@ -1,0 +1,32 @@
+{
+    "name" : "learzing-quest-engine-level-lib",
+    "version" : "0.1.0",
+    "description" : "Quest engine game level library",
+    "keywords" : ["learzing", "quest", "engine", "level", "library"],
+    "homepage" : "http://learzing.com/quest_engine",
+    "bugs" : "eugene@learzing.com",
+    "author" : {
+        "name" : "Eugene Batalov",
+        "email" : "eugene@learzing.com"
+    },
+
+    "main": "bin/quest_level.dev.js",
+
+    "dependencies" : {
+    },
+
+    "devDependencies" : {
+        "grunt" : "~0.4.1",
+        "grunt-contrib-concat" : "~0.3",
+        "grunt-contrib-uglify" : "0.4.0"
+    },
+
+    "gruntDependencies" : [
+        {
+            "path" : "lib/quest_script",
+            "args" : ""
+        }
+    ],
+
+    "private" : true
+}
