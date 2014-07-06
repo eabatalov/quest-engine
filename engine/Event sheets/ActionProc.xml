@@ -408,7 +408,6 @@
                             <param id="0" name="Value">Function.Param(2)</param>
                         </action>
                         <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestLevelRuntime">
-                            <param id="0" name="Action">QuestLevelRuntime</param>
                         </action>
                         <action id="0" name="Call function" sid="8283331344010882" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>

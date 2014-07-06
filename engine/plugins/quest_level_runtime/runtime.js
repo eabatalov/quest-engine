@@ -146,7 +146,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	};
 
     //=== Level action in ===
-	Acts.prototype.playerActionExec = function(levelRuntimeInterfaceType) {
+	Acts.prototype.playerActionExec = function() {
 	    this.levelRuntime.playerActionExec(
             this.uiActionManager
         );

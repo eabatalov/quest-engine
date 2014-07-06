@@ -93,7 +93,6 @@ AddAction(4, af_none, "Set current stage", "Level", "Set current stage to {0}",
 	"Set stage name with which we'll work now.", "setStage");
 
 //=== LEVEL ACTION IN ===
-AddObjectParam("Action", "Action object type");
 AddAction(1, af_none, "Execute last player action on current stage", "Level action in",
 	"Execute last player action {0} on current stage",
 	"Execute last player action on current stage",
