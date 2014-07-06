@@ -1,10 +1,10 @@
 ﻿function GetPluginSettings()
 {
 	return {
-		"name":			"Quest Runtime",		// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
-		"id":			"QuestRuntimePlugin",	// this is used to i`ntify this plugin and is saved to the project; never change it
+		"name":			"Quest Level Runtime",		// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
+		"id":			"QuestLevelRuntimePlugin",	// this is used to i`ntify this plugin and is saved to the project; never change it
 		"version":		"0.1",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
-		"description":	"Learzing quest game logic execution runtime",
+		"description":	"Learzing quest game level logic execution runtime",
 		"author":		"Eugene/learzing",
 		"help url":		"http://learzing.com/quest_engine",
 		"category":		"Game engine",				// Prefer to re-use existing categories, but you can set anything here
@@ -25,7 +25,7 @@
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
 		, "dependency":
-			"quest_runtime.dev.js;"
+			"quest_level_runtime.dev.js;"
 	};
 };
 
@@ -77,12 +77,8 @@ AddCondition(0, cf_trigger, "Quest script loaded", "General",
 // example
 /*AddStringParam("Message", "Enter a string to alert.");
 AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my action!", "MyAction");*/
-AddObjectParam("Action", "Action object type");
-AddAction(1, af_none, "Execute last player action on current stage", "General",
-	"Execute last player action {0} on current stage",
-	"Execute last player action on current stage",
-	"playerActionExec");
 
+//=== SETUP ===
 AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
 AddAction(2, af_none, "Setup quest objects.", "General",
 	"Setup quest objects.", "Setup quest objects.", "setupQuestObjects");
@@ -90,6 +86,33 @@ AddAction(2, af_none, "Setup quest objects.", "General",
 AddStringParam("Quest script file URL", "Quest script file URL", "story.js");
 AddAction(3, af_none, "Setup quest script URL.", "General",
 	"Setup quest script URL to {0}.", "Setup quest script URL.", "setupQuestScript");
+
+//=== LEVEL ===
+AddStringParam("Value", "Stage name (String)");
+AddAction(4, af_none, "Set current stage", "Level", "Set current stage to {0}",
+	"Set stage name with which we'll work now.", "setStage");
+
+//=== LEVEL ACTION IN ===
+AddObjectParam("Action", "Action object type");
+AddAction(1, af_none, "Execute last player action on current stage", "Level action in",
+	"Execute last player action {0} on current stage",
+	"Execute last player action on current stage",
+	"playerActionExec");
+
+AddStringParam("Last action",
+	"Last action performed by player: "
+	+ "\"PLAYER_CLICKED\" | \"NPC_CLICKED\" | \"ANSWERx_CLICKED\" | \"CONTINUE\"");	
+AddAction(5, af_none, "Set last player action", "Level action in", "Set last player's action to {0}",
+	"Sets player's action", "setLastPlayerAction");
+
+AddStringParam("Value", "Action target id");
+AddAction(6, af_none, "Set last action target id", "Level action in", "Set last action target id to {0}",
+	"Too complicated", "setLastActionTargetId");
+
+AddStringParam("Value", "Action name");
+AddAction(7, af_none, "Set last action 'name' value", "Level action in", "Set 'name' to {0}",
+	"", "setLastActionName");
+
 ////////////////////////////////////////
 // Expressions
 
@@ -103,6 +126,55 @@ AddAction(3, af_none, "Setup quest script URL.", "General",
 
 // example
 /*AddExpression(0, ef_return_number, "Leet expression", "My category", "MyExpression", "Return the number 1337.");*/
+
+//=== LEVEL ACTION OUT ===
+AddExpression(0, ef_return_string, "Current stage", "Level action out", "getCurrentStage",
+	"Current stage");
+AddExpression(1, ef_return_string, "Current actor type", "Level action out", "getActor",
+	"Current actor. Possble values: \"PLAYER\" | \"NPC\"");
+AddExpression(2, ef_return_number, "Current NPC actor UID", "Level action out", "getNPCActorUID",
+	"UID of current acting NPC.");
+AddExpression(3, ef_return_string, "Current action type", "Level action out", "getAction",
+	"Current action. Possible values: "
+	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" \"DELAY\" | \"STAGE_CLEAR\" | \"NONE\""
+);
+
+AddExpression(4, ef_return_string, "Current animation name", "Level action out", "getAnimationName",
+	"if current action type is \"question\" contains current animation name");
+
+AddExpression(5, ef_return_string, "text", "Level action out", "getText",
+	"if current action type is \"speech\" or \"question\" contains its text");
+AddExpression(6, ef_return_string, "answer 1 text", "Level action out", "getAnswer1Text",
+	"Text of 1st answer to the question");
+AddExpression(7, ef_return_string, "answer 2 text", "Level action out", "getAnswer2Text",
+	"Text of 2nd answer to the question");
+AddExpression(8, ef_return_string, "answer 3 text", "Level action out", "getAnswer3Text",
+	"Text of 3rd answer to the question");
+AddExpression(9, ef_return_string, "answer 4 text", "Level action out", "getAnswer4Text",
+	"Text of 4th answer to the question");
+AddExpression(10, ef_return_string, "Phrase type", "Level action out", "getPhraseType",
+	"Phrase type");
+
+AddExpression(11, ef_return_number, "Delay in seconds", "Level action out", "getDelay",
+	"Delay in seconds.");
+AddExpression(12, ef_return_number,
+	"1 to continue to the next action not hiding current stage objects and behaviors",
+	"Level action out", "getContinue",
+	"1 to continue to the next action not hiding current stage objects and behaviors");
+
+AddExpression(13, ef_return_string, "Function name", "Level action out", "getFuncName",
+	"Function name");
+
+AddExpression(14, ef_return_number,
+	"1 to enable player avatar movement control by player",
+	"Level action out", "getEnabled",
+	"1 to enable player avatar movement control by player");
+
+AddExpression(15, ef_return_number,
+	"1 if current script state can accept 'NEXT' player action",
+	"Level action out", "getHasNext",
+	"1 if current script state can accept 'NEXT' player action");
+
 
 ////////////////////////////////////////
 ACESDone();

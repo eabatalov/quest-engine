@@ -23,6 +23,10 @@
 
     "gruntDependencies" : [
         {
+            "path" : "lib/util",
+            "args" : ""
+        },
+        {
             "path" : "lib/quest_script",
             "args" : ""
         }

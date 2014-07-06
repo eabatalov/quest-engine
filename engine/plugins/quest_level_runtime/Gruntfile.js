@@ -4,9 +4,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     var srcFiles = [
-        '<%= dirs.src %>quest_runtime.js',
-        '<%= dirs.src %>js_func_exec.js',
-        '<%= dirs.src %>quest_runtime_debug.js'
+        '<%= dirs.src %>quest_level_runtime.js',
+        '<%= dirs.src %>quest_level_runtime_debug.js',
+        '<%= dirs.src %>consts.js',
+        '<%= dirs.src %>ui_stage_action_in.js',
+        '<%= dirs.src %>ui_stage_action_manager.js',
+        '<%= dirs.src %>ui_stage_action_out.js'
     ];
 
     banner = [
@@ -30,8 +33,8 @@ module.exports = function(grunt) {
 
         files : {
             bin : {
-                debug : 'quest_runtime.dev.js',
-                release : 'quest_runtime.min.js'
+                debug : 'quest_level_runtime.dev.js',
+                release : 'quest_level_runtime.min.js'
             }
         },
 

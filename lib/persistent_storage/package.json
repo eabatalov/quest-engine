@@ -22,6 +22,10 @@
     },
 
     "gruntDependencies" : [
+        {
+            "path" : "lib/util",
+            "args" : ""
+        }
     ],
 
     "private" : true

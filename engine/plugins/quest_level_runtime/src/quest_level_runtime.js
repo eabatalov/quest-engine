@@ -1,4 +1,4 @@
-function QuestRuntime() {
+function QuestLevelRuntime() {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
 	this.scriptInterp = null;
     this.nextCondSearch = new NextCondSearch();
@@ -7,13 +7,13 @@ function QuestRuntime() {
     };
 }
 
-QuestRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
+QuestLevelRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
 	return this.stageNPCs[stageName][npcIDInStage];
 };
 
 _NPC_INST_PROP_STAGE_IX = 0;
 _NPC_INST_PROP_NPC_ID_ON_STAGE_IX = 1;
-QuestRuntime.prototype.setupObjects = function(NPCType) {
+QuestLevelRuntime.prototype.setupObjects = function(NPCType) {
 	var quest = this;
 
 	$.each(NPCType.instances, function(ix, npc) {
@@ -25,22 +25,8 @@ QuestRuntime.prototype.setupObjects = function(NPCType) {
 	});
 };
 
-QuestRuntime.prototype.runQuestInitStage = function() {
-    var initStepEvent = new QuestEvent('init', _QUEST_EVENTS.CONTINUE);
-    var currentInitNode = this.scriptInterp.step(initStepEvent);
-    while(currentInitNode.getType() !== _QUEST_NODES.NONE) {
-        if (currentInitNode.getType() !== _QUEST_NODES.FUNC_CALL &&
-            currentInitNode.getProp('source') !== SEFuncCallNode.sources.js) {
-            console.error('Error during init stage. Not allowed node');
-            dumpQuestNode(currentInitNode);
-        }
-        this.jsFuncNodeExec(currentInitNode);
-        currentInitNode = this.scriptInterp.step(initStepEvent);
-    }
-    console.log('Init stage completed');
-};
-
-QuestRuntime.prototype.setupScript = function(scriptURL) {
+//TODO make it 'setLevel(level)'
+QuestLevelRuntime.prototype.setupScript = function(scriptURL) {
 	jQuery.getScript(scriptURL, function( data, textStatus, jqxhr ) {
 		console.log("Quest script load was performed");
 		console.log("Script URL: " + scriptURL);
@@ -49,7 +35,6 @@ QuestRuntime.prototype.setupScript = function(scriptURL) {
 		console.log(jqxhr.status); // 200
         console.log("Starting up script interpretator");
         this.scriptInterp = new ScriptInterpretator(getQuestScript());
-        this.runQuestInitStage();
         if (this.events.scriptLoaded)
             this.events.scriptLoaded();
 	}.bind(this));
@@ -59,7 +44,7 @@ QuestRuntime.prototype.setupScript = function(scriptURL) {
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
  * Works accorind to current stage quest script
  */
-QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
+QuestLevelRuntime.prototype.playerActionExec = function(uiActionManager) {
 
     var inAction = uiActionManager.getCurrentStageUIActionIN();
     var outAction = uiActionManager.getCurrentStageUIActionOUT();
@@ -86,7 +71,7 @@ QuestRuntime.prototype.playerActionExec = function(uiActionManager) {
 	dumpUIStageActionOut(outAction);
 };
 
-QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
+QuestLevelRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
     action.setHasNext(this.nextCondSearch.get(questNode) === null ? 0 : 1);
 
 	var setActorInfo = false;
@@ -128,7 +113,6 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
 			    action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
 			    action.setFuncName(questNode.getProp("name"));
             } else {
-                this.jsFuncNodeExec(questNode);
                 action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
             }
 		break;
@@ -156,7 +140,7 @@ QuestRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action)
                 : null
         );
 	}
-    action.setIsContinue(questNode.continue === true ? 1 : 0);
+    action.setIsContinue(questNode.getContinue() === true ? 1 : 0);
 };
 
 function uiStageActionInToQuestEvent(action) {

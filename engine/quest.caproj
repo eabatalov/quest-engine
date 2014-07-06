@@ -14,8 +14,7 @@
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
-        <plugin author="Eugene/Learzing" id="QuestRuntimeInterfacePlugin" version="0.100000001">Quest Runtime Interface</plugin>
-        <plugin author="Eugene/learzing" id="QuestRuntimePlugin" version="0.100000001">Quest Runtime</plugin>
+        <plugin author="Eugene/learzing" id="QuestLevelRuntimePlugin" version="0.100000001">Quest Level Runtime</plugin>
         <plugin author="Eugene/Learzing" id="QuestRuntimeTestPlugin" version="0.100000001">Quest Runtime code deicated only for testing</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="BrashMonkey" id="Spriter" version="1">Scml</plugin>
@@ -1703,11 +1702,8 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-type name="QuestEngine" sid="6155412818206068">
-                <plugin id="QuestRuntimePlugin" />
-            </object-type>
-            <object-type global="1" name="QuestRuntimeInterface" sid="4980129753739623">
-                <plugin id="QuestRuntimeInterfacePlugin" />
+            <object-type name="QuestLevelRuntime" sid="6155412818206068">
+                <plugin id="QuestLevelRuntimePlugin" />
             </object-type>
             <object-type name="StageChanger" sid="7618603551053084">
                 <plugin id="Sprite" />
@@ -3402,7 +3398,7 @@
             </properties>
         </global-instance>
         <global-instance type="Function" uid="14" />
-        <global-instance type="QuestEngine" uid="15" />
+        <global-instance type="QuestLevelRuntime" uid="15" />
         <global-instance type="Browser" uid="43" />
         <global-instance type="Mouse" uid="90" />
         <global-instance type="QuestRuntimeCodeDeicatedOnlyForTesting" uid="91" />

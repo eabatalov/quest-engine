@@ -770,7 +770,7 @@
                             <param id="0" name="Instance variable">CurrentStage</param>
                             <param id="1" name="Value">Function.Param(0)</param>
                         </action>
-                        <action id="0" name="Set current stage" sid="7157665240375644" type="QuestRuntimeInterface">
+                        <action id="4" name="Set current stage" sid="7157665240375644" type="QuestLevelRuntime">
                             <param id="0" name="Value">Function.Param(0)</param>
                         </action>
                         <action id="0" name="Call function" sid="3525188631633559" type="Function">

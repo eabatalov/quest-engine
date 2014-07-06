@@ -30,7 +30,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Set current stage" sid="5255669457951863" type="QuestRuntimeInterface">
+                        <action id="4" name="Set current stage" sid="5255669457951863" type="QuestLevelRuntime">
                             <param id="0" name="Value">Player.CurrentStage</param>
                         </action>
                         <action id="0" name="Call function" sid="6991897946341484" type="Function">
@@ -56,7 +56,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Set current stage" sid="5658588855349762" type="QuestRuntimeInterface">
+                        <action id="4" name="Set current stage" sid="5658588855349762" type="QuestLevelRuntime">
                             <param id="0" name="Value">Player.CurrentStage</param>
                         </action>
                         <action id="0" name="Call function" sid="337380940741201" type="Function">
@@ -82,7 +82,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Set current stage" sid="6796641429186421" type="QuestRuntimeInterface">
+                        <action id="4" name="Set current stage" sid="6796641429186421" type="QuestLevelRuntime">
                             <param id="0" name="Value">Player.CurrentStage</param>
                         </action>
                         <action id="0" name="Call function" sid="4748971152230559" type="Function">

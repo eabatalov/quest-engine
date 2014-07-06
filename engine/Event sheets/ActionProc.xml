@@ -17,7 +17,7 @@
                         <event-block sid="5100714146768124">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="695100223885562" type="System">
-                                    <param id="0" name="First value">QuestRuntimeInterface.getContinue</param>
+                                    <param id="0" name="First value">QuestLevelRuntime.getContinue</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
@@ -25,7 +25,7 @@
                             <actions>
                                 <action id="0" name="Call function" sid="2413262137877784" type="Function">
                                     <param id="0" name="Name">&quot;makeStageChangersTransparent&quot;</param>
-                                    <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
+                                    <param id="1" name="Parameter {n}">QuestLevelRuntime.getCurrentStage</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="5237815673853845" type="System">
                                     <param id="0" name="Variable">BlockPlayerInputOnSeqAction</param>
@@ -36,7 +36,7 @@
                         <event-block sid="2477676966064047">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="6061104974833849" type="System">
-                                    <param id="0" name="First value">QuestRuntimeInterface.getContinue</param>
+                                    <param id="0" name="First value">QuestLevelRuntime.getContinue</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">1</param>
                                 </condition>
@@ -50,7 +50,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>Process action dedicated for UI state change.&#x0D;&#x0A;if QuestRuntimeInterface.getContinue == true ProcUIAction can be called only from ProcGameAction because together they form continuation loop. If you call this func from another place you create 2 continuation loops and this is invlaid.</comment>
+                <comment>Process action dedicated for UI state change.&#x0D;&#x0A;if QuestLevelRuntime.getContinue == true ProcUIAction can be called only from ProcGameAction because together they form continuation loop. If you call this func from another place you create 2 continuation loops and this is invlaid.</comment>
                 <event-block sid="9685306970185458">
                     <conditions>
                         <condition id="0" name="On function" sid="4879756541203689" type="Function">
@@ -67,14 +67,14 @@
                         <event-block sid="8036011244503883">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="4009910061773385" type="System">
-                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">&quot;DELAY&quot;</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action id="-16" name="Wait" sid="3062219250112227" type="System">
-                                    <param id="0" name="Seconds">QuestRuntimeInterface.getDelay</param>
+                                    <param id="0" name="Seconds">QuestLevelRuntime.getDelay</param>
                                 </action>
                                 <action id="0" name="Call function" sid="5068168314085308" type="Function">
                                     <param id="0" name="Name">&quot;ProcAfterUIAction&quot;</param>
@@ -85,7 +85,7 @@
                         <event-block sid="8204323777209088">
                             <conditions>
                                 <condition id="-8" name="Compare two values" sid="8789390419850014" type="System">
-                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                     <param id="1" name="Comparison">1</param>
                                     <param id="2" name="Second value">&quot;DELAY&quot;</param>
                                 </condition>
@@ -95,7 +95,7 @@
                                 <event-block sid="8245572783151269">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="2582641881361668" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;INVALID&quot;</param>
                                         </condition>
@@ -109,7 +109,7 @@
                                 <event-block sid="9108784357802529">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="8730346613646453" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;NONE&quot;</param>
                                         </condition>
@@ -119,7 +119,7 @@
                                 <event-block sid="6858911041294413">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="6319882980845294" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;STAGE_CLEAR&quot;</param>
                                         </condition>
@@ -127,21 +127,21 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="5521386832770464" type="Function">
                                             <param id="0" name="Name">&quot;HideStageUI&quot;</param>
-                                            <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
+                                            <param id="1" name="Parameter {n}">QuestLevelRuntime.getCurrentStage</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="8053717838498043">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="469706981218546" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;FUNC_CALL&quot;</param>
                                         </condition>
                                     </conditions>
                                     <actions>
                                         <action id="0" name="Call function" sid="108391144848168" type="Function">
-                                            <param id="0" name="Name">QuestRuntimeInterface.getFuncName</param>
+                                            <param id="0" name="Name">QuestLevelRuntime.getFuncName</param>
                                             <param id="1" name="Parameter {n}"></param>
                                         </action>
                                     </actions>
@@ -149,7 +149,7 @@
                                 <event-block sid="841931108511659">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="17009337350033" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;NOTIFICATION&quot;</param>
                                         </condition>
@@ -157,14 +157,14 @@
                                     <actions>
                                         <action id="0" name="Call function" sid="1356114499208037" type="Function">
                                             <param id="0" name="Name">&quot;ShowNotification&quot;</param>
-                                            <param id="1" name="Parameter {n}">QuestRuntimeInterface.getText</param>
+                                            <param id="1" name="Parameter {n}">QuestLevelRuntime.getText</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="5649586967820558">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="1707103556340165" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;PLAYER_MOVEMENT&quot;</param>
                                         </condition>
@@ -174,7 +174,7 @@
                                         <event-block sid="7161771389107907">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="5297614932548567" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getEnabled</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getEnabled</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">0</param>
                                                 </condition>
@@ -189,7 +189,7 @@
                                         <event-block sid="7232433265394187">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="8124940118599622" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getEnabled</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getEnabled</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">1</param>
                                                 </condition>
@@ -206,7 +206,7 @@
                                 <event-block sid="6632858068048924">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="3014435150508187" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getActor</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getActor</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;PLAYER&quot;</param>
                                         </condition>
@@ -216,7 +216,7 @@
                                         <event-block sid="1837352538416998">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="1908943381194726" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;PHRASE&quot;</param>
                                                 </condition>
@@ -231,7 +231,7 @@
                                         <event-block sid="3164195920836245">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="779837667586652" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;QUIZ&quot;</param>
                                                 </condition>
@@ -246,7 +246,7 @@
                                         <event-block sid="9814225352267794">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="3673241764914448" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;ANIMATION&quot;</param>
                                                 </condition>
@@ -254,7 +254,7 @@
                                             <actions>
                                                 <action id="0" name="Call function" sid="8467783007589936" type="Function">
                                                     <param id="0" name="Name">&quot;AnimPlayerRun&quot;</param>
-                                                    <param id="1" name="Parameter {n}">Player.UID{###}QuestRuntimeInterface.getAnimationName</param>
+                                                    <param id="1" name="Parameter {n}">Player.UID{###}QuestLevelRuntime.getAnimationName</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -263,12 +263,12 @@
                                 <event-block sid="5664582232474535">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="6477690124574981" type="System">
-                                            <param id="0" name="First value">QuestRuntimeInterface.getActor</param>
+                                            <param id="0" name="First value">QuestLevelRuntime.getActor</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">&quot;NPC&quot;</param>
                                         </condition>
                                         <condition id="-14" name="Pick by unique ID" sid="4735583275425031" type="NPC">
-                                            <param id="0" name="Unique ID">QuestRuntimeInterface.getNPCActorUID</param>
+                                            <param id="0" name="Unique ID">QuestLevelRuntime.getNPCActorUID</param>
                                         </condition>
                                     </conditions>
                                     <actions />
@@ -276,7 +276,7 @@
                                         <event-block sid="8228858732459555">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="7026073483296947" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;PHRASE&quot;</param>
                                                 </condition>
@@ -291,7 +291,7 @@
                                         <event-block sid="1983275503744164">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="683375988112708" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;QUIZ&quot;</param>
                                                 </condition>
@@ -306,14 +306,14 @@
                                         <event-block sid="7745052759975096">
                                             <conditions>
                                                 <condition id="-8" name="Compare two values" sid="1883138211580572" type="System">
-                                                    <param id="0" name="First value">QuestRuntimeInterface.getAction</param>
+                                                    <param id="0" name="First value">QuestLevelRuntime.getAction</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Second value">&quot;ANIMATION&quot;</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
                                                 <action id="4" name="Set animation" sid="8009508265179566" type="NPC">
-                                                    <param id="0" name="Animation">QuestRuntimeInterface.getAnimationName</param>
+                                                    <param id="0" name="Animation">QuestLevelRuntime.getAnimationName</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
                                                 <action id="3" name="Start" sid="8387636846240776" type="NPC">
@@ -355,7 +355,7 @@
                         </action>
                         <action id="0" name="Call function" sid="7766630465012576" type="Function">
                             <param id="0" name="Name">&quot;HideStageUI&quot;</param>
-                            <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
+                            <param id="1" name="Parameter {n}">QuestLevelRuntime.getCurrentStage</param>
                         </action>
                         <action id="0" name="Call function" sid="4631591131679396" type="Function">
                             <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
@@ -382,7 +382,7 @@
                         </action>
                         <action id="0" name="Call function" sid="3743524068143124" type="Function">
                             <param id="0" name="Name">&quot;HideStageUI&quot;</param>
-                            <param id="1" name="Parameter {n}">QuestRuntimeInterface.getCurrentStage</param>
+                            <param id="1" name="Parameter {n}">QuestLevelRuntime.getCurrentStage</param>
                         </action>
                         <action id="0" name="Call function" sid="7233653807269136" type="Function">
                             <param id="0" name="Name">&quot;ProcGameAction&quot;</param>
@@ -398,17 +398,17 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="1" name="Set last player action" sid="5097253692288162" type="QuestRuntimeInterface">
+                        <action id="5" name="Set last player action" sid="5097253692288162" type="QuestLevelRuntime">
                             <param id="0" name="Last action">Function.Param(0)</param>
                         </action>
-                        <action id="2" name="Set last action target id" sid="3582665451453215" type="QuestRuntimeInterface">
+                        <action id="6" name="Set last action target id" sid="3582665451453215" type="QuestLevelRuntime">
                             <param id="0" name="Value">Function.Param(1)</param>
                         </action>
-                        <action id="3" name="Set last last action &apos;name&apos; value" sid="4107819312138807" type="QuestRuntimeInterface">
+                        <action id="7" name="Set last action &apos;name&apos; value" sid="4107819312138807" type="QuestLevelRuntime">
                             <param id="0" name="Value">Function.Param(2)</param>
                         </action>
-                        <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestEngine">
-                            <param id="0" name="Action">QuestRuntimeInterface</param>
+                        <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestLevelRuntime">
+                            <param id="0" name="Action">QuestLevelRuntime</param>
                         </action>
                         <action id="0" name="Call function" sid="8283331344010882" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
