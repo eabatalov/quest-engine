@@ -44,10 +44,7 @@ QuestLevelRuntime.prototype.setupScript = function(scriptURL) {
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
  * Works accorind to current stage quest script
  */
-QuestLevelRuntime.prototype.playerActionExec = function(uiActionManager) {
-
-    var inAction = uiActionManager.getCurrentStageUIActionIN();
-    var outAction = uiActionManager.getCurrentStageUIActionOUT();
+QuestLevelRuntime.prototype.playerActionExec = function(inAction, outAction) {
     outAction.clearFields();
 
     if (!this.scriptInterp) {
