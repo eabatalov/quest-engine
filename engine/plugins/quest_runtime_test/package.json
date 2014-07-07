@@ -1,0 +1,41 @@
+{
+    "name" : "learzing-c2-quest-engine-demo-game",
+    "version" : "0.1.0",
+    "description" : "Learzing Construct 2 quest engine demo game",
+    "keywords" : ["learzing", "quest", "script", "runtime", "Construct 2", "plugin"],
+    "homepage" : "http://learzing.com/quest_engine",
+    "bugs" : "eugene@learzing.com",
+    "author" : {
+        "name" : "Eugene Batalov",
+        "email" : "eugene@learzing.com"
+    },
+
+    "main": "bin/test.dev.js",
+
+    "dependencies" : {
+    },
+
+    "devDependencies": {
+        "grunt" : "~0.4.1",
+        "grunt-contrib-concat" : "~0.3",
+        "grunt-contrib-uglify" : "~0.4.0",
+        "execSync" : "~1.0"
+    },
+
+    "gruntDependencies" : [
+        {
+            "path" : "lib/persistent_storage",
+            "args" : "--web"
+        },
+        {
+            "path" : "lib/quest_level",
+            "args" : "--web"
+        },
+        {
+            "path" : "lib/quest_game",
+            "args" : ""
+        }
+    ],
+
+    "private" : true
+}

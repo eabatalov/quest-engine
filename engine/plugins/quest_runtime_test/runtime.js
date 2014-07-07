@@ -118,7 +118,11 @@ cr.plugins_.QuestRuntimeTestPlugin = function(runtime)
 	function Acts() {};
 
 	pluginProto.acts = new Acts();
-	
+
+	Acts.prototype.startLevel = function(levelName) {
+        QuestGame.instance.setCurrentLevelByName(levelName);
+    };
+
 	//////////////////////////////////////
 	// Expressions
 	function Exps() {};

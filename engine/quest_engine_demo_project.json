@@ -1,7 +1,7 @@
 {
 	"script": {
 		"ver": 1,
-		"name": "story",
+		"name": "demo",
 		"stages": [
 			{
 				"ver": 1,
@@ -887,7 +887,7 @@
 	},
 	"scriptEditor": {
 		"ver": 1,
-		"currentStageId": 113,
+		"currentStageId": 8,
 		"stageEditors": [
 			{
 				"ver": 1,

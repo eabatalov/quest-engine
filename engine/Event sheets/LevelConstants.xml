@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<c2eventsheet>
-    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>LevelConstants</name>
-    <events>
-        <variable constant="1" name="LEVEL_SCRIPT_FILE" sid="6319210227369692" static="0" type="text">story_script.js</variable>
-    </events>
-</c2eventsheet>

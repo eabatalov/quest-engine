@@ -56,7 +56,7 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="1">
+    <object-folder expanded="0">
         <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-folder expanded="0" name="Speech">
@@ -3371,7 +3371,7 @@
         </layout-folder>
     </layout-folder>
     <event-folder expanded="1">
-        <event-folder expanded="0" name="Quest">
+        <event-folder expanded="1" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -3388,7 +3388,6 @@
         <event-sheet>Main.xml</event-sheet>
         <event-sheet>NPCAnimation.xml</event-sheet>
         <event-sheet>Stages.xml</event-sheet>
-        <event-sheet>LevelConstants.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="10" />
@@ -3405,7 +3404,7 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="0">
+    <files-folder expanded="1">
         <file-folder expanded="0" name="Icons">
             <file name="icon-16.png" />
             <file name="icon-32.png" />
@@ -3418,6 +3417,6 @@
             <file name="player.scml" />
             <file name="player.scon" />
         </file-folder>
-        <file name="story_script.js" />
+        <file name="demo_script.js" />
     </files-folder>
 </c2project>

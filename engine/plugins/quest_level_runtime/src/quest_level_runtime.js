@@ -1,10 +1,7 @@
-function QuestLevelRuntime() {
+function QuestLevelRuntime(questLevel) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
-	this.scriptInterp = null;
+    this.scriptInterp = new ScriptInterpretator(questLevel.getScript());
     this.nextCondSearch = new NextCondSearch();
-    this.events = {
-        scriptLoaded : null
-    };
 }
 
 QuestLevelRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
@@ -23,21 +20,6 @@ QuestLevelRuntime.prototype.setupObjects = function(NPCType) {
 		}
 		quest.stageNPCs[stageName][npc.instance_vars[_NPC_INST_PROP_NPC_ID_ON_STAGE_IX]] = npc.uid;
 	});
-};
-
-//TODO make it 'setLevel(level)'
-QuestLevelRuntime.prototype.setupScript = function(scriptURL) {
-	jQuery.getScript(scriptURL, function( data, textStatus, jqxhr ) {
-		console.log("Quest script load was performed");
-		console.log("Script URL: " + scriptURL);
-		//console.log(data); // Data returned
-		console.log(textStatus); // Success
-		console.log(jqxhr.status); // 200
-        console.log("Starting up script interpretator");
-        this.scriptInterp = new ScriptInterpretator(getQuestScript());
-        if (this.events.scriptLoaded)
-            this.events.scriptLoaded();
-	}.bind(this));
 };
 
 /* 

@@ -51,7 +51,7 @@ function SEScriptCompiler(seService, seEventRouter) {
 }
 
 SEScriptCompiler.prototype.run = function() {
-    saveScript(this.seService.script);
+    saveQuestScript(this.seService.script);
 };
 
 //Temporal save/load testing method. Used until we have our unit tests.

@@ -6,7 +6,6 @@
         <include>SCMLSpriteBindings</include>
         <include>Quest</include>
         <include>Stages</include>
-        <include>LevelConstants</include>
         <event-block sid="6267414245119264">
             <conditions>
                 <condition id="0" name="On function" sid="2143593114485784" type="Function">
@@ -16,7 +15,7 @@
             <actions>
                 <action id="0" name="Call function" sid="7517296882430685" type="Function">
                     <param id="0" name="Name">&quot;StartGame&quot;</param>
-                    <param id="1" name="Parameter {n}">LEVEL_SCRIPT_FILE</param>
+                    <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
         </event-block>

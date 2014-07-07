@@ -407,8 +407,7 @@
                         <action id="7" name="Set last action &apos;name&apos; value" sid="4107819312138807" type="QuestLevelRuntime">
                             <param id="0" name="Value">Function.Param(2)</param>
                         </action>
-                        <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestLevelRuntime">
-                        </action>
+                        <action id="1" name="Execute last player action on current stage" sid="8413799453876062" type="QuestLevelRuntime" />
                         <action id="0" name="Call function" sid="8283331344010882" type="Function">
                             <param id="0" name="Name">&quot;ProcUIAction&quot;</param>
                             <param id="1" name="Parameter {n}"></param>

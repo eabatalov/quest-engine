@@ -42,16 +42,10 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	instanceProto.onCreate = function()
 	{
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
-		// e.g...
-		// this.myValue = 0;
-        var thiz = this;
-		this.levelRuntime = new QuestLevelRuntime();
-        this.levelRuntime.events.scriptLoaded = function() {
-            thiz.runtime.trigger(
-                cr.plugins_.QuestLevelRuntimePlugin.prototype.cnds.QuestScriptLoaded, thiz);
-        };
-		this.uiActionManager = new UIStageActionManager();
-	};
+        this.levelRuntime = null;
+        this.uiActionManager = null;
+        QuestGame.events.levelChanged.subscribe(this, this.onLevelChanged);
+   	};
 	
 	// called whenever an instance is destroyed
 	// note the runtime may keep the object after this call for recycling; be sure
@@ -116,6 +110,11 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 			this.myProperty = value;
 	};
 	/**END-PREVIEWONLY**/
+
+    instanceProto.onLevelChanged = function(questLevel) {
+		this.levelRuntime = new QuestLevelRuntime(questLevel);
+		this.uiActionManager = new UIStageActionManager();
+    };
 
 	//////////////////////////////////////
 	// Conditions

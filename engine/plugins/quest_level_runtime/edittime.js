@@ -60,6 +60,7 @@
 // example				
 /*AddNumberParam("Number", "Enter a number to test if positive.");
 AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive", "Description for my condition!", "MyCondition");*/
+//TODO remove
 AddCondition(0, cf_trigger, "Quest script loaded", "General",
     "Quest script loaded", "Quest script loaded", "QuestScriptLoaded");
 
@@ -82,7 +83,7 @@ AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my a
 AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
 AddAction(2, af_none, "Setup quest objects.", "General",
 	"Setup quest objects.", "Setup quest objects.", "setupQuestObjects");
-
+//TODO remove
 AddStringParam("Quest script file URL", "Quest script file URL", "story.js");
 AddAction(3, af_none, "Setup quest script URL.", "General",
 	"Setup quest script URL to {0}.", "Setup quest script URL.", "setupQuestScript");

@@ -1,14 +1,12 @@
 module.exports = function(grunt) {
+
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    var srcFilesBasic = [
-        '<%= dirs.src %>QuestGame.js',
-        '<%= dirs.src %>bootstrap.js'
+    var srcFiles = [
+        '<%= dirs.src %>game.js',
+        '<%= dirs.src %>test.js'
     ];
-
-    var srcFiles = [];
-    srcFiles = srcFiles.concat(srcFiles, srcFilesBasic);
 
     banner = [
         '/**',
@@ -25,14 +23,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         dirs: {
-            bin: 'bin/',
+            bin: '',
             src: 'src/',
         },
 
         files : {
             bin : {
-                debug : 'quest_script.dev.js',
-                release : 'quest_script.js'
+                debug : 'test.dev.js',
+                release : 'test.min.js'
             }
         },
 
@@ -77,7 +75,48 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['build-debug', 'build-release']);
+    grunt.registerTask('build', ['build-deps', 'build-debug', 'build-release']);
     grunt.registerTask('build-debug', ['concat:debug', 'uglify:debug']);
     grunt.registerTask('build-release', ['concat:release', 'uglify:release']);
+
+    grunt.registerTask('build-deps', buildDependencies.bind(null, grunt, 0, {}, srcFiles));
 };
+
+/*
+ * Our custom bicycle to build all dependencies recursively
+ */
+function buildDependencies(grunt, recursiveLevel, allDepSet, srcFiles) {
+    var sh = require('execSync');
+    var REPO_PATH = "../../../";
+    var gruntDependencies =
+        grunt.file.readJSON('package.json').gruntDependencies;
+
+    if (!gruntDependencies)
+        return;
+
+    var baseWD = process.cwd();
+    grunt.log.ok(recursiveLevel, "Found dependencies in ", baseWD.toString());
+
+    for (var i = 0; i < gruntDependencies.length; ++i) {
+        var dep = gruntDependencies[i];
+        if (allDepSet[dep.path])
+            continue;
+
+        allDepSet[dep.path] = dep;
+        process.chdir(baseWD);
+        var depPath = REPO_PATH + dep.path + "/";
+        var depPackage = grunt.file.readJSON(depPath + "package.json");
+        var depBinOutPath = depPath + depPackage.main;
+        srcFiles.unshift(depBinOutPath);
+        grunt.log.ok(recursiveLevel, "Added ", depBinOutPath, " as js dependency file for processing");
+        var depBuildCmd = 'grunt ' + dep.args;
+
+        grunt.log.ok(recursiveLevel, "Building dependency ", depPackage.name, " exec: ", depBuildCmd);
+        process.chdir(depPath);
+        var gruntResult = sh.exec(depBuildCmd);
+        grunt.log.writeln(gruntResult.toString());
+
+        buildDependencies(grunt, recursiveLevel + 1, allDepSet, srcFiles);  
+    }
+    process.chdir(baseWD);
+}

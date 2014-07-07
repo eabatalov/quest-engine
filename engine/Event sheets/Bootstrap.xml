@@ -25,15 +25,11 @@
                 <action id="2" name="Setup quest objects." sid="7533819724177504" type="QuestLevelRuntime">
                     <param id="0" name="NPC object type">NPC</param>
                 </action>
-                <action id="3" name="Setup quest script URL." sid="3974431105479061" type="QuestLevelRuntime">
-                    <param id="0" name="Quest script file URL">Function.Param(0)</param>
-                </action>
             </actions>
         </event-block>
+        <comment>Quest script loaded was here</comment>
         <event-block sid="3608536962210634">
-            <conditions>
-                <condition id="0" name="Quest script loaded" sid="9984593045440814" type="QuestLevelRuntime" />
-            </conditions>
+            <conditions />
             <actions>
                 <action id="0" name="Call function" sid="2717024278170931" type="Function">
                     <param id="0" name="Name">&quot;EnableInputAfterGameInited&quot;</param>

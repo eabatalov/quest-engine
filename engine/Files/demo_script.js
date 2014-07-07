@@ -1,0 +1,886 @@
+{
+	"ver": 1,
+	"name": "demo",
+	"stages": [
+		{
+			"ver": 1,
+			"stageNodeId": 8,
+			"nodes": [
+				{
+					"ver": 1,
+					"id": 8,
+					"type": 9,
+					"label": "Stage1",
+					"continue": false,
+					"inCondIds": [],
+					"outCondIds": [
+						0
+					],
+					"props": {
+						"name": "Stage1",
+						"objs": [
+							"Player",
+							"Older"
+						],
+						"objPool": []
+					}
+				},
+				{
+					"ver": 1,
+					"id": 9,
+					"type": 8,
+					"label": "",
+					"continue": false,
+					"inCondIds": [
+						0,
+						6,
+						29,
+						45,
+						79,
+						99,
+						120
+					],
+					"outCondIds": [
+						2,
+						44,
+						61,
+						97,
+						117
+					],
+					"props": {
+						"objs": [
+							"Player",
+							"Older"
+						]
+					}
+				},
+				{
+					"ver": 1,
+					"id": 12,
+					"type": 3,
+					"label": "Older: Hello!",
+					"continue": false,
+					"inCondIds": [
+						2
+					],
+					"outCondIds": [
+						4,
+						5
+					],
+					"props": {
+						"id": "Older",
+						"text": "Hello, dude!\nHow are you?",
+						"phraseType": "SPEAK",
+						"ans1": "Baaaad :(",
+						"ans2": "Not bad, thanks",
+						"ans3": "Gooooood",
+						"ans4": "Hoooooray"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 13,
+					"type": 1,
+					"label": "bad",
+					"continue": false,
+					"inCondIds": [
+						4
+					],
+					"outCondIds": [
+						6
+					],
+					"props": {
+						"id": "Older",
+						"text": "I think you need to take a rest from work.",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 14,
+					"type": 1,
+					"label": "ok",
+					"continue": true,
+					"inCondIds": [
+						5
+					],
+					"outCondIds": [
+						28
+					],
+					"props": {
+						"id": "Older",
+						"text": "That's very good dude! (:3",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 28,
+					"type": 10,
+					"label": "Call foo",
+					"continue": false,
+					"inCondIds": [
+						28
+					],
+					"outCondIds": [
+						29
+					],
+					"props": {
+						"name": "foo"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 41,
+					"type": 1,
+					"label": "custom_event_check",
+					"continue": false,
+					"inCondIds": [
+						44
+					],
+					"outCondIds": [
+						46
+					],
+					"props": {
+						"id": "Player",
+						"text": "custom_event_check!",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 42,
+					"type": -1,
+					"label": "",
+					"continue": false,
+					"inCondIds": [
+						46
+					],
+					"outCondIds": [
+						45
+					],
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 55,
+					"type": 1,
+					"label": "Next 1",
+					"continue": false,
+					"inCondIds": [
+						61
+					],
+					"outCondIds": [
+						76
+					],
+					"props": {
+						"id": "Player",
+						"text": "Next 1: phrase",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 68,
+					"type": 3,
+					"label": "Next 2",
+					"continue": false,
+					"inCondIds": [
+						76
+					],
+					"outCondIds": [
+						80
+					],
+					"props": {
+						"id": "Player",
+						"text": "Next 2 : quizz",
+						"phraseType": "SPEAK",
+						"ans1": "1",
+						"ans2": "2",
+						"ans3": "3",
+						"ans4": "4"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 70,
+					"type": 1,
+					"label": "Success!",
+					"continue": false,
+					"inCondIds": [
+						80
+					],
+					"outCondIds": [
+						79
+					],
+					"props": {
+						"id": "Player",
+						"text": "Next test: success!",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 83,
+					"type": 11,
+					"label": "Notification",
+					"continue": false,
+					"inCondIds": [
+						97
+					],
+					"outCondIds": [
+						98
+					],
+					"props": {
+						"text": "You see a notification. Click it to hide it."
+					}
+				},
+				{
+					"ver": 1,
+					"id": 84,
+					"type": -1,
+					"label": "Connection",
+					"continue": false,
+					"inCondIds": [
+						98
+					],
+					"outCondIds": [
+						99
+					],
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 97,
+					"type": 1,
+					"label": "Maybe ask",
+					"continue": false,
+					"inCondIds": [
+						118
+					],
+					"outCondIds": [
+						114
+					],
+					"props": {
+						"id": "Older",
+						"text": "Maybe ask this guy about his mood?",
+						"phraseType": "THINK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 98,
+					"type": 1,
+					"label": "Not on my own",
+					"continue": false,
+					"inCondIds": [
+						114
+					],
+					"outCondIds": [
+						119
+					],
+					"props": {
+						"id": "Older",
+						"text": "Not on my own I think.",
+						"phraseType": "THINK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 99,
+					"type": 12,
+					"label": "Move disable",
+					"continue": true,
+					"inCondIds": [
+						117
+					],
+					"outCondIds": [
+						118
+					],
+					"props": {
+						"enabled": false
+					}
+				},
+				{
+					"ver": 1,
+					"id": 100,
+					"type": 12,
+					"label": "Move enable",
+					"continue": true,
+					"inCondIds": [
+						119
+					],
+					"outCondIds": [
+						120
+					],
+					"props": {
+						"enabled": true
+					}
+				}
+			],
+			"conds": [
+				{
+					"ver": 1,
+					"id": 0,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 2,
+					"type": 2,
+					"props": {
+						"id": "Older"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 4,
+					"type": 3,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 5,
+					"type": 7,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 6,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 28,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 29,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 44,
+					"type": 10,
+					"props": {
+						"name": "custom_event_check"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 45,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 46,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 61,
+					"type": 10,
+					"props": {
+						"name": "check_next"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 76,
+					"type": 11,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 79,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 80,
+					"type": 11,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 97,
+					"type": 10,
+					"props": {
+						"name": "check_notification"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 98,
+					"type": 11,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 99,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 114,
+					"type": 11,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 117,
+					"type": 10,
+					"props": {
+						"name": "auto_talk_start_Older"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 118,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 119,
+					"type": 11,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 120,
+					"type": 8,
+					"props": {}
+				}
+			]
+		},
+		{
+			"ver": 1,
+			"stageNodeId": 10,
+			"nodes": [
+				{
+					"ver": 1,
+					"id": 10,
+					"type": 9,
+					"label": "Stage2",
+					"continue": false,
+					"inCondIds": [],
+					"outCondIds": [
+						1
+					],
+					"props": {
+						"name": "Stage2",
+						"objs": [
+							"Player",
+							"FatNerd"
+						],
+						"objPool": []
+					}
+				},
+				{
+					"ver": 1,
+					"id": 11,
+					"type": 8,
+					"label": "",
+					"continue": false,
+					"inCondIds": [
+						1,
+						16
+					],
+					"outCondIds": [
+						9
+					],
+					"props": {
+						"objs": [
+							"Player",
+							"FatNerd"
+						]
+					}
+				},
+				{
+					"ver": 1,
+					"id": 16,
+					"type": 3,
+					"label": "Wanna play?",
+					"continue": false,
+					"inCondIds": [
+						9
+					],
+					"outCondIds": [
+						10,
+						11,
+						12
+					],
+					"props": {
+						"id": "FatNerd",
+						"text": "Hello, man. Wanna play World of Tanks?",
+						"phraseType": "SPEAK",
+						"ans1": "Yes",
+						"ans2": "No",
+						"ans3": "Fucking Nerds...",
+						"ans4": ""
+					}
+				},
+				{
+					"ver": 1,
+					"id": 17,
+					"type": 1,
+					"label": "Yes",
+					"continue": true,
+					"inCondIds": [
+						10
+					],
+					"outCondIds": [
+						20
+					],
+					"props": {
+						"id": "Player",
+						"text": "Yes!",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 18,
+					"type": 1,
+					"label": "No",
+					"continue": false,
+					"inCondIds": [
+						11
+					],
+					"outCondIds": [
+						26
+					],
+					"props": {
+						"id": "Player",
+						"text": "No, thanks.",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 19,
+					"type": 1,
+					"label": "Fuckn nerds",
+					"continue": true,
+					"inCondIds": [
+						12
+					],
+					"outCondIds": [
+						14
+					],
+					"props": {
+						"id": "Player",
+						"text": "Fucking nerds! I've got tired of you!!!",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 21,
+					"type": 1,
+					"label": "Crying",
+					"continue": false,
+					"inCondIds": [
+						15
+					],
+					"outCondIds": [
+						17
+					],
+					"props": {
+						"id": "FatNerd",
+						"text": "Crying",
+						"phraseType": "THINK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 22,
+					"type": 6,
+					"label": "3 sec",
+					"continue": true,
+					"inCondIds": [
+						14
+					],
+					"outCondIds": [
+						15
+					],
+					"props": {
+						"secs": 2
+					}
+				},
+				{
+					"ver": 1,
+					"id": 23,
+					"type": -1,
+					"label": "Connection node",
+					"continue": false,
+					"inCondIds": [
+						17,
+						19,
+						26
+					],
+					"outCondIds": [
+						16
+					],
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 24,
+					"type": 1,
+					"label": "Let's play!",
+					"continue": false,
+					"inCondIds": [
+						21
+					],
+					"outCondIds": [
+						19
+					],
+					"props": {
+						"id": "FatNerd",
+						"text": "Cool! Let's play!",
+						"phraseType": "SPEAK"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 25,
+					"type": 6,
+					"label": "3 sec",
+					"continue": true,
+					"inCondIds": [
+						20
+					],
+					"outCondIds": [
+						21
+					],
+					"props": {
+						"secs": 3
+					}
+				}
+			],
+			"conds": [
+				{
+					"ver": 1,
+					"id": 1,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 9,
+					"type": 2,
+					"props": {
+						"id": "FatNerd"
+					}
+				},
+				{
+					"ver": 1,
+					"id": 10,
+					"type": 3,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 11,
+					"type": 4,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 12,
+					"type": 5,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 14,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 15,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 16,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 17,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 19,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 20,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 21,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 26,
+					"type": 1,
+					"props": {}
+				}
+			]
+		},
+		{
+			"ver": 1,
+			"stageNodeId": 113,
+			"nodes": [
+				{
+					"ver": 1,
+					"id": 113,
+					"type": 9,
+					"label": "init",
+					"continue": false,
+					"inCondIds": [],
+					"outCondIds": [
+						135
+					],
+					"props": {
+						"name": "init",
+						"objs": [
+							"Player"
+						],
+						"objPool": []
+					}
+				},
+				{
+					"ver": 1,
+					"id": 114,
+					"type": 8,
+					"label": "",
+					"continue": true,
+					"inCondIds": [
+						135
+					],
+					"outCondIds": [
+						136
+					],
+					"props": {
+						"objs": [
+							"Player"
+						]
+					}
+				},
+				{
+					"ver": 1,
+					"id": 115,
+					"type": 10,
+					"label": "Say init test",
+					"continue": true,
+					"inCondIds": [
+						136
+					],
+					"outCondIds": [
+						137
+					],
+					"props": {
+						"name": "QEShowDialog",
+						"source": "js",
+						"params": [
+							{
+								"type": "str",
+								"name": "message",
+								"value": "Initialization test",
+								"$$hashKey": "01E"
+							}
+						]
+					}
+				},
+				{
+					"ver": 1,
+					"id": 116,
+					"type": 10,
+					"label": "Say js func test",
+					"continue": true,
+					"inCondIds": [
+						137
+					],
+					"outCondIds": [
+						138
+					],
+					"props": {
+						"name": "QEShowDialog",
+						"source": "js",
+						"params": [
+							{
+								"type": "str",
+								"name": "message",
+								"value": "JS functions test",
+								"$$hashKey": "01H"
+							}
+						]
+					}
+				},
+				{
+					"ver": 1,
+					"id": 117,
+					"type": -1,
+					"label": "End",
+					"continue": false,
+					"inCondIds": [
+						138
+					],
+					"outCondIds": [],
+					"props": {}
+				}
+			],
+			"conds": [
+				{
+					"ver": 1,
+					"id": 135,
+					"type": 1,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 136,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 137,
+					"type": 8,
+					"props": {}
+				},
+				{
+					"ver": 1,
+					"id": 138,
+					"type": 8,
+					"props": {}
+				}
+			]
+		}
+	]
+}

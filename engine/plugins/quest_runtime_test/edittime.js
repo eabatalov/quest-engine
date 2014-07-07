@@ -25,9 +25,16 @@
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
         , "dependency":
-            "test.js;"
+            "test.dev.js;"
 	};
 };
+
+
+AddStringParam("Level name", "Level name", "");
+AddAction(0, af_none, "Start level", "Start level",
+	"Start level {0}",
+	"Start level",
+	"startLevel");
 
 ACESDone();
 
