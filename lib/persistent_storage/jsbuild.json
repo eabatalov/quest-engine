@@ -1,0 +1,19 @@
+{
+    module {
+        name : 'lib-persistent-storage',
+        description : '',
+        dependencies : {
+            'lib-util' : []
+        }
+    },
+    src : {
+        base : [
+            'src/IPersistentStorage.js'
+        ],
+        optional : {
+            'web' : [
+                'src/HTML5PersistentStorage.js' 
+            ]
+        }
+    }
+}

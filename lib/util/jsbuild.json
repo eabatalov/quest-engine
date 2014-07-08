@@ -1,0 +1,15 @@
+{
+    'module' : {
+        'name' : 'lib-util',
+        'description' : '',
+        'dependencies' : {}
+    },
+    'src' : {
+        'base' : [
+            'src/misc.js',
+            'src/event.js',
+            'src/object_map.js'
+        ]
+    }
+}
+
