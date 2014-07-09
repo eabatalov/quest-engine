@@ -1,17 +1,17 @@
 {
-    module : {
-        name : 'c2-plugin-quest-engine-test',
-        description : '',
-        dependencies : {
-            'lib-persistent-storage' : [],
-            'lib-quest_level' : [],
-            'lib-quest-game' : []
+    "module" : {
+        "name" : "c2-plugin-quest-engine-test",
+        "description" : "",
+        "dependencies" : {
+            "lib-persistent-storage" : [],
+            "lib-quest_level" : [],
+            "lib-quest-game" : []
+        },
+        "src" : {
+            "base" : [
+                "src/game.js",
+                "src/test.js"
+            ]
         }
-    },
-    src : {
-        base : [
-            'src/game.js',
-            'src/test.js'
-        ]
     }
 }

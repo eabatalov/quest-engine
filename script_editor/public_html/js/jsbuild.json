@@ -1,0 +1,34 @@
+{
+    "module" : {
+        "name" : "quest-script-editor",
+        "description" : "",
+        "dependencies" : {
+            "lib-util" : [],
+            "lib-quest-script" : ["plugins"]
+        },
+        "src" : {
+            "base" : [
+                "src/se_event_router.js",
+                "src/se_display_object.js",
+                "src/se_node_view.js",
+                "src/se_cond_view.js",
+                "src/se_toolbar.js",
+                "src/se_scene.js",
+                "src/se_scene_size_tweak.js",
+                "src/se_stage_editor.js",
+                "src/se.js",
+                "src/se_mousewheel.js",
+                "src/se_compile_btn.js",
+                "src/se_prop_window.js",
+                "src/se_user_interaction_manager.js",
+                "src/se_stages_panel.js",
+                "src/se_save_load_btn.js",
+                "src/se_script_props.js",
+                "src/se_project.js",
+                "src/se_service.js",
+                "src/se_ng_app.js"
+            ],
+            "optional" : {}
+        }
+    }
+}

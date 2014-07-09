@@ -1,24 +1,24 @@
 {
-    module : {
-        name : 'lib-quest-level',
-        description : '',
-        dependencies : {
+    "module" : {
+        "name" : "lib-quest-level",
+        "description" : "",
+        "dependencies" : {
             "lib-util" : [],
             "lib-quest-script" : []
-        }
-    },
-    src : {
-        base : [
-            'src/QuestLevel.js',
-            'src/IQuestScriptLoader.js',
-            'src/ILevelLoader.js',
-            'src/QuestLevelLoader.js',
-            'src/LevelRepository.js'
-        ],
-        optional : {
-            web : [
-                'src/AjaxQuestScriptLoader.js'
-            ]
+        },
+        "src" : {
+            "base" : [
+                "src/QuestLevel.js",
+                "src/IQuestScriptLoader.js",
+                "src/ILevelLoader.js",
+                "src/QuestLevelLoader.js",
+                "src/LevelRepository.js"
+            ],
+            "optional" : {
+                "web" : [
+                    "src/AjaxQuestScriptLoader.js"
+                ]
+            }
         }
     }
 }

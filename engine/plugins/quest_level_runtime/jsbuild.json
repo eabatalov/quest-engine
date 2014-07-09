@@ -1,23 +1,23 @@
 {
-    module : {
-        name : 'c2-plugin-quest-level-runtime',
-        description : '',
-        dependencies : {
-            'lib-util' : [],
-            'lib-quest-script' : [
-                'interpretator',
-                'plugins'
+    "module" : {
+        "name" : "c2-plugin-quest-level-runtime",
+        "description" : "",
+        "dependencies" : {
+            "lib-util" : [],
+            "lib-quest-script" : [
+                "interpretator",
+                "plugins"
              ]
+        },
+        "src" : {
+            "base" : [
+                "src/quest_level_runtime.js",
+                "src/quest_level_runtime_debug.js",
+                "src/consts.js",
+                "src/ui_stage_action_in.js",
+                "src/ui_stage_action_manager.js",
+                "src/ui_stage_action_out.js"
+            ]
         }
-    },
-    src : {
-        base : [
-            'src/quest_level_runtime.js',
-            'src/quest_level_runtime_debug.js',
-            'src/consts.js',
-            'src/ui_stage_action_in.js',
-            'src/ui_stage_action_manager.js',
-            'src/ui_stage_action_out.js'
-        ]
     }
 }

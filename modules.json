@@ -1,11 +1,11 @@
 {
-    'c2-plugin-quest-level-runtime' : 'engine/plugins/quest_level_runtime/',
-    'c2-plugin-quest-engine-test' : 'engine/plugins/quest_runtime_test/',
-    'quest-script-editor' : 'script_editor/public_html/js/',
-    'tool-script-to-text' : 'tools/script_to_text/',
-    'lib-persistent-storage' : 'lib/persistent_storage',
-    'lib-quest-game' : 'lib/quest_game',
-    'lib-quest-level' : 'lib/quest_level',
-    'lib-quest-script' : 'lib/quest_script',
-    'lib-util' : 'lib/util'
+    "c2-plugin-quest-level-runtime" : "engine/plugins/quest_level_runtime/",
+    "c2-plugin-quest-engine-test" : "engine/plugins/quest_runtime_test/",
+    "quest-script-editor" : "script_editor/public_html/js/",
+    "tool-script-to-text" : "tools/script_to_text/",
+    "lib-persistent-storage" : "lib/persistent_storage",
+    "lib-quest-game" : "lib/quest_game",
+    "lib-quest-level" : "lib/quest_level",
+    "lib-quest-script" : "lib/quest_script",
+    "lib-util" : "lib/util"
 }

@@ -1,37 +1,37 @@
 {
-    module : {
-        name : 'lib-quest-script',
-        description : '',
-        dependencies : {
-            'lib-util' : []
-        }
-    },
-    src : {
-        base : [
-            'src/consts.js',
-            'src/node.js',
-            'src/cond.js',
-            'src/stage.js',
-            'src/script.js',
-            'src/serialization.js'
-        ],
-        optional : {
-            'interpretator' : [
-                'src/interpretator/quest_event.js',
-                'src/interpretator/storyline.js',
-                'src/interpretator/stage.js',
-                'src/interpretator/script.js'
-             ],
-            'plugins' : [
-                'src/plugins/plugins.js',
-                'src/plugins/cond_type_validator.js',
-                'src/plugins/notification_center.js',
-                'src/plugins/quest_objects_manager.js',
-                'src/plugins/stage_search.js',
-                'src/plugins/storyline_search.js',
-                'src/plugins/validation_broker.js',
-                'src/plugins/next_cond_search.js'
-            ]
+    "module" : {
+        "name" : "lib-quest-script",
+        "description" : "",
+        "dependencies" : {
+            "lib-util" : []
+        },
+        "src" : {
+            "base" : [
+                "src/consts.js",
+                "src/node.js",
+                "src/cond.js",
+                "src/stage.js",
+                "src/script.js",
+                "src/serialization.js"
+            ],
+            "optional" : {
+                "interpretator" : [
+                    "src/interpretator/quest_event.js",
+                    "src/interpretator/storyline.js",
+                    "src/interpretator/stage.js",
+                    "src/interpretator/script.js"
+                ],
+                "plugins" : [
+                    "src/plugins/plugins.js",
+                    "src/plugins/cond_type_validator.js",
+                    "src/plugins/notification_center.js",
+                    "src/plugins/quest_objects_manager.js",
+                    "src/plugins/stage_search.js",
+                    "src/plugins/storyline_search.js",
+                    "src/plugins/validation_broker.js",
+                    "src/plugins/next_cond_search.js"
+                ]
+            }
         }
     }
 }

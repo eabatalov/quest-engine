@@ -1,17 +1,17 @@
 {
-    module : {
-        name : 'lib-quest-game',
-        description : '',
-        dependencies : {
+    "module" : {
+        "name" : "lib-quest-game",
+        "description" : "",
+        "dependencies" : {
             "lib-util" : [],
             "lib-persistent-storage" : [],
             "lib-quest-level" : []
+        },
+        "src" : {
+            "base" : [
+                "src/QuestGame.js",
+                "src/bootstrap.js"
+            ]
         }
-    },
-    src : {
-        base : [
-            'src/QuestGame.js',
-            'src/bootstrap.js'
-        ]
     }
 }

@@ -1,14 +1,14 @@
 {
-    module : {
-        name : 'tool-script-to-text',
-        description : '',
-        dependencies : {
-            'lib-quest-script' : []
+    "module" : {
+        "name" : "tool-script-to-text",
+        "description" : "",
+        "dependencies" : {
+            "lib-quest-script" : []
+        },
+        "src" : {
+            "base" : [
+                "src/main.js"
+            ]
         }
-    },
-    src : {
-        base : [
-            'src/main.js'
-        ]
     }
 }
