@@ -3,9 +3,14 @@
         "name" : "lib-quest-game",
         "description" : "",
         "dependencies" : {
-            "lib-util" : [],
-            "lib-persistent-storage" : [],
-            "lib-quest-level" : []
+            "base" : {
+                "lib-util" : [],
+                "lib-persistent-storage" : [],
+                "lib-quest-level" : []
+            },
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
         },
         "src" : {
             "base" : [

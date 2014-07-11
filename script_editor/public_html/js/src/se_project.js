@@ -51,7 +51,13 @@ function SEScriptCompiler(seService, seEventRouter) {
 }
 
 SEScriptCompiler.prototype.run = function() {
-    saveQuestScript(this.seService.script);
+    var script = this.seService.script;
+    var scriptSavedJSON = script.save();
+    var scriptSavedStr = JSON.stringify(scriptSavedJSON, null, '\t');
+    var scriptSavedBlob =
+        new Blob([scriptSavedStr], { type : 'application/javascript' }); 
+    var fileName = questScriptFileName(script.getName());
+    saveAs(scriptSavedBlob, fileName);
 };
 
 //Temporal save/load testing method. Used until we have our unit tests.

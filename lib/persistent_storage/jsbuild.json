@@ -3,17 +3,20 @@
         "name" : "lib-persistent-storage",
         "description" : "",
         "dependencies" : {
-            "lib-util" : []
+            "base" : {
+                "lib-util" : []
+            },
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
         },
         "src" : {
             "base" : [
                 "src/IPersistentStorage.js"
             ],
-            "optional" : {
-                "web" : [
-                    "src/HTML5PersistentStorage.js" 
-                ]
-            }
+            "web" : [
+                "src/HTML5PersistentStorage.js"
+            ]
         }
     }
 }

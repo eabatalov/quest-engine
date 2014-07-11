@@ -3,7 +3,12 @@
         "name" : "lib-quest-script",
         "description" : "",
         "dependencies" : {
-            "lib-util" : []
+            "base" : {
+                "lib-util" : []
+            },
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
         },
         "src" : {
             "base" : [
@@ -14,24 +19,22 @@
                 "src/script.js",
                 "src/serialization.js"
             ],
-            "optional" : {
-                "interpretator" : [
-                    "src/interpretator/quest_event.js",
-                    "src/interpretator/storyline.js",
-                    "src/interpretator/stage.js",
-                    "src/interpretator/script.js"
-                ],
-                "plugins" : [
-                    "src/plugins/plugins.js",
-                    "src/plugins/cond_type_validator.js",
-                    "src/plugins/notification_center.js",
-                    "src/plugins/quest_objects_manager.js",
-                    "src/plugins/stage_search.js",
-                    "src/plugins/storyline_search.js",
-                    "src/plugins/validation_broker.js",
-                    "src/plugins/next_cond_search.js"
-                ]
-            }
+            "interpretator" : [
+                "src/interpretator/quest_event.js",
+                "src/interpretator/storyline.js",
+                "src/interpretator/stage.js",
+                "src/interpretator/script.js"
+            ],
+            "plugins" : [
+                "src/plugins/plugins.js",
+                "src/plugins/cond_type_validator.js",
+                "src/plugins/notification_center.js",
+                "src/plugins/quest_objects_manager.js",
+                "src/plugins/stage_search.js",
+                "src/plugins/storyline_search.js",
+                "src/plugins/validation_broker.js",
+                "src/plugins/next_cond_search.js"
+            ]
         }
     }
 }

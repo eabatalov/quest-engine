@@ -177,8 +177,8 @@ function scriptDump(script) {
     console.log("Processing file '" + scriptFilePath + "'");
 
     var scriptFileContents = fs.readFileSync(scriptFilePath, { encoding : 'utf8' });
-    eval(scriptFileContents);
-    var script = getQuestScript();
+    var scriptSaved = JSON.parse(scriptFileContents);
+    var script = loadQuestScript(scriptSaved);
     if (!script) {
         console.error("Couldn't load quest script from file " + scriptFilePath);
         console.log("Script file contents: ");

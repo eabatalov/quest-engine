@@ -2,10 +2,13 @@
     "module" : {
         "name" : "c2-plugin-quest-engine-test",
         "description" : "",
+        "outDir" : ".",
         "dependencies" : {
-            "lib-persistent-storage" : [],
-            "lib-quest_level" : [],
-            "lib-quest-game" : []
+            "base" : {
+                "lib-persistent-storage" : [],
+                "lib-quest-level" : [],
+                "lib-quest-game" : []
+             }
         },
         "src" : {
             "base" : [

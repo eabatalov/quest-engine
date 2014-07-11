@@ -2,12 +2,15 @@
     "module" : {
         "name" : "c2-plugin-quest-level-runtime",
         "description" : "",
+        "outDir" : ".",
         "dependencies" : {
-            "lib-util" : [],
-            "lib-quest-script" : [
-                "interpretator",
-                "plugins"
-             ]
+            "base" : {
+                "lib-util" : [],
+                "lib-quest-script" : [
+                    "interpretator",
+                    "plugins"
+                 ]
+            }
         },
         "src" : {
             "base" : [

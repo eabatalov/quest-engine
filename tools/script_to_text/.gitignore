@@ -1,4 +1,5 @@
 bin
 node_modules
-Gruntfile
+Gruntfile.js
 package.json
+buildme

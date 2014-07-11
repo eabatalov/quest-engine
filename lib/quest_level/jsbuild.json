@@ -3,8 +3,13 @@
         "name" : "lib-quest-level",
         "description" : "",
         "dependencies" : {
-            "lib-util" : [],
-            "lib-quest-script" : []
+            "base" : {
+                "lib-util" : [],
+                "lib-quest-script" : []
+             },
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
         },
         "src" : {
             "base" : [
@@ -14,11 +19,9 @@
                 "src/QuestLevelLoader.js",
                 "src/LevelRepository.js"
             ],
-            "optional" : {
-                "web" : [
-                    "src/AjaxQuestScriptLoader.js"
-                ]
-            }
+            "web" : [
+                "src/AjaxQuestScriptLoader.js"
+            ]
         }
     }
 }

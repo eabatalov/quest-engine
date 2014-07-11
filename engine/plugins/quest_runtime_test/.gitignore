@@ -1,4 +1,7 @@
 node_modules
 bin
+main.js
+main.min.js
 package.json
 Gruntfile.js
+buildme

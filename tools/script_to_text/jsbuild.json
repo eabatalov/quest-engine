@@ -3,7 +3,12 @@
         "name" : "tool-script-to-text",
         "description" : "",
         "dependencies" : {
-            "lib-quest-script" : []
+            "base" : {
+                "lib-quest-script" : []
+             },
+             "noweb" : {
+                "lib-jquery-core-nodom" : []
+             }
         },
         "src" : {
             "base" : [

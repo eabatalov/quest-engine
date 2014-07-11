@@ -2,7 +2,11 @@
     "module" : {
         "name" : "lib-util",
         "description" : "",
-        "dependencies" : {},
+        "dependencies" : {
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
+        },
         "src" : {
             "base" : [
                 "src/misc.js",
