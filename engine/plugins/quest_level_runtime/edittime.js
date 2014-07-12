@@ -59,9 +59,8 @@
 // example				
 /*AddNumberParam("Number", "Enter a number to test if positive.");
 AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive", "Description for my condition!", "MyCondition");*/
-//TODO remove
-AddCondition(0, cf_trigger, "Quest script loaded", "General",
-    "Quest script loaded", "Quest script loaded", "QuestScriptLoaded");
+AddCondition(0, cf_trigger, "Level changed", "General",
+    "Level changed", "Level changed", "levelChanged");
 
 ////////////////////////////////////////
 // Actions

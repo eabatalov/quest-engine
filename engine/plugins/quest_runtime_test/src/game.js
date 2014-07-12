@@ -5,6 +5,13 @@ function DemoQuestGame(name, levelRepo, persistentStorage, inAppPurchaseProvider
 DemoQuestGame.prototype = QuestGame.prototype;
 DemoQuestGame.prototype.constructor = DemoQuestGame;
 
+/*
+ * "Inherit" base game class methods
+ */
+DemoQuestGame.magic = "Zee7Zo";
+DemoQuestGame.newGame = QuestGame.newGame;
+DemoQuestGame.load = QuestGame.load;
+
 QuestGame.bootstrap(
     {
         game : {
@@ -19,8 +26,8 @@ QuestGame.bootstrap(
         },
 
         levelLoader : {
-            className : 'AjaxQuestScriptLoader',
-            params : ['']
+            className : 'QuestLevelLoader',
+            params : [new AjaxQuestScriptLoader('')]
         }
     }
 );

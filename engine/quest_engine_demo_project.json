@@ -127,7 +127,8 @@
 							29
 						],
 						"props": {
-							"name": "foo"
+							"name": "foo",
+							"source": "c2"
 						}
 					},
 					{

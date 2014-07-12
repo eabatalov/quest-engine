@@ -44,7 +44,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
         this.levelRuntime = null;
         this.uiActionManager = null;
-        QuestGame.events.levelChanged.subscribe(this, this.onLevelChanged);
+        QuestGame.instance.events.levelChanged.subscribe(this, this.onLevelChanged);
    	};
 	
 	// called whenever an instance is destroyed
@@ -114,13 +114,14 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
     instanceProto.onLevelChanged = function(questLevel) {
 		this.levelRuntime = new QuestLevelRuntime(questLevel);
 		this.uiActionManager = new UIStageActionManager();
+        this.runtime.trigger(pluginProto.cnds.levelChanged, this);
     };
 
 	//////////////////////////////////////
 	// Conditions
 	function Cnds() {};
 
-	Cnds.prototype.QuestScriptLoaded = function() {
+	Cnds.prototype.levelChanged = function() {
 	    return true; //cf_trigger was signaled explicitly
     };
 	

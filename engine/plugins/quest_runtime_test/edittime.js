@@ -29,9 +29,8 @@
 	};
 };
 
-
 AddStringParam("Level name", "Level name", "");
-AddAction(0, af_none, "Start level", "Start level",
+AddAction(0, af_none, "Start level", "General",
 	"Start level {0}",
 	"Start level",
 	"startLevel");

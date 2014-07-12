@@ -56,7 +56,7 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder expanded="0">
+    <object-folder expanded="1">
         <object-folder expanded="1" name="Quest">
             <object-folder expanded="0" name="NPC">
                 <object-folder expanded="0" name="Speech">
@@ -1850,9 +1850,6 @@
             <object-type name="Mouse" sid="6589124216411643">
                 <plugin id="Mouse" />
             </object-type>
-            <object-type name="QuestRuntimeCodeDeicatedOnlyForTesting" sid="7867076814703149">
-                <plugin id="QuestRuntimeTestPlugin" />
-            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Animation">
             <object-folder expanded="1" name="Player">
@@ -3363,6 +3360,9 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="QuestRuntimeCodeDeicatedOnlyForTesting" sid="7867076814703149">
+            <plugin id="QuestRuntimeTestPlugin" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
@@ -3404,7 +3404,7 @@
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />
-    <files-folder expanded="1">
+    <files-folder expanded="0">
         <file-folder expanded="0" name="Icons">
             <file name="icon-16.png" />
             <file name="icon-32.png" />
