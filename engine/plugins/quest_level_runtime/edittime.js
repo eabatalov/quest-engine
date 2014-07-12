@@ -81,10 +81,6 @@ AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my a
 AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
 AddAction(2, af_none, "Setup quest objects.", "Setup",
 	"Setup quest objects.", "Setup quest objects", "setupQuestObjects");
-//TODO remove
-AddStringParam("Quest script file URL", "Quest script file URL", "story.js");
-AddAction(3, af_none, "Setup quest script URL", "Setup",
-	"Setup quest script URL to {0}", "Setup quest script URL", "setupQuestScript");
 
 //=== LEVEL ===
 AddStringParam("Level name", "Level name", "");

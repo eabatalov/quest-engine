@@ -136,10 +136,6 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         this.levelRuntime.setupObjects(npcType);
     };
 
-	Acts.prototype.setupQuestScript = function(scriptURL) {
-	    this.levelRuntime.setupScript(scriptURL);
-    };
-
     //=== Level ===
    	Acts.prototype.startLevel = function(levelName) {
         QuestGame.instance.setCurrentLevelByName(levelName);
