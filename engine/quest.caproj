@@ -14,7 +14,9 @@
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Eugene/Learzing" id="QuestInAppPurchasePlugin" version="0.100000001">Quest in-app purchase</plugin>
         <plugin author="Eugene/learzing" id="QuestLevelRuntimePlugin" version="0.100000001">Quest Level Runtime</plugin>
+        <plugin author="Eugene/Learzing" id="QuestPersistentStoragePlugin" version="0.100000001">Quest persistent storage</plugin>
         <plugin author="Eugene/Learzing" id="QuestRuntimeTestPlugin" version="0.100000001">Quest Runtime code deicated only for testing</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="BrashMonkey" id="Spriter" version="1">Scml</plugin>
@@ -1850,6 +1852,12 @@
             <object-type name="Mouse" sid="6589124216411643">
                 <plugin id="Mouse" />
             </object-type>
+            <object-type name="QuestPersistentStorage" sid="2690906212126853">
+                <plugin id="QuestPersistentStoragePlugin" />
+            </object-type>
+            <object-type name="QuestInappPurchase" sid="9030132757527673">
+                <plugin id="QuestInAppPurchasePlugin" />
+            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Animation">
             <object-folder expanded="1" name="Player">
@@ -3129,6 +3137,48 @@
                 </object-type>
             </object-folder>
         </object-folder>
+        <object-folder expanded="1" name="Test">
+            <object-type name="CustomEventTrigger" sid="372212550621254">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4175871361294041" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="NextTestTrigger" sid="6278986037053643">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4712276204324084" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="NotificationTest" sid="1108779570354218">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3408132612851084" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="PersistentPutTest" sid="1957518383281234">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9463813825801533" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="PersistentGetTest" sid="6949147423900132">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1433657930274317" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="Sprite" sid="9109209147233701">
             <plugin id="Sprite" />
             <behaviors>
@@ -3300,14 +3350,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="CustomEventTrigger" sid="372212550621254">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4175871361294041" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="LayoutLoadingLabel" sid="5407995934875156">
             <plugin id="Text" />
         </object-type>
@@ -3325,22 +3367,6 @@
                             <point x="0.01125" y="0.964981" />
                         </collision-poly>
                     </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="NextTestTrigger" sid="6278986037053643">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4712276204324084" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="NotificationTest" sid="1108779570354218">
-            <plugin id="Sprite" />
-            <animation-folder expanded="1">
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3408132612851084" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -3371,7 +3397,7 @@
         </layout-folder>
     </layout-folder>
     <event-folder expanded="1">
-        <event-folder expanded="1" name="Quest">
+        <event-folder expanded="0" name="Quest">
             <event-sheet>Quest.xml</event-sheet>
             <event-sheet>Bootstrap.xml</event-sheet>
             <event-sheet>PlayerInput.xml</event-sheet>
@@ -3401,6 +3427,8 @@
         <global-instance type="Browser" uid="43" />
         <global-instance type="Mouse" uid="90" />
         <global-instance type="QuestRuntimeCodeDeicatedOnlyForTesting" uid="91" />
+        <global-instance type="QuestPersistentStorage" uid="93" />
+        <global-instance type="QuestInappPurchase" uid="94" />
     </global-instances>
     <sounds-folder expanded="1" />
     <music-folder expanded="1" />

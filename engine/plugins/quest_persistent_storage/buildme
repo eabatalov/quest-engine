@@ -1,0 +1,4 @@
+#!/bin/bash
+node /data/github/jsbuild/src/main.js -o web \
+-m /data/github/quest-engine/modules.json c2-plugin-quest-persistent-storage
+grunt

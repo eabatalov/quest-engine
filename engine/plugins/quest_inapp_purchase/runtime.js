@@ -4,14 +4,14 @@
 assert2(cr, "cr namespace not created");
 assert2(cr.plugins_, "cr.plugins_ not created");
 
-cr.plugins_.QuestRuntimeTestPlugin = function(runtime)
+cr.plugins_.QuestInAppPurchasePlugin = function(runtime)
 {
 	this.runtime = runtime;
 };
 
 (function ()
 {
-	var pluginProto = cr.plugins_.QuestRuntimeTestPlugin.prototype;
+	var pluginProto = cr.plugins_.QuestInAppPurchasePlugin.prototype;
 		
 	/////////////////////////////////////
 	// Object type class

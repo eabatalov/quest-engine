@@ -1,0 +1,16 @@
+{
+    "module" : {
+        "name" : "c2-plugin-quest-persistent-storage",
+        "description" : "",
+        "outDir" : ".",
+        "dependencies" : {
+            "base" : {
+                "lib-persistent-storage" : [],
+                "lib-quest-game" : [],
+             }
+        },
+        "src" : {
+            "base" : []
+        }
+    }
+}

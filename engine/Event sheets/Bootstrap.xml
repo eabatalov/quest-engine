@@ -19,12 +19,12 @@
                     <param id="0" name="Name">&quot;initPlayerAnimation&quot;</param>
                     <param id="1" name="Parameter {n}"></param>
                 </action>
-                <action id="0" name="Start level" sid="550631405171983" type="QuestRuntimeCodeDeicatedOnlyForTesting">
+                <action id="200" name="Start level" sid="2684894720473984" type="QuestLevelRuntime">
                     <param id="0" name="Level name">&quot;demo&quot;</param>
                 </action>
             </actions>
         </event-block>
-        <comment>QuestLevelRuntime setup should run only after level has changed. See implementation.</comment>
+        <comment>QuestLevelRuntime setup should run only after level has changed. See its implementation.</comment>
         <event-block sid="3608536962210634">
             <conditions>
                 <condition id="0" name="Level changed" sid="3464829851938387" type="QuestLevelRuntime" />

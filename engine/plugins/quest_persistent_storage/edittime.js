@@ -1,10 +1,10 @@
 ﻿function GetPluginSettings()
 {
 	return {
-		"name":			"Quest Runtime code deicated only for testing",// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
-		"id":			"QuestRuntimeTestPlugin",		// this is used to identify this plugin and is saved to the project; never change it
+		"name":			"Quest persistent storage",// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
+		"id":			"QuestPersistentStoragePlugin",		// this is used to identify this plugin and is saved to the project; never change it
 		"version":		"0.1",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
-		"description":	"Javascript code dedicated for quest runtime testing",
+		"description":	"Interface to quest persistent storage",
 		"author":		"Eugene/Learzing",
 		"help url":		"Learzing.com",
 		"category":		"Learzing",				// Prefer to re-use existing categories, but you can set anything here
@@ -24,10 +24,16 @@
 					//	| pf_effects			// allow WebGL shader effects to be added
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
-        , "dependency":
-            "main.js;"
+        , "dependency": ""
 	};
 };
+
+AddStringParam("Name", "Name");
+AddStringParam("Value", "Value");
+AddAction(0, af_none, "Put", "General", "Put {1} to  {0}", "Put value to persistent storage by name", "put");
+
+AddStringParam("Name", "The name of the function to call.");
+AddExpression(0, ef_return_any, "Get from {0}", "General", "get", "Get value from persistent storage by name");
 
 ACESDone();
 

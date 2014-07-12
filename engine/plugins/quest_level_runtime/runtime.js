@@ -141,6 +141,10 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
     };
 
     //=== Level ===
+   	Acts.prototype.startLevel = function(levelName) {
+        QuestGame.instance.setCurrentLevelByName(levelName);
+    };
+
     Acts.prototype.setStage = function(stageName) {
         this.uiActionManager.setCurrentStageName(stageName);
 	};

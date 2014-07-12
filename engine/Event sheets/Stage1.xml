@@ -93,5 +93,50 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <event-block sid="8145908222472066">
+            <conditions>
+                <condition id="0" name="On function" sid="2133053584259959" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2249871487472017">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="3698330907404222" type="Touch">
+                            <param id="0" name="Object">PersistentPutTest</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Put" sid="4969461660666782" type="QuestPersistentStorage">
+                            <param id="0" name="Name">&quot;Test&quot;</param>
+                            <param id="1" name="Value">&quot;My test value&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2593489705440615">
+            <conditions>
+                <condition id="0" name="On function" sid="8671359194580394" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2514628733212818">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="4324809729051558" type="Touch">
+                            <param id="0" name="Object">PersistentGetTest</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Alert" sid="8529638134897942" type="Browser">
+                            <param id="0" name="Message">QuestPersistentStorage.get(&quot;Test&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

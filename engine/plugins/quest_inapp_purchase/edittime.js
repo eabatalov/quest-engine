@@ -1,10 +1,10 @@
 ﻿function GetPluginSettings()
 {
 	return {
-		"name":			"Quest Runtime code deicated only for testing",// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
-		"id":			"QuestRuntimeTestPlugin",		// this is used to identify this plugin and is saved to the project; never change it
+		"name":			"Quest in-app purchase",// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
+		"id":			"QuestInAppPurchasePlugin",		// this is used to identify this plugin and is saved to the project; never change it
 		"version":		"0.1",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
-		"description":	"Javascript code dedicated for quest runtime testing",
+		"description":	"Interface to quest in-app purchase",
 		"author":		"Eugene/Learzing",
 		"help url":		"Learzing.com",
 		"category":		"Learzing",				// Prefer to re-use existing categories, but you can set anything here
@@ -24,8 +24,7 @@
 					//	| pf_effects			// allow WebGL shader effects to be added
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
-        , "dependency":
-            "main.js;"
+        , "dependency": ""
 	};
 };
 

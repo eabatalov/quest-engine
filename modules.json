@@ -1,6 +1,8 @@
 {
     "c2-plugin-quest-level-runtime" : "engine/plugins/quest_level_runtime/",
     "c2-plugin-quest-engine-test" : "engine/plugins/quest_runtime_test/",
+    "c2-plugin-quest-persistent-storage" : "engine/plugins/quest_persistent_storage/",
+    "c2-plugin-quest-inapp-purchase" : "engine/plugins/quest_inapp_purchase/",
     "quest-script-editor" : "script_editor/public_html/js/",
     "tool-script-to-text" : "tools/script_to_text/",
     "lib-persistent-storage" : "lib/persistent_storage",

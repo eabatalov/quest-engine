@@ -79,14 +79,20 @@ AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my a
 
 //=== SETUP ===
 AddObjectParam("NPC object type", "NPC object type will be used to lookup all the game NPCs");
-AddAction(2, af_none, "Setup quest objects.", "General",
-	"Setup quest objects.", "Setup quest objects.", "setupQuestObjects");
+AddAction(2, af_none, "Setup quest objects.", "Setup",
+	"Setup quest objects.", "Setup quest objects", "setupQuestObjects");
 //TODO remove
 AddStringParam("Quest script file URL", "Quest script file URL", "story.js");
-AddAction(3, af_none, "Setup quest script URL.", "General",
-	"Setup quest script URL to {0}.", "Setup quest script URL.", "setupQuestScript");
+AddAction(3, af_none, "Setup quest script URL", "Setup",
+	"Setup quest script URL to {0}", "Setup quest script URL", "setupQuestScript");
 
 //=== LEVEL ===
+AddStringParam("Level name", "Level name", "");
+AddAction(200, af_none, "Start level", "Level",
+	"Start level {0}",
+	"Start level",
+	"startLevel");
+
 AddStringParam("Value", "Stage name (String)");
 AddAction(4, af_none, "Set current stage", "Level", "Set current stage to {0}",
 	"Set stage name with which we'll work now.", "setStage");

@@ -4,14 +4,14 @@
 assert2(cr, "cr namespace not created");
 assert2(cr.plugins_, "cr.plugins_ not created");
 
-cr.plugins_.QuestRuntimeTestPlugin = function(runtime)
+cr.plugins_.QuestPersistentStoragePlugin = function(runtime)
 {
 	this.runtime = runtime;
 };
 
 (function ()
 {
-	var pluginProto = cr.plugins_.QuestRuntimeTestPlugin.prototype;
+	var pluginProto = cr.plugins_.QuestPersistentStoragePlugin.prototype;
 		
 	/////////////////////////////////////
 	// Object type class
@@ -117,12 +117,21 @@ cr.plugins_.QuestRuntimeTestPlugin = function(runtime)
 	// Actions
 	function Acts() {};
 
+	Acts.prototype.put = function(name, value) {
+        QuestGame.instance.getPersistentStorage().put(name, value);
+    };
+
 	pluginProto.acts = new Acts();
 
 	//////////////////////////////////////
 	// Expressions
 	function Exps() {};
-	
-	pluginProto.exps = new Exps();
 
+    Exps.prototype.get = function(ret, name) {
+        ret.set_string(
+            QuestGame.instance.getPersistentStorage().get(name)
+        );
+    };
+
+    pluginProto.exps = new Exps();
 }());
