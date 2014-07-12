@@ -24,8 +24,7 @@
 					//	| pf_effects			// allow WebGL shader effects to be added
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
-		, "dependency":
-			"quest_level_runtime.dev.js;"
+		, "dependency": ""
 	};
 };
 

@@ -7,7 +7,8 @@
             "base" : {
                 "lib-persistent-storage" : [],
                 "lib-quest-level" : [],
-                "lib-quest-game" : []
+                "lib-quest-game" : [],
+                "c2-plugin-quest-level-runtime" : []
              }
         },
         "src" : {

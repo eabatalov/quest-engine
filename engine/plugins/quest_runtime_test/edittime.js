@@ -25,7 +25,7 @@
 					//  | pf_predraw			// set for any plugin which draws and is not a sprite (i.e. does not simply draw
 												// a single non-tiling image the size of the object) - required for effects to work properly
         , "dependency":
-            "test.dev.js;"
+            "main.js;"
 	};
 };
 
