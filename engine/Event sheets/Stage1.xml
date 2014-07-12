@@ -138,5 +138,25 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <event-block sid="6587518826198539">
+            <conditions>
+                <condition id="0" name="On function" sid="612925361209777" type="Function">
+                    <param id="0" name="Name">&quot;procMiscInputStage1&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="122177146261286">
+                    <conditions>
+                        <condition id="4" name="Is touching object" sid="6305867817131617" type="Touch">
+                            <param id="0" name="Object">SaveGameTest</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Save game" sid="4894400491866869" type="QuestGame" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

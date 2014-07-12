@@ -27,7 +27,7 @@ QuestGame.bootstrap(
 
         levelLoader : {
             className : 'QuestLevelLoader',
-            params : [new AjaxQuestScriptLoader('')]
+            params : ["new AjaxQuestScriptLoader('')"]
         }
     }
 );

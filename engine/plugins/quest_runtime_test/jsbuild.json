@@ -8,7 +8,10 @@
                 "lib-persistent-storage" : [],
                 "lib-quest-level" : [],
                 "lib-quest-game" : [],
-                "c2-plugin-quest-level-runtime" : []
+                "c2-plugin-quest-level-runtime" : [],
+                "c2-plugin-quest-persistent-storage" : [],
+                "c2-plugin-quest-inapp-purchase" : [],
+                "c2-plugin-quest-game" : []
              }
         },
         "src" : {
