@@ -3417,6 +3417,6 @@
             <file name="player.scml" />
             <file name="player.scon" />
         </file-folder>
-        <file name="demo_script.js" />
+        <file name="demo_script.json" />
     </files-folder>
 </c2project>
