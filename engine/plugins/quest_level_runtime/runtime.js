@@ -44,7 +44,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
         this.levelRuntime = null;
         this.uiActionManager = null;
-        QuestGame.instance.events.levelChanged.subscribe(this, this.onLevelChanged);
+        QuestGame.instance.events.levelChangedAfter.subscribe(this, this.onLevelChanged);
    	};
 	
 	// called whenever an instance is destroyed
