@@ -270,6 +270,12 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
 	};
 
+    Exps.prototype.getHasBack = function(ret) {
+		ret.set_int(
+            this.uiActionManager.getCurrentStageUIActionOUT().getHasBack()
+        );
+	};
+
 	pluginProto.exps = new Exps();
 
 }());

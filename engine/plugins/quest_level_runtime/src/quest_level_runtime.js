@@ -1,7 +1,6 @@
 function QuestLevelRuntime(questLevel) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
     this.scriptInterp = new ScriptInterpretator(questLevel.getScript());
-    this.nextCondSearch = new NextCondSearch();
 }
 
 QuestLevelRuntime.prototype.npcUID = function(stageName, npcIDInStage) {
@@ -42,16 +41,20 @@ QuestLevelRuntime.prototype.playerActionExec = function(inAction, outAction) {
 	validateQuestEvent(questEvent);
 	dumpQuestEvent(questEvent);
 
-	var questNode = this.scriptInterp.step(questEvent);
-	dumpQuestNode(questNode);
+	var questNodeExecInfo = this.scriptInterp.step(questEvent);
+	dumpQuestNode(questNodeExecInfo.getNode());
 
-	this.questNodeToUIStageActionOut(questNode, outAction);
+	this.questNodeExecInfoToUIStageActionOut(questNodeExecInfo, outAction);
 	validateUIStageActionOut(outAction);
 	dumpUIStageActionOut(outAction);
 };
 
-QuestLevelRuntime.prototype.questNodeToUIStageActionOut = function(questNode, action) {
-    action.setHasNext(this.nextCondSearch.get(questNode) === null ? 0 : 1);
+QuestLevelRuntime.prototype.questNodeExecInfoToUIStageActionOut =
+    function(questNodeExecInfo, action) {
+
+    action.setHasNext(questNodeExecInfo.getHasNext() ? 1 : 0);
+    action.setHasBack(questNodeExecInfo.getHasBack() ? 1 : 0);
+    var questNode = questNodeExecInfo.getNode();
 
 	var setActorInfo = false;
 	switch(questNode.getType()) {
@@ -161,6 +164,10 @@ function uiStageActionInToQuestEvent(action) {
         case _UI_STAGE_ACTION_IN.ACTION_TYPES.NEXT:
             type = _QUEST_EVENTS.NEXT;
 			props = { id : action.getTargetId() };
+        break;
+        case _UI_STAGE_ACTION_IN.ACTION_TYPES.BACK:
+            type = _QUEST_EVENTS.BACK;
+            props = { id : action.getTargetId() };
         break;
 		default:
 			console.error("Invalid player stage action type type: "

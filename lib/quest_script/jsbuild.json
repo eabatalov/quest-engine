@@ -23,7 +23,9 @@
                 "src/interpretator/quest_event.js",
                 "src/interpretator/storyline.js",
                 "src/interpretator/stage.js",
-                "src/interpretator/script.js"
+                "src/interpretator/script.js",
+                "src/interpretator/StoryLineNextNodeRollbacker.js",
+                "src/interpretator/NodeExecInfo.js"
             ],
             "plugins" : [
                 "src/plugins/plugins.js",

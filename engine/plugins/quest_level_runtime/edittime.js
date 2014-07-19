@@ -175,6 +175,10 @@ AddExpression(15, ef_return_number,
 	"Level action out", "getHasNext",
 	"1 if current script state can accept 'NEXT' player action");
 
+AddExpression(16, ef_return_number,
+	"1 if current script state can accept 'BACK' player action",
+	"Level action out", "getHasBack",
+	"1 if current script state can accept 'BACK' player action");
 
 ////////////////////////////////////////
 ACESDone();
