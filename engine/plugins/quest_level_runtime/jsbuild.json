@@ -9,7 +9,8 @@
                 "lib-quest-script" : [
                     "interpretator",
                     "plugins"
-                 ]
+                 ],
+                 "lib-quest-exec" : []
             }
         },
         "src" : {
@@ -19,7 +20,13 @@
                 "src/consts.js",
                 "src/ui_stage_action_in.js",
                 "src/ui_stage_action_manager.js",
-                "src/ui_stage_action_out.js"
+                "src/ui_stage_action_out.js",
+                "src/QRActionExecJS.js",
+                "src/QRActionExecUI.js",
+                "src/QRAction.js",
+                "src/QRScriptInterpretator.js",
+                "src/QRScriptRollbacker.js",
+                "src/QRStoryLineRollbacker.js"
             ]
         }
     }

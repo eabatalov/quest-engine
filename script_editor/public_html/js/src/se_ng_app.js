@@ -29,8 +29,13 @@ function ScriptEditorBootstrap() {
         return function(value) {
             if (value !== null && value !== undefined) {
                 return true;
-            } else
-        return false;
+            } else return false;
+        };
+    });
+
+    this.scriptEditorApp.filter('hasField', function() {
+        return function(value) {
+            return value !== undefined;
         };
     });
 

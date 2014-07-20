@@ -24,7 +24,7 @@
                 "src/interpretator/storyline.js",
                 "src/interpretator/stage.js",
                 "src/interpretator/script.js",
-                "src/interpretator/StoryLineNextNodeRollbacker.js",
+                "src/interpretator/StoryLineRollbacker.js",
                 "src/interpretator/NodeExecInfo.js"
             ],
             "plugins" : [

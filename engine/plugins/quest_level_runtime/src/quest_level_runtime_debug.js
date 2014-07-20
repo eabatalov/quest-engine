@@ -122,3 +122,16 @@ function dumpQuestNode(questNode) {
         + JSON.stringify(questNode.save(), null, '\t')
 	);
 }
+
+function dumpQuestNodeExecInfo(execInfo) {
+	if (!_QUEST_ENGINE_DEBUG)
+		return;
+
+	console.log("==QUEST NODE EXEC INFO=="
+        + "\nHas next: " + execInfo.getHasNext().toString()
+        + "\nCan rollback: " + execInfo.getCanRollback().toString()
+        + "\nIs node to rollback: " + execInfo.getIsNodeToRollback().toString()
+        + "\nContinue: " + execInfo.getContinue().toString()
+        + JSON.stringify(execInfo.getNode().save(), null, '\t')
+	);
+}

@@ -1,0 +1,17 @@
+{
+    "module" : {
+        "name" : "lib-quest-exec",
+        "description" : "",
+        "dependencies" : {
+            "base" : {
+                "lib-util" : [],
+                "lib-quest-script" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/QuestScriptNodeExecJS.js"
+            ]
+        }
+    }
+}

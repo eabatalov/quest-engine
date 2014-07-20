@@ -10,5 +10,6 @@
     "lib-quest-game" : "lib/quest_game",
     "lib-quest-level" : "lib/quest_level",
     "lib-quest-script" : "lib/quest_script",
+    "lib-quest-exec" : "lib/quest_exec",
     "lib-util" : "lib/util"
 }

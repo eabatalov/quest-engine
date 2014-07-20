@@ -52,7 +52,20 @@
                 <div class="form-group has-feedback">
                     <label class="control-label" for="name">Name</label>
                     <input ng-model="node.getProps().name"
-                        ng-change="node.setProp('name', node.getProps().name)" type="text" placeholder="Text" id="name" class="form-control input-sm" />
+                        ng-change="node.setProp('name', node.getProps().name)" type="text"
+                        placeholder="Text" id="name" class="form-control input-sm" />
+                    <span class="glyphicon glyphicon-bookmark form-control-feedback"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12" ng-show="node.getProps().rollbackName | hasField">
+                <div class="form-group has-feedback">
+                    <label class="control-label" for="rollbackName">Rollback name</label>
+                    <input ng-model="node.getProps().rollbackName"
+                        ng-change="node.setProp('rollbackName', node.getProps().rollbackName)" type="text"
+                        placeholder="Text" id="rollbackName" class="form-control input-sm" />
                     <span class="glyphicon glyphicon-bookmark form-control-feedback"></span>
                 </div>
             </div>
