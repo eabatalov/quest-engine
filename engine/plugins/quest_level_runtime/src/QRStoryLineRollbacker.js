@@ -1,37 +1,50 @@
-function StoryLineRollbacker(storyLineInterp) {
+/*
+ * Single rollback unit.
+ * All elements or none should be rollbacked.
+ */
+function QRStoryLineRollbackSequence() {
+
+}
+
+function QRStoryLineRollbacker(storyLineInterp) {
+    this.storyLineNodeId = storyLineInterp.getStorylineNode().getId();
     this.isRollbacking = false;
     this.rollbackableNodesHistory = [];
 
-    storyLineInterp.events.nodeEnter.subscribe(this, this.onStoryLineNodeEnter);
-    storyLineInterp.events.condEnter.subscribe(this, this.onStoryLineCondEnter);
+    //storyLineInterp.events.nodeEnter.subscribe(this, this.onStoryLineNodeEnter);
+    //storyLineInterp.events.condEnter.subscribe(this, this.onStoryLineCondEnter);
 }
+
+QRStoryLineRollbacker.prototype.getStoryLineNodeId = function() {
+    return this.storyLineNodeId;
+};
 
 /*
  * True until the last rollback node was executed
  */
-StoryLineRollbacker.prototype.getIsInProgress = function() {
+QRStoryLineRollbacker.prototype.getIsInProgress = function() {
     return this.isRollbacking;
 };
 
-StoryLineRollbacker.prototype.getIsRollbackAvail = function() {
+QRStoryLineRollbacker.prototype.getIsRollbackAvail = function() {
     return this._curNodeToRollback() ? true : false;
 };
 
-StoryLineRollbacker.prototype.step = function() {
+QRStoryLineRollbacker.prototype.step = function() {
     var rollbackNode = this._popCurNodeToRollback();
     this.isRollbacking = this._curNodeToRollback() ? true : false;
     return rollbackNode;
 };
 
-StoryLineRollbacker.prototype.startRollback = function() {
+QRStoryLineRollbacker.prototype.startRollback = function() {
     assert(!this.isRollbacking);
     this.isRollbacking = this._curNodeToRollback() ? true : false;
 };
 
-StoryLineRollbacker.prototype.onStoryLineNodeEnter = function(node) {
+QRStoryLineRollbacker.prototype.onStoryLineNodeEnter = function(node) {
     assert(!this.getIsInProgress(),
         "We can't perform normal script excecution when we're rolling back!");
-    if (StoryLineRollbacker._isNodeRollbackable(node, this.rollbackableNodesHistory)) {
+    if (QRStoryLineRollbacker._isNodeRollbackable(node, this.rollbackableNodesHistory)) {
         this.rollbackableNodesHistory.push(node);
     } else {
         this.rollbackableNodesHistory = [];
@@ -43,24 +56,28 @@ StoryLineRollbacker.prototype.onStoryLineNodeEnter = function(node) {
     ));
 };
 
-StoryLineRollbacker.prototype.onStoryLineCondEnter = function(cond) {
+QRStoryLineRollbacker.prototype.onStoryLineCondEnter = function(cond) {
     assert(!this.getIsInProgress(),
         "We can't perform normal script excecution when we're rolling back!");
-    if (!StoryLineRollbacker._isCondRollbackable(cond, this.rollbackableNodesHistory))
+    if (!QRStoryLineRollbacker._isCondRollbackable(cond, this.rollbackableNodesHistory))
         this.rollbackableNodesHistory = [];
 };
 
-StoryLineRollbacker.prototype._curNodeToRollback = function() {
+QRStoryLineRollbacker.prototype.isNodeCanRollback = function(node) {
+    return this._curNodeToRollback() === node;
+};
+
+QRStoryLineRollbacker.prototype._curNodeToRollback = function() {
     if (!this.rollbackableNodesHistory.length)
         return null;
     return this.rollbackableNodesHistory[this.rollbackableNodesHistory.length - 1];
 };
 
-StoryLineRollbacker.prototype._popCurNodeToRollback = function() {
+QRStoryLineRollbacker.prototype._popCurNodeToRollback = function() {
     return this.rollbackableNodesHistory.pop();
 };
 
-StoryLineRollbacker._isCondRollbackable = function(cond, hist) {
+QRStoryLineRollbacker._isCondRollbackable = function(cond, hist) {
     //XXX This is UI not script level logic
     switch(cond.getType()) {
         /*
@@ -74,7 +91,7 @@ StoryLineRollbacker._isCondRollbackable = function(cond, hist) {
     }
 };
 
-StoryLineRollbacker._isNodeRollbackable = function(node, hist) {
+QRStoryLineRollbacker._isNodeRollbackable = function(node, hist) {
     //XXX This is UI not script level logic
     if (hist.length &&
         hist[hist.length - 1].getType() === _QUEST_NODES.QUIZ)

@@ -3,78 +3,80 @@ function QRActionExecUI(npcUID) {
 }
 
 QRActionExecUI.prototype.exec = function(qrAction, uiStageActionOut) {
-    this.setNodeSpecificUIStageActionOutFields(qrAction.getNode(), uiStageActionOut);
+    this.qrActionToUIStageActionOut(qrAction, uiStageActionOut);
     return true;
 };
 
-QRActionExecUI.prototype.setNodeSpecificUIStageActionOutFields =
-function(questNode, action) {
+QRActionExecUI.prototype.qrActionToUIStageActionOut =
+function(qrAction, uiStageActionOut) {
     var setActorInfo = false;
-	switch(questNode.getType()) {
-		case _QUEST_NODES.NONE:
-		case _QUEST_NODES.STORYLINE:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
+	switch(qrAction.getType()) {
+		case _QR_ACTION_TYPES.NONE:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
 		break;
-		case _QUEST_NODES.PHRASE:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE);
-			action.setText(questNode.getProp("text"));
-			action.setPhraseType(questNode.getProp("phraseType"));
+		case _QR_ACTION_TYPES.PHRASE:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE);
+			uiStageActionOut.setText(qrAction.text);
+			uiStageActionOut.setPhraseType(qrAction.phraseType);
 			setActorInfo = true;
 		break;
-		case _QUEST_NODES.QUIZ:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ);
-			action.setText(questNode.getProp("text"));
-			action.setPhraseType(questNode.getProp("phraseType"));
-            action.setAnswer1Text(questNode.getProp("ans1"));
-            action.setAnswer2Text(questNode.getProp("ans2"));
-            action.setAnswer3Text(questNode.getProp("ans3"));
-            action.setAnswer4Text(questNode.getProp("ans4"));
+		case _QR_ACTION_TYPES.QUIZ:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ);
+			uiStageActionOut.setText(qrAction.text);
+			uiStageActionOut.setPhraseType(qrAction.phraseType);
+            uiStageActionOut.setAnswer1Text(qrAction.ans1);
+            uiStageActionOut.setAnswer2Text(qrAction.ans2);
+            uiStageActionOut.setAnswer3Text(qrAction.ans3);
+            uiStageActionOut.setAnswer4Text(qrAction.ans4);
 			setActorInfo = true;
 		break;
-		case _QUEST_NODES.ANIM:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.ANIMATION);
-			action.setAnimationName(questNode.getProp("name"));
+		case _QR_ACTION_TYPES.ANIM:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.ANIMATION);
+			uiStageActionOut.setAnimationName(qrAction.name);
 			setActorInfo = true;
 		break;
-		case _QUEST_NODES.WAIT:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.DELAY);
-			action.setDelaySec(questNode.getProp("secs"));
+		case _QR_ACTION_TYPES.WAIT:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.DELAY);
+			uiStageActionOut.setDelaySec(qrAction.secs);
 		break;
-		case _QUEST_NODES.STAGE_CLEAR:
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
+		case _QR_ACTION_TYPES.STAGE_CLEAR:
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
 		break;
-		case _QUEST_NODES.FUNC_CALL:
-            if (questNode.getProp('source') === SEFuncCallNode.sources.c2) {
-			    action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
-                var funcName = questNode.getProp("name");
-			    action.setFuncName(funcName);
+		case _QR_ACTION_TYPES.FUNC_CALL:
+            if (qrAction.source === SEFuncCallNode.sources.c2) {
+			    uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
+                var funcName = qrAction.name;
+			    uiStageActionOut.setFuncName(funcName);
             } else {
-                action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
+                uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
             }
 		break;
-        case _QUEST_NODES.NOTIFICATION:
-            action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NOTIFICATION);
-            action.setText(questNode.getProp("text"));
+        case _QR_ACTION_TYPES.NOTIFICATION:
+            uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NOTIFICATION);
+            uiStageActionOut.setText(qrAction.text);
         break;
-        case _QUEST_NODES.PLAYER_MOVEMENT:
-            action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT);
-            action.setEnabled(questNode.getProp("enabled") === true ? 1 : 0);
+        case _QR_ACTION_TYPES.PLAYER_MOVEMENT:
+            uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT);
+            uiStageActionOut.setEnabled(qrAction.enabled === true ? 1 : 0);
         break;
 		default:
-			console.error("Error. Invalid quest node type: " +
-                questNode.getType().toString());
-			action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
+			console.error("Error. Invalid QRAction node type: " +
+                qrAction.getType().toString());
+			uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
 	}
 
 	if (setActorInfo) {
-		action.setActorType(
-            questNode.getProp("id") === _QUEST_PLAYER_ID ? "PLAYER" : "NPC"
+		uiStageActionOut.setActorType(
+            qrAction.id === _QUEST_PLAYER_ID ? "PLAYER" : "NPC"
         );
-		action.setNPCActorUID(
-            questNode.getProp("id") !== _QUEST_PLAYER_ID ?
-			    this.npcUID(action.getStageName(), questNode.getProp("id"))
+		uiStageActionOut.setNPCActorUID(
+            qrAction.id !== _QUEST_PLAYER_ID ?
+			    this.npcUID(uiStageActionOut.getStageName(), qrAction.id)
                 : null
         );
 	}
+    uiStageActionOut.setHasNext(qrAction.getHasNext() ? 1 : 0);
+    uiStageActionOut.setHasBack(qrAction.getCanRollback() ? 1 : 0);
+    uiStageActionOut.setIsContinue(qrAction.getContinue() ? 1 : 0);
 };
 

@@ -15,18 +15,18 @@
         },
         "src" : {
             "base" : [
-                "src/quest_level_runtime.js",
-                "src/quest_level_runtime_debug.js",
                 "src/consts.js",
                 "src/ui_stage_action_in.js",
                 "src/ui_stage_action_manager.js",
                 "src/ui_stage_action_out.js",
-                "src/QRActionExecJS.js",
-                "src/QRActionExecUI.js",
                 "src/QRAction.js",
                 "src/QRScriptInterpretator.js",
                 "src/QRScriptRollbacker.js",
-                "src/QRStoryLineRollbacker.js"
+                "src/QRStoryLineRollbacker.js",
+                "src/QRActionExecJS.js",
+                "src/QRActionExecUI.js",
+                "src/quest_level_runtime_debug.js",
+                "src/quest_level_runtime.js"
             ]
         }
     }

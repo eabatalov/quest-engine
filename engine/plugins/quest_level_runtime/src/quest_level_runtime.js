@@ -1,7 +1,8 @@
 function QuestLevelRuntime(questLevel) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
-    this.scriptInterp = new QRScriptInterpretator(questLevel.getScript());
-    this.scriptRollbacker = new QRScriptRollbacker(this.scriptInterp);
+    var scriptInterp = new ScriptInterpretator(questLevel.getScript());
+    this.qrScriptInterp = new QRScriptInterpretator(scriptInterp);
+    this.qrScriptRollbacker = new QRScriptRollbacker(scriptInterp);
     this.qrActionExecJS = new QRActionExecJS();
     this.qrActionExecUI = new QRActionExecUI(this.npcUID.bind(this));
 }
@@ -26,7 +27,7 @@ QuestLevelRuntime.prototype.setupObjects = function(NPCType) {
 
 /* 
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
- * Works accorind to current stage quest script
+ * Works accoring to current stage quest script
  */
 QuestLevelRuntime.prototype.playerActionExec = function(inAction, outAction) {
     outAction.clearFields();
@@ -39,21 +40,16 @@ QuestLevelRuntime.prototype.playerActionExec = function(inAction, outAction) {
 	dumpQuestEvent(questEvent);
 
     var nextQRAction = null;
-    if (this.scriptRollbacker.isMyEvent(questEvent)) 
-        nextQRAction = this.scriptRollbacker.step(questEvent);
+    if (this.qrScriptRollbacker.isMyEvent(questEvent)) 
+        nextQRAction = this.qrScriptRollbacker.step(questEvent);
     else {
-        nextQRAction = this.scriptInterp.step(questEvent);
-        nextQRAction.setCanRollback(this.scriptRollbacker.
+        nextQRAction = this.qrScriptInterp.step(questEvent);
+        nextQRAction.setCanRollback(this.qrScriptRollbacker.
             isNodeCanRollback(nextQRAction.getNode(), questEvent));
     }
 
     this.qrActionExecJS.exec(nextQRAction, outAction)
     || this.qrActionExecUI.exec(nextQRAction, outAction);
-    //XXX no so good looking common 'Exec' code
-    outAction.setHasNext(nextQRAction.getHasNext() ? 1 : 0);
-    outAction.setHasBack(nextQRAction.getCanRollback() ? 1 : 0);
-    outAction.setIsContinue(nextQRAction.getContinue() ? 1 : 0);
-    //End XXX. TODO add common base class
 
 	validateUIStageActionOut(outAction);
 	dumpUIStageActionOut(outAction);
