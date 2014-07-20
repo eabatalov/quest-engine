@@ -1,3 +1,5 @@
+//================================================
+//QRStageRollbacker
 function QRStageRollbacker(stageInterp) {
     this.stageInterp = stageInterp;
     this.storyLineRollbackers = [];
@@ -19,10 +21,11 @@ QRStageRollbacker.prototype.eventStoryLineRollbacker = function(questEvent) {
     }
     return storyLineRollbacker;
 };
-
+//=================================================
+//QRScriptRollbacker
 function QRScriptRollbacker(scriptInterp) {
-    this.isRollBackPending = false;
     this.stageRollbackers = {};
+    this.nextCondSearch = new NextCondSearch();
 
     var thiz = this;
     scriptInterp.forEachStageInterp(function(stageInterp) {
@@ -37,13 +40,11 @@ function QRScriptRollbacker(scriptInterp) {
 }
 
 QRScriptRollbacker.prototype.isMyEvent = function(questEvent) {
-    return false;
-    return this.isRollBackPending ||
+    return this._eventRollbacker(questEvent).getIsInProgress() ||
         questEvent.getType() === _QUEST_EVENTS.BACK;
 };
 
 QRScriptRollbacker.prototype.isNodeCanRollback = function(node, questEvent) {
-    return false;
     var storyLineRollbacker = this._eventRollbacker(questEvent);
     return storyLineRollbacker.isNodeCanRollback(node);
 };
@@ -57,12 +58,7 @@ QRScriptRollbacker.prototype.step = function(questEvent) {
     }
 
     var nextNode = eventRollbacker.step();
-
-    var action = new QRAction(nextNode);
-    action.setHasNext(this.nextCondSearch.get(nextNode) !== null);
-    action.setContinue(nextNode.getContinue());
-    //setCanRollback is set by quest level runtime
-    return action;
+    return this.makeAction(nextNode, eventRollbacker);
 };
 
 QRScriptRollbacker.prototype._startNewRollback = function(storylineRollbacker) {
@@ -70,47 +66,46 @@ QRScriptRollbacker.prototype._startNewRollback = function(storylineRollbacker) {
 };
 
 QRScriptRollbacker.prototype._eventRollbacker = function(questEvent) {
-    var stageRollbacker = this.stageRollbackers[questEvent.getName()];
+    var stageRollbacker = this.stageRollbackers[questEvent.getStageName()];
     assert(stageRollbacker);
     var storyLineRollbacker = stageRollbacker.eventStoryLineRollbacker(questEvent);
     return storyLineRollbacker;
 };
-/*
-QuestLevelRuntime.prototype.questNodeExecInfoToUIStageActionOut =
-function(questNodeExecInfo, action) {
-    action.setHasNext(questNodeExecInfo.getHasNext() ? 1 : 0);
-    action.setHasBack(questNodeExecInfo.getCanRollback() ? 1 : 0);
-    action.setIsContinue(questNodeExecInfo.getContinue() ? 1 : 0);
 
-    if (questNodeExecInfo.getIsNodeToRollback())
-        return this.questNodeExecInfoRollbackToUIStageActionOut(questNodeExecInfo, action);
-    else
-        return this.questNodeExecInfoDirectToUIStageActionOut(questNodeExecInfo, action);
-};
-//XXX
-QuestLevelRuntime.prototype.questNodeExecInfoRollbackToUIStageActionOut =
-    function(questNodeExecInfo, action) {
-    assert(questNodeExecInfo.getIsNodeToRollback());
+QRScriptRollbacker.prototype.makeAction = function(node, rollbacker) {
+    var action = null;
 
-    var questNode = questNodeExecInfo.getNode();
-	switch(questNode.getType()) {
+    switch(node.getType()) {
         case _QUEST_NODES.FUNC_CALL:
-            if (questNode.getProp('source') === SEFuncCallNode.sources.c2) {
-			    action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
-                var funcName = questNode.getProp("rollbackName");
-			    action.setFuncName(funcName);
+            if (node.getProp('source') === SEFuncCallNode.sources.c2) {
+                action = new QRAction(_QR_ACTION_TYPES.FUNC_CALL);
+			    action.name = node.getProp("rollbackName");
             } else {
-                action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
+                action = new QRAction(_QR_ACTION_TYPES.NONE);
             }
         break;
         case _QUEST_NODES.PLAYER_MOVEMENT:
-            action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT);
-            //invert
-            action.setEnabled(questNode.getProp("enabled") ? 0 : 1);
+            action = new QRAction(_QR_ACTION_TYPES.PLAYER_MOVEMENT);
+            action.enabled = !node.getProp("enabled");
+        break;
+        case _QUEST_NODES.PHRASE:
+            action = new QRAction(_QR_ACTION_TYPES.PHRASE);
+            action.initFromNode(node);
+        break;
+        case _QUEST_NODES.QUIZ:
+            action = new QRAction(_QR_ACTION_TYPES.QUIZ);
+            action.initFromNode(node);
+        break;
+        case _QUEST_NODES.NOTIFICATION:
+            action = new QRAction(_QR_ACTION_TYPES.NOTIFICATION);
+            action.initFromNode(node);
         break;
         default:
             action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
-            //There is also no sense in rollbacking ANIM node
     };
+
+    action.setHasNext(this.nextCondSearch.get(node) !== null);
+    action.setContinue(node.getContinue() || rollbacker.getIsInProgress());
+    action.setCanRollback(rollbacker.isNodeCanRollback(node));
+    return action;
 };
-*/

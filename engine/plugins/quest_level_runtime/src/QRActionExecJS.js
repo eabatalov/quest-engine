@@ -10,7 +10,6 @@ QRActionExecJS.prototype.exec = function(qrAction, uiStageActionOut) {
         qrAction.source === SEFuncCallNode.sources.js) {
         this.jsNodeExecutor.jsFuncExec(
             qrAction.name,
-            qrAction.rollbackName,
             qrAction.source,
             qrAction.params,
             this.execEnv

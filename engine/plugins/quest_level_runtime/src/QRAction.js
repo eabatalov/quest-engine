@@ -24,7 +24,6 @@ function QRAction(type) {
     this.ans3 = null;
     this.ans4 = null;
     this.secs = null;
-    this.rollbackName = null;
     this.source = null;
     this.params = null;
     this.enabled = null;
@@ -67,7 +66,6 @@ QRAction.prototype.initFromNode = function(node) {
         case _QUEST_NODES.FUNC_CALL:
             this.type = _QR_ACTION_TYPES.FUNC_CALL;
             this.name = node.getProp('name');
-            this.rollbackName = node.getProp('rollbackName');
             this.source = node.getProp('source');
             this.params = node.getProp('params');
         break;
