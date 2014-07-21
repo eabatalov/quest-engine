@@ -272,7 +272,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 
     Exps.prototype.getHasBack = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getHasBack()
+            this.uiActionManager.getCurrentStageUIActionOUT().getCanReverse()
         );
 	};
 

@@ -13,9 +13,9 @@ var _QR_ACTION_TYPES = {
 function QRAction(type) {
     this.type = type || _QR_ACTION_TYPES.NONE;
     this.hasNext = false;
-    this.canRollback = false;
+    this.canReverse = false;
+    this.isReverse = false;
     this.continue = false;
-    this.isRollback = false;
     this.id = null;
     this.text = null;
     this.phraseType = null;
@@ -98,12 +98,20 @@ QRAction.prototype.getHasNext = function() {
     return this.hasNext;
 };
 
-QRAction.prototype.setCanRollback = function(value) {
-    this.canRollback = value;
+QRAction.prototype.setCanReverse = function(value) {
+    this.canReverse = value;
 };
 
-QRAction.prototype.getCanRollback = function() {
-    return this.canRollback;
+QRAction.prototype.getCanReverse = function() {
+    return this.canReverse;
+};
+
+QRAction.prototype.setIsReverse = function(value) {
+    this.isReverse = value;
+};
+
+QRAction.prototype.getIsReverse = function() {
+    return this.isReverse;
 };
 
 QRAction.prototype.getContinue = function() {
@@ -112,12 +120,4 @@ QRAction.prototype.getContinue = function() {
 
 QRAction.prototype.setContinue = function(isContinue) {
     this.continue = isContinue;
-};
-
-QRAction.prototype.setIsRollback = function(isRollback) {
-    this.isRollback = isRollback;
-};
-
-QRAction.prototype.getIsRollback = function() {
-    return this.isRollback;
 };

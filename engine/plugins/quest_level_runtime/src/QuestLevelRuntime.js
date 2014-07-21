@@ -2,7 +2,7 @@ function QuestLevelRuntime(questLevel) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
     var scriptInterp = new ScriptInterpretator(questLevel.getScript());
     this.qrScriptInterp = new QRScriptInterpretator(scriptInterp);
-    this.qrScriptRollbacker = new QRScriptRollbacker(scriptInterp);
+    this.qrScriptRevInterp = new QRScriptReverseInterp(scriptInterp);
     this.qrActionExecJS = new QRActionExecJS();
     this.qrActionExecUI = new QRActionExecUI(this.npcUID.bind(this));
 }
@@ -40,12 +40,12 @@ QuestLevelRuntime.prototype.playerActionExec = function(inAction, outAction) {
 	dumpQuestEvent(questEvent);
 
     var nextQRAction = null;
-    if (this.qrScriptRollbacker.isMyEvent(questEvent)) 
-        nextQRAction = this.qrScriptRollbacker.step(questEvent);
+    if (this.qrScriptRevInterp.isMyEvent(questEvent)) 
+        nextQRAction = this.qrScriptRevInterp.step(questEvent);
     else {
         nextQRAction = this.qrScriptInterp.step(questEvent);
-        nextQRAction.setCanRollback(this.qrScriptRollbacker.
-            isNodeCanRollback(nextQRAction.getNode(), questEvent));
+        nextQRAction.setCanReverse(this.qrScriptRevInterp.
+            isNodeCanReverse(nextQRAction.getNode(), questEvent));
     }
 
     this.qrActionExecJS.exec(nextQRAction, outAction)

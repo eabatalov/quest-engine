@@ -9,6 +9,6 @@ QRScriptInterpretator.prototype.step = function(questEvent) {
     action.initFromNode(nextNode);
     action.setHasNext(this.nextCondSearch.get(nextNode) !== null);
     action.setContinue(nextNode.getContinue());
-    //setCanRollback is set by quest level runtime
+    //setCanReverse is set by quest level runtime
     return action;
 };

@@ -4,7 +4,7 @@ function QRActionExecJS() {
 }
 
 QRActionExecJS.prototype.exec = function(qrAction, uiStageActionOut) {
-    this.execEnv.isRollbackExec = qrAction.getIsRollback();
+    this.execEnv.isReverseExec = qrAction.getIsReverse();
 
     if (qrAction.getType() === _QR_ACTION_TYPES.FUNC_CALL &&
         qrAction.source === SEFuncCallNode.sources.js) {
@@ -16,7 +16,7 @@ QRActionExecJS.prototype.exec = function(qrAction, uiStageActionOut) {
         );
         uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
         uiStageActionOut.setHasNext(qrAction.getHasNext() ? 1 : 0);
-        uiStageActionOut.setHasBack(qrAction.getCanRollback() ? 1 : 0);
+        uiStageActionOut.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
         uiStageActionOut.setIsContinue(qrAction.getContinue() ? 1 : 0);
         return true;
     } else return false;

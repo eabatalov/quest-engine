@@ -23,7 +23,7 @@ UIStageActionOut.prototype.clearFields = function() {
     this.funcName = "";
     this.enabled = 0; // 0 or 1
     this.hasNext = 0; //0 or 1
-    this.hasBack = 0; //0 or 1
+    this.canReverse = 0; //0 or 1
 };
 
 UIStageActionOut.prototype.getStageName = function() {
@@ -150,12 +150,12 @@ UIStageActionOut.prototype.setHasNext = function(hasNext) {
     this.hasNext = hasNext;
 };
 
-UIStageActionOut.prototype.getHasBack = function() {
-    return this.hasBack;
+UIStageActionOut.prototype.getCanReverse = function() {
+    return this.canReverse;
 };
 
-UIStageActionOut.prototype.setHasBack = function(hasBack) {
-    this.hasBack = hasBack;
+UIStageActionOut.prototype.setCanReverse = function(canReverse) {
+    this.canReverse = canReverse;
 };
 
 UIStageActionOut.prototype.toString = function() {
