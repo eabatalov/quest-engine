@@ -45,8 +45,7 @@ function(qrAction, uiStageActionOut) {
 		case _QR_ACTION_TYPES.FUNC_CALL:
             if (qrAction.source === SEFuncCallNode.sources.c2) {
 			    uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
-                var funcName = qrAction.name;
-			    uiStageActionOut.setFuncName(funcName);
+			    uiStageActionOut.setFuncName(qrAction.name);
             } else {
                 uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
             }

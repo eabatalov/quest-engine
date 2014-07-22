@@ -54,7 +54,9 @@ QRScriptReverseInterp.prototype.makeAction = function(node, nodeStoryLineRevInte
             if (node.getProp('source') === SEFuncCallNode.sources.c2) {
                 action = new QRAction(_QR_ACTION_TYPES.FUNC_CALL);
 			    action.name = node.getProp("rollbackName");
+                action.source = node.getProp('source');
             } else {
+                //We don't rollback js functions
                 action = new QRAction(_QR_ACTION_TYPES.NONE);
             }
         break;
@@ -87,6 +89,5 @@ QRScriptReverseInterp.prototype.makeAction = function(node, nodeStoryLineRevInte
     action.setHasNext(this.nextCondSearch.get(node) !== null);
     action.setContinuation(actCont);
     action.setCanReverse(nodeStoryLineRevInterp.isNodeCanReverse(node));
-    action.setIsReverse(true);
     return action;
 };

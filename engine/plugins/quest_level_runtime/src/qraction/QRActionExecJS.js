@@ -4,8 +4,6 @@ function QRActionExecJS() {
 }
 
 QRActionExecJS.prototype.exec = function(qrAction, uiStageActionOut) {
-    this.execEnv.isReverseExec = qrAction.getIsReverse();
-
     if (qrAction.getType() === _QR_ACTION_TYPES.FUNC_CALL &&
         qrAction.source === SEFuncCallNode.sources.js) {
         this.jsNodeExecutor.jsFuncExec(

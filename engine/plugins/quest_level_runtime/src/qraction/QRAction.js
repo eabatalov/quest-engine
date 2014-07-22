@@ -20,7 +20,6 @@ function QRAction(type) {
     this.type = type || _QR_ACTION_TYPES.NONE;
     this.hasNext = false;
     this.canReverse = false;
-    this.isReverse = false;
     this.continuation = _QR_ACTION_CONTINUATION_TYPES.NONE;
     this.id = null;
     this.text = null;
@@ -110,14 +109,6 @@ QRAction.prototype.setCanReverse = function(value) {
 
 QRAction.prototype.getCanReverse = function() {
     return this.canReverse;
-};
-
-QRAction.prototype.setIsReverse = function(value) {
-    this.isReverse = value;
-};
-
-QRAction.prototype.getIsReverse = function() {
-    return this.isReverse;
 };
 
 QRAction.prototype.getContinuation = function() {
