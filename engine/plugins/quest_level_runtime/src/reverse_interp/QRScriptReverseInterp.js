@@ -49,6 +49,27 @@ QRScriptReverseInterp.prototype._eventRevInterp = function(questEvent) {
 QRScriptReverseInterp.prototype.makeAction = function(node, nodeStoryLineRevInterp) {
     var action = null;
 
+    if (nodeStoryLineRevInterp.getIsInProgress())
+        action = this._reversedActionFromNode(node);
+    else
+        action = this._preservedActionFromNode(node);
+
+    var actCont = _QR_ACTION_CONTINUATION_TYPES.NONE;
+    if (nodeStoryLineRevInterp.getIsInProgress())
+        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE_UI_CLEAR;
+    else if (node.getContinue())
+        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE;
+
+    action.setHasNext(this.nextCondSearch.get(node) !== null);
+    action.setContinuation(actCont);
+    action.setCanReverse(nodeStoryLineRevInterp.isNodeCanReverse(node));
+    return action;
+};
+
+//Node side effects should be reversed
+QRScriptReverseInterp.prototype._reversedActionFromNode = function(node) {
+    var action = null;
+
     switch(node.getType()) {
         case _QUEST_NODES.FUNC_CALL:
             if (node.getProp('source') === SEFuncCallNode.sources.c2) {
@@ -64,30 +85,28 @@ QRScriptReverseInterp.prototype.makeAction = function(node, nodeStoryLineRevInte
             action = new QRAction(_QR_ACTION_TYPES.PLAYER_MOVEMENT);
             action.enabled = !node.getProp("enabled");
         break;
+        default:
+            action = new QRAction(_QR_ACTION_TYPES.STAGE_CLEAR);
+    };
+    return action;
+};
+
+//Node side effects should be preserved
+QRScriptReverseInterp.prototype._preservedActionFromNode = function(node) {
+    var action = null;
+
+    switch(node.getType()) {
         case _QUEST_NODES.PHRASE:
-            action = new QRAction(_QR_ACTION_TYPES.PHRASE);
-            action.initFromNode(node);
-        break;
         case _QUEST_NODES.QUIZ:
-            action = new QRAction(_QR_ACTION_TYPES.QUIZ);
-            action.initFromNode(node);
-        break;
         case _QUEST_NODES.NOTIFICATION:
-            action = new QRAction(_QR_ACTION_TYPES.NOTIFICATION);
+        case _QUEST_NODES.ANIM:
+        case _QUEST_NODES.WAIT:
+        case _QUEST_NODES.STAGE_CLEAR:
+            action = new QRAction();
             action.initFromNode(node);
         break;
         default:
-            action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
+            action = new QRAction(_QR_ACTION_TYPES.NONE);
     };
-
-    var actCont = _QR_ACTION_CONTINUATION_TYPES.NONE;
-    if (nodeStoryLineRevInterp.getIsInProgress())
-        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE_UI_CLEAR;
-    else if (node.getContinue())
-        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE;
-
-    action.setHasNext(this.nextCondSearch.get(node) !== null);
-    action.setContinuation(actCont);
-    action.setCanReverse(nodeStoryLineRevInterp.isNodeCanReverse(node));
     return action;
 };

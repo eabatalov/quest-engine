@@ -74,13 +74,6 @@ QRStoryLineReverseInterp.prototype.onStoryLineNodeEnter = function(node) {
     } else {
         this.history = this.history.length > 0 ? [] : this.history;
     }
-    //TODO remove
-    /*jQuery.each(this.history, function(ix, seq) {
-        console.log("Seq: ");
-        jQuery.each(seq.nodes, function(ix, node) {
-            console.log(JSON.stringify(node.getId()), " ");
-        });
-    });*/
 };
 
 QRStoryLineReverseInterp.prototype.onStoryLineCondEnter = function(cond) {
@@ -107,7 +100,20 @@ QRStoryLineReverseInterp._condIsReversible = function(cond, hist) {
 };
 
 QRStoryLineReverseInterp._condIsReverseUnitSeparator = function(cond, hist) {
+    /*
+     * Each sequence of nodes starting from ineractive user action
+     * should be a single reverse exec unit.
+     * CUSTOM_EVENT rollback should always be prohibited. So ignore it.
+     */
     switch(cond.getType()) {
+        case _QUEST_CONDS.NONE:
+        case _QUEST_CONDS.OBJECT_CLICKED:
+        case _QUEST_CONDS.ANSWER_1_CLICKED:
+        case _QUEST_CONDS.ANSWER_2_CLICKED:
+        case _QUEST_CONDS.ANSWER_3_CLICKED:
+        case _QUEST_CONDS.ANSWER_4_CLICKED:
+        case _QUEST_CONDS.ANSWER_OTHER_CLICKED:
+        case _QUEST_CONDS.DEFAULT:
         case _QUEST_CONDS.NEXT:
             return true;
         default:
