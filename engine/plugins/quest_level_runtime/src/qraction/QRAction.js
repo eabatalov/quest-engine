@@ -10,12 +10,18 @@ var _QR_ACTION_TYPES = {
     PLAYER_MOVEMENT : 9
 };
 
+var _QR_ACTION_CONTINUATION_TYPES = {
+    NONE : "NONE",
+    CONTINUE : "CONTINUE",
+    CONTINUE_UI_CLEAR : "CONTINUE_UI_CLEAR"
+};
+
 function QRAction(type) {
     this.type = type || _QR_ACTION_TYPES.NONE;
     this.hasNext = false;
     this.canReverse = false;
     this.isReverse = false;
-    this.continue = false;
+    this.continuation = _QR_ACTION_CONTINUATION_TYPES.NONE;
     this.id = null;
     this.text = null;
     this.phraseType = null;
@@ -114,10 +120,10 @@ QRAction.prototype.getIsReverse = function() {
     return this.isReverse;
 };
 
-QRAction.prototype.getContinue = function() {
-    return this.continue;
+QRAction.prototype.getContinuation = function() {
+    return this.continuation;
 };
 
-QRAction.prototype.setContinue = function(isContinue) {
-    this.continue = isContinue;
+QRAction.prototype.setContinuation = function(val) {
+    this.continuation = val;
 };

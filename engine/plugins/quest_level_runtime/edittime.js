@@ -157,10 +157,12 @@ AddExpression(10, ef_return_string, "Phrase type", "Level action out", "getPhras
 
 AddExpression(11, ef_return_number, "Delay in seconds", "Level action out", "getDelay",
 	"Delay in seconds.");
-AddExpression(12, ef_return_number,
-	"1 to continue to the next action not hiding current stage objects and behaviors",
-	"Level action out", "getContinue",
-	"1 to continue to the next action not hiding current stage objects and behaviors");
+AddExpression(12, ef_return_string,
+	"...",
+	"Level action out", "getContinuation",
+	"'NONE': UI should process only current UI action."
+    + "'CONTINUE': UI should return to runtime with 'CONTINUE' action after processing of current UI action."
+    + "'CONTINUE_UI_CLEAR': UI should return to runtime with 'CONTINUE' action after processing of current UI action and clearing current stage UI");
 
 AddExpression(13, ef_return_string, "Function name", "Level action out", "getFuncName",
 	"Function name");

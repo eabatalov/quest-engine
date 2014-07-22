@@ -77,6 +77,5 @@ function(qrAction, uiStageActionOut) {
 	}
     uiStageActionOut.setHasNext(qrAction.getHasNext() ? 1 : 0);
     uiStageActionOut.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
-    uiStageActionOut.setIsContinue(qrAction.getContinue() ? 1 : 0);
+    uiStageActionOut.setContinuation(qrAction.getContinuation());
 };
-

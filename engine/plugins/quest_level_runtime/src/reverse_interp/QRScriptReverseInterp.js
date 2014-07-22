@@ -78,8 +78,14 @@ QRScriptReverseInterp.prototype.makeAction = function(node, nodeStoryLineRevInte
             action.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
     };
 
+    var actCont = _QR_ACTION_CONTINUATION_TYPES.NONE;
+    if (nodeStoryLineRevInterp.getIsInProgress())
+        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE_UI_CLEAR;
+    else if (node.getContinue())
+        actCont = _QR_ACTION_CONTINUATION_TYPES.CONTINUE;
+
     action.setHasNext(this.nextCondSearch.get(node) !== null);
-    action.setContinue(node.getContinue() || nodeStoryLineRevInterp.getIsInProgress());
+    action.setContinuation(actCont);
     action.setCanReverse(nodeStoryLineRevInterp.isNodeCanReverse(node));
     action.setIsReverse(true);
     return action;

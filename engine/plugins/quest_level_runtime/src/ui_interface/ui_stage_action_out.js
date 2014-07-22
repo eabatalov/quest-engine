@@ -18,7 +18,7 @@ UIStageActionOut.prototype.clearFields = function() {
     this.phraseType = "";
 
     this.delaySec = 0;
-    this.isContinue = 0; //0 or 1
+    this.continuation = "";
 
     this.funcName = "";
     this.enabled = 0; // 0 or 1
@@ -118,12 +118,12 @@ UIStageActionOut.prototype.getDelaySec = function() {
     return this.delaySec;
 };
 
-UIStageActionOut.prototype.setIsContinue = function(isContinue) {
-    this.isContinue = isContinue;
+UIStageActionOut.prototype.setContinuation = function(val) {
+    this.continuation = val;
 };
 
-UIStageActionOut.prototype.getIsContinue = function() {
-    return this.isContinue;
+UIStageActionOut.prototype.getContinuation = function() {
+    return this.continuation;
 };
 
 UIStageActionOut.prototype.getFuncName = function() {

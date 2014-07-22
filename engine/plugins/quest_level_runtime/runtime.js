@@ -246,9 +246,9 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
 	};
 
-	Exps.prototype.getContinue = function(ret) {
-		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getIsContinue()
+	Exps.prototype.getContinuation = function(ret) {
+		ret.set_string(
+            this.uiActionManager.getCurrentStageUIActionOUT().getContinuation()
         );
 	};
 

@@ -17,7 +17,7 @@ QRActionExecJS.prototype.exec = function(qrAction, uiStageActionOut) {
         uiStageActionOut.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
         uiStageActionOut.setHasNext(qrAction.getHasNext() ? 1 : 0);
         uiStageActionOut.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
-        uiStageActionOut.setIsContinue(qrAction.getContinue() ? 1 : 0);
+        uiStageActionOut.setContinuation(qrAction.getContinuation());
         return true;
     } else return false;
 };

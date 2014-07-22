@@ -8,7 +8,10 @@ QRScriptInterpretator.prototype.step = function(questEvent) {
     var action = new QRAction();
     action.initFromNode(nextNode);
     action.setHasNext(this.nextCondSearch.get(nextNode) !== null);
-    action.setContinue(nextNode.getContinue());
-    //setCanReverse is set by quest level runtime
+    action.setContinuation(
+        nextNode.getContinue() ? _QR_ACTION_CONTINUATION_TYPES.CONTINUE
+        : _QR_ACTION_CONTINUATION_TYPES.NONE
+    );
+    //XXX setCanReverse is set by quest level runtime after call to step
     return action;
 };
