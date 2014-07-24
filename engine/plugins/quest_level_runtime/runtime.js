@@ -42,7 +42,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	instanceProto.onCreate = function()
 	{
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
-        this.levelRuntime = null;
+        this.levelRuntimeController = null;
         this.uiActionManager = null;
         QuestGame.instance.events.levelChangedAfter.subscribe(this, this.onLevelChanged);
    	};
@@ -112,7 +112,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	/**END-PREVIEWONLY**/
 
     instanceProto.onLevelChanged = function(questLevel) {
-		this.levelRuntime = new QuestLevelRuntime(questLevel);
+		this.levelRuntimeController = new QuestLevelRuntimeController(questLevel);
 		this.uiActionManager = new UIStageActionManager();
         this.runtime.trigger(pluginProto.cnds.levelChanged, this);
     };
@@ -133,7 +133,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 
     //=== SETUP ===
 	Acts.prototype.setupQuestObjects = function(npcType) {
-        this.levelRuntime.setupObjects(npcType);
+        this.levelRuntimeController.setupObjects(npcType);
     };
 
     //=== Level ===
@@ -147,7 +147,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 
     //=== Level action in ===
 	Acts.prototype.playerActionExec = function() {
-	    this.levelRuntime.playerActionExec(
+	    this.levelRuntimeController.uiActionExec(
             this.uiActionManager.getCurrentStageUIActionIN(),
             this.uiActionManager.getCurrentStageUIActionOUT()
         );
