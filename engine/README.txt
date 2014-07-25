@@ -8,3 +8,4 @@ To make plugins avaliable in Construct2:
 7. mklink /D quest_inapp_purchase QUEST_ENGINE_REPO_DIR\engine\plugins\quest_inapp_purchase
 8. mklink /D quest_persistent_storage QUEST_ENGINE_REPO_DIR\engine\plugins\quest_persistent_storage
 9. mklink /D quest_game_plugin QUEST_ENGINE_REPO_DIR\engine\plugins\quest_game_plugin
+9. mklink /D quest_level_recording QUEST_ENGINE_REPO_DIR\engine\plugins\quest_level_recording

@@ -4,13 +4,16 @@
     "c2-plugin-quest-persistent-storage" : "engine/plugins/quest_persistent_storage/",
     "c2-plugin-quest-inapp-purchase" : "engine/plugins/quest_inapp_purchase/",
     "c2-plugin-quest-game" : "engine/plugins/quest_game_plugin/",
+    "c2-plugin-quest-level-recording" : "engine/plugins/quest_level_recording/",
     "quest-script-editor" : "script_editor/public_html/js/",
     "tool-script-to-text" : "tools/script_to_text/",
     "lib-persistent-storage" : "lib/persistent_storage",
     "lib-quest-game" : "lib/quest_game",
     "lib-quest-level" : "lib/quest_level",
     "lib-quest-script" : "lib/quest_script",
-    "lib-quest-exec" : "lib/quest_exec",
+    "lib-quest-level-script-exec" : "lib/quest_level_script_exec/",
+    "lib-quest-level-recording" : "lib/quest_level_recording/",
+    "lib-quest-level-playback" : "lib/quest_level_playback/",
     "lib-quest-level-runtime" : "lib/quest_level_runtime/",
     "lib-util" : "lib/util"
 }

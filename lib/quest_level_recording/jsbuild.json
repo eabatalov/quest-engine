@@ -1,0 +1,21 @@
+{
+    "module" : {
+        "name" : "lib-quest-level-recording",
+        "description" : "",
+        "dependencies" : {
+            "base" : { 
+                "lib-util" : [], 
+                "lib-quest-level" : []
+            }
+        },
+        "src" : {
+            "base" : [
+                "src/LevelGameplayRecord.js",
+                "src/PlayerPositionRecord.js",
+                "src/QuestEventRecord.js",
+                "src/LevelGameplayHistory.js",
+                "src/LevelGameplayRecorder.js"
+            ]
+        }
+    }
+}

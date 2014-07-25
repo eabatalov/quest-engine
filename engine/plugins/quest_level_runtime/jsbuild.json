@@ -5,6 +5,7 @@
         "outDir" : ".",
         "dependencies" : {
             "base" : {
+                 "lib-quest-game" : [],
                  "lib-quest-level-runtime" : []
             }
         },
@@ -14,8 +15,8 @@
                 "src/ui_interface/ui_stage_action_in.js",
                 "src/ui_interface/ui_stage_action_manager.js",
                 "src/ui_interface/ui_stage_action_out.js",
-                "src/QuestLevelRuntimeControllerDebug.js",
-                "src/QuestLevelRuntimeController.js"
+                "src/LevelExecutorControllerDebug.js",
+                "src/LevelExecutorController.js"
             ]
         }
     }

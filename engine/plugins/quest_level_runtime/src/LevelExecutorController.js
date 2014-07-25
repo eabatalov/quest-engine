@@ -1,16 +1,16 @@
-function QuestLevelRuntimeController(questLevel) {
+function LevelExecutorController(levelExecutor) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
     this.npcUIDFunc = this.npcUID.bind(this);
-    this.questLevelRuntime = new QuestLevelRuntime(questLevel);
+    this.levelExecutor = levelExecutor;
 }
 
-QuestLevelRuntimeController.prototype.npcUID = function(stageName, npcIDInStage) {
+LevelExecutorController.prototype.npcUID = function(stageName, npcIDInStage) {
 	return this.stageNPCs[stageName][npcIDInStage];
 };
 
 _NPC_INST_PROP_STAGE_IX = 0;
 _NPC_INST_PROP_NPC_ID_ON_STAGE_IX = 1;
-QuestLevelRuntimeController.prototype.setupObjects = function(NPCType) {
+LevelExecutorController.prototype.setupObjects = function(NPCType) {
 	var quest = this;
 
 	$.each(NPCType.instances, function(ix, npc) {
@@ -26,7 +26,7 @@ QuestLevelRuntimeController.prototype.setupObjects = function(NPCType) {
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
  * Works accoring to current stage quest script
  */
-QuestLevelRuntimeController.prototype.uiActionExec = function(uiInAction, uiOutAction) {
+LevelExecutorController.prototype.uiActionExec = function(uiInAction, uiOutAction) {
     uiOutAction.clearFields();
 
 	validateUIStageActionIN(uiInAction);
@@ -36,7 +36,7 @@ QuestLevelRuntimeController.prototype.uiActionExec = function(uiInAction, uiOutA
 	validateQuestEvent(questEvent);
 	dumpQuestEvent(questEvent);
 
-    var nextQRAction = this.questLevelRuntime.questEventExec(questEvent);
+    var nextQRAction = this.levelExecutor.questEventExec(questEvent);
 
     uiOutAction.fillFromQRAction(nextQRAction, this.npcUIDFunc);
 

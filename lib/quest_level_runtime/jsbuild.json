@@ -5,24 +5,13 @@
         "dependencies" : {
             "base" : { 
                 "lib-util" : [], 
-                "lib-quest-script" : [ 
-                    "interpretator",
-                    "plugins"
-                 ],
-                "lib-quest-exec" : []
+                "lib-quest-level-script-exec" : [],
+                "lib-quest-level-recording" : [],
+                "lib-quest-level-playback" : []
             }
         },
         "src" : {
             "base" : [
-                "src/qraction/QRAction.js",
-                "src/qraction/QRActionExecJS.js",
-                "src/qraction/QRActionExecUI.js",
-                "src/QRScriptInterpretator.js",
-                "src/reverse_interp/QRNodeSequence.js",
-                "src/reverse_interp/QRStoryLineReverseInterp.js",
-                "src/reverse_interp/QRStageReverseInterp.js",
-                "src/reverse_interp/QRScriptReverseInterp.js",
-                "src/QRScriptInterpretator.js",
                 "src/QuestLevelRuntime.js"
             ]
         }

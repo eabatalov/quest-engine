@@ -6,7 +6,8 @@
             "base" : {
                 "lib-util" : [],
                 "lib-persistent-storage" : [],
-                "lib-quest-level" : []
+                "lib-quest-level" : [],
+                "lib-quest-level-runtime" : []
             },
             "noweb" : {
                 "lib-jquery-core-nodom" : []

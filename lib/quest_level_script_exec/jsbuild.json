@@ -1,0 +1,30 @@
+{
+    "module" : {
+        "name" : "lib-quest-level-script-exec",
+        "description" : "",
+        "dependencies" : {
+            "base" : { 
+                "lib-util" : [], 
+                "lib-quest-script" : [ 
+                    "interpretator",
+                    "plugins"
+                 ]
+            }
+        },
+        "src" : {
+            "base" : [
+                "src/QuestScriptNodeExecJS.js",
+                "src/qraction/QRAction.js",
+                "src/qraction/QRActionExecJS.js",
+                "src/qraction/QRActionExecUI.js",
+                "src/QRScriptInterpretator.js",
+                "src/reverse_interp/QRNodeSequence.js",
+                "src/reverse_interp/QRStoryLineReverseInterp.js",
+                "src/reverse_interp/QRStageReverseInterp.js",
+                "src/reverse_interp/QRScriptReverseInterp.js",
+                "src/QRScriptInterpretator.js",
+                "src/QuestLevelScriptExecutor.js"
+            ]
+        }
+    }
+}

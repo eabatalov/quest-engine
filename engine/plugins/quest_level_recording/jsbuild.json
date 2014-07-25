@@ -1,0 +1,19 @@
+{
+    "module" : {
+        "name" : "c2-plugin-quest-level-recording",
+        "description" : "",
+        "outDir" : ".",
+        "dependencies" : {
+            "base" : {
+                "lib-quest-game" : [],
+                "lib-quest-level-runtime" : [],
+                "lib-quest-level-recording" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/LevelGameplayRecordSaver.js"
+            ]
+        }
+    }
+}
