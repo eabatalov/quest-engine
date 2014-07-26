@@ -33,11 +33,11 @@ LevelGameplayPlayerController.prototype.playerPosChangeProcCompleted = function(
     }
 };
 
-LevelGameplayPlayerController.prototype.getPlayerPosX = function() {
+LevelGameplayPlayerController.prototype.getPlayerX = function() {
     return this.pendingCommands[0].x;
 };
 
-LevelGameplayPlayerController.prototype.getPlayerPosY = function() {
+LevelGameplayPlayerController.prototype.getPlayerY = function() {
     return this.pendingCommands[0].y;
 };
 
