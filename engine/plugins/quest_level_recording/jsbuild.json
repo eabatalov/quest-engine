@@ -12,7 +12,7 @@
         },
         "src" : {
             "base" : [
-                "src/LevelGameplayRecordSaver.js"
+                "src/LevelGameplayHistorySaver.js"
             ]
         }
     }

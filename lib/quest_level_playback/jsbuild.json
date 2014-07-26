@@ -11,7 +11,8 @@
         },
         "src" : {
             "base" : [
-                "src/LevelGameplayPlayer.js"
+                "src/LevelGameplayPlayer.js",
+                "src/LevelGameplayHistoryLoader.js"
             ]
         }
     }

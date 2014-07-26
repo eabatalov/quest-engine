@@ -41,8 +41,8 @@ cr.plugins_.QuestLevelRecordingPlugin = function(runtime)
 	// called whenever an instance is created
 	instanceProto.onCreate = function()
 	{
-        this.levelGameplayeRecorder = null;
-        this.levelGameplayRecordSaver = new LevelGameplayRecordSaver();
+        this.levelGameplayRecorder = null;
+        this.levelGameplayHistorySaver = new LevelGameplayHistorySaver();
         QuestGame.instance.events.levelChanged.subscribe(this, this.onLevelChanged);
 	};
 	
@@ -111,7 +111,7 @@ cr.plugins_.QuestLevelRecordingPlugin = function(runtime)
 	/**END-PREVIEWONLY**/
 
     instanceProto.onLevelChanged = function(questLevelRuntime) {
-        this.levelGameplayeRecorder = questLevelRuntime.getLevelGameplayRecorder();
+        this.levelGameplayRecorder = questLevelRuntime.getLevelGameplayRecorder();
     };
 	//////////////////////////////////////
 	// Conditions
@@ -124,12 +124,12 @@ cr.plugins_.QuestLevelRecordingPlugin = function(runtime)
 	function Acts() {};
 
 	Acts.prototype.recPlayerXY = function(x, y) {
-        this.levelGameplayeRecorder.addRecord(new PlayerPositionRecord(x, y));
+        this.levelGameplayRecorder.addRecord(new PlayerPositionRecord(x, y));
     };
 
     Acts.prototype.saveGamePlay = function() {
-        this.levelGameplayRecordSaver.save(
-            this.levelGameplayeRecorder.getGameplayHistory()
+        this.levelGameplayHistorySaver.save(
+            this.levelGameplayRecorder.getGameplayHistory()
         );
     };
 
