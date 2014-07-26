@@ -149,6 +149,14 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
         this.levelGameplayPlayerController.playerPosChangeProcCompleted();
     };
 
+	Acts.prototype.speedUp = function() {
+        this.levelGameplayPlayerController.speedUp();
+    };
+
+    Acts.prototype.speedDown = function() {
+        this.levelGameplayPlayerController.speedDown();
+    };
+
 	pluginProto.acts = new Acts();
 
 	//////////////////////////////////////

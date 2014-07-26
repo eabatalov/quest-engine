@@ -38,6 +38,8 @@ AddAction(2, af_none, "Signal player position change completed", "General",
     "Signal player position change completed",
     "Signal player position change completed",
     "playerPosChangeProcCompleted");
+AddAction(3, af_none, "Speed up", "General", "Speed up", "Speed up", "speedUp");
+AddAction(4, af_none, "Speed down", "General", "Speed down", "Speed down", "speedDown");
 
 AddExpression(0, ef_return_number, "Player position X", "Player position X", "getPlayerX",
     "Player position X");

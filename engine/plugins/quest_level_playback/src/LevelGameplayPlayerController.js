@@ -48,3 +48,11 @@ LevelGameplayPlayerController.prototype.play = function() {
 LevelGameplayPlayerController.prototype.stop = function() {
     this.levelGameplayPlayer.stop();
 };
+
+LevelGameplayPlayerController.prototype.speedUp = function() {
+    this.levelGameplayPlayer.speedUp();
+};
+
+LevelGameplayPlayerController.prototype.speedDown = function() {
+    this.levelGameplayPlayer.speedDown();
+};
