@@ -5,6 +5,7 @@
     "c2-plugin-quest-inapp-purchase" : "engine/plugins/quest_inapp_purchase/",
     "c2-plugin-quest-game" : "engine/plugins/quest_game_plugin/",
     "c2-plugin-quest-level-recording" : "engine/plugins/quest_level_recording/",
+    "c2-plugin-quest-level-playback" : "engine/plugins/quest_level_playback/",
     "quest-script-editor" : "script_editor/public_html/js/",
     "tool-script-to-text" : "tools/script_to_text/",
     "lib-persistent-storage" : "lib/persistent_storage",

@@ -7,11 +7,13 @@
             "base" : {
                 "lib-quest-game" : [],
                 "lib-quest-level-runtime" : [],
-                "lib-quest-level-recording" : []
+                "lib-quest-level-recording" : [],
+                "lib-quest-level-playback" : []
              }
         },
         "src" : {
             "base" : [
+                "src/LevelGameplayPlayerController.js"
             ]
         }
     }

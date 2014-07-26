@@ -34,6 +34,10 @@ AddCondition(0, cf_trigger, "Change player position", "General",
 
 AddAction(0, af_none, "Play", "General", "Play", "Play", "play");
 AddAction(1, af_none, "Stop", "General", "Stop", "Stop", "stop");
+AddAction(2, af_none, "Signal player position change completed", "General",
+    "Signal player position change completed",
+    "Signal player position change completed",
+    "playerPosChangeProcCompleted");
 
 AddExpression(0, ef_return_number, "Player position X", "Player position X", "getPlayerX",
     "Player position X");
