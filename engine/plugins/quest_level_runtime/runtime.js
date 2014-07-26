@@ -43,6 +43,7 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	{
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
         this.levelExecutionController = null;
+        this.levelSpecificEventHandlers = [];
         this.uiActionManager = null;
         QuestGame.instance.events.levelChangedAfter.subscribe(this, this.onLevelChanged);
    	};
@@ -112,10 +113,31 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	/**END-PREVIEWONLY**/
 
     instanceProto.onLevelChanged = function(questLevelRuntime) {
+        jQuery.each(this.levelSpecificEventHandlers, function(ix, handler) {
+            handler.delete();
+        });
+        this.levelSpecificEventHandlers = [];
+
 		this.levelExecutionController =
             new LevelExecutorController(questLevelRuntime.getLevelExecutor());
-		this.uiActionManager = new UIStageActionManager();
+   		this.uiActionManager = new UIStageActionManager();
+        this.levelSpecificEventHandlers.push(
+            this.levelExecutionController.events.
+                qrActionPending.subscribe(this, this.onQRActionPending.bind(this))
+        );
+
         this.runtime.trigger(pluginProto.cnds.levelChanged, this);
+    };
+
+    instanceProto.onQRActionPending = function(qrAction) {
+        //TODO drop this complicated stage actions manager and calling back
+        //to levelExecutionController. Just use 1 uiinaction and 1 uioutaction
+        //drop all the actions not dedicated for current stage in UI
+        this.uiActionManager.setCurrentStageName(qrAction.getStageName());
+        var uiOutAction = this.uiActionManager.getCurrentStageUIActionOUT();
+        this.levelExecutionController.fillUIActionOut(uiOutAction, qrAction);
+
+        this.runtime.trigger(pluginProto.cnds.uiActionIsPending, this);
     };
 
 	//////////////////////////////////////
@@ -124,6 +146,10 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 
 	Cnds.prototype.levelChanged = function() {
 	    return true; //cf_trigger was signaled explicitly
+    };
+
+    Cnds.prototype.uiActionIsPending = function() {
+        return true; //cf_trigger was signaled explicitly
     };
 	
 	pluginProto.cnds = new Cnds();
@@ -147,10 +173,13 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	};
 
     //=== Level action in ===
+    Acts.prototype.signalUIActionCompleted = function() {
+        this.levelExecutionController.currentUIActionProcCompleted();
+    };
+
 	Acts.prototype.playerActionExec = function() {
 	    this.levelExecutionController.uiActionExec(
-            this.uiActionManager.getCurrentStageUIActionIN(),
-            this.uiActionManager.getCurrentStageUIActionOUT()
+            this.uiActionManager.getCurrentStageUIActionIN()
         );
     };
 

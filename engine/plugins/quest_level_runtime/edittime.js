@@ -62,6 +62,9 @@ AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive",
 AddCondition(0, cf_trigger, "Level changed", "General",
     "Level changed", "Level changed", "levelChanged");
 
+AddCondition(1, cf_trigger, "UI action is pending", "General",
+    "UI action is pending", "UI action is pending", "uiActionIsPending");
+
 ////////////////////////////////////////
 // Actions
 
@@ -93,7 +96,7 @@ AddStringParam("Value", "Stage name (String)");
 AddAction(4, af_none, "Set current stage", "Level", "Set current stage to {0}",
 	"Set stage name with which we'll work now.", "setStage");
 
-//=== LEVEL ACTION IN ===
+//=== LEVEL UI ACTION IN ===
 AddAction(1, af_none, "Execute last player action on current stage", "Level action in",
 	"Execute last player action {0} on current stage",
 	"Execute last player action on current stage",
@@ -113,6 +116,10 @@ AddStringParam("Value", "Action name");
 AddAction(7, af_none, "Set last action 'name' value", "Level action in", "Set 'name' to {0}",
 	"", "setLastActionName");
 
+//=== LEVEL UI ACTION OUT ===
+AddAction(8, af_none, "Signla UI action completed", "Signal UI action completed",
+    "Signal UI action completed", "", "signalUIActionCompleted");
+
 ////////////////////////////////////////
 // Expressions
 
@@ -127,7 +134,7 @@ AddAction(7, af_none, "Set last action 'name' value", "Level action in", "Set 'n
 // example
 /*AddExpression(0, ef_return_number, "Leet expression", "My category", "MyExpression", "Return the number 1337.");*/
 
-//=== LEVEL ACTION OUT ===
+//=== LEVEL UI ACTION OUT ===
 AddExpression(0, ef_return_string, "Current stage", "Level action out", "getCurrentStage",
 	"Current stage");
 AddExpression(1, ef_return_string, "Current actor type", "Level action out", "getActor",
