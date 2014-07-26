@@ -27,7 +27,7 @@ LevelGameplayPlayerController.prototype._onChangePlayerPos = function(x, y) {
 };
 
 LevelGameplayPlayerController.prototype.playerPosChangeProcCompleted = function() {
-    this.pendingCommands.pop();
+    this.pendingCommands.shift();
     if (this.pendingCommands.length > 0) {
         this.events.changePlayerPos.publish(this.pendingCommands[0]);        
     }

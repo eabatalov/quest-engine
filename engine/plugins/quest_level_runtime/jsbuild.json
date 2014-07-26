@@ -13,7 +13,6 @@
             "base" : [
                 "src/ui_interface/consts.js",
                 "src/ui_interface/ui_stage_action_in.js",
-                "src/ui_interface/ui_stage_action_manager.js",
                 "src/ui_interface/ui_stage_action_out.js",
                 "src/LevelExecutorControllerDebug.js",
                 "src/LevelExecutorController.js"

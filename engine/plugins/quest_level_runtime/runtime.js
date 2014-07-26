@@ -44,7 +44,6 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 		// note the object is sealed after this call; ensure any properties you'll ever need are set on the object
         this.levelExecutionController = null;
         this.levelSpecificEventHandlers = [];
-        this.uiActionManager = null;
         QuestGame.instance.events.levelChangedAfter.subscribe(this, this.onLevelChanged);
    	};
 	
@@ -113,30 +112,20 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	/**END-PREVIEWONLY**/
 
     instanceProto.onLevelChanged = function(questLevelRuntime) {
-        jQuery.each(this.levelSpecificEventHandlers, function(ix, handler) {
-            handler.delete();
-        });
+        jQuery.each(this.levelSpecificEventHandlers, collectionObjectDelete);
         this.levelSpecificEventHandlers = [];
 
 		this.levelExecutionController =
             new LevelExecutorController(questLevelRuntime.getLevelExecutor());
-   		this.uiActionManager = new UIStageActionManager();
         this.levelSpecificEventHandlers.push(
             this.levelExecutionController.events.
-                qrActionPending.subscribe(this, this.onQRActionPending.bind(this))
+                uiActionPending.subscribe(this, this.onUIActionPending.bind(this))
         );
 
         this.runtime.trigger(pluginProto.cnds.levelChanged, this);
     };
 
-    instanceProto.onQRActionPending = function(qrAction) {
-        //TODO drop this complicated stage actions manager and calling back
-        //to levelExecutionController. Just use 1 uiinaction and 1 uioutaction
-        //drop all the actions not dedicated for current stage in UI
-        this.uiActionManager.setCurrentStageName(qrAction.getStageName());
-        var uiOutAction = this.uiActionManager.getCurrentStageUIActionOUT();
-        this.levelExecutionController.fillUIActionOut(uiOutAction, qrAction);
-
+    instanceProto.onUIActionPending = function(uiOutAction) {
         this.runtime.trigger(pluginProto.cnds.uiActionIsPending, this);
     };
 
@@ -168,31 +157,29 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         QuestGame.instance.setCurrentLevelByName(levelName);
     };
 
-    Acts.prototype.setStage = function(stageName) {
-        this.uiActionManager.setCurrentStageName(stageName);
-	};
-
     //=== Level action in ===
     Acts.prototype.signalUIActionCompleted = function() {
         this.levelExecutionController.currentUIActionProcCompleted();
     };
 
 	Acts.prototype.playerActionExec = function() {
-	    this.levelExecutionController.uiActionExec(
-            this.uiActionManager.getCurrentStageUIActionIN()
-        );
+	    this.levelExecutionController.uiActionInExec();
     };
 
+    Acts.prototype.setStage = function(stageName) {
+        this.levelExecutionController.getUIActionIn().setStageName(stageName);
+	};
+
     Acts.prototype.setLastPlayerAction = function(value) {
-        this.uiActionManager.getCurrentStageUIActionIN().setActionType(value);
+        this.levelExecutionController.getUIActionIn().setActionType(value);
 	};
 
 	Acts.prototype.setLastActionTargetId = function(value) {
-        this.uiActionManager.getCurrentStageUIActionIN().setTargetId(value);
+        this.levelExecutionController.getUIActionIn().setTargetId(value);
 	};
 
     Acts.prototype.setLastActionName = function(value) {
-        this.uiActionManager.getCurrentStageUIActionIN().setName(value);
+        this.levelExecutionController.getUIActionIn().setName(value);
 	};
 
     pluginProto.acts = new Acts();
@@ -205,104 +192,104 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	Exps.prototype.getCurrentStage = function(ret)
 	{
 		ret.set_string(
-            this.uiActionManager.getCurrentStageName()
+            this.levelExecutionController.getUIActionOut().getStageName()
         );
 	}
 
 	Exps.prototype.getActor = function(ret)
 	{
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getActorType()
+            this.levelExecutionController.getUIActionOut().getActorType()
         );
 	};
 
 	Exps.prototype.getNPCActorUID = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getNPCActorUID()
+            this.levelExecutionController.getUIActionOut().getNPCActorUID()
         );
 	};
 
 	Exps.prototype.getAction = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getActionType()
+            this.levelExecutionController.getUIActionOut().getActionType()
         );
 	};
 
 	Exps.prototype.getAnimationName = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getAnimationName()
+            this.levelExecutionController.getUIActionOut().getAnimationName()
         );
 	};
 
 	Exps.prototype.getText = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getText()
+            this.levelExecutionController.getUIActionOut().getText()
         );
 	};
 
 	Exps.prototype.getAnswer1Text = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer1Text()
+            this.levelExecutionController.getUIActionOut().getAnswer1Text()
         );
 	};
 
 	Exps.prototype.getAnswer2Text = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer2Text()
+            this.levelExecutionController.getUIActionOut().getAnswer2Text()
         );
 	};
 
 	Exps.prototype.getAnswer3Text = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer3Text()
+            this.levelExecutionController.getUIActionOut().getAnswer3Text()
         );
 	};
 
 	Exps.prototype.getAnswer4Text = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getAnswer4Text()
+            this.levelExecutionController.getUIActionOut().getAnswer4Text()
         );
 	};
 
 	Exps.prototype.getPhraseType = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getPhraseType()
+            this.levelExecutionController.getUIActionOut().getPhraseType()
         );
 	};
 
 	Exps.prototype.getDelay = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getDelaySec()
+            this.levelExecutionController.getUIActionOut().getDelaySec()
         );
 	};
 
 	Exps.prototype.getContinuation = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getContinuation()
+            this.levelExecutionController.getUIActionOut().getContinuation()
         );
 	};
 
     Exps.prototype.getFuncName = function(ret) {
 		ret.set_string(
-            this.uiActionManager.getCurrentStageUIActionOUT().getFuncName()
+            this.levelExecutionController.getUIActionOut().getFuncName()
         );
 	};
 
     Exps.prototype.getEnabled = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getEnabled()
+            this.levelExecutionController.getUIActionOut().getEnabled()
         );
 	};
 
     Exps.prototype.getHasNext = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getHasNext()
+            this.levelExecutionController.getUIActionOut().getHasNext()
         );
 	};
 
     Exps.prototype.getHasBack = function(ret) {
 		ret.set_int(
-            this.uiActionManager.getCurrentStageUIActionOUT().getCanReverse()
+            this.levelExecutionController.getUIActionOut().getCanReverse()
         );
 	};
 

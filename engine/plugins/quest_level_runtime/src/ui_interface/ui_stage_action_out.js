@@ -1,9 +1,9 @@
-function UIStageActionOut(stageName) {
-	this.stageName = stageName;
+function UIStageActionOut() {
     this.clearFields();
 };
 
 UIStageActionOut.prototype.clearFields = function() {
+    this.stageName = "";
     this.actorType = "";
     this.actionType = "";
     this.npcActorUID = 0;
@@ -28,6 +28,10 @@ UIStageActionOut.prototype.clearFields = function() {
 
 UIStageActionOut.prototype.getStageName = function() {
     return this.stageName;
+};
+
+UIStageActionOut.prototype.setStageName = function(stageName) {
+    this.stageName = stageName;
 };
 
 UIStageActionOut.prototype.setActorType = function(actorType) {
@@ -224,10 +228,11 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
         );
 		this.setNPCActorUID(
             qrAction.id !== _QUEST_PLAYER_ID ?
-			    npcUID(this.getStageName(), qrAction.id)
+			    npcUID(qrAction.getStageName(), qrAction.id)
                 : null
         );
 	}
+    this.setStageName(qrAction.getStageName());
     this.setHasNext(qrAction.getHasNext() ? 1 : 0);
     this.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
     this.setContinuation(qrAction.getContinuation());

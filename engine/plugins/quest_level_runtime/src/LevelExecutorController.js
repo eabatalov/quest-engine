@@ -1,16 +1,25 @@
 function LevelExecutorController(levelExecutor) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
-    this.npcUIDFunc = this.npcUID.bind(this);
+    this.npcUIDFunc = this._npcUID.bind(this);
     this.levelExecutor = levelExecutor;
     this.levelExecutor.events.
-        qrActionPending.subscribe(this, this.onQRActionPending.bind(this));
+        qrActionPending.subscribe(this, this._onQRActionPending.bind(this));
+
+    this.uiActionIn = new UIStageActionIn();
+    this.uiActionOut = new UIStageActionOut();
+    this.pendingQRActions = [];
+
     this.events = {
-        qrActionPending : new SEEvent()
+        uiActionPending : new SEEvent(/*UIStageActionOut*/)
     };
 }
 
-LevelExecutorController.prototype.npcUID = function(stageName, npcIDInStage) {
-	return this.stageNPCs[stageName][npcIDInStage];
+LevelExecutorController.prototype.getUIActionIn = function() {
+    return this.uiActionIn;
+};
+
+LevelExecutorController.prototype.getUIActionOut = function() {
+    return this.uiActionOut;
 };
 
 _NPC_INST_PROP_STAGE_IX = 0;
@@ -31,30 +40,41 @@ LevelExecutorController.prototype.setupObjects = function(NPCType) {
  * Reads INs parameters, modifies OUTs parameters to specify new UI action.
  * Works accoring to current stage quest script
  */
-LevelExecutorController.prototype.uiActionExec = function(uiInAction) {
-	validateUIStageActionIN(uiInAction);
-	dumpUIStageActionIn(uiInAction);
+LevelExecutorController.prototype.uiActionInExec = function() {
+	validateUIStageActionIN(this.uiActionIn);
+	dumpUIStageActionIn(this.uiActionIn);
 
-	var questEvent = uiStageActionInToQuestEvent(uiInAction);
+	var questEvent = uiStageActionInToQuestEvent(this.uiActionIn);
 	validateQuestEvent(questEvent);
 	dumpQuestEvent(questEvent);
 
     this.levelExecutor.questEventExec(questEvent);
 };
 
-LevelExecutorController.prototype.fillUIActionOut = function(uiOutAction, qrAction) {
-    uiOutAction.clearFields();
-    uiOutAction.fillFromQRAction(qrAction, this.npcUIDFunc);
-    validateUIStageActionOut(uiOutAction);
-    dumpUIStageActionOut(uiOutAction);
-};
-
+//Called by UI when current uiActionOut was processed
 LevelExecutorController.prototype.currentUIActionProcCompleted = function() {
-    //Called by UI when last uiActionPending event was processed
-    //TODO implement
+    this.pendingQRActions.shift();
+    if (this.pendingQRActions.length > 0) {
+        this._fillUIActionOut(this.pendingQRActions[0]);
+        this.events.uiActionPending.publish(this.uiActionOut);
+    }
 };
 
-LevelExecutorController.prototype.onQRActionPending = function(nextQRAction) {
-    //TODO add qrActions queue here because they can be generated spantaneously
-    this.events.qrActionPending.publish(nextQRAction);
+LevelExecutorController.prototype._onQRActionPending = function(nextQRAction) {
+    this.pendingQRActions.push(nextQRAction);
+    if (this.pendingQRActions.length === 1) {
+        this._fillUIActionOut(this.pendingQRActions[0]);
+        this.events.uiActionPending.publish(this.uiActionOut);
+    }
+};
+
+LevelExecutorController.prototype._npcUID = function(stageName, npcIDInStage) {
+	return this.stageNPCs[stageName][npcIDInStage];
+};
+
+LevelExecutorController.prototype._fillUIActionOut = function(qrAction) {
+    this.uiActionOut.clearFields();
+    this.uiActionOut.fillFromQRAction(qrAction, this.npcUIDFunc);
+    validateUIStageActionOut(this.uiActionOut);
+    dumpUIStageActionOut(this.uiActionOut);
 };
