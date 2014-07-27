@@ -35,6 +35,8 @@ AddAction(0, af_none, "Record player position", "General", "Record player X {0} 
 
 AddAction(2, af_none, "Save level gameplay recording", "General",
     "Save level gameplay recording", "Save level gameplay recording", "saveGamePlay");
+AddAction(3, af_none, "Stop level gameplay recording", "General",
+    "Stop level gameplay recording", "Stop level gameplay recording", "stopRecording");
 
 ACESDone();
 

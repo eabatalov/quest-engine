@@ -30,6 +30,8 @@
 
 AddCondition(0, cf_trigger, "Change player position", "General",
     "Change player position", "Change player position", "playerPosChange");
+AddCondition(1, cf_trigger, "Level gameplay history loaded", "General",
+    "Level gameplay history loaded", "Level gameplay history loaded", "levelGameplayHistoryLoaded");
 
 
 AddAction(0, af_none, "Play", "General", "Play", "Play", "play");
@@ -40,6 +42,7 @@ AddAction(2, af_none, "Signal player position change completed", "General",
     "playerPosChangeProcCompleted");
 AddAction(3, af_none, "Speed up", "General", "Speed up", "Speed up", "speedUp");
 AddAction(4, af_none, "Speed down", "General", "Speed down", "Speed down", "speedDown");
+AddAction(5, af_none, "Load", "General", "Load", "Load", "load");
 
 AddExpression(0, ef_return_number, "Player position X", "Player position X", "getPlayerX",
     "Player position X");

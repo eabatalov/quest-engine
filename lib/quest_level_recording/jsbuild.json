@@ -14,7 +14,11 @@
                 "src/PlayerPositionRecord.js",
                 "src/QuestEventRecord.js",
                 "src/LevelGameplayHistory.js",
-                "src/LevelGameplayRecorder.js"
+                "src/LevelGameplayRecorder.js",
+                "src/ILevelGameplayHistorySaver.js"
+            ],
+            "web" : [
+                "src/AjaxServerLevelGameplayHistorySaver.js"
             ]
         }
     }

@@ -116,18 +116,28 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 
         this.levelGameplayPlayerController =
             new LevelGameplayPlayerController(questLevelRuntime.getLevelGameplayPlayer());
-        this.levelGameplayPlayerController.events.
-            changePlayerPos.subscribe(this, this.onChangePlayerPos);
+        this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
+            changePlayerPos.subscribe(this, this.onChangePlayerPos));
+        this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
+            levelGameplayHistoryLoaded.subscribe(this, this.onLevelGameplayHistoryLoaded));
     };
 
     instanceProto.onChangePlayerPos = function(x, y) {
         this.runtime.trigger(pluginProto.cnds.playerPosChange, this);
+    };
+
+    instanceProto.onLevelGameplayHistoryLoaded = function() {
+        this.runtime.trigger(pluginProto.cnds.levelGameplayHistoryLoaded, this);
     };
 	//////////////////////////////////////
 	// Conditions
 	function Cnds() {};
 
     Cnds.prototype.playerPosChange = function() {
+        return true;
+    };
+
+    Cnds.prototype.levelGameplayHistoryLoaded = function() {
         return true;
     };
 
@@ -155,6 +165,10 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 
     Acts.prototype.speedDown = function() {
         this.levelGameplayPlayerController.speedDown();
+    };
+
+    Acts.prototype.load = function() {
+        this.levelGameplayPlayerController.load();
     };
 
 	pluginProto.acts = new Acts();

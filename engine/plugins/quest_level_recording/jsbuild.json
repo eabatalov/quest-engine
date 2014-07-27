@@ -11,9 +11,7 @@
              }
         },
         "src" : {
-            "base" : [
-                "src/LevelGameplayHistorySaver.js"
-            ]
+            "base" : []
         }
     }
 }

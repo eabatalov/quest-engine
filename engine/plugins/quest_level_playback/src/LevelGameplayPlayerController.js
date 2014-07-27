@@ -2,28 +2,18 @@ function LevelGameplayPlayerController(levelGameplayPlayer) {
     this.pendingCommands = [];
 
     this.levelGameplayPlayer = levelGameplayPlayer;
+    this.levelGameplayPlayer.setLevelHist(new LevelGameplayHistory());
     this.levelGameplayPlayer.events.
         changePlayerPos.subscribe(this, this._onChangePlayerPos);
     this.events = {
-        changePlayerPos : new SEEvent(/*x, y*/)
-    };
-    //XXX
-    var histLoader = new LevelGameplayHistoryLoader();
-    this.levelGameplayPlayer.setLevelHist(histLoader.load());
+        changePlayerPos : new SEEvent(/*x, y*/),
+        levelGameplayHistoryLoaded : new SEEvent()
+    }
 }
 
 LevelGameplayPlayerController.ChangePlayerPosCommand = function(x, y) {
     this.x = x;
     this.y = y;
-};
-
-LevelGameplayPlayerController.prototype._onChangePlayerPos = function(x, y) {
-    this.pendingCommands.push(
-        new LevelGameplayPlayerController.ChangePlayerPosCommand(x, y)
-    );
-    if (this.pendingCommands.length === 1) {
-        this.events.changePlayerPos.publish(this.pendingCommands[0]);        
-    }
 };
 
 LevelGameplayPlayerController.prototype.playerPosChangeProcCompleted = function() {
@@ -55,4 +45,23 @@ LevelGameplayPlayerController.prototype.speedUp = function() {
 
 LevelGameplayPlayerController.prototype.speedDown = function() {
     this.levelGameplayPlayer.speedDown();
+};
+
+LevelGameplayPlayerController.prototype.load = function() {
+    var histLoader = QuestGame.instance.getLevelGameplayHistoryLoader();
+    histLoader.load(this._onLevelGameplayHistoryLoaded.bind(this));
+};
+
+LevelGameplayPlayerController.prototype._onLevelGameplayHistoryLoaded = function(history) {
+    this.levelGameplayPlayer.setLevelHist(history);
+    this.events.levelGameplayHistoryLoaded.publish();
+};
+
+LevelGameplayPlayerController.prototype._onChangePlayerPos = function(x, y) {
+    this.pendingCommands.push(
+        new LevelGameplayPlayerController.ChangePlayerPosCommand(x, y)
+    );
+    if (this.pendingCommands.length === 1) {
+        this.events.changePlayerPos.publish(this.pendingCommands[0]);        
+    }
 };
