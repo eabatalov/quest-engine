@@ -16,7 +16,7 @@ function LevelGameplayPlayerController(levelGameplayPlayer, histLoader) {
     }
 }
 
-LevelGameplayHistory.prototype.delete = function() {
+LevelGameplayPlayerController.prototype.delete = function() {
     jQuery.each(this.handlers, collectionObjectDelete);
 };
 
