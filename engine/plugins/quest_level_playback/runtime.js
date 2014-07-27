@@ -114,8 +114,13 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
         jQuery.each(this.levelSpecificHandlers, collectionObjectDelete);
         this.levelSpecificHandlers = [];
 
+        if (this.levelGameplayPlayerController)
+            this.levelGameplayPlayerController.delete();
+
         this.levelGameplayPlayerController =
-            new LevelGameplayPlayerController(questLevelRuntime.getLevelGameplayPlayer());
+            new LevelGameplayPlayerController(
+                    questLevelRuntime.getLevelGameplayPlayer(),
+                    QuestGame.instance.getLevelGameplayHistoryLoader());
         this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
             changePlayerPos.subscribe(this, this.onChangePlayerPos));
         this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.

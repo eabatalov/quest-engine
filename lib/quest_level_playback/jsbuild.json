@@ -12,6 +12,7 @@
         "src" : {
             "base" : [
                 "src/LevelGameplayPlayer.js",
+                "src/QuestLevelGameplayPlayer.js",
                 "src/ILevelGameplayHistoryLoader.js"
             ],
             "web" : [

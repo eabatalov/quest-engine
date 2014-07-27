@@ -1,5 +1,10 @@
-function LevelGameplayPlayerController(levelGameplayPlayer) {
+function LevelGameplayPlayerController(levelGameplayPlayer, histLoader) {
     this.pendingCommands = [];
+    this.handlers = [];
+
+    this.histLoader = histLoader;
+    this.handlers.push(this.histLoader.events.
+        historyLoaded.subscribe(this, this._onLevelGameplayHistoryLoaded));
 
     this.levelGameplayPlayer = levelGameplayPlayer;
     this.levelGameplayPlayer.setLevelHist(new LevelGameplayHistory());
@@ -10,6 +15,10 @@ function LevelGameplayPlayerController(levelGameplayPlayer) {
         levelGameplayHistoryLoaded : new SEEvent()
     }
 }
+
+LevelGameplayHistory.prototype.delete = function() {
+    jQuery.each(this.handlers, collectionObjectDelete);
+};
 
 LevelGameplayPlayerController.ChangePlayerPosCommand = function(x, y) {
     this.x = x;
@@ -48,8 +57,7 @@ LevelGameplayPlayerController.prototype.speedDown = function() {
 };
 
 LevelGameplayPlayerController.prototype.load = function() {
-    var histLoader = QuestGame.instance.getLevelGameplayHistoryLoader();
-    histLoader.load(this._onLevelGameplayHistoryLoaded.bind(this));
+    this.histLoader.load();
 };
 
 LevelGameplayPlayerController.prototype._onLevelGameplayHistoryLoaded = function(history) {
