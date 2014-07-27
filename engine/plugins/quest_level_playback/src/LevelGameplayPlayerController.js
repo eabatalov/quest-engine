@@ -18,6 +18,7 @@ function LevelGameplayPlayerController(levelGameplayPlayer, histLoader) {
 
 LevelGameplayPlayerController.prototype.delete = function() {
     jQuery.each(this.handlers, collectionObjectDelete);
+    this.levelGameplayPlayer.stop();
 };
 
 LevelGameplayPlayerController.ChangePlayerPosCommand = function(x, y) {
