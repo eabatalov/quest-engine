@@ -117,10 +117,12 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
         if (this.levelGameplayPlayerController)
             this.levelGameplayPlayerController.delete();
 
-        this.levelGameplayPlayerController =
-            new LevelGameplayPlayerController(
-                    questLevelRuntime.getLevelGameplayPlayer(),
-                    QuestGame.instance.getLevelGameplayHistoryLoader());
+        var questLevelGameplayPlayer =
+            new QuestLevelGameplayPlayer(questLevelRuntime.getLevelExecutor());
+        this.levelGameplayPlayerController = new LevelGameplayPlayerController(
+            questLevelGameplayPlayer,
+            QuestGame.instance.getLevelGameplayHistoryLoader()
+        );
         this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
             changePlayerPos.subscribe(this, this.onChangePlayerPos));
         this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
