@@ -192,5 +192,16 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
         ret.set_int(this.levelGameplayPlayerController.getPlayerY());
     };
 
+    Exps.prototype.getPlaybackPosMin = function(ret) {
+        ret.set_int(this.levelGameplayPlayerController.getPlaybackPosMin());
+    };
+
+    Exps.prototype.getPlaybackPosSec = function(ret) {
+        ret.set_int(this.levelGameplayPlayerController.getPlaybackPosSec());
+    };
+
+    Exps.prototype.getPlaybackSpeed = function(ret) {
+        ret.set_string(this.levelGameplayPlayerController.getPlaybackSpeed());
+    };
     pluginProto.exps = new Exps();
 }());

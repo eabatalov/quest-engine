@@ -49,6 +49,23 @@ LevelGameplayPlayerController.prototype.stop = function() {
     this.levelGameplayPlayer.stop();
 };
 
+LevelGameplayPlayerController.prototype.getPlaybackPosMin = function() {
+    var posMs = this.levelGameplayPlayer.getPositionMs();
+    var posSec = Math.floor(posMs / 1000);
+    return Math.floor(posSec / 60);
+};
+
+LevelGameplayPlayerController.prototype.getPlaybackPosSec = function() {
+    var posMs = this.levelGameplayPlayer.getPositionMs();
+    var posSec = Math.floor(posMs / 1000);
+    return posSec % 60;
+};
+
+LevelGameplayPlayerController.prototype.getPlaybackSpeed = function() {
+    var speedRounded = Math.round(this.levelGameplayPlayer.getSpeed() * 100) / 100;
+    return 'x' + speedRounded.toString();
+};
+
 LevelGameplayPlayerController.prototype.speedUp = function() {
     this.levelGameplayPlayer.speedUp();
 };

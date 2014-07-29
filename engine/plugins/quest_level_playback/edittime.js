@@ -48,6 +48,12 @@ AddExpression(0, ef_return_number, "Player position X", "Player position X", "ge
     "Player position X");
 AddExpression(1, ef_return_number, "Player position Y", "Player position Y", "getPlayerY",
     "Player position Y");
+AddExpression(2, ef_return_number, "Playback position minutes",
+    "Playback position minutes", "getPlaybackPosMin", "Playback position minutes");
+AddExpression(3, ef_return_number, "Playback position seconds",
+    "Playback position seconds", "getPlaybackPosSec", "Playback position seconds");
+AddExpression(4, ef_return_string, "Playback speed",
+    "Playback speed", "getPlaybackSpeed", "Playback speed");
 
 ACESDone();
 
