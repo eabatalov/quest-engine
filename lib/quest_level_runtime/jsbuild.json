@@ -6,8 +6,7 @@
             "base" : { 
                 "lib-util" : [], 
                 "lib-quest-level-script-exec" : [],
-                "lib-quest-level-recording" : [],
-                "lib-quest-level-playback" : []
+                "lib-quest-level-recording" : []
             }
         },
         "src" : {
