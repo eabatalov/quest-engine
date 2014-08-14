@@ -11,12 +11,12 @@
         },
         "src" : {
             "base" : [
-                "src/LevelGameplayPlayer.js",
-                "src/QuestLevelGameplayPlayer.js",
-                "src/ILevelGameplayHistoryLoader.js"
+                "src/LevelReplayPlayer.js",
+                "src/QuestLevelReplayPlayer.js",
+                "src/ILevelReplayLoader.js"
             ],
             "web" : [
-                "src/WebDOMLocalFSGameplayHistoryLoader.js"
+                "src/WebDOMLocalFSLevelReplayLoader.js"
             ]
         }
     }

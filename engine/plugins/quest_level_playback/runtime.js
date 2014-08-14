@@ -41,7 +41,7 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 	// called whenever an instance is created
 	instanceProto.onCreate = function()
 	{
-        this.levelGameplayPlayerController = null;
+        this.levelReplayPlayerController = null;
         this.levelSpecificHandlers = [];
         QuestGame.instance.events.levelChanged.subscribe(this, this.onLevelChanged);
 	};
@@ -114,19 +114,20 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
         jQuery.each(this.levelSpecificHandlers, collectionObjectDelete);
         this.levelSpecificHandlers = [];
 
-        if (this.levelGameplayPlayerController)
-            this.levelGameplayPlayerController.delete();
+        if (this.levelReplayPlayerController)
+            this.levelReplayPlayerController.delete();
 
-        var questLevelGameplayPlayer =
-            new QuestLevelGameplayPlayer(questLevelRuntime.getLevelExecutor());
-        this.levelGameplayPlayerController = new LevelGameplayPlayerController(
-            questLevelGameplayPlayer,
-            QuestGame.instance.getLevelGameplayHistoryLoader()
+        var questLevelReplayPlayer =
+            new QuestLevelReplayPlayer(questLevelRuntime.getLevelExecutor());
+        this.levelReplayPlayerController = new LevelReplayPlayerController(
+            questLevelRuntime.getLevel(),
+            questLevelReplayPlayer,
+            QuestGame.instance.getLevelReplayLoader()
         );
-        this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
+        this.levelSpecificHandlers.push(this.levelReplayPlayerController.events.
             changePlayerPos.subscribe(this, this.onChangePlayerPos));
-        this.levelSpecificHandlers.push(this.levelGameplayPlayerController.events.
-            levelGameplayHistoryLoaded.subscribe(this, this.onLevelGameplayHistoryLoaded));
+        this.levelSpecificHandlers.push(this.levelReplayPlayerController.events.
+            levelReplayLoaded.subscribe(this, this.onLevelGameplayHistoryLoaded));
     };
 
     instanceProto.onChangePlayerPos = function(x, y) {
@@ -155,27 +156,27 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 	function Acts() {};
 
 	Acts.prototype.play = function() {
-        this.levelGameplayPlayerController.play();
+        this.levelReplayPlayerController.play();
     };
 
     Acts.prototype.stop = function() {
-        this.levelGameplayPlayerController.stop();
+        this.levelReplayPlayerController.stop();
     };
 
     Acts.prototype.playerPosChangeProcCompleted = function() {
-        this.levelGameplayPlayerController.playerPosChangeProcCompleted();
+        this.levelReplayPlayerController.playerPosChangeProcCompleted();
     };
 
 	Acts.prototype.speedUp = function() {
-        this.levelGameplayPlayerController.speedUp();
+        this.levelReplayPlayerController.speedUp();
     };
 
     Acts.prototype.speedDown = function() {
-        this.levelGameplayPlayerController.speedDown();
+        this.levelReplayPlayerController.speedDown();
     };
 
     Acts.prototype.load = function() {
-        this.levelGameplayPlayerController.load();
+        this.levelReplayPlayerController.load();
     };
 
 	pluginProto.acts = new Acts();
@@ -185,23 +186,23 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 	function Exps() {};
 
     Exps.prototype.getPlayerX = function(ret) {
-        ret.set_int(this.levelGameplayPlayerController.getPlayerX());
+        ret.set_int(this.levelReplayPlayerController.getPlayerX());
     };
 
     Exps.prototype.getPlayerY = function(ret) {
-        ret.set_int(this.levelGameplayPlayerController.getPlayerY());
+        ret.set_int(this.levelReplayPlayerController.getPlayerY());
     };
 
     Exps.prototype.getPlaybackPosMin = function(ret) {
-        ret.set_int(this.levelGameplayPlayerController.getPlaybackPosMin());
+        ret.set_int(this.levelReplayPlayerController.getPlaybackPosMin());
     };
 
     Exps.prototype.getPlaybackPosSec = function(ret) {
-        ret.set_int(this.levelGameplayPlayerController.getPlaybackPosSec());
+        ret.set_int(this.levelReplayPlayerController.getPlaybackPosSec());
     };
 
     Exps.prototype.getPlaybackSpeed = function(ret) {
-        ret.set_string(this.levelGameplayPlayerController.getPlaybackSpeed());
+        ret.set_string(this.levelReplayPlayerController.getPlaybackSpeed());
     };
     pluginProto.exps = new Exps();
 }());
