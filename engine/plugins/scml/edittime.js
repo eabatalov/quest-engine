@@ -77,8 +77,22 @@ AddCondition(5, 0, "Is Paused", "Animations", "If animation is paused", "Is anim
 
 AddCondition(6, 0, "Is Looping", "Animations", "If animation is looping", "Is animation set to loop?", "AnimationLooping");
 
-			
+AddCondition(7, cf_trigger, "On sound triggered", "Sounds", "On sound triggered", "Triggered when a sound should begin playback.", "OnSoundTriggered");
+
+AddCondition(8, cf_trigger, "On sound volume change triggered", "Sounds", "On sound volume change triggered", "Triggered when a sound's volume should change.", "OnSoundVolumeChangeTriggered");
+
+AddCondition(9, cf_trigger, "On sound panning change triggered", "Sounds", "On sound panning change triggered", "Triggered when a sound's volume should change.", "OnSoundPanningChangeTriggered");
+	
+AddCondition(10, 0, "Is Mirrored (on x axis)", "Size & Position", "Mirrored on x axis", "True when the object is mirrored on the x axis", "isMirrored");
+
+AddCondition(11, 0, "Is Flipped (on y axis)", "Size & Position", "Flipped on y axis", "True when the object is mirrored on the y axis", "isFlipped");
+	
 AddCondition(666, cf_trigger, "On initialised", "Initialisation", "On initialised", "Triggered when .SCML file has loaded and is ready to be associated with objects.", "readyForSetup");
+
+AddStringParam("name", "The name of the point.");
+AddCondition(12, 0, "Action Point exists on frame", "Action Points", "Action Point {0} exists on current frame", "True when the action point exists on the current frame", "actionPointExists");
+
+AddCondition(13, 0, "Position is outside padded viewport", "Advanced : Optimization", "Position is outside padded viewport", "True when this object's x,y coordinate is outside the padded display box set through Set Automatic Pausing action.", "outsidePaddedViewport");
 
 ////////////////////////////////////////
 // Actions
@@ -99,9 +113,12 @@ AddAction(666, 0, "Associate object type", "Initialisation", "Associate {0} with
 AddStringParam("Animation", "The name of the animation to set.");
 AddComboParamOption("play from start");	
 AddComboParamOption("play from current time");
-AddComboParamOption("play from current time ratio");												
+AddComboParamOption("play from current time ratio");
+AddComboParamOption("blend to start");
+AddComboParamOption("blend at current time ratio");
 AddComboParam("Where to start playing this animation", "Play this animation from the beginning? or play from current time or time ratio", 0);	
-AddAction(0, 0, "Set animation", "Animations", "Set animation to {0} and {1}", "Set the current animation", "setAnim");
+AddNumberParam("Blend Duration", "If a blend option is chosen above, the length of time (in milliseconds) to take to blend to the new animation", "0");
+AddAction(0, 0, "Set animation", "Animations", "Set animation to {0} and {1} with a {2}ms blend", "Set the current animation", "setAnim");
 
 AddNumberParam("Speed Ratio", "The new ratio of playback speed (1.0 is full speed. 0.5 is half speed, 2.0 is double speed)", "1.0");
 AddAction(1, 0, "Set playback speed ratio", "Animations", "Set playback speed ratio to {0}", "Set the ratio of playback speed", "setPlaybackSpeedRatio");
@@ -141,11 +158,44 @@ AddStringParam("Entity", "The name of the entity to set.");
 AddStringParam("Animation", "The name of the animation to set. Leave blank to attempt to switch to animation of same name.");
 AddAction(8, 0, "Set entity", "Entities", "Set entity to {0} : {1}", "Set the current entity", "setEnt");
 
-// AddAction(9, 0, "Remove all character maps", "Character Maps", "Remove all character maps", "Remove all character maps from the character", "removeAllCharMaps");
+AddAction(9, 0, "Remove all character maps", "Character Maps", "Remove all character maps", "Remove all character maps from the character", "removeAllCharMaps");
 
-// AddStringParam("Character Map","The character map to append to this character.");
-// AddAction(10, 0, "Append character map", "Character Maps", "Append character map {1}", "Append character map to this character", "appendCharMap");
+AddStringParam("Character Map","The character map to append to this character.");
+AddAction(10, 0, "Append character map", "Character Maps", "Append character map {0}", "Append character map to this character", "appendCharMap");
 
+AddComboParamOption("don't mirror x axis");	
+AddComboParamOption("mirror x axis");											
+AddComboParam("Mirror X Axis", "Flip on the X Axis and display with negative width", 0);	
+AddAction(11, 0, "Set mirrored (on x axis)", "Size & Position", "{0}", "Set whether the object is mirrored on the x axis", "setObjectXFlip");
+
+AddComboParamOption("don't flip y axis");	
+AddComboParamOption("flip y axis");											
+AddComboParam("Flip Y Axis", "Flip on the Y Axis and display with negative width", 0);	
+AddAction(12, 0, "Set flipped (on y axis)", "Size & Position", "{0}", "Set whether the object is flipped on the y axis", "setObjectYFlip");
+
+AddStringParam("Animation", "The name of the second animation to set.");												
+AddAction(13, 0, "Set second (blended) animation", "Advanced : Animation Blending", "Set second(blended) animation to {0}", "Set the current second(blended) animation", "setSecondAnim");
+
+AddNumberParam("Blend level","The new new ratio from 0.0 to 1.0 of the blend between the current and blended animations", "0");												
+AddAction(14, 0, "Set animation blend ratio", "Advanced : Animation Blending", "Set animation blend ratio to {0}", "Set the blend ratio of the current animations", "setAnimBlendRatio");
+											
+AddAction(15, 0, "Stop blending second (blended) animation", "Advanced : Animation Blending", "Stop blending second(blended) animation", "Stops blending the second(blended) animation, and resumes normal playback of the current animation", "stopSecondAnim");
+
+AddComboParamOption("Invisible");
+AddComboParamOption("Visible");												
+AddComboParam("Visibility", "Choose whether the object is hidden or shown", 1);	
+AddAction(16, 0, "Set Visible", "Appearance", "Set {0}", "Choose whether the object is hidden or shown","setVisible");
+	
+AddComboParamOption("No automatic pausing.");												
+AddComboParamOption("Pause all playback automatically when scml object position is outside padded display area");
+AddComboParamOption("Pause all playback except sound automatically when scml object position is outside padded display area");
+AddComboParam("Automatic Pause Settings", "Set the new automatic pausing settings", 0);
+AddNumberParam("Left Padding","The object must be outside the visible area of the screen plus this padding to automatically pause", "0");												
+AddNumberParam("Right Padding","The object must be outside the visible area of the screen plus this padding to automatically pause", "0");												
+AddNumberParam("Top Padding","The object must be outside the visible area of the screen plus this padding to automatically pause", "0");												
+AddNumberParam("Bottom Padding","The object must be outside the visible area of the screen plus this padding to automatically pause", "0");												
+AddAction(17, 0, "Set Automatic Pausing", "Advanced : Optimization", "Set to {0}. Padding Left:{1} Right:{2} Top:{3} Bottom{4}", "Set when to automatically pause an animation for efficiency","setAutomaticPausing");
+	
 ////////////////////////////////////////
 // Expressions
 
@@ -166,6 +216,28 @@ AddExpression(4, ef_return_number, "'Play To...' distance left", "Animations", "
 AddExpression(5, ef_return_string, "Current Animation Name", "Animations", "animationName", "Returns the name of the current animation");
 AddExpression(6, ef_return_string, "Current Entity Name", "Entities", "entityName", "Returns the name of the current entity");
 AddExpression(7, ef_return_number, "Current time in animation as a ratio", "Animations", "timeRatio", "Returns the current time as a ratio of the entire animation length between 0.0 and 1.0");
+
+AddStringParam("name", "The name of the point.");
+AddExpression(8, ef_return_number, "Action Point X", "Action Points", "pointX", "returns the current x position of an action point");
+
+AddStringParam("name", "The name of the point.");
+AddExpression(9, ef_return_number, "Action Point Y", "Action Points", "pointY", "returns the current y position of an action point");
+
+AddStringParam("name", "The name of the point.");
+AddExpression(10, ef_return_number, "Action Point Angle", "Action Points", "pointAngle", "returns the current angle of an action point");
+
+AddExpression(11, ef_return_string, "Name of last triggered sound", "Sounds", "triggeredSound", "returns the name of the last triggered sound");
+AddExpression(12, ef_return_string, "Name of last triggered sound's tag", "Sounds", "triggeredSoundTag", "returns the name of the last triggered sound's tag");
+
+AddStringParam("name", "The name of the sound.");
+AddExpression(13, ef_return_number, "Volume sound", "Sounds", "soundVolume", "returns the volume of the sound");
+
+AddStringParam("name", "The name of the sound.");
+AddExpression(14, ef_return_number, "Volume panning", "Sounds", "soundPanning", "returns the panning of the sound");
+
+AddExpression(15, ef_return_number, "Blend Ratio", "Advanced : Animation Blending", "blendRatio", "returns the current blend ratio of animations 0(current animation) to 1(next animation)");
+AddExpression(16, ef_return_string, "Second(blend) Animation", "Advanced : Animation Blending", "secondAnimationName", "returns the name of the second(blended) animation");
+
 ////////////////////////////////////////
 ACESDone();
 
@@ -182,8 +254,8 @@ ACESDone();
 var property_list = [
 	//new cr.Property(ept_integer, 	"My property",		77,		"An example property."),
 	 new cr.Property(ept_text,		"SCML file",	"",	"The source SCML file for your character"),
-	  new cr.Property(ept_text,		"starting entity",	"",	"The character's name within the file"),
-	  new cr.Property(ept_text,		"starting animation",	"",	"The animation to play on start")
+	 new cr.Property(ept_text,		"starting entity",	"",	"The character's name within the file"),
+	 new cr.Property(ept_text,		"starting animation",	"",	"The animation to play on start")
 	];
 // Called by IDE when a new object type is to be created
 function CreateIDEObjectType()
@@ -235,6 +307,7 @@ IDEInstance.prototype.OnDoubleClicked = function()
 // Called after a property has been changed in the properties bar
 IDEInstance.prototype.OnPropertyChanged = function(property_name)
 {
+	this.instance.SetSize(new cr.vector2(this.instance.GetSize().x, this.instance.GetSize().x));
 }
 
 // For rendered objects to load fonts or textures
@@ -245,9 +318,24 @@ IDEInstance.prototype.OnRendererInit = function(renderer)
 // Called to draw self in the editor if a layout object
 IDEInstance.prototype.Draw = function(renderer)
 {
+	if (!this.font)
+		this.font = renderer.CreateFont("Arial", 14, false, false);
+
+	renderer.SetTexture(null);
+	var quad = this.instance.GetBoundingQuad();
+	renderer.Fill(quad, cr.RGB(230,235,245));
+	var spriterBlue=cr.RGB(32,111,203);
+	var spriterViolet=cr.RGB(152,100,248);
+	renderer.Line(new cr.vector2(quad.tlx,quad.tly),new cr.vector2(quad.blx,quad.bly), spriterViolet);
+	renderer.Line(new cr.vector2(quad.trx,quad.try_),new cr.vector2(quad.brx,quad.bry), spriterViolet);
+	renderer.Line(new cr.vector2(quad.tlx,quad.tly),new cr.vector2(quad.trx,quad.try_), spriterBlue);
+	renderer.Line(new cr.vector2(quad.blx,quad.bly),new cr.vector2(quad.brx,quad.bry), spriterBlue);
+	cr.quad.prototype.offset.call(quad, 4, 2);
+	this.font.DrawText(this.instance.GetSize().x/50.0,quad,cr.RGB(0, 0, 0),ha_left,1,this.instance.GetAngle());
 }
 
 // For rendered objects to release fonts or textures
 IDEInstance.prototype.OnRendererReleased = function(renderer)
 {
+	this.font = null;
 }
