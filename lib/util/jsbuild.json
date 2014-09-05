@@ -11,7 +11,8 @@
             "base" : [
                 "src/misc.js",
                 "src/event.js",
-                "src/object_map.js"
+                "src/object_map.js",
+                "src/CommandQueue.js"
             ]
         }
     }

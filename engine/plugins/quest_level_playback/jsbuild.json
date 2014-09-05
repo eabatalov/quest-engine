@@ -5,6 +5,7 @@
         "outDir" : ".",
         "dependencies" : {
             "base" : {
+                "lib-util" : [],
                 "lib-quest-game" : [],
                 "lib-quest-level-runtime" : [],
                 "lib-quest-level-recording" : [],
@@ -13,7 +14,8 @@
         },
         "src" : {
             "base" : [
-                "src/LevelReplayPlayerController.js"
+                "src/LevelReplayPlayerController.js",
+                "src/QuestLevelReplayPlayerController.js"
             ]
         }
     }

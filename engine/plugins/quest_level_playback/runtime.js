@@ -119,19 +119,25 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 
         var questLevelReplayPlayer =
             new QuestLevelReplayPlayer(questLevelRuntime.getLevelExecutor());
-        this.levelReplayPlayerController = new LevelReplayPlayerController(
+        this.levelReplayPlayerController = new QuestLevelReplayPlayerController(
             questLevelRuntime.getLevel(),
             questLevelReplayPlayer,
             QuestGame.instance.getLevelReplayLoader()
         );
         this.levelSpecificHandlers.push(this.levelReplayPlayerController.events.
-            changePlayerPos.subscribe(this, this.onChangePlayerPos));
+            recPending.subscribe(this, this.onRecPending));
         this.levelSpecificHandlers.push(this.levelReplayPlayerController.events.
             levelReplayLoaded.subscribe(this, this.onLevelGameplayHistoryLoaded));
     };
 
-    instanceProto.onChangePlayerPos = function(x, y) {
-        this.runtime.trigger(pluginProto.cnds.playerPosChange, this);
+    instanceProto.onRecPending = function(rec) {
+        switch (rec.getRecordType()) {
+            case PlayerPositionRecord.type:
+                this.runtime.trigger(pluginProto.cnds.playerPosChange, this);
+            break;
+            default:
+                console.error("Unknown record to play");
+        }
     };
 
     instanceProto.onLevelGameplayHistoryLoaded = function() {
@@ -164,7 +170,11 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
     };
 
     Acts.prototype.playerPosChangeProcCompleted = function() {
-        this.levelReplayPlayerController.playerPosChangeProcCompleted();
+        assert(
+            this.levelReplayPlayerController.getPendingRecord().getRecordType()
+            === PlayerPositionRecord.type, "only pos change record can be completed here"
+        );
+        this.levelReplayPlayerController.recProcCompleted();
     };
 
 	Acts.prototype.speedUp = function() {
@@ -186,11 +196,19 @@ cr.plugins_.QuestLevelPlaybackPlugin = function(runtime)
 	function Exps() {};
 
     Exps.prototype.getPlayerX = function(ret) {
-        ret.set_int(this.levelReplayPlayerController.getPlayerX());
+        assert(
+            this.levelReplayPlayerController.getPendingRecord().getRecordType()
+            === PlayerPositionRecord.type, "only pos change record provides player X"
+        );
+        ret.set_int(this.levelReplayPlayerController.getPendingRecord().getPlayerX());
     };
 
     Exps.prototype.getPlayerY = function(ret) {
-        ret.set_int(this.levelReplayPlayerController.getPlayerY());
+        assert(
+            this.levelReplayPlayerController.getPendingRecord().getRecordType()
+            === PlayerPositionRecord.type, "only pos change record provides player X"
+        );
+        ret.set_int(this.levelReplayPlayerController.getPendingRecord().getPlayerY());
     };
 
     Exps.prototype.getPlaybackPosMin = function(ret) {
