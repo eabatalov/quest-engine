@@ -20,7 +20,8 @@
                 "src/ILevelReplaySaver.js"
             ],
             "web" : [
-                "src/AjaxServerLevelReplaySaver.js"
+                "src/AjaxServerLevelReplaySaver.js",
+                "src/AjaxServerLevelReplaySaverOnAbnormalExit.js"
             ]
         }
     }
