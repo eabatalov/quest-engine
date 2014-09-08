@@ -7,7 +7,12 @@
     "c2-plugin-quest-level-recording" : "engine/plugins/quest_level_recording/",
     "c2-plugin-quest-level-playback" : "engine/plugins/quest_level_playback/",
     "quest-script-editor" : "script_editor/public_html/js/",
+
     "tool-script-to-text" : "tools/script_to_text/",
+
+    "service-replay-server" : "services/replay_server",
+    "service-replay-client-test" : "services/replay_client_test",
+
     "lib-persistent-storage" : "lib/persistent_storage",
     "lib-quest-game" : "lib/quest_game",
     "lib-quest-level" : "lib/quest_level",
