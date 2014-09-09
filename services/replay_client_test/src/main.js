@@ -43,10 +43,10 @@ GamingSessionTest.prototype.onSendNewRecordsList = function() {
 (function main() {
     function startGamingSessionTests() {
         new GamingSessionTest();
+        /*new GamingSessionTest();
         new GamingSessionTest();
         new GamingSessionTest();
-        new GamingSessionTest();
-        new GamingSessionTest();
+        new GamingSessionTest();*/
     };
 
     function schedGamingSessionTests() {
@@ -57,5 +57,5 @@ GamingSessionTest.prototype.onSendNewRecordsList = function() {
     };
 
     startGamingSessionTests();
-    schedGamingSessionTests();
+    //schedGamingSessionTests();
 })();

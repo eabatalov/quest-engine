@@ -1,5 +1,6 @@
-ReplayServerSession.ReplayCollector = function(clientInfo) {
-    this.clientInfo = clientInfo;
+ReplayServerSession.ReplayCollector = function(replayInfo) {
+    this.replayInfo = replayInfo;
+    //TODO assign hostname here
 };
 
 ReplayServerSession.ReplayCollector.prototype.replayRecordListReady = function(recordList) {

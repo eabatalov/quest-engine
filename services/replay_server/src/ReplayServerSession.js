@@ -9,12 +9,12 @@ function ReplayServerSession(cliSock) {
     this.sock = cliSock;
     this.state = ReplayServerSession.STATES.AUTH_PENDING;
     this.replayCollector = null;
-    this.clientInfo = null;
+    this.replayInfo = null;
 
     this.sock.on('disconnect', this.onClientDisconnected.bind(this));
     this.sock.on('auth', this.onClientAuth.bind(this));
     this.sock.on('replay_start', this.onClientReplayStart.bind(this));
-    this.sock.on('rep_client_info', this.onClientInfo.bind(this));
+    this.sock.on('rep_info', this.onClientReplayInfo.bind(this));
     this.sock.on('rep_rec_list', this.onClientReplayRecordList.bind(this));
     this.sock.on('replay_finish', this.onClientReplayFinish.bind(this));
 
@@ -60,6 +60,7 @@ ReplayServerSession.prototype.finish = function() {
 
 ReplayServerSession.prototype.onClientAuth = function(data) {
     this.logInfo("Client is authenticating");
+    this.logInfo(data);
     if (this.state !== ReplayServerSession.STATES.AUTH_PENDING)
         return;
 
@@ -67,7 +68,6 @@ ReplayServerSession.prototype.onClientAuth = function(data) {
     if (!authMsg)
         return this.finish();
 
-    this.logInfo(authMsg.magic);
     if (authMsg.magic !== REPLAY_SESSION_PROTOCOL.AUTH_MAGIC)
         return this.finish();
 
@@ -76,14 +76,20 @@ ReplayServerSession.prototype.onClientAuth = function(data) {
     this.logInfo("Client is authenticated");
 };
 
-ReplayServerSession.prototype.onClientInfo = function(data) {
-    this.logInfo("Client info recieved");
+ReplayServerSession.prototype.onClientReplayInfo = function(data) {
+    this.logInfo("Client replay info recieved");
+    this.logInfo(data);
     if (this.state !== ReplayServerSession.STATES.WAIT_CLIENT_INFO)
         return;
-    //TODO this.clientInfo = ...
+
+    var repInfoMsg = REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.load(JSONSafeParse(data));
+    if (!repInfoMsg)
+        return this.finish();
+
+    this.replayInfo = repInfoMsg.getReplayInfo();
     this.state = ReplayServerSession.STATES.WAIT_REPLAY_START;
     this.sock.emit('ok', 'client info');
-    this.logInfo("Client info processed");
+    this.logInfo("Client replay info processed");
 };
 
 ReplayServerSession.prototype.onClientReplayStart = function() {
@@ -92,7 +98,7 @@ ReplayServerSession.prototype.onClientReplayStart = function() {
         return;
 
     this.state = ReplayServerSession.STATES.COLLECTING_REPLAY;
-    this.replayCollector = new ReplayServerSession.ReplayCollector(this.clientInfo);
+    this.replayCollector = new ReplayServerSession.ReplayCollector(this.replayInfo);
     this.logInfo("Replay started");
 };
 

@@ -1,11 +1,11 @@
 var REPLAY_SESSION_PROTOCOL = {
     AUTH_MAGIC : "2YlKMuIXJAwMO5EpZXxcgMy7GbB1G4",
     AuthMessage : null,
+    ReplayInfoMessage : null,
     RecordListMessage : null
 };
 
 // AUTH
-
 REPLAY_SESSION_PROTOCOL.AuthMessage = function(magic) {
     this.magic = magic;
 };
@@ -24,6 +24,29 @@ REPLAY_SESSION_PROTOCOL.AuthMessage.prototype.save = function() {
 REPLAY_SESSION_PROTOCOL.AuthMessage.load = function(savedData) {
     if (savedData && savedData.magic) {
         return new REPLAY_SESSION_PROTOCOL.AuthMessage(savedData.magic);
+    } else
+        return null;
+};
+
+// REPLAY INFO
+REPLAY_SESSION_PROTOCOL.ReplayInfoMessage = function(replayInfo) {
+    this.replayInfo = replayInfo;
+};
+
+REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.prototype.getReplayInfo = function(){
+    return this.replayInfo;
+};
+
+REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.prototype.save = function() {
+    var savedData = {
+        replayInfo : this.getReplayInfo().save()
+    };
+    return savedData;
+};
+
+REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.load = function(savedData) {
+    if (savedData && savedData.replayInfo) {
+        return new REPLAY_SESSION_PROTOCOL.ReplayInfoMessage(savedData.replayInfo);
     } else
         return null;
 };

@@ -59,10 +59,14 @@ ReplayClientSession.prototype._onClientConnected = function() {
     //AUTH
     var authMsg =
         new REPLAY_SESSION_PROTOCOL.AuthMessage(REPLAY_SESSION_PROTOCOL.AUTH_MAGIC);
-    var authMsgStr = JSON.stringify(authMsg);
+    var authMsgStr = JSON.stringify(authMsg.save());
     this._sock.emit('auth', authMsgStr);
-    //CLIENT INFO
-    this._sock.emit('rep_client_info');
+    //REPLAY INFO
+    var repInfoMsg = new REPLAY_SESSION_PROTOCOL.ReplayInfoMessage(
+        new LevelReplayInfo()
+    );
+    repInfoMsgStr = JSON.stringify(repInfoMsg.save());
+    this._sock.emit('rep_info', repInfoMsgStr);
 };
 
 ReplayClientSession.prototype._onClientDisconnected = function() {

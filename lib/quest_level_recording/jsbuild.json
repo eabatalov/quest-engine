@@ -16,11 +16,13 @@
                 "src/LevelGameplayHistory.js",
                 "src/LevelGameplayRecorder.js",
                 "src/QuestLevelGameplayRecorder.js",
+                "src/LevelReplayInfo.js",
                 "src/LevelReplay.js",
                 "src/ILevelReplaySaver.js"
             ],
             "web" : [
-                "src/AjaxServerLevelReplaySaver.js"
+                "src/AjaxServerLevelReplaySaver.js",
+                "src/LevelReplayInfoWeb.js"
             ]
         }
     }
