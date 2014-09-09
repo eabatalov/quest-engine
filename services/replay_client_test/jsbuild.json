@@ -4,11 +4,15 @@
         "description" : "",
         "dependencies" : {
             "base" : {
+                "lib-util" : [],
                 "lib-quest-level-recording" : []
              }
         },
         "src" : {
             "base" : [
+                "../replay_server/src/protocol.js",
+                "src/config.js",
+                "src/session.js",
                 "src/main.js"
             ]
         }
