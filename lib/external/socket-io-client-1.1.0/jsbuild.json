@@ -1,0 +1,13 @@
+{
+    "module" : {
+        "name" : "lib-external-socket-io-client",
+        "description" : "",
+        "dependencies" : {
+        },
+        "src" : {
+            "base" : [
+                "socket.io-1.1.0.js"
+            ]
+        }
+    }
+}
