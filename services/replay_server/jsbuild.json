@@ -9,7 +9,6 @@
         },
         "src" : {
             "base" : [
-                "src/config.js",
                 "src/log_init.js",
                 "src/protocol.js",
                 "src/jsonsafe.js",

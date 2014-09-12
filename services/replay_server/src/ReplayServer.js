@@ -1,5 +1,6 @@
 var srvSock = null;
 var fs = require('fs');
+var REPLAY_SERVER_CONFIG = require('./config.js');
 
 function startServer() {
     var httpServer = require('http').createServer();
