@@ -21,5 +21,7 @@
     "lib-quest-level-recording" : "lib/quest_level_recording/",
     "lib-quest-level-playback" : "lib/quest_level_playback/",
     "lib-quest-level-runtime" : "lib/quest_level_runtime/",
-    "lib-util" : "lib/util"
+    "lib-util" : "lib/util",
+
+    "lib-external-socket-io-client" : "lib/external/socket-io-client-1.1.0/"
 }

@@ -136,7 +136,8 @@ cr.plugins_.QuestLevelRecordingPlugin = function(runtime)
     };
 
     Acts.prototype.saveGamePlay = function() {
-        var replay = new LevelReplay(this.levelGameplayHistory, this.level);
+        var replayInfo = new LevelReplayInfo(this.level.getName());
+        var replay = new LevelReplay(this.levelGameplayHistory, replayInfo);
         this.levelReplaySaver.save(replay);
     };
 

@@ -46,7 +46,8 @@ REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.prototype.save = function() {
 
 REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.load = function(savedData) {
     if (savedData && savedData.replayInfo) {
-        return new REPLAY_SESSION_PROTOCOL.ReplayInfoMessage(savedData.replayInfo);
+        var replayInfo = LevelReplayInfo.load(savedData.replayInfo);
+        return new REPLAY_SESSION_PROTOCOL.ReplayInfoMessage(replayInfo);
     } else
         return null;
 };

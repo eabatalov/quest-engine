@@ -40,6 +40,9 @@ GamingSessionTest.prototype.onSendNewRecordsList = function() {
     this.schedSendRecordList();
 };
 
+//emulate socket.io web client
+var io = require('socket.io-client');
+
 (function main() {
     function startGamingSessionTests() {
         new GamingSessionTest();

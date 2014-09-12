@@ -52,7 +52,9 @@ ReplayServerSession.prototype.finish = function() {
     this.state = ReplayServerSession.STATES.FINISHING;
     this.removeFromActiveList();
     delete this.sock;
-    //TODO remove all the sock handlers
+    if (this.replayCollector)
+        this.replayCollector.finish();
+    delete this.replayCollector;
     this.state = ReplayServerSession.STATES.FINISHED;
 
     this.logInfo("finished");
@@ -87,6 +89,12 @@ ReplayServerSession.prototype.onClientReplayInfo = function(data) {
         return this.finish();
 
     this.replayInfo = repInfoMsg.getReplayInfo();
+    try {
+        this.replayInfo.setHostName(this.sock.request.connection.remoteAddress);
+    } catch(ex) {
+        this.logError("Couldn't set client ip address");
+        this.logError(ex.toString());
+    }
     this.state = ReplayServerSession.STATES.WAIT_REPLAY_START;
     this.sock.emit('ok', 'client info');
     this.logInfo("Client replay info processed");
@@ -103,10 +111,6 @@ ReplayServerSession.prototype.onClientReplayStart = function() {
 };
 
 ReplayServerSession.prototype.onClientReplayRecordList = function(data) {
-    //TODO comment for release not to spam the log
-    this.logInfo("onClientReplayRecordList");
-    this.logInfo(data);
-
     if (this.state !== ReplayServerSession.STATES.COLLECTING_REPLAY)
         return;
 
@@ -115,8 +119,6 @@ ReplayServerSession.prototype.onClientReplayRecordList = function(data) {
         return this.finish();
 
     this.replayCollector.replayRecordListReady(recListMsg.getRecordList());
-    //TODO comment for release
-    this.logInfo("onClientReplayRecordList - done");
 };
 
 ReplayServerSession.prototype.onClientReplayFinish = function() {
@@ -139,4 +141,8 @@ ReplayServerSession.prototype.onClientDisconnected = function(data) {
 
 ReplayServerSession.prototype.logInfo = function(str) {
     logger.info("Session %d: %s", this.id, str);
+};
+
+ReplayServerSession.prototype.logError = function(str) {
+    logger.error("Session %d: %s", this.id, str);
 };
