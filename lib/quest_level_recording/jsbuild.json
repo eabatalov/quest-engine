@@ -4,7 +4,8 @@
         "description" : "",
         "dependencies" : {
             "base" : { 
-                "lib-util" : [], 
+                "lib-util" : [],
+                "lib-quest-script" : ["interpretator"],
                 "lib-quest-level" : []
             },
             "web" : {
@@ -21,11 +22,11 @@
                 "src/QuestLevelGameplayRecorder.js",
                 "src/LevelReplayInfo.js",
                 "src/LevelReplay.js",
-                "src/ILevelReplaySaver.js",
-                "src/ReplayClientSession.js"
+                "src/ReplayClientSession.js",
+                "src/protocol.js",
+                "src/ReplayRealTimeSender.js"
             ],
             "web" : [
-                "src/web/AjaxServerLevelReplaySaver.js",
                 "src/web/LevelReplayInfoWeb.js"
             ]
         }

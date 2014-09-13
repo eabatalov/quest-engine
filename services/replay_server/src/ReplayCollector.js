@@ -7,7 +7,7 @@ ReplayServerSession.ReplayCollector.prototype.replayRecordListReady = function(r
     //logger.info(JSON.stringify(recordList, null, 4));
     for (var i = 0; i < recordList.length; ++i) {
         var record = recordList[i];
-        this.history.addRecord(record);
+        this.history.addRecord(record, false);
     }
 };
 
@@ -21,13 +21,14 @@ ReplayServerSession.ReplayCollector.prototype.mkReplayFileName = function() {
             .toString('hex')
             .slice(0, 6)
         + ".json";
-    return replayFileName;
+    return replayFileName.replace(/:/g, '+').replace(/\(|\)/g, '');
 };
 
-ReplayServerSession.ReplayCollector.prototype.finish = function() {
+ReplayServerSession.ReplayCollector.prototype.finish = function(normalFinish) {
     var fs = require('fs');
 
     this.replayInfo.setTimeStampStr(null);
+    this.replayInfo.setIsFinished(normalFinish);
 
     var replay = new LevelReplay(this.history, this.replayInfo);
     var replaySaved = replay.save();

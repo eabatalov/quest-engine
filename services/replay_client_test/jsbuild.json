@@ -10,8 +10,8 @@
         },
         "src" : {
             "base" : [
-                "../replay_server/src/protocol.js",
                 "src/config.js",
+                "src/GamingSessionTest.js",
                 "src/main.js"
             ]
         }

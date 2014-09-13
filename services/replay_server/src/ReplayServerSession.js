@@ -9,7 +9,6 @@ function ReplayServerSession(cliSock) {
     this.sock = cliSock;
     this.state = ReplayServerSession.STATES.AUTH_PENDING;
     this.replayCollector = null;
-    this.replayInfo = null;
 
     this.sock.on('disconnect', this.onClientDisconnected.bind(this));
     this.sock.on('auth', this.onClientAuth.bind(this));
@@ -18,7 +17,7 @@ function ReplayServerSession(cliSock) {
     this.sock.on('rep_rec_list', this.onClientReplayRecordList.bind(this));
     this.sock.on('replay_finish', this.onClientReplayFinish.bind(this));
 
-    ReplayServerSession.activeSessions.push(this);
+    this.addToActiveList();
     this.logInfo("started");
 }
 
@@ -26,15 +25,20 @@ ReplayServerSession.idCntr = 0;
 ReplayServerSession.activeSessions = [];
 ReplayServerSession.STATES = {
     AUTH_PENDING : 1,
-    WAIT_CLIENT_INFO : 2,
-    WAIT_REPLAY_START : 3,
+    WAIT_REPLAY_START : 2,
+    WAIT_REPLAY_INFO : 3,
     COLLECTING_REPLAY : 4,
     FINISHING : 5,
     FINISHED : 6
 };
-//AUTH_PENDING -> WAIT_CLIENT_INFO ->
-//    WAIT_REPLAY_START -> COLLECTING_REPLAY (loop)
+//AUTH_PENDING -> 
+//    WAIT_REPLAY_START -> WAIT_REPLAY_INFO -> COLLECTING_REPLAY (loop)
 //* -> FINISHING -> FINISHED
+ReplayServerSession.prototype.addToActiveList = function() {
+    ReplayServerSession.activeSessions.push(this);
+    this.logInfo("Active sessions count: "
+        + ReplayServerSession.activeSessions.length.toString());
+};
 
 ReplayServerSession.prototype.removeFromActiveList = function() {
     for (var i = 0; i < ReplayServerSession.activeSessions.length; ++i) {
@@ -44,6 +48,8 @@ ReplayServerSession.prototype.removeFromActiveList = function() {
         ReplayServerSession.activeSessions.splice(i, 1);
         break;
     }
+    this.logInfo("Active sessions count: "
+        + ReplayServerSession.activeSessions.length.toString());
 };
 
 ReplayServerSession.prototype.finish = function() {
@@ -52,8 +58,9 @@ ReplayServerSession.prototype.finish = function() {
     this.state = ReplayServerSession.STATES.FINISHING;
     this.removeFromActiveList();
     delete this.sock;
-    if (this.replayCollector)
-        this.replayCollector.finish();
+    if (this.replayCollector) {
+        this.replayCollector.finish(false);
+    }
     delete this.replayCollector;
     this.state = ReplayServerSession.STATES.FINISHED;
 
@@ -73,31 +80,9 @@ ReplayServerSession.prototype.onClientAuth = function(data) {
     if (authMsg.magic !== REPLAY_SESSION_PROTOCOL.AUTH_MAGIC)
         return this.finish();
 
-    this.state = ReplayServerSession.STATES.WAIT_CLIENT_INFO;
+    this.state = ReplayServerSession.STATES.WAIT_REPLAY_START;
     this.sock.emit('ok', 'auth');
     this.logInfo("Client is authenticated");
-};
-
-ReplayServerSession.prototype.onClientReplayInfo = function(data) {
-    this.logInfo("Client replay info recieved");
-    this.logInfo(data);
-    if (this.state !== ReplayServerSession.STATES.WAIT_CLIENT_INFO)
-        return;
-
-    var repInfoMsg = REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.load(JSONSafeParse(data));
-    if (!repInfoMsg)
-        return this.finish();
-
-    this.replayInfo = repInfoMsg.getReplayInfo();
-    try {
-        this.replayInfo.setHostName(this.sock.request.connection.remoteAddress);
-    } catch(ex) {
-        this.logError("Couldn't set client ip address");
-        this.logError(ex.toString());
-    }
-    this.state = ReplayServerSession.STATES.WAIT_REPLAY_START;
-    this.sock.emit('ok', 'client info');
-    this.logInfo("Client replay info processed");
 };
 
 ReplayServerSession.prototype.onClientReplayStart = function() {
@@ -105,10 +90,34 @@ ReplayServerSession.prototype.onClientReplayStart = function() {
     if (this.state !== ReplayServerSession.STATES.WAIT_REPLAY_START)
         return;
 
-    this.state = ReplayServerSession.STATES.COLLECTING_REPLAY;
-    this.replayCollector = new ReplayServerSession.ReplayCollector(this.replayInfo);
+    this.state = ReplayServerSession.STATES.WAIT_REPLAY_INFO;
     this.logInfo("Replay started");
 };
+
+ReplayServerSession.prototype.onClientReplayInfo = function(data) {
+    this.logInfo("Client replay info recieved");
+    this.logInfo(data);
+    if (this.state !== ReplayServerSession.STATES.WAIT_REPLAY_INFO)
+        return;
+
+    var repInfoMsg = REPLAY_SESSION_PROTOCOL.ReplayInfoMessage.load(JSONSafeParse(data));
+    if (!repInfoMsg)
+        return this.finish();
+
+    var replayInfo = repInfoMsg.getReplayInfo();
+    try {
+        replayInfo.setHostName(this.sock.request.connection.remoteAddress);
+    } catch(ex) {
+        this.logError("Couldn't get client ip address");
+        this.logError(ex.toString());
+    }
+
+    this.replayCollector = new ReplayServerSession.ReplayCollector(replayInfo);
+    this.state = ReplayServerSession.STATES.COLLECTING_REPLAY;
+    this.sock.emit('ok', 'client info');
+    this.logInfo("Client replay info processed");
+};
+
 
 ReplayServerSession.prototype.onClientReplayRecordList = function(data) {
     if (this.state !== ReplayServerSession.STATES.COLLECTING_REPLAY)
@@ -126,7 +135,7 @@ ReplayServerSession.prototype.onClientReplayFinish = function() {
     if (this.state !== ReplayServerSession.STATES.COLLECTING_REPLAY)
         return;
 
-    this.replayCollector.finish();
+    this.replayCollector.finish(true);
     this.replayCollector = null;
     this.state = ReplayServerSession.STATES.WAIT_REPLAY_START;
 
