@@ -71,11 +71,12 @@ LevelReplayAnalytics.prototype._computeAnalytics = function() {
             this._minPlayerY = Math.min(this._minPlayerY, record.getPlayerY());
             this._maxPlayerY = Math.max(this._maxPlayerY, record.getPlayerY());
         }
-        /*if (record.getRecordType() === ) {
-              
-               this._idiomsGuessed = 0;
-               this._idiomsFailed = 0;
-        }*/
+        if (record.getRecordType() === IdiomStateChangeRecord.type) {
+            if (record.getState() === IdiomStateChangeRecord.STATE.GUESSED)
+                this._idiomsGuessed++;
+            else if (record.getState() === IdiomStateChangeRecord.STATE.FAILED)
+                this._idiomsFailed++;
+        }
         if (record.getRecordType() === PlatformerCoinCollectedRecord.type) {
             this._coinsCollected += 1;
         }
