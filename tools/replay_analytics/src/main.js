@@ -8,8 +8,9 @@ function showHelpIfNeeded() {
         return;
 
     var helpTextList = [
-        "Tool provides simple replay analytics and filtering fascilities.", "\n",
-        "usage: node main.js path_to_dir_with_replays arguments", "\n", "\n",
+        "Tool (ver: game2) provides simple replay analytics and filtering facilities.", "\n",
+        "-h, --help, -v: print this help message and exit.", "\n", "\n",
+        "usage: node ", process.argv[1], " path_to_dir_with_replays [arguments]", "\n", "\n",
         "Replay filtering arguments:", "\n",
         ReplayFileInfoFilter.getArgvHelp()
     ];
