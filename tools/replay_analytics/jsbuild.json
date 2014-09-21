@@ -18,6 +18,7 @@
                 "src/ReplayFileInfo.js",
                 "src/LevelReplayAnalytics.js",
                 "src/output.js",
+                "src/ReplayFilter.js",
                 "src/main.js"
             ]
         }

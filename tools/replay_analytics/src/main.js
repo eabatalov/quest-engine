@@ -1,6 +1,22 @@
 var fs = require("fs");
 var path = require("path");
 
+function showHelpIfNeeded() {
+    var firstArg = process.argv[2];
+    if (firstArg != "-h" && firstArg != "--help"
+        && firstArg != "-v" && firstArg)
+        return;
+
+    var helpTextList = [
+        "Tool provides simple replay analytics and filtering fascilities.", "\n",
+        "usage: node main.js path_to_dir_with_replays arguments", "\n", "\n",
+        "Replay filtering arguments:", "\n",
+        ReplayFileInfoFilter.getArgvHelp()
+    ];
+    console.log(helpTextList.join(""));
+    process.exit(1);
+}
+
 function getReplayDirPath() {
     if (process.argv.length < 3) {
         console.error("Please supply path to directory with level replays");
@@ -46,13 +62,16 @@ function createReplayFileInfo(replayFilePath) {
 }
 
 function main() {
+    showHelpIfNeeded();
     var replaysDirPath = getReplayDirPath();
     console.log("Processing directory: ", replaysDirPath);
 
     var replayFilePaths = getReplayFilePaths(replaysDirPath);
     var replayFileInfos = jQuery.map(replayFilePaths, createReplayFileInfo);
+    var replayFilter = new ReplayFileInfoFilter(process.argv.slice(3));
     replayFileInfos = jQuery.grep(replayFileInfos, function(replayFileInfo) {
-        return replayFileInfo !== null;
+        return replayFileInfo !== null &&
+            replayFilter.isReplayFileInfoOk(replayFileInfo);
     });
 
     printLevelReplayFileInfos(replayFileInfos);

@@ -5,9 +5,9 @@ function LevelReplayAnalytics(replay) {
     this._coinsCollected = 0;
     this._idiomsGuessed = 0;
     this._idiomsFailed = 0;
-    this._minPlayerX = 0;
+    this._minPlayerX = Number.MAX_VALUE;
     this._maxPlayerX = 0;
-    this._minPlayerY = 0;
+    this._minPlayerY = Number.MAX_VALUE;
     this._maxPlayerY = 0;
     this._computeAnalytics();
 }
