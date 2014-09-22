@@ -162,8 +162,8 @@ AddExpression(9, ef_return_string, "answer 4 text", "Level action out", "getAnsw
 AddExpression(10, ef_return_string, "Phrase type", "Level action out", "getPhraseType",
 	"Phrase type");
 
-AddExpression(11, ef_return_number, "Delay in seconds", "Level action out", "getDelay",
-	"Delay in seconds.");
+AddExpression(11, ef_return_number, "Duration in seconds", "Level action out", "getDuration",
+	"Duration in seconds.");
 AddExpression(12, ef_return_string,
 	"...",
 	"Level action out", "getContinuation",

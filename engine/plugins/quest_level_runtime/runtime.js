@@ -257,9 +257,9 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
 	};
 
-	Exps.prototype.getDelay = function(ret) {
+	Exps.prototype.getDuration = function(ret) {
 		ret.set_int(
-            this.levelExecutionController.getUIActionOut().getDelaySec()
+            this.levelExecutionController.getUIActionOut().getDurationSec()
         );
 	};
 

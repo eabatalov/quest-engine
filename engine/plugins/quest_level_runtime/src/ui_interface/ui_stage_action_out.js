@@ -17,7 +17,7 @@ UIStageActionOut.prototype.clearFields = function() {
     this.answer4Text = "";
     this.phraseType = "";
 
-    this.delaySec = 0;
+    this.durationSec = 0;
     this.continuation = "";
 
     this.funcName = "";
@@ -114,12 +114,12 @@ UIStageActionOut.prototype.getPhraseType = function() {
     return this.phraseType;
 };
 
-UIStageActionOut.prototype.setDelaySec = function(delaySec) {
-    this.delaySec = delaySec;
+UIStageActionOut.prototype.setDurationSec = function(durationSec) {
+    this.durationSec = durationSec;
 };
 
-UIStageActionOut.prototype.getDelaySec = function() {
-    return this.delaySec;
+UIStageActionOut.prototype.getDurationSec = function() {
+    return this.durationSec;
 };
 
 UIStageActionOut.prototype.setContinuation = function(val) {
@@ -191,11 +191,12 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
 		case _QR_ACTION_TYPES.ANIM:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.ANIMATION);
 			this.setAnimationName(qrAction.name);
+			this.setDurationSec(qrAction.secs);
 			setActorInfo = true;
 		break;
 		case _QR_ACTION_TYPES.WAIT:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.DELAY);
-			this.setDelaySec(qrAction.secs);
+			this.setDurationSec(qrAction.secs);
 		break;
 		case _QR_ACTION_TYPES.STAGE_CLEAR:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
