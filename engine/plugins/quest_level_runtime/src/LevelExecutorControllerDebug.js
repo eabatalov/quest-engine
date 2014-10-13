@@ -65,10 +65,13 @@ function validateUIStageActionOut(action) {
 
 	if ((action.getActionType() === _UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE ||
         action.getActionType() === _UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ) &&
-        !(action.getPhraseType() in _UI_STAGE_ACTION_OUT.PHRASE_TYPES_SET)) {
-		showValidationError("UIStageActionOut has not valid phrase type\n"
+        (!(action.getPhraseType() in _UI_STAGE_ACTION_OUT.PHRASE_TYPES_SET) ||
+         !(action.getPhraseSize() in _UI_STAGE_ACTION_OUT.PHRASE_SIZES_SET))) {
+		showValidationError("UIStageActionOut has not valid phrase type or size\n"
 			+ "valid phrase types: \n"
-			+ JSON.stringify(_UI_STAGE_ACTION_OUT.PHRASE_TYPES_SET));
+			+ JSON.stringify(_UI_STAGE_ACTION_OUT.PHRASE_TYPES_SET) + "\n"
+            + "valid phrase sizes: \n"
+            + JSON.stringify(_UI_STAGE_ACTION_OUT.PHRASE_SIZES_SET));
         isError = true;
 	}
 

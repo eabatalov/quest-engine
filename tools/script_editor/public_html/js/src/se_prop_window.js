@@ -17,19 +17,6 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
         this.condTypeListChangedEvHandler = null;
         this.condTypesCached = null;
 
-        this.condTypeNames = {};
-        this.condTypeNames[_QUEST_CONDS.NONE] = 'None';
-        this.condTypeNames[_QUEST_CONDS.OBJECT_CLICKED] = 'Object clicked';
-        this.condTypeNames[_QUEST_CONDS.ANSWER_1_CLICKED] = 'Answer 1 clicked';
-        this.condTypeNames[_QUEST_CONDS.ANSWER_2_CLICKED] = 'Answer 2 clicked';
-        this.condTypeNames[_QUEST_CONDS.ANSWER_3_CLICKED] = 'Answer 3 clicked';
-        this.condTypeNames[_QUEST_CONDS.ANSWER_4_CLICKED] = 'Answer 4 clicked';
-        this.condTypeNames[_QUEST_CONDS.ANSWER_OTHER_CLICKED] = 'Answer other clicked';
-        this.condTypeNames[_QUEST_CONDS.CONTINUE] = 'Continue';
-        this.condTypeNames[_QUEST_CONDS.DEFAULT] = 'Default';
-        this.condTypeNames[_QUEST_CONDS.CUSTOM_EVENT] = 'Custom event';
-        this.condTypeNames[_QUEST_CONDS.NEXT] = 'Next';
-
         $scope.condTypes = function(cond) {
             if (!cond)
                 return [];
@@ -37,10 +24,23 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
             if (this.condTypesCached)
                 return this.condTypesCached;
 
+            var condTypeNames = {};
+            condTypeNames[_QUEST_CONDS.NONE] = 'None';
+            condTypeNames[_QUEST_CONDS.OBJECT_CLICKED] = 'Object clicked';
+            condTypeNames[_QUEST_CONDS.ANSWER_1_CLICKED] = 'Answer 1 clicked';
+            condTypeNames[_QUEST_CONDS.ANSWER_2_CLICKED] = 'Answer 2 clicked';
+            condTypeNames[_QUEST_CONDS.ANSWER_3_CLICKED] = 'Answer 3 clicked';
+            condTypeNames[_QUEST_CONDS.ANSWER_4_CLICKED] = 'Answer 4 clicked';
+            condTypeNames[_QUEST_CONDS.ANSWER_OTHER_CLICKED] = 'Answer other clicked';
+            condTypeNames[_QUEST_CONDS.CONTINUE] = 'Continue';
+            condTypeNames[_QUEST_CONDS.DEFAULT] = 'Default';
+            condTypeNames[_QUEST_CONDS.CUSTOM_EVENT] = 'Custom event';
+            condTypeNames[_QUEST_CONDS.NEXT] = 'Next';
+
             this.condTypesCached = [];
             var typeIds = this.condTypeValidator().getValidCondTypes(cond);
             jQuery.each(typeIds, function(ix, id) {
-                this.condTypesCached.push({ id : id, title : this.condTypeNames[id] });
+                this.condTypesCached.push({ id : id, title : condTypeNames[id] });
             }.bind(this));
             return this.condTypesCached;
         }.bind(this);
@@ -149,6 +149,13 @@ ScriptEditorPropertiesWindowController = function($scope, seEventRouter, seServi
                 }
             });
         }.bind(this);
+
+        $scope.phraseSizes = function() {
+            var sizeNameList = [];
+            for (var sizeName in _QUEST_PHRASE_SIZES)
+                sizeNameList.push(sizeName);
+            return sizeNameList;
+        };
 
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "CNTRL_INIT_PROP_WIND" });
 };

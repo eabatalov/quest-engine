@@ -123,6 +123,17 @@
                 </div>
             </div>
 
+            <div class="col-xs-12" ng-show="node.getProps().phraseSize  | hasFieldValue">
+                <div class="form-group has-feedback">
+                <label class="control-label" for="phraseSize">Size</label>
+                <select name="phraseSize"
+                        class="control-label select"
+                        ng-model="node.getProps().phraseSize"
+                        ng-options="sizeName as sizeName for sizeName in phraseSizes()">
+                </select>
+                </div>
+            </div>
+
             <div class="col-xs-12" ng-show="node.getProps().ans1  | hasFieldValue">
                 <div class="form-group has-feedback">
                     <label class="control-label" for="ans1">Answer 1</label>

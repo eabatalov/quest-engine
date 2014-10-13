@@ -16,6 +16,7 @@ UIStageActionOut.prototype.clearFields = function() {
     this.answer3Text = "";
     this.answer4Text = "";
     this.phraseType = "";
+    this.phraseSize = "";
 
     this.durationSec = 0;
     this.continuation = "";
@@ -114,6 +115,14 @@ UIStageActionOut.prototype.getPhraseType = function() {
     return this.phraseType;
 };
 
+UIStageActionOut.prototype.setPhraseSize = function(phraseSize) {
+    this.phraseSize = phraseSize;
+};
+
+UIStageActionOut.prototype.getPhraseSize = function() {
+    return this.phraseSize;
+};
+
 UIStageActionOut.prototype.setDurationSec = function(durationSec) {
     this.durationSec = durationSec;
 };
@@ -176,12 +185,14 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE);
 			this.setText(qrAction.text);
 			this.setPhraseType(qrAction.phraseType);
+            this.setPhraseSize(qrAction.phraseSize);
 			setActorInfo = true;
 		break;
 		case _QR_ACTION_TYPES.QUIZ:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ);
 			this.setText(qrAction.text);
 			this.setPhraseType(qrAction.phraseType);
+            this.setPhraseSize(qrAction.phraseSize);
             this.setAnswer1Text(qrAction.ans1);
             this.setAnswer2Text(qrAction.ans2);
             this.setAnswer3Text(qrAction.ans3);

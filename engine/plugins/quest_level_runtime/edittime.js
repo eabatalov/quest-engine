@@ -189,6 +189,9 @@ AddExpression(16, ef_return_number,
 	"Level action out", "getHasBack",
 	"1 if current script state can accept 'BACK' player action");
 
+AddExpression(17, ef_return_string, "Phrase size", "Level action out", "getPhraseSize",
+	"Phrase size");
+
 ////////////////////////////////////////
 ACESDone();
 

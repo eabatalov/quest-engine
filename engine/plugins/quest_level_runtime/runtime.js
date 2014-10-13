@@ -257,6 +257,12 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
 	};
 
+	Exps.prototype.getPhraseSize = function(ret) {
+		ret.set_string(
+            this.levelExecutionController.getUIActionOut().getPhraseSize()
+        );
+	};
+
 	Exps.prototype.getDuration = function(ret) {
 		ret.set_int(
             this.levelExecutionController.getUIActionOut().getDurationSec()
