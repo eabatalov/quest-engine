@@ -10,6 +10,7 @@
         "src" : {
             "base" : [
                 "src/misc.js",
+                "src/random.js",
                 "src/event.js",
                 "src/object_map.js",
                 "src/CommandQueue.js",
