@@ -12,7 +12,11 @@
                 "src/misc.js",
                 "src/event.js",
                 "src/object_map.js",
-                "src/CommandQueue.js"
+                "src/CommandQueue.js",
+                "src/ITextFileLoader.js"
+            ],
+            "web" : [
+                "src/web/AjaxTextFileLoader.js"
             ]
         }
     }

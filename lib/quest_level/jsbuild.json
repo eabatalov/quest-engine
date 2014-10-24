@@ -14,13 +14,10 @@
         "src" : {
             "base" : [
                 "src/QuestLevel.js",
-                "src/IQuestScriptLoader.js",
+                "src/QuestScriptLoader.js",
                 "src/ILevelLoader.js",
                 "src/QuestLevelLoader.js",
                 "src/LevelRepository.js"
-            ],
-            "web" : [
-                "src/AjaxQuestScriptLoader.js"
             ]
         }
     }
