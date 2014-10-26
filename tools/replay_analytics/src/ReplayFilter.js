@@ -11,8 +11,10 @@ ReplayFileInfoFilter._ARGV_ARGS = {
     DURATION : "--duration",
     TESTER_ID : "--tid",
     COINS : "--coins",
-    GUESSED_IDIOMS : "--guessed_idioms",
-    FAILED_IDIOMS : "--failed_idioms",
+    PLATFORMER_GUESSED_IDIOMS : "--platformer_guessed_idioms",
+    PLATFORMER_FAILED_IDIOMS : "--platformer_failed_idioms",
+    TEST_DIALOG_RIGHT_ANSWERS : "--test_right_answers",
+    TEST_DIALOG_WRONG_ANSWERS : "--test_wrong_answers",
     PLAYER_MIN_X : "--minx",
     PLAYER_MAX_X : "--maxx",
     PLAYER_MIN_Y : "--miny",
@@ -42,10 +44,10 @@ ReplayFileInfoFilter.prototype._parseArgv = function(argv) {
             case ReplayFileInfoFilter._ARGV_ARGS.COINS:
                 this.applyCoinsCollectedNumberFilter(filterExpr);
                 break;
-            case ReplayFileInfoFilter._ARGV_ARGS.GUESSED_IDIOMS:
+            case ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_GUESSED_IDIOMS:
                 this.applyGuessedIdiomsFilter(filterExpr);
                 break;
-            case ReplayFileInfoFilter._ARGV_ARGS.FAILED_IDIOMS:
+            case ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_FAILED_IDIOMS:
                 this.applyFailedIdiomsFilter(filterExpr);
                 break;
             case ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MIN_X:
@@ -73,16 +75,30 @@ ReplayFileInfoFilter.getArgvHelp = function() {
         "[", ReplayFileInfoFilter._ARGV_ARGS.DURATION, " (eq|ls|gt)duration_sec]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.TESTER_ID, " tid]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.COINS, " (eq|ls|gt)coins_collected_num]", "\n",
-        "[", ReplayFileInfoFilter._ARGV_ARGS.GUESSED_IDIOMS, " (eq|ls|gt)guessed_idioms_num]", "\n",
-        "[", ReplayFileInfoFilter._ARGV_ARGS.FAILED_IDIOMS, " (eq|ls|gt)failed_idioms_num]", "\n",
+        "[", ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_GUESSED_IDIOMS, " (eq|ls|gt)guessed_idioms_num]", "\n",
+        "[", ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_FAILED_IDIOMS, " (eq|ls|gt)failed_idioms_num]", "\n",
+        "[", ReplayFileInfoFilter._ARGV_ARGS.TEST_DIALOG_RIGHT_ANSWERS, " (eq|ls|gt)right_answers_num]", "\n",
+        "[", ReplayFileInfoFilter._ARGV_ARGS.TEST_DIALOG_WRONG_ANSWERS, " (eq|ls|gt)wrong_answers_num]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MIN_X, " (eq|ls|gt)min_player_x_position]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MAX_X, " (eq|ls|gt)max_player_x_position]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MIN_Y, " (eq|ls|gt)min_player_y_position]", "\n",
         "[", ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MAX_Y, " (eq|ls|gt)max_player_y_position]", "\n",
         "example: ", "\n",
-        "--level 1demo --host 217.148.215.18 --duration gt50 --tid '' --coins gt1",
-        " --guessed_idioms gt0 --failed_idioms gt0 --minx ls500 --maxx gt5200",
-        " --miny gt0 --maxy ls1000", "\n"
+        ReplayFileInfoFilter._ARGV_ARGS.LEVEL, " 1demo ",
+        ReplayFileInfoFilter._ARGV_ARGS.HOST_NAME, " 217.148.215.18 ",
+        ReplayFileInfoFilter._ARGV_ARGS.IS_FINISHED, "true",
+        ReplayFileInfoFilter._ARGV_ARGS.DURATION, " gt50 ",
+        ReplayFileInfoFilter._ARGV_ARGS.TESTER_ID, " '' ",
+        ReplayFileInfoFilter._ARGV_ARGS.COINS, " gt1 ",
+        ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_GUESSED_IDIOMS, " gt0 ",
+        ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_FAILED_IDIOMS, " gt0 ",
+        ReplayFileInfoFilter._ARGV_ARGS.TEST_DIALOG_RIGHT_ANSWERS, " gt0 ",
+        ReplayFileInfoFilter._ARGV_ARGS.TEST_DIALOG_WRONG_ANSWERS, " eq0 ",
+        ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MIN_X,, " ls500 ",
+        ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MAX_X, " gt5200",
+        ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MIN_Y, " gt0 ",
+        ReplayFileInfoFilter._ARGV_ARGS.PLAYER_MAX_Y, " ls1000",
+        "\n"
     ].join("");
 };
 
@@ -175,7 +191,7 @@ ReplayFileInfoFilter.prototype.applyCoinsCollectedNumberFilter = function(expr) 
 ReplayFileInfoFilter.prototype.applyGuessedIdiomsFilter = function(expr) {
     this._filterFuncs.push(function(replayFileInfo) {
         var replayGuessed =
-            replayFileInfo.replayAnalytics.getGuessedIdiomsNum();
+            replayFileInfo.replayAnalytics.getPlatformerGuessedIdiomsCount();
         var targetGuessed = parseInt(expr.substring(2));
 
         switch(expr.substring(0, 2)) {
@@ -190,7 +206,7 @@ ReplayFileInfoFilter.prototype.applyGuessedIdiomsFilter = function(expr) {
             break;
         }
         console.error("Invalid expression for",
-            ReplayFileInfoFilter._ARGV_ARGS.GUESSED_IDIOMS, "filter:", expr);
+            ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_GUESSED_IDIOMS, "filter:", expr);
         process.exit(1);
     });
 
@@ -199,7 +215,7 @@ ReplayFileInfoFilter.prototype.applyGuessedIdiomsFilter = function(expr) {
 ReplayFileInfoFilter.prototype.applyFailedIdiomsFilter = function(expr) {
     this._filterFuncs.push(function(replayFileInfo) {
         var replayFailed =
-            replayFileInfo.replayAnalytics.getFailedIdiomsNum();
+            replayFileInfo.replayAnalytics.getPlatformerFailedIdiomsCount();
         var targetFailed = parseInt(expr.substring(2));
 
         switch(expr.substring(0, 2)) {
@@ -214,7 +230,7 @@ ReplayFileInfoFilter.prototype.applyFailedIdiomsFilter = function(expr) {
             break;
         }
         console.error("Invalid expression for",
-            ReplayFileInfoFilter._ARGV_ARGS.FAILED_IDIOMS, "filter:", expr);
+            ReplayFileInfoFilter._ARGV_ARGS.PLATFORMER_FAILED_IDIOMS, "filter:", expr);
         process.exit(1);
     });
 };
