@@ -62,8 +62,24 @@ AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive",
 AddCondition(0, cf_trigger, "Level changed", "General",
     "Level changed", "Level changed", "levelChanged");
 
-AddCondition(1, cf_trigger, "UI action is pending", "General",
-    "UI action is pending", "UI action is pending", "uiActionIsPending");
+AddCondition(1, cf_trigger, "onUICmdSequenceStarted", "UI commands",
+    "onUICmdSequenceStarted", "onUICmdSequenceStarted", "onUICmdSequenceStarted");
+AddCondition(2, cf_trigger, "onUICmdSequenceFinished", "UI commands",
+    "onUICmdSequenceFinished", "onUICmdSequenceFinished", "onUICmdSequenceFinished");
+AddCondition(3, cf_trigger, "onUICmdStageClear", "UI commands",
+    "onUICmdStageClear", "onUICmdStageClear", "onUICmdStageClear");
+AddCondition(4, cf_trigger, "onUICmdFuncCall", "UI commands",
+    "onUICmdFuncCall", "onUICmdFuncCall", "onUICmdFuncCall");
+AddCondition(5, cf_trigger, "onUICmdNotification", "UI commands",
+    "onUICmdNotification", "onUICmdNotification", "onUICmdNotification");
+AddCondition(6, cf_trigger, "onUICmdPlayerMovement", "UI commands",
+    "onUICmdPlayerMovement", "onUICmdPlayerMovement", "onUICmdPlayerMovement");
+AddCondition(7, cf_trigger, "onUICmdPhrase", "UI commands",
+    "onUICmdPhrase", "onUICmdPhrase", "onUICmdPhrase");
+AddCondition(8, cf_trigger, "onUICmdQuizz", "UI commands",
+    "onUICmdQuizz", "onUICmdQuizz", "onUICmdQuizz");
+AddCondition(9, cf_trigger, "onUICmdAnimation", "UI commands",
+    "onUICmdAnimation", "onUICmdAnimation", "onUICmdAnimation");
 
 ////////////////////////////////////////
 // Actions
@@ -96,7 +112,7 @@ AddStringParam("Value", "Stage name (String)");
 AddAction(4, af_none, "Set current stage", "Level", "Set current stage to {0}",
 	"Set stage name with which we'll work now.", "setStage");
 
-//=== LEVEL UI ACTION IN ===
+//=== UI ACTION IN ===
 AddAction(1, af_none, "Execute last player action on current stage", "Level action in",
 	"Execute last player action {0} on current stage",
 	"Execute last player action on current stage",
@@ -116,9 +132,8 @@ AddStringParam("Value", "Action name");
 AddAction(7, af_none, "Set last action 'name' value", "Level action in", "Set 'name' to {0}",
 	"", "setLastActionName");
 
-//=== LEVEL UI ACTION OUT ===
-AddAction(8, af_none, "Signla UI action completed", "Signal UI action completed",
-    "Signal UI action completed", "", "signalUIActionCompleted");
+//=== UI ACTION OUT ===
+AddAction(8, af_none, "UICmdCompleted", "UI commands", "UICmdCompleted", "", "UICmdCompleted");
 
 ////////////////////////////////////////
 // Expressions
@@ -134,63 +149,59 @@ AddAction(8, af_none, "Signla UI action completed", "Signal UI action completed"
 // example
 /*AddExpression(0, ef_return_number, "Leet expression", "My category", "MyExpression", "Return the number 1337.");*/
 
-//=== LEVEL UI ACTION OUT ===
-AddExpression(0, ef_return_string, "Current stage", "Level action out", "getCurrentStage",
+//=== UI ACTION OUT ===
+AddExpression(0, ef_return_string, "Current stage", "UI action out", "getCurrentStage",
 	"Current stage");
-AddExpression(1, ef_return_string, "Current actor type", "Level action out", "getActor",
+AddExpression(1, ef_return_string, "Current actor type", "UI action out", "getActor",
 	"Current actor. Possble values: \"PLAYER\" | \"NPC\"");
-AddExpression(2, ef_return_number, "Current NPC actor UID", "Level action out", "getNPCActorUID",
+AddExpression(2, ef_return_number, "Current NPC actor UID", "UI action out", "getNPCActorUID",
 	"UID of current acting NPC.");
-AddExpression(3, ef_return_string, "Current action type", "Level action out", "getAction",
-	"Current action. Possible values: "
-	+ "\"PHRASE\" | \"QUIZ\" | \"ANIMATION\" \"DELAY\" | \"STAGE_CLEAR\" | \"NONE\""
-);
 
-AddExpression(4, ef_return_string, "Current animation name", "Level action out", "getAnimationName",
+AddExpression(4, ef_return_string, "Current animation name", "UI action out", "getAnimationName",
 	"if current action type is \"question\" contains current animation name");
 
-AddExpression(5, ef_return_string, "text", "Level action out", "getText",
+AddExpression(5, ef_return_string, "text", "UI action out", "getText",
 	"if current action type is \"speech\" or \"question\" contains its text");
-AddExpression(6, ef_return_string, "answer 1 text", "Level action out", "getAnswer1Text",
+AddExpression(6, ef_return_string, "answer 1 text", "UI action out", "getAnswer1Text",
 	"Text of 1st answer to the question");
-AddExpression(7, ef_return_string, "answer 2 text", "Level action out", "getAnswer2Text",
+AddExpression(7, ef_return_string, "answer 2 text", "UI action out", "getAnswer2Text",
 	"Text of 2nd answer to the question");
-AddExpression(8, ef_return_string, "answer 3 text", "Level action out", "getAnswer3Text",
+AddExpression(8, ef_return_string, "answer 3 text", "UI action out", "getAnswer3Text",
 	"Text of 3rd answer to the question");
-AddExpression(9, ef_return_string, "answer 4 text", "Level action out", "getAnswer4Text",
+AddExpression(9, ef_return_string, "answer 4 text", "UI action out", "getAnswer4Text",
 	"Text of 4th answer to the question");
-AddExpression(10, ef_return_string, "Phrase type", "Level action out", "getPhraseType",
+AddExpression(10, ef_return_string, "Phrase type", "UI action out", "getPhraseType",
 	"Phrase type");
 
-AddExpression(11, ef_return_number, "Duration in seconds", "Level action out", "getDuration",
+AddExpression(11, ef_return_number, "Duration in seconds", "UI action out", "getDuration",
 	"Duration in seconds.");
-AddExpression(12, ef_return_string,
-	"...",
-	"Level action out", "getContinuation",
-	"'NONE': UI should process only current UI action."
-    + "'CONTINUE': UI should return to runtime with 'CONTINUE' action after processing of current UI action."
-    + "'CONTINUE_UI_CLEAR': UI should return to runtime with 'CONTINUE' action after processing of current UI action and clearing current stage UI");
 
-AddExpression(13, ef_return_string, "Function name", "Level action out", "getFuncName",
+AddExpression(13, ef_return_string, "Function name", "UI action out", "getFuncName",
 	"Function name");
 
 AddExpression(14, ef_return_number,
 	"1 to enable player avatar movement control by player",
-	"Level action out", "getEnabled",
+	"UI action out", "getEnabled",
 	"1 to enable player avatar movement control by player");
 
 AddExpression(15, ef_return_number,
 	"1 if current script state can accept 'NEXT' player action",
-	"Level action out", "getHasNext",
+	"UI action out", "getHasNext",
 	"1 if current script state can accept 'NEXT' player action");
 
 AddExpression(16, ef_return_number,
 	"1 if current script state can accept 'BACK' player action",
-	"Level action out", "getHasBack",
+	"UI action out", "getHasBack",
 	"1 if current script state can accept 'BACK' player action");
 
-AddExpression(17, ef_return_string, "Phrase size", "Level action out", "getPhraseSize",
+AddExpression(17, ef_return_string, "Phrase size", "UI action out", "getPhraseSize",
 	"Phrase size");
+
+AddExpression(18, ef_return_number,
+	"Allow animated",
+	"UI action out", "getAllowAnimated",
+	"1 to allow animated non instant UI cmd execution, 0 otherwise");
+
 
 ////////////////////////////////////////
 ACESDone();

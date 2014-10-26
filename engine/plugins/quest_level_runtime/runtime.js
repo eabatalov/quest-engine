@@ -126,7 +126,35 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
     };
 
     instanceProto.onUIActionPending = function(uiOutAction) {
-        this.runtime.trigger(pluginProto.cnds.uiActionIsPending, this);
+        switch (uiOutAction.getActionType()) {
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.CMD_SEQUENCE_STARTED:
+                this.runtime.trigger(pluginProto.cnds.onUICmdSequenceStarted, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.CMD_SEQUENCE_FINISHED:
+                this.runtime.trigger(pluginProto.cnds.onUICmdSequenceFinished, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE:
+                this.runtime.trigger(pluginProto.cnds.onUICmdPhrase, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.QUIZ:
+                this.runtime.trigger(pluginProto.cnds.onUICmdQuizz, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.ANIMATION:
+                this.runtime.trigger(pluginProto.cnds.onUICmdAnimation, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR:
+                this.runtime.trigger(pluginProto.cnds.onUICmdStageClear, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL:
+                this.runtime.trigger(pluginProto.cnds.onUICmdFuncCall, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.NOTIFICATION:
+                this.runtime.trigger(pluginProto.cnds.onUICmdNotification, this);
+            break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT:
+                this.runtime.trigger(pluginProto.cnds.onUICmdPlayerMovement, this);
+            break;
+        }
     };
 
 	//////////////////////////////////////
@@ -137,10 +165,42 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	    return true; //cf_trigger was signaled explicitly
     };
 
-    Cnds.prototype.uiActionIsPending = function() {
-        return true; //cf_trigger was signaled explicitly
+    Cnds.prototype.onUICmdSequenceStarted = function() {
+        return true;
     };
-	
+
+    Cnds.prototype.onUICmdSequenceFinished = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdStageClear = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdFuncCall = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdNotification = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdPlayerMovement = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdPhrase = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdQuizz = function() {
+        return true;
+    };
+
+    Cnds.prototype.onUICmdAnimation = function() {
+        return true;
+    };
+
 	pluginProto.cnds = new Cnds();
 	
 	//////////////////////////////////////
@@ -157,11 +217,12 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         QuestGame.instance.setCurrentLevelByName(levelName);
     };
 
-    //=== Level action in ===
-    Acts.prototype.signalUIActionCompleted = function() {
+    //=== UI action out ===
+    Acts.prototype.UICmdCompleted = function() {
         this.levelExecutionController.currentUIActionProcCompleted();
     };
 
+    //=== UI action in ===
 	Acts.prototype.playerActionExec = function() {
 	    this.levelExecutionController.uiActionInExec();
     };
@@ -206,12 +267,6 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
 	Exps.prototype.getNPCActorUID = function(ret) {
 		ret.set_int(
             this.levelExecutionController.getUIActionOut().getNPCActorUID()
-        );
-	};
-
-	Exps.prototype.getAction = function(ret) {
-		ret.set_string(
-            this.levelExecutionController.getUIActionOut().getActionType()
         );
 	};
 
@@ -269,12 +324,6 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
 	};
 
-	Exps.prototype.getContinuation = function(ret) {
-		ret.set_string(
-            this.levelExecutionController.getUIActionOut().getContinuation()
-        );
-	};
-
     Exps.prototype.getFuncName = function(ret) {
 		ret.set_string(
             this.levelExecutionController.getUIActionOut().getFuncName()
@@ -298,6 +347,12 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
             this.levelExecutionController.getUIActionOut().getCanReverse()
         );
 	};
+
+    Exps.prototype.getAllowAnimated = function(ret) {
+        ret.set_int(
+            this.levelExecutionController.getUIActionOut().getAllowAnimated()
+        );
+    };
 
 	pluginProto.exps = new Exps();
 

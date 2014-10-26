@@ -74,9 +74,6 @@ function uiStageActionInToQuestEvent(uiActionIn) {
             type = _QUEST_EVENTS.ANSWER_4_CLICKED;
 		    props = { id : uiActionIn.getTargetId() };
 		break;
-		case  _UI_STAGE_ACTION_IN.ACTION_TYPES.CONTINUE:
-            type = _QUEST_EVENTS.CONTINUE;
-		break;
         case _UI_STAGE_ACTION_IN.ACTION_TYPES.CUSTOM_EVENT:
             type = _QUEST_EVENTS.CUSTOM_EVENT;
 		    props = { name : uiActionIn.getName(), id : uiActionIn.getTargetId() };

@@ -7,7 +7,6 @@ function LevelExecutorController(levelExecutor) {
 
     this.uiActionIn = new UIStageActionIn();
     this.uiActionOut = new UIStageActionOut();
-    this.pendingQRActions = [];
 
     this.events = {
         uiActionPending : new SEEvent(/*UIStageActionOut*/)
@@ -53,19 +52,12 @@ LevelExecutorController.prototype.uiActionInExec = function() {
 
 //Called by UI when current uiActionOut was processed
 LevelExecutorController.prototype.currentUIActionProcCompleted = function() {
-    this.pendingQRActions.shift();
-    if (this.pendingQRActions.length > 0) {
-        this._fillUIActionOut(this.pendingQRActions[0]);
-        this.events.uiActionPending.publish(this.uiActionOut);
-    }
+    this.levelExecutor.currentQRActionProcCompleted();
 };
 
 LevelExecutorController.prototype._onQRActionPending = function(nextQRAction) {
-    this.pendingQRActions.push(nextQRAction);
-    if (this.pendingQRActions.length === 1) {
-        this._fillUIActionOut(this.pendingQRActions[0]);
-        this.events.uiActionPending.publish(this.uiActionOut);
-    }
+    this._fillUIActionOut(nextQRAction);
+    this.events.uiActionPending.publish(this.uiActionOut);
 };
 
 LevelExecutorController.prototype._npcUID = function(stageName, npcIDInStage) {

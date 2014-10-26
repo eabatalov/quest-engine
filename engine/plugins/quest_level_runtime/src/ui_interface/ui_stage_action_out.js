@@ -19,12 +19,12 @@ UIStageActionOut.prototype.clearFields = function() {
     this.phraseSize = "";
 
     this.durationSec = 0;
-    this.continuation = "";
 
     this.funcName = "";
     this.enabled = 0; // 0 or 1
     this.hasNext = 0; //0 or 1
     this.canReverse = 0; //0 or 1
+    this.allowAnimated = 0; //0 or 1
 };
 
 UIStageActionOut.prototype.getStageName = function() {
@@ -131,14 +131,6 @@ UIStageActionOut.prototype.getDurationSec = function() {
     return this.durationSec;
 };
 
-UIStageActionOut.prototype.setContinuation = function(val) {
-    this.continuation = val;
-};
-
-UIStageActionOut.prototype.getContinuation = function() {
-    return this.continuation;
-};
-
 UIStageActionOut.prototype.getFuncName = function() {
     return this.funcName;
 };
@@ -171,6 +163,14 @@ UIStageActionOut.prototype.setCanReverse = function(canReverse) {
     this.canReverse = canReverse;
 };
 
+UIStageActionOut.prototype.setAllowAnimated = function(allowAnimated) {
+    this.allowAnimated = allowAnimated;
+};
+
+UIStageActionOut.prototype.getAllowAnimated = function() {
+    return this.allowAnimated;
+};
+
 UIStageActionOut.prototype.toString = function() {
     return JSON.stringify(this, null, '\t');
 };
@@ -178,9 +178,6 @@ UIStageActionOut.prototype.toString = function() {
 UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
     var setActorInfo = false;
 	switch(qrAction.getType()) {
-		case _QR_ACTION_TYPES.NONE:
-			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
-		break;
 		case _QR_ACTION_TYPES.PHRASE:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PHRASE);
 			this.setText(qrAction.text);
@@ -205,12 +202,9 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
 			this.setDurationSec(qrAction.secs);
 			setActorInfo = true;
 		break;
-		case _QR_ACTION_TYPES.WAIT:
-			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.DELAY);
-			this.setDurationSec(qrAction.secs);
-		break;
 		case _QR_ACTION_TYPES.STAGE_CLEAR:
 			this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.STAGE_CLEAR);
+            this.setAllowAnimated(1);
 		break;
 		case _QR_ACTION_TYPES.FUNC_CALL:
             if (qrAction.source === SEFuncCallNode.sources.c2) {
@@ -227,6 +221,12 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
         case _QR_ACTION_TYPES.PLAYER_MOVEMENT:
             this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT);
             this.setEnabled(qrAction.enabled === true ? 1 : 0);
+        break;
+        case _QR_ACTION_TYPES.CMD_SEQUENCE_STARTED:
+            this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.CMD_SEQUENCE_STARTED);
+        break;
+        case _QR_ACTION_TYPES.CMD_SEQUENCE_FINISHED:
+            this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.CMD_SEQUENCE_FINISHED);
         break;
 		default:
 			console.error("Error. Invalid QRAction node type: " +
@@ -247,5 +247,4 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
     this.setStageName(qrAction.getStageName());
     this.setHasNext(qrAction.getHasNext() ? 1 : 0);
     this.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
-    this.setContinuation(qrAction.getContinuation());
 };
