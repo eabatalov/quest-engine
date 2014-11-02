@@ -111,6 +111,11 @@ cr.plugins_.QuestPersistentStoragePlugin = function(runtime)
 	// Conditions
 	function Cnds() {};
 
+    Cnds.prototype.isAvaliable = function() {
+        return QuestGame.instance.getPersistentStorage().
+            put("is_avail", "true");
+    };
+
 	pluginProto.cnds = new Cnds();
 
 	//////////////////////////////////////

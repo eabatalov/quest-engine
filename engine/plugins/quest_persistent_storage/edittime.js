@@ -35,6 +35,9 @@ AddAction(0, af_none, "Put", "General", "Put {1} to  {0}", "Put value to persist
 AddStringParam("Name", "The name of the function to call.");
 AddExpression(0, ef_return_any, "Get from {0}", "General", "get", "Get value from persistent storage by name");
 
+AddCondition(0, cf_none, "Is avaliable", "General", "Is avaliable",
+    "Is persistent storage avaliable", "isAvaliable");
+
 ACESDone();
 
 var property_list = [];
