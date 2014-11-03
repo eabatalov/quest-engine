@@ -21,6 +21,7 @@
             ],
             "interpretator" : [
                 "src/interpretator/quest_event.js",
+                "src/interpretator/InterpretatorStepResult.js",
                 "src/interpretator/storyline.js",
                 "src/interpretator/stage.js",
                 "src/interpretator/script.js",

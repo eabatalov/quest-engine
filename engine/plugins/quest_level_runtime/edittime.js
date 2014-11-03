@@ -202,6 +202,10 @@ AddExpression(18, ef_return_number,
 	"UI action out", "getAllowAnimated",
 	"1 to allow animated non instant UI cmd execution, 0 otherwise");
 
+AddExpression(19, ef_return_number,
+	"Clear stage",
+	"UI action out", "getClearStage",
+	"1 to clear stage before processing current action, 0 otherwise");
 
 ////////////////////////////////////////
 ACESDone();

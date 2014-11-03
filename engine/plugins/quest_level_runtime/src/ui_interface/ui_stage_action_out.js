@@ -25,6 +25,7 @@ UIStageActionOut.prototype.clearFields = function() {
     this.hasNext = 0; //0 or 1
     this.canReverse = 0; //0 or 1
     this.allowAnimated = 0; //0 or 1
+    this.clearStage = 0;
 };
 
 UIStageActionOut.prototype.getStageName = function() {
@@ -171,6 +172,14 @@ UIStageActionOut.prototype.getAllowAnimated = function() {
     return this.allowAnimated;
 };
 
+UIStageActionOut.prototype.setClearStage = function(clearStage) {
+    this.clearStage = clearStage;
+};
+
+UIStageActionOut.prototype.getClearStage = function() {
+    return this.clearStage;
+};
+
 UIStageActionOut.prototype.toString = function() {
     return JSON.stringify(this, null, '\t');
 };
@@ -247,4 +256,5 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
     this.setStageName(qrAction.getStageName());
     this.setHasNext(qrAction.getHasNext() ? 1 : 0);
     this.setCanReverse(qrAction.getCanReverse() ? 1 : 0);
+    this.setClearStage(qrAction.getClearStage() ? 1 : 0);
 };

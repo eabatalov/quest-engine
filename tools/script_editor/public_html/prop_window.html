@@ -28,6 +28,13 @@
                        class="form-control input-sm" />
                 <span class="glyphicon glyphicon-tag form-control-feedback"></span>
             </div>
+            <div class="form-group has-feedback" ng-show="cond.getProps().clearStage | hasFieldValue">
+                <label class="control-label" for="id">Clear stage?</label>
+                <input type="checkbox"
+                        name="clearStage"
+                        class="form-control input-sm"
+                        ng-model="cond.getProps().clearStage"/>
+            </div>
         </div>
     </div>
 

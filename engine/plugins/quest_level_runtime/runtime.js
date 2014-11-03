@@ -354,6 +354,12 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
     };
 
+    Exps.prototype.getClearStage = function(ret) {
+        ret.set_int(
+            this.levelExecutionController.getUIActionOut().getClearStage()
+        );
+    };
+
 	pluginProto.exps = new Exps();
 
 }());
