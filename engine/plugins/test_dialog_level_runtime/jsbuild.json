@@ -1,0 +1,17 @@
+{
+    "module" : {
+        "name" : "c2-plugin-test-dialog-level-runtime",
+        "description" : "",
+        "outDir" : ".",
+        "dependencies" : {
+            "base" : {
+                "lib-test-dialog-level" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/TestDialogRuntimeController.js"
+            ]
+        }
+    }
+}

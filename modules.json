@@ -6,6 +6,7 @@
     "c2-plugin-quest-game" : "engine/plugins/quest_game_plugin/",
     "c2-plugin-quest-level-recording" : "engine/plugins/quest_level_recording/",
     "c2-plugin-quest-level-playback" : "engine/plugins/quest_level_playback/",
+    "c2-plugin-test-dialog-level-runtime" : "engine/plugins/test_dialog_level_runtime/",
     "quest-script-editor" : "tools/script_editor/public_html/js/",
 
     "tool-script-to-text" : "tools/script_to_text/",
@@ -15,6 +16,7 @@
     "service-replay-client-test" : "services/replay_client_test",
 
     "lib-persistent-storage" : "lib/persistent_storage",
+    "lib-test-dialog-level" : "lib/test_dialog_level",
     "lib-quest-game" : "lib/quest_game",
     "lib-quest-level" : "lib/quest_level",
     "lib-quest-script" : "lib/quest_script",

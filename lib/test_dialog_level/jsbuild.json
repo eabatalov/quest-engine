@@ -1,0 +1,24 @@
+{
+    "module" : {
+        "name" : "lib-test-dialog-level",
+        "description" : "",
+        "dependencies" : {
+            "base" : {
+                "lib-util" : []
+             },
+            "noweb" : {
+                "lib-jquery-core-nodom" : []
+            }
+        },
+        "src" : {
+            "base" : [
+                "src/TestDialogScript.js",
+                "src/TestDialogScriptLoader.js",
+                "src/TestDialogQuestion.js",
+                "src/TestDialogSection.js",
+                "src/TestDialogRuntime.js",
+                "src/TestDialogScriptRepository.js"
+            ]
+        }
+    }
+}
