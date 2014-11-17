@@ -10,5 +10,7 @@ To make plugins avaliable in Construct2:
 9. mklink /D quest_game_plugin QUEST_ENGINE_REPO_DIR\engine\plugins\quest_game_plugin
 9. mklink /D quest_level_recording QUEST_ENGINE_REPO_DIR\engine\plugins\quest_level_recording
 10. mklink /D quest_level_playback QUEST_ENGINE_REPO_DIR\engine\plugins\quest_level_playback
-11. mklink /D quest_sprite_extras QUEST_ENGINE_REPO_DIR\engine\plugins\quest_sprite_extras
 12. mklink /D test_dialog_level_runtime QUEST_ENGINE_REPO_DIR\engine\plugins\test_dialog_level_runtime
+
+13. cd "C:\Program Files\Construct 2\exporters\html5\behaviors"
+14. mklink /D quest_sprite_extras QUEST_ENGINE_REPO_DIR\engine\plugins\quest_sprite_extras
