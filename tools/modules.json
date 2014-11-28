@@ -1,0 +1,8 @@
+{
+    "tool-lib-replay-analytics" : "lib/replay_analytics/",
+    "tool-lib-replay-file-utils" : "lib/replay_file_utils/",
+
+    "tool-script-to-text" : "script_to_text/",
+    "tool-replay-analytics-filter" : "replay_analytics_filter/",
+    "tool-replay-deleter" : "replay_deleter/"
+}

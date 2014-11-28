@@ -9,9 +9,6 @@
     "c2-plugin-test-dialog-level-runtime" : "engine/plugins/test_dialog_level_runtime/",
     "quest-script-editor" : "tools/script_editor/public_html/js/",
 
-    "tool-script-to-text" : "tools/script_to_text/",
-    "tool-replay-analytics" : "tools/replay_analytics/",
-
     "service-replay-server" : "services/replay_server",
     "service-replay-client-test" : "services/replay_client_test",
 

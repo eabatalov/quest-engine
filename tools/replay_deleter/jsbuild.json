@@ -1,0 +1,18 @@
+{
+    "module" : {
+        "name" : "tool-replay-deleter",
+        "description" : "",
+        "dependencies" : {
+            "base" : {
+                "lib-util" : [],
+                "tool-lib-replay-file-utils" : [],
+                "tool-lib-replay-analytics" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/main.js"
+            ]
+        }
+    }
+}

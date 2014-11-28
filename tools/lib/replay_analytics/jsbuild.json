@@ -1,0 +1,22 @@
+{
+    "module" : {
+        "name" : "tool-lib-replay-analytics",
+        "description" : "",
+        "dependencies" : {
+            "base" : {
+                "lib-quest-level-recording" : [],
+                "lib-idiomland-level-recording" : [],
+                "lib-platformer-level-recording" : []
+             },
+             "noweb" : {
+                "lib-jquery-core-nodom" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/ReplayFileInfo.js",
+                "src/LevelReplayAnalytics.js"
+            ]
+        }
+    }
+}
