@@ -33,6 +33,11 @@ AddNumberParam("Player Y", "Current Y coordinate of player");
 AddAction(0, af_none, "Record player position", "General", "Record player X {0} Y {1}",
     "Record player's X and Y coordinates", "recPlayerXY");
 
+AddStringParam("Custom type", "Type of custom gameplay record");
+AddStringParam("Custom data", "String data for custom gameplay record");
+AddAction(5, af_none, "Custom record", "General", "Make custom record of type {0} with data {1}",
+    "Custom record", "recCustomRecord");
+
 AddAction(2, af_none, "Save replay", "General", "Save replay", "Save replay", "saveReplay");
 AddAction(3, af_none, "Stop level gameplay recording", "General",
     "Stop level gameplay recording", "Stop level gameplay recording", "stopRecording");

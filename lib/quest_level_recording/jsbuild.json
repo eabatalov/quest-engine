@@ -17,6 +17,7 @@
                 "src/LevelGameplayRecord.js",
                 "src/PlayerPositionRecord.js",
                 "src/QuestEventRecord.js",
+                "src/CustomGameplayRecord.js",
                 "src/LevelGameplayHistory.js",
                 "src/LevelGameplayRecorder.js",
                 "src/QuestLevelGameplayRecorder.js",

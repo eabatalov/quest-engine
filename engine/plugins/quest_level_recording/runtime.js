@@ -133,7 +133,15 @@ cr.plugins_.QuestLevelRecordingPlugin = function(runtime)
 	function Acts() {};
 
 	Acts.prototype.recPlayerXY = function(x, y) {
-        this.levelGameplayRecorder.addRecord(new PlayerPositionRecord(x, y));
+        this.levelGameplayRecorder.addRecord(
+            new PlayerPositionRecord(x, y)
+        );
+    };
+
+    Acts.prototype.recCustomRecord = function(customType, customStrData) {
+        this.levelGameplayRecorder.addRecord(
+            new CustomGameplayRecord(customType, customStrData)
+        );
     };
 
     Acts.prototype.startReplay = function() {
