@@ -5,7 +5,6 @@
         "dependencies" : {
             "base" : {
                 "lib-util" : [],
-                "tool-lib-replay-file-utils" : [],
                 "tool-lib-replay-analytics" : []
              }
         },

@@ -15,7 +15,8 @@
         "src" : {
             "base" : [
                 "src/ReplayFileInfo.js",
-                "src/LevelReplayAnalytics.js"
+                "src/LevelReplayAnalytics.js",
+                "src/utils.js"
             ]
         }
     }
