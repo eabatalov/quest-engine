@@ -94,6 +94,14 @@ AddCondition(12, 0, "Action Point exists on frame", "Action Points", "Action Poi
 
 AddCondition(13, 0, "Position is outside padded viewport", "Advanced : Optimization", "Position is outside padded viewport", "True when this object's x,y coordinate is outside the padded display box set through Set Automatic Pausing action.", "outsidePaddedViewport");
 
+AddStringParam("name", "The name of the event.");
+AddCondition(14, cf_trigger, "On event triggered", "Events", "On event {0} triggered", "Triggered upon Spriter events in animation.", "OnEventTriggered");
+
+AddStringParam("tag name", "The name of the tag.");
+AddStringParam("object name", "The name of the sprite, bone, sound, etc to check for a tag.  Leave blank for universal tags");
+AddCondition(15, 0, "Tag is active in frame", "Variables and Tags", "Tag {0} is active on current frame({1})", "True when the tag is active", "tagActive");
+
+
 ////////////////////////////////////////
 // Actions
 
@@ -118,7 +126,7 @@ AddComboParamOption("blend to start");
 AddComboParamOption("blend at current time ratio");
 AddComboParam("Where to start playing this animation", "Play this animation from the beginning? or play from current time or time ratio", 0);	
 AddNumberParam("Blend Duration", "If a blend option is chosen above, the length of time (in milliseconds) to take to blend to the new animation", "0");
-AddAction(0, 0, "Set animation", "Animations", "Set animation to {0} and {1} with a {2}ms blend", "Set the current animation", "setAnim");
+AddAction(0, 0, "Set animation", "Animations", "Set animation to {0} and {1} with a {2}ms blend", "Set the current animation", "setAnimation");
 
 AddNumberParam("Speed Ratio", "The new ratio of playback speed (1.0 is full speed. 0.5 is half speed, 2.0 is double speed)", "1.0");
 AddAction(1, 0, "Set playback speed ratio", "Animations", "Set playback speed ratio to {0}", "Set the ratio of playback speed", "setPlaybackSpeedRatio");
@@ -196,6 +204,8 @@ AddNumberParam("Top Padding","The object must be outside the visible area of the
 AddNumberParam("Bottom Padding","The object must be outside the visible area of the screen plus this padding to automatically pause", "0");												
 AddAction(17, 0, "Set Automatic Pausing", "Advanced : Optimization", "Set to {0}. Padding Left:{1} Right:{2} Top:{3} Bottom{4}", "Set when to automatically pause an animation for efficiency","setAutomaticPausing");
 	
+AddNumberParam("Opacity","Choose the object opacity, from 0 (transparent) to 100(opaque)", "100");	
+AddAction(18, 0, "Set Opacity", "Appearance", "Set Opacity to {0}", "Set how transparent the object appears.","setOpacity");
 ////////////////////////////////////////
 // Expressions
 
@@ -237,6 +247,11 @@ AddExpression(14, ef_return_number, "Volume panning", "Sounds", "soundPanning", 
 
 AddExpression(15, ef_return_number, "Blend Ratio", "Advanced : Animation Blending", "blendRatio", "returns the current blend ratio of animations 0(current animation) to 1(next animation)");
 AddExpression(16, ef_return_string, "Second(blend) Animation", "Advanced : Animation Blending", "secondAnimationName", "returns the name of the second(blended) animation");
+
+AddStringParam("name", "The name of the variable.");
+AddExpression(17, ef_return_any|ef_variadic_parameters, "Spriter Variable Value", "Tags and Variables", "val", "returns the currentValue of the Spriter variable (variable name, object name)");
+
+AddExpression(18, ef_return_number, "Opacity", "Appearance", "Opacity", "Get the object's current opacity, from 0 (transparent) to 100 (opaque).");
 
 ////////////////////////////////////////
 ACESDone();

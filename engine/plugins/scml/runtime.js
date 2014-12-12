@@ -93,9 +93,9 @@ cr.plugins_.Spriter = function(runtime)
 					key.time = att.time;
 					key.curveType=att.curveType;
 					key.c1=att.c1;
-								key.c2=att.c2;
-								key.c3=att.c3;
-								key.c4=att.c4;
+					key.c2=att.c2;
+					key.c3=att.c3;
+					key.c4=att.c4;
 					var boneRefTags = keyTag.bones;	
 					if(boneRefTags)
 					{
@@ -259,6 +259,7 @@ cr.plugins_.Spriter = function(runtime)
 		this.isDestroyed=false;
 		//this.cur_frame = 0;
 		this.folders = [];
+		this.tagDefs = [];
 		
 		this.currentAnimation = "";
 		this.secondAnimation = "";
@@ -268,8 +269,10 @@ cr.plugins_.Spriter = function(runtime)
 		this.blendPoseTime=0.0;
 		
 		this.lastKnownInstDataAsObj = null;
+		this.lastZ = null;
 		this.c2ObjectArray = [];
 		this.objectArray=[];
+		this.objInfoVarDefs=[];
 		this.animPlaying = true;
 		this.speedRatio=1.0;
 		
@@ -288,6 +291,11 @@ cr.plugins_.Spriter = function(runtime)
 		this.topBuffer=0;
 		this.bottomBuffer=0;
 		this.pauseWhenOutsideBuffer=PAUSENEVER;
+		
+		this.soundToTrigger="";
+		this.soundLineToTrigger={};
+		this.eventToTrigger="";
+		this.eventLineToTrigger={};
 		
 		this.properties[0]=this.properties[0].toLowerCase();
 		if(this.properties[0].lastIndexOf(".scml")>-1)
@@ -370,10 +378,50 @@ cr.plugins_.Spriter = function(runtime)
 		this.isDestroyed=true;
 	};
 	
+	instanceProto.getVarDefsByName = function (objName)
+	{
+		for(var o=0;o<this.objInfoVarDefs.length;o++)
+		{
+			var objInf=this.objInfoVarDefs[o];
+			if(objInf)
+			{
+				if(objInf.name===objName)
+				{
+					return objInf.varDefs;
+				}
+			}
+		}
+	}
+	instanceProto.getVarDefByName = function (objName,varName)
+	{
+		var objInf=this.getVarDefsByName(objName);
+		if(objInf)
+		{
+				for(var v=0;v<objInfo.varDefs.length;v++)
+				{
+					var varDef=objInfo.varDefs[v];
+					if(varDef)
+					{
+						if(varDef.name==varName)
+						{
+							return varDef;
+						}
+					}
+				}
+		}
+	}
+	
+	function ObjInfo()
+	{
+		this.name="";
+		this.varDefs=[];
+	}
+	
 	function SpriterEntity()
 	{
 		this.name = "";
 		this.animations = [];
+		this.varDefs = [];
 	}
 	
 	function SpriterAnimation()
@@ -385,6 +433,8 @@ cr.plugins_.Spriter = function(runtime)
 		this.mainlineKeys = [];
 		this.timelines = [];
 		this.soundlines = [];
+		this.eventlines = [];
+		this.meta = new MetaData();
 		this.cur_frame = 0;
 		this.localTime=0;
 	}
@@ -398,12 +448,283 @@ cr.plugins_.Spriter = function(runtime)
 		this.currentObjectState={};
 		this.currentMappedState={};
 		this.lastTimeSoundCheck=0;
+		this.meta = new MetaData();
 	}
 	
 	function SpriterKey()
 	{
 		this.bones = [];
 		this.objects = [];
+		this.time = 0;
+		this.spin = 1;
+		this.curveType="linear";
+		this.c1=0;
+		this.c2=0;
+		this.c3=0;
+		this.c4=0;
+	}
+	
+	function clamp(low,high,val)
+	{
+		if(val>high)
+		{
+			return high;
+		}
+		if(val<low)
+		{
+			return low;
+		}
+		return val;		
+	}
+	function setTimeInfoFromJson(json,targetKey)
+	{	
+		if(json.hasOwnProperty("time")&&targetKey.time !== undefined)
+		{ 
+			targetKey.time = json["time"];
+		}
+		if(json.hasOwnProperty("spin")&&targetKey.spin !== undefined)
+		{
+			targetKey.spin = (json["spin"]);
+		}
+		if(json.hasOwnProperty("curve_type")&&targetKey.curveType !== undefined)
+		{ 
+			targetKey.curveType = json["curve_type"];
+		}
+		if(json.hasOwnProperty("c1")&&targetKey.c1 !== undefined)
+		{ 
+			targetKey.c1 = json["c1"];
+		}
+		if(json.hasOwnProperty("c2")&&targetKey.c2 !== undefined)
+		{ 
+			targetKey.c2 = json["c2"];
+		}
+		if(json.hasOwnProperty("c3")&&targetKey.c3 !== undefined)
+		{ 
+			targetKey.c3 = json["c3"];
+		}
+		if(json.hasOwnProperty("c4")&&targetKey.c4 !== undefined)
+		{ 
+			targetKey.c4 = json["c4"];
+		}
+	}
+	instanceProto.setTimelinesFromJson = function(json,timelines,entity)
+	{
+		if(json)
+		{
+			for (var t = 0; t < json.length; t++)
+			{
+				var timelineTag=json[t];
+				
+				var timeline = new SpriterTimeline();
+
+				if(timelineTag.hasOwnProperty("object_type"))
+				{	 
+					timeline.objectType = timelineTag["object_type"];
+				}
+				
+				var timelineName=timelineTag["name"];
+				timeline.name=timelineName;
+				
+				var keyTags = timelineTag["key"];		
+				if(keyTags)
+				{
+					
+					for (var k = 0; k<keyTags.length; k++)
+					{
+						var keyTag = keyTags[k];
+						
+						var key = new SpriterKey();
+						
+						setTimeInfoFromJson(keyTag,key);
+						var objectTags = keyTag["object"];
+						if(objectTags)
+						{		
+							var objectTag=objectTags;
+							var object=this.objectFromTag(objectTag,this.objectArray,timelineName,timeline.objectType,entity.name);
+							key.objects.push(object);
+						}
+						var boneTags = keyTag["bone"];
+						if(boneTags)
+						{		
+							var boneTag=boneTags;
+							var bone=this.objectFromTag(boneTag,this.objectArray,timelineName,timeline.objectType,entity.name);
+							key.bones.push(bone);
+						}
+						timeline.keys.push(key);
+					}		
+				}
+				timeline.c2Object=this.c2ObjectArray[findObjectItemInArray(timelineName,this.objectArray,entity.name)];
+				
+				var obj=objectFromArray(timelineName,this.objectArray,entity.name);
+				var defs={};
+				if(obj)
+				{
+					defs=obj.varDefs;
+				}
+				this.setMetaDataFromJson(timelineTag["meta"],timeline.meta,defs);
+				timelines.push(timeline);
+			}
+		}
+	}
+	instanceProto.setSoundlinesFromJson = function(json,timelines,entityname)
+	{
+		if(json)
+		{
+			for (var t = 0; t < json.length; t++)
+			{
+				var timelineTag=json[t];
+				
+				
+				
+				var timeline = new SpriterTimeline();
+
+				timeline.objectType = "sound";
+				
+				var timelineName=timelineTag["name"];
+				timeline.name=timelineName;
+				
+				var keyTags = timelineTag["key"];		
+				if(keyTags)
+				{
+					
+					for (var k = 0; k<keyTags.length; k++)
+					{
+						var keyTag = keyTags[k];
+						
+						var key = new SpriterKey();
+						
+						setTimeInfoFromJson(keyTag,key);
+						var soundTags = keyTag["object"];
+						if(soundTags)
+						{		
+							var soundTag=soundTags;
+							var sound=this.soundFromTag(soundTag);
+							key.objects.push(sound);
+						}
+						timeline.keys.push(key);
+					}		
+				}
+				var obj=objectFromArray(timeline.name,this.objectArray,entityname);
+			
+				this.setMetaDataFromJson(timelineTag["meta"],timeline.meta,this.getVarDefsByName(timeline.name));
+				timelines.push(timeline);
+			}
+		}
+	}
+	instanceProto.setVarlinesFromJson = function(json,timelines,vardefs)
+	{	
+		if(json)
+		{
+			for (var t = 0; t < json.length; t++)
+			{
+				var timelineTag=json[t];
+				
+				var timeline = new VarLine();
+				timeline.defIndex=timelineTag["def"];
+				timeline.def=vardefs[timeline.defIndex];
+				var keyTags = timelineTag["key"];		
+				if(keyTags)
+				{					
+					for (var k = 0; k<keyTags.length; k++)
+					{
+						var keyTag = keyTags[k];
+						
+						var key = new VarKey();
+						setTimeInfoFromJson(keyTag,key);
+						key.val=keyTag["val"];
+						timeline.keys.push(key);
+					}		
+				}
+				timelines.push(timeline);
+			}
+		}
+	}
+	instanceProto.setEventlinesFromJson = function(json,timelines,entityname)
+	{	
+		if(json)
+		{
+			for (var t = 0; t < json.length; t++)
+			{
+				var timelineTag=json[t];
+				
+				var timeline = new EventLine();
+				timeline.name=timelineTag["name"];
+				
+				var keyTags = timelineTag["key"];		
+				if(keyTags)
+				{					
+					for (var k = 0; k<keyTags.length; k++)
+					{
+						var keyTag = keyTags[k];
+						
+						var key = new EventKey();
+						setTimeInfoFromJson(keyTag,key);
+						timeline.keys.push(key);
+					}		
+				}
+			
+				this.setMetaDataFromJson(timelineTag["meta"],timeline.meta,this.getVarDefsByName(timeline.name));
+				
+				timelines.push(timeline);
+			}
+		}
+	}
+	instanceProto.setTaglinesFromJson = function(json,timeline)
+	{
+		if(json)
+		{				
+			var keyTags = json["key"];		
+			if(keyTags)
+			{					
+				for (var k = 0; k<keyTags.length; k++)
+				{
+					var keyTag = keyTags[k];
+					
+					var key = new TagKey();
+					setTimeInfoFromJson(keyTag,key);
+					var tagTags=keyTag["tag"];
+					var tags=key.tags;
+					if(tagTags)
+					{
+						for(var ta=0;ta<tagTags.length;ta++)
+						{
+							var tagTag=tagTags[ta];
+							if(tagTag)
+							{
+								tags.push(this.tagDefs[tagTag["t"]]);
+							}
+						}							
+					}
+					timeline.keys.push(key);
+				}		
+			}
+		}
+	}
+	instanceProto.setMetaDataFromJson = function(json,meta,vardefs)
+	{
+		if(json)
+		{
+			var innerTag=json["tagline"];
+			if(innerTag)
+			{
+				this.setTaglinesFromJson(innerTag,meta.tagline);
+			}
+			innerTag=json["valline"];
+			if(innerTag)
+			{
+				this.setVarlinesFromJson(innerTag,meta.varlines,vardefs);
+			}
+		}
+	}
+	function TagKey()
+	{
+		this.tags = [];
+		this.time = 0;
+	}
+	
+	function VarKey()
+	{
+		this.val = 0;
 		this.time = 0;
 		this.spin = 1;
 		this.curveType="linear";
@@ -424,6 +745,8 @@ cr.plugins_.Spriter = function(runtime)
 		this.yScale = 1;
 		this.pivotX = 0.0;
 		this.pivotY = 0.0;
+		this.animation = "";
+		this.t = 0;
 		this.defaultPivot = false;
 		this.frame = 0;
 		this.storedFrame = 0;
@@ -433,9 +756,14 @@ cr.plugins_.Spriter = function(runtime)
 	{
 		this.type = "sound";
 		this.name = "";
-		this.trigger =true;
+		this.trigger = true;
 		this.panning=0.0;
 		this.volume=1.0;
+	}
+	
+	function EventKey()
+	{
+		this.time = 0;
 	}
 	
 	function CloneObject(other)
@@ -452,6 +780,8 @@ cr.plugins_.Spriter = function(runtime)
 			newObj.yScale = other.yScale;
 			newObj.pivotX = other.pivotX;
 			newObj.pivotY = other.pivotY;
+			newObj.animation = other.animation;
+			newObj.t = other.t;
 			newObj.defaultPivot = other.defaultPivot;
 			newObj.frame = other.frame; 
 			newObj.storedFrame = newObj.storedFrame;
@@ -648,6 +978,8 @@ cr.plugins_.Spriter = function(runtime)
 		newObj.pivotY = a.pivotY;//cr.lerp(a.pivotY,b.pivotY,t);
 		newObj.defaultPivot = a.defaultPivot;
 		newObj.frame = a.frame;
+		newObj.animation = a.animation;
+		newObj.t = cr.lerp(a.t,b.t,t);
 		newObj.storedFrame=a.storedFrame;
 		return newObj;
 	}
@@ -673,6 +1005,41 @@ cr.plugins_.Spriter = function(runtime)
 		this.files = [];
 	}
 	
+	function VarDef()
+	{
+		this.name = "";
+		this.type = "";
+		this.def = "";
+	}
+	
+	function TagLine()
+	{
+		this.keys=[];
+		this.lastTagIndex=0;
+		this.currentTags=[];
+	}
+	
+	function MetaData()
+	{
+		this.varlines = [];
+		this.tagline = new TagLine();
+	}
+	
+	function VarLine()
+	{
+		this.varDef = {};
+		this.defIndex = 0;
+		this.keys = [];
+		this.lastTagIndex=0;
+		this.currentVal=0;
+	}	
+	
+	function EventLine()
+	{
+		this.name="";
+		this.keys=[];
+		this.meta = new MetaData();
+	}
 	function SpriterFile()
 	{
 		this.fileName="";
@@ -1309,6 +1676,15 @@ cr.plugins_.Spriter = function(runtime)
 				changed=true;
 				this.lastKnownInstDataAsObj=this.objFromInst(this);
 			}
+			else
+			{
+				var currZ=findInArray(this,this.layer.instances);
+				if(currZ!==this.lastZ)
+				{
+					changed=true;
+					this.lastZ=currZ;
+				}
+			}
 		}
 		
 		if(!changed&&this.force)
@@ -1409,6 +1785,8 @@ cr.plugins_.Spriter = function(runtime)
 		if(this.animPlaying)
 		{
 			this.animateSounds();
+			this.animateEvents();
+			this.animateMeta(animation.meta);
 		}
 	};
 	
@@ -1433,7 +1811,7 @@ cr.plugins_.Spriter = function(runtime)
 		
 		
 		var entity = this.entity;
-		var zIndex=findInArray(this,layer.instances);
+		var zIndex=this.get_zindex();//findInArray(this,layer.instances);
 		//var zIndex=layer.instances.indexOf(this);
 		applyToInstances = (typeof applyToInstance !== 'undefined') ? applyToInstances : true;
 		
@@ -1461,6 +1839,7 @@ cr.plugins_.Spriter = function(runtime)
 		if(applyToInstances)
 		{
 			var zOrder=[];
+			
 			for(var i = 0; i < key.objects.length; i++)
 			{		
 				object = key.objects[i];
@@ -1473,8 +1852,8 @@ cr.plugins_.Spriter = function(runtime)
 						var inst=c2Obj.inst;
 						if(inst)
 						{
-							//var currZ=instances.indexOf(inst);
 							var currZ=findInArray(inst,instances);
+							
 							if(currZ>=1&&currZ<=zIndex)
 							{
 								instances.splice(currZ,1);
@@ -1484,14 +1863,19 @@ cr.plugins_.Spriter = function(runtime)
 					}
 				}
 			}
-			//var tempZ=instances.indexOf(this);
 			var tempZ=findInArray(this,instances);
+		
 			if(zIndex!=tempZ)
 			{
 				instances.splice(tempZ,1);
+				if(tempZ<zIndex)
+				{
+					zIndex--;
+				}
 				instances.splice(zIndex,0,this);
+				this.zindex=zIndex;
 			}
-			
+			this.layer.zindices_stale = true;
 			
 		}
 		
@@ -1553,7 +1937,7 @@ cr.plugins_.Spriter = function(runtime)
 				{
 					inst=null;
 				}
-				if(inst||refTimeline.objectType==="point")
+				if(inst||refTimeline.objectType==="point"||refTimeline.objectType==="entity")
 				{
 					if(applyToInstances&&inst)
 					{
@@ -1637,7 +2021,7 @@ cr.plugins_.Spriter = function(runtime)
 						this.applyObjToInst(tweenedObj,inst,parent>-1,c2Obj);
 					}
 					refTimeline.currentObjectState=tweenedObj;
-
+					this.animateMeta(refTimeline.meta);
 
 					if(inst&&applyToInstances)
 					{
@@ -1651,6 +2035,7 @@ cr.plugins_.Spriter = function(runtime)
 								instances.splice(currInstanceZ,1);
 							}
 							instances.splice(instZOrder,0,inst);
+							inst.zorder=instZOrder;
 						}
 					}
 				}
@@ -1675,6 +2060,41 @@ cr.plugins_.Spriter = function(runtime)
 		}
 	}
 	
+	instanceProto.animateMeta = function(meta,anim)
+	{
+		anim = (typeof anim !== 'undefined') ? anim : this.currentAnimation;
+		//var anim=this.currentAnimation;
+		if(anim)
+		{
+			this.animateTag(meta.tagline,anim.length,anim);
+			for(var s=0;s<meta.varlines.length;s++)
+			{
+				var varLine=meta.varlines[s];
+				if(varLine)
+				{
+					this.animateVar(varLine,anim.length,anim);
+				}
+			}
+		}
+	}
+	
+	instanceProto.animateEvents = function(anim)
+	{
+		anim = (typeof anim !== 'undefined') ? anim : this.currentAnimation;
+		//var anim=this.currentAnimation;
+		if(anim)
+		{
+			for(var s=0;s<anim.eventlines.length;s++)
+			{
+				var eventLine=anim.eventlines[s];
+				if(eventLine)
+				{
+					this.animateEvent(eventLine,anim.length);
+				}
+			}
+		}
+	}
+	
 	instanceProto.animateSound = function(soundline,animLength,anim)
 	{
 		var soundKeys=soundline.keys;
@@ -1682,7 +2102,7 @@ cr.plugins_.Spriter = function(runtime)
 		var secondTime=animLength;
 		var curSoundKey=soundKeys[0];
 		var curSound;
-		
+		this.animateMeta(soundline.meta);
 		for (var k=1;k<soundKeys.length;k++)
 		{
 			if (this.currentAdjustedTime < soundKeys[k].time)
@@ -1695,9 +2115,9 @@ cr.plugins_.Spriter = function(runtime)
 			}
 		}
 		if(curSoundKey&&curSoundKey.objects&&curSoundKey.objects[0])
-				{
-					curSound=curSoundKey.objects[0];
-				}
+		{
+			curSound=curSoundKey.objects[0];
+		}
 		anim = (typeof anim !== 'undefined') ? anim : this.currentAnimation;
 		//var anim=this.currentAnimation;
 		var keysLength=soundline.keys.length;
@@ -1791,13 +2211,262 @@ cr.plugins_.Spriter = function(runtime)
 			tweenedSound=this.cloneSound(curSound);
 		}
 		
-			this.changeVolume(soundline,tweenedSound.volume);
+		this.changeVolume(soundline,tweenedSound.volume);
 		
-			this.changePanning(soundline,tweenedSound.panning);
+		this.changePanning(soundline,tweenedSound.panning);
 		soundline.lastTimeSoundCheck=this.currentAdjustedTime;
 		soundline.currentObjectState=tweenedSound;
 	}
 	
+	instanceProto.animateEvent = function(eventline,animLength,anim)
+	{
+		var eventKeys=eventline.keys;
+		var curEventFrame=eventKeys.length;
+		var secondTime=animLength;
+		var curEventKey=eventKeys[0];
+		var curEvent;
+		this.animateMeta(eventline.meta);
+		for (var k=1;k<eventKeys.length;k++)
+		{
+			if (this.currentAdjustedTime < eventKeys[k].time)
+			{
+				secondTime=eventKeys[k].time;
+				curEventFrame = k - 1;
+				curEventKey=eventKeys[curEventFrame];
+				
+				break;
+			}
+		}
+		if(curEventKey&&curEventKey.objects&&curEventKey.objects[0])
+		{
+			curEvent=curEventKey.objects[0];
+		}
+		anim = (typeof anim !== 'undefined') ? anim : this.currentAnimation;
+		//var anim=this.currentAnimation;
+		var keysLength=eventline.keys.length;
+		var nextFrame;
+		var nextTime;
+		if(keysLength>1)
+		{
+			if(curEventFrame+1>=keysLength&&anim.looping=="true")
+			{
+				nextFrame=eventline.keys[0];
+				nextTime=nextFrame.time;
+				if(this.currentSpriterTime>lastTime)
+				{
+					nextTime+=anim.length;
+				}
+			}
+			else if(curEventFrame+1<keysLength)
+			{
+				nextFrame=eventline.keys[curEventFrame+1];
+				nextTime=nextFrame.time;	
+			}
+		}
+				
+				
+		var time=this.currentAdjustedTime;
+		var lastTime=eventline.lastTimeEventCheck;
+	
+		for (var k=0;k<eventKeys.length;k++)
+		{
+			var eventKey=eventKeys[k];
+			if(eventKey)
+			{
+				//if(eventToPlay)
+				{
+					if(time===eventKey.time)
+					{
+						this.playEvent(eventline,eventline.name);
+						break;
+					}
+
+
+					var t=-1;
+					if((time-lastTime>0&&(time-lastTime<lastTime+(anim.length-time)))||(lastTime-time>time+(anim.length-lastTime)))
+					{
+						if((time-lastTime>0)&&(time-lastTime<lastTime+(anim.length-time)))
+						{
+							t=getT(lastTime,time,eventKey.time);
+						}
+						else
+						{
+							t=getT(lastTime-anim.length,time,eventKey.time);
+						}
+					}
+					else if(time-lastTime<0||(lastTime-time<time+(anim.length-lastTime)))
+					{
+						if((time-lastTime<0))
+						{
+							t=getT(time,lastTime,eventKey.time);
+						}
+						else
+						{
+							t=getT(time-anim.length,lastTime,eventKey.time);
+						}
+					}
+
+					if(t>0&&t<1)
+					{
+						this.playEvent(eventline,eventline.name);
+					}
+				}
+			}
+		}
+		
+		eventline.lastTimeEventCheck=this.currentAdjustedTime;
+	}
+	
+	instanceProto.animateVar = function(varline,animLength,anim)
+	{
+		anim = (typeof anim !== 'undefined') ? anim : this.currentAnimation;
+		var time=this.currentAdjustedTime;
+		var varKeys=varline.keys;
+		var firstVarFrame=-1;
+		var secondVarFrame=-1;
+		var firstTime=0;
+		var secondTime=0;
+		var firstVal=0;
+		var secondVal=0;
+		varline.lastTagIndex=0;
+		varline.currentVal=varline.def.def;
+		var type=varline.def.type;
+		var firstKey;
+		if(varKeys.length===0)
+		{
+			return;
+		}
+		if(varKeys.length>1)
+		{
+			for (var k=0;k<varKeys.length;k++)
+			{
+				if (time < varKeys[k].time)
+				{
+					if(k>0)
+					{
+						firstVarFrame=k-1;
+						secondVarFrame=k;
+					}
+					else if(anim.looping==="true")
+					{
+						firstVarFrame=varKeys.length-1;
+						secondVarFrame=0;
+					}
+					else
+					{
+						return;
+					}
+					
+					if(firstVarFrame>-1&&secondVarFrame>-1)
+					{
+						firstKey=varKeys[firstVarFrame];
+						var secondKey=varKeys[secondVarFrame];
+						firstTime=firstKey.time;
+						secondTime=secondKey.time;
+						firstVal=firstKey.val;
+						secondVal=secondKey.val;
+					}
+				}
+				else if (time > varKeys[k].time)
+				{
+					if(k<varKeys.length-1)
+					{
+						firstVarFrame=k;
+						secondVarFrame=k+1;
+					}
+					else if(anim.looping==="true")
+					{
+						firstVarFrame=k;
+						secondVarFrame=0;
+					}
+					else
+					{
+						varline.lastTagIndex=k;
+						varline.currentVal=varKeys[k].val;
+						return;
+					}
+					
+					if(firstVarFrame>-1&&secondVarFrame>-1)
+					{
+						firstKey=varKeys[firstVarFrame];
+						var secondKey=varKeys[secondVarFrame];
+						firstTime=firstKey.time;
+						secondTime=secondKey.time;
+						firstVal=firstKey.val;
+						secondVal=secondKey.val;
+					}
+				}
+				else if (time===varKeys[k].time)
+				{
+					varline.lastTagIndex=k;
+					varline.currentVal=varKeys[k].val;
+					return;
+				}
+			}
+		}
+		else 
+		{
+			varline.lastTagIndex=0;
+			varline.currentVal=varKeys[0].val;
+			return;
+		}
+		
+		varline.lastTagIndex=firstVarFrame;
+		
+		if(type==="string")
+		{
+			varline.currentVal=firstVal;
+			return;	
+		}
+		
+		if(firstTime>time)
+		{
+			firstTime-=anim.length;
+		}
+		if(secondTime<time)
+		{
+			secondTime+=anim.length;
+		}
+	
+		var t=getT(firstTime,secondTime,time);
+		
+		varline.currentVal=cr.lerp(firstVal,secondVal,trueT(firstKey,t));
+		if(type==="int")
+		{
+			varline.currentVal=Math.floor(varline.currentVal);
+		}
+	}
+	instanceProto.animateTag = function(tagline,animLength,anim)
+	{
+		var tagKeys=tagline.keys;
+		var curTagFrame=tagKeys.length;
+		var secondTime=animLength;
+		var curTagKey=tagKeys[0];
+		if(curTagKey&&curTagKey.time>this.currentAdjustedTime&&anim.looping=="true")
+		{
+			curTagKey=tagKeys[tagKeys.length-1];
+		}
+		var curTags=[];
+		
+		for (var k=1;k<tagKeys.length;k++)
+		{
+			if (this.currentAdjustedTime < tagKeys[k].time)
+			{
+				secondTime=tagKeys[k].time;
+				curTagFrame = k - 1;
+				curTagKey=tagKeys[curTagFrame];
+				
+				break;
+			}
+		}
+		if(curTagKey)
+		{
+			curTags=curTagKey.tags;
+		}
+			
+		tagline.lastTagIndex=curTagFrame;
+		tagline.currentTags=curTags;
+	}
 	instanceProto.draw = function (ctx)
 	{
 	};
@@ -1812,6 +2481,16 @@ cr.plugins_.Spriter = function(runtime)
 		this.soundLineToTrigger=soundLine;
 		this.runtime.trigger(cr.plugins_.Spriter.prototype.cnds.OnSoundTriggered, this);
 	}
+	
+	instanceProto.playEvent = function(eventLine,name)
+	{
+			this.eventToTrigger=name;
+			this.eventLineToTrigger=eventLine;
+			this.runtime.trigger(cr.plugins_.Spriter.prototype.cnds.OnEventTriggered, this);
+	}
+	
+	
+	
 	instanceProto.changeVolume = function(soundLine,newVolume)
 	{
 		if(soundLine.currentObjectState.volume!=newVolume)
@@ -1846,8 +2525,18 @@ cr.plugins_.Spriter = function(runtime)
 		
 		return -1;
 	}
-
-	function SpriterObjectArrayItem(spritername, name, entityName, originalName)
+	function objectFromArray(name, objectArray, entityName)
+	{
+		for (var o = 0; o < objectArray.length; o++)
+		{
+			var obj=objectArray[o];
+			if (obj&&(obj.name===name||(obj.entityName===entityName&&obj.originalName===name)))
+			{
+			return obj;
+			}
+		}
+	}
+	function SpriterObjectArrayItem(spritername, name, entityName, originalName, varDefs)
 	{
 		this.name = name;
 		this.fullTypeName = spritername + "_" + name;
@@ -1860,6 +2549,7 @@ cr.plugins_.Spriter = function(runtime)
 		this.height = 0;
 		this.entityName = entityName;
 		this.originalName = originalName;
+		this.varDefs = varDefs;
 		//charmap=[]
 		//charmap.old=framenumber
 		//charmap.new=framenumber
@@ -1880,6 +2570,107 @@ cr.plugins_.Spriter = function(runtime)
 				if(timeline&&timeline.name===name)
 				{
 					return timeline;
+				}
+			}
+			for(var t=0;t<anim.soundlines.length;t++)
+			{
+				var timeline=anim.soundlines[t];
+				if(timeline&&timeline.name===name)
+				{
+					return timeline;
+				}
+			}
+			for(var t=0;t<anim.eventlines.length;t++)
+			{
+				var timeline=anim.eventlines[t];
+				if(timeline&&timeline.name===name)
+				{
+					return timeline;
+				}
+			}
+		}
+	}
+	
+	instanceProto.tagStatus = function(tagname,meta)
+	{
+		if(meta)
+		{
+			for(var t=0;t<meta.tagline.currentTags.length;t++)
+			{
+				var tag=meta.tagline.currentTags[t];
+				if(tag)
+				{
+					if(tag==tagname)
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	instanceProto.varStatus = function(ret,varname,meta)
+	{
+		if(meta)
+		{
+			for(var v=0;v<meta.varlines.length;v++)
+			{
+				var varline=meta.varlines[v];
+				if(varline)
+				{
+					if(varline.def.name==varname)
+					{
+						if(varline.def.type==="string")
+						{
+							ret.set_string(varline.currentVal);
+						}
+						else if(varline.def.type==="int")
+						{
+							ret.set_int(varline.currentVal);
+						}
+						else
+						{
+							ret.set_float(varline.currentVal);
+						}
+						return;
+					}
+				}
+			}
+		}
+		ret.set_float(0);
+	}
+	
+	instanceProto.loadTagDefs = function(json)
+	{
+		if(json)
+		{
+			var tags = json["tag_list"];
+			if(tags)
+			{
+				for (var t=0;t<tags.length;t++)
+				{	
+					var tagDef=tags[t];
+					this.tagDefs.push(tagDef["name"]);
+				}
+			}
+		}
+	}
+	
+	instanceProto.loadVarDefs = function(json, varDefs)
+	{
+		if(json)
+		{
+			for (var d=0;d<json.length;d++)
+			{	
+				var defJson=json[d];
+				if(defJson)
+				{
+					var newVarDef=new VarDef();
+					newVarDef.name=defJson.name;
+					newVarDef.type=defJson.type;
+					newVarDef.def=defJson["default"];
+					varDefs.push(newVarDef);
 				}
 			}
 		}
@@ -1945,14 +2736,32 @@ cr.plugins_.Spriter = function(runtime)
 			var entityName=att.name;
 			if(objInfoTags)
 			{
+				
+				
 				for (var o = 0; o < objInfoTags.length; o++)
 				{
 					var infoTag = objInfoTags[o];
-					if(infoTag&&(infoTag["type"]==="sprite"||infoTag["type"]==="box"))
+					if(infoTag)
+					{
+						var objInfo=new ObjInfo();
+						objInfo.name=infoTag["realname"];
+						if(!objInfo.name)
+						{
+							objInfo.name=infoTag["name"];
+						}
+						this.loadVarDefs(infoTag["var_defs"],objInfo.varDefs);
+						this.objInfoVarDefs.push(objInfo);
+					}
+					if(infoTag&&(infoTag["type"]==="sprite"||infoTag["type"]==="box"||infoTag["type"]==="entity"))
 					{
 						var typeName=infoTag["name"];						
 						var originalName=infoTag["realname"];
-						objectArray.push(new SpriterObjectArrayItem(thisTypeName, typeName,entityName,originalName));
+						var varDefs=[];
+						if(infoTag["var_defs"])
+						{
+							this.loadVarDefs(infoTag["var_defs"],varDefs);
+						}
+						objectArray.push(new SpriterObjectArrayItem(thisTypeName, typeName,entityName,originalName,varDefs));
 						var lastObj=objectArray[objectArray.length-1];
 						if(infoTag["type"]==="box")
 						{
@@ -1964,6 +2773,11 @@ cr.plugins_.Spriter = function(runtime)
 										imageSize.w=lastObj.width;
 										imageSize.h=lastObj.height;
 							lastObj.imageSizes.push(imageSize);
+						}
+						if(infoTag["type"]==="entity")
+						{
+							//lastObj.isBox=true;
+							lastObj.spriterType="entity";
 						}
 						else if(infoTag["type"]==="sprite")
 						{
@@ -2081,6 +2895,8 @@ cr.plugins_.Spriter = function(runtime)
 		object.yScale = (other.yScale);
 		object.pivotX = (other.pivotX);
 		object.pivotY = (other.pivotY);
+		object.animation = other.animation;
+		object.t = other.t;
 		object.defaultPivot = other.defaultPivot;
 		return object;
 	};
@@ -2139,6 +2955,16 @@ cr.plugins_.Spriter = function(runtime)
 		{ 
 			object.yScale = (att["scale_y"]);
 		}							
+		
+		if(objectTag.hasOwnProperty("animation"))
+		{ 
+			object.animation = (att["animation"]);
+		}		
+		
+		if(objectTag.hasOwnProperty("t"))
+		{ 
+			object.t = (att["t"]);
+		}		
 		
 		if(objectTag.hasOwnProperty("pivot_x"))
 		{ 
@@ -2252,7 +3078,7 @@ cr.plugins_.Spriter = function(runtime)
 			var obj=objectArray[o];
 			
 			var siblings=this.siblings;
-			if(siblings.length>0)
+			if(siblings&&siblings.length>0)
 			{
 				for(var s=0;s<siblings.length;s++)
 				{
@@ -2305,8 +3131,10 @@ cr.plugins_.Spriter = function(runtime)
 			}
 		}
 	};
+	
 	instanceProto.loadSCML = function (json_)
 	{	
+		this.loadTagDefs(json_);
 		this.objectArray=this.findSprites(json_);
 		if(!this.type.objectArrays[this.properties[0]])
 		{
@@ -2330,6 +3158,7 @@ cr.plugins_.Spriter = function(runtime)
 			var entity = new SpriterEntity();
 			att=entityTag;
 			entity.name=att["name"];
+			this.loadVarDefs(entityTag["var_defs"],entity.varDefs);
 			var animationTags = entityTag["animation"];
 			for (var a = 0; a < animationTags.length; a++)
 			{
@@ -2360,31 +3189,7 @@ cr.plugins_.Spriter = function(runtime)
 					
 					var key = new SpriterKey();
 					att=keyTag;
-					
-					if(keyTag.hasOwnProperty("time"))
-					{ 
-						key.time = att["time"];
-					}
-					if(keyTag.hasOwnProperty("curve_type"))
-					{ 
-						key.curveType = att["curve_type"];
-					}
-					if(keyTag.hasOwnProperty("c1"))
-								{ 
-									key.c1 = att["c1"];
-								}
-								if(keyTag.hasOwnProperty("c2"))
-								{ 
-									key.c2 = att["c2"];
-								}
-								if(keyTag.hasOwnProperty("c3"))
-								{ 
-									key.c3 = att["c3"];
-								}
-								if(keyTag.hasOwnProperty("c4"))
-								{ 
-									key.c4 = att["c4"];
-								}
+					setTimeInfoFromJson(keyTag,key);
 					var boneRefTags = keyTag["bone_ref"];	
 					if(boneRefTags)
 					{
@@ -2426,152 +3231,17 @@ cr.plugins_.Spriter = function(runtime)
 				
 				animation.mainline=mainline;
 				var timelineTags = animationTag["timeline"];
-				if(timelineTags)
-				{
-					for (var t = 0; t < timelineTags.length; t++)
-					{
-						var timelineTag=timelineTags[t];
-						
-						att=timelineTag;
-						
-						var timeline = new SpriterTimeline();
+				this.setTimelinesFromJson(timelineTags,animation.timelines,entity);
+				
+				timelineTags = animationTag["soundline"];
+				this.setSoundlinesFromJson(timelineTags,animation.soundlines,entity.name);
+				
+				timelineTags = animationTag["eventline"];
+				this.setEventlinesFromJson(timelineTags,animation.eventlines,entity.name);
+				
+				timelineTags = animationTag["meta"];
 
-						if(timelineTag.hasOwnProperty("object_type"))
-						{	 
-							timeline.objectType = att["object_type"];
-						}
-						
-						var timelineName=att["name"];
-						timeline.name=timelineName;
-						
-						var keyTags = timelineTag["key"];		
-						if(keyTags)
-						{
-							
-							for (var k = 0; k<keyTags.length; k++)
-							{
-								var keyTag = keyTags[k];
-								
-								var key = new SpriterKey();
-								att=keyTag;
-								
-								if(keyTag.hasOwnProperty("time"))
-								{ 
-									key.time = att["time"];
-								}
-								if(keyTag.hasOwnProperty("spin"))
-								{
-									key.spin = (att["spin"]);
-								}
-								if(keyTag.hasOwnProperty("curve_type"))
-								{ 
-									key.curveType = att["curve_type"];
-								}
-								if(keyTag.hasOwnProperty("c1"))
-								{ 
-									key.c1 = att["c1"];
-								}
-								if(keyTag.hasOwnProperty("c2"))
-								{ 
-									key.c2 = att["c2"];
-								}
-								if(keyTag.hasOwnProperty("c3"))
-								{ 
-									key.c3 = att["c3"];
-								}
-								if(keyTag.hasOwnProperty("c4"))
-								{ 
-									key.c4 = att["c4"];
-								}
-								var objectTags = keyTag["object"];
-								if(objectTags)
-								{		
-									var objectTag=objectTags;
-									var object=this.objectFromTag(objectTag,this.objectArray,timelineName,timeline.objectType,entity.name);
-									key.objects.push(object);
-								}
-								var boneTags = keyTag["bone"];
-								if(boneTags)
-								{		
-									var boneTag=boneTags;
-									var bone=this.objectFromTag(boneTag,this.objectArray,timelineName,timeline.objectType,entity.name);
-									key.bones.push(bone);
-								}
-								timeline.keys.push(key);
-							}		
-						}
-						timeline.c2Object=this.c2ObjectArray[findObjectItemInArray(timelineName,this.objectArray,entity.name)];
-						animation.timelines.push(timeline);
-					}
-				}
-				var timelineTags = animationTag["soundline"];
-				if(timelineTags)
-				{
-					for (var t = 0; t < timelineTags.length; t++)
-					{
-						var timelineTag=timelineTags[t];
-						
-						att=timelineTag;
-						
-						var timeline = new SpriterTimeline();
-
-						timeline.objectType = "sound";
-						
-						var timelineName=att["name"];
-						timeline.name=timelineName;
-						
-						var keyTags = timelineTag["key"];		
-						if(keyTags)
-						{
-							
-							for (var k = 0; k<keyTags.length; k++)
-							{
-								var keyTag = keyTags[k];
-								
-								var key = new SpriterKey();
-								att=keyTag;
-								
-								if(keyTag.hasOwnProperty("time"))
-								{ 
-									key.time = att["time"];
-								}
-								if(keyTag.hasOwnProperty("spin"))
-								{
-									key.spin = (att["spin"]);
-								}
-								if(keyTag.hasOwnProperty("curve_type"))
-								{ 
-									key.curveType = att["curve_type"];
-								}
-								if(keyTag.hasOwnProperty("c1"))
-								{ 
-									key.c1 = att["c1"];
-								}
-								if(keyTag.hasOwnProperty("c2"))
-								{ 
-									key.c2 = att["c2"];
-								}
-								if(keyTag.hasOwnProperty("c3"))
-								{ 
-									key.c3 = att["c3"];
-								}
-								if(keyTag.hasOwnProperty("c4"))
-								{ 
-									key.c4 = att["c4"];
-								}
-								var soundTags = keyTag["object"];
-								if(soundTags)
-								{		
-									var soundTag=soundTags;
-									var sound=this.soundFromTag(soundTag);
-									key.objects.push(sound);
-								}
-								timeline.keys.push(key);
-							}		
-						}
-						animation.soundlines.push(timeline);
-					}
-				}
+				this.setMetaDataFromJson(timelineTags,animation.meta,entity.varDefs);
 				entity.animations.push(animation);
 
 			}
@@ -2582,7 +3252,97 @@ cr.plugins_.Spriter = function(runtime)
 			}
 		}		
 	};
+	instanceProto.setAnim = function (animName,startFrom,blendDuration)
+	{
+		var ratio=0;
+		// startFrom
+		// 0 play from start	
+		// 1 play from current time
+		// 2 play from current time ratio
+		// 3 blend to start
+		// 4 blend at current time ratio
 	
+		if((startFrom==1||startFrom==2)&&this.currentAnimation&&animName==this.currentAnimation.name)
+		{
+			return;
+		}
+	
+		if(startFrom>PLAYFROMCURRENTTIMERATIO&&blendDuration>0)
+		{
+			var secondAnim=this.getAnimFromEntity(animName);
+			if(secondAnim===this.secondAnimation&&this.blendEndTime>0)
+			{
+				return;
+			}
+			
+			
+			if(secondAnim===this.currentAnimation)
+			{
+				if(!this.secondAnimation)
+				{
+					this.blendStartTime=0;
+					this.blendEndTime=0;
+					this.blendPoseTime=0;
+					this.secondAnimation=null;
+					this.animBlend=0;
+					this.changeAnimTo=null;
+					return;
+				}
+				else
+				{
+					this.currentAnimation=this.secondAnimation;
+					this.animBlend=1.0-this.animBlend;
+				}
+			}
+			else
+			{
+				this.animBlend=0;
+			}
+			this.secondAnimation=secondAnim;
+			
+			this.blendStartTime=this.getNowTime();
+			this.blendPoseTime=0;
+			if(startFrom===BLENDTOSTART&&this.currentAnimation.looping==="false")
+			{
+				blendDuration=Math.min(blendDuration,(this.currentAnimation.length-this.currentSpriterTime));
+			}
+			this.blendEndTime=this.blendStartTime+((blendDuration/1000)/this.runtime.timescale);
+		}
+		else
+		{
+			if(blendDuration<=0)
+			{
+				if(startFrom===BLENDATCURRENTTIMERATIO)
+				{
+					startFrom=2;
+				}
+				else if(startFrom==BLENDTOSTART)
+				{
+					startFrom=0;
+				}
+			}
+			this.blendStartTime=0;
+			this.blendEndTime=0;
+			this.blendPoseTime=0;
+			this.secondAnimation=null;
+		}
+		
+	
+		this.changeToStartFrom=startFrom;
+		if(startFrom===BLENDTOSTART&&this.secondAnimation)
+		{
+			this.blendPoseTime=this.currentSpriterTime;
+			this.secondAnimation.localTime=0;
+			this.setMainlineKeyByTime(this.secondAnimation);
+			var secondTweenedBones=this.currentTweenedBones(this.secondAnimation);
+			this.animateCharacter(secondTweenedBones,this.secondAnimation,false);
+		}
+		this.setAnimTo(animName,false);		
+		var animPlaying=this.animPlaying;
+		this.animPlaying=false;
+		this.tick2(true);
+		this.animPlaying=animPlaying;
+	};
 	instanceProto.doRequest = function (json,url_, method_)
 	{
 		// Create a context object with the tag name and a reference back to this
@@ -2658,6 +3418,10 @@ cr.plugins_.Spriter = function(runtime)
 		returnObj.x=xnew+parentObject.x;
 		returnObj.y=ynew+parentObject.y;
 		
+		returnObj.animation=obj.animation;
+		returnObj.t=obj.t;
+
+		
 		return returnObj;
 	};
 	
@@ -2724,10 +3488,12 @@ cr.plugins_.Spriter = function(runtime)
 		
 		var trueW=inst.width;
 		var trueH=inst.height;
-		if(c2Object.obj.isBox)
+		if(c2Object.obj.spriterType==="entity")
 		{
-			var test=true;
+			inst.setAnim(obj.animation,2,0);
+			inst.setAnimTime(1,obj.t);
 		}
+		
 		if(c2Object.obj.imageSizes&&c2Object.obj.imageSizes.length>inst.cur_frame)
 		{
 			trueW=c2Object.obj.imageSizes[inst.cur_frame].w;
@@ -2862,7 +3628,26 @@ cr.plugins_.Spriter = function(runtime)
 			this.tick2();
 		}
 	};
-
+instanceProto.setAnimTime = function (units,time)
+	{
+		var currentAnimation=this.currentAnimation;
+		var lastSpriterTime=this.currentSpriterTime;
+		if(currentAnimation)
+		{
+			if(units===0)// milliseconds
+			{
+				this.currentSpriterTime=time;
+			}
+			else if(units==1)// ratio
+			{
+				this.currentSpriterTime=time*currentAnimation.length;
+			}
+		}
+		if(lastSpriterTime!=this.currentSpriterTime)
+		{
+			this.force=true;
+		}
+	};
 	instanceProto.soundlineFromName = function(name)
 	{
 		if(this.soundLineToTrigger&&this.soundLineToTrigger.name===name)
@@ -2917,6 +3702,35 @@ cr.plugins_.Spriter = function(runtime)
 	{
 		return true;
 	};
+	Cnds.prototype.OnEventTriggered = function (name)
+	{
+		if(name===this.eventToTrigger)
+		{
+			return true;
+		}
+	};
+	
+	Cnds.prototype.tagActive = function(tagName,objectName)
+	{
+		var anim=this.currentAnimation;
+		if(anim)
+		{
+			if(objectName)
+			{
+				var line=this.timelineFromName(objectName);
+				if(line)
+				{
+					return this.tagStatus(tagName,line.meta);
+				}
+			}
+			else
+			{
+				return this.tagStatus(tagName,anim.meta);
+			}
+		}
+		return false;
+	}
+	
 	Cnds.prototype.OnSoundVolumeChangeTriggered = function ()
 	{
 		return true;
@@ -3034,7 +3848,10 @@ cr.plugins_.Spriter = function(runtime)
 			this.visible=false;
 		}
 	};
-	
+	Acts.prototype.setOpacity = function (newOpacity)
+	{		
+		this.opacity=clamp(0.0,1.0,newOpacity/100.0);
+	};
 	Acts.prototype.setAutomaticPausing = function (newPauseSetting,leftBuffer,rightBuffer,topBuffer,bottomBuffer)
 	{
 		this.pauseWhenOutsideBuffer=newPauseSetting;
@@ -3067,96 +3884,9 @@ cr.plugins_.Spriter = function(runtime)
 	
 	
 	
-	Acts.prototype.setAnim = function (animName,startFrom,blendDuration)
+	Acts.prototype.setAnimation = function (animName,startFrom,blendDuration)
 	{
-		var ratio=0;
-		// startFrom
-		// 0 play from start	
-		// 1 play from current time
-		// 2 play from current time ratio
-		// 3 blend to start
-		// 4 blend at current time ratio
-	
-		if((startFrom==1||startFrom==2)&&this.currentAnimation&&animName==this.currentAnimation.name)
-		{
-			return;
-		}
-	
-		if(startFrom>PLAYFROMCURRENTTIMERATIO&&blendDuration>0)
-		{
-			var secondAnim=this.getAnimFromEntity(animName);
-			if(secondAnim===this.secondAnimation&&this.blendEndTime>0)
-			{
-				return;
-			}
-			
-			
-			if(secondAnim===this.currentAnimation)
-			{
-				if(!this.secondAnimation)
-				{
-					this.blendStartTime=0;
-					this.blendEndTime=0;
-					this.blendPoseTime=0;
-					this.secondAnimation=null;
-					this.animBlend=0;
-					this.changeAnimTo=null;
-					return;
-				}
-				else
-				{
-					this.currentAnimation=this.secondAnimation;
-					this.animBlend=1.0-this.animBlend;
-				}
-			}
-			else
-			{
-				this.animBlend=0;
-			}
-			this.secondAnimation=secondAnim;
-			
-			this.blendStartTime=this.getNowTime();
-			this.blendPoseTime=0;
-			if(startFrom===BLENDTOSTART&&this.currentAnimation.looping==="false")
-			{
-				blendDuration=Math.min(blendDuration,(this.currentAnimation.length-this.currentSpriterTime));
-			}
-			this.blendEndTime=this.blendStartTime+((blendDuration/1000)/this.runtime.timescale);
-		}
-		else
-		{
-			if(blendDuration<=0)
-			{
-				if(startFrom===BLENDATCURRENTTIMERATIO)
-				{
-					startFrom=2;
-				}
-				else if(startFrom==BLENDTOSTART)
-				{
-					startFrom=0;
-				}
-			}
-			this.blendStartTime=0;
-			this.blendEndTime=0;
-			this.blendPoseTime=0;
-			this.secondAnimation=null;
-		}
-		
-	
-		this.changeToStartFrom=startFrom;
-		if(startFrom===BLENDTOSTART&&this.secondAnimation)
-		{
-			this.blendPoseTime=this.currentSpriterTime;
-			this.secondAnimation.localTime=0;
-			this.setMainlineKeyByTime(this.secondAnimation);
-			var secondTweenedBones=this.currentTweenedBones(this.secondAnimation);
-			this.animateCharacter(secondTweenedBones,this.secondAnimation,false);
-		}
-		this.setAnimTo(animName,false);		
-		var animPlaying=this.animPlaying;
-		this.animPlaying=false;
-		this.tick2(true);
-		this.animPlaying=animPlaying;
+		this.setAnim(animName,startFrom,blendDuration);
 	};
 	
 	Acts.prototype.setSecondAnim = function (animName)
@@ -3296,6 +4026,10 @@ cr.plugins_.Spriter = function(runtime)
 	Acts.prototype.setAnimationLoop = function (loopOn)
 	{
 		var currentAnimation=this.currentAnimation;
+		if(this.changeAnimTo)
+		{
+			currentAnimation=this.changeAnimTo;
+		}
 		if(currentAnimation)
 		{
 			if(loopOn===0)
@@ -3321,23 +4055,7 @@ cr.plugins_.Spriter = function(runtime)
 	};
 	Acts.prototype.setAnimationTime = function (units,time)
 	{
-		var currentAnimation=this.currentAnimation;
-		var lastSpriterTime=this.currentSpriterTime;
-		if(currentAnimation)
-		{
-			if(units===0)// milliseconds
-			{
-				this.currentSpriterTime=time;
-			}
-			else if(units==1)// ratio
-			{
-				this.currentSpriterTime=time*currentAnimation.length;
-			}
-		}
-		if(lastSpriterTime!=this.currentSpriterTime)
-		{
-			this.force=true;
-		}
+		this.setAnimTime(units,time);
 	};
 	Acts.prototype.pauseAnimation = function ()
 	{
@@ -3346,6 +4064,10 @@ cr.plugins_.Spriter = function(runtime)
 	
 	Acts.prototype.resumeAnimation = function ()
 	{
+		if(this.animPlaying===false)
+		{
+			this.lastKnownTime = this.getNowTime();
+		}
 		this.animPlaying=true;
 		var anim=this.currentAnimation;
 		if(anim)
@@ -3413,6 +4135,29 @@ cr.plugins_.Spriter = function(runtime)
 	{
 		ret.set_int(this.currentSpriterTime);
 	};
+	
+	Exps.prototype.val = function (ret,varname,objectName)
+	{
+		var anim=this.currentAnimation;
+		if(anim)
+		{
+			if(objectName)
+			{
+				var line=this.timelineFromName(objectName);
+				if(line)
+				{
+					this.varStatus(ret,varname,line.meta);
+					return;
+				}
+			}
+			else
+			{
+				this.varStatus(ret,varname,anim.meta);
+				return;
+			}
+		}
+		ret.set_float(0);
+	}
 	
 	Exps.prototype.pointX = function (ret,name)
 	{
@@ -3614,6 +4359,11 @@ cr.plugins_.Spriter = function(runtime)
 	{
 		ret.set_float(this.animBlend);		
 	};
+	
+	Exps.prototype.Opacity = function(ret)
+	{
+		ret.set_float(this.opacity*100.0);
+	}
 	
 	pluginProto.exps = new Exps();
 
