@@ -80,6 +80,8 @@ AddCondition(8, cf_trigger, "onUICmdQuizz", "UI commands",
     "onUICmdQuizz", "onUICmdQuizz", "onUICmdQuizz");
 AddCondition(9, cf_trigger, "onUICmdAnimation", "UI commands",
     "onUICmdAnimation", "onUICmdAnimation", "onUICmdAnimation");
+AddCondition(10, cf_trigger, "onNoUIActionRequired", "UI commands",
+    "onNoUIActionRequired", "onNoUIActionRequired", "onNoUIActionRequired");
 
 ////////////////////////////////////////
 // Actions

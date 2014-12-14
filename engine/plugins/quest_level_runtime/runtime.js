@@ -154,6 +154,9 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
             case _UI_STAGE_ACTION_OUT.ACTION_TYPES.PLAYER_MOVEMENT:
                 this.runtime.trigger(pluginProto.cnds.onUICmdPlayerMovement, this);
             break;
+            case _UI_STAGE_ACTION_OUT.ACTION_TYPES.NO_UI_ACTION_REQUIRED:
+                this.runtime.trigger(pluginProto.cnds.onNoUIActionRequired, this);
+            break;
         }
     };
 
@@ -198,6 +201,10 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
     };
 
     Cnds.prototype.onUICmdAnimation = function() {
+        return true;
+    };
+
+    Cnds.prototype.onNoUIActionRequired = function() {
         return true;
     };
 

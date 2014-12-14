@@ -237,6 +237,9 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
         case _QR_ACTION_TYPES.CMD_SEQUENCE_FINISHED:
             this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.CMD_SEQUENCE_FINISHED);
         break;
+        case _QR_ACTION_TYPES.NO_ACTION:
+            this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NO_UI_ACTION_REQUIRED);
+        break;
 		default:
 			console.error("Error. Invalid QRAction node type: " +
                 qrAction.getType().toString());
