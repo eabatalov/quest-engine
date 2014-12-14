@@ -86,6 +86,10 @@ function uiStageActionInToQuestEvent(uiActionIn) {
             type = _QUEST_EVENTS.BACK;
             props = { id : uiActionIn.getTargetId() };
         break;
+        case _UI_STAGE_ACTION_IN.ACTION_TYPES.RECALL_LAST_UI_CMD:
+            type = _QUEST_EVENTS.RECALL_LAST_NODE;
+            props = { id : uiActionIn.getTargetId() };
+        break;
 		default:
 			console.error("Invalid player stage action type type: "
                 + uiActionIn.getActionType());
