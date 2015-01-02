@@ -153,22 +153,23 @@ cr.plugins_.TestDialogLevelRuntimePlugin = function(runtime)
 	Acts.prototype.runTestDialog = function(dialogName, mode) {
         jQuery.each(this.controllerHandlers, collectionObjectDelete);
         var controllerClassName = this.properties[0];
-        this.controller = eval("new " + controllerClassName
+        eval("new " + controllerClassName
             + "("
             + "'" + dialogName + "',"
             + (mode === 1 ? true : false).toString()
             + ", onControllerReady.bind(this)"
             + ");");
         function onControllerReady(controller) {
+            this.controller = controller;
             this.controllerHandlers = [
-                controller.events.onQuestionAnswered.
+                this.controller.events.onQuestionAnswered.
                     subscribe(this, this.onQuestionAnswered),
-                controller.events.onQuestionIsAvaliable.
+                this.controller.events.onQuestionIsAvaliable.
                     subscribe(this, this.onQuestionIsAvaliable),
-                controller.events.onTestCompleted.
+                this.controller.events.onTestCompleted.
                     subscribe(this, this.onTestCompleted)
             ];
-            controller.waitNextQuestion();
+            this.controller.waitNextQuestion();
         }
     };
 
