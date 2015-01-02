@@ -16,12 +16,17 @@ TestDialogRuntimeController.prototype.getCurrentQuestionText = function() {
 
 TestDialogRuntimeController.prototype
     .getCurrentQuestionPolyProp = function(propName) {
-    return this._runtime.getCurrentQuestionSituation().getPolyProp(propName);
+    return this._runtime.getCurrentQuestion().getPolyProp(propName);
 };
 
 TestDialogRuntimeController.prototype
     .getCurrentQuestionSectionPolyProp = function(propName) {
-    return this._runtime.getCurrentQuestionSection().getPolyProp(propName)
+    return this._runtime.getCurrentQuestionSection().getPolyProp(propName);
+};
+
+TestDialogRuntimeController.prototype
+    .getScriptPolyProp = function(propName) {
+    return this._runtime.getScript().getPolyProp(propName);
 };
 
 TestDialogRuntimeController.prototype.getQuestionsCount = function() {

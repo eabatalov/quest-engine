@@ -61,6 +61,11 @@ AddExpression(7, ef_return_string, "Get question section polymorphic property",
     "Get question section polymorphic property",
     "getQuestionSectionPolyProp", "Get question section polymorphic property");
 
+AddStringParam("name", "The name of property.");
+AddExpression(8, ef_return_string, "Get script polymorphic property",
+    "Get script polymorphic property",
+    "getScriptPolyProp", "Get script polymorphic property");
+
 AddExpression(3, ef_return_number, "Get questions count", "Get question count",
     "getQuestionsCount", "Get questions count");
 

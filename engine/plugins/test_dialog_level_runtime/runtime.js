@@ -157,16 +157,19 @@ cr.plugins_.TestDialogLevelRuntimePlugin = function(runtime)
             + "("
             + "'" + dialogName + "',"
             + (mode === 1 ? true : false).toString()
+            + ", onControllerReady.bind(this)"
             + ");");
-        this.controllerHandlers = [
-            this.controller.events.onQuestionAnswered.
-                subscribe(this, this.onQuestionAnswered),
-            this.controller.events.onQuestionIsAvaliable.
-                subscribe(this, this.onQuestionIsAvaliable),
-            this.controller.events.onTestCompleted.
-                subscribe(this, this.onTestCompleted)
-        ];
-        this.controller.waitNextQuestion();
+        function onControllerReady(controller) {
+            this.controllerHandlers = [
+                controller.events.onQuestionAnswered.
+                    subscribe(this, this.onQuestionAnswered),
+                controller.events.onQuestionIsAvaliable.
+                    subscribe(this, this.onQuestionIsAvaliable),
+                controller.events.onTestCompleted.
+                    subscribe(this, this.onTestCompleted)
+            ];
+            controller.waitNextQuestion();
+        }
     };
 
     Acts.prototype.answerQuestion = function(answer) {
@@ -190,6 +193,10 @@ cr.plugins_.TestDialogLevelRuntimePlugin = function(runtime)
 
     Exps.prototype.getQuestionSectionPolyProp = function(ret, propName) {
         ret.set_string(this.controller.getCurrentQuestionSectionPolyProp(propName));
+    };
+
+    Exps.prototype.getScriptPolyProp = function(ret, propName) {
+        ret.set_string(this.controller.getScriptPolyProp(propName));
     };
 
     Exps.prototype.getQuestionsCount = function(ret) {
