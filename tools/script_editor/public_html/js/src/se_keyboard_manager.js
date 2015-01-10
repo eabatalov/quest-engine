@@ -5,23 +5,26 @@ function KeyboardManager(seEventRouter) {
 
 KeyboardManager.prototype._runListner = function() {
     var isCtrlDown = false;
-    var CTRL_KEY = 17, V_KEY = 86, C_KEY = 67;
+    var isAltDown = false;
+    var CTRL_KEY = 17, ALT_KEY = 18, V_KEY = 86, C_KEY = 67;
     var thiz = this;
 
     $(document).keydown(function(e) {
-        if (e.keyCode == CTRL_KEY) isCtrlDown = true;
+        if (e.keyCode === CTRL_KEY) isCtrlDown = true;
+        if (e.keyCode === ALT_KEY) isAltDown = true;
     }).keyup(function(e) {
-        if (e.keyCode == CTRL_KEY) isCtrlDown = false;
+        if (e.keyCode === CTRL_KEY) isCtrlDown = false;
+        if (e.keyCode === ALT_KEY) isAltDown = false;
     });
 
     $(document).keydown(function(e) {
-        if (isCtrlDown && (e.keyCode == V_KEY)) {
+        if (isCtrlDown && isAltDown && (e.keyCode == V_KEY)) {
             thiz._seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "PASTE" });
-            return false;
+            return true;
         }
         if (isCtrlDown && (e.keyCode == C_KEY)) {
             thiz._seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "COPY" });
-            return false;
+            return true;
         }
     });
 };
