@@ -1,6 +1,6 @@
 /*
  * If some part of editor doesn't know what to do in particular event
- * then it should signal it to SEInputManager. SEInputManager knows bout all
+ * then it should signal it to SEInputManager. SEInputManager knows about all
  * the high level user interactions occuring now.
  */
 
@@ -106,6 +106,18 @@ SEInputManager.prototype.procStateNone = function(evName, args) {
 
     if (evName === "SCRIPT_COMPILE_CLICK") {
         this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "SCRIPT_COMPILE" });
+        return;
+    }
+
+    if (evName === "COPY") {
+        this.setState(SEInputManager.STATES.FOCUSED_OBJECT_GET_WAIT);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.STAGE_CURRENT, { name : "GET_OBJECT_IN_FOCUS" });
+        return;
+    }
+
+    if (evName === "PASTE") {
+        this.setState(SEInputManager.STATES.CLIPBOARD_OBJECT_GET_WAIT);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "GET_OBJECT_FROM_CLIPBOARD" });
         return;
     }
 };
@@ -284,6 +296,47 @@ SEInputManager.prototype.procStateProjectFileOpenWait = function(evName, args) {
     }
 };
 
+//NONE -> FOCUSED_OBJECT_GET_WAIT -> NONE
+SEInputManager.prototype.procStateFocusedObjectGetWait = function(evName, args) {
+    if (evName === "OBJECT_IN_FOCUS_DELIVER") {
+        this.setState(SEInputManager.STATES.NONE);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP, { name : "COPY_OBJECT_TO_CLIPBOARD", obj : args.obj });
+        return;
+    }
+};
+
+//NONE -> CLIPBOARD_OBJECT_GET_WAIT -> WAIT_NODE_POSITIONING_ON_COPY -> WAIT_NODE_COPY_CREATION -> NONE
+SEInputManager.prototype.procStateClipboardObjectWait = function(evName, args) {
+    if (evName === "OBJECT_IN_CLIPBOARD_DELIVER") {
+        //Ignore paste for empty clipboard and non nodeview objects
+        if (args.obj === null || !(args.obj instanceof SENodeView)) {
+            this.setState(SEInputManager.STATES.NONE);
+            return;
+        }
+        this.nodeViewToCopy = args.obj;
+        this.setState(SEInputManager.STATES.WAIT_NODE_POSITIONING_ON_COPY);
+        return;
+    }
+};
+
+SEInputManager.prototype.procStateWaitNodePositioningOnCopy = function(evName, args) {
+    if (evName === "EDITOR_CLICK") {
+        this.setState(SEInputManager.STATES.WAIT_NODE_COPY_CREATION);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE,
+            { name : "NODE_COPY_CREATE", nodeView : this.nodeViewToCopy, intData : args.intData });
+        return;
+    }
+};
+
+SEInputManager.prototype.procStateWaitNodeCopyCreation = function(evName, args) {
+    if (evName === "NODE_COPY_CREATED") {
+        this.setState(SEInputManager.STATES.NONE);
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_CURRENT_STAGE,
+            { name : "OBJECT_FOCUS", obj : args.node, type : "NODE" });
+        return;
+    }
+};
+
 function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES = {};
     SEInputManager.STATES.NONE = 0;
@@ -307,6 +360,13 @@ function SEInputManagerStaticConstructor(completionCB) {
     SEInputManager.STATES.COND_DELETE_WAIT = 12;
 
     SEInputManager.STATES.PROJECT_FILE_OPEN_WAIT = 13;
+
+    SEInputManager.STATES.FOCUSED_OBJECT_GET_WAIT = 14;
+
+
+    SEInputManager.STATES.CLIPBOARD_OBJECT_GET_WAIT = 15;
+    SEInputManager.STATES.WAIT_NODE_POSITIONING_ON_COPY = 16;
+    SEInputManager.STATES.WAIT_NODE_COPY_CREATION = 17;
 
     SEInputManager.STATE_PROC = {};
     SEInputManager.STATE_PROC[SEInputManager.STATES.NONE] =
@@ -344,6 +404,16 @@ function SEInputManagerStaticConstructor(completionCB) {
 
     SEInputManager.STATE_PROC[SEInputManager.STATES.PROJECT_FILE_OPEN_WAIT] =
         SEInputManager.prototype.procStateProjectFileOpenWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.FOCUSED_OBJECT_GET_WAIT] =
+        SEInputManager.prototype.procStateFocusedObjectGetWait;
+
+    SEInputManager.STATE_PROC[SEInputManager.STATES.CLIPBOARD_OBJECT_GET_WAIT] =
+        SEInputManager.prototype.procStateClipboardObjectWait;
+    SEInputManager.STATE_PROC[SEInputManager.STATES.WAIT_NODE_POSITIONING_ON_COPY] =
+        SEInputManager.prototype.procStateWaitNodePositioningOnCopy;
+    SEInputManager.STATE_PROC[SEInputManager.STATES.WAIT_NODE_COPY_CREATION] =
+        SEInputManager.prototype.procStateWaitNodeCopyCreation;
 
     SEInputManager.STATE_ENTER = {};
 

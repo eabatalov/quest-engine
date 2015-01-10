@@ -28,6 +28,8 @@
                 "src/se_script_props.js",
                 "src/se_project.js",
                 "src/se_service.js",
+                "src/se_keyboard_manager.js",
+                "src/se_clipboard.js",
                 "src/se_ng_app.js"
             ]
         }

@@ -20,7 +20,6 @@ function SECondView(cond, seEvents) {
     this.cond.__view = this;
 
     this.seEvents = seEvents;
-    this.seEvHandler = this.seEvents.on(this.onSeEvent.bind(this));
 
     this.do.click = this.do.tap = this.inputEvent.bind(this, "CLICK");
 }
@@ -50,8 +49,6 @@ SECondView.load = function(cond, seEvents, savedData) {
 
 SECondView.prototype.delete = function() {
     //TODO implement more accurately
-    this.seEvHandler.delete();
-    delete this.seEvHandler;
     delete this.seEvents;
     this.buttons.del.do.click = null;
     this.do.click = this.do.tap = null;
@@ -71,19 +68,7 @@ SECondView.prototype.contains = function(px, py) {
         return false;
 };
 
-SECondView.prototype.onSeEvent = function(args) {
-    if (args.name === "OBJECT_FOCUS") {
-        var condView = SECondView.fromSECond(args.obj);
-        if (condView && condView.getId() === this.getId()) {
-            this.setControlsVisible(true);
-        } else {
-            this.setControlsVisible(false);
-        };
-        //XXX it work without update because we have rendering loop now
-        //sceneUpdater.up();
-        return;
-    }
-};
+SECondView.prototype.onSeEvent = function(args) {};
 
 SECondView.prototype.isCondEvent = function(intData) {
     var p = this.getLocalPosition(intData);
@@ -123,6 +108,10 @@ SECondView.prototype.setDst = function(point) {
 
 SECondView.prototype.setControlsVisible = function(val) {
     this.buttons.del.setVisible(val);
+};
+
+SECondView.prototype.setFocused = function(val) {
+    this.setControlsVisible(val);
 };
 
 SECondView.prototype.reDraw = function() {

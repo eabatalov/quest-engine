@@ -1,10 +1,16 @@
 /*
  * Persistent singleton service running all the lifetime of script editor application
  */
-function ScriptEditorService(seEventRouter, mouseWheelManager, userInteractionManager) {
+function ScriptEditorService(seEventRouter,
+    mouseWheelManager,
+    userInteractionManager,
+    keyboardManager,
+    clipboard) {
     this.userInteractionManager = userInteractionManager;
     this.mouseWheelManager = mouseWheelManager;
+    this.keyboardManager = keyboardManager;
     this.seEventRouter = seEventRouter;
+    this.clipboard = clipboard;
     this.seEvents = seEventRouter.createEP(SE_ROUTER_EP_ADDR.CONTROLS_GROUP);
     this.projectSaver = new SEProjectSaveService(this, seEventRouter);
     this.projectOpener = new SEProjectOpenService(this, seEventRouter);

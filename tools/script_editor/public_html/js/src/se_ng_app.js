@@ -43,6 +43,10 @@ function ScriptEditorBootstrap() {
 
     this.scriptEditorApp.factory("MouseWheelManager", [MouseWheelManagerFactory]);
 
+    this.scriptEditorApp.factory("KeyboardManager", ["SEEventRouter", KeyboardManagerFactory]);
+
+    this.scriptEditorApp.factory("Clipboard", ["SEEventRouter", ClipboardFactory]);
+
     this.scriptEditorApp.factory("SEUserInteractionManager", ["SEEventRouter", SEUserInteractionManagerFactory]);
 
     this.scriptEditorApp.controller("ScriptEditorPropertiesWindowController", 
@@ -66,6 +70,8 @@ function ScriptEditorBootstrap() {
             "SEEventRouter",
             "MouseWheelManager",
             "SEUserInteractionManager",
+            "KeyboardManager",
+            "Clipboard",
             ScriptEditorServiceFactory
             ]);
 

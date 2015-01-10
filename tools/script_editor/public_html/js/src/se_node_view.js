@@ -76,7 +76,6 @@ function SENodeView(node, seEvents) {
     this.onLabelChanged();
 
     this.seEvents = seEvents;
-    this.seEvHandler = this.seEvents.on(this.onSeEvent.bind(this));
 
     //XXX will be coded cleanly when we have SENodeView subclasses
     if (this.node.getType() === _QUEST_NODES.STAGE) {
@@ -124,8 +123,6 @@ SENodeView.load = function(node, seEvents, savedData) {
 
 SENodeView.prototype.delete = function() {
     //TODO implement more accurately
-    this.seEvHandler.delete();
-    delete this.seEvHandler;
     delete this.seEvents;
     this.detachParent();
     this.setInteractive(false);
@@ -158,17 +155,7 @@ SENodeView.prototype.isNodeEvent = function(intData) {
     else return true;
 };
 
-SENodeView.prototype.onSeEvent = function(args) {
-    if (args.name === "OBJECT_FOCUS") {
-        var nodeView = SENodeView.fromSENode(args.obj);
-        if (nodeView && nodeView.getId() === this.getId()) {
-            this.setButtonsVisible(true);
-        } else {
-            this.setButtonsVisible(false);
-        };
-        return;
-    }
-};
+SENodeView.prototype.onSeEvent = function(args) {};
 
 SENodeView.prototype.inputEvent = function(evName, intData) {
     if (!this.getInteractive())
@@ -206,6 +193,10 @@ SENodeView.prototype.controlEvent = function(ctlName, evName) {
 SENodeView.prototype.setButtonsVisible = function(val) {
     this.controls.buttons.del.setVisible(val);
     this.controls.buttons.cond.setVisible(val);
+};
+
+SENodeView.prototype.setFocused = function(val) {
+    this.setButtonsVisible(val);
 };
 
 SENodeView.prototype.updateMiddlePoint = function() {

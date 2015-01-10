@@ -8,6 +8,7 @@ function SEStageEditor(stage, seEventRouter, mouseWheelManager, /* internal usag
     this.addr = SE_ROUTER_EP_ADDR.STAGE_GROUP_FIRST + this.stage.getId();
     this.seEvents = seEventRouter.createEP(this.addr);
     this.seEvHandler = this.seEvents.on(this.onSeEvent, this);
+    this.focusedObject = null;
 
     //Visual stuff
     this.scene = new SEScene();
@@ -251,6 +252,12 @@ function SEStageEditorObjPosValidator(seTreeEditor) {
     };
 }
 
+SEStageEditor.prototype._addNodeViewToStage = function(nodeView) {
+    nodeView.setParent(this.nodesLayer);
+    this.nodeViews.push(nodeView);
+    this.scene.update();
+};
+
 SEStageEditor.prototype.onSeEvent = function(args) {
     //console.log(args.name);
     if (args.name === "NODE_CREATE") {
@@ -260,12 +267,24 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         newNodeView.setPosition(pos.x, pos.y);
         //TODO need 100% creation to send confiramation event
         //if (this.posValidator.validateNodeView(newNodeView)) {
-            newNodeView.setParent(this.nodesLayer);
-            this.nodeViews.push(newNodeView);
-            this.scene.update();
+            this._addNodeViewToStage(newNodeView);
         //} else newNode = null; //TODO move node to the nearest appropriate position
         this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
-            { name : "NODE_CREATED", node : newNodeView.getNode() });
+            { name : "NODE_CREATED", node : newNode });
+        return;
+    }
+
+    if (args.name === "NODE_COPY_CREATE") {
+        var pos = this.nodesLayer.getLocalPosition(args.intData);
+        var newNode = args.nodeView.getNode().copy();
+        this.stage.addNode(newNode);
+
+        var newNodeView = new SENodeView(newNode, this.seEvents);
+        newNodeView.setPosition(pos.x, pos.y);
+        this._addNodeViewToStage(newNodeView);
+
+        this.seEvents.send(SE_ROUTER_EP_ADDR.BROADCAST_NO_STAGES,
+            { name : "NODE_COPY_CREATED", node : newNode });
         return;
     }
 
@@ -346,6 +365,31 @@ SEStageEditor.prototype.onSeEvent = function(args) {
         this.input.dragging.condSnap = false;
         nodeView.highlight(false);
         this.scene.update();
+        return;
+    }
+
+    if (args.name === "OBJECT_FOCUS") {
+        if (this.focusedObject) {
+            this.focusedObject.setFocused(false);
+        }
+
+        var nodeView = SENodeView.fromSENode(args.obj);
+        if (nodeView) {
+            nodeView.setFocused(true);
+            this.focusedObject = nodeView;
+        }
+        var condView = SECondView.fromSECond(args.obj);
+        if (condView) {
+            condView.setFocused(true);
+            this.focusedObject = condView;
+        }
+        this.scene.update();
+        return;
+    }
+
+    if (args.name === "GET_OBJECT_IN_FOCUS") {
+        this.seEvents.send(SE_ROUTER_EP_ADDR.CONTROLS_GROUP,
+            { name : "OBJECT_IN_FOCUS_DELIVER", obj : this.focusedObject });
         return;
     }
 };
