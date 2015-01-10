@@ -367,6 +367,19 @@ cr.plugins_.QuestLevelRuntimePlugin = function(runtime)
         );
     };
 
+    Exps.prototype.getParamByName = function(ret, pName) {
+        var param = this.levelExecutionController.
+            getUIActionOut().getParamByName(pName);
+        switch(param.type) {
+            case SEFuncCallNodeParameter.types.str:
+                ret.set_string(param.value);
+            break;
+            case SEFuncCallNodeParameter.types.num:
+                ret.set_int(param.value);
+            break;
+        };
+    };
+
 	pluginProto.exps = new Exps();
 
 }());

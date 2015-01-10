@@ -123,14 +123,10 @@ cr.behaviors.QuestEngineSpriteExtras = function(runtime)
 	// Conditions
 	function Cnds() {};
 
-	// the example condition
-	/*Cnds.prototype.IsMoving = function ()
+	Cnds.prototype.HasAnim = function(animName)
 	{
-		// ... see other behaviors for example implementations ...
-		return false;
-	};*/
-	
-	// ... other conditions here ...
+		return this.inst.getAnimationByName(animName) !== null;
+	};
 	
 	behaviorProto.cnds = new Cnds();
 
@@ -138,7 +134,7 @@ cr.behaviors.QuestEngineSpriteExtras = function(runtime)
 	// Actions
 	function Acts() {};
 
-	Acts.prototype.SetAnim = function (animname, from)
+	Acts.prototype.SetAnim = function(animname, from)
 	{
 		this.animName = animname;
 		this.inst.type.plugin.acts.SetAnim.call(this.inst, this.animName, from);
@@ -153,13 +149,7 @@ cr.behaviors.QuestEngineSpriteExtras = function(runtime)
 	function Exps() {};
 
 	behinstProto.getSpriteAnimByName = function(animName) {
-		var animations = this.inst.type.animations;
-		for (var i = 0; i < animations.length; ++i) {
-			var anim = animations[i];
-			if (anim.name === animName)
-				return anim;
-		}
-		return null;
+		return this.inst.getAnimationByName(animName);
 	}
 
 	behinstProto.getSpriteAnimFrameWidth = function(animName, frameIx)

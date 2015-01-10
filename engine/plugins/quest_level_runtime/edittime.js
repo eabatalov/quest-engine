@@ -62,25 +62,25 @@ AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive",
 AddCondition(0, cf_trigger, "Level changed", "General",
     "Level changed", "Level changed", "levelChanged");
 
-AddCondition(1, cf_trigger, "onUICmdSequenceStarted", "UI commands",
+AddCondition(1, cf_trigger, "onUICmdSequenceStarted", "UI OUT commands",
     "onUICmdSequenceStarted", "onUICmdSequenceStarted", "onUICmdSequenceStarted");
-AddCondition(2, cf_trigger, "onUICmdSequenceFinished", "UI commands",
+AddCondition(2, cf_trigger, "onUICmdSequenceFinished", "UI OUT commands",
     "onUICmdSequenceFinished", "onUICmdSequenceFinished", "onUICmdSequenceFinished");
-AddCondition(3, cf_trigger, "onUICmdStageClear", "UI commands",
+AddCondition(3, cf_trigger, "onUICmdStageClear", "UI OUT commands",
     "onUICmdStageClear", "onUICmdStageClear", "onUICmdStageClear");
-AddCondition(4, cf_trigger, "onUICmdFuncCall", "UI commands",
+AddCondition(4, cf_trigger, "onUICmdFuncCall", "UI OUT commands",
     "onUICmdFuncCall", "onUICmdFuncCall", "onUICmdFuncCall");
-AddCondition(5, cf_trigger, "onUICmdNotification", "UI commands",
+AddCondition(5, cf_trigger, "onUICmdNotification", "UI OUT commands",
     "onUICmdNotification", "onUICmdNotification", "onUICmdNotification");
-AddCondition(6, cf_trigger, "onUICmdPlayerMovement", "UI commands",
+AddCondition(6, cf_trigger, "onUICmdPlayerMovement", "UI OUT commands",
     "onUICmdPlayerMovement", "onUICmdPlayerMovement", "onUICmdPlayerMovement");
-AddCondition(7, cf_trigger, "onUICmdPhrase", "UI commands",
+AddCondition(7, cf_trigger, "onUICmdPhrase", "UI OUT commands",
     "onUICmdPhrase", "onUICmdPhrase", "onUICmdPhrase");
-AddCondition(8, cf_trigger, "onUICmdQuizz", "UI commands",
+AddCondition(8, cf_trigger, "onUICmdQuizz", "UI OUT commands",
     "onUICmdQuizz", "onUICmdQuizz", "onUICmdQuizz");
-AddCondition(9, cf_trigger, "onUICmdAnimation", "UI commands",
+AddCondition(9, cf_trigger, "onUICmdAnimation", "UI OUT commands",
     "onUICmdAnimation", "onUICmdAnimation", "onUICmdAnimation");
-AddCondition(10, cf_trigger, "onNoUIActionRequired", "UI commands",
+AddCondition(10, cf_trigger, "onNoUIActionRequired", "UI OUT commands",
     "onNoUIActionRequired", "onNoUIActionRequired", "onNoUIActionRequired");
 
 ////////////////////////////////////////
@@ -208,6 +208,12 @@ AddExpression(19, ef_return_number,
 	"Clear stage",
 	"UI action out", "getClearStage",
 	"1 to clear stage before processing current action, 0 otherwise");
+
+AddStringParam("Parameter name", "Parameter name");
+AddExpression(20, ef_return_any,
+	"Get parameter by name",
+	"UI action out", "getParamByName",
+	"Get parameter by name");
 
 ////////////////////////////////////////
 ACESDone();

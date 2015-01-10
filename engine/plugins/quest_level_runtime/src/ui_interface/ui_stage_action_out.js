@@ -21,6 +21,8 @@ UIStageActionOut.prototype.clearFields = function() {
     this.durationSec = 0;
 
     this.funcName = "";
+    this.params = null;
+
     this.enabled = 0; // 0 or 1
     this.hasNext = 0; //0 or 1
     this.canReverse = 0; //0 or 1
@@ -140,6 +142,18 @@ UIStageActionOut.prototype.setFuncName = function(funcName) {
     this.funcName = funcName;
 };
 
+UIStageActionOut.prototype.getParamByName = function(pName) {
+    for (var i = 0; i < this.params.length; ++i) {
+        if (this.params[i].name === pName)
+            return this.params[i];
+    }
+    return null;
+};
+
+UIStageActionOut.prototype.setParams = function(params) {
+    this.params = params;
+};
+
 UIStageActionOut.prototype.getEnabled = function() {
     return this.enabled;
 };
@@ -219,6 +233,7 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
             if (qrAction.source === SEFuncCallNode.sources.c2) {
 			    this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.FUNC_CALL);
 			    this.setFuncName(qrAction.name);
+                this.setParams(qrAction.params);
             } else {
                 this.setActionType(_UI_STAGE_ACTION_OUT.ACTION_TYPES.NONE);
             }
@@ -251,9 +266,7 @@ UIStageActionOut.prototype.fillFromQRAction = function(qrAction, npcUID) {
             qrAction.id === _QUEST_PLAYER_ID ? "PLAYER" : "NPC"
         );
 		this.setNPCActorUID(
-            qrAction.id !== _QUEST_PLAYER_ID ?
-			    npcUID(qrAction.getStageName(), qrAction.id)
-                : null
+	        npcUID(qrAction.getStageName(), qrAction.id)
         );
 	}
     this.setStageName(qrAction.getStageName());

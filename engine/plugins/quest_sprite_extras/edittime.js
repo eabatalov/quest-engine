@@ -38,9 +38,9 @@
 //				display_str,		// as appears in event sheet - use {0}, {1} for parameters and also <b></b>, <i></i>, and {my} for the current behavior icon & name
 //				description,		// appears in event wizard dialog when selected
 //				script_name);		// corresponding runtime function name
-				
-// example				
-//AddCondition(0, cf_none, "Is moving", "My category", "{my} is moving", "Description for my condition!", "IsMoving");
+
+AddStringParam("Animation name", "", "");
+AddCondition(0, cf_none, "Has animation", "Animation", "Has {0} animation", "", "HasAnim");
 
 ////////////////////////////////////////
 // Actions

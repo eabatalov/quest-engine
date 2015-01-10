@@ -23,7 +23,8 @@
                 "src/reverse_interp/QRStageReverseInterp.js",
                 "src/reverse_interp/QRScriptReverseInterp.js",
                 "src/QRScriptInterpretator.js",
-                "src/QuestLevelScriptExecutor.js"
+                "src/QuestLevelScriptExecutor.js",
+                "src/UIActionSeqStartQuestEventsQueue.js"
             ]
         }
     }

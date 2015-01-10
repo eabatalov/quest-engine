@@ -2,6 +2,8 @@ function LevelExecutorController(levelExecutor) {
 	this.stageNPCs = {}; //Stage name => NPC id in stage => uid
     this.npcUIDFunc = this._npcUID.bind(this);
     this.levelExecutor = levelExecutor;
+    this.uiActionSeqStartQEQueue =
+        new UIActionSeqStartQuestEventsQueue(levelExecutor);
     this.levelExecutor.events.
         qrActionPending.subscribe(this, this._onQRActionPending.bind(this));
 
@@ -13,10 +15,16 @@ function LevelExecutorController(levelExecutor) {
     };
 }
 
+/*
+ * Returns current UI action IN which is filled with action values.
+ */
 LevelExecutorController.prototype.getUIActionIn = function() {
     return this.uiActionIn;
 };
 
+/*
+ * Returns currently executed UI action OUT.
+ */
 LevelExecutorController.prototype.getUIActionOut = function() {
     return this.uiActionOut;
 };
@@ -36,8 +44,7 @@ LevelExecutorController.prototype.setupObjects = function(NPCType) {
 };
 
 /*
- * Reads INs parameters, modifies OUTs parameters to specify new UI action.
- * Works accoring to current stage quest script
+ *
  */
 LevelExecutorController.prototype.uiActionInExec = function() {
 	validateUIStageActionIN(this.uiActionIn);
@@ -47,7 +54,7 @@ LevelExecutorController.prototype.uiActionInExec = function() {
 	validateQuestEvent(questEvent);
 	dumpQuestEvent(questEvent);
 
-    this.levelExecutor.questEventExec(questEvent);
+    this.uiActionSeqStartQEQueue.enqueueQuestEvent(questEvent);
 };
 
 //Called by UI when current uiActionOut was processed
@@ -61,7 +68,11 @@ LevelExecutorController.prototype._onQRActionPending = function(nextQRAction) {
 };
 
 LevelExecutorController.prototype._npcUID = function(stageName, npcIDInStage) {
-	return this.stageNPCs[stageName][npcIDInStage];
+    if (this.stageNPCs.hasOwnProperty(stageName) &&
+        this.stageNPCs[stageName].hasOwnProperty(npcIDInStage)) {
+        //Stage may not contain NPCs, stage may no contain such NPC
+        return this.stageNPCs[stageName][npcIDInStage];
+    } else return undefined;
 };
 
 LevelExecutorController.prototype._fillUIActionOut = function(qrAction) {
