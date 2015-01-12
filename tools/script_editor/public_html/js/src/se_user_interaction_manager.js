@@ -26,7 +26,7 @@ SEInputManager.prototype.setState = function(newState) {
 };
 
 SEInputManager.prototype.procEvent = function(args) {
-    //console.log("state: " + this.state + " event: " + args.name);
+    console.log("state: " + this.state + " event: " + args.name);
     var evName = args.name;
     SEInputManager.STATE_PROC[this.state].call(this, evName, args);
 };

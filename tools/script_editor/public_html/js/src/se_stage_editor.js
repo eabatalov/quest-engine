@@ -314,7 +314,7 @@ SEStageEditor.prototype.onSeEvent = function(args) {
     }
 
     if (args.name === "COND_CREATE_FROM_NODE") {
-        var newCond = this.stage.createCond(_QUEST_CONDS.NONE);
+        var newCond = this.stage.createCond(_QUEST_CONDS.NEXT);
         var newCondView = new SECondView(newCond, this.seEvents);
         newCondView.setParent(this.condsLayer);
         this.condViews.push(newCondView);
