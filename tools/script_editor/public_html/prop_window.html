@@ -269,6 +269,7 @@
 
     <div class="row" ng-show="node.getType() === QUEST_NODES.FUNC_CALL">
         <div class="col-xs-6">
+
             <div>
                 <label class="control-label" for="source">Source</label>
                 <select name="source"
@@ -276,6 +277,19 @@
                         ng-model="node.getProps().source" ng-change="node.setProp('source', node.getProps().source)"
                         ng-options="option.value as option.name for option in [{ name: 'Construct2', value: FUNC_SOURCES.c2 }, { name: 'Javascript', value: FUNC_SOURCES.js }];">
                 </select>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6" ng-show="node.getProps().isPure  | hasFieldValue">
+                    <div>
+                        <label class="control-label" for="continue">Is pure?</label>
+                        <select name="is-pure"
+                            class="control-label select"
+                            ng-model="node.getProps().isPure" ng-change="node.setProp('isPure', node.getProps().isPure)"
+                            ng-options="option.value as option.name for option in [{ name: 'Yes', value: true }, { name: 'No', value: false }];">
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div>
