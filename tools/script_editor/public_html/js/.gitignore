@@ -1,6 +1,6 @@
 lib
 node_modules
 bin
-buildme
+buildme*
 Gruntfile.js
 package.json
