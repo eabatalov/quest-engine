@@ -4,5 +4,6 @@
     "tool-script-to-text" : "script_to_text/",
     "tool-replay-analytics-filter" : "replay_analytics_filter/",
     "tool-replay-deleter" : "replay_deleter/",
-    "tool-player-replay-search" : "player_replay_search/"
+    "tool-player-replay-search" : "player_replay_search/",
+    "tool-custom-record-replay-search" : "custom_record_replay_search/"
 }

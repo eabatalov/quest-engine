@@ -1,0 +1,21 @@
+{
+    "module" : {
+        "name" : "tool-custom-record-replay-search",
+        "description" : "",
+        "dependencies" : {
+            "base" : {
+                "lib-quest-level-recording" : [],
+                "tool-lib-replay-analytics" : []
+             },
+             "noweb" : {
+                "lib-jquery-core-nodom" : []
+             }
+        },
+        "src" : {
+            "base" : [
+                "src/CustomRecordSearchFilter.js",
+                "src/main.js"
+            ]
+        }
+    }
+}
